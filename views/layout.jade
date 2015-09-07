@@ -1,7 +1,56 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		title= title
+		meta( charset='UTF-8' )
+		meta( http-equiv='X-UA-Compatible', content='IE=edge,chrome=1' )
+		meta( name='viewport', content='width=device−width, maximum-scale=1.0 user-scalable=no' )
+		link( rel='shortcut icon', type='image/png', href='images/plant_icon.png' )
+		link( rel='stylesheet', href='/stylesheets/style.css')
+		script( type='text/javascript' src='/js/jquery-2.1.1.js' )
+		script( type='text/javascript' src='/js/viewscontrol.js' )
+	body
+		#menu.menu_grid
+			.colhh1.menu_userbg
+				.menu_userimg
+					img( src='images/dark_flat.jpg' )
+				.colhh1.menu_username
+					.pd12_18 El vato chido
+						span correo@email.com	
+			.colhh1.menu_opccontainer
+				.pd_tb_10.border_bottom
+					.opc
+						span( style='background-image: url("images/home.png")' )
+						| Inicio
+					.opc
+						span( style='background-image: url("images/book-multiple.png")' )
+						| Mis materias
+					.opc
+						span( style='background-image: url("images/check.png")' )
+						| Mis calificaciones
+					.opc
+						span( style='background-image: url("images/pen.png")' )
+						| Subir contenido
+					.opc
+						span( style='background-image: url("images/calendar.png")' )
+						| Calendario
+					.opc
+						span( style='background-image: url("images/account-box.png")' )
+						| Usuarios
+				.pd_tb_10.border_bottom
+					.opc
+						span( style='background-image: url("images/settings.png")' )
+						| Ajustes
+					.opc
+						span( style='background-image: url("images/logout.png")' )
+						| Cerrar sesión		
+		.back_menu
+		.top_pallete.colhh1.bg_indigo.flat_shadow
+			#menubutton.menu_button
+				span
+				span
+				span
+			.pd_18
+				.center_text.colhh1
+					.mm_title SMDE
+		block content

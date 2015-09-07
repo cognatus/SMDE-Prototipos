@@ -1,8 +1,346 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
+
+*{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
 }
 
-a {
-  color: #00B7FF;
+html{
+	height: 100%;
+}
+
+body {
+  	padding: 0;
+ 	margin: 0;
+ 	height: 100%;
+	font-family: 'Roboto' , 'Helvetica' , sans-serif;
+	background-color: #e0e0e0;
+	color: #212121;
+	font-size: 15px;
+}
+
+
+/*---------------------------------------------------------------------------------------
+	Titles
+-----------------------------------------------------------------------------------------*/
+
+.b_title{
+	font-size: 48px;
+	font-weight: bolder;
+}
+
+.bm_title{
+	font-size: 32px;
+	font-weight: lighter;
+}
+
+.mm_title{
+	font-size: 25px;
+	font-weight: lighter;
+}
+
+/*---------------------------------------------------------------------------------------
+	GRID
+-----------------------------------------------------------------------------------------*/
+
+.colhh1, .colhh2, .colhh3, .colhh4, .colhh5{
+	width: 100%;
+	height: auto;
+}
+
+/*---------------------------------------------------------------------------------------
+	PADDING
+-----------------------------------------------------------------------------------------*/
+
+.pd_8{padding: 8px;}
+
+.pd_12{padding: 12px;}
+
+.pd_14{padding: 14px;}
+
+.pd_16{padding: 16px;}
+
+.pd_18{padding: 18px;}
+
+.pd_24{padding: 24px;}
+
+.pd_32{padding: 32px;}
+
+.pd_40{padding: 40px;}
+
+.pd12_24{padding: 12px 24px 12px 24px;}
+
+.pd12_18{padding: 12px 18px 12px 18px;}
+
+.pd_tb_8{padding: 8px 0 8px 0;}
+
+.pd_tb_10{padding: 10px 0 10px 0;}
+
+.pd_tb_12{padding: 12px 0 12px 0;}
+
+.pd_tb_16{padding: 16px 0 16px 0;}
+
+.pd_tb_24{padding: 24px 0 24px 0;}
+
+
+/*---------------------------------------------------------------------------------------
+	SPACES
+-----------------------------------------------------------------------------------------*/
+
+.margin_top{margin-top: 24px;}
+
+/*---------------------------------------------------------------------------------------
+	BG - COLORS
+-----------------------------------------------------------------------------------------*/
+
+.bg_white{background-color: #f2f2f2;}
+.bg_blue{background-color: #2196F3;}
+.bg_darkblue{background-color: #0D47A1;}
+.bg_lightblue{background-color: #03A9F4;}
+.bg_cyan{background-color: #00BCD4;}
+.bg_indigo{background-color: #3F51B5;}
+.bg_teal{background-color: #009688;}
+.bg_green{background-color: #4CAF50;}
+.bg_lightgreen{background-color: #8BC34A;}
+.bg_lime{background-color: #CDDC39;}
+.bg_orange{background-color: #FF9800;}
+.bg_red{background-color: #F44336;}
+.bg_purple{background-color: #9C27B0;}
+.bg_darkpurple{background-color: #673AB7;}
+.bg_pink{background-color: #E91E63;}
+.bg_yellow{background-color: #FFEB3B;}
+.bg_amber{background-color: #FFC107;}
+.bg_darkorange{background-color: #FF5722;}
+.bg_brown{background-color: #795548;}
+.bg_bluegray{background-color: #607D8B;}
+.bg_gray{background-color: #e0e0e0;}
+.bg_darkgray{background-color: #212121;}
+
+.border_bottom{border-bottom: 1px solid rgba(0,0,0,0.1);}
+
+.border_bottomthick{border-bottom: 2px solid rgba(0,0,0,0.4);}
+
+/*---------------------------------------------------------------------------------------
+	ALIGN
+-----------------------------------------------------------------------------------------*/
+
+.left_text{text-align: left;}
+
+.right_text{text-align: right;}
+
+.center_text{text-align: center;}
+
+.left_float{float: left;}
+
+.right_float{float: right;}
+
+/*---------------------------------------------------------------------------------------
+	LOGIN
+-----------------------------------------------------------------------------------------*/
+
+body.login{
+	background: url('/images/login_bg.jpg') no-repeat fixed center;
+	background-size: cover;
+}
+
+.op_bg{
+	background-color: rgba(0,0,0,0.5);
+	height: 100%;
+	width: auto;
+	position: relative;
+	color: #fff;
+}
+
+.op_bg .b_title{padding: 48px;padding-bottom: 16px;}
+
+.login_container{
+	width: auto;
+	padding: 32px;
+	border-radius: 2px;
+}
+
+.login_container a{
+	cursor: pointer;
+	text-decoration: none;
+	color: #fff;
+}
+
+.login_container a:hover{
+	text-decoration: underline;
+}
+
+.sign_field span{
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	float: left;
+	border-radius: 2px 0 0 2px;
+	background: rgba(255,255,255,0.2) no-repeat center;
+	background-size: 24px 24px;
+}
+
+.sign_field input.textfield{
+	display: inline-block;
+	outline: none;
+	border: none; 
+	background-color: rgba(255,255,255,0.2);
+	width: calc(100% - 72px);
+	margin: 0;
+	height: 16px;
+	padding: 16px;
+	padding-left: 6px;
+	color: #fff;
+	border-radius: 0 2px 2px 0;
+}
+
+.sign_field input.signbutton{
+	outline: none;
+	border: none;
+	border-radius: 2px; 
+	width: 100%;
+	margin: 0;
+	padding: 16px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.18);
+}
+
+.sign_field input.signbutton:active{
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.26);
+}
+
+/*---------------------------------------------------------------------------------------
+	MENU
+-----------------------------------------------------------------------------------------*/
+
+.back_menu{
+	background-color: rgba(0,0,0,0.1);
+	height: 100%;
+	width: 100%;
+	color: #fff;
+	position: absolute;
+	z-index: 997;
+	display: none;
+}
+
+.menu_grid{
+	width: 296px;
+	background-color: #fff;
+	height: 100%;
+	box-shadow: 1px 0px 3px rgba(0,0,0,0.3);
+	position: absolute;
+	left: -306px;
+	z-index: 999;
+}
+
+.menu_userbg{
+	height: 150px;
+	background: url('/images/img1.jpg') no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+.menu_userimg{
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	top: 18px;
+	left: 18px;
+}
+
+.menu_userimg img{
+	width: 100%;
+	height: 100%;
+	border-radius: 60px;
+}
+
+.menu_username{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	font-weight: 500;
+	text-shadow: 0px 1px 1px #000;
+}
+
+.menu_username span{
+	display: block;
+	width: auto;
+	font-weight: 100;
+	margin-top: 2px;
+}
+
+.menu_opccontainer{
+	overflow: auto;
+	height: calc(100% - 150px)
+}
+
+.menu_opccontainer .opc{
+	width: auto;
+	padding: 19px 18px 19px 18px;
+	height: 17px;
+	cursor: pointer;
+	font-weight: 400;
+}
+
+.menu_opccontainer .opc:hover{
+	background-color: rgba(0,0,0,0.1);
+}
+
+.menu_opccontainer span{
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-size: 95%;
+	background-repeat: no-repeat;
+	margin-right: 36px;
+	float: left;
+	position: relative;
+	top: -3px; 
+}
+
+.top_pallete{
+	position: fixed;
+	height: auto;
+	color: #fff;
+}
+
+.top_pallete .mm_title{
+	position: relative;
+	top: 1px;
+}
+
+.menu_button{
+	position: absolute;
+	cursor: pointer;
+	width: auto;
+	height: auto;
+	padding: 12px;
+	z-index: 99;
+	left: 12px;
+	top: 12px;
+}
+
+.menu_button span{
+	display: block;
+	width: 18px;
+	height: 2px;
+	margin: 3px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+/*---------------------------------------------------------------------------------------
+	OTHER
+-----------------------------------------------------------------------------------------*/
+
+.flat_shadow{box-shadow: 0px 1px 2px rgba(0,0,0,0.3);}
+
+.block_container{
+	background-color: #fff;
+	width: 100%;
+	box-shadow: none;
 }
