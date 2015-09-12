@@ -33,6 +33,10 @@ app.get('/login', routes.login);
 app.get('/main', routes.main);
 app.get('/profile', routes.profile);
 app.get('/messages', routes.messages);
+app.get('/upload', routes.upload);
+app.get('/signatures', routes.signatures);
+app.get('/foro', routes.foro);
+app.get('/settings', routes.settings);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

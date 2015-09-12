@@ -4,49 +4,66 @@ html
 		title= title
 		meta( charset='UTF-8' )
 		meta( http-equiv='X-UA-Compatible', content='IE=edge,chrome=1' )
-		meta( name='viewport', content='width=device−width, maximum-scale=1.0 user-scalable=no' )
-		link( rel='shortcut icon', type='image/png', href='images/plant_icon.png' )
+		meta( name='viewport', content='width=device-width, maximum-scale=1.0 user-scalable=no' )
+		link( rel='shortcut icon', type='image/png', href='images/laptop-chromebook.png' )
 		link( rel='stylesheet', href='/stylesheets/style.css')
 		script( type='text/javascript' src='/js/jquery-2.1.1.js' )
+		script ( src='http://code.jquery.com/jquery-1.11.3.min.js' )
+		script ( src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js' )
 		script( type='text/javascript' src='/js/viewscontrol.js' )
 	body
 		#menu.menu_grid
 			.colhh1.menu_userbg
 				.menu_userimg
-					img( src='images/profilephoto.png' )
+					a( href='/profile' )
+						img( src='images/profilephoto.png' )
 				.colhh1.menu_username
-					.pd12_18 El vato chido
-						span correo@email.com	
+					a( href='/profile' )
+						.pd12_18 El vato chido
+							span correo@email.com	
 			.colhh1.menu_opccontainer
 				.pd_tb_10.border_bottom
-					.opc.hover
-						span( style='background-image: url("images/home.png")' )
-						label Inicio
-					.opc.hover
-						span( style='background-image: url("images/book-multiple.png")' )
-						label Mis materias
-					.opc.hover
-						span( style='background-image: url("images/check.png")' )
-						label Mis calificaciones
-					.opc.hover
-						span( style='background-image: url("images/pen.png")' )
-						label Subir contenido
-					.opc.hover
-						span( style='background-image: url("images/calendar.png")' )
-						label Calendario
-					.opc.hover
-						span( style='background-image: url("images/account-box.png")' )
-						label Cuenta
-					.opc.hover
-						span( style='background-image: url("images/account-multiple.png")' )
-						label Alumnos
+					a( href='/main' )
+						.opc.hover
+							span( style='background-image: url("images/home.png")' )
+							label Inicio
+					a( href='/signatures' )
+						.opc.hover
+							span( style='background-image: url("images/book-multiple.png")' )
+							label Mis materias
+					a( href='/upload' )
+						.opc.hover
+							span( style='background-image: url("images/pen.png")' )
+							label Subir contenido
+					a( href='/calendar' )
+						.opc.hover
+							span( style='background-image: url("images/calendar.png")' )
+							label Calendario
+					a( href='/messages' )
+						.opc.hover
+							span( style='background-image: url("images/email.png")' )
+							label Mensajes
+					a( href='/foro' )
+						.opc.hover
+							span( style='background-image: url("images/library.png")' )
+							label Foro
+					a( href='/profile' )
+						.opc.hover
+							span( style='background-image: url("images/account-box.png")' )
+							label Cuenta
+					a( href='/students' )
+						.opc.hover
+							span( style='background-image: url("images/account-multiple.png")' )
+							label Alumnos
 				.pd_tb_10
-					.opc.hover
-						span( style='background-image: url("images/settings.png")' )
-						label Ajustes
-					.opc.hover
-						span( style='background-image: url("images/logout.png")' )
-						label Cerrar sesión		
+					a( href='/settings' )
+						.opc.hover
+							span( style='background-image: url("images/settings.png")' )
+							label Ajustes
+					a( href='/login' )
+						.opc.hover
+							span( style='background-image: url("images/logout.png")' )
+							label Cerrar sesión		
 		.back_menu
 		.top_pallete.colhh1.bg_darkblue.flat_shadow
 			#menubutton.menu_button
@@ -54,6 +71,9 @@ html
 				span
 				span
 			.top_title #{title}
-			.msm
+			.minimenu(style='left: -18px;top:0;')
+				span
+				span
+				span
 
 	block content

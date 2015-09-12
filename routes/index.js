@@ -12,13 +12,29 @@ exports.login = function(req, res){
 };
 
 exports.main = function(req, res){
-  res.render('main', { title: 'SMDE - Home' });
+  res.render('main', { title: 'SMDE - Inicio' });
 };
 
 exports.profile = function(req, res){
   res.render('profile', { title: 'SMDE - Cuenta' });
 };
 
+exports.signatures = function(req, res){
+  res.render('signatures', { title: 'SMDE - Mis Materias' });
+};
+
+exports.upload = function(req, res){
+  res.render('upload', { title: 'SMDE - Subir Contenido' });
+};
+
 exports.messages = function(req, res){
   res.render('messages', { title: 'SMDE - Mensajes' });
+};
+
+exports.foro = function(req, res){
+  res.render('foro', { title: 'SMDE - Foro' });
+};
+
+exports.settings = function(req, res){
+  res.render('settings', { title: 'SMDE - Ajustes' });
 };

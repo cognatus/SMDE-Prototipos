@@ -6,6 +6,12 @@ $(document).ready(function(){
 		$('body').css('overflow' , 'hidden');
 	});
 
+	$('body').on('swipeleft' , function(){
+		$('#menu').animate({ left : '0' } , 300);
+		$('.back_menu').show();
+		$('body').css('overflow' , 'hidden');
+	});
+
 	$('.back_menu').click(function(){
 		$('#menu').animate({ left : -($('#menu').width() + 10) } , 300);
 		$(this).hide();
