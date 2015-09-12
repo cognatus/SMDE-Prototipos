@@ -14,3 +14,11 @@ exports.login = function(req, res){
 exports.main = function(req, res){
   res.render('main', { title: 'SMDE - Home' });
 };
+
+exports.profile = function(req, res){
+  res.render('profile', { title: 'SMDE - Cuenta' });
+};
+
+exports.messages = function(req, res){
+  res.render('messages', { title: 'SMDE - Mensajes' });
+};
