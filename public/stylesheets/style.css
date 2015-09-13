@@ -15,7 +15,7 @@ body {
  	margin: 0;
  	height: 100%;
 	font-family: 'Roboto' , 'Helvetica' , sans-serif;
-	background-color: #eeeeee;
+	background-color: #e0e0e0;
 	color: #424242;
 	font-size: 15px;
 }
@@ -49,6 +49,11 @@ a{
 	font-weight: lighter;
 }
 
+.ll_title{
+	font-size: 16px;
+	font-weight: bold;
+}
+
 .lighttext{font-weight: lighter;}
 
 .uppercase{text-transform: uppercase;}
@@ -62,9 +67,18 @@ a{
 	height: auto;
 }
 
+.colhh2{
+	width: 50%;
+	display: inline-block;
+}
+
 .autocol{
 	width: auto;
 	display: inline-block;
+}
+
+.borad{
+	border-radius: 2px;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -118,6 +132,10 @@ a{
 	overflow-y: auto;
 }
 
+.autooverflow{
+	overflow: auto;
+}
+
 
 /*---------------------------------------------------------------------------------------
 	SPACES
@@ -125,7 +143,11 @@ a{
 
 .margin_top{margin-top: 24px;}
 
+.margin_topm{margin-top: 8px;}
+
 .margin_mintb{margin-top: 4px;margin-bottom: 4px;}
+
+.bottompage{margin-bottom: 64px;}
 
 /*---------------------------------------------------------------------------------------
 	BG - COLORS
@@ -176,6 +198,8 @@ a{
 
 .border_bottomthick{border-bottom: 2px solid rgba(0,0,0,0.4);}
 
+.inbox_shadow{box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);}
+
 .normal_txt{font-weight: normal;}
 
 .hover{cursor: pointer;}
@@ -191,6 +215,8 @@ input[type='submit']{cursor: pointer;}
 	width: 100%;
 	background-color: rgba(0,0,0,0.3);
 }
+
+.text_shadow{text-shadow: 0px 1px 1px rgba(0,0,0,0.5);}
 
 /*---------------------------------------------------------------------------------------
 	ALIGN
@@ -437,24 +463,6 @@ body.login{
 	cursor: pointer;
 }
 
-.minimenu{
-	display: inline-block;
-	position: relative;
-	float: right;
-	width: auto;
-	top: -1px;
-	cursor: pointer;
-}
-
-.minimenu span{
-	display: block;
-	background-color: #fff;
-	width: 4px;
-	height: 4px;
-	margin: 2px;
-	border-radius: 5px; 
-}
-
 /*---------------------------------------------------------------------------------------
 	OTHER
 -----------------------------------------------------------------------------------------*/
@@ -479,7 +487,9 @@ body.login{
 	height: calc(100% - 64px);
 }
 
-.block_container:last-child{margin-bottom: 48px;}
+.block_container:last-child{
+	margin-bottom: 64px;
+}
 
 .mainoptions span{
 	width: 26px;
@@ -541,42 +551,57 @@ body.login{
 	opacity: 0.8;
 }
 
-
-
-
-.profile_img .m_menu{
-	position: absolute;
-	top: 14px;
-	right: 12px;
-	cursor: pointer;
-}
-
-.profile_img .m_hiddenmenu{
-	display: none;
+.minimenu_container{
+	float: right;
+	display: inline-block;
 	width: auto;
-	background-color: #fff;
-	border-radius: 1px;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
-	position: absolute;
-	top: 16px;
-	right: 14px;
-	padding: 4px 0 4px 0;
+	position: relative;
+	top: -1px;
 }
 
-.profile_img .m_menu span{
+.minimenu{
+	cursor: pointer;
+	position: relative;
+	top: 0;
+	right: 0;
+}
+
+.minimenu span{
 	display: block;
 	width: 4px;
 	height: 4px;
 	margin: 2px;
 	border-radius: 5px;
-	background-color: #fff;
-	box-shadow: 0px 1px 1px rgba(0,0,0,0.5); 
+	background-color: #fff; 
+}
+
+.minimenu_hidden{
+	display: none;
+	width: auto;
+	min-width: 110px;
+	background-color: #f2f2f2;
+	border-radius: 1px;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0;
+	z-index: 2;
+	color: #424242;
+	font-weight: normal;
+}
+
+.minimenu_super{
+	position: fixed;
+	z-index: 99;
+	right: 18px;
+	top: 22px;	
 }
 
 .float_buttoncontainer{
 	position: fixed;
-	width: 56px;
-	height: 56px;
+	width: 60px;
+	height: 60px;
 	right: 24px;
 	bottom: 24px;
 	z-index: 59;
@@ -648,15 +673,18 @@ body.login{
 	position: absolute;
 	top: 25px;
 	right: 2px;
-	font-size: 11px;
+	font-size: 12px;
+}
+
+.listrightdat label{
+	font-size: 12px;
 }
 
 .msmtopname{
 	color: #fff;
-	padding: 20px 16px 20px 16px;
+	padding: 20px 18px 20px 18px;
 	height: 17px;
 	font-weight: bold;
-	overflow: hidden;
 	font-size: 15px;
 	position: relative;
 }
@@ -691,6 +719,7 @@ body.login{
 
 .msm_innercontent{
 	height: calc(100% - 68px);
+	overflow: auto;
 }
 
 .msminput{
@@ -703,9 +732,9 @@ body.login{
 }
 
 .msminput input[type='text']{
-	width: calc(100% - 104px);
+	width: calc(100% - 112px);
 	height: 48px;
-	padding: 0 12px 0 12px;
+	padding: 0 16px 0 16px;
 	margin: 10px;
 	margin-right: 6px;
 	font-size: 13px;
@@ -749,6 +778,8 @@ body.login{
 
 .ownmsm div{
 	font-size: 12px;
+	position: relative;
+	z-index: 2; 
 }
 
 .ownmsm i{
@@ -758,10 +789,8 @@ body.login{
 	height: 12px;
 	top: 0;
 	left: -4px;
-	z-index: 109;
 	transform: skewX(30deg);-webkit-transform: skewX(30deg);-moz-transform: skewX(30deg);
 	-ms-transform: skewX(30deg);-o-transform: skewX(30deg);
-	z-index: -1;
 	box-shadow: -1px 0px rgba(0,0,0,0.1);
 }
 
@@ -772,4 +801,11 @@ body.login{
 	margin: 3px;
 	display: inline-block;
 	float: left;
+}
+
+.progress_bar{
+	width: 80%;
+	height: 12px;
+	margin-top: 16px;
+	box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
 }

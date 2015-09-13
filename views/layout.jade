@@ -7,6 +7,7 @@ html
 		meta( name='viewport', content='width=device-width, maximum-scale=1.0 user-scalable=no' )
 		link( rel='shortcut icon', type='image/png', href='images/laptop-chromebook.png' )
 		link( rel='stylesheet', href='/stylesheets/style.css')
+		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
 		script( type='text/javascript' src='/js/jquery-2.1.1.js' )
 		script ( src='http://code.jquery.com/jquery-1.11.3.min.js' )
 		script ( src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js' )
@@ -71,9 +72,13 @@ html
 				span
 				span
 			.top_title #{title}
-			.minimenu(style='left: -18px;top:0;')
+		.minimenu_container.minimenu_super
+			.minimenu
 				span
 				span
 				span
+			.minimenu_hidden
+				.pd_12.hover Item 1
+				.pd_12.hover Item 2
 
 	block content

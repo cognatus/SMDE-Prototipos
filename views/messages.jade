@@ -12,6 +12,8 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid
 				.halfgrid.bg_white
+					.colhh1.border_bottom
+						.pd_18.ll_title Lista de Mensajes
 					.colhh1.hover
 						.msmuser_img
 							img(src='images/profilephoto.png')
@@ -44,15 +46,19 @@ block content
 							.msmuser_name 
 								b Juanito Bananas Locas
 							.listbottomdat Hola vato Loco
-				.halfgrid
+				.halfgrid.secondgrid
 					.msmtopname.bg_blue.border_bottom
 						span#backicon.backicon
 						img( src='images/profilephoto.png' )
 						|	Juanito Bananas Locas
-						.minimenu
-							span
-							span
-							span
+						.minimenu_container
+							.minimenu
+								span
+								span
+								span
+							.minimenu_hidden
+								.pd_12.hover Item 1
+								.pd_12.hover Item 2
 					.msmcontent
 						.colhh1.msm_innercontent
 							.pd_16
@@ -70,6 +76,6 @@ block content
 						.colhh1.msminput
 							input( type='text' , name='newmsm' , placeholder='Mensaje' )
 							i.bg_white
-							input.bg_darkblue.bg_send( type='submit' , name='msmsend' , value='')
+							input.bg_darkpurple.bg_send( type='submit' , name='msmsend' , value='')
 						
 
