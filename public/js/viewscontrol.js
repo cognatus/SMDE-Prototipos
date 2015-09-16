@@ -26,7 +26,7 @@ $(document).ready(function(){
 	});
 
 	$('.block_containermsm .hover').click(function(){
-		if($(window).width() < 820){
+		if($(window).width() < 919){
 			$('.block_containermsm').animate({ scrollLeft: $('.halfgrid').width() });
 			$('#new_item').hide();
 		}

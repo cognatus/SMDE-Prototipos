@@ -62,14 +62,8 @@ a{
 	GRID
 -----------------------------------------------------------------------------------------*/
 
-.colhh1, .colhh2, .colhh3, .colhh4, .colhh5{
+.colhh1, .colhh3, .colhh4, .colhh5{
 	width: 100%;
-	height: auto;
-}
-
-.colhh2{
-	width: 50%;
-	display: inline-block;
 }
 
 .autocol{
@@ -85,35 +79,35 @@ a{
 	PADDING
 -----------------------------------------------------------------------------------------*/
 
-.pd_8{padding: 8px;}
+.pd_8{padding: 8px;width: auto;}
 
-.pd_12{padding: 12px;}
+.pd_12{padding: 12px;width: auto;}
 
-.pd_14{padding: 14px;}
+.pd_14{padding: 14px;width: auto;}
 
-.pd_16{padding: 16px;}
+.pd_16{padding: 16px;width: auto;}
 
-.pd_18{padding: 18px;}
+.pd_18{padding: 18px;width: auto;}
 
-.pd_24{padding: 24px;}
+.pd_24{padding: 24px;width: auto;}
 
-.pd_32{padding: 32px;}
+.pd_32{padding: 32px;width: auto;}
 
-.pd_40{padding: 40px;}
+.pd_40{padding: 40px;width: auto;}
 
-.pd12_24{padding: 12px 24px 12px 24px;}
+.pd12_24{padding: 12px 24px 12px 24px;width: auto;}
 
-.pd12_18{padding: 12px 18px 12px 18px;}
+.pd12_18{padding: 12px 18px 12px 18px;width: auto;}
 
-.pd_tb_8{padding: 8px 0 8px 0;}
+.pd_tb_8{padding: 8px 0 8px 0;width: auto;}
 
-.pd_tb_10{padding: 10px 0 10px 0;}
+.pd_tb_10{padding: 10px 0 10px 0;width: auto;}
 
-.pd_tb_12{padding: 12px 0 12px 0;}
+.pd_tb_12{padding: 12px 0 12px 0;width: auto;}
 
-.pd_tb_16{padding: 16px 0 16px 0;}
+.pd_tb_16{padding: 16px 0 16px 0;width: auto;}
 
-.pd_tb_24{padding: 24px 0 24px 0;}
+.pd_tb_24{padding: 24px 0 24px 0;width: auto;}
 
 .bdb_container{
 	overflow: hidden;
@@ -365,7 +359,7 @@ body.login{
 	left: 0;
 	color: #fff;
 	font-weight: 500;
-	text-shadow: 0px 1px 1px #000;
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
 	font-size: 13px;
 }
 
@@ -469,6 +463,8 @@ body.login{
 
 .flat_shadow{box-shadow: 0px 1px 2px rgba(0,0,0,0.3);}
 
+.page_container{width: 100%;}
+
 .topspace{
 	height: 64px;
 	width: 100%;
@@ -489,6 +485,11 @@ body.login{
 
 .block_container:last-child{
 	margin-bottom: 64px;
+}
+
+.colhh2 .block_container:last-child{
+	margin-bottom: 12px;
+	margin-top: 0;
 }
 
 .mainoptions span{
@@ -538,10 +539,12 @@ body.login{
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	width: calc(100% - 90px);
+	width: calc(100% - 110px);
 	color: #fff;
-	text-shadow: 0px 1px 1px #000;
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
 }
+
+.profile_img2 .name{width: calc(100% - 88px);}
 
 .profile_img .name span , .profile_img2 .name span{
 	display: block;
@@ -649,6 +652,7 @@ body.login{
 .msminfo{
 	padding: 24px 16px 22px 2px;
 	display: inline-block;
+	height: 36px;
 	vertical-align: top;
 	width: calc(100% - 112px);
 	position: relative;
@@ -715,11 +719,13 @@ body.login{
 .msmcontent{
 	height: calc(100% - 58px);
 	position: relative;
+	top: 0;
+	left: 0;
 }
 
 .msm_innercontent{
 	height: calc(100% - 68px);
-	overflow: auto;
+	overflow-y: auto;
 }
 
 .msminput{
