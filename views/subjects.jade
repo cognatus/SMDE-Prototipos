@@ -3,68 +3,36 @@ extends layout
 block content
 
 		style.
-			.top_pallete{background-color: #9C27B0;}
+			.top_pallete{background-color: #FF9800;}
 
-		.float_buttoncontainer
-			span.bg_edit.bg_darkpurple
+		#new_item.float_buttoncontainer
+			span.bg_plus.bg_amber
 
 		.topspace
 		.page_container
-			.block_container
-				.colhh1.profile_img
-					.pd_18
-						.minimenu_container
-							.minimenu
-								span
-								span
-								span
-							.minimenu_hidden
-								.pd_12.hover Foto de Perfil
-								.pd_12.hover Portada
+			.colhh1.block_container
+				.colhh1.profile_img2
 					.photo
 						img( src='images/profilephoto.png' )
 					.name
 						.pd_12 
 							b El Vato Chido
 							span correo@email.com
+			.colhh1.block_container.bg_white
+				.pd_18
+					| Promedio General
+					span#signaturegralprom.right_float 8.055
+					.colhh1.bg_gray.borad.inbox_shadow
+						#signatureprogress.progress_bar.bg_amber.borad
 
-			.block_container.bg_white
-				.colhh1.border_bottom
-					.colhh1
-						.pd_18.ll_title Personal
-					.colhh1
-						.pd_18  Nombre: 
-							span.margin_l Aquiles
-						.pd_18  Apellido Paterno: 
-							label.normal_txt.margin_l Vala
-						.pd_18  Apellido Materno: 
-							label.normal_txt.margin_l del Toro
-						.pd_18  Edad: 
-							label.normal_txt.margin_l 17
-						.pd_18  Domicilio: 
-							span.margin_l Su casa
-				.colhh1
-					.colhh1
-						.pd_18.ll_title Académico
-					.colhh1			
-						.pd_18  Institución: 
-							span.margin_l Escuela chida
-						.pd_18  Grado Escolar: 
-							span.margin_l Azul :v
-						.pd_18  Materias Inscritas: 
-							span.margin_l 6
-						.pd_18  Promedio: 
-							span#signaturegralprom.margin_l 8.055
-							.colhh1.bg_gray.borad.inbox_shadow
-								#signatureprogress.progress_bar.bg_pink.borad
-			.block_container.bg_white
-				.colhh1
-					.colhh1
-						.pd_18.ll_title Materias
+			.colhh1.block_container
+				.colhh1.bg_white
 					.colhh1.hover
 						.msmuser_img
 							span.bg_orange A
 						.msminfo
+							.listrightdat Promedio: 
+								label 7.64
 							.msmuser_name 
 								b Algebra
 							.listbottomdat.rank
@@ -77,6 +45,8 @@ block content
 						.msmuser_img
 							span.bg_purple B
 						.msminfo
+							.listrightdat Promedio: 
+								label 9.42
 							.msmuser_name 
 								b Biología
 							.listbottomdat.rank
@@ -89,6 +59,8 @@ block content
 						.msmuser_img
 							span.bg_blue C
 						.msminfo
+							.listrightdat Promedio: 
+								label 6.98
 							.msmuser_name 
 								b Cálculo
 							.listbottomdat.rank
@@ -101,6 +73,8 @@ block content
 						.msmuser_img
 							span.bg_red D
 						.msminfo
+							.listrightdat Promedio: 
+								label 7.34
 							.msmuser_name 
 								b Domotica
 							.listbottomdat.rank
@@ -113,6 +87,8 @@ block content
 						.msmuser_img
 							span.bg_teal E
 						.msminfo
+							.listrightdat Promedio: 
+								label 8.03
 							.msmuser_name 
 								b Etimologías
 							.listbottomdat.rank
@@ -125,6 +101,8 @@ block content
 						.msmuser_img
 							span.bg_pink F
 						.msminfo
+							.listrightdat Promedio: 
+								label 8.92
 							.msmuser_name 
 								b Formación Cívica
 							.listbottomdat.rank

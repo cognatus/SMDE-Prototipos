@@ -62,8 +62,18 @@ a{
 	GRID
 -----------------------------------------------------------------------------------------*/
 
-.colhh1, .colhh3, .colhh4, .colhh5{
+.colhh1{
 	width: 100%;
+}
+
+.colhh2{
+	width: 50%;
+	display: inline-block;
+}
+
+.colhh3{
+	width: 50%;
+	display: inline-block;
 }
 
 .autocol{
@@ -108,6 +118,15 @@ a{
 .pd_tb_16{padding: 16px 0 16px 0;width: auto;}
 
 .pd_tb_24{padding: 24px 0 24px 0;width: auto;}
+
+.mr_4{margin: 4px;}
+
+.mr_8{margin: 8px;}
+
+.mr_8l4r{
+	margin: 8px;
+	margin-right: 4px;
+}
 
 .bdb_container{
 	overflow: hidden;
@@ -247,18 +266,26 @@ body.login{
 	color: #fff;
 }
 
-.op_bg .b_title{padding: 48px;padding-bottom: 16px;}
+.op_bg .b_title{padding: 32px;padding-bottom: 16px;}
 
 .login_container{
-	width: auto;
-	padding: 32px;
-	border-radius: 2px;
+	width: calc(100% - 112px);
+	margin: 12px auto; 
+	background-color: rgba(21,21,21,0.8);
+	box-shadow: 0px 3px 8px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding: 40px;
+	padding-bottom: 24px;
 }
 
 .login_container a{
 	cursor: pointer;
 	text-decoration: none;
 	color: #fff;
+}
+
+.login_container .bm_title{
+	font-weight: lighter;
 }
 
 .login_container a:hover{
@@ -443,7 +470,7 @@ body.login{
 	width: 20px;
 	height: 2px;
 	margin: 3px;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.5);
 }
 
 .top_pallete .msm{
@@ -493,13 +520,19 @@ body.login{
 }
 
 .mainoptions span{
-	width: 26px;
-	height: 26px;
-	margin-right: 32px;
-	display: inline-block;
-	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 12px auto;
+	display: block;
+	margin-bottom: 24px;
 	background: no-repeat center;
 	background-size: 100%; 
+}
+
+.mainoptions:hover{
+	position: relative;
+	top: -2px;
+	opacity: 0.9;
 }
 
 .profile_img{

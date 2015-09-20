@@ -6,7 +6,7 @@
 	}
 
 	.page_container{
-		width: 92%;
+		width: calc(100% - 160px);
 		margin: 0 auto;
 	}
 
@@ -21,7 +21,7 @@
 		z-index: 49;
 		margin: 12px auto;
 		margin-bottom: 24px;
-		width: 92%;	
+		width: calc(100% - 120px);	
 		height: calc(100% - 102px);
 		box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	}
@@ -36,9 +36,22 @@
 		z-index: 999;
 	}
 
+	.login_container{
+		width: 320px;
+		margin: 18px auto;
+	}
+
+	.op_bg .b_title{padding: 48px;padding-bottom: 16px;}
+
+
 }
 
 @media screen and (min-width: 920px){
+	
+	.colhh3{
+		width: 33.3333333%;
+		display: inline-block;
+	}
 	
 	.profile_img{
 		height: 320px;

@@ -19,8 +19,8 @@ exports.profile = function(req, res){
   res.render('profile', { title: 'SMDE - Cuenta' });
 };
 
-exports.signatures = function(req, res){
-  res.render('signatures', { title: 'SMDE - Mis Materias' });
+exports.subjects = function(req, res){
+  res.render('subjects', { title: 'SMDE - Mis Materias' });
 };
 
 exports.upload = function(req, res){
