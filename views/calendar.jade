@@ -1,0 +1,135 @@
+extends layout
+
+block content
+		script( type='text/javascript' src='/js/calendar_control.js' )
+
+		style.
+			.top_pallete{background-color: #F44336;}
+
+		#new_item.float_buttoncontainer( title='Nuevo Evento' )
+			span.bg_plus.bg_lightblue
+
+		.topspace
+		.page_container
+
+			.colhh1
+				.colhh6.v_top
+					.mr_8
+						.block_container.bg_white
+							.colhh1.border_bottom
+								.pd_18.ll_title Calendario
+							.colhh1.bg_gray.calendar(style='height: 410px;')
+								.colhh1.sl_title.bg_lightblue.white_text 
+									span.v_middle.button#left
+									span.v_middle#month Enero
+									span.v_middle.button#right
+									.pd_12.right_float#year 2016
+								.colhh1
+									.pd_4.sl_title.bg_lightblue.white_text
+										.colhh7.center_text
+											.pd_8 L
+										.colhh7.center_text
+											.pd_8 M
+										.colhh7.center_text
+											.pd_8 M
+										.colhh7.center_text
+											.pd_8 J
+										.colhh7.center_text
+											.pd_8 V
+										.colhh7.center_text
+											.pd_8 S
+										.colhh7.center_text
+											.pd_8 D
+									.colhh1.tablecalendar(style='overflow:auto')
+										script(type="text/javascript").
+											writeCalendar();
+				.colhh7.v_top
+					.ml_8
+						.block_container.bg_white
+							.colhh1.border_bottom
+								.pd_18.ll_title Eventos
+							.colhh1(style='height: 410px;overflow: auto;')
+								.colhh1.slide_list
+									.colhh1.hover
+										.msmuser_img
+											span.bg_orange A
+										.msminfo
+											.listrightdat 10 sep
+											.msmuser_name 
+												b Titulo de Tarea
+											.listbottomdat Asignatura: Alguna Asignatura
+									.colhh1.border_bottom
+										.pd18_32
+											.sl_title Descripción
+											.pd_8 iajd
+												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
+								.colhh1.hover
+									.msmuser_img
+										span.bg_purple B
+									.msminfo
+										.listrightdat 8 sep
+										.msmuser_name 
+											b Titulo de Tarea
+										.listbottomdat Asignatura: Alguna Asignatura
+										
+			.colhh1
+				.block_container.bg_white
+					.colhh1.border_bottom
+						.pd_18.ll_title Lista de Tareas
+					.colhh1
+						.colhh1.hover
+							.msmuser_img
+								span.bg_orange A
+							.msminfo
+								.listrightdat 10 sep
+								.msmuser_name 
+									b Titulo de Tarea
+								.listbottomdat Asignatura: Alguna Asignatura
+						.colhh1.hover
+							.msmuser_img
+								span.bg_purple B
+							.msminfo
+								.listrightdat 8 sep
+								.msmuser_name 
+									b Titulo de Tarea
+								.listbottomdat Asignatura: Alguna Asignatura
+						.colhh1.slide_list
+							.colhh1.hover
+								.msmuser_img
+									span.bg_blue C
+								.msminfo
+									.listrightdat 7 sep
+									.msmuser_name 
+										b Titulo de Tarea
+									.listbottomdat Asignatura: Alguna Asignatura
+							.colhh1.hover
+								.msmuser_img
+									span.bg_red D
+								.msminfo
+									.listrightdat 6 sep
+									.msmuser_name 
+										b Titulo de Tarea
+									.listbottomdat Asignatura: Alguna Asignatura
+							.colhh1.border_bottom
+								.pd18_32
+									.sl_title Descripción
+									.pd_8 iajd
+										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
+						.colhh1.hover
+							.msmuser_img
+								span.bg_teal E
+							.msminfo
+								.listrightdat 5 sep
+								.msmuser_name 
+									b Titulo de Tarea
+								.listbottomdat Asignatura: Alguna Asignatura
+						.colhh1.hover
+							.msmuser_img
+								span.bg_pink F
+							.msminfo
+								.listrightdat 5 sep
+								.msmuser_name 
+									b Titulo de Tarea
+								.listbottomdat Asignatura: Alguna Asignatura
+							
+				

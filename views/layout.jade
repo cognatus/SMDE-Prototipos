@@ -9,8 +9,6 @@ html
 		link( rel='stylesheet', href='/stylesheets/style.css')
 		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
 		script( type='text/javascript' src='/js/jquery-2.1.1.js' )
-		script ( src='http://code.jquery.com/jquery-1.11.3.min.js' )
-		script ( src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js' )
 		script( type='text/javascript' src='/js/viewscontrol.js' )
 	body
 		#menu.menu_grid
@@ -39,7 +37,7 @@ html
 					a( href='/calendar' )
 						.opc.hover
 							span( style='background-image: url("images/calendar.png")' )
-							label Calendario
+							label Tareas
 					a( href='/messages' )
 						.opc.hover
 							span( style='background-image: url("images/email.png")' )
@@ -72,13 +70,60 @@ html
 				span
 				span
 			.top_title #{title}
-		.minimenu_container.minimenu_super
+		.minimenu_container.notif
 			.minimenu
-				span
-				span
-				span
+				.notif_icon( title='Notificaciones' )
 			.minimenu_hidden
-				.pd_12.hover Item 1
-				.pd_12.hover Item 2
+				.colhh1.border_bottom
+					.pd_12.ll_title Notificaciones
+				.colhh1.notifscroll
+					.colhh1.hover.border_bottom
+						.msmuser_img
+							span.bg_orange A
+						.msminfo
+							.listrightdat 10 sep
+							.msmuser_name 
+								b Titulo de Notificación
+							.listbottomdat Vista previa de notificación 
+					.colhh1.hover.border_bottom
+						.msmuser_img
+							span.bg_purple B
+						.msminfo
+							.listrightdat 8 sep
+							.msmuser_name 
+								b Titulo de Notificación
+							.listbottomdat Vista previa de notificación 
+					.colhh1.hover.border_bottom
+						.msmuser_img
+							span.bg_blue C
+						.msminfo
+							.listrightdat 7 sep
+							.msmuser_name 
+								b Titulo de Notificación
+							.listbottomdat Vista previa de notificación 
+					.colhh1.hover.border_bottom
+						.msmuser_img
+							span.bg_red D
+						.msminfo
+							.listrightdat 6 sep
+							.msmuser_name 
+								b Titulo de Notificación
+							.listbottomdat Vista previa de notificación 
+					.colhh1.hover.border_bottom
+						.msmuser_img
+							span.bg_teal E
+						.msminfo
+							.listrightdat 5 sep
+							.msmuser_name 
+								b Titulo de Notificación
+							.listbottomdat Vista previa de notificación 
+					.colhh1.hover.border_bottom
+						.msmuser_img
+							span.bg_pink F
+						.msminfo
+							.listrightdat 5 sep
+							.msmuser_name 
+								b Titulo de Notificación
+							.listbottomdat Vista previa de notificación 
 
 	block content

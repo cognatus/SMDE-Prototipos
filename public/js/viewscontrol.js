@@ -18,6 +18,12 @@ $(document).ready(function(){
 		$(this).siblings('.minimenu_hidden').slideDown(300);
 	});
 
+	$('html').on('swipe' , function(){
+		$('#menu').animate({ left : '0' } , 300);
+		$('.back_menu').show();
+		$('body').css('overflow' , 'hidden');
+	});
+
 	$('html , body').click(function(){
 		$('.minimenu_hidden').slideUp(300);
 		$('.minimenu_hidden , .minimenu').click(function(){

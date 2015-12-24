@@ -5,15 +5,16 @@ block content
 		style.
 			.top_pallete{background-color: #FF9800;}
 
-		#new_item.float_buttoncontainer
-			span.bg_plus.bg_amber
+		#new_item.float_buttoncontainer( title='Nueva' )
+			span.bg_plus.bg_darkpurple
 
 		.topspace
 		.page_container
 			.colhh1.block_container
 				.colhh1.profile_img2
 					.photo
-						img( src='images/profilephoto.png' )
+						a( href='/profile' )
+							img( src='images/profilephoto.png' )
 					.name
 						.pd_12 
 							b El Vato Chido
@@ -23,7 +24,7 @@ block content
 					| Promedio General
 					span#signaturegralprom.right_float 8.055
 					.colhh1.bg_gray.borad.inbox_shadow
-						#signatureprogress.progress_bar.bg_amber.borad
+						#signatureprogress.progress_bar.bg_darkpurple.borad
 
 			.colhh1.block_container
 				.colhh1.bg_white

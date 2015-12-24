@@ -38,3 +38,7 @@ exports.foro = function(req, res){
 exports.settings = function(req, res){
   res.render('settings', { title: 'SMDE - Ajustes' });
 };
+
+exports.calendar = function(req, res){
+  res.render('calendar', { title: 'SMDE - Tareas' });
+};
