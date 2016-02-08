@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
+@import url(https://fonts.googleapis.com/css?family=Syncopate);
 
 *{
 	margin: 0;
@@ -41,12 +42,12 @@ a{
 
 .mm_title{
 	font-size: 22px;
-	font-weight: lighter;
+	font-weight: normal;
 }
 
 .ml_title{
 	font-size: 20px;
-	font-weight: lighter;
+	font-weight: normal;
 }
 
 .ll_title{
@@ -62,6 +63,8 @@ a{
 .lighttext{font-weight: lighter;}
 
 .uppercase{text-transform: uppercase;}
+
+.b_text{font-weight: bold;}
 
 /*---------------------------------------------------------------------------------------
 	GRID
@@ -156,7 +159,6 @@ a{
 	display: inline-block;
 	vertical-align: top;
 	height: 100%;
-	overflow-y: auto;
 }
 
 .autooverflow{
@@ -235,7 +237,7 @@ a{
 
 .hover{cursor: pointer;}
 
-.hover:hover{background-color: rgba(0,0,0,0.1);}
+.hover:hover{background-color: rgba(72,72,72,0.1);}
 
 input[type='submit']{cursor: pointer;}
 
@@ -515,16 +517,66 @@ body.login{
 	width: 100%;
 }
 
+.hidden_blockcontainer{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 499;
+	display: none;
+}
+
+.hidden_blockback{
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.hidden_block{
+	width: 94%;
+	margin: 32px auto;
+	position: relative;
+}
+
+.hidden_block span.close{
+	float: right;
+	padding: 7px 8px 9px 8px;
+	width: 14px;
+	height: 14px;
+	border-radius: 24px;
+	position: absolute;
+	text-align: center;
+	font-size: 14px;
+	top: 7px;
+	right: 7px;
+	cursor: pointer;
+	font-weight: bold;
+	font-family: "Syncopate";
+	z-index: 99;
+}
+
+.hidden_block span.close:hover{
+	background-color: #F44336;
+	color: #f2f2f2;
+}
+
+.hb_formcontainer{
+	max-height: calc(100% - 120px);
+	overflow: auto;
+}
+
 .block_container{
 	width: 100%;
 	margin: 12px 0 12px 0;
-	box-shadow: none;
+	border-radius: 3px;
+	overflow: hidden;
 	height: auto;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 }
 
 .block_containermsm{
 	overflow: hidden;
+	border-radius: 3px;
 	height: calc(100% - 64px);
 }
 
@@ -737,12 +789,17 @@ body.login{
 	display: inline-block;
 }
 
+.listcontainer{
+	width: auto;
+	height: calc(100% - 101px);
+}
+
 .listbottomdat{
 	opacity: 0.7;
 	margin-top: 4px;
-	font-size: 12px;
+	font-size: 14px;
 	overflow: hidden;
-	height: 14px;
+	height: 16px;
 }
 
 .listrightdat{
@@ -912,6 +969,89 @@ body.login{
 
 .notif .listrightdat{
 	top: 19px;
+}
+
+.search{
+	width: auto;
+	height: 40px;
+	opacity: 0.8;
+	position: relative;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+span.searchicon{
+	float: left;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	cursor: pointer;
+	left: 18px;
+	top: 8px;
+	background: url('/images/magnify.png') no-repeat center;
+	background-size: 100%;
+	display: inline-block;
+}
+
+.search input[type='text']{
+	width: calc(100% - 78px);
+	background: transparent;
+	border: none;
+	outline: none;
+	padding: 10px 12px 10px 0px; 
+	color: #424242;
+	float: right;
+	font-weight: lighter;
+	height: 20px;
+	font-size: 18px;
+}
+
+/*---------------------------------------------------------------------------------------
+	FORM INPUTS
+-----------------------------------------------------------------------------------------*/
+
+.form_input{
+	margin-bottom: 24px; 
+}
+
+.form_input:last-child{
+	margin-bottom: 0; 
+}
+
+.form_input input[type='text'], .form_input input[type='password'], .form_input select{
+	width: calc(100% - 20px);
+	margin-top: 6px;
+	border-radius: 3px;
+	padding: 10px;
+	background-color: #eeeeee;
+	color: #424242;
+	border: none;
+	outline: none;
+}
+
+.form_input select{
+	width: 100%;
+}
+
+.form_input span.submit{
+	float: right;
+	padding: 0;
+	width: 48px;
+	height: 48px;
+	border-radius: 48px;
+	box-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+}
+
+input.activeline:focus, select.activeline:focus{
+	box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
+}
+
+.form_input input[type='submit']{
+	border: none;
+	width: 100%;
+	height: 100%;
+	background: url('/images/check.png') no-repeat center;
+	background-size: 24px; 
 }
 
 /*---------------------------------------------------------------------------------------

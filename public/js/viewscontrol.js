@@ -50,4 +50,14 @@ $(document).ready(function(){
 
 	$('#signatureprogress').css('width' , parseFloat($('#signaturegralprom').text()) * 10 + '%' );
 
+	$('.close , .hidden_blockback').click(function(){
+		$(this).parents('.hidden_blockcontainer').fadeOut(300);
+	});
+
+	$('.float_buttoncontainer').click(function(){
+		$('.hidden_blockcontainer').fadeIn(300);
+		$('body , html').css('overflow', 'none');
+		$('.hidden_blockcontainer').css('overflow', 'auto');
+	});
+
 });

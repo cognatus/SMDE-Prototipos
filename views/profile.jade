@@ -5,6 +5,32 @@ block content
 		style.
 			.top_pallete{background-color: #9C27B0;}
 
+		.hidden_blockcontainer
+			.hidden_blockback
+			.hidden_block
+				span.close X
+				.block_container.bg_white
+					.colhh1.border_bottom
+						.pd_18.ll_title Formulario
+					.colhh1.hb_formcontainer
+						.pd_24
+							.form_input
+								.b_text Nombre
+								input.activeline(type='text', placeholder='Lorem ipsum dolor')
+							.form_input
+								.b_text Edad
+								select.activeline
+									script.
+										for(x=12;x<=65;x++){
+											document.write('<option>' + x + '</option>');
+										}
+							.form_input(style='height: 48px;padding-top: 12px;')
+								span.bg_amber.submit
+									input(type='submit', value='')
+
+
+
+
 		.float_buttoncontainer( title='Editar Perfil' )
 			span.bg_edit.bg_amber
 
