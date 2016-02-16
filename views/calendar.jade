@@ -15,40 +15,53 @@ block content
 			.colhh1
 				.colhh6.v_top
 					.mr_8
-						.block_container.bg_white
-							.colhh1.border_bottom.bg_blue.white_text
-								.pd_18.ll_title Calendario
+						.block_container.bg_blue.white_text 
 							.colhh1.calendar(style='height: 410px;')
-								.colhh1.sl_title.bg_lightblue.white_text 
-									span.v_middle.button#left
-									span.v_middle#month Enero
-									span.v_middle.button#right
-									.pd_12.right_float#year 2016
 								.colhh1
-									.pd_4.sl_title.bg_lightblue.white_text
-										.colhh7.center_text
-											.pd_8 L
-										.colhh7.center_text
-											.pd_8 M
-										.colhh7.center_text
-											.pd_8 M
-										.colhh7.center_text
-											.pd_8 J
-										.colhh7.center_text
-											.pd_8 V
-										.colhh7.center_text
-											.pd_8 S
-										.colhh7.center_text
-											.pd_8 D
-									.colhh1.tablecalendar(style='overflow:auto')
-										script(type="text/javascript").
-											writeCalendar();
+									span.v_middle.button#left
+									span.v_middle.button#right
+									span.v_middle#month Enero
+									.right_float#year 2016
+								.colhh1
+									.pd_4
+										.lighttext
+											.colhh7.center_text
+												.pd_8.dayname LUN
+											.colhh7.center_text
+												.pd_8.dayname MAR
+											.colhh7.center_text
+												.pd_8.dayname MIE
+											.colhh7.center_text
+												.pd_8.dayname JUE
+											.colhh7.center_text
+												.pd_8.dayname VIE
+											.colhh7.center_text
+												.pd_8.dayname SAB
+											.colhh7.center_text
+												.pd_8.dayname DOM
+										.colhh1.tablecalendar.autooverflow
+											.day_pos
+											.day.v_top
+												.num 
+													span 1
+												.dot_cont
+													span
+													span
+													span
+											script.
+												for(x = 2; x <= 39; x++){
+													document.write('<div class="day v_top">' +
+														'<div class="num"><span>'+ x +'</span></div>'+
+														'<div class="dot_cont"><span></span><span></span><span></span></div>'+
+													'</div>');
+												}
+										
 				.colhh7.v_top
 					.ml_8
 						.block_container.bg_white
 							.colhh1.border_bottom
 								.pd_18.ll_title Eventos
-							.colhh1(style='height: 410px;overflow: auto;')
+							.colhh1.autooverflow(style='height: 355px;')
 								.colhh1.slide_list
 									.colhh1.hover
 										.msmuser_img

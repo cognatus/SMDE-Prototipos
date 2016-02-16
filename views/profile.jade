@@ -5,7 +5,7 @@ block content
 		style.
 			.top_pallete{background-color: #9C27B0;}
 
-		.hidden_blockcontainer
+		.hidden_blockcontainer.autooverflow
 			.hidden_blockback
 			.hidden_block
 				span.close X
@@ -24,6 +24,9 @@ block content
 										for(x=12;x<=65;x++){
 											document.write('<option>' + x + '</option>');
 										}
+							.form_input
+								.b_text Escribe algo
+								textarea.activeline
 							.form_input(style='height: 48px;padding-top: 12px;')
 								span.bg_amber.submit
 									input(type='submit', value='')
