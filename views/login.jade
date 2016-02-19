@@ -9,10 +9,8 @@ html
 		link( rel='stylesheet', href='/stylesheets/style.css')
 		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
 		script( type='text/javascript' src='/js/jquery-2.1.1.js' )
-		script ( src='http://code.jquery.com/jquery-1.11.3.min.js' )
-		script ( src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js' )
 		script( type='text/javascript' src='/js/viewscontrol.js' )
-	body.login
+	body.bg_darkpurple
 		.op_bg
 			.colhh1.center_text
 				.b_title SMDE
@@ -26,8 +24,8 @@ html
 					.sign_field.pd_tb_10
 						span( style='background-image: url("images/lock.png");' )
 						input.textfield( type='password' , name='sign_key' )
-					.sign_field(style = 'margin-top:10px;')
-						input.signbutton.bg_green(type='submit' , name='sign_submit' , value='Iniciar')
-				.colhh1
-					.pd_tb_16 Aun sin cuenta?
-						a.right_float Regístrate
+					.sign_field.autooverflow(style = 'margin-top: 16px;')
+						input.signbutton.bg_lime.bg_login(type='submit' , name='sign_submit' , value='')
+				.colhh1.pd_tb_16.login_bottom
+					| Aun sin cuenta?
+					a.right_float.ll_title Regístrate

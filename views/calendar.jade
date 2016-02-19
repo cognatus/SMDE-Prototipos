@@ -6,6 +6,32 @@ block content
 		style.
 			.top_pallete{background-color: #F44336;}
 
+		.hidden_blockcontainer.autooverflow
+			.hidden_blockback
+			.hidden_block
+				span.close X
+				.block_container.bg_white
+					.colhh1.border_bottom.bg_red.flat_shadow
+						.pd_18.ll_title.white_text Formulario
+					.colhh1.hb_formcontainer
+						.pd_24
+							.form_input
+								.b_text Nombre
+								input.activeline(type='text', placeholder='Lorem ipsum dolor')
+							.form_input
+								.b_text Edad
+								select.activeline
+									script.
+										for(x=12;x<=65;x++){
+											document.write('<option>' + x + '</option>');
+										}
+							.form_input
+								.b_text Escribe algo
+								textarea.activeline
+							.form_input(style='height: 48px;padding-top: 12px;')
+								span.bg_blue.submit
+									input(type='submit', value='')
+
 		#new_item.float_buttoncontainer( title='Nuevo Evento' )
 			span.bg_plus.bg_lightblue
 
@@ -20,7 +46,7 @@ block content
 								.colhh1
 									span.v_middle.button#left
 									span.v_middle.button#right
-									span.v_middle#month Enero
+									span.v_middle#month Febrero
 									.right_float#year 2016
 								.colhh1
 									.pd_4
@@ -60,7 +86,8 @@ block content
 					.ml_8
 						.block_container.bg_white
 							.colhh1.border_bottom
-								.pd_18.ll_title Eventos
+								.pd_18.ll_title Dia Seleccionado
+									.right_float 18 FEB 2016
 							.colhh1.autooverflow(style='height: 355px;')
 								.colhh1.slide_list
 									.colhh1.hover
@@ -74,7 +101,7 @@ block content
 									.colhh1.border_bottom
 										.pd18_32
 											.sl_title Descripción
-											.pd_8 iajd
+											.pd_8
 												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 								.colhh1.hover
 									.msmuser_img
@@ -126,7 +153,7 @@ block content
 							.colhh1.border_bottom
 								.pd18_32
 									.sl_title Descripción
-									.pd_8 iajd
+									.pd_8
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.hover
 							.msmuser_img

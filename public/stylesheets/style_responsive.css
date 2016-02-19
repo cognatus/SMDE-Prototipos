@@ -1,8 +1,18 @@
 @media screen and (min-width: 640px){
 
 	.top_pallete{
-		padding-bottom: 128px;
-		z-index: 0;
+		text-align: center;
+	}
+
+	.top_pallete .top_title{
+		font-size: 22px;
+		top: 20px;
+		padding-left: 0;
+	}
+
+	.top_pallete_inner{
+	 	padding-bottom: 128px;
+	 	z-index: -10;
 	}
 
 	.page_container{
@@ -13,6 +23,7 @@
 	.block_container{
 		position: relative;
 		z-index: 49;
+		border-radius: 1px;
 		margin: 12px auto;
 	}
 
@@ -20,6 +31,7 @@
 		position: relative;
 		z-index: 49;
 		margin: 12px auto;
+		border-radius: 1px;
 		margin-bottom: 24px;
 		width: calc(100% - 120px);	
 		height: calc(100% - 102px);
@@ -37,21 +49,28 @@
 	}
 
 	.login_container{
-		width: 320px;
+		width: 380px;
 		margin: 18px auto;
+		padding: 24px;
 	}
 
-	.op_bg .b_title{padding: 48px;padding-bottom: 16px;}
+	.op_bg .b_title{padding: 64px;padding-bottom: 0;}
+
+	.login_bottom{
+		position: absolute;
+		bottom: 48px;
+		width: 380px;
+	}
 
 	.hidden_block{
 		width: 420px;
-		margin: 120px auto;
+		margin: 80px auto;
 	}
 
 
 }
 
-@media screen and (min-width: 920px){
+@media screen and (min-width: 1120px){
 	
 	.colhh3, .colhh6{
 		width: 33.3333333%;
@@ -84,7 +103,6 @@
 		height: 20px;
 		right: 56px;
 		top: 22px;
-		z-index: 1;
 	}
 
 	.float_buttoncontainer span{
@@ -101,5 +119,8 @@
 
 	.mr_8{margin-right: 8px;}
 	.ml_8{margin-left: 8px;}
+
+	.rightmsm{left: -32px;}
+	.leftmsm{left: 32px;}
 
 }

@@ -49,7 +49,7 @@ html
 					a( href='/profile' )
 						.opc.hover
 							span( style='background-image: url("images/account-box.png")' )
-							label Cuenta
+							label Perfil
 					a( href='/students' )
 						.opc.hover
 							span( style='background-image: url("images/account-multiple.png")' )
@@ -64,7 +64,8 @@ html
 							span( style='background-image: url("images/logout.png")' )
 							label Cerrar sesión		
 		.back_menu
-		.top_pallete.colhh1.bg_indigo.flat_shadow
+		.top_pallete_inner.flat_shadow
+		.top_pallete.colhh1.bg_indigo
 			#menubutton.menu_button
 				span
 				span
@@ -74,8 +75,9 @@ html
 			.minimenu
 				.notif_icon( title='Notificaciones' )
 			.minimenu_hidden
-				.colhh1.border_bottom
+				.colhh1.border_bottom.center_text.border_bottom
 					.pd_12.ll_title Notificaciones
+						span#notif_settings.right_float
 				.colhh1.notifscroll
 					.colhh1.hover
 						.msmuser_img

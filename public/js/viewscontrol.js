@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+	$('.top_pallete_inner').css( 'background-color' ,  $('.top_pallete').css('background-color') );
+
 	$('#menubutton').click(function(){
 		$('#menu').animate({ left : '0' } , 300);
 		$('.back_menu').show();
@@ -18,12 +20,6 @@ $(document).ready(function(){
 		$(this).siblings('.minimenu_hidden').slideDown(300);
 	});
 
-	$('html').on('swipe' , function(){
-		$('#menu').animate({ left : '0' } , 300);
-		$('.back_menu').show();
-		$('body').css('overflow' , 'hidden');
-	});
-
 	$('html , body').click(function(){
 		$('.minimenu_hidden').slideUp(300);
 		$('.minimenu_hidden , .minimenu').click(function(){
@@ -32,7 +28,7 @@ $(document).ready(function(){
 	});
 
 	$('.block_containermsm .hover').click(function(){
-		if($(window).width() < 919){
+		if($(window).width() < 1120){
 			$('.block_containermsm').animate({ scrollLeft: $('.halfgrid').width() });
 			$('#new_item').hide();
 		}
@@ -52,11 +48,12 @@ $(document).ready(function(){
 
 	$('.close , .hidden_blockback').click(function(){
 		$(this).parents('.hidden_blockcontainer').fadeOut(300);
+		location.reload(true);
 	});
 
 	$('.float_buttoncontainer').click(function(){
 		$('.hidden_blockcontainer').fadeIn(300);
-		$('body , html').css('overflow', 'none');
+		$('body , html').css('overflow', 'hidden');
 		$('.hidden_blockcontainer').css('overflow', 'auto');
 	});
 

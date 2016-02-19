@@ -10,8 +10,8 @@ block content
 			.hidden_block
 				span.close X
 				.block_container.bg_white
-					.colhh1.border_bottom
-						.pd_18.ll_title Formulario
+					.colhh1.border_bottom.bg_purple.flat_shadow
+						.pd_18.ll_title.white_text Formulario
 					.colhh1.hb_formcontainer
 						.pd_24
 							.form_input
@@ -28,14 +28,11 @@ block content
 								.b_text Escribe algo
 								textarea.activeline
 							.form_input(style='height: 48px;padding-top: 12px;')
-								span.bg_amber.submit
+								span.bg_teal.submit
 									input(type='submit', value='')
 
-
-
-
 		.float_buttoncontainer( title='Editar Perfil' )
-			span.bg_edit.bg_amber
+			span.bg_edit.bg_teal
 
 		.topspace
 		.page_container
@@ -82,10 +79,20 @@ block content
 							span.margin_l Azul :v
 						.pd_18  Materias Inscritas: 
 							span.margin_l 6
-						.pd_18  Promedio: 
-							span#signaturegralprom.margin_l 8.055
-							.colhh1.bg_gray.borad.inbox_shadow
-								#signatureprogress.progress_bar.bg_amber.borad
+			.block_container.bg_white
+				.pd_18
+					.progress_emoticon
+						#indicator.bg_teal
+						span( style='background-image: url("/images/emoticon-sad.png")' )
+						span( style='background-image: url("/images/emoticon-neutral.png")' )
+						span( style='background-image: url("/images/emoticon-happy.png")' )
+						span
+						div Tu rendimiento es muy bueno!
+				.pd_18
+					.ll_title Promedio General
+						span#signaturegralprom.right_float.ll_title 8.055
+					.colhh1.bg_lightgray.borad.inbox_shadow
+						#signatureprogress.progress_bar.bg_teal.borad
 			.block_container.bg_white
 				.colhh1
 					.colhh1

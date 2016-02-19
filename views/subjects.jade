@@ -3,112 +3,147 @@ extends layout
 block content
 
 		style.
-			.top_pallete{background-color: #FF9800;}
+			.top_pallete{background-color: #E91E63;}
+
+		.hidden_blockcontainer.autooverflow
+			.hidden_blockback
+			.hidden_block
+				span.close X
+				.block_container.bg_white
+					.colhh1.border_bottom.bg_pink.flat_shadow
+						.pd_18.ll_title.white_text Formulario
+					.colhh1.hb_formcontainer
+						.pd_24
+							.form_input
+								.b_text Nombre
+								input.activeline(type='text', placeholder='Lorem ipsum dolor')
+							.form_input
+								.b_text Edad
+								select.activeline
+									script.
+										for(x=12;x<=65;x++){
+											document.write('<option>' + x + '</option>');
+										}
+							.form_input
+								.b_text Escribe algo
+								textarea.activeline
+							.form_input(style='height: 48px;padding-top: 12px;')
+								span.bg_lightblue.submit
+									input(type='submit', value='')
 
 		#new_item.float_buttoncontainer( title='Nueva' )
-			span.bg_plus.bg_darkpurple
+			span.bg_plus.bg_lightblue
 
 		.topspace
-		.page_container
-			.colhh1.block_container
-				.colhh1.profile_img2
-					.photo
-						a( href='/profile' )
-							img( src='images/profilephoto.png' )
-					.name
-						.pd_12 
-							b El Vato Chido
-							span correo@email.com
-			.colhh1.block_container.bg_white
-				.pd_18
-					| Promedio General
-					span#signaturegralprom.right_float 8.055
-					.colhh1.bg_gray.borad.inbox_shadow
-						#signatureprogress.progress_bar.bg_darkpurple.borad
+		.page_containersuper
+			.page_container
+				.colhh1.block_container
+					.colhh1.profile_img2
+						.photo
+							a( href='/profile' )
+								img( src='images/profilephoto.png' )
+						.name
+							.pd_12 
+								b El Vato Chido
+								span correo@email.com
+				.colhh1.block_container.bg_white
+					.pd_18
+						.progress_emoticon
+							#indicator.bg_lightblue
+							span( style='background-image: url("/images/emoticon-sad.png")' )
+							span( style='background-image: url("/images/emoticon-neutral.png")' )
+							span( style='background-image: url("/images/emoticon-happy.png")' )
+							span
+							div Tu rendimiento es muy bueno!
+					.pd_18
+						.ll_title Promedio General
+							span#signaturegralprom.right_float.ll_title 8.055
+						.colhh1.bg_lightgray.borad.inbox_shadow
+							#signatureprogress.progress_bar.bg_lightblue.borad
 
-			.colhh1.block_container
-				.colhh1.bg_white
-					.colhh1.hover
-						.msmuser_img
-							span.bg_orange A
-						.msminfo
-							.listrightdat Promedio: 
-								label 7.64
-							.msmuser_name 
-								b Algebra
-							.listbottomdat.rank
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span
-								span
-					.colhh1.hover
-						.msmuser_img
-							span.bg_purple B
-						.msminfo
-							.listrightdat Promedio: 
-								label 9.42
-							.msmuser_name 
-								b Biología
-							.listbottomdat.rank
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-					.colhh1.hover
-						.msmuser_img
-							span.bg_blue C
-						.msminfo
-							.listrightdat Promedio: 
-								label 6.98
-							.msmuser_name 
-								b Cálculo
-							.listbottomdat.rank
-								span.bg_blue
-								span.bg_blue
-								span
-								span
-								span
-					.colhh1.hover
-						.msmuser_img
-							span.bg_red D
-						.msminfo
-							.listrightdat Promedio: 
-								label 7.34
-							.msmuser_name 
-								b Domotica
-							.listbottomdat.rank
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span
-								span
-					.colhh1.hover
-						.msmuser_img
-							span.bg_teal E
-						.msminfo
-							.listrightdat Promedio: 
-								label 8.03
-							.msmuser_name 
-								b Etimologías
-							.listbottomdat.rank
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span
-					.colhh1.hover
-						.msmuser_img
-							span.bg_pink F
-						.msminfo
-							.listrightdat Promedio: 
-								label 8.92
-							.msmuser_name 
-								b Formación Cívica
-							.listbottomdat.rank
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span.bg_blue
-								span
+				.colhh1.block_container
+					.colhh1.bg_white
+						.colhh1.hover
+							.msmuser_img
+								span.bg_orange A
+							.msminfo
+								.listrightdat Promedio: 
+									label 7.64
+								.msmuser_name 
+									b Algebra
+								.listbottomdat.rank
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span
+									span
+						.colhh1.hover
+							.msmuser_img
+								span.bg_purple B
+							.msminfo
+								.listrightdat Promedio: 
+									label 9.42
+								.msmuser_name 
+									b Biología
+								.listbottomdat.rank
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+						.colhh1.hover
+							.msmuser_img
+								span.bg_blue C
+							.msminfo
+								.listrightdat Promedio: 
+									label 6.98
+								.msmuser_name 
+									b Cálculo
+								.listbottomdat.rank
+									span.bg_blue
+									span.bg_blue
+									span
+									span
+									span
+						.colhh1.hover
+							.msmuser_img
+								span.bg_red D
+							.msminfo
+								.listrightdat Promedio: 
+									label 7.34
+								.msmuser_name 
+									b Domotica
+								.listbottomdat.rank
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span
+									span
+						.colhh1.hover
+							.msmuser_img
+								span.bg_teal E
+							.msminfo
+								.listrightdat Promedio: 
+									label 8.03
+								.msmuser_name 
+									b Etimologías
+								.listbottomdat.rank
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span
+						.colhh1.hover
+							.msmuser_img
+								span.bg_pink F
+							.msminfo
+								.listrightdat Promedio: 
+									label 8.92
+								.msmuser_name 
+									b Formación Cívica
+								.listbottomdat.rank
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span.bg_blue
+									span
