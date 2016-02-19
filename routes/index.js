@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'SMDE' });
 };
 
 exports.login = function(req, res){
@@ -40,5 +40,5 @@ exports.settings = function(req, res){
 };
 
 exports.calendar = function(req, res){
-  res.render('calendar', { title: 'SMDE - Tareas' });
+  res.render('calendar', { title: 'SMDE - Calendario' });
 };

@@ -36,7 +36,7 @@ a{
 }
 
 .bm_title{
-	font-size: 32px;
+	font-size: 36px;
 	font-weight: bold;
 }
 
@@ -119,6 +119,8 @@ a{
 .pd_32{padding: 32px;width: auto;}
 
 .pd_40{padding: 40px;width: auto;}
+
+.pd_64{padding: 64px;width: auto;}
 
 .pd12_24{padding: 12px 24px 12px 24px;width: auto;}
 
@@ -234,7 +236,7 @@ a{
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;}
 
-.bg_login{background-image: url('/images/login-variant.png');
+.bg_login{background-image: url('/images/login.png');
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;}
 
@@ -285,13 +287,49 @@ input[type='submit']{cursor: pointer;}
 .margin_r{margin-right: 8px;}
 
 /*---------------------------------------------------------------------------------------
-	LOGIN
+	INDEX
 -----------------------------------------------------------------------------------------*/
 
-body.login{
-	background: url('/images/login_bg.jpg') no-repeat fixed center;
-	background-size: cover;
+.index_container .bg_img{
+	margin-bottom: 24px;
+	position: relative;
 }
+
+.index_container .pd{
+	padding: 48px;
+}
+
+.index_container .colhh2{width: 100%;}
+
+.index_container .title{
+	font-size: 72px;
+	padding: 24px;
+	font-weight: bold;
+}
+
+.index_container .title_2{
+	font-size: 40px;
+	padding: 18px;
+	font-weight: lighter;
+}
+
+.index_container .title_3{
+	font-size: 32px;
+	font-weight: normal;
+}
+
+.index_container .float_button{
+	position: absolute;
+	width: 64px;height: 64px;
+	border-radius: 48px;
+	right: 32px;
+	bottom: -32px;
+	cursor: pointer;
+}
+
+/*---------------------------------------------------------------------------------------
+	LOGIN
+-----------------------------------------------------------------------------------------*/
 
 .op_bg{
 	height: 100%;
@@ -319,6 +357,7 @@ body.login{
 
 .login_container .bm_title{
 	font-weight: lighter;
+	color: #CDDC39;
 }
 
 .login_container a:hover{
@@ -339,16 +378,14 @@ body.login{
 
 .sign_field input.textfield{
 	display: inline-block;
-	outline: none;
-	border: none; 
+	outline: none;border: none; 
 	background-color: rgba(0,0,0,0.2);
 	width: calc(100% - 72px);
 	font-size: 18px;
-	margin: 0;
-	height: 16px;
+	margin: 0;height: 16px;
 	padding: 16px;
 	padding-left: 6px;
-	color: #fff;
+	color: #CDDC39;
 	border-radius: 0 2px 2px 0;
 }
 
@@ -356,17 +393,16 @@ body.login{
 	outline: none;
 	border: none;
 	border-radius: 2px; 
-	width: 56px;height: 56px;
+	width: 60px;height: 60px;
 	border-radius: 48px;
 	margin: 4px;
 	float: right;
 	position: relative;
-	color: #fff;
-	box-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+	box-shadow: 0px 1px 6px rgba(0,0,0,0.3);
 }
 
 .sign_field input.signbutton:active{
-	box-shadow: 0px 1px 3px rgba(0,0,0,0.26);
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
 }
 
 .login_bottom{
@@ -575,12 +611,18 @@ body.login{
 	font-weight: bold;
 	font-family: "Syncopate";
 	z-index: 99;color: #fff;
-	top: 34px;right: 16px;
+	top: 34px;right: 24px;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	transition: all ease-in-out 0.2s;
 }
 
 .hidden_block span.close:hover{
-	box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+	transform: rotate(90deg);
+	padding: 14px;
+	width: 20px;height: 20px;
+	font-size: 18px;
+	top: 32px;right: 22px;
+	box-shadow: 2px 0px 5px rgba(0,0,0,0.3);
 }
 
 .hb_formcontainer{
@@ -1264,4 +1306,16 @@ span.searchicon{
 	position: absolute;
 	left: 5px;
 	top: 3px;
+}
+
+/*---------------------------------------------------------------------------------------
+	ANIMATION
+-----------------------------------------------------------------------------------------*/
+
+.page_animation{
+	background-color: #fff;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
 }

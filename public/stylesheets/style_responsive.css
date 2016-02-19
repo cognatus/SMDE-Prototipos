@@ -67,6 +67,13 @@
 		margin: 80px auto;
 	}
 
+	.index_container .pd{
+		padding: 88px;
+	}
+
+	.index_container .float_button{
+		right: 72px;
+	}
 
 }
 
@@ -76,6 +83,8 @@
 		width: 33.3333333%;
 		display: inline-block;
 	}
+
+	.index_container .colhh2{width: 50%;}
 
 	.colhh7{
 		width: 66.666666%;
@@ -122,5 +131,9 @@
 
 	.rightmsm{left: -32px;}
 	.leftmsm{left: 32px;}
+
+	.index_container .pd{
+		padding: 136px;
+	}
 
 }
