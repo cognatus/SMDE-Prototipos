@@ -8,7 +8,7 @@ block content
 		.hidden_blockcontainer.autooverflow
 			.hidden_blockback
 			.hidden_block
-				span.close X
+				span.close.bg_close
 				.block_container.bg_white
 					.colhh1.border_bottom.bg_purple.flat_shadow
 						.pd_18.ll_title.white_text Formulario
@@ -54,31 +54,76 @@ block content
 							b El Vato Chido
 							span correo@email.com
 
-			.block_container.bg_white
-				.colhh1.border_bottom
+			.block_container.bg_white.h_listcontainer
+				.colhh1.rel_pos.border_bottom
+					.h_listline.bg_teal
+					.h_listitem.first
+						.pd_18.ll_title Información
+					.h_listitem
+						.pd_18.ll_title Contactos
+
+				.colhh1.h_listindex.first
+					.colhh1.border_bottom
+						.colhh1
+							.pd_18.ll_title Personal
+						.colhh1
+							.pd_18  Nombre: 
+								span.margin_l Aquiles
+							.pd_18  Apellido Paterno: 
+								label.normal_txt.margin_l Vala
+							.pd_18  Apellido Materno: 
+								label.normal_txt.margin_l del Toro
+							.pd_18  Edad: 
+								label.normal_txt.margin_l 17
+							.pd_18  Domicilio: 
+								span.margin_l Su casa
 					.colhh1
-						.pd_18.ll_title Personal
+						.colhh1
+							.pd_18.ll_title Académico
+						.colhh1			
+							.pd_18  Institución: 
+								span.margin_l Escuela chida
+							.pd_18  Grado Escolar: 
+								span.margin_l Azul :v
+							.pd_18  Materias Inscritas: 
+								span.margin_l 6
+
+				.colhh1.h_listindex
 					.colhh1
-						.pd_18  Nombre: 
-							span.margin_l Aquiles
-						.pd_18  Apellido Paterno: 
-							label.normal_txt.margin_l Vala
-						.pd_18  Apellido Materno: 
-							label.normal_txt.margin_l del Toro
-						.pd_18  Edad: 
-							label.normal_txt.margin_l 17
-						.pd_18  Domicilio: 
-							span.margin_l Su casa
-				.colhh1
-					.colhh1
-						.pd_18.ll_title Académico
-					.colhh1			
-						.pd_18  Institución: 
-							span.margin_l Escuela chida
-						.pd_18  Grado Escolar: 
-							span.margin_l Azul :v
-						.pd_18  Materias Inscritas: 
-							span.margin_l 6
+						.colhh1.border_bottom
+							.search
+								span.searchicon
+								input#buscar(type='text',name='buscar', placeholder='Buscar un contacto')
+						.colhh1.slide_list
+							.colhh1.hover.rel_pos
+								.msm_chaticon.bg_chat
+								.msmuser_img
+									img(src='images/profilephoto.png')
+								.msminfo
+									.msmuser_name 
+										b Bartolome Durán
+									.listbottomdat Profesor
+							.colhh1.innerlistitem
+								.colhh1.border_bottom.innerlistitem
+									.pd18_32
+										.sl_title Información
+										.pd_8
+											| Tienes 2 grupos con él, 19 contactos en común
+						.colhh1.slide_list
+							.colhh1.hover.rel_pos
+								.msm_chaticon.bg_chat
+								.msmuser_img
+									img(src='images/profilephoto.png')
+								.msminfo
+									.msmuser_name 
+										b Juan Barrera
+									.listbottomdat Alumno
+							.colhh1.innerlistitem
+								.colhh1.border_bottom.innerlistitem
+									.pd18_32
+										.sl_title Información
+										.pd_8
+											| 4 grupos en común, 165 contactos en común
 			.block_container.bg_white
 				.pd_18
 					.progress_emoticon

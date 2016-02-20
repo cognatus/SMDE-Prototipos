@@ -108,17 +108,22 @@
 	}
 
 	.float_buttoncontainer{
-		width: 20px;
-		height: 20px;
+		width: 36px;
+		height: 36px;
 		right: 56px;
-		top: 22px;
+		top: 14px;
+		box-shadow: none;
 	}
 
 	.float_buttoncontainer span{
-		border-radius: 0;
-		background-size: 100%;
 		background-color: transparent;
+		background-size: 20px;
+	}
+
+	.float_buttoncontainer:hover{
 		box-shadow: none;
+		width: 36px;height: 36px;
+		background-color: rgba(0,0,0,0.3);
 	}
 
 	.notif .notifscroll{

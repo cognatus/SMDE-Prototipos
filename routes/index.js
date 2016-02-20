@@ -16,11 +16,11 @@ exports.main = function(req, res){
 };
 
 exports.profile = function(req, res){
-  res.render('profile', { title: 'SMDE - Cuenta' });
+  res.render('profile', { title: 'SMDE - Perfil' });
 };
 
 exports.subjects = function(req, res){
-  res.render('subjects', { title: 'SMDE - Mis Materias' });
+  res.render('subjects', { title: 'SMDE - Asignaturas' });
 };
 
 exports.upload = function(req, res){
@@ -41,4 +41,8 @@ exports.settings = function(req, res){
 
 exports.calendar = function(req, res){
   res.render('calendar', { title: 'SMDE - Calendario' });
+};
+
+exports.students = function(req, res){
+  res.render('students', { title: 'SMDE - Alumnos' });
 };

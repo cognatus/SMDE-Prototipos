@@ -3,14 +3,14 @@ extends layout
 block content
 
 		style.
-			.top_pallete{background-color: #E91E63;}
+			.top_pallete{background-color: #0D47A1;}
 
 		.hidden_blockcontainer.autooverflow
 			.hidden_blockback
 			.hidden_block
 				span.close.bg_close
 				.block_container.bg_white
-					.colhh1.border_bottom.bg_pink.flat_shadow
+					.colhh1.border_bottom.bg_darkblue.flat_shadow
 						.pd_18.ll_title.white_text Formulario
 					.colhh1.hb_formcontainer
 						.pd_24
@@ -28,11 +28,11 @@ block content
 								.b_text Escribe algo
 								textarea.activeline
 							.form_input(style='height: 48px;padding-top: 12px;')
-								span.bg_lightblue.submit
+								span.bg_pink.submit
 									input(type='submit', value='')
 
 		#new_item.float_buttoncontainer( title='Nueva' )
-			span.bg_plus.bg_lightblue
+			span.bg_plus.bg_pink
 
 		.topspace
 		.page_container
@@ -45,23 +45,11 @@ block content
 						.pd_12 
 							b El Vato Chido
 							span correo@email.com
-			.colhh1.block_container.bg_white
-				.pd_18
-					.progress_emoticon
-						#indicator.bg_lightblue
-						span( style='background-image: url("/images/emoticon-sad.png")' )
-						span( style='background-image: url("/images/emoticon-neutral.png")' )
-						span( style='background-image: url("/images/emoticon-happy.png")' )
-						span
-						div Tu rendimiento es muy bueno!
-				.pd_18
-					.ll_title Promedio General
-						span#signaturegralprom.right_float.ll_title 8.055
-					.colhh1.bg_lightgray.borad.inbox_shadow
-						#signatureprogress.progress_bar.bg_lightblue.borad
 
 			.colhh1.block_container
 				.colhh1.bg_white
+					.colhh1.border_bottom
+						.pd_18.ll_title Asignaturas impartidas
 					.colhh1.hover
 						.msmuser_img
 							span.bg_orange A

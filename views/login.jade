@@ -20,11 +20,11 @@ html
 				form.colhh1
 					.sign_field.pd_tb_10
 						span( style='background-image: url("images/account.png");' )
-						input.textfield( type='text' , name='sign_user' )
+						input.textfield( type='email' , name='sign_user' )
 					.sign_field.pd_tb_10
 						span( style='background-image: url("images/lock.png");' )
 						input.textfield( type='password' , name='sign_key' )
-					.sign_field.autooverflow(style = 'margin-top: 16px;')
+					.sign_field(style = 'margin-top: 16px;height: 64px;')
 						input.signbutton.bg_lime.bg_login(type='submit' , name='sign_submit' , value='')
 				.colhh1.pd_tb_16.login_bottom
 					| Aun sin cuenta?
