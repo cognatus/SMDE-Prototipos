@@ -90,6 +90,10 @@
 		width: 66.666666%;
 		display: inline-block;
 	}
+
+	.calendar_dayeventscont{
+		height: 562px;
+	}
 	
 	.profile_img{
 		height: 320px;
@@ -123,7 +127,7 @@
 	.float_buttoncontainer:hover{
 		box-shadow: none;
 		width: 36px;height: 36px;
-		background-color: rgba(0,0,0,0.3);
+		background-color: rgba(0,0,0,0.1);
 	}
 
 	.notif .notifscroll{

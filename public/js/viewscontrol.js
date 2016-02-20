@@ -68,7 +68,13 @@ $(document).ready(function(){
 	$('.hover').click(function(){
 		var slideD = $(this).siblings('.innerlistitem');
 
-		slideD.slideDown();
+		if($(this).siblings('.innerlistitem').css('display') == 'block'){
+			$(this).siblings('.innerlistitem').slideUp();
+		}
+		else{
+			$('.innerlistitem').slideUp();
+			slideD.slideDown();
+		}
 
 	});
 
@@ -102,7 +108,7 @@ $(document).ready(function(){
 		CALENDAR
 ---------------------------------------------------------------------------------------*/
 
-	$('.calendar .day').click(function(){
+	$('.tablecalendar .day').click(function(){
 	  var pos = $(this).find('.num span').position();
 	  $('.day_pos').show();
 	  if( $(this).find('.num span').text().length > 1){
@@ -113,6 +119,8 @@ $(document).ready(function(){
 	  	$('.day_pos').animate({ left : pos.left - 18.2 ,
 	  		top : pos.top - 9 });
 	  }
+	  $('.dot_cont span').css('background-color' , 'rgba(0,0,0,0.3)');
+	  $(this).find('.dot_cont span').addClass('.bg_red');
 	});
 
 });

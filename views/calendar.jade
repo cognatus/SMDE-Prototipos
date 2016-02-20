@@ -27,8 +27,8 @@ block content
 										}
 							.form_input
 								.b_text Escribe algo
-								textarea.activeline
-							.form_input(style='height: 48px;padding-top: 12px;')
+								textarea
+							.form_input(style='height: 48px;')
 								span.bg_blue.submit
 									input(type='submit', value='')
 
@@ -37,50 +37,59 @@ block content
 
 		.topspace
 		.page_container
-
 			.colhh1
 				.colhh6.v_top
 					.mr_8
-						.block_container.bg_blue.white_text 
-							.colhh1.calendar(style='height: 410px;')
-								.colhh1
-									span.v_middle.button#left
-									span.v_middle.button#right
-									span.v_middle#month Febrero
-									.right_float#year 2016
-								.colhh1
-									.pd_4
-										.lighttext
-											.colhh7.center_text
-												.pd_8.dayname LUN
-											.colhh7.center_text
-												.pd_8.dayname MAR
-											.colhh7.center_text
-												.pd_8.dayname MIE
-											.colhh7.center_text
-												.pd_8.dayname JUE
-											.colhh7.center_text
-												.pd_8.dayname VIE
-											.colhh7.center_text
-												.pd_8.dayname SAB
-											.colhh7.center_text
-												.pd_8.dayname DOM
-										.colhh1.tablecalendar.autooverflow
-											.day_pos
-											.day.v_top
-												.num 
-													span 1
-												.dot_cont
-													span
-													span
-													span
-											script.
-												for(x = 2; x <= 39; x++){
-													document.write('<div class="day v_top">' +
-														'<div class="num"><span>'+ x +'</span></div>'+
-														'<div class="dot_cont"><span></span><span></span><span></span></div>'+
-													'</div>');
-												}
+						.block_container.bg_white
+							.colhh1.calendar
+								.colhh1.white_text.center_text.bg_blue
+									.bg_opacity.border_bottom
+										.pd_14.sl_title HOY
+									.today_title.flat_shadow.border_bottom
+										.month FEB
+										.day 20
+										.year 2016
+								.colhh1.opacity
+									.pd_8.center_text
+										span.v_middle.button#left
+										span.v_middle.button#right
+										.autocol.v_middle
+											#month Febrero
+												#year 2016
+									.colhh1
+										.pd_4
+											.b_text
+												.colhh7.center_text
+													.pd_8.dayname LUN
+												.colhh7.center_text
+													.pd_8.dayname MAR
+												.colhh7.center_text
+													.pd_8.dayname MIE
+												.colhh7.center_text
+													.pd_8.dayname JUE
+												.colhh7.center_text
+													.pd_8.dayname VIE
+												.colhh7.center_text
+													.pd_8.dayname SAB
+												.colhh7.center_text
+													.pd_8.dayname DOM
+											.colhh1.tablecalendar.autooverflow
+												.day_pos.bg_blue
+												.day.v_top.today
+													.pd_8
+														.num 
+															span 1
+														.dot_cont
+															span
+															span
+															span
+												script.
+													for(x = 2; x <= 39; x++){
+														document.write('<div class="day v_top"><div class="pd_8">' +
+															'<div class="num"><span>'+ x +'</span></div>'+
+															'<div class="dot_cont"><span></span><span></span><span></span></div>'+
+														'</div></div>');
+													}
 										
 				.colhh7.v_top
 					.ml_8
@@ -88,7 +97,11 @@ block content
 							.colhh1.border_bottom
 								.pd_18.ll_title Dia Seleccionado
 									.right_float 18 FEB 2016
-							.colhh1.autooverflow(style='height: 355px;')
+							.colhh1.autooverflow.calendar_dayeventscont
+								.colhh1.empty_blocktext.center_text
+									.pd_64.mm_title
+										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
+										| No hay eventos en este dia.
 								.colhh1.slide_list
 									.colhh1.hover
 										.msmuser_img
@@ -103,36 +116,54 @@ block content
 											.sl_title Descripción
 											.pd_8
 												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
-								.colhh1.hover
-									.msmuser_img
-										span.bg_purple B
-									.msminfo
-										.listrightdat 8 sep
-										.msmuser_name 
-											b Titulo de Tarea
-										.listbottomdat Asignatura: Alguna Asignatura
+								.colhh1.slide_list
+									.colhh1.hover
+										.msmuser_img
+											span.bg_purple B
+										.msminfo
+											.listrightdat 10 sep
+											.msmuser_name 
+												b Titulo de Tarea
+											.listbottomdat Asignatura: Alguna Asignatura
+									.colhh1.border_bottom.innerlistitem
+										.pd18_32
+											.sl_title Descripción
+											.pd_8
+												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 										
 			.colhh1
 				.block_container.bg_white
 					.colhh1.border_bottom
 						.pd_18.ll_title Lista de Tareas
 					.colhh1
-						.colhh1.hover
-							.msmuser_img
-								span.bg_orange A
-							.msminfo
-								.listrightdat 10 sep
-								.msmuser_name 
-									b Titulo de Tarea
-								.listbottomdat Asignatura: Alguna Asignatura
-						.colhh1.hover
-							.msmuser_img
-								span.bg_purple B
-							.msminfo
-								.listrightdat 8 sep
-								.msmuser_name 
-									b Titulo de Tarea
-								.listbottomdat Asignatura: Alguna Asignatura
+						.colhh1.slide_list
+							.colhh1.hover
+								.msmuser_img
+									span.bg_orange A
+								.msminfo
+									.listrightdat 10 sep
+									.msmuser_name 
+										b Titulo de Tarea
+									.listbottomdat Asignatura: Alguna Asignatura
+							.colhh1.border_bottom.innerlistitem
+								.pd18_32
+									.sl_title Descripción
+									.pd_8
+										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
+						.colhh1.slide_list
+							.colhh1.hover
+								.msmuser_img
+									span.bg_purple B
+								.msminfo
+									.listrightdat 10 sep
+									.msmuser_name 
+										b Titulo de Tarea
+									.listbottomdat Asignatura: Alguna Asignatura
+							.colhh1.border_bottom.innerlistitem
+								.pd18_32
+									.sl_title Descripción
+									.pd_8
+										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.slide_list
 							.colhh1.hover
 								.msmuser_img
@@ -142,6 +173,7 @@ block content
 									.msmuser_name 
 										b Titulo de Tarea
 									.listbottomdat Asignatura: Alguna Asignatura
+						.colhh1.slide_list
 							.colhh1.hover
 								.msmuser_img
 									span.bg_red D
@@ -150,26 +182,28 @@ block content
 									.msmuser_name 
 										b Titulo de Tarea
 									.listbottomdat Asignatura: Alguna Asignatura
-							.colhh1.border_bottom
+							.colhh1.border_bottom.innerlistitem
 								.pd18_32
 									.sl_title Descripción
 									.pd_8
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
-						.colhh1.hover
-							.msmuser_img
-								span.bg_teal E
-							.msminfo
-								.listrightdat 5 sep
-								.msmuser_name 
-									b Titulo de Tarea
-								.listbottomdat Asignatura: Alguna Asignatura
-						.colhh1.hover
-							.msmuser_img
-								span.bg_pink F
-							.msminfo
-								.listrightdat 5 sep
-								.msmuser_name 
-									b Titulo de Tarea
-								.listbottomdat Asignatura: Alguna Asignatura
+						.colhh1.slide_list				
+							.colhh1.hover
+								.msmuser_img
+									span.bg_teal E
+								.msminfo
+									.listrightdat 5 sep
+									.msmuser_name 
+										b Titulo de Tarea
+									.listbottomdat Asignatura: Alguna Asignatura
+						.colhh1.slide_list
+							.colhh1.hover
+								.msmuser_img
+									span.bg_pink F
+								.msminfo
+									.listrightdat 5 sep
+									.msmuser_name 
+										b Titulo de Tarea
+									.listbottomdat Asignatura: Alguna Asignatura
 							
 				
