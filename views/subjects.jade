@@ -5,32 +5,6 @@ block content
 		style.
 			.top_pallete{background-color: #E91E63;}
 
-		.hidden_blockcontainer.autooverflow
-			.hidden_blockback
-			.hidden_block
-				span.close.bg_close
-				.block_container.bg_white
-					.colhh1.border_bottom.bg_pink.flat_shadow
-						.pd_18.ll_title.white_text Formulario
-					.colhh1.hb_formcontainer
-						.pd_24
-							.form_input
-								.b_text Nombre
-								input.activeline(type='text', placeholder='Lorem ipsum dolor')
-							.form_input
-								.b_text Edad
-								select.activeline
-									script.
-										for(x=12;x<=65;x++){
-											document.write('<option>' + x + '</option>');
-										}
-							.form_input
-								.b_text Escribe algo
-								textarea
-							.form_input(style='height: 48px;')
-								span.bg_lightblue.submit
-									input(type='submit', value='')
-
 		#new_item.float_buttoncontainer( title='Nueva' )
 			span.bg_plus.bg_lightblue
 
@@ -64,9 +38,9 @@ block content
 				.colhh1.bg_white
 					.colhh1
 						.colhh1.empty_blocktext.center_text
-							.pd_64.mm_title
+							.pd_64
 								span.v_middle(style= 'background-image: url("images/close-box.png")')
-								| No tienes ninguna asignatura.
+								.autocol.mm_title.pd_12 No tienes ninguna asignatura.
 						.colhh1.hover
 							.msmuser_img
 								span.bg_orange A

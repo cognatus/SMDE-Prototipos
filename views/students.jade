@@ -5,32 +5,6 @@ block content
 		style.
 			.top_pallete{background-color: #0D47A1;}
 
-		.hidden_blockcontainer.autooverflow
-			.hidden_blockback
-			.hidden_block
-				span.close.bg_close
-				.block_container.bg_white
-					.colhh1.border_bottom.bg_darkblue.flat_shadow
-						.pd_18.ll_title.white_text Formulario
-					.colhh1.hb_formcontainer
-						.pd_24
-							.form_input
-								.b_text Nombre
-								input.activeline(type='text', placeholder='Lorem ipsum dolor')
-							.form_input
-								.b_text Edad
-								select.activeline
-									script.
-										for(x=12;x<=65;x++){
-											document.write('<option>' + x + '</option>');
-										}
-							.form_input
-								.b_text Escribe algo
-								textarea
-							.form_input(style='height: 48px;')
-								span.bg_pink.submit
-									input(type='submit', value='')
-
 		#new_item.float_buttoncontainer( title='Nueva' )
 			span.bg_plus.bg_pink
 
@@ -52,9 +26,9 @@ block content
 						.pd_18.ll_title Asignaturas impartidas
 					.colhh1
 						.colhh1.empty_blocktext.center_text
-							.pd_64.mm_title
+							.pd_64
 								span.v_middle(style= 'background-image: url("images/close-box.png")')
-								| No tienes ninguna asignatura.
+								.autocol.pd_12.mm_title No tienes ninguna asignatura.
 						.colhh1.hover
 							.msmuser_img
 								span.bg_orange A
@@ -69,3 +43,20 @@ block content
 									span.bg_blue
 									span
 									span
+			.colhh1.block_container
+				.colhh1.bg_white
+					.colhh1.border_bottom
+						.pd_18.ll_title Mis Alumnos
+					.colhh1
+						.colhh1.empty_blocktext.center_text
+							.pd_64
+								span.v_middle(style= 'background-image: url("images/close-box.png")')
+								.autocol.pd_12.mm_title No tienes ningun Alumno.
+						.colhh1.hover
+							.msmuser_img
+								img(src='images/profilephoto.png')
+							.msminfo 
+								.msmuser_name 
+									b James Burton
+								.listbottomdat
+									| 2 Grupos

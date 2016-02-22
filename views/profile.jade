@@ -11,7 +11,7 @@ block content
 				span.close.bg_close
 				.block_container.bg_white
 					.colhh1.border_bottom.bg_purple.flat_shadow
-						.pd_18.ll_title.white_text Formulario
+						.pd_18.ll_title.white_text Editar Información
 					.colhh1.hb_formcontainer
 						.pd_24
 							.form_input
@@ -61,6 +61,8 @@ block content
 						.pd_18.ll_title Información
 					.h_listitem
 						.pd_18.ll_title Contactos
+					.h_listitem
+						.pd_18.ll_title Asignaturas
 
 				.colhh1.h_listindex.first
 					.colhh1.border_bottom
@@ -124,29 +126,12 @@ block content
 										.sl_title Información
 										.pd_8
 											| 4 grupos en común, 165 contactos en común
-			.block_container.bg_white
-				.pd_18
-					.progress_emoticon
-						#indicator.bg_teal
-						span( style='background-image: url("/images/emoticon-sad.png")' )
-						span( style='background-image: url("/images/emoticon-neutral.png")' )
-						span( style='background-image: url("/images/emoticon-happy.png")' )
-						span
-						div Tu rendimiento es muy bueno!
-				.pd_18
-					.ll_title Promedio General
-						span#signaturegralprom.right_float.ll_title 8.055
-					.colhh1.bg_lightgray.borad.inbox_shadow
-						#signatureprogress.progress_bar.bg_teal.borad
-			.block_container.bg_white
-				.colhh1
-					.colhh1.border_bottom
-						.pd_18.ll_title Asignaturas
+				.colhh1.h_listindex
 					.colhh1
 						.colhh1.empty_blocktext.center_text
-							.pd_64.mm_title
+							.pd_64
 								span.v_middle(style= 'background-image: url("images/close-box.png")')
-								| No tienes ninguna asignatura.
+								.autocol.pd_12.mm_title No tienes ninguna asignatura.
 						.colhh1.hover
 							.msmuser_img
 								span.bg_orange A
@@ -231,3 +216,17 @@ block content
 									span.bg_blue
 									span.bg_blue
 									span
+			.block_container.bg_white
+				.pd_18
+					.progress_emoticon
+						#indicator.bg_teal
+						span( style='background-image: url("/images/emoticon-sad.png")' )
+						span( style='background-image: url("/images/emoticon-neutral.png")' )
+						span( style='background-image: url("/images/emoticon-happy.png")' )
+						span
+						div Tu rendimiento es muy bueno!
+				.pd_18
+					.ll_title Promedio General
+						span#signaturegralprom.right_float.ll_title 8.055
+					.colhh1.bg_lightgray.borad.inbox_shadow
+						#signatureprogress.progress_bar.bg_teal.borad

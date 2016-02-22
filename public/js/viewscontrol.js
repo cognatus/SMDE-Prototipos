@@ -55,7 +55,6 @@ $(document).ready(function(){
 	$('.float_buttoncontainer').click(function(){
 		$('.hidden_blockcontainer').fadeIn(300);
 		$('body , html').css('overflow', 'hidden');
-		$('.hidden_blockcontainer').css('overflow', 'auto');
 	});
 
 
@@ -107,8 +106,12 @@ $(document).ready(function(){
 /*-------------------------------------------------------------------------------------
 		CALENDAR
 ---------------------------------------------------------------------------------------*/
+	if($(window).width() >= 1120 ){
+		$('#calendar_dayeventscont').css( 'height' ,  
+			( $('.calendar').outerHeight() - $('#calendar_dayevents_title').outerHeight() ) + 6 + 'px' );
+	}
 
-	$('.tablecalendar .day').click(function(){
+	$('.tablecalendar .day .pd_8').click(function(){
 	  var pos = $(this).find('.num span').position();
 	  $('.day_pos').show();
 	  if( $(this).find('.num span').text().length > 1){

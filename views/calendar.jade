@@ -6,31 +6,32 @@ block content
 		style.
 			.top_pallete{background-color: #F44336;}
 
-		.hidden_blockcontainer.autooverflow
+		.hidden_blockcontainer
 			.hidden_blockback
-			.hidden_block
+			.hidden_block.bg_white
 				span.close.bg_close
-				.block_container.bg_white
-					.colhh1.border_bottom.bg_red.flat_shadow
-						.pd_18.ll_title.white_text Formulario
-					.colhh1.hb_formcontainer
-						.pd_24
-							.form_input
-								.b_text Nombre
-								input.activeline(type='text', placeholder='Lorem ipsum dolor')
-							.form_input
-								.b_text Edad
-								select.activeline
-									script.
-										for(x=12;x<=65;x++){
-											document.write('<option>' + x + '</option>');
-										}
-							.form_input
-								.b_text Escribe algo
-								textarea
-							.form_input(style='height: 48px;')
-								span.bg_blue.submit
-									input(type='submit', value='')
+				.colhh1.border_bottom.bg_red.flat_shadow
+					.pd_18.ll_title.white_text Nuevo Evento
+				.colhh1.hb_formcontainer
+					.pd_24
+						.form_input
+							.b_text Asunto
+							select.activeline
+								option Tarea
+								option Recordatorio
+								option Evento
+						.form_input
+							.b_text Titulo
+							input.activeline(type='text', placeholder='Titulo del Evento/Tarea')
+						.form_input
+							.b_text Fecha
+							input.activeline(type='text', placeholder='21/Feb/2016')
+						.form_input
+							.b_text Comentarios
+							textarea(placeholder='Añade un comentario')
+						.form_input(style='height: 48px;')
+							span.bg_blue.submit
+								input(type='submit', value='')
 
 		#new_item.float_buttoncontainer( title='Nuevo Evento' )
 			span.bg_plus.bg_lightblue
@@ -44,21 +45,24 @@ block content
 							.colhh1.calendar
 								.colhh1.white_text.center_text.bg_blue
 									.bg_opacity.border_bottom
-										.pd_14.sl_title HOY
+										.pd_14.sl_title.uppercase 
+											label#weekday Dia
 									.today_title.flat_shadow.border_bottom
-										.month.uppercase FEB
-										.day 20
-										.year 2016
-								.colhh1.opacity
+										.month_title.uppercase Ene
+										.day_title 1
+										.year_title 1970
+								.colhh1.opacity_color
 									.pd_8.center_text
-										span.v_middle.button#left
+										span.v_middle.button#left(onclick='next()')
 										span.v_middle.button#right
-										.autocol.v_middle
-											#month Febrero
-												#year 2016
+										.autocol.v_middle.my_cont
+											#month Mes
+											#year Año
 									.colhh1
 										.pd_4
 											.b_text
+												.colhh7.center_text
+													.pd_8.dayname DOM
 												.colhh7.center_text
 													.pd_8.dayname LUN
 												.colhh7.center_text
@@ -71,37 +75,37 @@ block content
 													.pd_8.dayname VIE
 												.colhh7.center_text
 													.pd_8.dayname SAB
-												.colhh7.center_text
-													.pd_8.dayname DOM
 											.colhh1.tablecalendar.autooverflow
 												.day_pos.bg_blue
-												.day.v_top.today
-													.pd_8
-														.num 
-															span 1
-														.dot_cont
-															span
-															span
-															span
 												script.
-													for(x = 2; x <= 39; x++){
-														document.write('<div class="day v_top"><div class="pd_8">' +
-															'<div class="num"><span>'+ x +'</span></div>'+
-															'<div class="dot_cont"><span></span><span></span><span></span></div>'+
-														'</div></div>');
-													}
+													writeCalendar();
+												//- .day.v_top.today
+												//- 	.pd_8
+												//- 		.num 
+												//- 			span 1
+												//- 		.dot_cont
+												//- 			span
+												//- 			span
+												//- 			span
+												//- script.
+												//- 	for(x = 2; x <= 39; x++){
+												//- 		document.write('<div class="day v_top"><div class="pd_8">' +
+												//- 			'<div class="num"><span>'+ x +'</span></div>'+
+												//- 			'<div class="dot_cont"><span></span><span></span><span></span></div>'+
+												//- 		'</div></div>');
+												//- 	}
 										
 				.colhh7.v_top
 					.ml_8
 						.block_container.bg_white
 							.colhh1.border_bottom
-								.pd_18.ll_title Dia Seleccionado
+								.pd_18.ll_title#calendar_dayevents_title Dia Seleccionado
 									.right_float 18 FEB 2016
-							.colhh1.autooverflow.calendar_dayeventscont
+							.colhh1.autooverflow#calendar_dayeventscont
 								.colhh1.empty_blocktext.center_text
-									.pd_64.mm_title
+									.pd_64
 										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
-										| No hay eventos en este dia.
+										.autocol.mm_title.pd_12 No hay eventos ni tareas para este dia.
 								.colhh1.slide_list
 									.colhh1.hover
 										.msmuser_img

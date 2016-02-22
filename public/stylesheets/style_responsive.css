@@ -16,7 +16,7 @@
 	}
 
 	.page_container{
-		width: calc(100% - 160px);
+		width: calc(100% - 120px);
 		margin: 0 auto;
 	}
 
@@ -54,7 +54,7 @@
 		padding: 24px;
 	}
 
-	.op_bg .b_title{padding: 64px;padding-bottom: 0;}
+	.op_bg .b_title{padding: 64px;padding-bottom: 0;font-size: 72px;}
 
 	.login_bottom{
 		position: absolute;
@@ -62,9 +62,18 @@
 		width: 380px;
 	}
 
+	.hidden_blockcontainer{
+		overflow: auto;
+	}
+
 	.hidden_block{
 		width: 420px;
-		margin: 80px auto;
+		margin: 48px auto;
+		height: auto;
+	}
+
+	.hb_formcontainer{
+		height: auto;
 	}
 
 	.index_container .pd{
@@ -91,7 +100,7 @@
 		display: inline-block;
 	}
 
-	.calendar_dayeventscont{
+	#calendar_dayeventscont{
 		height: 562px;
 	}
 	
@@ -106,6 +115,10 @@
 	.halfgrid{width: 32%;}
 
 	.secondgrid{width: 68%;}
+
+	.msmtopname{
+		padding: 20px 18px 20px 18px;
+	}
 
 	.backicon{
 		display: none;

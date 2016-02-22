@@ -1,90 +1,104 @@
 
 // these are labels for the days of the week
-cal_days_labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+days_labels = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 // these are human-readable month name labels, in order
-cal_months_labels = ['Enero', 'Febrero', 'Marzo', 'Abril',
-	                	'Mayo', 'Junio', 'Julio', 'Augosto', 'Septiembre',
+months_labels = ['Enero', 'Febrero', 'Marzo', 'Abril',
+	                	'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
 	            		'Octubre', 'Noviembre', 'Diciembre'];
 
 // these are the days of the week for each month, in order
-cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 // this is the current date
-cal_current_date = new Date(); 
+current_date = new Date();
 
 function Calendar(month, year) {
-  this.month = (isNaN(month) || month == null) ? cal_current_date.getMonth() : month;
-  this.year  = (isNaN(year) || year == null) ? cal_current_date.getFullYear() : year;
+  this.month = (isNaN(month) || month == null) ? current_date.getMonth() : month;
+  this.year  = (isNaN(year) || year == null) ? current_date.getFullYear() : year;
   this.html = '';
 }
 
 Calendar.prototype.generateHTML = function(){
 
-  // get first day of month
-  var firstDay = new Date(this.year, this.month, 1);
-  var startingDay = firstDay.getDay();
-  
-  // find number of days in month
-  var monthLength = cal_days_in_month[this.month];
-  
-  // compensate for leap year
-  if (this.month == 1) { // February only!
-    if((this.year % 4 == 0 && this.year % 100 != 0) || this.year % 400 == 0){
-      monthLength = 29;
-    }
-  }
-  
-  // do the header
-  var monthName = cal_months_labels[this.month]
-  var html = '<table class="calendar-table">';
-  $('.calendar #month').text(monthName);
-  $('.calendar #year').text(this.year);
-/*  html += '<tr><th colspan="7">';
-  html +=  monthName + "&nbsp;" + this.year;
-  html += '</th></tr>';
-  html += '<tr class="calendar-header">';
-  for(var i = 0; i <= 6; i++ ){
-    html += '<td class="calendar-header-day">';
-    html += cal_days_labels[i];
-    html += '</td>';
-  }
-  html += '</tr><tr>'*/
-  html += '<tr colspan="7">';
-
-  // fill in the days
-  var day = 1;
-  // this loop is for is weeks (rows)
-  for (var i = 0; i < 9; i++) {
-    // this loop is for weekdays (cells)
-    for (var j = 0; j <= 6; j++) { 
-      html += '<td class="calendar-day">';
-      if (day <= monthLength && (i > 0 || j >= startingDay)) {
-        html += day;
-        day++;
+    // obtener primer dia del mes
+    var firstDay = new Date(this.year, this.month, 1);
+    var startingDay = firstDay.getDay();
+    $('.calendar #month').text( months_labels[this.month] );
+    $('.calendar #year').text( this.year );
+    $('.calendar #weekday').text( days_labels[current_date.getDay()] );
+      
+      // find number of days in month
+      var monthLength = days_in_month[this.month];
+      
+      // anio bisiesto
+      if (this.month == 1) { // February only!
+            if((this.year % 4 == 0 && this.year % 100 != 0) || this.year % 400 == 0){
+                monthLength = 29;
+            }
       }
-      html += '<div>';
-      html += '<span class="bg_blue"></span>'
-      html += '</div></td>';
-    }
-    // stop making rows if we've run out of days
-    if (day > monthLength) {
-      break;
-    } else {
-      html += '</tr><tr>';
-    }
-  }
-  html += '</tr></table>';
+      
+      // do the header
+    var monthName = months_labels[this.month];
+    var html = '';
 
-  this.html = html;
-}
+    // llenar los dias
+    var day = 1;
+    // bucle para las semanas
+    for ( var i = 0; i < 9; i++ ) {
+        // dias de la semana
+        for ( var j = 0; j <= 6; j++ ) { 
+            if ( day <= monthLength && (i > 0 || j >= startingDay) ) {
+                html += '<div class="day v_top">';
+                html += '<div class="pd_8"><div class="num"><span>';
+                html += day;
+                html += '</span><div class="dot_cont">';
+                html += '</div></div></div></div>';
+                day++;
+            }
+            else{
+                html += '<div class="day v_top"></div>';
+            }
+        }
+        // stop making rows if we've run out of days
+        if (day > monthLength) {
+            break;
+        }
+        /*if(day == current_date.getDate()){
+
+        }*/
+        }
+
+        this.html = html;
+    }
 
 Calendar.prototype.getHTML = function() {
-  return this.html;
+    return this.html;
 }
+
+/*function next() {
+    this.month = this.month + 1;
+    if (this.month > 11) {
+        this.month = 0;
+        this.year = this.year + 1;
+    }
+    return{
+        this.month : month,
+        this.year : year
+    }
+}*/
 
 function writeCalendar(){
 	var cal = new Calendar();
 	cal.generateHTML();
 	document.write(cal.getHTML());
 }
+
+$(document).ready(function(){
+    months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
+                      'May', 'Jun', 'Jul', 'Aug', 'Sep',
+                    'Oct', 'Nov', 'Dic'];
+    $('.today_title .day_title').text(current_date.getDate());
+    $('.today_title .month_title').text(months_labels[current_date.getMonth()]);
+    $('.today_title .year_title').text(current_date.getFullYear());
+});
