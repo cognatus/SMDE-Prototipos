@@ -12,6 +12,8 @@ days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 // this is the current date
 current_date = new Date();
+anio = current_date.getMonth();
+mes = current_date.getFullYear();
 
 function Calendar(month, year) {
   this.month = (isNaN(month) || month == null) ? current_date.getMonth() : month;
@@ -76,20 +78,17 @@ Calendar.prototype.getHTML = function() {
     return this.html;
 }
 
-/*function next() {
-    this.month = this.month + 1;
-    if (this.month > 11) {
-        this.month = 0;
-        this.year = this.year + 1;
+function next() {
+    mes++;
+    if (mes > 11) {
+        mes = 0;
+        anio++;
     }
-    return{
-        this.month : month,
-        this.year : year
-    }
-}*/
+    writeCalendar(month, year);
+}
 
-function writeCalendar(){
-	var cal = new Calendar();
+function writeCalendar(month, year){
+	var cal = new Calendar(month,year);
 	cal.generateHTML();
 	document.write(cal.getHTML());
 }
