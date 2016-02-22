@@ -78,7 +78,16 @@ Calendar.prototype.getHTML = function() {
     return this.html;
 }
 
-function next() {
+function prevMonth() {
+    mes--;
+    if (mes < 0) {
+        mes = 11;
+        anio--;
+    }
+    writeCalendar(mes, anio);
+}
+
+function nextMonth() {
     mes++;
     if (mes > 11) {
         mes = 0;
@@ -90,7 +99,7 @@ function next() {
 function writeCalendar(month, year){
 	var cal = new Calendar(month,year);
 	cal.generateHTML();
-  document.getElementById("esto").innerHTML = cal.getHTML();
+  document.getElementById("calendar_month_content").innerHTML = cal.getHTML();
 }
 
 $(document).ready(function(){

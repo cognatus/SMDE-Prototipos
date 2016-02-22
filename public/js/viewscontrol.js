@@ -106,10 +106,6 @@ $(document).ready(function(){
 /*-------------------------------------------------------------------------------------
 		CALENDAR
 ---------------------------------------------------------------------------------------*/
-	if($(window).width() >= 1120 ){
-		$('#calendar_dayeventscont').css( 'height' ,  
-			( $('.calendar').outerHeight() - $('#calendar_dayevents_title').outerHeight() ) + 6 + 'px' );
-	}
 
 	$('.tablecalendar .day .pd_8').click(function(){
 	  var pos = $(this).find('.num span').position();
