@@ -51,7 +51,7 @@ Calendar.prototype.generateHTML = function(){
         // dias de la semana
         for ( var j = 0; j <= 6; j++ ) { 
             if ( day <= monthLength && (i > 0 || j >= startingDay) ) {
-                html += '<div class="day v_top">';
+                html += '<div class="day v_top" onclick="carga('+day+')">';
                 html += '<div class="pd_8"><div class="num"><span>';
                 html += day;
                 html += '</span><div class="dot_cont">';
@@ -84,6 +84,7 @@ function prevMonth() {
         mes = 11;
         anio--;
     }
+    document.getElementById("elegido").innerHTML = "1 "+months_labels[mes]+" "+anio;
     writeCalendar(mes, anio);
 }
 
@@ -93,6 +94,7 @@ function nextMonth() {
         mes = 0;
         anio++;
     }
+    document.getElementById("elegido").innerHTML = "1 "+months_labels[mes]+" "+anio;
     writeCalendar(mes, anio);
 }
 
@@ -122,3 +124,10 @@ $(document).ready(function(){
     $('.today_title .month_title').text(super_months_labels[current_date.getMonth()]);
     $('.today_title .year_title').text(current_date.getFullYear());
 });
+
+function carga(x){
+  console.log('Día'+x);
+  console.log('Mes'+months_labels[mes]);
+  console.log('Año'+anio);
+  document.getElementById("elegido").innerHTML = x+" "+months_labels[mes]+" "+anio;
+}
