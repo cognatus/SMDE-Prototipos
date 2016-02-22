@@ -103,23 +103,4 @@ $(document).ready(function(){
 		});
 	});
 
-/*-------------------------------------------------------------------------------------
-		CALENDAR
----------------------------------------------------------------------------------------*/
-
-	$('.tablecalendar .day .pd_8').click(function(){
-	  var pos = $(this).find('.num span').position();
-	  $('.day_pos').show();
-	  if( $(this).find('.num span').text().length > 1){
-	  	$('.day_pos').animate({ left : pos.left - 14.6 ,
-	  		top : pos.top - 9 });
-	  }
-	  else{
-	  	$('.day_pos').animate({ left : pos.left - 18.2 ,
-	  		top : pos.top - 9 });
-	  }
-	  $('.dot_cont span').css('background-color' , 'rgba(0,0,0,0.3)');
-	  $(this).find('.dot_cont span').addClass('.bg_red');
-	});
-
 });

@@ -99,7 +99,19 @@ function nextMonth() {
 function writeCalendar(month, year){
 	var cal = new Calendar(month,year);
 	cal.generateHTML();
-  document.getElementById("calendar_month_content").innerHTML = cal.getHTML();
+    document.getElementById("calendar_month_content").innerHTML = cal.getHTML();
+    $('#calendar_month_content .day .pd_8').click(function(){
+        var pos = $(this).find('.num span').position();
+        $('.day_pos').show();
+        if( $(this).find('.num span').text().length > 1){
+            $('.day_pos').animate({ left : pos.left - 14.6 ,
+                top : pos.top - 9 });
+            }
+        else{
+            $('.day_pos').animate({ left : pos.left - 18.2 ,
+                top : pos.top - 9 });
+        }
+    });
 }
 
 $(document).ready(function(){
