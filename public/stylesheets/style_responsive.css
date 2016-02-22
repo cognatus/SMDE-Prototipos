@@ -70,6 +70,8 @@
 		width: 420px;
 		margin: 48px auto;
 		height: auto;
+		border-radius: 1px;
+		overflow: hidden;
 	}
 
 	.hb_formcontainer{

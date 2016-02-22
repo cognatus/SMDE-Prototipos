@@ -641,7 +641,8 @@ input[type='submit']{cursor: pointer;}
 	margin: 0 auto;
 	height: 100%;
 	position: relative;
-	top: 0;
+	top: 0;border-radius: 0;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
 }
 
 .hidden_block span.close{
@@ -675,11 +676,6 @@ input[type='submit']{cursor: pointer;}
 	overflow: hidden;
 	height: auto;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
-}
-
-.hidden_blockcontainer .block_container{
-	border-radius: 1px;
-	margin: 0;
 }
 
 .block_containermsm{
@@ -872,7 +868,6 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.1);transform: rotate(90
 }
 
 .float_buttoncontainer:hover{
-	width: 64px;height: 64px;
 	box-shadow: 0px 3px 10px rgba(0,0,0,0.4);
 }
 
@@ -1250,6 +1245,10 @@ span.searchicon{
 	margin-bottom: 24px; 
 }
 
+.form_input2{
+	margin-bottom: 0; 
+}
+
 .form_input:last-child{
 	margin-bottom: 0; 
 }
@@ -1267,6 +1266,17 @@ span.searchicon{
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
+.form_input2 input[type='text'], .form_input2 textarea{
+	font-family: 'Roboto' , sans-serif;
+	border: none;
+	outline: none;
+	width: calc(100% - 36px);
+	margin-top: 0;
+	padding: 18px;
+	background-color: transparent;
+	color: #424242;
+}
+
 .form_input select{
 	width: 100%;
 }
@@ -1276,6 +1286,12 @@ span.searchicon{
 	max-width: calc(100% - 4px);
 	min-width: calc(100% - 4px);
 	border: none;
+}
+
+.form_input2 textarea{
+	height: 146px;
+	max-width: calc(100% - 36px);
+	min-width: calc(100% - 36px);
 }
 
 .form_input input[type='text']:focus, .form_input input[type='password']:focus, .form_input input[type='email']:focus,
@@ -1294,10 +1310,9 @@ span.searchicon{
 
 .form_input input[type='submit']{
 	border: none;
+	background: transparent;
 	width: 100%;
 	height: 100%;
-	background: url('/images/check.png') no-repeat center;
-	background-size: 42%; 
 }
 
 /*---------------------------------------------------------------------------------------

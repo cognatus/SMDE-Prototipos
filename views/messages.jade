@@ -6,7 +6,24 @@ block content
 			.top_pallete{background-color: #FF9800;}
 
 		#new_item.float_buttoncontainer( title='Nuevo Mensaje' )
-			span.bg_edit.bg_blue
+			span.bg_edit.bg_indigo
+
+		.hidden_blockcontainer
+			.hidden_blockback
+			.hidden_block.bg_white
+				span.close.bg_close
+				.colhh1.border_bottom.bg_orange.flat_shadow
+					.pd_18.ll_title.white_text Nuevo Mensaje
+				.colhh1.hb_formcontainer
+					.colhh1
+						.form_input2.border_bottom
+							input(type='text', placeholder='Destino')
+						.form_input2
+							textarea(placeholder='Mensaje')
+						.pd_18
+							.form_input(style='height: 48px;')
+								span.bg_indigo.bg_send.submit
+									input(type='submit', value='')
 
 		.topspace
 		.colhh1.bdb_container.block_containermsm
@@ -84,23 +101,23 @@ block content
 													span.msm_date 10:34 pm
 									.colhh1.margin_bot.msmballon
 										.colhh1.autooverflow.margin_mintb
-											.rightmsm.bg_blue.white_text
-												i.bg_blue
+											.rightmsm.bg_indigo.white_text
+												i.bg_indigo
 												.pd_8 
 													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor.
 													span.msm_date 10:34 pm
 										.colhh1.autooverflow.margin_mintb
-											.rightmsm.bg_blue.white_text
+											.rightmsm.bg_indigo.white_text
 												.pd_8 
 													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 													span.msm_date 10:34 pm
 										.colhh1.autooverflow.margin_mintb
-											.rightmsm.bg_blue.white_text
+											.rightmsm.bg_indigo.white_text
 												.pd_8 
 													| Lorem ipsum dolor sit amet.
 													span.msm_date 10:34 pm
 						.colhh1.msminput
 							input( type='text' , name='newmsm' , placeholder='Mensaje' )
-							input.bg_blue.bg_send( type='submit' , name='msmsend' , value='')
+							input.bg_indigo.bg_send( type='submit' , name='msmsend' , value='')
 						
 
