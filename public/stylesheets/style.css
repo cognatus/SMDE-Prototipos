@@ -1350,6 +1350,7 @@ span.searchicon{
 .calendar .tablecalendar{
 	position: relative;
 	padding: 4px 0 4px 0;
+	z-index: 4;
 }
 
 .calendar .today_title{padding: 28px;}
@@ -1402,8 +1403,6 @@ span.searchicon{
 	border-radius: 32px;
 	position: absolute;
 	z-index: -1;
-	left: 5px;
-	top: 3px;
 }
 
 /*---------------------------------------------------------------------------------------
