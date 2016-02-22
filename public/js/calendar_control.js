@@ -115,10 +115,10 @@ function writeCalendar(month, year){
 }
 
 $(document).ready(function(){
-    months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
+    super_months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
                       'May', 'Jun', 'Jul', 'Aug', 'Sep',
                     'Oct', 'Nov', 'Dic'];
     $('.today_title .day_title').text(current_date.getDate());
-    $('.today_title .month_title').text(months_labels[current_date.getMonth()]);
+    $('.today_title .month_title').text(super_months_labels[current_date.getMonth()]);
     $('.today_title .year_title').text(current_date.getFullYear());
 });
