@@ -84,7 +84,7 @@ function next() {
         mes = 0;
         anio++;
     }
-    writeCalendar(month, year);
+    writeCalendar(mes, anio);
 }
 
 function writeCalendar(month, year){
