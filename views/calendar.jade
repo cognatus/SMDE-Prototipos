@@ -48,9 +48,9 @@ block content
 										.pd_14.sl_title.uppercase 
 											label#weekday Dia
 									.today_title.flat_shadow.border_bottom
-										.month_title.uppercase Ene
-										.day_title 1
-										.year_title 1970
+										.month_title.uppercase Mes
+										.day_title Dia
+										.year_title Año
 								.colhh1.opacity_color
 									.pd_8.center_text
 										span.v_middle.button#left(onclick='prevMonth()')
@@ -78,8 +78,6 @@ block content
 											.colhh1.tablecalendar.autooverflow
 												.day_pos.bg_blue
 												#calendar_month_content
-												script.
-													writeCalendar();
 												//- .day.v_top.today
 												//- 	.pd_8
 												//- 		.num 
@@ -88,13 +86,6 @@ block content
 												//- 			span
 												//- 			span
 												//- 			span
-												//- script.
-												//- 	for(x = 2; x <= 39; x++){
-												//- 		document.write('<div class="day v_top"><div class="pd_8">' +
-												//- 			'<div class="num"><span>'+ x +'</span></div>'+
-												//- 			'<div class="dot_cont"><span></span><span></span><span></span></div>'+
-												//- 		'</div></div>');
-												//- 	}
 										
 				.colhh7.v_top
 					.ml_8
@@ -109,13 +100,13 @@ block content
 										.autocol.mm_title.pd_12 No hay eventos ni tareas para este dia.
 								.colhh1.slide_list
 									.colhh1.hover
-										.msmuser_img
+										.listitem_img
 											span.bg_orange A
-										.msminfo
-											.listrightdat 10 sep
-											.msmuser_name 
+										.listitem_info
+											.listitem_rightinfo 10 sep
+											.listitem_title 
 												b Titulo de Tarea
-											.listbottomdat Asignatura: Alguna Asignatura
+											.listitem_bottomdata Asignatura: Alguna Asignatura
 									.colhh1.border_bottom.innerlistitem
 										.pd18_32
 											.sl_title Descripción
@@ -123,13 +114,13 @@ block content
 												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 								.colhh1.slide_list
 									.colhh1.hover
-										.msmuser_img
+										.listitem_img
 											span.bg_purple B
-										.msminfo
-											.listrightdat 10 sep
-											.msmuser_name 
+										.listitem_info
+											.listitem_rightinfo 10 sep
+											.listitem_title 
 												b Titulo de Tarea
-											.listbottomdat Asignatura: Alguna Asignatura
+											.listitem_bottomdata Asignatura: Alguna Asignatura
 									.colhh1.border_bottom.innerlistitem
 										.pd18_32
 											.sl_title Descripción
@@ -143,13 +134,13 @@ block content
 					.colhh1
 						.colhh1.slide_list
 							.colhh1.hover
-								.msmuser_img
+								.listitem_img
 									span.bg_orange A
-								.msminfo
-									.listrightdat 10 sep
-									.msmuser_name 
+								.listitem_info
+									.listitem_rightinfo 10 sep
+									.listitem_title 
 										b Titulo de Tarea
-									.listbottomdat Asignatura: Alguna Asignatura
+									.listitem_bottomdata Asignatura: Alguna Asignatura
 							.colhh1.border_bottom.innerlistitem
 								.pd18_32
 									.sl_title Descripción
@@ -157,13 +148,13 @@ block content
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.slide_list
 							.colhh1.hover
-								.msmuser_img
+								.listitem_img
 									span.bg_purple B
-								.msminfo
-									.listrightdat 10 sep
-									.msmuser_name 
+								.listitem_info
+									.listitem_rightinfo 10 sep
+									.listitem_title 
 										b Titulo de Tarea
-									.listbottomdat Asignatura: Alguna Asignatura
+									.listitem_bottomdata Asignatura: Alguna Asignatura
 							.colhh1.border_bottom.innerlistitem
 								.pd18_32
 									.sl_title Descripción
@@ -171,22 +162,22 @@ block content
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.slide_list
 							.colhh1.hover
-								.msmuser_img
+								.listitem_img
 									span.bg_blue C
-								.msminfo
-									.listrightdat 7 sep
-									.msmuser_name 
+								.listitem_info
+									.listitem_rightinfo 7 sep
+									.listitem_title 
 										b Titulo de Tarea
-									.listbottomdat Asignatura: Alguna Asignatura
+									.listitem_bottomdata Asignatura: Alguna Asignatura
 						.colhh1.slide_list
 							.colhh1.hover
-								.msmuser_img
+								.listitem_img
 									span.bg_red D
-								.msminfo
-									.listrightdat 6 sep
-									.msmuser_name 
+								.listitem_info
+									.listitem_rightinfo 6 sep
+									.listitem_title 
 										b Titulo de Tarea
-									.listbottomdat Asignatura: Alguna Asignatura
+									.listitem_bottomdata Asignatura: Alguna Asignatura
 							.colhh1.border_bottom.innerlistitem
 								.pd18_32
 									.sl_title Descripción
@@ -194,21 +185,21 @@ block content
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.slide_list				
 							.colhh1.hover
-								.msmuser_img
+								.listitem_img
 									span.bg_teal E
-								.msminfo
-									.listrightdat 5 sep
-									.msmuser_name 
+								.listitem_info
+									.listitem_rightinfo 5 sep
+									.listitem_title 
 										b Titulo de Tarea
-									.listbottomdat Asignatura: Alguna Asignatura
+									.listitem_bottomdata Asignatura: Alguna Asignatura
 						.colhh1.slide_list
 							.colhh1.hover
-								.msmuser_img
+								.listitem_img
 									span.bg_pink F
-								.msminfo
-									.listrightdat 5 sep
-									.msmuser_name 
+								.listitem_info
+									.listitem_rightinfo 5 sep
+									.listitem_title 
 										b Titulo de Tarea
-									.listbottomdat Asignatura: Alguna Asignatura
+									.listitem_bottomdata Asignatura: Alguna Asignatura
 							
 				

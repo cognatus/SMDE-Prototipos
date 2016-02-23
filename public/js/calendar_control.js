@@ -30,28 +30,26 @@ Calendar.prototype.generateHTML = function(){
     $('.calendar #year').text( this.year );
     $('.calendar #weekday').text( days_labels[current_date.getDay()] );
       
-      // find number of days in month
+      // Numero de dias en el mes
       var monthLength = days_in_month[this.month];
       
-      // anio bisiesto
-      if (this.month == 1) { // February only!
+      // Anio bisiesto
+      if (this.month == 1) { // Febrero solamente!
             if((this.year % 4 == 0 && this.year % 100 != 0) || this.year % 400 == 0){
                 monthLength = 29;
             }
       }
       
-      // do the header
-    var monthName = months_labels[this.month];
     var html = '';
 
-    // llenar los dias
+    // Llenar los dias
     var day = 1;
-    // bucle para las semanas
+    // Bucle para las semanas
     for ( var i = 0; i < 9; i++ ) {
-        // dias de la semana
+        // Dias de la semana
         for ( var j = 0; j <= 6; j++ ) { 
             if ( day <= monthLength && (i > 0 || j >= startingDay) ) {
-                html += '<div class="day v_top" onclick="carga('+day+')">';
+                html += '<div class="day v_top" onclick="carga(' + day + ')">';
                 html += '<div class="pd_8"><div class="num"><span>';
                 html += day;
                 html += '</span><div class="dot_cont">';
@@ -62,17 +60,15 @@ Calendar.prototype.generateHTML = function(){
                 html += '<div class="day v_top"></div>';
             }
         }
-        // stop making rows if we've run out of days
+        // Detener el ciclo al terminar los dias del mes
         if (day > monthLength) {
             break;
         }
-        /*if(day == current_date.getDate()){
 
-        }*/
-        }
-
-        this.html = html;
     }
+
+    this.html = html;
+}
 
 Calendar.prototype.getHTML = function() {
     return this.html;
@@ -84,7 +80,7 @@ function prevMonth() {
         mes = 11;
         anio--;
     }
-    document.getElementById("elegido").innerHTML = "1 "+months_labels[mes]+" "+anio;
+    document.getElementById("elegido").innerHTML = "1 " + months_labels[mes] + " " + anio;
     writeCalendar(mes, anio);
 }
 
@@ -94,7 +90,7 @@ function nextMonth() {
         mes = 0;
         anio++;
     }
-    document.getElementById("elegido").innerHTML = "1 "+months_labels[mes]+" "+anio;
+    document.getElementById("elegido").innerHTML = "1 " + months_labels[mes] + " " + anio;
     writeCalendar(mes, anio);
 }
 
@@ -102,6 +98,8 @@ function writeCalendar(month, year){
 	var cal = new Calendar(month,year);
 	cal.generateHTML();
     document.getElementById("calendar_month_content").innerHTML = cal.getHTML();
+    //$('#calendar_dayeventscont').css('height' , $('.calendar').height() - 55);
+    $('.day_pos').hide();
     $('#calendar_month_content .day .pd_8').click(function(){
         var pos = $(this).find('.num span').position();
         $('.day_pos').show();
@@ -116,18 +114,20 @@ function writeCalendar(month, year){
     });
 }
 
-$(document).ready(function(){
-    super_months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
-                      'May', 'Jun', 'Jul', 'Aug', 'Sep',
+super_months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
+                    'May', 'Jun', 'Jul', 'Aug', 'Sep',
                     'Oct', 'Nov', 'Dic'];
+
+$(document).ready(function(){
     $('.today_title .day_title').text(current_date.getDate());
     $('.today_title .month_title').text(super_months_labels[current_date.getMonth()]);
     $('.today_title .year_title').text(current_date.getFullYear());
+    $('.calendar_month_content').append(writeCalendar());
 });
 
 function carga(x){
-  console.log('Día'+x);
-  console.log('Mes'+months_labels[mes]);
-  console.log('Año'+anio);
-  document.getElementById("elegido").innerHTML = x+" "+months_labels[mes]+" "+anio;
+  console.log( 'Día' + x );
+  console.log( 'Mes' + months_labels[mes] );
+  console.log( 'Año' + anio );
+  document.getElementById("elegido").innerHTML = x + " " + months_labels[mes] + " " + anio;
 }

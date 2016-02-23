@@ -40,9 +40,13 @@ exports.settings = function(req, res){
 };
 
 exports.calendar = function(req, res){
-  res.render('calendar', { title: 'SMDE - Calendario' });
+  res.render('calendar', { title: 'SMDE - Agenda' });
 };
 
 exports.students = function(req, res){
   res.render('students', { title: 'SMDE - Alumnos' });
+};
+
+exports.userscontrol = function(req, res){
+  res.render('userscontrol', { title: 'SMDE - Gestion' });
 };
