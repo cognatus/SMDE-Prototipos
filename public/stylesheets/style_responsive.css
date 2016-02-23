@@ -84,6 +84,9 @@
 
 	.index_container .float_button{
 		right: 72px;
+		width: 80px;
+		height: 80px;
+		bottom: -40px;
 	}
 
 }

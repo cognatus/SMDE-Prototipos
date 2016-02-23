@@ -1319,6 +1319,7 @@ span.searchicon{
 .form_input input[type='text']:focus, .form_input input[type='password']:focus, .form_input input[type='email']:focus,
 .form_input select:focus{
 	border-bottom: 2px solid #424242;
+	padding-bottom: 9px;
 }
 
 .form_input span.submit{
