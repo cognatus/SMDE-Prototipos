@@ -24,7 +24,7 @@ exports.subjects = function(req, res){
 };
 
 exports.upload = function(req, res){
-  res.render('upload', { title: 'SMDE - Subir Contenido' });
+  res.render('upload', { title: 'SMDE - Contenidos' });
 };
 
 exports.messages = function(req, res){
