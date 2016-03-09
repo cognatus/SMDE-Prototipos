@@ -17,10 +17,15 @@ block content
 						.pd_24.border_bottom.flat_shadow.bgprimary_color
 							.form_input.white_text
 								.left_title.mm_title.v_middle Tipo
-								select.activeline.white_text(name='userType')
+								select.activeline.txtaccent_colorfall(name='userType')
 									option Alumno
 									option Profesor
+									option Departamento
+									option Asignatura
 						.pd_24
+							.form_input
+								.b_text.left_title Clave
+								input(type='text', placeholder='Clave' name='userIdKey')
 							.form_input
 								.b_text.left_title Nombre(s)
 								input(type='text', placeholder='Nombre(s)' name='userName')
@@ -39,7 +44,7 @@ block content
 								input(type='email', placeholder='email@email.com' name='userEmail')
 							.form_input
 								.b_text.left_title Contraseña
-								input(type='password', placeholder='*******' name='userEmail')
+								input(type='password', placeholder='*******' name='userPassword')
 							.form_input(style='height: 52px;')
 								span.bgaccent_color.bg_check.submit
 									input(type='submit', value='')
@@ -60,15 +65,17 @@ block content
 				.colhh1.rel_pos.border_bottom
 					.h_listline.bgaccent_color
 					.h_listitem.first
-						.pd_18.ll_title Todos
+						.pd_18.ll_title Todo
 					.h_listitem
 						.pd_18.ll_title Alumnos
 					.h_listitem
 						.pd_18.ll_title Profesores
+					.h_listitem
+						.pd_18.ll_title Asignatura
 				.colhh1
 					.search
 						span.searchicon
-						input#buscar(type='text',name='buscar', placeholder='Buscar una Persona')
+						input#buscar(type='text',name='buscar', placeholder='Buscar una Persona o Asignatura')
 
 				.colhh1.h_listindex.first
 					.colhh1.listcontainer
@@ -94,7 +101,7 @@ block content
 											.pd_64
 												span.v_middle(style= 'background-image: url("images/close-box.png")')
 												.autocol.mm_title.pd_12 Este usuario no tiene ninguna asignatura.
-										.colhh1.hover
+										.colhh1
 											.listitem_img
 												span.bg_orange A
 											.listitem_info
@@ -124,13 +131,33 @@ block content
 											.pd_64
 												span.v_middle(style= 'background-image: url("images/close-box.png")')
 												.autocol.mm_title.pd_12 Este usuario no tiene ninguna asignatura.
-										.colhh1.hover
+										.colhh1
 											.listitem_img
 												span.bg_purple B
 											.listitem_info
 												.listitem_title 
 													b Biología
 												.listitem_bottomdata
+						.colhh1.slide_list
+							.colhh1.hover.rel_pos
+								.listitem_righticon.bg_editgray
+								.listitem_img
+									span.bg_orange A
+								.listitem_info
+									.listitem_title 
+										b Algebra
+									.listitem_bottomdata
+										| Asignatura
+							.colhh1.innerlistitem
+								.colhh1.border_bottom
+									.list_borderleft
+										.pd_llist
+											.sl_title Información
+										.pd_llist
+											.pd_8 Academia: 
+												span.margin_l Matematicas
+											.pd_8 Nivel:
+												span.margin_l 1
 				.colhh1.h_listindex
 					.colhh1.listcontainer
 						.colhh1.slide_list
@@ -155,7 +182,7 @@ block content
 											.pd_64
 												span.v_middle(style= 'background-image: url("images/close-box.png")')
 												.autocol.mm_title.pd_12 Este usuario no tiene ninguna asignatura.
-										.colhh1.hover
+										.colhh1
 											.listitem_img
 												span.bg_purple B
 											.listitem_info
@@ -187,7 +214,7 @@ block content
 											.pd_64
 												span.v_middle(style= 'background-image: url("images/close-box.png")')
 												.autocol.mm_title.pd_12 Este usuario no tiene ninguna asignatura.
-										.colhh1.hover
+										.colhh1
 											.listitem_img
 												span.bg_orange A
 											.listitem_info
@@ -195,3 +222,26 @@ block content
 													b Algebra
 												.listitem_bottomdata
 													| 2 grupos
+				.colhh1.h_listindex
+					.colhh1.listcontainer
+						.colhh1.slide_list
+							.colhh1.hover.rel_pos
+								.listitem_righticon.bg_editgray
+								.listitem_img
+									span.bg_orange A
+								.listitem_info
+									.listitem_title 
+										b Algebra
+									.listitem_bottomdata
+										| Asignatura
+							.colhh1.innerlistitem
+								.colhh1.border_bottom
+									.list_borderleft
+										.pd_llist
+											.sl_title Información
+										.pd_llist
+											.pd_8 Academia: 
+												span.margin_l Matematicas
+											.pd_8 Nivel:
+												span.margin_l 1
+

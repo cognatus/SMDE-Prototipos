@@ -99,7 +99,6 @@ $(document).ready(function(){
 		$('.h_listline').animate({
 			width : $(this).css('width') ,
 			left : offset.left
-
 		});
 	});
 

@@ -18,14 +18,14 @@ block content
 						.pd_24.border_bottom.flat_shadow.bgprimary_color
 							.form_input.white_text
 								.left_title.mm_title.v_middle Título
-								input.activeline.white_text(type='text', placeholder='Añade un Titulo')
+								input.activeline.txtaccent_colorfall(type='text', placeholder='Añade un Titulo')
 						.pd_24
 							.form_input
 								.b_text.left_title Asunto
 								select
+									option Publicación
 									option Tarea
 									option Recordatorio
-									option Evento
 							.form_input
 								.b_text.left_title Fecha
 								input(type='text', placeholder='dd/mm/aaaa')
@@ -43,7 +43,7 @@ block content
 					.mr_8
 						.block_container.bg_white
 							.colhh1.calendar
-								.colhh1.white_text.center_text.bg_lightblue
+								.colhh1.white_text.center_text.bg_teal
 									.bg_opacity
 										.pd_14.sl_title.uppercase 
 											label#weekday Dia
@@ -76,7 +76,7 @@ block content
 												.colhh7.center_text
 													.pd_8.dayname SAB
 											.colhh1.tablecalendar.autooverflow
-												.day_pos.bg_red
+												.day_pos.bgaccent_colorfall
 												#calendar_month_content
 												//- .day.v_top.today
 												//- 	.pd_8
