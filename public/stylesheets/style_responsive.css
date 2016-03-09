@@ -1,5 +1,9 @@
 @media screen and (min-width: 640px){
 
+	.index_container .colhh3{width: 50%;display: inline-block;}
+
+	.colhh4{width: 50%;display: inline-block;}
+
 	.top_pallete{
 		text-align: center;
 	}
@@ -50,11 +54,7 @@
 
 	.login_container{
 		width: 380px;
-		margin: 18px auto;
-		padding: 24px;
 	}
-
-	.op_bg .b_title{padding: 64px;padding-bottom: 0;font-size: 72px;}
 
 	.login_bottom{
 		position: absolute;
@@ -67,7 +67,7 @@
 	}
 
 	.hidden_block{
-		width: 420px;
+		width: 520px;
 		margin: 48px auto;
 		height: auto;
 		border-radius: 1px;
@@ -77,6 +77,27 @@
 	.hb_formcontainer{
 		height: auto;
 	}
+
+	.form_input .left_title{
+		display: inline-block;
+		width: 120px; 
+	}
+
+	.form_input input[type='text'], .form_input input[type='password'], .form_input input[type='email'],
+	.form_input select{
+		width: calc(100% - 124px);
+		margin-top: 0;
+	}
+
+	.form_input select{
+		width: calc(100% - 120px);
+	}
+
+	.form_input .double{width: calc(100% - 120px);display: inline-block;}
+
+	.form_input .double input{width: calc(50% - 10px);}
+
+	.form_input .double input.second{margin-left: 12px;width: calc(50% - 10px);}
 
 	.index_container .pd{
 		padding: 88px;
@@ -93,17 +114,23 @@
 
 @media screen and (min-width: 1120px){
 	
-	.colhh3, .colhh6{
+	.index_container .colhh3, .colhh3, .colhh6{
 		width: 33.3333333%;
 		display: inline-block;
 	}
 
+	.colhh4{width: 25%;}
+
 	.index_container .colhh2{width: 50%;}
+
+	.op_bg .login_title{padding: 96px;padding-bottom: 48px;}
 
 	.colhh7{
 		width: 66.666666%;
 		display: inline-block;
 	}
+
+	.calendar{height: 618px;}
 
 	#calendar_dayeventscont{
 		height: 562px;
@@ -161,6 +188,10 @@
 
 	.index_container .pd{
 		padding: 136px;
+	}
+
+	.index_container .responsiveimg img{
+		width: 500px;
 	}
 
 }

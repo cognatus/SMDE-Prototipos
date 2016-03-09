@@ -39,7 +39,7 @@ app.get('/foro', routes.foro);
 app.get('/settings', routes.settings);
 app.get('/calendar', routes.calendar);
 app.get('/students', routes.students);
-app.get('/userscontrol', routes.userscontrol);
+app.get('/management', routes.management);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

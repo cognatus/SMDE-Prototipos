@@ -2,11 +2,8 @@ extends layout
 
 block content
 
-		style.
-			.top_pallete{background-color: #9C27B0;}
-
 		.float_buttoncontainer( title='Editar Perfil' )
-			span.bg_edit.bg_teal
+			span.bg_edit.bgaccent_color
 
 		.topspace
 		.page_container
@@ -30,7 +27,7 @@ block content
 
 			.block_container.bg_white.h_listcontainer
 				.colhh1.rel_pos.border_bottom
-					.h_listline.bg_teal
+					.h_listline.bgaccent_color
 					.h_listitem.first
 						.pd_18.ll_title Información
 					.h_listitem
@@ -66,7 +63,7 @@ block content
 
 				.colhh1.h_listindex
 					.colhh1
-						.colhh1.border_bottom
+						.colhh1
 							.search
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un contacto')
@@ -195,7 +192,7 @@ block content
 			.block_container.bg_white
 				.pd_18
 					.progress_emoticon
-						#indicator.bg_teal
+						#indicator.bgaccent_color
 						span( style='background-image: url("/images/emoticon-sad.png")' )
 						span( style='background-image: url("/images/emoticon-neutral.png")' )
 						span( style='background-image: url("/images/emoticon-happy.png")' )
@@ -205,4 +202,4 @@ block content
 					.ll_title Promedio General
 						span#signaturegralprom.right_float.ll_title 8.055
 					.colhh1.bg_lightgray.borad.inbox_shadow
-						#signatureprogress.progress_bar.bg_teal.borad
+						#signatureprogress.progress_bar.bgaccent_color.borad

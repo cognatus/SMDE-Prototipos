@@ -47,6 +47,6 @@ exports.students = function(req, res){
   res.render('students', { title: 'SMDE - Alumnos' });
 };
 
-exports.userscontrol = function(req, res){
-  res.render('userscontrol', { title: 'SMDE - Gestion' });
+exports.management = function(req, res){
+  res.render('management', { title: 'SMDE - Gestion' });
 };

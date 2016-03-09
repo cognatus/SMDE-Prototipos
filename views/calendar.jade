@@ -3,38 +3,38 @@ extends layout
 block content
 		script( type='text/javascript' src='/js/calendar_control.js' )
 
-		style.
-			.top_pallete{background-color: #F44336;}
+		#new_item.float_buttoncontainer( title='Nuevo Evento' )
+			span.bg_plus.bgaccent_color
 
 		.hidden_blockcontainer
 			.hidden_blockback
 			.hidden_block.bg_white
 				span.close.bg_close
-				.colhh1.border_bottom.bg_red.flat_shadow
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.ll_title.white_text Nuevo Evento
 				.colhh1.hb_formcontainer
-					.pd_24
-						.form_input
-							.b_text Asunto
-							select.activeline
-								option Tarea
-								option Recordatorio
-								option Evento
-						.form_input
-							.b_text Titulo
-							input.activeline(type='text', placeholder='Añade un Titulo')
-						.form_input
-							.b_text Fecha
-							input.activeline(type='text', placeholder='dd/mm/aaaa')
-						.form_input
-							.b_text Comentarios
-							textarea(placeholder='Añade un comentario')
-						.form_input(style='height: 48px;')
-							span.bg_blue.bg_check.submit
-								input(type='submit', value='')
-
-		#new_item.float_buttoncontainer( title='Nuevo Evento' )
-			span.bg_plus.bg_lightblue
+					form
+						.pd_24.border_bottom.flat_shadow.bgprimary_color
+							.form_input.white_text
+								.left_title.mm_title.v_middle Título
+								input.activeline.white_text(type='text', placeholder='Añade un Titulo')
+						.pd_24
+							.form_input
+								.b_text.left_title Asunto
+								select
+									option Tarea
+									option Recordatorio
+									option Evento
+							.form_input
+								.b_text.left_title Fecha
+								input(type='text', placeholder='dd/mm/aaaa')
+							.form_input
+								.b_text Descripción
+								textarea(placeholder='Añade una Descripción')
+							.form_input(style='height: 52px;')
+								span.bgaccent_color.bg_check.submit
+									input(type='submit', value='')
 
 		.topspace
 		.page_container
@@ -43,8 +43,8 @@ block content
 					.mr_8
 						.block_container.bg_white
 							.colhh1.calendar
-								.colhh1.white_text.center_text.bg_blue
-									.bg_opacity.border_bottom
+								.colhh1.white_text.center_text.bg_lightblue
+									.bg_opacity
 										.pd_14.sl_title.uppercase 
 											label#weekday Dia
 									.today_title.flat_shadow.border_bottom
@@ -76,7 +76,7 @@ block content
 												.colhh7.center_text
 													.pd_8.dayname SAB
 											.colhh1.tablecalendar.autooverflow
-												.day_pos.bg_blue
+												.day_pos.bg_red
 												#calendar_month_content
 												//- .day.v_top.today
 												//- 	.pd_8
