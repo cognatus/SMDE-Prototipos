@@ -144,12 +144,12 @@
 		width: 100%;
 	}
 
-	.halfgrid{width: 32%;}
+	.halfgrid{width: 400px;}
 
-	.secondgrid{width: 68%;}
+	.secondgrid{width: calc(100% - 400px);}
 
 	.msmtopname{
-		padding: 20px 18px 20px 18px;
+		padding: 19px 18px 19px 18px;
 	}
 
 	.msmtopname .backicon{

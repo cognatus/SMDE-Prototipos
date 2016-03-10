@@ -15,7 +15,7 @@ block content
 					.pd_18.ll_title.white_text Nuevo Evento
 				.colhh1.hb_formcontainer
 					form
-						.pd_24.border_bottom.flat_shadow.bgprimary_color
+						.pd16_24.border_bottom.flat_shadow.bgprimary_color
 							.form_input.white_text
 								.left_title.mm_title.v_middle Título
 								input.activeline.txtaccent_colorfall(type='text', placeholder='Añade un Titulo')
@@ -24,7 +24,6 @@ block content
 								.b_text.left_title Asunto
 								select
 									option Publicación
-									option Tarea
 									option Recordatorio
 							.form_input
 								.b_text.left_title Fecha
@@ -43,7 +42,7 @@ block content
 					.mr_8
 						.block_container.bg_white
 							.colhh1.calendar
-								.colhh1.white_text.center_text.bg_teal
+								.colhh1.white_text.center_text.bg_lightpink
 									.bg_opacity
 										.pd_14.sl_title.uppercase 
 											label#weekday Dia
@@ -91,9 +90,9 @@ block content
 					.ml_8
 						.block_container.bg_white
 							.colhh1.border_bottom
-								.pd_18.ll_title#calendar_dayevents_title Dia Seleccionado
-									.right_float#elegido Hoy
-							.colhh1.autooverflow#calendar_dayeventscont
+								#calendar_dayevents_title.pd_18.ll_title Dia Seleccionado
+									#elegido.right_float Hoy
+							#calendar_dayeventscont.colhh1.autooverflow
 								.colhh1.empty_blocktext.center_text
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
@@ -129,7 +128,7 @@ block content
 										
 			.colhh1
 				.block_container.bg_white
-					.colhh1.border_bottom
+					.colhh1.border_bottom.center_text
 						.pd_18.ll_title Lista de Tareas
 					.colhh1
 						.colhh1.slide_list
