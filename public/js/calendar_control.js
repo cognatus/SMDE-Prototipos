@@ -100,30 +100,31 @@ function writeCalendar(month, year){
     document.getElementById("calendar_month_content").innerHTML = cal.getHTML();
     $('.day_pos').hide();
 
-    var w = $('.calendar_monthcontainer').width();
-    var h = $('.calendar').height();
+    var origw = $('.calendar_monthcontainer').width();
     var left = $('.calendar_monthcontainer').position().left;
 
-    $('.calendar_rightinner').css({
-        width: w,
-        height: h,           
-    });
-
     $('#calendar_month_content .day .pd_8').click(function(){
+
+        var origh = $('.calendar').height();
+        $('.calendar_rightinner').css({
+            width: origw,
+            height: origh          
+        });
+        
         var pos = $(this).position();
         $('.day_pos').show();
 
         $('.day_pos').animate({ 
             left : pos.left + ( $('.day').width()/2 - $('.day_pos').width()/2 ) ,
             top : pos.top
-        }, function(){
+        }, 100, function(){
             var anim = $('.calendar_right');
             $('.calendar_rightinner').hide();
-            $('.calendar_right').css({
+            anim.css({
                 left: left,
                 width: 0,
                 height: 0,
-                borderBottomRightRadius: 250          
+                borderBottomRightRadius: 250        
             });
             anim.show();
             anim.animate({
@@ -133,8 +134,8 @@ function writeCalendar(month, year){
                 $('.calendar_rightinner').fadeIn(500);
             });
             anim.animate({
-                width: w,
-                height: h,
+                width: origw,
+                height: origh,
                 borderBottomRightRadius: 0,
             }, 80);
         });

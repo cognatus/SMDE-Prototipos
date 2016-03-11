@@ -1451,7 +1451,8 @@ option{color: #212121;background-color: #fff;}
 .calendar .tablecalendar{
 	position: relative;
 	padding: 14px 0 8px 0;
-	z-index: 4;
+	z-index: 0;
+	overflow: hidden;
 }
 
 .calendar .today_title{padding: 24px;}
