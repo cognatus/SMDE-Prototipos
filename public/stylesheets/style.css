@@ -24,10 +24,20 @@ a{
 	text-decoration: none;
 }
 
-input, select, textarea{font-size: 15px;}
+input, select, textarea, option{font-size: 15px;}
+
+select, option{
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select::-ms-expand, option::-ms-expand { /* for IE 11 */
+    display: none;
+}
 
 /*---------------------------------------------------------------------------------------
-	Titles
+	TITLES
 -----------------------------------------------------------------------------------------*/
 
 .b_title{
@@ -76,18 +86,20 @@ input, select, textarea{font-size: 15px;}
 	width: 50%;
 	display: inline-block;
 }
-
+.index_container .colhh3{width: 100%;}
 .colhh4{width: 100%;}
 
-.index_container .colhh3{width: 100%;}
+.autocol{
+	width: auto;
+	display: inline-block;
+}
+.borad{
+	border-radius: 2px;
+}
 
 .calendar .colhh7{
 	width: 14.2857%;
 	display: inline-block;
-}
-
-#calendar_dayeventscont{
-	height: auto;
 }
 
 .h_listcontainer .h_listitem{
@@ -104,18 +116,10 @@ input, select, textarea{font-size: 15px;}
 	bottom: 0;
 }
 
-.autocol{
-	width: auto;
-	display: inline-block;
-}
-
-.borad{
-	border-radius: 2px;
-}
-
 /*---------------------------------------------------------------------------------------
 	PADDING
 -----------------------------------------------------------------------------------------*/
+
 .pd_4{padding: 4px;width: auto;}
 .pd_6{padding: 6px;width: auto;}
 .pd_8{padding: 8px;width: auto;}
@@ -189,7 +193,7 @@ input, select, textarea{font-size: 15px;}
 .v_bottom{vertical-align: bottom;}
 
 /*---------------------------------------------------------------------------------------
-	BG - COLORS
+	BACKGROUNDS - COLORS
 -----------------------------------------------------------------------------------------*/
 
 .txtprimary_color{color: #3F51B5;}
@@ -267,15 +271,13 @@ input, select, textarea{font-size: 15px;}
 
 .border_bottomthick{border-bottom: 2px solid rgba(0,0,0,0.4);}
 
-.inbox_shadow{box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);}
+.inbox_shadow{box-shadow: inset 0px 1px 2px rgba(0,0,0,0.24);}
 
 .normal_txt{font-weight: normal;}
 
 .hover{cursor: pointer;}
 
-.hover:hover{background-color: rgba(0,0,0,0.06);}
-
-input[type='submit']{cursor: pointer;}
+/*.hover:hover{background-color: rgba(0,0,0,0.04);}*/
 
 .white_text{color: #fff;}
 
@@ -284,7 +286,7 @@ input[type='submit']{cursor: pointer;}
 .dark_text{color: rgba(0,0,0,0.5);}
 
 .empty_blocktext{
-	opacity: 0.5;
+	opacity: 0.4;
 }
 
 .empty_blocktext .pd_64{
@@ -472,15 +474,6 @@ input[type='submit']{cursor: pointer;}
 	margin: 4px;
 	float: right;
 	position: relative;
-	box-shadow: 0px 1px 6px rgba(0,0,0,0.4);
-}
-
-.sign_field input.signbutton:hover{
-	box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
-}
-
-.sign_field input.signbutton:active{
-	box-shadow: 0px 1px 1px rgba(0,0,0,0.6);
 }
 
 .login_bottom{
@@ -508,7 +501,7 @@ input[type='submit']{cursor: pointer;}
 	width: 296px;
 	background-color: #fff;
 	height: 100%;
-	box-shadow: 1px 0px 3px rgba(0,0,0,0.3);
+	box-shadow: 1px 0px 2px rgba(0,0,0,0.24);
 	position: fixed;
 	left: -306px;
 	z-index: 999;
@@ -594,7 +587,7 @@ input[type='submit']{cursor: pointer;}
 
 .top_pallete{
 	position: fixed;
-	height: 64px;
+	height: 63px;
 	color: #fff;
 	z-index: 50;
 }
@@ -611,7 +604,7 @@ input[type='submit']{cursor: pointer;}
 .top_pallete_inner{
 	width: 100%;
 	position: fixed;
-	z-index: 0;
+	z-index: 6;
 	height: 64px;
 }
 
@@ -649,8 +642,6 @@ input[type='submit']{cursor: pointer;}
 	OTHER
 -----------------------------------------------------------------------------------------*/
 
-.flat_shadow{box-shadow: 0px 1px 2px rgba(0,0,0,0.3);}
-
 .page_container{width: 100%;}
 
 .topspace{
@@ -664,13 +655,14 @@ input[type='submit']{cursor: pointer;}
 	height: 100%;
 	z-index: 499;
 	display: none;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.3);
 }
 
 .hidden_blockback{
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	z-index: 99;
 }
 
 .hidden_block{
@@ -679,30 +671,33 @@ input[type='submit']{cursor: pointer;}
 	height: 100%;
 	position: relative;
 	top: 0;border-radius: 0;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
 }
 
 .hidden_block span.close{
-	float: right;width: 55px;height: 55px;
+	float: right;width: 55px;height: 54px;
 	border-radius: 0 32px 32px 0;
 	background-color: transparent;
 	position: absolute;
 	cursor: pointer;
-	z-index: 99;background-size: 24px;
+	z-index: 49;background-size: 24px;
 	top: 16px;left: 0px;
 }
 
-.hidden_block .ll_title.pd_18{
+.hidden_block .form_title{
 	padding-left: 56px;
-	
+	font-size: 17px;
+	vertical-align: middle;
+	height: 18px;
+	padding-top: 17px;
+	padding-bottom: 19px;
 }
 
 .hidden_block span.close:hover{
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0,0,0,0.04);
 }
 
 .hb_formcontainer{
-	height: calc(100% - 71px);
+	height: calc(100% - 70px);
 	overflow: auto;
 }
 
@@ -712,7 +707,6 @@ input[type='submit']{cursor: pointer;}
 	border-radius: 0;
 	overflow: hidden;
 	height: auto;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 }
 
 .block_containermsm{
@@ -748,6 +742,10 @@ input[type='submit']{cursor: pointer;}
 	position: relative;
 	top: -4px;
 }
+
+/*---------------------------------------------------------------------------------------
+	PROFILE TOP
+-----------------------------------------------------------------------------------------*/
 
 .profile_img{
 	height: 200px;
@@ -801,6 +799,10 @@ input[type='submit']{cursor: pointer;}
 	opacity: 0.8;
 }
 
+/*---------------------------------------------------------------------------------------
+	MINIMENU
+-----------------------------------------------------------------------------------------*/
+
 .minimenu_container{
 	float: right;
 	display: inline-block;
@@ -830,8 +832,7 @@ input[type='submit']{cursor: pointer;}
 	min-width: 110px;
 	width: auto;
 	background-color: #fafafa;
-	border-radius: 3px;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	border-radius: 2px;
 	position: absolute;font-size: 14px;
 	top: 0;
 	right: 0;
@@ -840,6 +841,11 @@ input[type='submit']{cursor: pointer;}
 	color: #212121;
 	font-weight: normal;
 }
+
+/*---------------------------------------------------------------------------------------
+	NOTIFICATIONS
+-----------------------------------------------------------------------------------------*/
+
 
 .notif_icon{
 	background: url('/images/bell.png') no-repeat center;
@@ -890,29 +896,6 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	width: 302px;
 	height: 296px;
 	overflow: auto;
-}
-
-.float_buttoncontainer{
-	position: fixed;
-	width: 60px;
-	height: 60px;
-	right: 24px;
-	bottom: 24px;
-	z-index: 59;
-	border-radius: 56px;
-	box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
-	overflow: hidden;
-}
-
-.float_buttoncontainer span{
-	display: block;
-	width: inherit;
-	height: inherit;
-	cursor: pointer;
-}
-
-.float_buttoncontainer:hover{
-	box-shadow: 0px 3px 10px rgba(0,0,0,0.4);
 }
 
 /*---------------------------------------------------------------------------------------
@@ -995,7 +978,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 .listitem_rightinfo{
 	opacity: 0.5;
 	position: absolute;
-	top: 25px;
+	top: 22px;
 	right: 16px;
 	font-size: 12px;
 }
@@ -1003,6 +986,10 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 .listitem_rightinfo label{
 	font-size: 12px;
 }
+
+/*---------------------------------------------------------------------------------------
+	RIGHT HALF
+-----------------------------------------------------------------------------------------*/
 
 .msmtopname{
 	padding: 19px 18px 19px 46px;
@@ -1021,7 +1008,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	margin: 0;
 	margin-right: 16px; 
 	cursor: pointer;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.24);
 }
 
 .msmtopname .letter{
@@ -1042,10 +1029,10 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	background-color: #616161;
 }
 
-.msmtopname .backicon{
+.backicon{
 	display: block;
 	width: 48px;
-	height: 54px;
+	height: 100%;
 	position: absolute;
 	border-radius: 0 40px 40px 0px;
 	background: url('/images/arrow-left.png') no-repeat center;
@@ -1054,7 +1041,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	cursor: pointer;
 }
 
-.msmtopname .backicon:hover{background-color: rgba(0,0,0,0.05);}
+.backicon:hover{background-color: rgba(0,0,0,0.04);}
 
 .msmcontent{
 	height: calc(100% - 54px);
@@ -1091,7 +1078,6 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	margin-right: 12px;
 	margin-left: 12px;
 	border-radius: 6px;
-	box-shadow: none;
 	background-color: #fff;
 	border: none;
 	outline: none;
@@ -1107,17 +1093,14 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	margin-left: 0;
 	border: none;
 	outline: none;
-	box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
 }
-
-.msminput input[type='submit']:hover{box-shadow: 0px 1px 2px rgba(0,0,0,0.5);}
 
 .leftmsm{
 	position: relative;
 	display: inline-block;
 	max-width: 84%;
 	border-radius: 6px;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.24);
 	left: 8px;
 	margin-bottom: 4px;
 }
@@ -1125,7 +1108,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 .leftmsm div{
 	font-size: 13px;	
 	position: relative;
-	z-index: 2; 
+	z-index: 4; 
 }
 
 .leftmsm i{
@@ -1137,7 +1120,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	left: -4px;
 	transform: skewX(30deg);-webkit-transform: skewX(30deg);-moz-transform: skewX(30deg);
 	-ms-transform: skewX(30deg);-o-transform: skewX(30deg);
-	box-shadow: -1px 0px rgba(0,0,0,0.1);
+	box-shadow: -1px 0px rgba(0,0,0,0.24);
 }
 
 .rightmsm{
@@ -1146,7 +1129,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	float: right;
 	max-width: 80%;
 	border-radius: 6px;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.24);
 	left: -8px;
 	opacity: 0.8;
 	margin-bottom: 4px;
@@ -1155,7 +1138,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 .rightmsm div{
 	font-size: 13px;
 	position: relative;
-	z-index: 2; 
+	z-index: 4; 
 }
 
 .rightmsm i{
@@ -1167,7 +1150,7 @@ span#notif_settings:hover{background-color: rgba(0,0,0,0.06);
 	right: -3px;
 	transform: skewX(-30deg);-webkit-transform: skewX(-30deg);-moz-transform: skewX(-30deg);
 	-ms-transform: skewX(-30deg);-o-transform: skewX(-30deg);
-	box-shadow: 1px 0px rgba(0,0,0,0.3);
+	box-shadow: 1px 0px rgba(0,0,0,0.24);
 }
 
 .msm_date{
@@ -1333,7 +1316,7 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 	padding-bottom: 9px;
 }
 
-.form_input .activeline{font-size: 18px;}
+.form_input .activeline{font-size: 18px;background: #3F51B5;}
 
 .form_input .activeline:focus{
 	border-bottom: 2px solid #1DE9B6;
@@ -1356,7 +1339,7 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
    color: rgba(255,255,255,0.4);  
 }
 
-option{color: #212121;}
+option{color: #212121;background-color: #fff;}
 
 .form_input .double{width: 100%;}
 
@@ -1389,7 +1372,6 @@ option{color: #212121;}
 	width: 52px;
 	height: 52px;
 	border-radius: 48px;
-	box-shadow: 0px 2px 8px rgba(0,0,0,0.4);
 }
 
 .form_input input[type='submit']{
@@ -1403,6 +1385,27 @@ option{color: #212121;}
 	CALENDAR
 -----------------------------------------------------------------------------------------*/
 
+.calendar_container{
+	position: relative;
+	width: 100%; 
+}
+
+.calendar_colortitle{box-shadow: 0px 1px 2px rgba(0,0,0,0.24);position: relative;}
+
+.calendar{width: 100%;height: 100%;}
+
+.calendar_right{width: 100%;height: auto;position: absolute;height: 100%;
+	z-index: 5;display: none;top: 0;left: 0;overflow: hidden;}
+
+#calendar_dayeventscont{
+	height: calc(100% - 55px);
+}
+
+#calendar_dayevents_title{
+	padding-left: 46px;
+	position: relative;
+}
+
 .calendar #month{
 	display: inline-block;
 	font-size: 18px;
@@ -1411,7 +1414,7 @@ option{color: #212121;}
 
 .calendar .my_cont{
 	position: relative;
-	top: 9px;
+	top: 4px;
 }
 
 .calendar #year{font-size: 13px;height: 22px;}
@@ -1420,11 +1423,10 @@ option{color: #212121;}
 
 .calendar span.button{
 	position: relative;
-	top: 4px;
 	display: inline-block;
 	width: 42px;
 	height: 42px;
-	margin: 2px 8px 0 8px;
+	margin: 0px 8px 0 8px;
 	margin-bottom: 0;
 	border-radius: 42px;
 	background: no-repeat center;
@@ -1443,16 +1445,18 @@ option{color: #212121;}
 }
 
 .calendar span.button:hover{
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0,0,0,0.04);
 }
 
 .calendar .tablecalendar{
 	position: relative;
-	padding: 4px 0 4px 0;
+	padding: 14px 0 8px 0;
 	z-index: 4;
 }
 
-.calendar .today_title{padding: 28px;}
+.calendar .today_title{padding: 24px;}
+
+.calendar .today_title div{margin: 8px;}
 
 .calendar .today_title .day_title{font-size: 80px;font-weight: lighter;}
 
@@ -1463,7 +1467,7 @@ option{color: #212121;}
 .tablecalendar .day{
 	display: inline-block;
 	width:  14.2857%;
-	height: 44px;
+	height: 48px;
 	cursor: pointer;
 	font-weight: bold;
 }
@@ -1479,27 +1483,75 @@ option{color: #212121;}
 .tablecalendar .day .dot_cont{
 	width: auto;
 	text-align: center;
-	margin-top: -6px;
+	margin-top: -2px;
 	height: 17px;
 }
 
 .tablecalendar .day .dot_cont span{
-	width: 3px;
-	height: 3px;
+	width: 4px;
+	height: 4px;
 	border-radius: 5px;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.2);
 	color: #bdbdbd;
-	margin: 1px;
+	margin: 1.5px;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .calendar .tablecalendar .day_pos{
 	display: none;
-	width: 44px;
-	height: 44px;
-	opacity: 0.3;
-	border-radius: 32px;
+	width: 48px;
+	height: 48px;
+	opacity: 0.2;
+	border-radius: 60px;
 	position: absolute;
 	z-index: -1;
+}
+
+/*---------------------------------------------------------------------------------------
+	BUTTONS
+-----------------------------------------------------------------------------------------*/
+
+input[type='submit']{cursor: pointer;}
+
+.float_buttoncontainer{
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	right: 24px;
+	bottom: 24px;
+	z-index: 59;
+	border-radius: 56px;
+	overflow: hidden;
+}
+
+.float_buttoncontainer span{
+	display: block;
+	width: inherit;
+	height: inherit;
+	cursor: pointer;
+}
+
+/*---------------------------------------------------------------------------------------
+	SHADOWS
+-----------------------------------------------------------------------------------------*/
+
+.flat_shadow, .block_container, .hidden_block, .minimenu_hidden{box-shadow: 0 1px 2px rgba(0,0,0,0.24);}
+
+.sign_field input.signbutton, .msminput input[type='submit'], .form_input span.submit{
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+}
+
+.msminput input[type='submit']:hover, .sign_field input.signbutton:hover, .form_input span.submit:hover{
+	box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+}
+
+.msminput input[type='submit']:active, .sign_field input.signbutton:active, .form_input span.submit:active{
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.6);
+}
+
+.float_buttoncontainer{box-shadow: 0px 2px 7px rgba(0,0,0,0.3);}
+
+.float_buttoncontainer:hover{
+	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
 }

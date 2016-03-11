@@ -98,20 +98,64 @@ function writeCalendar(month, year){
 	var cal = new Calendar(month,year);
 	cal.generateHTML();
     document.getElementById("calendar_month_content").innerHTML = cal.getHTML();
-    //$('#calendar_dayeventscont').css('height' , $('.calendar').height() - 55);
     $('.day_pos').hide();
-    $('#calendar_month_content .day .pd_8').click(function(){
-        var pos = $(this).find('.num span').position();
-        $('.day_pos').show();
-        if( $(this).find('.num span').text().length > 1){
-            $('.day_pos').animate({ left : pos.left - 14.6 ,
-                top : pos.top - 9 });
-            }
-        else{
-            $('.day_pos').animate({ left : pos.left - 18.2 ,
-                top : pos.top - 9 });
-        }
+
+    var w = $('.calendar_monthcontainer').width();
+    var h = $('.calendar').height();
+    var left = $('.calendar_monthcontainer').position().left;
+
+    $('.calendar_rightinner').css({
+        width: w,
+        height: h,           
     });
+
+    $('#calendar_month_content .day .pd_8').click(function(){
+        var pos = $(this).position();
+        $('.day_pos').show();
+
+        $('.day_pos').animate({ 
+            left : pos.left + ( $('.day').width()/2 - $('.day_pos').width()/2 ) ,
+            top : pos.top
+        }, function(){
+            var anim = $('.calendar_right');
+            $('.calendar_rightinner').hide();
+            $('.calendar_right').css({
+                left: left,
+                width: 0,
+                height: 0,
+                borderBottomRightRadius: 250          
+            });
+            anim.show();
+            anim.animate({
+                width: 250,
+                height: 250
+            }, 200, function(){
+                $('.calendar_rightinner').fadeIn(500);
+            });
+            anim.animate({
+                width: w,
+                height: h,
+                borderBottomRightRadius: 0,
+            }, 80);
+        });
+    });
+
+    $('#backcalendar').click(function(){
+        var anim_hide = $('.calendar_right');
+        $('.calendar_rightinner').hide();
+        anim_hide.animate({
+            width: 250,
+            height: 250,
+            borderBottomRightRadius: 250
+        }, 200);
+        anim_hide.animate({
+            width: 0,
+            height: 0
+        }, 80,function(){
+             anim_hide.hide();
+        });
+    });
+
 }
 
 super_months_labels = ['Ene', 'Feb', 'Mar', 'Abr',

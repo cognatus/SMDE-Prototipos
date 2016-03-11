@@ -9,7 +9,9 @@ html
 		link( rel='shortcut icon', type='image/png', href='images/laptop-chromebook.png' )
 		link( rel='stylesheet', href='/stylesheets/style.css')
 		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
+		link( rel='stylesheet', href='/rippleclick/css/jquery.rippleria.css')
 		script( type='text/javascript' src='/js/jquery-2.1.1.js' )
+		script( type='text/javascript' src='/rippleclick/js/jquery.rippleria.js' )
 		script( type='text/javascript' src='/js/viewscontrol.js' )
 	body
 		#menu.menu_grid
@@ -78,13 +80,13 @@ html
 			.top_title #{title}
 		.minimenu_container.notif
 			.minimenu
-				.notif_icon( title='Notificaciones' )
+				.notif_icon.rippleria-dark( data-rippleria title='Notificaciones' )
 			.minimenu_hidden
 				.colhh1.border_bottom.center_text.border_bottom
 					.pd_12.ll_title Notificaciones
 						span#notif_settings.right_float
 				.colhh1.notifscroll
-					.colhh1.hover
+					.colhh1.hover.rippleria-dark(data-rippleria)
 						.listitem_img
 							span.bg_orange A
 						.listitem_info
@@ -92,7 +94,7 @@ html
 							.listitem_title 
 								b Titulo de Notificación
 							.listitem_bottomdata Vista previa de notificación 
-					.colhh1.hover
+					.colhh1.hover.rippleria-dark(data-rippleria)
 						.listitem_img
 							span.bg_purple B
 						.listitem_info
@@ -100,7 +102,7 @@ html
 							.listitem_title 
 								b Titulo de Notificación
 							.listitem_bottomdata Vista previa de notificación 
-					.colhh1.hover
+					.colhh1.hover.rippleria-dark(data-rippleria)
 						.listitem_img
 							span.bg_blue C
 						.listitem_info
@@ -108,7 +110,7 @@ html
 							.listitem_title 
 								b Titulo de Notificación
 							.listitem_bottomdata Vista previa de notificación 
-					.colhh1.hover
+					.colhh1.hover.rippleria-dark(data-rippleria)
 						.listitem_img
 							span.bg_red D
 						.listitem_info
@@ -116,7 +118,7 @@ html
 							.listitem_title 
 								b Titulo de Notificación
 							.listitem_bottomdata Vista previa de notificación 
-					.colhh1.hover
+					.colhh1.hover.rippleria-dark(data-rippleria)
 						.listitem_img
 							span.bg_teal E
 						.listitem_info
@@ -124,7 +126,7 @@ html
 							.listitem_title 
 								b Titulo de Notificación
 							.listitem_bottomdata Vista previa de notificación 
-					.colhh1.hover
+					.colhh1.hover.rippleria-dark(data-rippleria)
 						.listitem_img
 							span.bg_pink F
 						.listitem_info

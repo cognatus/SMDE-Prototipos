@@ -47,13 +47,53 @@ $(document).ready(function(){
 
 	$('#signatureprogress').css('width' , parseFloat($('#signaturegralprom').text()) * 10 + '%' );
 
+	var origwidth = $('.hidden_blockcontainer').width();
+	var origheight = $('.hidden_blockcontainer').height();
+
 	$('.close , .hidden_blockback').click(function(){
-		$(this).parents('.hidden_blockcontainer').fadeOut(300);
-		location.reload(true);
+		$(this).parents('.hidden_blockcontainer').fadeOut(300,function(){
+			location.reload(true);
+		});
 	});
 
 	$('.float_buttoncontainer').click(function(){
-		$('.hidden_blockcontainer').fadeIn(300);
+		var animate = $('.hidden_blockcontainer');
+		var offset = $(this).offset();
+		var widthsize = $(this).width();
+		$('.hidden_block').hide();
+		animate.css({ 
+			top: offset.top,
+			left:offset.left,
+			height: widthsize,
+			width: widthsize,
+			borderTopLeftRadius: 1000, 
+		    borderTopRightRadius: 1000, 
+		    borderBottomLeftRadius: 1000, 
+		    borderBottomRightRadius: 1000
+		});
+		animate.show();
+		animate.animate({
+			left: ($(window).width() - 100)/2,
+			top: ($(window).height() - 100)/2,
+			width: 200,
+			height: 200
+		}, 450, function(){
+			$('.hidden_blockback').animate({ opacity: 0 });
+			$('.hidden_block').fadeIn(400);
+			$('.hidden_blockback').css('z-index' , '0');
+		});
+		animate.animate({ 
+			height: '100%',
+			width:'100%',
+			left: 0,
+			top: 0,
+			borderTopLeftRadius: 0, 
+		    borderTopRightRadius: 0, 
+		    borderBottomLeftRadius: 0, 
+		    borderBottomRightRadius: 0
+		}, 120);
+
+
 		$('body , html').css('overflow', 'hidden');
 	});
 

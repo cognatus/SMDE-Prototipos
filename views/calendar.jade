@@ -7,15 +7,15 @@ block content
 			span.bg_plus.bgaccent_color
 
 		.hidden_blockcontainer
-			.hidden_blockback
+			.hidden_blockback.bgaccent_color
 			.hidden_block.bg_white
-				span.close.bg_close
+				span.close.bg_close.rippleria-dark( data-rippleria )
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.ll_title.white_text Nuevo Evento
+					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
 					form
-						.pd16_24.border_bottom.flat_shadow.bgprimary_color
+						.pd12_24.border_bottom.flat_shadow.bgprimary_color
 							.form_input.white_text
 								.left_title.mm_title.v_middle Título
 								input.activeline.txtaccent_colorfall(type='text', placeholder='Añade un Titulo')
@@ -38,59 +38,59 @@ block content
 		.topspace
 		.page_container
 			.colhh1
-				.colhh6.v_top
-					.mr_8
-						.block_container.bg_white
-							.colhh1.calendar
-								.colhh1.white_text.center_text.bg_lightpink
-									.bg_opacity
-										.pd_14.sl_title.uppercase 
-											label#weekday Dia
-									.today_title.flat_shadow.border_bottom
-										.month_title.uppercase Mes
-										.day_title Dia
-										.year_title Año
-								.colhh1.opacity_color
-									.pd_8.center_text
-										span.v_middle.button#left(onclick='prevMonth()')
-										span.v_middle.button#right(onclick='nextMonth()')
-										.autocol.v_middle.my_cont
-											#month Mes
-											#year Año
-									.colhh1
-										.pd_4
-											.b_text
-												.colhh7.center_text
-													.pd_8.dayname DOM
-												.colhh7.center_text
-													.pd_8.dayname LUN
-												.colhh7.center_text
-													.pd_8.dayname MAR
-												.colhh7.center_text
-													.pd_8.dayname MIE
-												.colhh7.center_text
-													.pd_8.dayname JUE
-												.colhh7.center_text
-													.pd_8.dayname VIE
-												.colhh7.center_text
-													.pd_8.dayname SAB
-											.colhh1.tablecalendar.autooverflow
-												.day_pos.bgaccent_colorfall
-												#calendar_month_content
-												//- .day.v_top.today
-												//- 	.pd_8
-												//- 		.num 
-												//- 			span 1
-												//- 		.dot_cont
-												//- 			span
-												//- 			span
-												//- 			span
-										
-				.colhh7.v_top
-					.ml_8
-						.block_container.bg_white
+				.block_container.bg_white.calendar_container
+					//- .colhh1.border_bottom
+					//- 	.pd_18.ll_title.center_text Calendario
+					.calendar
+						.colhh1.white_text.center_text.bg_lightblue.calendar_colortitle
+							.colhh1.border_bottom
+								.bg_opacity
+									.pd_16.sl_title.uppercase 
+										label#weekday Dia
+							.today_title
+								.month_title.uppercase Mes
+								.day_title Dia
+								.year_title Año
+						.colhh1.opacity_color.calendar_monthcontainer
+							.pd_8.center_text(style='padding-top: 16px;')
+								span#left.v_middle.button.rippleria-dark( data-rippleria onclick='prevMonth()' )
+								span#right.v_middle.button.rippleria-dark( data-rippleria onclick='nextMonth()' )
+								.autocol.v_middle.my_cont
+									#month Mes
+									#year Año
+							.colhh1
+								.pd_4
+									.b_text
+										.colhh7.center_text
+											.pd_8.dayname DOM
+										.colhh7.center_text
+											.pd_8.dayname LUN
+										.colhh7.center_text
+											.pd_8.dayname MAR
+										.colhh7.center_text
+											.pd_8.dayname MIE
+										.colhh7.center_text
+											.pd_8.dayname JUE
+										.colhh7.center_text
+											.pd_8.dayname VIE
+										.colhh7.center_text
+											.pd_8.dayname SAB
+									.colhh1.tablecalendar.autooverflow
+										.day_pos.bgaccent_colorfall
+										#calendar_month_content
+										//- .day.v_top.today
+										//- 	.pd_8
+										//- 		.num 
+										//- 			span 1
+										//- 		.dot_cont
+										//- 			span
+										//- 			span
+										//- 			span
+					.calendar_right.v_top.bg_white
+						.calendar_rightinner				
 							.colhh1.border_bottom
 								#calendar_dayevents_title.pd_18.ll_title Dia Seleccionado
+									span#backcalendar.backicon.rippleria-dark( data-rippleria )
 									#elegido.right_float Hoy
 							#calendar_dayeventscont.colhh1.autooverflow
 								.colhh1.empty_blocktext.center_text
@@ -98,7 +98,7 @@ block content
 										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
 										.autocol.mm_title.pd_12 No hay eventos ni tareas para este dia.
 								.colhh1.slide_list
-									.colhh1.hover
+									.colhh1.hover.rippleria-dark(data-rippleria)
 										.listitem_img
 											span.bg_orange A
 										.listitem_info
@@ -112,7 +112,7 @@ block content
 											.pd_8
 												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 								.colhh1.slide_list
-									.colhh1.hover
+									.colhh1.hover.rippleria-dark(data-rippleria)
 										.listitem_img
 											span.bg_purple B
 										.listitem_info
@@ -125,14 +125,27 @@ block content
 											.sl_title Descripción
 											.pd_8
 												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
+								.colhh1.slide_list
+									.colhh1.hover.rippleria-dark(data-rippleria)
+										.listitem_img
+											span.bg_lightblue C
+										.listitem_info
+											.listitem_rightinfo 10 sep
+											.listitem_title 
+												b Titulo de Tarea
+											.listitem_bottomdata Asignatura: Alguna Asignatura
+									.colhh1.border_bottom.innerlistitem
+										.pd18_32
+											.sl_title Descripción
+											.pd_8
+												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 										
-			.colhh1
 				.block_container.bg_white
 					.colhh1.border_bottom.center_text
-						.pd_18.ll_title Lista de Tareas
+						.pd_18.ll_title Todo
 					.colhh1
 						.colhh1.slide_list
-							.colhh1.hover
+							.colhh1.hover.rippleria-dark(data-rippleria)
 								.listitem_img
 									span.bg_orange A
 								.listitem_info
@@ -146,7 +159,7 @@ block content
 									.pd_8
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.slide_list
-							.colhh1.hover
+							.colhh1.hover.rippleria-dark(data-rippleria)
 								.listitem_img
 									span.bg_purple B
 								.listitem_info
@@ -160,7 +173,7 @@ block content
 									.pd_8
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.slide_list
-							.colhh1.hover
+							.colhh1.hover.rippleria-dark(data-rippleria)
 								.listitem_img
 									span.bg_blue C
 								.listitem_info
@@ -169,7 +182,7 @@ block content
 										b Titulo de Tarea
 									.listitem_bottomdata Asignatura: Alguna Asignatura
 						.colhh1.slide_list
-							.colhh1.hover
+							.colhh1.hover.rippleria-dark(data-rippleria)
 								.listitem_img
 									span.bg_red D
 								.listitem_info
@@ -183,7 +196,7 @@ block content
 									.pd_8
 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 						.colhh1.slide_list				
-							.colhh1.hover
+							.colhh1.hover.rippleria-dark(data-rippleria)
 								.listitem_img
 									span.bg_teal E
 								.listitem_info
@@ -192,7 +205,7 @@ block content
 										b Titulo de Tarea
 									.listitem_bottomdata Asignatura: Alguna Asignatura
 						.colhh1.slide_list
-							.colhh1.hover
+							.colhh1.hover.rippleria-dark(data-rippleria)
 								.listitem_img
 									span.bg_pink F
 								.listitem_info

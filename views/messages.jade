@@ -6,12 +6,12 @@ block content
 			span.bg_plus.bgaccent_color
 
 		.hidden_blockcontainer
-			.hidden_blockback
+			.hidden_blockback.bgaccent_color
 			.hidden_block.bg_white
-				span.close.bg_close
-				.colhh1.border_bottom.flat_shadow.bgprimary_color
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.ll_title.white_text Nuevo Mensaje
+					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
 					form
 						.colhh1(style='margin-top:2px;')
@@ -36,7 +36,7 @@ block content
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un chat')
 					.autooverflow.left_listcontainer
-						.colhh1.hover
+						.colhh1.hover.rippleria-dark(data-rippleria)
 							.listitem_img
 								img(src='images/profilephoto.png')
 							.listitem_info.border_bottom
@@ -44,7 +44,7 @@ block content
 								.listitem_title 
 									b Usuario 1
 								.listitem_bottomdata Lorem ipsum dolor sit amet,
-						.colhh1.hover
+						.colhh1.hover.rippleria-dark(data-rippleria)
 							.listitem_img
 								img(src='images/profilephoto.png')
 							.listitem_info.border_bottom
@@ -52,7 +52,7 @@ block content
 								.listitem_title 
 									b Usuario 2
 								.listitem_bottomdata Lorem ipsum dolor sit amet,
-						.colhh1.hover
+						.colhh1.hover.rippleria-dark(data-rippleria)
 							.listitem_img
 								img(src='images/profilephoto.png')
 							.listitem_info.border_bottom
@@ -60,7 +60,7 @@ block content
 								.listitem_title 
 									b Usuario 3
 								.listitem_bottomdata Lorem ipsum dolor sit amet,
-						.colhh1.hover
+						.colhh1.hover.rippleria-dark(data-rippleria)
 							.listitem_img
 								img(src='images/profilephoto.png')
 							.listitem_info.border_bottom
@@ -70,7 +70,7 @@ block content
 								.listitem_bottomdata Lorem ipsum dolor sit amet,
 				.halfgrid.secondgrid
 					.msmtopname
-						span#backicon.backicon
+						span#backicon.backicon.rippleria-dark( data-rippleria )
 						img( src='images/profilephoto.png' )
 						|	Juan Barrera
 						.minimenu_container( title='Opciones' )
@@ -79,10 +79,10 @@ block content
 								span
 								span
 							.minimenu_hidden
-								.pd_12.hover Archivar
-								.pd_12.hover Eliminar
-								.pd_12.hover Vaciar
-								.pd_12.hover Buscar
+								.pd_12.hover.rippleria-dark(data-rippleria) Archivar
+								.pd_12.hover.rippleria-dark(data-rippleria) Eliminar
+								.pd_12.hover.rippleria-dark(data-rippleria) Vaciar
+								.pd_12.hover.rippleria-dark(data-rippleria) Buscar
 					.msmcontent
 						.msm_innercontent
 							.colhh1
