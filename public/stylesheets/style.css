@@ -716,7 +716,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 
 .block_container:last-child{
-	margin-bottom: 64px;
+	margin-bottom: 80px;
 }
 
 .colhh2 .block_container:last-child{
