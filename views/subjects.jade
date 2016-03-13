@@ -5,6 +5,43 @@ block content
 		#new_item.float_buttoncontainer( title='Nueva' )
 			span.bg_plus.bgaccent_color
 
+		.hidden_blockcontainer
+			.hidden_blockback.bgaccent_color
+			.hidden_block.bg_white
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
+					.pd_18.form_title.white_text.border_bottom.flat_shadow Inscribir Asignaturas
+				.colhh1.hb_formcontainer
+					form( name='subject_add' ).pd_8
+						#added_subjects.colhh1
+							.colhh1
+								.pd_16.ll_title.normal_txt(style='padding-bottom: 4px;') Agregadas
+							.colhh1.hover.listitem.rel_pos
+								.listitem_righticon.circle.bg_closegray.rippleria-dark(data-rippleria)
+								.listitem_img
+									span A
+								.listitem_info
+									.listitem_title 
+										b Computación
+									.listitem_bottomdata Academia
+						.pd_8
+						#new_subjects.colhh1
+							.colhh1
+								.pd_16.ll_title.normal_txt(style='padding-bottom: 4px;') Inscribir
+							.colhh1.hover.listitem.rel_pos
+								.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria)
+								.listitem_img
+									span A
+								.listitem_info
+									.listitem_title 
+										b Electronica
+									.listitem_bottomdata Academia
+						.pd_24
+							.form_input(style='height: 52px;')
+								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+									input(type='submit', value='')
+
 		.topspace
 		.page_container
 			.colhh1.block_container

@@ -5,13 +5,46 @@ block content
 		#new_item.float_buttoncontainer( title='Nuevo Contenido' )
 			span.bg_plus.bgaccent_color
 
+		.hidden_blockcontainer
+			.hidden_blockback.bgaccent_color
+			.hidden_block.bg_white
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
+					.pd_18.form_title.white_text Nuevo
+				.colhh1.hb_formcontainer
+					form( name='forum_new' )
+						.pd12_24.border_bottom.flat_shadow.bgprimary_color
+							.form_input.white_text
+								input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo')
+						.pd_24
+							.form_input
+								.b_text.left_title Asignatura
+								select
+									option Asignatura 1
+									option Asignatura 2
+									option Asignatura 3
+									option Asignatura 4
+							.form_input
+								.b_text Descripción
+								textarea(placeholder='Descripción')
+							.form_input(style='height: 52px;')
+								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+									input(type='submit', value='')
+
 		.topspace
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid
 				.halfgrid.bg_white
 					.colhh1
-						.colhh1.center_text.list_title
+						.colhh1.center_text.list_title.rel_pos
 							.pd_18.ll_title Mis Contenidos
+							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Ordenar Por')
+								.minimenu_hidden
+									.pd_12.hover.rippleria-dark(data-rippleria) A - Z
+									.pd_12.hover.rippleria-dark(data-rippleria) Z - A
+									.pd_12.hover.rippleria-dark(data-rippleria) Fecha
+									.pd_12.hover.rippleria-dark(data-rippleria) Asignatura
 						.colhh1
 							.search
 								span.searchicon

@@ -12,10 +12,12 @@ $(document).ready(function(){
 		$('body').css('overflow' , 'auto');
 	});
 
-	$('.op_bg').css('top' , ( $(window).height() - $('.op_bg').height() ) * 0.5 + 'px');
-
 	$('.minimenu').click(function(){
 		$(this).siblings('.minimenu_hidden').slideDown(300);
+	});
+
+	$('span.title_rightoptionicon').click(function(){
+		$(this).find('.minimenu_hidden').slideDown(300);
 	});
 
 	$('.spinner').spinner({
@@ -28,11 +30,11 @@ $(document).ready(function(){
 		$('.minimenu_hidden').slideUp(300);
 	});
 
-	$('.minimenu_hidden , .minimenu').click(function(){
+	$('.minimenu_hidden , .minimenu , span.title_rightoptionicon').click(function(){
 		return false;
 	});
 
-	$('.block_containermsm .hover').click(function(){
+	$('.block_containermsm .listitem').click(function(){
 		if($(window).width() < 1120){
 			$('.block_containermsm').animate({ scrollLeft: $('.halfgrid').width() });
 			$('#new_item').hide();
@@ -56,7 +58,7 @@ $(document).ready(function(){
 
 	$('.close , .hidden_blockback').click(function(){
 		$(this).parents('.hidden_blockcontainer').fadeOut(300,function(){
-			location.reload(true);
+			location.reload();
 		});
 	}); 
 
@@ -158,10 +160,12 @@ $(document).ready(function(){
 
 	$('.listitem .listitem_img span').text();
 
-	var colorsArray = ['bg_amber','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple','bg_green','bg_lightpink',
-		'bg_yellow','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange','bg_teal','bg_darkpurple','bg_cyan',
-		'bg_blue','bg_indigo','bg_orange','bg_brown','bg_darkblue','bg_purple','bg_red','bg_lightblue','bg_lightpink','bg_bluegray',
-		'bg_darkgray','bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
+	var colorsArray = ['bg_amber','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
+		'bg_green','bg_lightpink','bg_yellow','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
+		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_orange','bg_brown','bg_darkblue',
+		'bg_purple','bg_red','bg_lightblue','bg_lightpink','bg_bluegray','bg_darkgray',
+		// Numbers colors
+		'bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
 
 	var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
 
@@ -184,9 +188,9 @@ $(document).ready(function(){
 
 	$('.listitem').each(function(){
 
-		var circleLetter = $(this).find('.listitem_title').text();
+		var circleLetter = $(this).find('.listitem_title b').text();
 		var span = $(this).find('.listitem_img span');
-		var firstChar = circleLetter.charAt(1).toUpperCase();
+		var firstChar = circleLetter.charAt(0).toUpperCase();
 
 		span.text(firstChar);
 

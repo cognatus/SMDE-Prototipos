@@ -85,12 +85,8 @@
 
 	.form_input input[type='text'], .form_input input[type='password'], .form_input input[type='email'],
 	.form_input select{
-		width: calc(100% - 124px);
-		margin-top: 0;
-	}
-
-	.form_input select{
 		width: calc(100% - 120px);
+		margin-top: 0;
 	}
 
 	.form_input .double{width: calc(100% - 120px);display: inline-block;}

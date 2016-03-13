@@ -5,6 +5,33 @@ block content
 		#new_item.float_buttoncontainer( title='Nueva' )
 			span.bg_plus.bgaccent_color
 
+		.hidden_blockcontainer
+			.hidden_blockback.bgaccent_color
+			.hidden_block.bg_white
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
+					.pd_18.form_title.white_text Nueva Publicación
+				.colhh1.hb_formcontainer
+					form( name='students_newpublication' )
+						.pd12_24.border_bottom.flat_shadow.bgprimary_color
+							.form_input.white_text
+								input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo')
+						.pd_24
+							.form_input
+								.b_text.left_title Grupo
+								select
+									option Grupo 1
+									option Grupo 2
+									option Grupo 3
+									option Grupo 4
+							.form_input
+								.b_text Descripción
+								textarea(placeholder='Descripción')
+							.form_input(style='height: 52px;')
+								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+									input(type='submit', value='')
+
 		.topspace
 		.page_container
 			.colhh1.block_container
@@ -80,19 +107,19 @@ block content
 												span 1
 											.listitem_info
 												.listitem_title 
-													b Grupo 505
+													b 1: Grupo 505
 												.listitem_bottomdata Asignatura
 										.colhh1.listitem
 											.listitem_img
 												span 2
 											.listitem_info
 												.listitem_title 
-													b Grupo 504
+													b 2: Grupo 504
 												.listitem_bottomdata Asignatura
 										.colhh1.listitem
 											.listitem_img
 												span 3
 											.listitem_info
 												.listitem_title 
-													b Grupo 404
+													b 3: Grupo 404
 												.listitem_bottomdata Asignatura

@@ -11,7 +11,7 @@ block content
 				span.close.bg_close.rippleria-dark( data-rippleria )
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.form_title.white_text Nuevo
+					.pd_18.form_title.white_text.border_bottom.flat_shadow Nuevo
 				.colhh1.hb_formcontainer
 					form
 						.colhh1(style='margin-top:2px;')
@@ -29,8 +29,13 @@ block content
 			.doublegrid
 				.halfgrid.bg_white
 					.colhh1
-						.colhh1.center_text.list_title
+						.colhh1.center_text.list_title.rel_pos
 							.pd_18.ll_title Chats
+							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Ordenar Por')
+								.minimenu_hidden
+									.pd_12.hover.rippleria-dark(data-rippleria) A - Z
+									.pd_12.hover.rippleria-dark(data-rippleria) Z - A
+									.pd_12.hover.rippleria-dark(data-rippleria) Fecha
 						.colhh1
 							.search
 								span.searchicon
