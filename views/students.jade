@@ -26,22 +26,29 @@ block content
 							.pd_64
 								span.v_middle(style= 'background-image: url("images/close-box.png")')
 								.autocol.pd_12.mm_title No tienes ninguna asignatura.
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_orange A
-							.listitem_info
-								.listitem_rightinfo Fecha: 
-									label 2 Feb 2015
-								.listitem_title 
-									b Algebra
-								.listitem_bottomdata.rank
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span
-									span
-			.colhh1.block_container
-				.colhh1.bg_white
+						.colhh1.slide_list
+							.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+								.listitem_img
+									span A
+								.listitem_info
+									.listitem_rightinfo Fecha: 
+										label.subject_prom 04/03/2015
+									.listitem_title 
+										b Asignatura
+									.listitem_bottomdata
+										| Academia
+							.colhh1.innerlistitem
+								.colhh1.border_bottom
+									.list_borderleft
+										.pd_llist
+											.sl_title Información
+										.pd_llist
+											.colhh1.pd_l12 Academia: 
+												span.margin_l Matematicas
+											.colhh1.pd_l12 Nivel:
+												span.margin_l 1
+			.colhh1.block_container.bg_white
+				.colhh1
 					.colhh1.border_bottom
 						.pd_18.ll_title Mis Alumnos
 					.colhh1
@@ -49,11 +56,43 @@ block content
 							.pd_64
 								span.v_middle(style= 'background-image: url("images/close-box.png")')
 								.autocol.pd_12.mm_title No tienes ningun Alumno.
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								img(src='images/profilephoto.png')
-							.listitem_info 
-								.listitem_title 
-									b James Burton
-								.listitem_bottomdata
-									| 2 Grupos
+						.colhh1.slide_list
+							.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+								.listitem_rightinfo Promedio: 
+										label.subject_prom 8.46
+								.listitem_img
+									img(src='images/profilephoto.png')
+								.listitem_info
+									.listitem_title 
+										b Nombre Completo
+									.listitem_bottomdata Alumno
+							.colhh1.innerlistitem
+								.colhh1.border_bottom
+									.list_borderleft
+										.pd_llist
+											.sl_title Información
+											.pd_8
+												| 3 grupos, 8 asignaturas
+										.pd_llist
+											.sl_title Grupos
+										.colhh1.listitem
+											.listitem_img
+												span 1
+											.listitem_info
+												.listitem_title 
+													b Grupo 505
+												.listitem_bottomdata Asignatura
+										.colhh1.listitem
+											.listitem_img
+												span 2
+											.listitem_info
+												.listitem_title 
+													b Grupo 504
+												.listitem_bottomdata Asignatura
+										.colhh1.listitem
+											.listitem_img
+												span 3
+											.listitem_info
+												.listitem_title 
+													b Grupo 404
+												.listitem_bottomdata Asignatura

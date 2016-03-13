@@ -9,66 +9,29 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid
 				.halfgrid.bg_white
-					.colhh1.center_text
-						.pd_18.ll_title Temas
 					.colhh1
-						.search
-							span.searchicon
-							input#buscar(type='text',name='buscar', placeholder='Buscar un tema')
+						.colhh1.center_text.list_title
+							.pd_18.ll_title Temas
+						.colhh1
+							.search
+								span.searchicon
+								input#buscar(type='text',name='buscar', placeholder='Buscar un tema')
 					.autooverflow.left_listcontainer
-						.colhh1.hover.rippleria-dark(data-rippleria)
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria)
 							.listitem_img
-								span.bg_orange A
+								span A
 							.listitem_info
-								.listitem_rightinfo 10 sep
+								.listitem_rightinfo 
+									label Dia 
+									label 00:00
 								.listitem_title 
 									b Tema
-								.listitem_bottomdata Descripcion
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_purple B
-							.listitem_info
-								.listitem_rightinfo 8 sep
-								.listitem_title 
-									b Tema
-								.listitem_bottomdata Descripcion
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_blue C
-							.listitem_info
-								.listitem_rightinfo 7 sep
-								.listitem_title 
-									b Tema
-								.listitem_bottomdata Descripcion
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_red D
-							.listitem_info
-								.listitem_rightinfo 6 sep
-								.listitem_title 
-									b Tema
-								.listitem_bottomdata Descripcion
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_teal E
-							.listitem_info
-								.listitem_rightinfo 5 sep
-								.listitem_title 
-									b Tema
-								.listitem_bottomdata Descripcion
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_pink F
-							.listitem_info
-								.listitem_rightinfo 5 sep
-								.listitem_title 
-									b Tema
-								.listitem_bottomdata Descripcion
+								.listitem_bottomdata Asignatura
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
-						.letter.bg_purple.white_text.lighttext B
-						|	Tema
+						.letter.white_text.lighttext.circle
+						label Super Tema
 						.minimenu_container( title='Opciones' )
 							.minimenu
 								span
@@ -82,4 +45,4 @@ block content
 							.pd_16
 						.colhh1.msminput
 							input( type='text' , name='newmsm' , placeholder='Escribe algo' )
-							input.bgaccent_color.bg_send( type='submit' , name='msmsend' , value='')
+							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='msmsend' , value='' )

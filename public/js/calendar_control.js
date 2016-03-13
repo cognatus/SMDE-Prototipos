@@ -80,7 +80,7 @@ function prevMonth() {
         mes = 11;
         anio--;
     }
-    document.getElementById("elegido").innerHTML = "1 " + months_labels[mes] + " " + anio;
+    document.getElementById("elegido").innerHTML = '1 ' + months_labels[mes] + ' ' + anio;
     writeCalendar(mes, anio);
 }
 
@@ -90,7 +90,7 @@ function nextMonth() {
         mes = 0;
         anio++;
     }
-    document.getElementById("elegido").innerHTML = "1 " + months_labels[mes] + " " + anio;
+    document.getElementById("elegido").innerHTML = '1 ' + months_labels[mes] + ' ' + anio;
     writeCalendar(mes, anio);
 }
 
@@ -117,7 +117,7 @@ function writeCalendar(month, year){
         $('.day_pos').animate({ 
             left : pos.left + ( $('.day').width()/2 - $('.day_pos').width()/2 ) ,
             top : pos.top
-        }, 100, function(){
+        }, function(){
             var anim = $('.calendar_right');
             $('.calendar_rightinner').hide();
             anim.css({
@@ -170,9 +170,20 @@ $(document).ready(function(){
     $('.calendar_month_content').append(writeCalendar());
 });
 
-function carga(x){
-  console.log( 'Día' + x );
-  console.log( 'Mes' + months_labels[mes] );
-  console.log( 'Año' + anio );
-  document.getElementById("elegido").innerHTML = x + " " + months_labels[mes] + " " + anio;
+function carga(calendarDay){
+    console.log( 'Día: ' + calendarDay );
+    console.log( 'Mes: ' + months_labels[mes] );
+    console.log( 'Año: ' + anio );
+
+    var realm = mes + 1;
+
+    var writeday = calendarDay.toString();
+    writeday = writeday.length < 2 ? '0' + writeday : writeday;
+    var writemonth = realm.toString();
+    writemonth = writemonth.length < 2 ? '0' + writemonth : writemonth;
+
+    console.log( 'Día Form: ' + writeday );
+    console.log( 'Mesa Form: ' + writemonth );
+    document.calendar_newevent.calendar_date.value = writeday + '/'+ writemonth + '/' + anio;
+    document.getElementById("elegido").innerHTML = calendarDay + ' ' + super_months_labels[mes] + ' ' + anio;
 }

@@ -21,7 +21,7 @@ block content
 								textarea(placeholder='Escribe Algo')
 							.pd_18
 								.form_input(style='height: 52px;')
-									span.bgaccent_color.bg_send.submit
+									span.bgaccent_color.bg_send.submit.circle.rippleria-dark( data-rippleria )
 										input(type='submit', value='')
 
 		.topspace
@@ -29,49 +29,27 @@ block content
 			.doublegrid
 				.halfgrid.bg_white
 					.colhh1
-						.colhh1
-							.pd_18.ll_title.center_text Chats
+						.colhh1.center_text.list_title
+							.pd_18.ll_title Chats
 						.colhh1
 							.search
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un chat')
 					.autooverflow.left_listcontainer
-						.colhh1.hover.rippleria-dark(data-rippleria)
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria)
 							.listitem_img
 								img(src='images/profilephoto.png')
 							.listitem_info.border_bottom
-								.listitem_rightinfo Hoy 14:35
+								.listitem_rightinfo 
+									label Dia 
+									label 00:00
 								.listitem_title 
 									b Usuario 1
-								.listitem_bottomdata Lorem ipsum dolor sit amet,
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								img(src='images/profilephoto.png')
-							.listitem_info.border_bottom
-								.listitem_rightinfo 16 Feb 2016
-								.listitem_title 
-									b Usuario 2
-								.listitem_bottomdata Lorem ipsum dolor sit amet,
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								img(src='images/profilephoto.png')
-							.listitem_info.border_bottom
-								.listitem_rightinfo 10 Nov 2015
-								.listitem_title 
-									b Usuario 3
-								.listitem_bottomdata Lorem ipsum dolor sit amet,
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								img(src='images/profilephoto.png')
-							.listitem_info.border_bottom
-								.listitem_rightinfo 15 Oct 2015
-								.listitem_title 
-									b Usuario 4
-								.listitem_bottomdata Lorem ipsum dolor sit amet,
+								.listitem_bottomdata  Lorem ipsum dolor sit amet
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
-						img( src='images/profilephoto.png' )
+						img.circle( src='images/profilephoto.png' )
 						|	Juan Barrera
 						.minimenu_container( title='Opciones' )
 							.minimenu
@@ -118,6 +96,6 @@ block content
 													span.msm_date 10:34 pm
 						.colhh1.msminput
 							input( type='text' , name='newmsm' , placeholder='Mensaje' )
-							input.bgaccent_color.bg_send( type='submit' , name='msmsend' , value='')
+							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='msmsend' , value='')
 						
 

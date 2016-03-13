@@ -19,7 +19,7 @@ block content
 								.pd_12.hover.rippleria-dark(data-rippleria) Foto de Perfil
 								.pd_12.hover.rippleria-dark(data-rippleria) Portada
 					.photo
-						img( src='images/profilephoto.png' )
+						img.circle( src='images/profilephoto.png' )
 					.name
 						.pd_12 
 							b Nombre Completo
@@ -56,9 +56,7 @@ block content
 						.colhh1			
 							.pd_18  Institución: 
 								span.margin_l Escuela chida
-							.pd_18  Grado Escolar: 
-								span.margin_l Azul :v
-							.pd_18  Materias Inscritas: 
+							.pd_18  Asignaturas Inscritas: 
 								span.margin_l 6
 
 				.colhh1.h_listindex
@@ -68,14 +66,14 @@ block content
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un contacto')
 						.colhh1.slide_list
-							.colhh1.hover.rippleria-dark(data-rippleria).rel_pos
-								.listitem_righticon.bg_chat
+							.colhh1.hover.listitem.rippleria-dark(data-rippleria).rel_pos
+								.listitem_righticon.circle.bg_chat
 								.listitem_img
 									img(src='images/profilephoto.png')
 								.listitem_info
 									.listitem_title 
-										b Bartolome Durán
-									.listitem_bottomdata Profesor
+										b Nombre Completo
+									.listitem_bottomdata Tipo de Usuario
 							.colhh1.innerlistitem
 								.colhh1.border_bottom
 									.list_borderleft
@@ -83,116 +81,40 @@ block content
 											.sl_title Información
 											.pd_8
 												| 2 grupos en común, 19 contactos en común
-						.colhh1.slide_list
-							.colhh1.hover.rippleria-dark(data-rippleria).rel_pos
-								.listitem_righticon.bg_chat
-								.listitem_img
-									img(src='images/profilephoto.png')
-								.listitem_info
-									.listitem_title 
-										b Juan Barrera
-									.listitem_bottomdata Alumno
-							.colhh1.innerlistitem
-								.colhh1.border_bottom
-									.list_borderleft
-										.pd_llist
-											.sl_title Información
-											.pd_8
-												| 4 grupos en común, 165 contactos en común
 				.colhh1.h_listindex
 					.colhh1
 						.colhh1.empty_blocktext.center_text
 							.pd_64
 								span.v_middle(style= 'background-image: url("images/close-box.png")')
 								.autocol.pd_12.mm_title No tienes ninguna asignatura.
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_orange A
-							.listitem_info
-								.listitem_rightinfo Promedio: 
-									label 7.64
-								.listitem_title 
-									b Algebra
-								.listitem_bottomdata.rank
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span
-									span
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_purple B
-							.listitem_info
-								.listitem_rightinfo Promedio: 
-									label 9.42
-								.listitem_title 
-									b Biología
-								.listitem_bottomdata.rank
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_blue C
-							.listitem_info
-								.listitem_rightinfo Promedio: 
-									label 6.98
-								.listitem_title 
-									b Cálculo
-								.listitem_bottomdata.rank
-									span.bg_blue
-									span.bg_blue
-									span
-									span
-									span
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_red D
-							.listitem_info
-								.listitem_rightinfo Promedio: 
-									label 7.34
-								.listitem_title 
-									b Domotica
-								.listitem_bottomdata.rank
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span
-									span
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_teal E
-							.listitem_info
-								.listitem_rightinfo Promedio: 
-									label 8.03
-								.listitem_title 
-									b Etimologías
-								.listitem_bottomdata.rank
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span
-						.colhh1.hover.rippleria-dark(data-rippleria)
-							.listitem_img
-								span.bg_pink F
-							.listitem_info
-								.listitem_rightinfo Promedio: 
-									label 8.92
-								.listitem_title 
-									b Formación Cívica
-								.listitem_bottomdata.rank
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span.bg_blue
-									span
+						.colhh1.slide_list
+							.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+								.listitem_img
+									span A
+								.listitem_info
+									.listitem_rightinfo Promedio: 
+										label.subject_prom 8.46
+									.listitem_title 
+										b Nombre Asignatura
+									.listitem_bottomdata.rank
+										span.bg_blue
+										span.bg_blue
+										span.bg_blue
+										span.bg_blue
+							.colhh1.innerlistitem
+								.colhh1.border_bottom
+									.list_borderleft
+										.pd_llist
+											.sl_title Información
+										.pd_llist
+											.colhh1.pd_l12 Academia: 
+												span.margin_l Matematicas
+											.colhh1.pd_l12 Nivel:
+												span.margin_l 1
 			.block_container.bg_white
 				.pd_18
 					.progress_emoticon
-						#indicator.bgaccent_color
+						#indicator.circle.bgaccent_color
 						span( style='background-image: url("/images/emoticon-sad.png")' )
 						span( style='background-image: url("/images/emoticon-neutral.png")' )
 						span( style='background-image: url("/images/emoticon-happy.png")' )
@@ -201,5 +123,5 @@ block content
 				.pd_18
 					.ll_title Promedio General
 						span#signaturegralprom.right_float.ll_title 8.055
-					.colhh1.bg_lightgray.borad.inbox_shadow
-						#signatureprogress.progress_bar.bgaccent_color.borad
+					.colhh1.bg_lightgray.circle.inbox_shadow
+						#signatureprogress.progress_bar.bgaccent_color.circle
