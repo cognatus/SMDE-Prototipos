@@ -17,6 +17,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
+app.use(express.cookieParser('sabemos todo sobre ti'));
+app.use(express.session());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
@@ -25,8 +27,57 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
+
+//conecta a la DB MySQL
+function databaseInstance(){
+	var connection = mysql.createConnection({
+		host     : 'localhost',
+		password : 'n0m3l0',
+		user     : 'root',
+		database : 'smdedbv1'
+	});
+	return connection;
+};
+
+//Funcion de login general
+var login = function(req, res){
+	var database = new databaseInstance();
+	var user = req.body.campo_user;
+	var pass = req.body.campo_pass;
+	var loginQuery;
+
+	var which_vato = function(tipo){
+		switch(tipo) {
+			case 'A':
+				loginQuery = 'SELECT * FROM Admin WHERE id= "'+user+'" and userPassword= "'+pass+'";';
+				req.session.privilegio = 0;
+				break;
+			case 'S':
+				loginQuery = 'SELECT * FROM Student WHERE id= "'+user+'" and userPassword= "'+pass+'";';
+				req.session.privilegio = 1;
+				break;
+			case 'T':
+				loginQuery = 'SELECT * FROM Teacher WHERE id= "'+user+'" and userPassword= "'+pass+'";';
+				req.session.privilegio = 2;
+				break;
+			default:
+				res.redirect('/error');
+		}
+	};
+
+	which_vato(user[0]);
+
+	database.query(loginQuery, function(error, result, row){
+		if(!error) {
+			req.session.datos = result;
+			res.redirect('/la pagina que gustes');
+		}else{
+			res.redirect('/error');
+		}
+	});
+};
 
 app.get('/', routes.index);
 app.get('/login', routes.login);
@@ -43,5 +94,5 @@ app.get('/management', routes.management);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+	console.log('SMDE server listening on port ' + app.get('port'));
 });
