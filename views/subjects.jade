@@ -13,30 +13,32 @@ block content
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text.border_bottom.flat_shadow Inscribir Asignaturas
 				.colhh1.hb_formcontainer
-					form( name='subject_add' ).pd_8
-						#added_subjects.colhh1
-							.colhh1
-								.pd_16.ll_title.normal_txt(style='padding-bottom: 4px;') Agregadas
-							.colhh1.hover.listitem.rel_pos
-								.listitem_righticon.circle.bg_closegray.rippleria-dark(data-rippleria)
-								.listitem_img
-									span A
-								.listitem_info
-									.listitem_title 
-										b Computación
-									.listitem_bottomdata Academia
-						.pd_8
-						#new_subjects.colhh1
-							.colhh1
-								.pd_16.ll_title.normal_txt(style='padding-bottom: 4px;') Inscribir
-							.colhh1.hover.listitem.rel_pos
-								.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria)
-								.listitem_img
-									span A
-								.listitem_info
-									.listitem_title 
-										b Electronica
-									.listitem_bottomdata Academia
+					form( name='subjects_add' id='subjects_add')
+						.colhh1
+							.colhh1.opacity_color.sub_listtitle(style='display: none;')
+								.pd_18.ll_title Agregadas
+							#added_subjects.colhh1.subjects_formlist.border_bottom
+								
+						.colhh1
+							.colhh1.opacity_color.sub_listtitle
+								.pd_18.ll_title Inscribir
+							#new_subjects.colhh1.subjects_formlist
+								.colhh1.hover.listitem.rel_pos
+									.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
+									.listitem_img
+										span A
+									.listitem_info
+										.listitem_title 
+											b Electronica
+										.listitem_bottomdata Nivel: 
+								.colhh1.hover.listitem.rel_pos
+									.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
+									.listitem_img
+										span A
+									.listitem_info
+										.listitem_title 
+											b Computación
+										.listitem_bottomdata Nivel: 
 						.pd_24
 							.form_input(style='height: 52px;')
 								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
@@ -97,5 +99,6 @@ block content
 										.pd_llist
 											.colhh1.pd_l12 Academia: 
 												span.margin_l Matematicas
+											.pd_4
 											.colhh1.pd_l12 Nivel:
 												span.margin_l 1

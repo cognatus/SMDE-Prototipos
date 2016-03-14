@@ -44,22 +44,22 @@ function databaseInstance(){
 //Funcion de login general
 var login = function(req, res){
 	var database = new databaseInstance();
-	var user = req.body.campo_user;
-	var pass = req.body.campo_pass;
-	var loginQuery;
+	var userNameLogin = req.body.sign_user;
+	var userPassLogin = req.body.sign_key;
+	var loginQuery = '';
 
 	var which_vato = function(tipo){
 		switch(tipo) {
 			case 'A':
-				loginQuery = 'SELECT * FROM Admin WHERE id= "'+user+'" and userPassword= "'+pass+'";';
+				loginQuery = 'SELECT * FROM Admin WHERE id= "'+ userNameLogin +'" and userPassword= "'+ userPassLogin +'";';
 				req.session.privilegio = 0;
 				break;
 			case 'S':
-				loginQuery = 'SELECT * FROM Student WHERE id= "'+user+'" and userPassword= "'+pass+'";';
+				loginQuery = 'SELECT * FROM Student WHERE id= "'+ userNameLogin +'" and userPassword= "'+ userPassLogin +'";';
 				req.session.privilegio = 1;
 				break;
 			case 'T':
-				loginQuery = 'SELECT * FROM Teacher WHERE id= "'+user+'" and userPassword= "'+pass+'";';
+				loginQuery = 'SELECT * FROM Teacher WHERE id= "'+ userNameLogin +'" and userPassword= "'+ userPassLogin +'";';
 				req.session.privilegio = 2;
 				break;
 			default:
@@ -67,7 +67,7 @@ var login = function(req, res){
 		}
 	};
 
-	which_vato(user[0]);
+	which_vato(userNameLogin[0]);
 
 	database.query(loginQuery, function(error, result, row){
 		if(!error) {
@@ -93,6 +93,7 @@ app.get('/settings', routes.settings);
 app.get('/calendar', routes.calendar);
 app.get('/students', routes.students);
 app.get('/management', routes.management);
+app.get('/error', routes.error);
 app.get('/users', user.list);
 
 /*Metodos POST*/

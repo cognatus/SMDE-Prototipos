@@ -114,7 +114,8 @@ $(document).ready(function(){
 
 	$('.innerlistitem').hide();
 
-	$('.hover').click(function(){
+	$('.listitem').click(function(){
+
 		var slideD = $(this).siblings('.innerlistitem');
 
 		if($(this).siblings('.innerlistitem').css('display') == 'block'){
@@ -155,10 +156,49 @@ $(document).ready(function(){
 	});
 
 /*-------------------------------------------------------------------------------------
-		LIST ITEM CIRCLE CONTROL
+		SUBJECTS ADD - REMOVE CONTROL
 ---------------------------------------------------------------------------------------*/
 
-	$('.listitem .listitem_img span').text();
+	$('#subjects_add .listitem_righticon').click( function(){
+		event.preventDefault();
+		var appendNew = $(this).parents('#new_subjects');
+		var appendRemove = $(this).parents('#added_subjects');
+		var item =  $(this).parents('.listitem');
+
+		if(appendNew.length == 1){
+			item.appendTo('#added_subjects');
+			$(this).removeClass('bg_plusgray');
+			$(this).addClass('bg_closegray');
+			$(this).attr('title' , 'Eliminar');
+		}
+
+		if(appendRemove.length == 1){
+			item.appendTo('#new_subjects');
+			$(this).removeClass('bg_closegray');
+			$(this).addClass('bg_plusgray');
+			$(this).attr('title' , 'Agregar');	
+		}
+
+		$('.subjects_formlist').each(function(){
+			if( $(this).find('.listitem').length == 0 ){
+				$(this).siblings('.sub_listtitle').hide();
+			}
+			else{
+				$(this).siblings('.sub_listtitle').show();	
+			}
+			if( $('#new_subjects').find('.listitem').length == 0 ){
+				$('#added_subjects').removeClass('border_bottom');
+			}
+			else{
+				$('#added_subjects').addClass('border_bottom');	
+			}
+		});
+
+	});
+
+/*-------------------------------------------------------------------------------------
+		LIST ITEM CIRCLE CONTROL
+---------------------------------------------------------------------------------------*/
 
 	var colorsArray = ['bg_amber','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
 		'bg_green','bg_lightpink','bg_yellow','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
@@ -186,7 +226,7 @@ $(document).ready(function(){
 
 	});
 
-	$('.listitem').each(function(){
+	$('.listitem, .hover').each(function(){
 
 		var circleLetter = $(this).find('.listitem_title b').text();
 		var span = $(this).find('.listitem_img span');

@@ -24,6 +24,11 @@
 		margin: 0 auto;
 	}
 
+	.error_container{
+		width: 580px;
+		margin: 0 auto;
+	}
+
 	.block_container{
 		position: relative;
 		z-index: 49;

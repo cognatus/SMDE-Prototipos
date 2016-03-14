@@ -264,11 +264,11 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .bg_plus{background-image: url('/images/plus.png');}
 
-.bg_plusgray{background-image: url('/images/plus_gray.png');background-size: 50%;}
+.bg_plusgray{background-image: url('/images/plus_gray.png');background-size: 24px;}
 
 .bg_close{background-image: url('/images/arrow-leftwhite.png');}
 
-.bg_closegray{background-image: url('/images/close_gray.png');background-size: 46%;}
+.bg_closegray{background-image: url('/images/close_gray.png');background-size: 20px;}
 
 .bg_check{background-image: url('/images/check.png');}
 
@@ -290,7 +290,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .hover{cursor: pointer;}
 
-/*.hover:hover{background-color: rgba(0,0,0,0.04);}*/
+.hover:hover{background-color: rgba(0,0,0,0.04);}
 
 .white_text{color: #fff;}
 
@@ -317,7 +317,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
     transform: translateY(-50%);
 }
 
-.empty_blocktext span{
+.empty_blocktext span, .error_title span{
 	display: inline-block;
 	margin: 8px;
 	width: 56px;height: 56px;
@@ -722,6 +722,17 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .hb_formcontainer{
 	height: calc(100% - 70px);
 	overflow: auto;
+}
+
+.error_container{
+	width: auto;
+	padding: 24px;
+	font-size: 16px;
+	position: relative;
+ 	top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .block_container{
