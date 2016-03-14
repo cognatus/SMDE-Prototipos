@@ -13,24 +13,32 @@ block content
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
-					form( name='forum_new' )
-						.pd12_24.border_bottom.flat_shadow.bgprimary_color
-							.form_input.white_text
-								input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo')
-						.pd_24
-							.form_input
-								.b_text.left_title Asignatura
-								select
-									option Asignatura 1
-									option Asignatura 2
-									option Asignatura 3
-									option Asignatura 4
-							.form_input
-								.b_text Descripción
-								textarea(placeholder='Descripción')
-							.form_input(style='height: 52px;')
-								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
-									input(type='submit', value='')
+					form( name='contents_newform' )
+						.form_innercontainer
+							.pd12_24.border_bottom.flat_shadow.bgprimary_color
+								.form_input.white_text
+									input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo')
+							.pd_24
+								.form_input
+									.b_text.left_title Asignatura
+									select
+										option Asignatura 1
+										option Asignatura 2
+										option Asignatura 3
+										option Asignatura 4
+								.form_input
+									.b_text Descripción
+									textarea(placeholder='Descripción')
+								.form_input(style='height: 52px;')
+									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+						.form_confirmblock
+							.inner_confirmblock.bg_gray.flat_shadow
+								.pd_24(style='padding-bottom: 16px;')
+									.colhh1.white_text
+										.pd_8.ll_title ¿Realizar esta acción?
+									.form_input.autooverflow
+										span.submit_cancel.txtaccent_color.rippleria-dark( data-rippleria ) Cancelar
+										input.txtaccent_color.rippleria-dark( data-rippleria type='submit', value='Aceptar' )
 
 		.topspace
 		.colhh1.bdb_container.block_containermsm

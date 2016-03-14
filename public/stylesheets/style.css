@@ -4,6 +4,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	font-family: 'Roboto' , 'Helvetica' , sans-serif;
 }
 
 html{
@@ -722,6 +723,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .hb_formcontainer{
 	height: calc(100% - 70px);
 	overflow: auto;
+	position: relative;
 }
 
 .error_container{
@@ -993,8 +995,8 @@ span.title_rightoptionicon#settings_icon:hover{
 	height: 40px;
 	position: absolute;
 	z-index: 1;
-	right: 20px;
-	top: 20px;
+	right: 18px;
+	top: 21px;
 }
 
 .listitem_righticon:hover{
@@ -1286,7 +1288,7 @@ span.title_rightoptionicon#settings_icon:hover{
 	width: auto;
 	position: relative;
 	padding: 8px 10px 8px 10px;
-	background-color: rgba(0,0,0,0.04);
+	background-color: rgba(0,0,0,0.05);
 }
 
 span.searchicon, span.searchicon_white{
@@ -1303,6 +1305,10 @@ span.searchicon, span.searchicon_white{
 
 span.searchicon_white{background-image: url('/images/magnify_white.png')}
 
+/*---------------------------------------------------------------------------------------
+	FORM INPUTS
+-----------------------------------------------------------------------------------------*/
+
 .search input[type='text']{
 	width: calc(100% - 72px);
 	color: #616161;
@@ -1315,9 +1321,29 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 	border-radius: 60px;-webkit-border-radius: 60px;-moz-border-radius: 60px;-o-border-radius: 60px;
 }
 
-/*---------------------------------------------------------------------------------------
-	FORM INPUTS
------------------------------------------------------------------------------------------*/
+.search input[type='text']:focus{font-weight: normal;}
+
+.form_confirmblock{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 4;
+	display: none;
+	background-color: rgba(0,0,0,0.2);
+}
+
+.form_confirmblock .inner_confirmblock{
+	width: calc(100% - 96px);
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+}
 
 .form_input{
 	margin-bottom: 24px; 
@@ -1401,20 +1427,6 @@ option{color: #212121;background-color: #fff;}
 	height: 146px;
 }
 
-.form_input span.submit{
-	float: right;
-	padding: 0;
-	width: 52px;
-	height: 52px;
-}
-
-.form_input input[type='submit']{
-	border: none;
-	background: transparent;
-	width: 100%;
-	height: 100%;
-}
-
 /*---------------------------------------------------------------------------------------
 	CALENDAR
 -----------------------------------------------------------------------------------------*/
@@ -1454,32 +1466,6 @@ option{color: #212121;background-color: #fff;}
 .calendar #year{font-size: 13px;height: 22px;}
 
 .dayname{font-size: 13px;}
-
-.calendar .button{
-	position: relative;
-	width: 42px;
-	height: 42px;
-	margin: 0px 8px 0 8px;
-	margin-bottom: 0;
-	background: no-repeat center;
-	background-size: 22px;
-	cursor: pointer;
-	z-index: 1;
-}
-
-.calendar .button#left{
-	background-image: url('/images/arrow-left.png');
-	float: left;
-}
-
-.calendar .button#right{
-	background-image: url('/images/arrow-right.png');
-	float: right;
-}
-
-.calendar .button:hover{
-	background-color: rgba(0,0,0,0.04);
-}
 
 .calendar .tablecalendar{
 	position: relative;
@@ -1546,7 +1532,56 @@ option{color: #212121;background-color: #fff;}
 	BUTTONS
 -----------------------------------------------------------------------------------------*/
 
+.form_input span.submit{
+	float: right;
+	padding: 0;
+	width: 52px;
+	height: 52px;
+	display: block;
+	cursor: pointer;
+}
+
+.form_input input[type='submit'], .form_input span.submit_cancel{
+	display: inline-block;
+	border: none;
+	outline: none;
+	background: transparent;
+	width: auto;
+	padding: 16px;
+	font-size: 16px;font-weight: bold;
+	cursor: pointer;
+	vertical-align: middle;
+	float: right;
+}
+
+.form_input input[type='submit']{
+	margin-right: 12px;
+}
+
 input[type='submit']{cursor: pointer;}
+
+.calendar .button{
+	position: relative;
+	width: 42px;
+	height: 42px;
+	margin: 0px 8px 0 8px;
+	margin-bottom: 0;
+	background: no-repeat center;
+	background-size: 22px;
+	cursor: pointer;
+	z-index: 1;
+}
+.calendar .button#left{
+	background-image: url('/images/arrow-left.png');
+	float: left;
+}
+.calendar .button#right{
+	background-image: url('/images/arrow-right.png');
+	float: right;
+}
+.calendar .button:hover{
+	background-color: rgba(0,0,0,0.04);
+}
 
 .float_buttoncontainer{
 	position: fixed;
@@ -1573,15 +1608,15 @@ input[type='submit']{cursor: pointer;}
 .flat_shadow, .block_container, .hidden_block, .minimenu_hidden{box-shadow: 0 1px 2px rgba(0,0,0,0.24);}
 
 .sign_field input.signbutton, .msminput input[type='submit'], .form_input span.submit{
-	box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
 }
 
 .msminput input[type='submit']:hover, .sign_field input.signbutton:hover, .form_input span.submit:hover{
-	box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+	box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 }
 
 .msminput input[type='submit']:active, .sign_field input.signbutton:active, .form_input span.submit:active{
-	box-shadow: 0px 1px 1px rgba(0,0,0,0.6);
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
 }
 
 .float_buttoncontainer{box-shadow: 0px 2px 7px rgba(0,0,0,0.3);}

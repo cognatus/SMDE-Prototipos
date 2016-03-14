@@ -14,35 +14,45 @@ block content
 					.pd_18.form_title.white_text.border_bottom.flat_shadow Inscribir Asignaturas
 				.colhh1.hb_formcontainer
 					form( name='subjects_add' id='subjects_add')
-						.colhh1
-							.colhh1.opacity_color.sub_listtitle(style='display: none;')
-								.pd_18.ll_title Agregadas
-							#added_subjects.colhh1.subjects_formlist.border_bottom
-								
-						.colhh1
-							.colhh1.opacity_color.sub_listtitle
-								.pd_18.ll_title Inscribir
-							#new_subjects.colhh1.subjects_formlist
-								.colhh1.hover.listitem.rel_pos
-									.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
-									.listitem_img
-										span A
-									.listitem_info
-										.listitem_title 
-											b Electronica
-										.listitem_bottomdata Nivel: 
-								.colhh1.hover.listitem.rel_pos
-									.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
-									.listitem_img
-										span A
-									.listitem_info
-										.listitem_title 
-											b Computación
-										.listitem_bottomdata Nivel: 
-						.pd_24
-							.form_input(style='height: 52px;')
-								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
-									input(type='submit', value='')
+						.colhh1.form_innercontainer
+							.colhh1
+								.colhh1.opacity_color.sub_listtitle
+									.pd_18.ll_title Agregadas
+									.pd_18.center_text.ll_title.normal_txt#sub_hide Agrega una asignatura para Inscribir
+										.pd_12
+								#added_subjects.colhh1.subjects_formlist.border_bottom
+									
+							.colhh1
+								.colhh1.opacity_color.sub_listtitle
+									.pd_18.ll_title Inscribir
+								#new_subjects.colhh1.subjects_formlist
+									.colhh1.hover.listitem.rel_pos
+										.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
+										.listitem_img
+											span A
+										.listitem_info
+											.listitem_title 
+												b Electronica
+											.listitem_bottomdata Nivel: 
+									.colhh1.hover.listitem.rel_pos
+										.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
+										.listitem_img
+											span A
+										.listitem_info
+											.listitem_title 
+												b Computación
+											.listitem_bottomdata Nivel: 
+							.pd_24
+								.form_input(style='height: 52px;')
+									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+						.form_confirmblock
+							.inner_confirmblock.bg_gray.flat_shadow
+								.pd_24(style='padding-bottom: 16px;')
+									.colhh1.white_text
+										.pd_8.ll_title ¿Realizar esta acción?
+									.form_input.autooverflow
+										span.submit_cancel.txtaccent_color.rippleria-dark( data-rippleria ) Cancelar
+										input.txtaccent_color.rippleria-dark( data-rippleria type='submit', value='Aceptar' )
 
 		.topspace
 		.page_container

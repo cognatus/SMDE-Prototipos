@@ -15,24 +15,32 @@ block content
 					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
 					form( name='calendar_newevent' )
-						.pd12_24.border_bottom.flat_shadow.bgprimary_color
-							.form_input.white_text
-								input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo')
-						.pd_24
-							.form_input
-								.b_text.left_title Asunto
-								select
-									option Evento
-									option Recordatorio
-							.form_input
-								.b_text.left_title Fecha
-								input(type='text', placeholder='dd/mm/aaaa' name='calendar_date')
-							.form_input
-								.b_text Descripción
-								textarea(placeholder='Añade una Descripción')
-							.form_input(style='height: 52px;')
-								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
-									input(type='submit', value='')
+						.form_innercontainer
+							.pd12_24.border_bottom.flat_shadow.bgprimary_color
+								.form_input.white_text
+									input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo')
+							.pd_24
+								.form_input
+									.b_text.left_title Asunto
+									select
+										option Evento
+										option Recordatorio
+								.form_input
+									.b_text.left_title Fecha
+									input(type='text', placeholder='dd/mm/aaaa' name='calendar_date')
+								.form_input
+									.b_text Descripción
+									textarea(placeholder='Añade una Descripción')
+								.form_input(style='height: 52px;')
+									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+						.form_confirmblock
+							.inner_confirmblock.bg_gray.flat_shadow
+								.pd_24(style='padding-bottom: 16px;')
+									.colhh1.white_text
+										.pd_8.ll_title ¿Realizar esta acción?
+									.form_input.autooverflow
+										span.submit_cancel.txtaccent_color.rippleria-dark( data-rippleria ) Cancelar
+										input.txtaccent_color.rippleria-dark( data-rippleria type='submit', value='Aceptar' )
 
 		.topspace
 		.page_container

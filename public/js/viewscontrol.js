@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	$('#signatureprogress').css('width' , parseFloat($('#signaturegralprom').text()) * 10 + '%' );
+
 	$('#menubutton').click(function(){
 		$('#menu').animate({ left : '0' } , 300);
 		$('.back_menu').show();
@@ -51,16 +53,23 @@ $(document).ready(function(){
 		//$('.topspace').show();
 	});
 
-	$('#signatureprogress').css('width' , parseFloat($('#signaturegralprom').text()) * 10 + '%' );
-
-	var origwidth = $('.hidden_blockcontainer').width();
-	var origheight = $('.hidden_blockcontainer').height();
-
 	$('.close , .hidden_blockback').click(function(){
 		$(this).parents('.hidden_blockcontainer').fadeOut(300,function(){
 			location.reload();
 		});
-	}); 
+	});
+
+/*-------------------------------------------------------------------------------------
+		CONFIRM BLOCK
+---------------------------------------------------------------------------------------*/
+
+	$('.hb_formcontainer .form_input span.submit').click(function(){
+		$(this).parents('.hb_formcontainer').find('.form_confirmblock').fadeIn();
+	});
+
+	$('.submit_cancel').click(function(){
+		$(this).parents('.form_confirmblock').fadeOut();
+	})
 
 /*-------------------------------------------------------------------------------------
 		FORM ANIMATION
@@ -71,6 +80,7 @@ $(document).ready(function(){
 		var offset = $(this).offset();
 		var widthsize = $(this).width();
 		$('.hidden_block').hide();
+		$(this).hide();
 		animate.css({ 
 			top: offset.top,
 			left:offset.left,
@@ -102,7 +112,6 @@ $(document).ready(function(){
 		    borderBottomLeftRadius: 0, 
 		    borderBottomRightRadius: 0
 		}, 140);
-
 
 		$('body , html').css('overflow', 'hidden');
 	});
@@ -160,7 +169,6 @@ $(document).ready(function(){
 ---------------------------------------------------------------------------------------*/
 
 	$('#subjects_add .listitem_righticon').click( function(){
-		event.preventDefault();
 		var appendNew = $(this).parents('#new_subjects');
 		var appendRemove = $(this).parents('#added_subjects');
 		var item =  $(this).parents('.listitem');
@@ -181,16 +189,18 @@ $(document).ready(function(){
 
 		$('.subjects_formlist').each(function(){
 			if( $(this).find('.listitem').length == 0 ){
-				$(this).siblings('.sub_listtitle').hide();
+				$(this).siblings('.sub_listtitle').find('#sub_hide').show();
 			}
 			else{
-				$(this).siblings('.sub_listtitle').show();	
+				$(this).siblings('.sub_listtitle').find('#sub_hide').hide();	
 			}
 			if( $('#new_subjects').find('.listitem').length == 0 ){
 				$('#added_subjects').removeClass('border_bottom');
+				$('#new_subjects').siblings('.sub_listtitle').hide();
 			}
 			else{
-				$('#added_subjects').addClass('border_bottom');	
+				$('#added_subjects').addClass('border_bottom');
+				$('#new_subjects').siblings('.sub_listtitle').show();
 			}
 		});
 
