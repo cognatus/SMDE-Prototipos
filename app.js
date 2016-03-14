@@ -79,6 +79,8 @@ var login = function(req, res){
 	});
 };
 
+/*Metodos GET*/
+
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/main', routes.main);
@@ -92,6 +94,10 @@ app.get('/calendar', routes.calendar);
 app.get('/students', routes.students);
 app.get('/management', routes.management);
 app.get('/users', user.list);
+
+/*Metodos POST*/
+
+app.get('/login', login);
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('SMDE server listening on port ' + app.get('port'));
