@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-		#new_item.float_buttoncontainer( title='Nuevo Mensaje' )
+		#new_item.float_buttoncontainer.leftlist_floatbutton( title='Nuevo Mensaje' )
 			span.bg_plus.bgaccent_color
 
 		.hidden_blockcontainer
@@ -40,7 +40,7 @@ block content
 						.colhh1.center_text.list_title.rel_pos
 							.pd_18.ll_title Chats
 							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Mostrar')
-								.minimenu_hidden
+								.minimenu_hidden.left_text
 									.pd_12.hover.rippleria-dark(data-rippleria) Todo
 									.pd_12.hover.rippleria-dark(data-rippleria) No Leidos
 									.pd_12.hover.rippleria-dark(data-rippleria) Archivados
@@ -59,6 +59,7 @@ block content
 								.listitem_title 
 									b Usuario 1
 								.listitem_bottomdata  Lorem ipsum dolor sit amet
+						.colhh1(style='height: 82px;')
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
@@ -80,30 +81,30 @@ block content
 								.pd_24
 									.colhh1.margin_bot.msmballon
 										.colhh1.autooverflow
-											.leftmsm.bg_white
-												i.bg_white
+											.leftmsm.bg_blue.white_text
+												i
 												.pd_8 
 													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum
 													span.msm_date 10:34 pm
 										.colhh1.autooverflow
-											.leftmsm.bg_white
+											.leftmsm.bg_blue.white_text
 												.pd_8 
 													|  Suspendisse hendrerit ultricies dui ut fringilla.
 													span.msm_date 10:34 pm
 									.colhh1.margin_bot.msmballon
 										.colhh1.autooverflow
-											.rightmsm.bg_blue.white_text
-												i.bg_blue
+											.rightmsm.bgaccent_color.white_text
+												i
 												.pd_8 
 													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor.
 													span.msm_date 10:34 pm
 										.colhh1.autooverflow
-											.rightmsm.bg_blue.white_text
+											.rightmsm.bgaccent_color.white_text
 												.pd_8 
 													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 													span.msm_date 10:34 pm
 										.colhh1.autooverflow
-											.rightmsm.bg_blue.white_text
+											.rightmsm.bgaccent_color.white_text
 												.pd_8 
 													| Lorem ipsum dolor sit amet.
 													span.msm_date 10:34 pm

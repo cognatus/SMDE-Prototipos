@@ -20,7 +20,7 @@
 	}
 
 	.page_container{
-		width: calc(100% - 112px);
+		width: calc(100% - 210px);
 		margin: 0 auto;
 	}
 
@@ -48,7 +48,7 @@
 	}
 
 	.profile_img{
-		height: 260px;
+		height: 290px;
 	}
 
 	.secondgrid{background-color: #eeeeee;}
@@ -134,9 +134,22 @@
 	.empty_blocktext .pd_64{
 		padding: 64px;
 	}
-	
-	.profile_img{
-		height: 320px;
+
+	.block_container.progress_profile{
+		margin-bottom: 80px;
+	}
+
+	.grid_profilebackgroundcontainer{
+		width: 400px;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.grid_rightcontainer{
+		width: calc(100% - 418px);
+		margin-left: 18px;
+		display: inline-block;
+		vertical-align: top;
 	}
 
 	.doublegrid{
@@ -155,7 +168,12 @@
 		display: none;
 	}
 
-	.float_buttoncontainer{
+	.float_buttoncontainer.leftlist_floatbutton{
+		left: 372px;
+		bottom: 48px;
+	}
+
+	/*.float_buttoncontainer{
 		width: 36px;
 		height: 36px;
 		right: 56px;
@@ -172,7 +190,7 @@
 		box-shadow: none;
 		width: 36px;height: 36px;
 		background-color: rgba(0,0,0,0.1);
-	}
+	}*/
 
 	.notif .notifscroll{
 		width: 380px;

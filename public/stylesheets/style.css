@@ -17,7 +17,7 @@ body {
  	height: 100%;
 	font-family: 'Roboto' , 'Helvetica' , sans-serif;
 	background-color: #e0e0e0;
-	color: #212121;
+	color: #505050;
 	font-size: 14px;
 }
 
@@ -141,11 +141,13 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .pd18_32{padding: 18px 32px 18px 32px;width: auto;}
 .pd_llist{padding-left: 18px;padding-bottom: 10px;padding-right: 18px;width: auto;}
 .pd_l12{padding-left: 12px;width: auto;}
+.pd_l18{padding-left: 18px;width: auto;}
 .pd_tb_8{padding: 8px 0 8px 0;width: auto;}
 .pd_tb_10{padding: 10px 0 10px 0;width: auto;}
 .pd_tb_12{padding: 12px 0 12px 0;width: auto;}
 .pd_tb_16{padding: 16px 0 16px 0;width: auto;}
 .pd_tb_24{padding: 24px 0 24px 0;width: auto;}
+.pd_bot0{padding-bottom: 0;}
 .mr_4{margin: 4px;}
 .mr_8, .ml_8{margin: 0;}
 .mr_8l4r{
@@ -338,6 +340,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .text_shadow{text-shadow: 0px 1px 1px rgba(0,0,0,0.5);}
 
+.border_left{border-left: 4px solid #00BFA5;}
+
 .list_borderleft{border-left: 4px solid #00BFA5;margin-top: 8px;
 	padding-top: 8px;margin-left: 38px;margin-bottom: 18px;}
 
@@ -350,6 +354,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .right_text{text-align: right;}
 
 .center_text{text-align: center;}
+
+.justify_text{text-align: justify;}
 
 .left_float{float: left;}
 
@@ -482,11 +488,10 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	display: inline-block;
 	outline: none;border: none; 
 	background-color: rgba(0,0,0,0.1);
-	width: calc(100% - 72px);
+	width: calc(100% - 82px);
 	font-size: 18px;
 	margin: 0;height: 16px;
 	padding: 16px;
-	padding-left: 6px;
 	border-radius: 0 2px 2px 0;-webkit-border-radius: 0 2px 2px 0;-moz-border-radius: 0 2px 2px 0;
 	-o-border-radius: 0 2px 2px 0;
 }
@@ -495,7 +500,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	outline: none;
 	border: none;
 	width: 60px;height: 60px;
-	margin: 4px;
+	margin: 0;
 	float: right;
 	position: relative;
 }
@@ -533,7 +538,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .menu_userbg{
 	height: 150px;
-	background: url('/images/dark_flat.jpg') no-repeat;
+	background: url('/images/material_bg.jpg') no-repeat;
 	background-size: cover;
 	position: relative;
 }
@@ -605,7 +610,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .menu_opccontainer a{
 	text-decoration: none;
-	color: #212121;
+	color: #505050;
 }
 
 .top_pallete{
@@ -703,7 +708,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	background-color: transparent;
 	position: absolute;
 	cursor: pointer;
-	z-index: 49;background-size: 24px;
+	z-index: 1;background-size: 24px;
 	top: 16px;left: 0px;
 }
 
@@ -723,7 +728,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .hb_formcontainer{
 	height: calc(100% - 70px);
 	overflow: auto;
-	position: relative;
 }
 
 .error_container{
@@ -781,18 +785,26 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	PROFILE TOP
 -----------------------------------------------------------------------------------------*/
 
+.form_profilephoto{
+	display: none;
+}
+
 .profile_img{
 	height: 200px;
-	background: url('/images/dark_flat.jpg') no-repeat center;
+	background: url('/images/material_bg.jpg') no-repeat center;
 	background-size: cover;
 	position: relative;
 }
 
 .profile_img2{
-	height: 80px;
-	background: url('/images/dark_flat.jpg') no-repeat center;
+	height: 120px;
+	background: url('/images/material_bg.jpg') no-repeat center;
 	background-size: cover;
 	position: relative;
+}
+
+.block_container.progress_profile{
+	margin-bottom: 12px;
 }
 
 .photo{
@@ -872,7 +884,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	right: 0;
 	padding: 0;
 	z-index: 10;
-	color: #212121;
+	color: #505050;
 	font-weight: normal;
 }
 
@@ -956,10 +968,10 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .listitem_img{
 	display: inline-block;
-	width: 50px;
-	height: 50px;
-	padding: 16px;
-	vertical-align: top;
+	width: 46px;
+	height: 46px;
+	padding: 18px;
+	vertical-align: middle;
 	text-align: center;
 }
 
@@ -972,21 +984,20 @@ span.title_rightoptionicon#settings_icon:hover{
 .listitem_img span{
 	opacity: 0.8;
 	display: block;
-	font-size: 28px;
-	width: 34px;
-	height: 34px;
-	padding: 8px;
+	width: 100%;height: 100%;
+	font-size: 26px;
+	line-height: 46px;
 	font-weight: lighter;
 	border-radius: 60px;-webkit-border-radius: 60px;-moz-border-radius: 60px;-o-border-radius: 60px;
 	color: #fff;
 }
 
 .listitem_info{
-	padding: 22px 16px 20px 0;
+	padding: 22px 18px 20px 0;
 	display: inline-block;
-	height: 39px;
+	height: 40px;
 	vertical-align: top;
-	width: calc(100% - 98px);
+	width: calc(100% - 100px);
 	position: relative;
 }
 
@@ -1023,15 +1034,15 @@ span.title_rightoptionicon#settings_icon:hover{
 	opacity: 0.7;
 	margin-top: 6px;
 	overflow: hidden;
-	height: 16px;
+	height: 17px;
 }
 
 .listitem_rightinfo{
 	opacity: 0.5;
 	position: absolute;
 	top: 22px;
-	right: 16px;
-	font-size: 12px;
+	right: 18px;
+	font-size: 11px;
 }
 
 .listitem_rightinfo label{
@@ -1124,7 +1135,7 @@ span.title_rightoptionicon#settings_icon:hover{
 	width: calc(100% - 104px);
 	height: 42px;
 	padding: 0 12px 0 12px;
-	color: #212121;
+	color: #505050;
 	margin: 10px;
 	margin-right: 12px;
 	margin-left: 12px;
@@ -1159,16 +1170,16 @@ span.title_rightoptionicon#settings_icon:hover{
 	font-size: 13px;	
 	position: relative;
 	z-index: 4;
-	color: #424242;
 }
 
 .leftmsm i{
 	display: block;
 	position: absolute;
+	background-color: inherit; 
 	width: 12px;
 	height: 12px;
 	top: 0;
-	left: -4px;
+	left: -3px;
 	transform: skewX(30deg);-webkit-transform: skewX(30deg);-moz-transform: skewX(30deg);
 	-ms-transform: skewX(30deg);-o-transform: skewX(30deg);
 	box-shadow: -1px 0px rgba(0,0,0,0.1);
@@ -1195,6 +1206,7 @@ span.title_rightoptionicon#settings_icon:hover{
 .rightmsm i{
 	display: block;
 	position: absolute;
+	background-color: inherit;
 	width: 12px;
 	height: 12px;
 	top: 0;
@@ -1210,6 +1222,23 @@ span.title_rightoptionicon#settings_icon:hover{
 	font-size: 11px;
 	opacity: 0.6;
 	margin: 8px 0 4px 8px; 
+}
+
+/*---------------------------------------------------------------------------------------
+	FORUM
+-----------------------------------------------------------------------------------------*/
+
+.forum_commentcontainer{margin-bottom: 16px;}
+
+.forum_commentimg{width: 40px;display: inline-block;}
+
+.forum_alldata{display: inline-block;width: calc(100% - 40px);}
+
+.forum_commentimg img{
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+	margin-right: 12px;
 }
 
 .rank span{
@@ -1270,8 +1299,9 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .notif .listitem_img span{
 	position: relative;top: 3px;
-	width: 28px;height: 28px;
-	padding: 6px;font-size: 23px;
+	width: 40px;height: 40px;
+	font-size: 23px;
+	line-height: 40px;
 }
 
 .notif .listitem_info{
@@ -1400,7 +1430,7 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 .form_input .activeline::-moz-placeholder{color: rgba(255,255,255,0.5);}
 .form_input .activeline:-ms-input-placeholder{color: rgba(255,255,255,0.5);}
 
-option{color: #212121;background-color: #fff;}
+option{color: #505050;background-color: #fff;}
 
 .form_input .double{width: 100%;}
 
@@ -1420,7 +1450,7 @@ option{color: #212121;background-color: #fff;}
 	margin-top: 0;
 	padding: 18px;
 	background-color: transparent;
-	color: #212121;
+	color: #505050;
 }
 
 .form_input2 textarea{

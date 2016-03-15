@@ -7,120 +7,130 @@ block content
 
 		.topspace
 		.page_container
-			.block_container
-				.colhh1.profile_img
+			.grid_profilebackgroundcontainer
+				.block_container
+					.colhh1.profile_img
+						.pd_18
+							.minimenu_container( title='Opciones' )
+								.minimenu
+									span
+									span
+									span
+								.minimenu_hidden
+									.pd_12.hover.rippleria-dark(data-rippleria) Foto de Perfil
+									.pd_12.hover.rippleria-dark(data-rippleria) Portada
+						.photo
+							img.circle( src='images/profilephoto.png' )
+						.name
+							.pd_12 
+								b Nombre Completo
+								span correo@email.com
+				.block_container.bg_white.form_profilephoto
+					.pd_24
+				.block_container.bg_white.progress_profile
 					.pd_18
-						.minimenu_container( title='Opciones' )
-							.minimenu
-								span
-								span
-								span
-							.minimenu_hidden
-								.pd_12.hover.rippleria-dark(data-rippleria) Foto de Perfil
-								.pd_12.hover.rippleria-dark(data-rippleria) Portada
-					.photo
-						img.circle( src='images/profilephoto.png' )
-					.name
-						.pd_12 
-							b Nombre Completo
-							span correo@email.com
+						.progress_emoticon
+							#indicator.circle.bgaccent_color
+							span( style='background-image: url("/images/emoticon-sad.png")' )
+							span( style='background-image: url("/images/emoticon-neutral.png")' )
+							span( style='background-image: url("/images/emoticon-happy.png")' )
+							span
+							div Tu rendimiento es muy bueno!
+					.pd_18
+						.ll_title Promedio General
+							span#signaturegralprom.right_float.ll_title 7.28
+						.colhh1.bg_lightgray.circle.inbox_shadow
+							#signatureprogress.progress_bar.bgaccent_color.circle
 
-			.block_container.bg_white.h_listcontainer
-				.colhh1.rel_pos.border_bottom
-					.h_listline.bgaccent_color
-					.h_listitem.first
-						.pd_18.ll_title.rippleria-dark( data-rippleria ) Información
-					.h_listitem
-						.pd_18.ll_title.rippleria-dark( data-rippleria ) Contactos
-					.h_listitem
-						.pd_18.ll_title.rippleria-dark( data-rippleria ) Asignaturas
+			.grid_rightcontainer
+				.colhh1.h_listcontainer
+					.block_container.bg_white.rel_pos
+						.h_listline.bgaccent_color
+						.h_listitem.first
+							.pd_18.ll_title.rippleria-dark( data-rippleria ) Información
+						.h_listitem
+							.pd_18.ll_title.rippleria-dark( data-rippleria ) Contactos
+						.h_listitem
+							.pd_18.ll_title.rippleria-dark( data-rippleria ) Asignaturas
 
-				.colhh1.h_listindex.first
-					.colhh1.border_bottom
-						.colhh1
-							.pd_18.ll_title Personal
-						.colhh1
-							.pd_18  Nombre: 
-								span.margin_l Nombre
-							.pd_18  Apellido Paterno: 
-								label.normal_txt.margin_l Apellido Paterno
-							.pd_18  Apellido Materno: 
-								label.normal_txt.margin_l Apellido Materno
-							.pd_18  Edad: 
-								label.normal_txt.margin_l Edad
-					.colhh1
-						.colhh1
-							.pd_18.ll_title Académico
-						.colhh1			
-							.pd_18  Institución: 
-								span.margin_l Escuela chida
-							.pd_18  Asignaturas Inscritas: 
-								span.margin_l 6
+					.colhh1.h_listindex.first
+						.block_container.bg_white
+							.pd_18
+								.colhh1.ll_title Personal
+								.pd_8
+								.colhh1
+									.pd_8  Nombre: 
+										span.margin_l Nombre
+									.pd_8  Apellido Paterno: 
+										label.normal_txt.margin_l Apellido Paterno
+									.pd_8  Apellido Materno: 
+										label.normal_txt.margin_l Apellido Materno
+									.pd_8  Edad: 
+										label.normal_txt.margin_l Edad
+						.block_container.bg_white
+							.pd_18
+								.colhh1.ll_title Académico
+								.pd_8
+								.colhh1
+									.pd_4  Institución: 
+										span.margin_l Escuela chida
+									.pd_4  Asignaturas Inscritas: 
+										span.margin_l 6
 
-				.colhh1.h_listindex
-					.colhh1
-						.colhh1
-							.search
-								span.searchicon
-								input#buscar(type='text',name='buscar', placeholder='Buscar un contacto')
-						.colhh1.slide_list
-							.colhh1.hover.listitem.rippleria-dark(data-rippleria).rel_pos
-								.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria)
-								.listitem_img
-									img(src='images/profilephoto.png')
-								.listitem_info
-									.listitem_title 
-										b Nombre Completo
-									.listitem_bottomdata Tipo de Usuario
-							.colhh1.innerlistitem
-								.colhh1.border_bottom
-									.list_borderleft
-										.pd_llist
-											.sl_title Información
-											.pd_8
-												| 2 grupos en común, 19 contactos en común
-				.colhh1.h_listindex
-					.colhh1
-						.colhh1.empty_blocktext.center_text
-							.pd_64
-								span.v_middle(style= 'background-image: url("images/close-box.png")')
-								.autocol.pd_12.mm_title No tienes ninguna asignatura.
-						.colhh1.slide_list
-							.colhh1.hover.listitem.rippleria-dark(data-rippleria)
-								.listitem_img
-									span A
-								.listitem_info
-									.listitem_rightinfo Promedio: 
-										label.subject_prom 8.46
-									.listitem_title 
-										b Nombre Asignatura
-									.listitem_bottomdata.rank
-										span.bg_blue
-										span.bg_blue
-										span.bg_blue
-										span.bg_blue
-							.colhh1.innerlistitem
-								.colhh1.border_bottom
-									.list_borderleft
-										.pd_llist
-											.sl_title Información
-										.pd_llist
-											.colhh1.pd_l12 Academia: 
-												span.margin_l Matematicas
-											.pd_4
-											.colhh1.pd_l12 Nivel:
-												span.margin_l 1
-			.block_container.bg_white
-				.pd_18
-					.progress_emoticon
-						#indicator.circle.bgaccent_color
-						span( style='background-image: url("/images/emoticon-sad.png")' )
-						span( style='background-image: url("/images/emoticon-neutral.png")' )
-						span( style='background-image: url("/images/emoticon-happy.png")' )
-						span
-						div Tu rendimiento es muy bueno!
-				.pd_18
-					.ll_title Promedio General
-						span#signaturegralprom.right_float.ll_title 7.28
-					.colhh1.bg_lightgray.circle.inbox_shadow
-						#signatureprogress.progress_bar.bgaccent_color.circle
+					.colhh1.h_listindex
+						.colhh1.block_container.bg_white
+							.colhh1
+								.search
+									span.searchicon
+									input#buscar(type='text',name='buscar', placeholder='Buscar un contacto')
+							.colhh1.empty_blocktext.center_text
+								.pd_64
+									span.v_middle(style= 'background-image: url("images/account-remove.png")')
+									.autocol.pd_12.mm_title No tienes contactos.
+							.colhh1.slide_list
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria).rel_pos
+									.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria)
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info
+										.listitem_title 
+											b Nombre Completo
+										.listitem_bottomdata Tipo de Usuario
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
+											.pd_llist
+												.sl_title Información
+												.pd_8
+													| 2 grupos en común, 19 contactos en común
+					.colhh1.h_listindex
+						.block_container.bg_white
+							.colhh1.empty_blocktext.center_text
+								.pd_64
+									span.v_middle(style= 'background-image: url("images/close-box.png")')
+									.autocol.pd_12.mm_title No tienes ninguna asignatura.
+							.colhh1.slide_list
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+									.listitem_img
+										span A
+									.listitem_info
+										.listitem_rightinfo Promedio: 
+											label.subject_prom 8.46
+										.listitem_title 
+											b Nombre Asignatura
+										.listitem_bottomdata.rank
+											span.bg_blue
+											span.bg_blue
+											span.bg_blue
+											span.bg_blue
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
+											.pd_llist
+												.sl_title Información
+											.pd_llist
+												.colhh1.pd_l12 Academia: 
+													span.margin_l Matematicas
+												.pd_4
+												.colhh1.pd_l12 Nivel:
+													span.margin_l 1

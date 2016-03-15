@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-		#new_item.float_buttoncontainer( title='Nuevo Contenido' )
+		#new_item.float_buttoncontainer.leftlist_floatbutton( title='Nuevo Contenido' )
 			span.bg_plus.bgaccent_color
 
 		.hidden_blockcontainer
@@ -48,7 +48,7 @@ block content
 						.colhh1.center_text.list_title.rel_pos
 							.pd_18.ll_title Mis Contenidos
 							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Ordenar Por')
-								.minimenu_hidden
+								.minimenu_hidden.left_text
 									.pd_12.hover.rippleria-dark(data-rippleria) A - Z
 									.pd_12.hover.rippleria-dark(data-rippleria) Z - A
 									.pd_12.hover.rippleria-dark(data-rippleria) Fecha
@@ -68,6 +68,7 @@ block content
 								.listitem_title 
 									b Tema
 								.listitem_bottomdata Asignatura
+						.colhh1(style='height: 82px;')
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
