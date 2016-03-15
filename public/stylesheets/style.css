@@ -797,7 +797,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 
 .profile_img2{
-	height: 120px;
+	height: 150px;
 	background: url('/images/material_bg.jpg') no-repeat center;
 	background-size: cover;
 	position: relative;
