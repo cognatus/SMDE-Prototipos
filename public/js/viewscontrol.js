@@ -207,13 +207,30 @@ $(document).ready(function(){
 	});
 
 /*-------------------------------------------------------------------------------------
+		SETTINGS CONTROL
+---------------------------------------------------------------------------------------*/
+
+	var msmColors = ['bg_red','bg_pink','bg_lightpink','bg_purple','bg_darkpurple','bg_indigo','bg_darkblue',
+		'bg_blue','bg_lightblue','bg_cyan','bg_teal','bg_green','bg_lightgreen','bg_lime','bg_yellow','bg_amber',
+		'bg_orange','bg_darkorange','bg_brown','bg_gray','bg_bluegray','bg_darkgray'];
+
+	for( var i = 0; i < msmColors.length; i++ ){
+		$('.settings_colors').append('<span class="' + msmColors[i] + ' circle"></span>');
+	}
+
+	$('.settings_colors span').click(function(){
+		$(this).addClass('bg_check');
+		$(this).siblings('span').removeClass('bg_check');
+	});
+
+/*-------------------------------------------------------------------------------------
 		LIST ITEM CIRCLE CONTROL
 ---------------------------------------------------------------------------------------*/
 
 	var colorsArray = ['bg_amber','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
 		'bg_green','bg_lightpink','bg_yellow','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
-		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_orange','bg_brown','bg_darkblue',
-		'bg_purple','bg_red','bg_lightblue','bg_lightpink','bg_bluegray','bg_darkgray',
+		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_brown','bg_darkblue',
+		'bg_purple','bg_pink','bg_lightblue','bg_bluegray','bg_amber','bg_lime',
 		// Numbers colors
 		'bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
 

@@ -17,7 +17,7 @@ body {
  	height: 100%;
 	font-family: 'Roboto' , 'Helvetica' , sans-serif;
 	background-color: #e0e0e0;
-	color: #505050;
+	color: #424242;
 	font-size: 14px;
 }
 
@@ -25,7 +25,7 @@ a{
 	text-decoration: none;
 }
 
-input, select, textarea, option{font-size: 15px;}
+input, select, textarea, option{font-size: 15px;color: #424242;}
 
 select, option{
 	-webkit-appearance: none;
@@ -112,10 +112,10 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 
 .h_listcontainer .h_listline{
-	height: 3px;
+	height: 4px;
 	display: inline-block;
 	position: absolute;
-	top: 51px;
+	top: 46px;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -125,6 +125,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .pd_4{padding: 4px;width: auto;}
 .pd_6{padding: 6px;width: auto;}
 .pd_8{padding: 8px;width: auto;}
+.pd_10{padding: 10px;width: auto;}
 .pd_12{padding: 12px;width: auto;}
 .pd_14{padding: 14px;width: auto;}
 .pd_16{padding: 16px;width: auto;}
@@ -314,7 +315,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .empty_blocktext .centerempty{
 	position: relative;
- 	top: 50%;
+ 	top: 48%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -547,7 +548,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	position: absolute;
 	width: 68px;
 	height: 68px;
-	top: 14px;
+	top: 16px;
 	left: 14px;
 }
 
@@ -610,7 +611,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .menu_opccontainer a{
 	text-decoration: none;
-	color: #505050;
+	color: #424242;
 }
 
 .top_pallete{
@@ -884,7 +885,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	right: 0;
 	padding: 0;
 	z-index: 10;
-	color: #505050;
 	font-weight: normal;
 }
 
@@ -1135,7 +1135,6 @@ span.title_rightoptionicon#settings_icon:hover{
 	width: calc(100% - 104px);
 	height: 42px;
 	padding: 0 12px 0 12px;
-	color: #505050;
 	margin: 10px;
 	margin-right: 12px;
 	margin-left: 12px;
@@ -1289,7 +1288,6 @@ span.title_rightoptionicon#settings_icon:hover{
 	margin: 0;
 	opacity: 0.3;
 	top: -8px;left: 120px;
-	z-index: -1;
 }
 
 .notif .listitem_img{
@@ -1344,6 +1342,7 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 	color: #616161;
 	border: none;
 	outline: none;
+	font-size: 14px;
 	padding: 0 24px 0 48px; 
 	font-weight: lighter;
 	height: 36px;
@@ -1393,7 +1392,6 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 
 .form_input input[type='text'], .form_input input[type='password'], .form_input input[type='email'],
 .form_input select, .form_input textarea{
-	font-family: 'Roboto' , sans-serif;
 	border: none;
 	outline: none;
 	width: 100%;
@@ -1430,7 +1428,7 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 .form_input .activeline::-moz-placeholder{color: rgba(255,255,255,0.5);}
 .form_input .activeline:-ms-input-placeholder{color: rgba(255,255,255,0.5);}
 
-option{color: #505050;background-color: #fff;}
+option{background-color: #fff;}
 
 .form_input .double{width: 100%;}
 
@@ -1441,7 +1439,6 @@ option{color: #505050;background-color: #fff;}
 .form_input textarea{margin-top: 6px;}
 
 .form_input2 input[type='text'], .form_input2 textarea{
-	font-family: 'Roboto' , sans-serif;
 	border: none;
 	outline: none;
 	width: calc(100% - 36px);
@@ -1450,7 +1447,6 @@ option{color: #505050;background-color: #fff;}
 	margin-top: 0;
 	padding: 18px;
 	background-color: transparent;
-	color: #505050;
 }
 
 .form_input2 textarea{
@@ -1522,6 +1518,10 @@ option{color: #505050;background-color: #fff;}
 	font-weight: bold;
 }
 
+.day:hover{
+	background-color: rgba(0,191,165,0.08);
+}
+
 .tablecalendar .today{color: blue;opacity: 1;}
 
 .tablecalendar .day .num{
@@ -1559,6 +1559,22 @@ option{color: #505050;background-color: #fff;}
 }
 
 /*---------------------------------------------------------------------------------------
+	SETTINGS
+-----------------------------------------------------------------------------------------*/
+
+.settings_colors{max-width: 400px;margin: 0 auto;}
+
+.settings_colors span{
+	width: 56px;
+	height: 56px;
+	display: inline-block;
+	margin: 4px;
+	cursor: pointer;
+}
+
+.settings_colors span:hover{box-shadow: 0px 2px 7px rgba(0,0,0,0.4);}
+
+/*---------------------------------------------------------------------------------------
 	BUTTONS
 -----------------------------------------------------------------------------------------*/
 
@@ -1569,6 +1585,12 @@ option{color: #505050;background-color: #fff;}
 	height: 52px;
 	display: block;
 	cursor: pointer;
+}
+
+.form_input span.submit input[type='submit']{
+	width: 100%;
+	height: 100%;
+	margin: 0;
 }
 
 .form_input input[type='submit'], .form_input span.submit_cancel{
@@ -1653,6 +1675,10 @@ input[type='submit']{cursor: pointer;}
 
 .float_buttoncontainer:hover{
 	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+}
+
+.profile_img .minimenu span{
+	box-shadow: 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .leftmsm, .rightmsm{box-shadow: 0px 1px 2px rgba(0,0,0,0.1);}

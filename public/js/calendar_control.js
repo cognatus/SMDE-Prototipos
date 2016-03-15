@@ -103,7 +103,7 @@ function writeCalendar(month, year){
     var origw = $('.calendar_monthcontainer').width();
     var left = $('.calendar_monthcontainer').position().left;
 
-    $('#calendar_month_content .day .pd_8').click(function(){
+    $('#calendar_month_content .day .pd_8').on('click' ,function(){
 
         var origh = $('.calendar').height();
         $('.calendar_rightinner').css({

@@ -20,7 +20,7 @@
 	}
 
 	.page_container{
-		width: calc(100% - 210px);
+		width: calc(100% - 180px);
 		margin: 0 auto;
 	}
 
@@ -48,7 +48,7 @@
 	}
 
 	.profile_img{
-		height: 290px;
+		height: 260px;
 	}
 
 	.secondgrid{background-color: #eeeeee;}
