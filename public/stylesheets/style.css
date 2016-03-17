@@ -265,10 +265,19 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	background-attachment: fixed;	
 }
 
-.bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat, .bg_chatwhite{
+.bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
+.bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download{
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;
 }
+
+.bg_attachment{background-image: url('/images/attachment.png');background-size: 52%;}
+
+.bg_attachment_white{background-image: url('/images/attachment_white.png');background-size: 52%;}
+
+.bg_file{background-image: url('/images/file.png');}
+
+.bg_download{background-image: url('/images/download.png');background-size: 56%;}
 
 .bg_edit{background-image: url('/images/whitepencil.png');}
 
@@ -294,7 +303,11 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .border_bottom{border-bottom: 1px solid rgba(0,0,0,0.1);}
 
+.border_thick{border: 2px solid rgba(0,0,0,0.1);}
+
 .border_bottomthick{border-bottom: 2px solid rgba(0,0,0,0.4);}
+
+.border_accentcolor{border-color: #00BFA5;}
 
 .inbox_shadow{box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);}
 
@@ -794,9 +807,9 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	PROFILE TOP
 -----------------------------------------------------------------------------------------*/
 
-.form_profilephoto{
+/*.form_profilephoto{
 	display: none;
-}
+}*/
 
 .profile_img{
 	height: 200px;
@@ -1403,6 +1416,15 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 	margin-bottom: 0; 
 }
 
+.form_input input[type='file']{
+	border: none;
+	outline: none;
+	width: 100%;
+	margin-top: 6px;
+	padding: 8px 0px 8px 0px;
+	background-color: transparent;
+}
+
 .form_input input[type='text'], .form_input input[type='password'], .form_input input[type='email'],
 .form_input select, .form_input textarea{
 	border: none;
@@ -1466,6 +1488,29 @@ option{background-color: #fff;}
 
 .form_input2 textarea{
 	height: 146px;
+}
+
+.input_filecontainer{display: none;}
+
+.file_buttoncontainer span{
+	width: 48px;
+	height: 48px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.file_buttoncontainer .right_float{
+	width: calc(100% - 72px);
+} 
+	
+#file_value{
+	width: auto;
+	overflow: hidden;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding: 8px 18px 8px 18px;
+	height: 18px;
+	border-radius: 5px;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -1573,6 +1618,27 @@ option{background-color: #fff;}
 	opacity: 0.2;
 	position: absolute;
 	z-index: -1;
+}
+
+.attached_filecontainer{margin: 0 16px 0 16px;}
+
+.attached_filecontainer span{
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	margin-right: 18px;
+}
+
+.attached_filecontainer div{
+	display: inline-block;
+	width: calc(100% - 116px);
+	overflow: hidden;
+	height: 17px;
+}
+
+.attached_filecontainer span.bg_download{
+	margin-right: 0;
+	margin-left: 18px;
 }
 
 /*---------------------------------------------------------------------------------------

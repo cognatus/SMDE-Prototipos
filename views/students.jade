@@ -29,6 +29,13 @@ block content
 								.form_input
 									.b_text Descripción
 									textarea(placeholder='Descripción')
+								.form_input
+									.input_filecontainer
+										input(type='file' name='attachedfile' id='attachedfile')
+									.file_buttoncontainer
+										span#trigger_fbutton.bg_attachment_white.circle.bg_cyan.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
+										.right_float
+											#file_value.ll_title.opacity_color.border_thick Seleccionar Archivo
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 						.form_confirmblock

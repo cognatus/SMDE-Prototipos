@@ -214,7 +214,7 @@
 
 	.top_list{box-shadow: none;background-color: transparent;margin-bottom: 0;}
 
-	.top_list .h_listtopcontainer{color: rgba(255,255,255,0.9);font-weight: normal;}
+	.top_list .h_listtopcontainer{color: rgba(255,255,255,0.9);}
 
 	.calendar_container{height: 450px;}
 

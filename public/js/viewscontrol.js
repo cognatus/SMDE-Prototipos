@@ -259,7 +259,7 @@ $(document).ready(function(){
 	$('.block_containermsm .listitem').click(function(){
 		var title = $(this).attr('data-name');
 		var img = $(this).find('img').attr('src');
-		if($(window).width() < 1120){
+		if( $(window).width() < 1120 ){
 			$('.block_containermsm').animate({ scrollLeft: $('.halfgrid').width() });
 			$('#new_item').hide();
 		}
@@ -268,7 +268,9 @@ $(document).ready(function(){
 		changeLetterColor();
 	});
 
-	$('#listcontainer .listitem').first().trigger('click');
+	if( $(window).width() >= 1120 ){
+		$('#listcontainer.left_listcontainer .listitem').first().trigger('click');
+	}
 
 	function changeLetterColor(){
 		$('.msmtopname').each(function(){
@@ -363,6 +365,29 @@ $(document).ready(function(){
 	});
 
 /*-------------------------------------------------------------------------------------
+		INPUT FILE
+---------------------------------------------------------------------------------------*/
+
+	$('#trigger_fbutton').click(function(){
+		$('#attachedfile').trigger('click');
+	});
+
+	var origText = $('#file_value').text();
+	
+	$('#attachedfile').on('change' , function(){
+		var fileValue = $(this).val();
+		$('#file_value').text( fileValue );
+		if( fileValue != ''){
+			$('#file_value').addClass('border_accentcolor');
+		}
+		else{
+			$('#file_value').removeClass('border_accentcolor');
+			$('#file_value').text(origText);
+		}
+	});
+
+
+/*-------------------------------------------------------------------------------------
 		SEARCH BAR
 ---------------------------------------------------------------------------------------*/
 
@@ -372,7 +397,7 @@ $(document).ready(function(){
 		$('#listcontainer .listitem').hide();
 
 		if(currentQuery != ''){
-			$('#listcontainer .listitem').each(function(){
+			$('#listcontainer .listitem ').each(function(){
 				var currentKeyboard = $(this).attr('data-name').toUpperCase();
 				var currentKeyboard2 = $(this).attr('data-subject').toUpperCase();
 
@@ -385,6 +410,27 @@ $(document).ready(function(){
 			$('#listcontainer .listitem').show();
 		}
 
-	})
+	});
+
+	$('#buscar_slide').keyup(function(){
+
+		var currentQuery = $('#buscar_slide').val().toUpperCase();
+		$('#listcontainer .slide_list').hide();
+
+		if(currentQuery != ''){
+			$('#listcontainer .slide_list').each(function(){
+				var currentKeyboard = $(this).attr('data-name').toUpperCase();
+				var currentKeyboard2 = $(this).attr('data-type').toUpperCase();
+
+				if( currentKeyboard.indexOf(currentQuery) >= 0 || currentKeyboard2.indexOf(currentQuery) >= 0 ){
+					$(this).show();
+				}
+			});
+		}
+		else{
+			$('#listcontainer .slide_list').show();
+		}
+
+	});
 
 });
