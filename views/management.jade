@@ -45,8 +45,8 @@ block content
 								.form_input
 									.b_text.left_title Contraseña
 									input(type='password', placeholder='*******' name='userPassword')
-							.form_input(style='height: 52px;')
-								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+								.form_input(style='height: 52px;')
+									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 						.form_confirmblock
 							.inner_confirmblock.bg_gray.flat_shadow
 								.pd_24(style='padding-bottom: 16px;')
@@ -68,17 +68,18 @@ block content
 							b Admin
 							span Institución: CEFO
 			.h_listcontainer
-				.block_container.bg_white
+				.colhh1(style='margin-bottom: -12px;')
 					.colhh1.rel_pos
 						.h_listline.bgaccent_color
-						.h_listitem.first
-							.pd_16.ll_title.rippleria-dark( data-rippleria ) Todo
-						.h_listitem
-							.pd_16.ll_title.rippleria-dark( data-rippleria ) Alumnos
-						.h_listitem
-							.pd_16.ll_title.rippleria-dark( data-rippleria ) Profesores
-						.h_listitem
-							.pd_16.ll_title.rippleria-dark( data-rippleria ) Asignatura
+						.h_listtopcontainer
+							.h_listitem.first
+								.pd_16.rippleria-dark( data-rippleria ) Todo
+							.h_listitem
+								.pd_16.rippleria-dark( data-rippleria ) Alumnos
+							.h_listitem
+								.pd_16.rippleria-dark( data-rippleria ) Profesores
+							.h_listitem
+								.pd_16.rippleria-dark( data-rippleria ) Asignatura
 				.block_container.bg_white
 					.colhh1
 						.search
@@ -87,8 +88,8 @@ block content
 					.colhh1.h_listindex.first
 						.colhh1.listcontainer
 							.colhh1.slide_list
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria).rel_pos
-									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria)
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria data-name='nombre')
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 									.listitem_img
 										img(src='images/profilephoto.png')
 									.listitem_info
@@ -117,8 +118,8 @@ block content
 													.listitem_bottomdata
 														| 5 grupos
 							.colhh1.slide_list
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria).rel_pos
-									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria)
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria data-name='nombre')
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 									.listitem_img
 										img(src='images/profilephoto.png')
 									.listitem_info
@@ -146,8 +147,8 @@ block content
 														b Biología
 													.listitem_bottomdata
 							.colhh1.slide_list
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria).rel_pos
-									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria)
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria data-name='nombre_asig')
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 									.listitem_img
 										span A
 									.listitem_info

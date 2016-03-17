@@ -39,7 +39,7 @@ block content
 					.colhh1
 						.colhh1.center_text.list_title.rel_pos
 							.pd_18.ll_title Chats
-							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Mostrar')
+							span.title_rightoptionicon.circle(style='background-image: url("images/list_icon.png")' title='Mostrar')
 								.minimenu_hidden.left_text
 									.pd_12.hover.rippleria-dark(data-rippleria) Todo
 									.pd_12.hover.rippleria-dark(data-rippleria) No Leidos
@@ -49,22 +49,22 @@ block content
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un chat')
 					.autooverflow.left_listcontainer
-						.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Nombre Completo')
 							.listitem_img
 								img(src='images/profilephoto.png')
 							.listitem_info.border_bottom
 								.listitem_rightinfo 
-									label Dia 
+									label Dia
 									label 00:00
 								.listitem_title 
-									b Usuario 1
+									b Nombre Completo
 								.listitem_bottomdata  Lorem ipsum dolor sit amet
 						.colhh1(style='height: 82px;')
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
-						img.circle( src='images/profilephoto.png' )
-						|	Juan Barrera
+						img#msm_userimg.circle( src='images/profilephoto.png' )
+						label Juan Barrera
 						.minimenu_container( title='Opciones' )
 							.minimenu
 								span
@@ -78,36 +78,42 @@ block content
 					.msmcontent
 						.msm_innercontent
 							.colhh1
-								.pd_24
-									.colhh1.margin_bot.msmballon
-										.colhh1.autooverflow
-											.leftmsm.bg_blue.white_text
-												i
-												.pd_8 
-													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum
-													span.msm_date 10:34 pm
-										.colhh1.autooverflow
-											.leftmsm.bg_blue.white_text
-												.pd_8 
-													|  Suspendisse hendrerit ultricies dui ut fringilla.
-													span.msm_date 10:34 pm
-									.colhh1.margin_bot.msmballon
-										.colhh1.autooverflow
-											.rightmsm.bgaccent_color.white_text
-												i
-												.pd_8 
-													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor.
-													span.msm_date 10:34 pm
-										.colhh1.autooverflow
-											.rightmsm.bgaccent_color.white_text
-												.pd_8 
-													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-													span.msm_date 10:34 pm
-										.colhh1.autooverflow
-											.rightmsm.bgaccent_color.white_text
-												.pd_8 
-													| Lorem ipsum dolor sit amet.
-													span.msm_date 10:34 pm
+								.msm_pd
+									.colhh1.margin_bot.msm_block
+										.msm_img
+											img.circle(src='images/profilephoto.png' title='El otro fulano')
+										.msm_text
+											.colhh1.autooverflow
+												.leftmsm.bg_blue.white_text
+													i
+													.pd_12 
+														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum
+														span.msm_date 10:34 pm
+											.colhh1.autooverflow
+												.leftmsm.bg_blue.white_text
+													.pd_12 
+														|  Suspendisse hendrerit ultricies dui ut fringilla.
+														span.msm_date 10:34 pm
+									.colhh1.margin_bot.msm_block
+										.msm_text
+											.colhh1.autooverflow
+												.rightmsm.bgaccent_color.white_text
+													i
+													.pd_12 
+														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor.
+														span.msm_date 10:34 pm
+											.colhh1.autooverflow
+												.rightmsm.bgaccent_color.white_text
+													.pd_12 
+														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+														span.msm_date 10:34 pm
+											.colhh1.autooverflow
+												.rightmsm.bgaccent_color.white_text
+													.pd_12 
+														| Lorem ipsum dolor sit amet.
+														span.msm_date 10:34 pm
+										.msm_img
+											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
 						.colhh1.msminput
 							input( type='text' , name='newmsm' , placeholder='Mensaje' )
 							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='msmsend' , value='')

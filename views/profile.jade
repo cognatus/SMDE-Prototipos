@@ -44,14 +44,15 @@ block content
 
 			.grid_rightcontainer
 				.colhh1.h_listcontainer
-					.block_container.bg_white.rel_pos
+					.rel_pos.top_list
 						.h_listline.bgaccent_color
-						.h_listitem.first
-							.pd_16.ll_title.rippleria-dark( data-rippleria ) Información
-						.h_listitem
-							.pd_16.ll_title.rippleria-dark( data-rippleria ) Contactos
-						.h_listitem
-							.pd_16.ll_title.rippleria-dark( data-rippleria ) Asignaturas
+						.h_listtopcontainer
+							.h_listitem.first
+								.pd_16.rippleria-dark( data-rippleria ) Información
+							.h_listitem
+								.pd_16.rippleria-dark( data-rippleria ) Contactos
+							.h_listitem
+								.pd_16.rippleria-dark( data-rippleria ) Asignaturas
 
 					.colhh1.h_listindex.first
 						.block_container.bg_white
@@ -88,8 +89,8 @@ block content
 									span.v_middle(style= 'background-image: url("images/account-remove.png")')
 									.autocol.pd_12.mm_title No tienes contactos.
 							.colhh1.slide_list
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria).rel_pos
-									.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria)
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria data-name='nombre')
+									.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
 									.listitem_img
 										img(src='images/profilephoto.png')
 									.listitem_info
@@ -110,7 +111,7 @@ block content
 									span.v_middle(style= 'background-image: url("images/close-box.png")')
 									.autocol.pd_12.mm_title No tienes ninguna asignatura.
 							.colhh1.slide_list
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='nombre_asig')
 									.listitem_img
 										span A
 									.listitem_info

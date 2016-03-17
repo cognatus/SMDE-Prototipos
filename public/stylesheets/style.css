@@ -103,10 +103,18 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	display: inline-block;
 }
 
+.top_list{margin-bottom: -12px;}
+
+.h_listcontainer .h_listtopcontainer{
+	color: rgba(0,0,0,0.4);
+	font-weight: bold;
+}
+
 .h_listcontainer .h_listitem{
 	width: auto;
 	display: inline-block;
 	vertical-align: top;
+	text-transform: uppercase;
 	margin: 0;
 	cursor: pointer;
 }
@@ -115,7 +123,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	height: 4px;
 	display: inline-block;
 	position: absolute;
-	top: 46px;
+	top: 45px;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -531,7 +539,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	width: 296px;
 	background-color: #fff;
 	height: 100%;
-	box-shadow: 1px 0px 2px rgba(0,0,0,0.24);
 	position: fixed;
 	left: -306px;
 	z-index: 999;
@@ -546,8 +553,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .menu_userimg{
 	position: absolute;
-	width: 68px;
-	height: 68px;
+	width: 66px;
+	height: 66px;
 	top: 16px;
 	left: 14px;
 }
@@ -752,6 +759,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .block_containermsm{
 	overflow: hidden;
 	height: calc(100% - 64px);
+	background-color: #eeeeee;
 }
 
 .block_container:last-child{
@@ -1090,20 +1098,23 @@ span.title_rightoptionicon#settings_icon:hover{
 	background-color: #616161;
 }
 
-.backicon{
+.backicon, .backicon_white{
 	display: block;
-	width: 48px;
+	width: 54px;
 	height: 100%;
 	position: absolute;
 	border-radius: 0 40px 40px 0px;-webkit-border-radius: 0 40px 40px 0px;-moz-border-radius: 0 40px 40px 0px;
 	-o-border-radius: 0 40px 40px 0px;
-	background: url('/images/arrow-left.png') no-repeat center;
-	background-size: 22px; 
+	background: no-repeat center;
+	background-size: 22px;
+	background-image: url('/images/arrow-left.png');
 	top: 0px;left: 0px;
 	cursor: pointer;
 }
 
-.backicon:hover{background-color: rgba(0,0,0,0.04);}
+.backicon_white{background-image: url('/images/arrow-leftwhite.png');}
+
+.backicon:hover, .backicon_white:hover{background-color: rgba(0,0,0,0.04);}
 
 .msmcontent{
 	height: calc(100% - 54px);
@@ -1155,79 +1166,84 @@ span.title_rightoptionicon#settings_icon:hover{
 	outline: none;
 }
 
-.leftmsm{
+.msm_pd{padding: 24px;}
+
+.msm_block .msm_img{
+	width: 44px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.msm_block .msm_img img{
+	width: 40px;
+	height: 40px;
+	margin: 0;
+}
+
+.msm_block .msm_img img.msm_imgright{
+	margin-left: 4px;
+}
+
+.msm_block .msm_text{
+	width: calc(100% - 44px);
+	display: inline-block;
+	vertical-align: top;
+}
+
+.leftmsm, .rightmsm{
 	position: relative;
 	display: inline-block;
-	max-width: 84%;
-	border-radius: 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;
-	-o-border-radius: 4px;
-	left: 8px;
+	max-width: 80%;
+	border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	left: 9px;
 	margin-bottom: 4px;
 }
 
-.leftmsm div{
+.rightmsm{
+	float: right;
+	left: -9px;
+}
+
+.leftmsm div, .rightmsm div{
 	font-size: 13px;	
 	position: relative;
 	z-index: 4;
 }
 
-.leftmsm i{
+.leftmsm i, .rightmsm i{
 	display: block;
 	position: absolute;
 	background-color: inherit; 
-	width: 12px;
-	height: 12px;
+	width: 15px;
+	height: 15px;
 	top: 0;
-	left: -3px;
-	transform: skewX(30deg);-webkit-transform: skewX(30deg);-moz-transform: skewX(30deg);
-	-ms-transform: skewX(30deg);-o-transform: skewX(30deg);
-	box-shadow: -1px 0px rgba(0,0,0,0.1);
 }
 
-.rightmsm{
-	position: relative;
-	display: inline-block;
-	float: right;
-	max-width: 80%;
-	border-radius: 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;
-	-o-border-radius: 4px;
-	left: -8px;
-	opacity: 0.8;
-	margin-bottom: 4px;
-}
-
-.rightmsm div{
-	font-size: 13px;
-	position: relative;
-	z-index: 4; 
+.leftmsm i{
+	left: -4px;
+	transform: skewX(32deg);-webkit-transform: skewX(32deg);-moz-transform: skewX(32deg);
+	-ms-transform: skewX(32deg);-o-transform: skewX(32deg);
 }
 
 .rightmsm i{
-	display: block;
-	position: absolute;
-	background-color: inherit;
-	width: 12px;
-	height: 12px;
-	top: 0;
-	right: -3px;
-	transform: skewX(-30deg);-webkit-transform: skewX(-30deg);-moz-transform: skewX(-30deg);
-	-ms-transform: skewX(-30deg);-o-transform: skewX(-30deg);
-	box-shadow: 1px 0px rgba(0,0,0,0.1);
+	right: -4px;
+	transform: skewX(-32deg);-webkit-transform: skewX(-32deg);-moz-transform: skewX(-32deg);
+	-ms-transform: skewX(-32deg);-o-transform: skewX(-32deg);
 }
 
 .msm_date{
 	display: block; 
-	float: right;
 	font-size: 11px;
-	opacity: 0.6;
-	margin: 8px 0 4px 8px; 
+	color: rgba(255,255,255,0.65);
+	padding-top: 8px; 
 }
 
 /*---------------------------------------------------------------------------------------
 	FORUM
 -----------------------------------------------------------------------------------------*/
 
-.forum_commentcontainer{margin-bottom: 16px;}
+.forum_commentcontainer{margin-bottom: 12px;}
 
 .forum_commentimg{width: 40px;display: inline-block;}
 
@@ -1343,14 +1359,11 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 	border: none;
 	outline: none;
 	font-size: 14px;
-	padding: 0 24px 0 48px; 
-	font-weight: lighter;
+	padding: 0 24px 0 48px;
 	height: 36px;
 	margin: 0;
 	border-radius: 60px;-webkit-border-radius: 60px;-moz-border-radius: 60px;-o-border-radius: 60px;
 }
-
-.search input[type='text']:focus{font-weight: normal;}
 
 .form_confirmblock{
 	width: 100%;
@@ -1430,11 +1443,13 @@ span.searchicon_white{background-image: url('/images/magnify_white.png')}
 
 option{background-color: #fff;}
 
-.form_input .double{width: 100%;}
+.form_input .double, .form_input .triple{width: 100%;}
 
-.form_input .double input{width: calc(50% - 10px);}
+.form_input .double input{width: calc(50% - 6px);}
 
-.form_input .double input.second{margin-left: 12px;width: calc(50% - 10px);}
+.form_input .triple input{width: calc(33.33333% - 8px);}
+
+.form_input .double input.second, .form_input .triple input.third{margin-left: 12px;}
 
 .form_input textarea{margin-top: 6px;}
 
@@ -1470,12 +1485,13 @@ option{background-color: #fff;}
 	z-index: 5;display: none;top: 0;left: 0;overflow: hidden;}
 
 #calendar_dayeventscont{
-	height: calc(100% - 55px);
+	height: calc(100% - 54px);
 }
 
 #calendar_dayevents_title{
 	padding-left: 46px;
 	position: relative;
+	height: 18px;
 }
 
 .calendar #month{
@@ -1512,6 +1528,7 @@ option{background-color: #fff;}
 
 .tablecalendar .day{
 	display: inline-block;
+	width: 48px;
 	width:  14.2857%;
 	height: 48px;
 	cursor: pointer;
@@ -1657,6 +1674,8 @@ input[type='submit']{cursor: pointer;}
 	SHADOWS
 -----------------------------------------------------------------------------------------*/
 
+.menu_grid{box-shadow: 1px 0px 2px rgba(0,0,0,0.24);}
+
 .flat_shadow, .block_container, .hidden_block, .minimenu_hidden{box-shadow: 0 1px 2px rgba(0,0,0,0.24);}
 
 .sign_field input.signbutton, .msminput input[type='submit'], .form_input span.submit{
@@ -1680,8 +1699,6 @@ input[type='submit']{cursor: pointer;}
 .profile_img .minimenu span{
 	box-shadow: 0 1px 2px rgba(0,0,0,0.24);
 }
-
-.leftmsm, .rightmsm{box-shadow: 0px 1px 2px rgba(0,0,0,0.1);}
 
 /*---------------------------------------------------------------------------------------
 	LOAD - SPINNER

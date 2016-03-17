@@ -46,25 +46,54 @@ block content
 							.pd_18.ll_title Temas
 							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Ordenar Por')
 								.minimenu_hidden.left_text
-									.pd_12.hover.rippleria-dark(data-rippleria) A - Z
-									.pd_12.hover.rippleria-dark(data-rippleria) Z - A
-									.pd_12.hover.rippleria-dark(data-rippleria) Fecha
-									.pd_12.hover.rippleria-dark(data-rippleria) Asignatura
+									#sort_alfa.pd_12.hover.rippleria-dark(data-rippleria) Alfabético
+									#sort_date.pd_12.hover.rippleria-dark(data-rippleria) Fecha
+									#sort_subject.pd_12.hover.rippleria-dark(data-rippleria) Asignatura
 						.colhh1
 							.search
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un tema')
-					.autooverflow.left_listcontainer
-						.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+					#listcontainer.autooverflow.left_listcontainer
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Magnetismo' data-date='28' data-subject='Física')
 							.listitem_img
 								span A
 							.listitem_info
 								.listitem_rightinfo 
-									label Dia 
-									label 00:00
+									label 28 
+									label Mar
 								.listitem_title 
-									b Tema
-								.listitem_bottomdata Asignatura
+									b Magnetismo
+								.listitem_bottomdata Física
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Células' data-date='15' data-subject='Biología')
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 
+									label 15 
+									label Mar
+								.listitem_title 
+									b Células
+								.listitem_bottomdata Biología
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Derivadas' data-date='19' data-subject='Cálculo Diferencial')
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 
+									label 19 
+									label Mar
+								.listitem_title 
+									b Derivadas
+								.listitem_bottomdata Calculo Diferencial
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Revolución' data-date='08' data-subject='Historia')
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 
+									label 08 
+									label Mar
+								.listitem_title 
+									b Revolución
+								.listitem_bottomdata Historia
 						.colhh1(style='height: 82px;')
 				.halfgrid.secondgrid
 					.msmtopname

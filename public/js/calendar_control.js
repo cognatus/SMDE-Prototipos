@@ -80,7 +80,7 @@ function prevMonth() {
         mes = 11;
         anio--;
     }
-    document.getElementById("elegido").innerHTML = '1 ' + months_labels[mes] + ' ' + anio;
+    document.getElementById("selectedDate").innerHTML = '1 ' + months_labels[mes] + ' ' + anio;
     writeCalendar(mes, anio);
 }
 
@@ -90,7 +90,7 @@ function nextMonth() {
         mes = 0;
         anio++;
     }
-    document.getElementById("elegido").innerHTML = '1 ' + months_labels[mes] + ' ' + anio;
+    document.getElementById("selectedDate").innerHTML = '1 ' + months_labels[mes] + ' ' + anio;
     writeCalendar(mes, anio);
 }
 
@@ -112,14 +112,14 @@ function writeCalendar(month, year){
         });
         
         var pos = $(this).position();
-        $('.day_pos').show();
 
+        $('.calendar_rightinner').hide();
+        $('.day_pos').show();
         $('.day_pos').animate({ 
             left : pos.left + ( $('.day').width()/2 - $('.day_pos').width()/2 ) ,
             top : pos.top
         }, function(){
             var anim = $('.calendar_right');
-            $('.calendar_rightinner').hide();
             anim.css({
                 left: left,
                 width: 0,
@@ -141,6 +141,18 @@ function writeCalendar(month, year){
         });
     });
 
+}
+
+super_months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
+                    'May', 'Jun', 'Jul', 'Aug', 'Sep',
+                    'Oct', 'Nov', 'Dic'];
+
+$(document).ready(function(){
+    $('.today_title .day_title').text(current_date.getDate());
+    $('.today_title .month_title').text(super_months_labels[current_date.getMonth()]);
+    $('.today_title .year_title').text(current_date.getFullYear());
+    $('.calendar_month_content').append(writeCalendar());
+
     $('#backcalendar').click(function(){
         var anim_hide = $('.calendar_right');
         $('.calendar_rightinner').hide();
@@ -156,18 +168,7 @@ function writeCalendar(month, year){
              anim_hide.hide();
         });
     });
-
-}
-
-super_months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
-                    'May', 'Jun', 'Jul', 'Aug', 'Sep',
-                    'Oct', 'Nov', 'Dic'];
-
-$(document).ready(function(){
-    $('.today_title .day_title').text(current_date.getDate());
-    $('.today_title .month_title').text(super_months_labels[current_date.getMonth()]);
-    $('.today_title .year_title').text(current_date.getFullYear());
-    $('.calendar_month_content').append(writeCalendar());
+    
 });
 
 function carga(calendarDay){
@@ -184,6 +185,8 @@ function carga(calendarDay){
 
     console.log( 'Día Form: ' + writeday );
     console.log( 'Mesa Form: ' + writemonth );
-    document.calendar_newevent.calendar_date.value = writeday + '/'+ writemonth + '/' + anio;
-    document.getElementById("elegido").innerHTML = calendarDay + ' ' + super_months_labels[mes] + ' ' + anio;
+    document.calendar_newevent.formCalendarDay.value = writeday;
+    document.calendar_newevent.formCalendarMonth.value = writemonth;
+    document.calendar_newevent.formCalendarYear.value = anio;
+    document.getElementById("selectedDate").innerHTML = calendarDay + ' ' + super_months_labels[mes] + ' ' + anio;
 }

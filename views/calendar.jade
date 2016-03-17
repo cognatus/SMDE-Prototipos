@@ -27,7 +27,10 @@ block content
 										option Recordatorio
 								.form_input
 									.b_text.left_title Fecha
-									input(type='text', placeholder='dd/mm/aaaa' name='calendar_date')
+									.triple
+										input(type='text', placeholder='DD' name='formCalendarDay')
+										input.third(type='text', placeholder='MM' name='formCalendarMonth')
+										input.third(type='text', placeholder='AAAA' name='formCalendarYear')
 								.form_input
 									.b_text Descripción
 									textarea(placeholder='Añade una Descripción')
@@ -50,10 +53,10 @@ block content
 					//- 	.pd_18.ll_title.center_text Calendario
 					.calendar
 						.colhh1.white_text.center_text.bg_lightblue.calendar_colortitle
-							.colhh1.border_bottom
+							.colhh1
 								.bg_opacity
-									.pd_16.sl_title.uppercase 
-										label#weekday Dia
+									.pd_18.ll_title.uppercase 
+										label#weekday Dia Semana
 							.today_title
 								.month_title.uppercase Mes
 								.day_title Dia
@@ -95,10 +98,10 @@ block content
 										//- 			span
 					.calendar_right.v_top.bg_white
 						.calendar_rightinner				
-							.colhh1.border_bottom
-								#calendar_dayevents_title.pd_18.ll_title Dia Seleccionado
-									span#backcalendar.backicon.rippleria-dark( data-rippleria )
-									#elegido.right_float Hoy
+							.colhh1.flat_shadow.bgaccent_color.white_text
+								#calendar_dayevents_title.pd_18.ll_title
+									span#backcalendar.backicon_white.rippleria-dark( data-rippleria )
+									#selectedDate.right_float Hoy
 							#calendar_dayeventscont.colhh1.autooverflow
 								.colhh1.empty_blocktext.center_text
 									.centerempty
