@@ -149,6 +149,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .pd12_18{padding: 12px 18px 12px 18px;width: auto;}
 .pd18_32{padding: 18px 32px 18px 32px;width: auto;}
 .pd_llist{padding-left: 18px;padding-bottom: 10px;padding-right: 18px;width: auto;}
+.pd_l4{padding-left: 4px;width: auto;}
 .pd_l12{padding-left: 12px;width: auto;}
 .pd_l18{padding-left: 18px;width: auto;}
 .pd_tb_8{padding: 8px 0 8px 0;width: auto;}
