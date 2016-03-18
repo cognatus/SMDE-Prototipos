@@ -113,3 +113,60 @@ block content
 											.pd_4
 											.colhh1.pd_l12 Nivel:
 												span.margin_l 1
+			//- SI ES PROFE
+			.h_listcontainer
+				.colhh1(style='margin-bottom: -12px;')
+					.colhh1.rel_pos
+						.h_listline.bgaccent_color
+						.h_listtopcontainer
+							.h_listitem.first
+								.pd_16.rippleria-dark( data-rippleria ) Asignaturas
+							.h_listitem
+								.pd_16.rippleria-dark( data-rippleria ) Alumnos
+				.block_container.bg_white
+					.colhh1
+						.search
+							span.searchicon
+							input#buscar_slide(type='text',name='buscar', placeholder='Buscar un contacto')
+					.colhh1.empty_blocktext.center_text
+						.pd_64
+							span.v_middle(style= 'background-image: url("images/close-box.png")')
+							.autocol.mm_title.pd_12 No tienes ninguna asignatura.
+							.ll_title.normal_txt Presiona &nbsp; + &nbsp; para inscribir Asignaturas.
+					#listcontainer
+						.colhh1.h_listindex.first
+							.colhh1.slide_list(data-name='Nombre Asignatura' data-type='Academia')
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+									.listitem_img
+										span A
+									.listitem_info
+										.listitem_rightinfo Promedio: 
+											label.subject_prom 8.46
+										.listitem_title 
+											b Nombre Asignatura
+										.listitem_bottomdata.rank
+											| Academia
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
+											.pd_llist
+												.sl_title Alumnos
+											.colhh1
+												.colhh1.hover.rel_pos.rippleria-dark(data-rippleria data-name='Nombre Completo')
+													.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Calificar')
+													.listitem_img
+														img(src='images/profilephoto.png')
+													.listitem_info
+														.listitem_title 
+															b Nombre Completo
+														.listitem_bottomdata Alumno
+						.colhh1.h_listindex
+							.colhh1.slide_list
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria data-name='Nombre Completo' data-type='Alumno')
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Calificar')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info
+										.listitem_title 
+											b Nombre Completo
+										.listitem_bottomdata Alumno

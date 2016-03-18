@@ -92,7 +92,6 @@ app.get('/subjects', routes.subjects);
 app.get('/foro', routes.foro);
 app.get('/settings', routes.settings);
 app.get('/calendar', routes.calendar);
-app.get('/students', routes.students);
 app.get('/management', routes.management);
 app.get('/error', routes.error);
 app.get('/users', user.list);

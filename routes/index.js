@@ -45,10 +45,6 @@ exports.calendar = function(req, res){
   res.render('calendar', { title: 'SMDE - Agenda' });
 };
 
-exports.students = function(req, res){
-  res.render('students', { title: 'SMDE - Alumnos' });
-};
-
 exports.management = function(req, res){
   res.render('management', { title: 'SMDE - Gestion' });
 };

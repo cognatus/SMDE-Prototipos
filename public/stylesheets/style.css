@@ -106,7 +106,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .top_list{margin-bottom: -12px;}
 
 .h_listcontainer .h_listtopcontainer{
-	color: rgba(0,0,0,0.4);
+	color: rgba(0,0,0,0.5);
 	font-weight: bold;
 }
 
