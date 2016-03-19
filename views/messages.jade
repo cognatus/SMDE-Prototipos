@@ -11,7 +11,7 @@ block content
 				span.close.bg_close.rippleria-dark( data-rippleria )
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.form_title.white_text.border_bottom.flat_shadow Nuevo
+					.pd_18.form_title.white_text.flat_shadow Nuevo
 				.colhh1.hb_formcontainer
 					form(name='new_messageform')
 						.form_innercontainer
@@ -36,26 +36,26 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid
 				.halfgrid.bg_white
-					.colhh1
-						.colhh1.center_text.list_title.rel_pos
+					.colhh1.bg_cyan.white_text.flat_shadow
+						.colhh1.list_title.rel_pos
 							.pd_18.ll_title Chats
 							span.title_rightoptionicon.circle(style='background-image: url("images/list_icon.png")' title='Mostrar')
 								.minimenu_hidden.left_text
-									.pd_12.hover.rippleria-dark(data-rippleria) Todo
-									.pd_12.hover.rippleria-dark(data-rippleria) No Leidos
-									.pd_12.hover.rippleria-dark(data-rippleria) Archivados
+									.pd_16.hover.rippleria-dark(data-rippleria) Todo
+									.pd_16.hover.rippleria-dark(data-rippleria) No Leidos
+									.pd_16.hover.rippleria-dark(data-rippleria) Archivados
 						.colhh1
 							.search
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un chat')
-					.autooverflow.left_listcontainer
-						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Nombre Completo')
+					#listcontainer.autooverflow.left_listcontainer
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Nombre Completo' data-type='Lorem ipsum')
 							.listitem_img
 								img(src='images/profilephoto.png')
 							.listitem_info.border_bottom
 								.listitem_rightinfo 
-									label Dia
-									label 00:00
+									label 24 
+									label Feb
 								.listitem_title 
 									b Nombre Completo
 								.listitem_bottomdata  Lorem ipsum dolor sit amet
@@ -64,17 +64,17 @@ block content
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
 						img#msm_userimg.circle( src='images/profilephoto.png' )
-						label Juan Barrera
+						label.b_text Nombre Completo
 						.minimenu_container( title='Opciones' )
 							.minimenu
 								span
 								span
 								span
 							.minimenu_hidden
-								.pd_12.hover.rippleria-dark(data-rippleria) Archivar
-								.pd_12.hover.rippleria-dark(data-rippleria) Eliminar
-								.pd_12.hover.rippleria-dark(data-rippleria) Vaciar
-								.pd_12.hover.rippleria-dark(data-rippleria) Buscar
+								.pd_16.hover.rippleria-dark(data-rippleria) Archivar
+								.pd_16.hover.rippleria-dark(data-rippleria) Eliminar
+								.pd_16.hover.rippleria-dark(data-rippleria) Vaciar
+								.pd_16.hover.rippleria-dark(data-rippleria) Buscar
 					.msmcontent
 						.msm_innercontent
 							.colhh1

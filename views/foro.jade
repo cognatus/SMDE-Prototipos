@@ -15,7 +15,7 @@ block content
 				.colhh1.hb_formcontainer
 					form( name='forum_new' )
 						.form_innercontainer
-							.pd12_24.border_bottom.flat_shadow.bgprimary_color
+							.pd12_24.flat_shadow.bgprimary_color
 								.form_input.white_text
 									input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo del tema')
 							.pd_24
@@ -41,20 +41,20 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid
 				.halfgrid.bg_white
-					.colhh1
-						.colhh1.center_text.list_title.rel_pos
+					.colhh1.bg_cyan.white_text.flat_shadow
+						.colhh1.list_title.rel_pos
 							.pd_18.ll_title Temas
 							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Ordenar Por')
 								.minimenu_hidden.left_text
-									#sort_alfa.pd_12.hover.rippleria-dark(data-rippleria) Alfabético
-									#sort_date.pd_12.hover.rippleria-dark(data-rippleria) Fecha
-									#sort_subject.pd_12.hover.rippleria-dark(data-rippleria) Asignatura
+									#sort_alfa.pd_16.hover.rippleria-dark(data-rippleria) Alfabético
+									#sort_date.pd_16.hover.rippleria-dark(data-rippleria) Fecha
+									#sort_subject.pd_16.hover.rippleria-dark(data-rippleria) Asignatura
 						.colhh1
 							.search
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un tema')
 					#listcontainer.autooverflow.left_listcontainer
-						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Magnetismo' data-date='28' data-subject='Física')
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Magnetismo' data-date='28' data-type='Física')
 							.listitem_img
 								span A
 							.listitem_info
@@ -64,7 +64,7 @@ block content
 								.listitem_title 
 									b Magnetismo
 								.listitem_bottomdata Física
-						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Células' data-date='15' data-subject='Biología')
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Células' data-date='15' data-type='Biología')
 							.listitem_img
 								span A
 							.listitem_info
@@ -74,7 +74,7 @@ block content
 								.listitem_title 
 									b Células
 								.listitem_bottomdata Biología
-						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Derivadas' data-date='19' data-subject='Cálculo Diferencial')
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Derivadas' data-date='19' data-type='Cálculo Diferencial')
 							.listitem_img
 								span A
 							.listitem_info
@@ -84,7 +84,7 @@ block content
 								.listitem_title 
 									b Derivadas
 								.listitem_bottomdata Cálculo Diferencial
-						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Revolución' data-date='08' data-subject='Historia')
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Revolución' data-date='08' data-type='Historia')
 							.listitem_img
 								span A
 							.listitem_info
@@ -99,15 +99,15 @@ block content
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
 						.letter.white_text.lighttext.circle
-						label Super Tema
+						label.b_text Título Tema
 						.minimenu_container( title='Opciones' )
 							.minimenu
 								span
 								span
 								span
 							.minimenu_hidden
-								.pd_12.hover.rippleria-dark(data-rippleria) Item 1
-								.pd_12.hover.rippleria-dark(data-rippleria) Item 2
+								.pd_16.hover.rippleria-dark(data-rippleria) Item 1
+								.pd_16.hover.rippleria-dark(data-rippleria) Item 2
 					.msmcontent
 						.msm_innercontent
 							.pd_24

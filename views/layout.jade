@@ -10,7 +10,7 @@ html
 		link( rel='stylesheet', href='/stylesheets/style.css')
 		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
 		link( rel='stylesheet', href='/rippleclick/css/jquery.rippleria.css')
-		script( type='text/javascript' src='/js/jquery-2.1.1.js' )
+		script( type='text/javascript' src='/js/jquery.js' )
 		script( type='text/javascript' src="/material_spinner/dist/js/material.spinner.min.js" )
 		script( type='text/javascript' src='/rippleclick/js/jquery.rippleria.js' )
 		script( type='text/javascript' src='/js/viewscontrol.js' )
@@ -42,7 +42,7 @@ html
 						.opc.hover
 							span( style='background-image: url("images/email.png")' )
 							label Mensajes
-					a( href='/upload' )
+					a( href='/contents' )
 						.opc.hover
 							span( style='background-image: url("images/pen.png")' )
 							label Contenidos
@@ -68,34 +68,35 @@ html
 							span( style='background-image: url("images/logout.png")' )
 							label Cerrar sesión		
 		.back_menu
-		.top_pallete_inner.flat_shadow.border_bottom.bgprimary_color
-		.top_pallete.colhh1.bgprimary_color
-			#menubutton.menu_button( title='Menu' )
-				span
-				span
-				span
-			.top_title #{title}
-		.minimenu_container.notif
-			.minimenu
-				.notif_icon.circle.rippleria-dark( data-rippleria title='Notificaciones' )
-			.minimenu_hidden
-				.colhh1.border_bottom.center_text.border_bottom.rel_pos
-					.pd_12.ll_title Notificaciones
-						span#settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings.png")' title='Configuración')
-				.colhh1.notifscroll
-					.colhh1.empty_blocktext.center_text
-						.centerempty
-							.pd_64
-								span.v_middle(style= 'background-image: url("images/bell-off.png")')
-								.autocol.mm_title.pd_12 No tienes notificaciones.
-								.ll_title.normal_txt Tus notificaciones apareceran aqui.
-					.colhh1.hover.rippleria-dark(data-rippleria)
-						.listitem_img
-							span A
-						.listitem_info
-							.listitem_rightinfo 10 sep
-							.listitem_title 
-								b Titulo de Notificación
-							.listitem_bottomdata Vista previa de notificación 
+		.body_container
+			.top_pallete_inner.flat_shadow.border_bottom.bgprimary_color
+			.top_pallete.colhh1.bgprimary_color
+				#menubutton.menu_button( title='Menu' )
+					span
+					span
+					span
+				.top_title #{title}
+			.notifications_container.notif
+				.icon_container
+					.notif_icon.circle.rippleria-dark( data-rippleria title='Notificaciones' )
+				.notifications_hidden.flat_shadow.white_text
+					.colhh1.border_bottom.center_text.border_bottom.rel_pos
+						.pd_12.ll_title Notificaciones
+							span#settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings_white.png")' title='Configuración')
+					.colhh1.notifscroll
+						.colhh1.empty_blocktext.center_text
+							.centerempty
+								.pd_64
+									span.v_middle(style= 'background-image: url("images/bell-off.png")')
+									.autocol.mm_title.pd_12 No tienes notificaciones.
+									.ll_title.normal_txt Tus notificaciones apareceran aqui.
+						.colhh1.hover(data-rippleria)
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 10 sep
+								.listitem_title 
+									b Titulo de Notificación
+								.listitem_bottomdata Vista previa de notificación 
 
-	block content
+			block content

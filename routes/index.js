@@ -25,8 +25,8 @@ exports.subjects = function(req, res){
   res.render('subjects', { title: 'SMDE - Asignaturas' });
 };
 
-exports.upload = function(req, res){
-  res.render('upload', { title: 'SMDE - Contenidos' });
+exports.contents = function(req, res){
+  res.render('contents', { title: 'SMDE - Contenidos' });
 };
 
 exports.messages = function(req, res){

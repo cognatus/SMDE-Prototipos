@@ -50,7 +50,12 @@ Calendar.prototype.generateHTML = function(){
         for ( var j = 0; j <= 6; j++ ) { 
             if ( day <= monthLength && (i > 0 || j >= startingDay) ) {
                 html += '<div class="day v_top" onclick="carga(' + day + ')">';
-                html += '<div class="pd_8"><div class="num"><span>';
+                if( day == current_date.getDate() ){
+                    html += '<div class="pd_8 today bg_lightblue flat_shadow white_text circle"><div class="num"><span>';    
+                }
+                else{
+                    html += '<div class="pd_8 circle"><div class="num"><span>';
+                }
                 html += day;
                 html += '</span><div class="dot_cont">';
                 html += '</div></div></div></div>';
@@ -184,7 +189,7 @@ function carga(calendarDay){
     writemonth = writemonth.length < 2 ? '0' + writemonth : writemonth;
 
     console.log( 'Día Form: ' + writeday );
-    console.log( 'Mesa Form: ' + writemonth );
+    console.log( 'Mes Form: ' + writemonth );
     document.calendar_newevent.formCalendarDay.value = writeday;
     document.calendar_newevent.formCalendarMonth.value = writemonth;
     document.calendar_newevent.formCalendarYear.value = anio;

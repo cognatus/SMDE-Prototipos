@@ -24,6 +24,14 @@
 		margin: 0 auto;
 	}
 
+	.notifications_hidden{
+		width: 420px;
+	}
+
+	.notif .notifscroll{
+		height: 400px;
+	}
+
 	.error_container{
 		width: 580px;
 		margin: 0 auto;
@@ -52,11 +60,11 @@
 	}
 
 	.top_pallete .minimenu_container{
-		z-index: 999;
+		z-index: 999; 
 	}
 
 	.login_container{
-		width: 380px;
+		width: 400px;
 	}
 
 	.login_bottom{
@@ -124,15 +132,14 @@
 
 	.index_container .colhh2{width: 50%;}
 
-	.op_bg .login_title{padding: 104px;padding-bottom: 48px;}
-
 	.colhh7{
 		width: 66.666666%;
 		display: inline-block;
 	}
 
 	.empty_blocktext .pd_64{
-		padding: 64px;
+		padding-left: 64px;
+		padding-right: 64px;
 	}
 
 	.block_container.progress_profile{
@@ -191,11 +198,6 @@
 		width: 36px;height: 36px;
 		background-color: rgba(0,0,0,0.1);
 	}*/
-
-	.notif .notifscroll{
-		width: 380px;
-		height: 370px;
-	}
 
 	.mr_8{margin-right: 8px;}
 	.ml_8{margin-left: 8px;}
