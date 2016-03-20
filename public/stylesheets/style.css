@@ -1569,7 +1569,7 @@ option{background-color: #fff;}
 
 .calendar .tablecalendar{
 	position: relative;
-	padding: 14px 0 8px 0;
+	padding: 8px 0 8px 0;
 	z-index: 0;
 	overflow: hidden;
 }
@@ -1714,7 +1714,7 @@ input[type='submit']{cursor: pointer;}
 	position: relative;
 	width: 42px;
 	height: 42px;
-	margin: 0px 8px 0 8px;
+	margin: 0px;
 	margin-bottom: 0;
 	background: no-repeat center;
 	background-size: 22px;

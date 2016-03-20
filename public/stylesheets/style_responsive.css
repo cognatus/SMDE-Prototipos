@@ -229,10 +229,6 @@
 		height: 52px;
 	}
 
-	.calendar span.button{margin: 0 16px 0 16px;}
-
-	.calendar .tablecalendar{padding-top: 16px;}
-
 	.calendar .today_title{margin-top: 78px;}
 
 }
