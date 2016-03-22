@@ -36,7 +36,7 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid
 				.halfgrid.bg_white
-					.colhh1.bg_cyan.white_text.flat_shadow
+					.colhh1.bgaccent_color2.white_text.flat_shadow
 						.colhh1.list_title.rel_pos
 							.pd_18.ll_title Chats
 							span.title_rightoptionicon.circle(style='background-image: url("images/list_icon.png")' title='Mostrar')
@@ -60,6 +60,16 @@ block content
 									b Nombre Completo
 								.listitem_bottomdata  Lorem ipsum dolor sit amet
 						.colhh1(style='height: 82px;')
+						form(name='formDesignTheme')
+							.pd_32
+								.colhh1.ll_title.opacity_color ¿Tema oscuro o claro?
+								.pd_12
+								.form_input(style='height: 40px;line-height:40px;')
+									.pd_l18
+										.autocol Activar Tema Oscuro
+										.right_float
+											input(type='checkbox' id='changeTheme', hidden)
+											label.switch(for='changeTheme')
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )

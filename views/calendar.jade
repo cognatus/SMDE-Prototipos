@@ -69,7 +69,7 @@ block content
 					//- .colhh1.border_bottom
 					//- 	.pd_18.ll_title.center_text Calendario
 					.calendar
-						.colhh1.white_text.center_text.bg_lightblue.calendar_colortitle
+						.colhh1.white_text.center_text.bgaccent_color3.calendar_colortitle
 							.colhh1
 								.bg_opacity
 									.pd_18.ll_title.uppercase 
@@ -103,7 +103,7 @@ block content
 										.colhh7.center_text
 											.pd_8.dayname SAB
 									.colhh1.tablecalendar
-										.day_pos.circle.bgaccent_colorfall
+										.day_pos.circle.bgaccent_color3
 										#calendar_month_content
 										//- .day.v_top.today
 										//- 	.pd_8
@@ -130,6 +130,16 @@ block content
 				.block_container.bg_white
 					.colhh1.border_bottom.center_text
 						.pd_18.ll_title Todo
+					form(name='formDesignTheme')
+						.pd_32
+							.colhh1.ll_title.opacity_color ¿Tema oscuro o claro?
+							.pd_12
+							.form_input(style='height: 40px;line-height:40px;')
+								.pd_l18
+									.autocol Activar Tema Oscuro
+									.right_float
+										input(type='checkbox' id='changeTheme', hidden)
+										label.switch(for='changeTheme')
 					.colhh1
 						.colhh1.load_container#calendar_showall
 							.load

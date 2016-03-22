@@ -4,8 +4,8 @@ days_labels = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 
 
 // these are human-readable month name labels, in order
 months_labels = ['Enero', 'Febrero', 'Marzo', 'Abril',
-	                	'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-	            		'Octubre', 'Noviembre', 'Diciembre'];
+                        'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                        'Octubre', 'Noviembre', 'Diciembre'];
 
 // these are the days of the week for each month, in order
 days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -26,9 +26,9 @@ Calendar.prototype.generateHTML = function(){
     // obtener primer dia del mes
     var firstDay = new Date(this.year, this.month, 1);
     var startingDay = firstDay.getDay();
-    $('.calendar #month').text( months_labels[this.month] );
-    $('.calendar #year').text( this.year );
-    $('.calendar #weekday').text( days_labels[current_date.getDay()] );
+    jQuery('.calendar #month').text( months_labels[this.month] );
+    jQuery('.calendar #year').text( this.year );
+    jQuery('.calendar #weekday').text( days_labels[current_date.getDay()] );
       
       // Numero de dias en el mes
       var monthLength = days_in_month[this.month];
@@ -51,7 +51,7 @@ Calendar.prototype.generateHTML = function(){
             if ( day <= monthLength && (i > 0 || j >= startingDay) ) {
                 html += '<div class="day v_top" onclick="carga(' + day + ')">';
                 if( day == current_date.getDate() ){
-                    html += '<div class="pd_8 today bg_lightblue flat_shadow white_text circle"><div class="num"><span>';    
+                    html += '<div class="pd_8 today bgaccent_color3 flat_shadow white_text circle"><div class="num"><span>';    
                 }
                 else{
                     html += '<div class="pd_8 circle"><div class="num"><span>';
@@ -100,31 +100,31 @@ function nextMonth() {
 }
 
 function writeCalendar(month, year){
-	var cal = new Calendar(month,year);
-	cal.generateHTML();
+    var cal = new Calendar(month,year);
+    cal.generateHTML();
     document.getElementById("calendar_month_content").innerHTML = cal.getHTML();
-    $('.day_pos').hide();
+    jQuery('.day_pos').hide();
 
-    var origw = $('.calendar_monthcontainer').width();
-    var left = $('.calendar_monthcontainer').position().left;
+    var origw = jQuery('.calendar_monthcontainer').width();
+    var left = jQuery('.calendar_monthcontainer').position().left;
 
-    $('#calendar_month_content .day .pd_8').on('click' ,function(){
+    jQuery('#calendar_month_content .day .pd_8').on('click' ,function(){
 
-        var origh = $('.calendar').height();
-        $('.calendar_rightinner').css({
+        var origh = jQuery('.calendar').height();
+        jQuery('.calendar_rightinner').css({
             width: origw,
             height: origh          
         });
         
-        var pos = $(this).position();
+        var pos = jQuery(this).position();
 
-        $('.calendar_rightinner').hide();
-        $('.day_pos').show();
-        $('.day_pos').animate({ 
-            left : pos.left + ( $('.day').width()/2 - $('.day_pos').width()/2 ) ,
+        jQuery('.calendar_rightinner').hide();
+        jQuery('.day_pos').show();
+        jQuery('.day_pos').animate({ 
+            left : pos.left + ( jQuery('.day').width()/2 - jQuery('.day_pos').width()/2 ) ,
             top : pos.top
         }, function(){
-            var anim = $('.calendar_right');
+            var anim = jQuery('.calendar_right');
             anim.css({
                 left: left,
                 width: 0,
@@ -136,7 +136,7 @@ function writeCalendar(month, year){
                 width: 250,
                 height: 250
             }, 200, function(){
-                $('.calendar_rightinner').fadeIn(500);
+                jQuery('.calendar_rightinner').fadeIn(500);
             });
             anim.animate({
                 width: origw,
@@ -152,15 +152,15 @@ super_months_labels = ['Ene', 'Feb', 'Mar', 'Abr',
                     'May', 'Jun', 'Jul', 'Aug', 'Sep',
                     'Oct', 'Nov', 'Dic'];
 
-$(document).ready(function(){
-    $('.today_title .day_title').text(current_date.getDate());
-    $('.today_title .month_title').text(super_months_labels[current_date.getMonth()]);
-    $('.today_title .year_title').text(current_date.getFullYear());
-    $('.calendar_month_content').append(writeCalendar());
+jQuery(document).ready(function(){
+    jQuery('.today_title .day_title').text(current_date.getDate());
+    jQuery('.today_title .month_title').text(super_months_labels[current_date.getMonth()]);
+    jQuery('.today_title .year_title').text(current_date.getFullYear());
+    jQuery('.calendar_month_content').append(writeCalendar());
 
-    $('#backcalendar').click(function(){
-        var anim_hide = $('.calendar_right');
-        $('.calendar_rightinner').hide();
+    jQuery('#backcalendar').click(function(){
+        var anim_hide = jQuery('.calendar_right');
+        jQuery('.calendar_rightinner').hide();
         anim_hide.animate({
             width: 250,
             height: 250,

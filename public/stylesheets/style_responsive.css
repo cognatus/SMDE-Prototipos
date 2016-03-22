@@ -44,7 +44,7 @@
 		margin: 12px auto;
 	}
 
-	.block_containermsm{
+	.block_containermsm, .block_containersettings{
 		position: relative;
 		z-index: 49;
 		margin: 12px auto;
@@ -54,6 +54,8 @@
 		height: calc(100% - 102px);
 		box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	}
+
+	.block_containersettings{box-shadow: none;height: auto;}
 
 	.profile_img{
 		height: 260px;
@@ -91,13 +93,16 @@
 
 	.form_input .left_title{
 		display: inline-block;
-		width: 120px; 
+		width: 108px;
+		margin-right: 12px;
+		vertical-align: middle;
 	}
 
 	.form_input input[type='text'], .form_input input[type='password'], .form_input input[type='email'],
 	.form_input select{
 		width: calc(100% - 120px);
 		margin-top: 0;
+		vertical-align: middle;
 	}
 
 	.form_input .double, .form_input .triple{width: calc(100% - 120px);display: inline-block;}
@@ -163,9 +168,15 @@
 		width: 100%;
 	}
 
-	.halfgrid{width: 400px;box-shadow: 1px 0px 2px rgba(0,0,0,0.1);}
-
+	.halfgrid{width: 400px;}
 	.secondgrid{width: calc(100% - 400px);}
+
+	.block_containersettings .halfgrid{width: 430px;}
+	.block_containersettings .secondgrid{width: calc(100% - 446px);margin-left: 16px;height: auto;height: 100%;}
+
+	.settings_right{height: 100%;}
+
+	.sett_margrid{margin-left: 16px;}
 
 	.msmtopname{
 		padding: 19px 18px 19px 18px;

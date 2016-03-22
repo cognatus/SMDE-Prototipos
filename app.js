@@ -42,7 +42,7 @@ function databaseInstance(){
 	return connection;
 };
 
-//Funcion de login general
+//FUNCION DE LOGIN GENERAL
 var login = function(req, res){
 	var database = new databaseInstance();
 	var userNameLogin = req.body.sign_user;
@@ -78,6 +78,15 @@ var login = function(req, res){
 			res.redirect('/error');
 		}
 	});
+};
+
+// FUNCION PARA MOSTRAR USUARIOS DE LA BASE DE DATOS
+var getUsersDatabase = function(req, res){
+	var database = new databaseInstance();
+	var queryString = 'SELECT Administrator.idAdministrator, User.idUser, User.userName, User.userLastName, User.Institute_idInstitute'
+	+ 'FROM Administrator' 
+	+ 'INNER JOIN User'
+	+ 'ON Administrator.User_idUser = User.idUser;'
 };
 
 /*Metodos GET*/
