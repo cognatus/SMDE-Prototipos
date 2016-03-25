@@ -38,10 +38,10 @@ VALUES ('HASD45465', 'Humanisticas', 'PoliV9');
 INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `Department_idDepartment`, `Department_Institute_idInstitute`) 
 VALUES ('SDF46DF4884', 'Civismo', 1, 'HASD45465', 'PoliV9');
 
-INSERT INTO `smdedbv1`.`Group` (`idGroup`, `groupName`, `groupLevel`) 
+INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`) 
 VALUES ('DFG8765SDF6', '1IV8', 1);
 
-INSERT INTO `smdedbv1`.`Group_has_Subject` (`Group_idGroup`, `Subject_idSubject`) 
+INSERT INTO `smdedbv1`.`Subject_has_Course` (`Course_idCourse`, `Subject_idSubject`) 
 VALUES ('DFG8765SDF6', 'SDF46DF4884');
 
 INSERT INTO `smdedbv1`.`Student_has_Subject` (`Student_idStudent`, `Subject_idSubject`) 
@@ -58,7 +58,7 @@ SELECT * FROM User INNER JOIN Administrator
 ON User.userEmail = Administrator.User_userEmail
 WHERE User.userEmail= 'alejandrodnl.cv@hotmail.com' AND User.userPassword = 'holaMundo123';
 
-SELECT userEmail, idStudent, idSubject, Group.groupName
+SELECT userEmail, idStudent, subjectName, courseName
 FROM User as u
 INNER JOIN Student as s
     ON u.userEmail = s.User_userEmail
@@ -66,7 +66,7 @@ INNER JOIN Student_has_Subject as ss
     ON s.idStudent = ss.Student_idStudent
 INNER JOIN Subject as su
     ON su.idSubject = ss.Subject_idSubject
-INNER JOIN Group_has_Subject as gs
-    ON gs.Subject_idSubject = su.idSubject
-INNER JOIN Group as g
-    ON g.idGroup = gs.Group_idGroup;
+INNER JOIN Subject_has_Course as sc
+    ON sc.Subject_idSubject = su.idSubject
+INNER JOIN Course as c
+    ON c.idCourse = sc.Course_idCourse;
