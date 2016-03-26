@@ -15,26 +15,37 @@ exports.login = function(req, res){
 	var database = new base();
 	var userNameLogin = req.body.sign_user;
 	var userPassLogin = req.body.sign_key;
+	var i = 0;
+	var bandera = false;
+
+	var consulta = function(){
+		database.query(stringQuery, function(error, result, row){
+			if(!error) {
+				req.session.datos = result;
+				bandera = true;
+			}else{
+				which_vato(i++);
+				consulta();
+			}
+		});
+	};
 	
 	var which_vato = function(tipo){
 
-		stringQuery = 'SELECT * FROM User'
-				+ ' WHERE userEmail="' + userNameLogin + '" AND userPassword="' + userPassLogin + '";' ;
-
-		/*switch(tipo) {
-			case 'h':
+		switch(tipo) {
+			case 0:
 				stringQuery = 'SELECT * FROM User INNER JOIN Administrator' 
 				+ ' ON User.userEmail = Administrator.User_userEmail' 
 				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
 				req.session.privilegio = 0;
 				break;
-			case 'S':
+			case 1:
 				stringQuery = 'SELECT * FROM User INNER JOIN Student' 
 				+ ' ON User.userEmail = Student.User_userEmail' 
 				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
 				req.session.privilegio = 1;
 				break;
-			case 'T':
+			case 2:
 				stringQuery = 'SELECT * FROM User INNER JOIN Teacher' 
 				+ ' ON User.userEmail = Teacher.User_userEmail' 
 				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
@@ -43,22 +54,21 @@ exports.login = function(req, res){
 			default:
 				console.log('Error aqui')
 				res.redirect('/error');
-		}*/
+		}
 	};
 
-	which_vato(userNameLogin[0]);
+	which_vato(i);
+	consulta();
 
-	database.query(stringQuery, function(error, result, row){
-		if(!error) {
-			req.session.datos = result;
-			res.redirect('/main');
-		}else{
-			console.log('Error aqui tambien '+stringQuery)
-			res.redirect('/error');
-		}
-	});
+	if(bandera){
+		res.redirect('/main');
+	}else{
+		res.redirect('/error');
+	}
+
 };
 
+//AGREGAR UN NUEVO USUARIO
 exports.insertUser = function(req, res){
 	var database = new base();
 	var userType = req.body.insertUserType ;
@@ -68,7 +78,7 @@ exports.insertUser = function(req, res){
 	var userSecondLastName = req.body.insertUserSecondLastName ;
 	var userSex = req.body.insertUserSex ;
 	var userPassword  = req.body.insertUserPassword ;
-	var userInstitute = session.user.userInstitute ;
+	var userInstitute = req.session.datos[0]. ;
 
 	stringQuery = 'INSERT INTO `smdedbv1`.`User`' 
 					+ ' ("userEmail","userName","userLastName","userSecondLastName","userSex","userPassword","Institute_idInstitute")'
@@ -82,18 +92,9 @@ exports.insertUser = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
-			res.render('management', {
-				datosUser: {
-					email: userEmail,
-					name: userName,
-					lastName: userLastName,
-					secLastName: userSecondLastName,
-					sex: userSex,
-				}
-			});
+			res.redirect('/management');
 		}else{
-			console.log('Error aqui en linea 68 post.js '+ stringQuery)
+			console.log('Error aqui en linea 97 post.js '+ stringQuery)
 			res.redirect('/error');
 		}
 	});
