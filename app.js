@@ -48,6 +48,99 @@ function databaseInstance(){
 	return connection;
 };
 
+/**
+* Funciones para comprobar el tipo de usuario
+*/
+
+ //cualquier sesion
+ function login(req, res, next){
+
+	if( req.session.datos ){
+
+		next();
+
+	}else{
+
+		res.redirect('error');
+
+	}
+
+ }
+
+ //sin iniciar sesion
+ function loginN(req, res, next){
+
+	if( !req.session.datos ){
+
+		next();
+
+	}else{
+
+		res.redirect('error');
+
+	}
+ }
+
+ //solo granjero
+ function loginG(req, res, next){
+
+	var aux = req.session.datos;
+
+	if( !aux ){
+
+		res.redirect('error');
+	
+	}else if( req.session.privilegio == 1 ){
+
+		next();
+
+	}else{
+		
+		res.redirect('error');
+
+	}
+ }
+
+ //solo gestor semillas(o como se llame el segundo usuario)
+ function loginS(req, res, next){
+
+	var aux = req.session.datos;
+
+	if( !aux ){
+
+		res.redirect('error');
+	
+	}else if( req.session.privilegio == 2 ){
+
+		next();
+
+	}else{
+		
+		res.redirect('error');
+
+	}
+ }
+
+ //solo administrador
+ function loginA(req, res, next){
+
+	var aux = req.session.datos;
+
+	if( !aux ){
+
+		res.redirect('error');
+	
+	}else if( req.session.privilegio == 3 ){
+
+		next();
+
+	}else{
+		
+		res.redirect('error');
+
+	}
+ }
+
 /*Metodos GET*/
 
 app.get('/', routes.index);
