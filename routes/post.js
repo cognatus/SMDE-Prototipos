@@ -76,22 +76,22 @@ exports.insertUser = function(req, res){
 	var userInstitute = req.session.datos[0].Institute_idInstitute;
 
 	//AQUI ESTA EL PUTO ERROR DE SINTAXIS 
-	stringQuery = 'INSERT INTO `smdedbv1`.`User`' 
+	stringQuery = 'INSERT INTO "User"' 
 					+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute)'
-					+ ' VALUES ("' + userEmail + '", '
-					+ '"' + userName + '", '
-					+ '"' + userLastName + '", '
-					+ '"' + userSecondLastName + '", '
-					+ '`' + userSex + '`, '
-					+ '"' + userPassword + '", '
-					+ '"' + userInstitute + '");';
+					+ ' VALUES ("' + userEmail + '",'
+					+ ' "' + userName + '",'
+					+ ' "' + userLastName + '",'
+					+ ' "' + userSecondLastName + '",'
+					+ ' "' + userSex + '",'
+					+ ' "' + userPassword + '",'
+					+ ' "' + userInstitute + '");';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log('Furulo el insert');
 			res.redirect('/management');
 		}else{
-			console.log('Error aqui en linea 94 post.js '+ stringQuery)
+			console.log('Error aqui en linea 94 post.js ' + stringQuery )
 			res.redirect('/error');
 		}
 	});
