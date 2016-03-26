@@ -77,7 +77,7 @@ exports.insertUser = function(req, res){
 
 	//AQUI ESTA EL PUTO ERROR DE SINTAXIS 
 	stringQuery = 'INSERT INTO "User"' 
-					+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute)'
+					+ ' ("userEmail", "userName", "userLastName", "userSecondLastName", "userSex", "userPassword", "Institute_idInstitute")'
 					+ ' VALUES ("' + userEmail + '",'
 					+ ' "' + userName + '",'
 					+ ' "' + userLastName + '",'
