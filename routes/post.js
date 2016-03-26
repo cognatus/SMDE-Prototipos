@@ -16,14 +16,17 @@ exports.login = function(req, res){
 	var userNameLogin = req.body.sign_user;
 	var userPassLogin = req.body.sign_key;
 	var i = 0;
-	var bandera = false;
 
 	var consulta = function(){
 		database.query(stringQuery, function(error, result, row){
-			if(!error) {
+			if(!error && result.length > 0) {
 				req.session.datos = result;
-				bandera = true;
+				res.redirect('/main');
+			}else if(i === 3){
+				console.log('ni pedo dude')
+				res.redirect('/error')
 			}else{
+				console.log('nope');
 				which_vato(i++);
 				consulta();
 			}
@@ -51,20 +54,11 @@ exports.login = function(req, res){
 				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
 				req.session.privilegio = 2;
 				break;
-			default:
-				console.log('Error aqui')
-				res.redirect('/error');
 		}
 	};
 
 	which_vato(i);
 	consulta();
-
-	if(bandera){
-		res.redirect('/main');
-	}else{
-		res.redirect('/error');
-	}
 
 };
 
@@ -78,7 +72,7 @@ exports.insertUser = function(req, res){
 	var userSecondLastName = req.body.insertUserSecondLastName ;
 	var userSex = req.body.insertUserSex ;
 	var userPassword  = req.body.insertUserPassword ;
-	var userInstitute = req.session.datos[0]. ;
+	var userInstitute = req.session.datos[0].Institute_idInstitute;
 
 	stringQuery = 'INSERT INTO `smdedbv1`.`User`' 
 					+ ' ("userEmail","userName","userLastName","userSecondLastName","userSex","userPassword","Institute_idInstitute")'
