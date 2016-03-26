@@ -8,6 +8,7 @@ var routes = require('./routes');
 var post = require('./routes/post');
 var http = require('http');
 var path = require('path');
+/*var session = require('client-sessions');*/
 var mysql = require('mysql');
 var htmlspecialchars = require('htmlspecialchars');
 
@@ -26,6 +27,9 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+/*app.use(session({
+
+}));*/
 
 // development only
 if ('development' == app.get('env')) {
@@ -62,6 +66,7 @@ app.get('/error', routes.error);
 /*Metodos POST*/
 
 app.post('/login', post.login);
+app.post('/insertUser', post.insertUser);
 
 http.createServer(app).listen(app.get('port'), function(){
 	var base = new databaseInstance();

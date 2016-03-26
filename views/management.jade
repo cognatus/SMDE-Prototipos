@@ -17,7 +17,7 @@ block content
 						.form_innercontainer
 							.pd12_24.flat_shadow.bgprimary_color
 								.form_input.white_text
-									select.activeline.txtaccent_colorfall(name='userType')
+									select.activeline.txtaccent_colorfall(name='insertUserType')
 										option Alumno
 										option Profesor
 										option Departamento
@@ -25,26 +25,26 @@ block content
 							.pd_24
 								.form_input
 									.b_text.left_title Clave
-									input(type='text', placeholder='Clave' name='userIdKey')
+									input(type='text', placeholder='Clave' name='insertUserIdKey')
 								.form_input
 									.b_text.left_title Nombre(s)
-									input(type='text', placeholder='Nombre(s)' name='userName')
+									input(type='text', placeholder='Nombre(s)' name='insertUserName')
 								.form_input
 									.b_text.left_title Apellidos
 									.double
-										input(type='text', placeholder='Paterno' name='userLastName')
-										input.second(type='text', placeholder='Materno' name='userSecondLastName')
+										input(type='text', placeholder='Paterno' name='insertUserLastName')
+										input.second(type='text', placeholder='Materno' name='insertUserSecondLastName')
 								.form_input
 									.b_text.left_title Sexo
-									select(name='userSex')
+									select(name='insertUserSex')
 										option H
 										option M
 								.form_input
 									.b_text.left_title Email
-									input(type='email', placeholder='email@email.com' name='userEmail')
+									input(type='email', placeholder='email@email.com' name='insertUserEmail')
 								.form_input
 									.b_text.left_title Contraseña
-									input(type='password', placeholder='*******' name='userPassword')
+									input(type='password', placeholder='*******' name='insertUserPassword')
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 						.form_confirmblock

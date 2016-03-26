@@ -1737,6 +1737,7 @@ input:checked + .switch:active::before {
 	border: none;
 	outline: none;
 	text-transform: uppercase;
+	background-color: transparent;
 }
 
 .form_input span.submit{
