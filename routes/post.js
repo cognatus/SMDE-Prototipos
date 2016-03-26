@@ -79,35 +79,10 @@ exports.getStudentsDatabase = function(req, res){
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			retorno = result;
-			for (var i = 0; i < result.length; i++) {
-				findGroups(retorno[i].userEmail, i);
-			}
 		}else{
 			console.log('Error aqui en linea 68 post.js '+stringQuery)
 			res.redirect('/error');
 		}
 	});
-
-	function findGroups(argument, posc) {
-
-		stringQuery='SELECT Group.groupName, Gruop.groupLevel, Student.idStudent'
-					+' FROM Group as g'
-					+' INNER JOIN Student_has_Gropu as sg'
-						+' ON g.idGroup = sg.Group_idGroup'
-					+' INNER JOIN Student as s'
-						+' ON sg.Student_User_userEmail = s.User_userEmail'
-					+' WHERE s.User_userEmail = "'+argument+'";'
-
-		database.query(stringQuery, function(error, result, row){
-			if(!error) {
-				result[posc].grupos = result;
-			}else{
-				console.log('Error aqui en linea 68 post.js '+stringQuery)
-				res.redirect('/error');
-			}
-		});
-	}
-	
-
 
 };

@@ -29,7 +29,7 @@ a{
 	text-decoration: none;
 }
 
-input, select, textarea, option{font-size: 15px;color: #212121;background: transparent;}
+input, select, textarea, option{font-size: 15px;color: #212121;}
 
 select, option{
 	-webkit-appearance: none;
@@ -1473,7 +1473,7 @@ span.searchicon_white{background-image: url('/images/magnify_white.png');}
 	padding-bottom: 7px;
 }
 
-option{background-color: #fff;color: inherit;}
+option{background-color: #fff;}
 
 .form_input .double, .form_input .triple{width: 100%;}
 
@@ -1902,7 +1902,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .dark_theme .form_input input[type='text']:focus, .dark_theme .form_input input[type='email']:focus,
 .dark_theme .form_input input[type='password']:focus, .dark_theme .form_input input[type='text']:focus,
 .dark_theme .form_input select:focus, .dark_theme .form_input textarea:focus{
-	color: #fff;
 	border-color: #00BFA5;
 }
 
@@ -1910,7 +1909,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	color: #fff;
 }
 
-.dark_theme option{background-color: #424242;color: inherit;}
+.dark_theme option{background-color: #424242;color: #fff;}
 
 .dark_theme .minimenu_hidden{color: #fff;background-color: #212121;}
 
@@ -1922,12 +1921,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	color: #fff;
 	background-color: #424242;
 }
-
-/*.dark_theme .txtprimary_color{color: #3F51B5;}
-.dark_theme .txtprimary_colorDarker{color: #303F9F;}
-.dark_theme .txtaccent_color{color: #00BFA5;}
-.dark_theme .txtaccent_colorfall{color: #1DE9B6;}
-.dark_theme .txt_red{color: #F44336;}*/
 
 .dark_theme input[type=radio]:not(old):hover + label > span > span{
 	background-color: #80cbc4;
@@ -1952,7 +1945,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 }
 
 .form_input input[type='text'].activeline, .form_input select.activeline{font-size: 22px;background: #3F51B5;
-	width: calc(100% - 32px);margin-left: 32px;border-color: rgba(255,255,255,0.3);}
+	width: calc(100% - 32px);margin-left: 32px;border-color: rgba(255,255,255,0.3);color: #1DE9B6;}
 
 .form_input input[type='text'].activeline:focus, .form_input select.activeline:focus{
 	border-bottom: 2px solid #1DE9B6;
