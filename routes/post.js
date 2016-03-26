@@ -35,7 +35,6 @@ exports.login = function(req, res){
 	};
 	
 	var which_vato = function(tipo){
-
 		switch(tipo) {
 			case 0:
 				stringQuery = 'SELECT * FROM User INNER JOIN Administrator' 
@@ -97,11 +96,12 @@ exports.insertUser = function(req, res){
 	});
 };
 
-// FUNCION PARA MOSTRAR DATOS DE ADMINISTRADOR DE LA BASE DE DATOS
-exports.getAdminsDatabase = function(req, res){
+// FUNCION PARA MOSTRAR DATOS DE administradores DE LA BASE DE DATOS
+exports.getAdministratorsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT * FROM User INNER JOIN Administrator' 
-				+ ' ON User.userEmail = Administrator.User_userEmail;' ;
+	stringQuery = 'SELECT *, idAdministrator FROM User INNER JOIN Administrator' 
+				+ ' ON User.userEmail = Administrator.User_userEmail'
+				+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -115,7 +115,23 @@ exports.getAdminsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE ALUMNOS DE LA BASE DE DATOS
 exports.getStudentsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT User.*, idStudent, subjectName, courseName'
+	stringQuery = 'SELECT *, idStudent FROM User INNER JOIN Student' 
+				+ ' ON User.userEmail = Student.User_userEmail'
+				+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.send(result);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+// FUNCION PARA MOSTRAR MATERIAS DE ALUMNOS DE LA BASE DE DATOS
+exports.getStudentsSubjectsDatabase = function(req, res){
+	var database = new base();
+	stringQuery = 'SELECT idStudent, subjectName, courseName'
 					+ ' FROM User as u'
 					+ ' INNER JOIN Student as s'
 					+ '     ON u.userEmail = s.User_userEmail'
@@ -126,12 +142,60 @@ exports.getStudentsDatabase = function(req, res){
 					+ ' INNER JOIN Subject_has_Course as sc'
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
-					+ '     ON c.idCourse = sc.Course_idCourse;' ;
+					+ '     ON c.idCourse = sc.Course_idCourse'
+					+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			for( var i in result ){
-				console.log( 'Vato en' + i + ': ' + result[i].userEmail );
+			for (i in result ){
+				console.log( 'Vato en' + result[i].subjectName );
 			}
+			res.redirect('/management')
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+
+};
+
+// FUNCION PARA MOSTRAR DATOS DE PROFESORES DE LA BASE DE DATOS
+exports.getTeachersDatabase = function(req, res){
+	var database = new base();
+	stringQuery = 'SELECT *, idStudent FROM User INNER JOIN Student' 
+				+ ' ON User.userEmail = Student.User_userEmail'
+				+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.send(result);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+// FUNCION PARA MOSTRAR MATERIAS DE Profesor DE LA BASE DE DATOS
+exports.getTeachersSubjectsDatabase = function(req, res){
+	var database = new base();
+	stringQuery = 'SELECT idTeacher, subjectName, courseName'
+					+ ' FROM User as u'
+					+ ' INNER JOIN Teacher as s'
+					+ '     ON u.userEmail = s.User_userEmail'
+					+ ' INNER JOIN Teacher_has_Subject as ss'
+					+ '     ON s.idTeacher = ss.Teacher_idTeacher'
+					+ ' INNER JOIN Subject as su'
+					+ '     ON su.idSubject = ss.Subject_idSubject'
+					+ ' INNER JOIN Subject_has_Course as sc'
+					+ '     ON sc.Subject_idSubject = su.idSubject'
+					+ ' INNER JOIN Course as c'
+					+ '     ON c.idCourse = sc.Course_idCourse'
+					+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			for (i in result ){
+				console.log( 'Vato en' + result[i].subjectName );
+			}
+			res.redirect('/management')
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');

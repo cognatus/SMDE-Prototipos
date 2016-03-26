@@ -38,14 +38,23 @@ VALUES ('HASD45465', 'Humanisticas', 'PoliV9');
 INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `Department_idDepartment`, `Department_Institute_idInstitute`) 
 VALUES ('SDF46DF4884', 'Civismo', 1, 'HASD45465', 'PoliV9');
 
+INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `Department_idDepartment`, `Department_Institute_idInstitute`) 
+VALUES ('SDF46DF6996', 'Literatura', 1, 'HASD45465', 'PoliV9');
+
 INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`) 
 VALUES ('DFG8765SDF6', '1IV8', 1);
 
 INSERT INTO `smdedbv1`.`Subject_has_Course` (`Course_idCourse`, `Subject_idSubject`) 
 VALUES ('DFG8765SDF6', 'SDF46DF4884');
 
+INSERT INTO `smdedbv1`.`Subject_has_Course` (`Course_idCourse`, `Subject_idSubject`) 
+VALUES ('DFG8765SDF6', 'SDF46DF6996');
+
 INSERT INTO `smdedbv1`.`Student_has_Subject` (`Student_idStudent`, `Subject_idSubject`) 
 VALUES ('VATOASDSAD46844', 'SDF46DF4884');
+
+INSERT INTO `smdedbv1`.`Student_has_Subject` (`Student_idStudent`, `Subject_idSubject`) 
+VALUES ('VATOASDSAD46844', 'SDF46DF6996');
 
 COMMIT;
 
