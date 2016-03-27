@@ -65,15 +65,18 @@ exports.login = function(req, res){
 exports.insertUser = function(req, res){
 	var database = new base();
 	var userType = req.body.insertUserType ;
+	var userIdKey = req.body.insertUserIdKey ;
 	var userEmail = req.body.insertUserEmail ;
 	var userName = req.body.insertUserName ;
 	var userLastName = req.body.insertUserLastName ;
 	var userSecondLastName = req.body.insertUserSecondLastName ;
 	var userSex = req.body.insertUserSex ;
 	var userPassword  = req.body.insertUserPassword ;
-	var userInstitute = req.session.datos[0].Institute_idInstitute;
+	var userInstitute = req.session.datos[0].Institute_idInstitute ;
 
-	stringQuery = 'INSERT INTO User' 
+	stringQuery = 'BEGIN;';
+
+	stringQuery += 'INSERT INTO User' 
 					+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute)'
 					+ ' VALUES ("' + userEmail + '",'
 					+ ' "' + userName + '",'
@@ -83,12 +86,101 @@ exports.insertUser = function(req, res){
 					+ ' "' + userPassword + '",'
 					+ ' "' + userInstitute + '");';
 
+	if( userType == 'student' ){
+		stringQuery += 'INSERT INTO Student' 
+					+ ' (idStudent, User_userEmail)'
+					+ ' VALUES ("' + userIdKey + '",'
+					+ ' "' + userEmail + '");';
+	}
+	else if( userType == 'teacher' ){
+		stringQuery += 'INSERT INTO Teacher' 
+					+ ' (idTeacher, User_userEmail)'
+					+ ' VALUES ("' + userIdKey + '",'
+					+ ' "' + userEmail + '");';
+	}
+
+	stringQuery += 'COMMIT;'
+
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log('Furulo el insert');
 			res.redirect('/management');
 		}else{
-			console.log('Error aqui en linea 94 post.js ' + error )
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.redirect('/error');
+		}
+	});
+};
+
+//AGREGAR UN NUEVO DEPARTAMENTO
+exports.insertDept = function(req, res){
+	var database = new base();
+	var deptIdKey = req.body.insertDeptIdKey ;
+	var deptName  = req.body.insertDeptName ;
+	var deptInstitute = req.session.datos[0].Institute_idInstitute ;
+
+	stringQuery = 'INSERT INTO Department' 
+					+ ' (idDepartment, departmentName, Institute_idInstitute)'
+					+ ' VALUES ("' + deptIdKey + '",'
+					+ ' "' + deptName + '",'
+					+ ' "' + deptInstitute + '");';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Furulo el insert');
+			res.redirect('/management');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.redirect('/error');
+		}
+	});
+};
+
+exports.insertSubject = function(req, res){
+	var database = new base();
+	var subjectIdKey = req.body.insertSubjectIdKey ;
+	var subjectName  = req.body.insertSubjectName ;
+	var subjectLevel  = req.body.insertSubjectLevel ;
+	var subjectInstitute = req.session.datos[0].Institute_idInstitute ;
+	var subjectDept  = req.body.insertSubjectDept ;
+
+	stringQuery = 'INSERT INTO Department' 
+					+ ' (idSubject, subjectName, subjectLevel, Department_Institute_idInstitute, Department_idDepartment)'
+					+ ' VALUES ("' + subjectIdKey + '",'
+					+ ' "' + subjectName + '",'
+					+ ' "' + subjectLevel + '",'
+					+ ' "' + subjectInstitute + '",'
+					+ ' "' + subjectDept + '");';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Furulo el insert');
+			res.redirect('/management');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.redirect('/error');
+		}
+	});
+};
+
+exports.insertCourse = function(req, res){
+	var database = new base();
+	var courseIdKey = req.body.insertCourseIdKey ;
+	var courseName  = req.body.insertCourseName ;
+	var courseLevel = req.body.insertCourseLevel ;
+
+	stringQuery = 'INSERT INTO Course' 
+					+ ' (idCourse, courseName, courseLevel)'
+					+ ' VALUES ("' + courseIdKey + '",'
+					+ ' "' + courseName + '",'
+					+ ' "' + courseLevel + '");';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Furulo el insert');
+			res.redirect('/management');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.redirect('/error');
 		}
 	});
@@ -99,7 +191,7 @@ exports.getAdministratorsDatabase = function(req, res){
 	var database = new base();
 	stringQuery = 'SELECT *, idAdministrator FROM User INNER JOIN Administrator' 
 				+ ' ON User.userEmail = Administrator.User_userEmail'
-				+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -115,7 +207,7 @@ exports.getStudentsDatabase = function(req, res){
 	var database = new base();
 	stringQuery = 'SELECT *, idStudent FROM User INNER JOIN Student' 
 				+ ' ON User.userEmail = Student.User_userEmail'
-				+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -142,7 +234,7 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
 					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+					+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -159,7 +251,7 @@ exports.getTeachersDatabase = function(req, res){
 	var database = new base();
 	stringQuery = 'SELECT *, idTeacher FROM User INNER JOIN Teacher' 
 				+ ' ON User.userEmail = Teacher.User_userEmail'
-				+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -186,7 +278,7 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
 					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
+					+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);

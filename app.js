@@ -125,6 +125,9 @@ app.get('/error', routes.error);
 
 app.post('/login', post.login);
 app.post('/insertUser', post.insertUser);
+app.post('/insertDept', post.insertDept);
+app.post('/insertSubject', post.insertSubject);
+app.post('/insertCourse', post.insertCourse);
 app.post('/getAdministratorsDatabase', post.getAdministratorsDatabase);
 app.post('/getStudentsDatabase', post.getStudentsDatabase);
 app.post('/getStudentsSubjectsDatabase', post.getStudentsSubjectsDatabase);

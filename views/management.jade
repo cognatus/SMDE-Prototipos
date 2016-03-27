@@ -15,52 +15,124 @@ block content
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
-					form( name='forum_new', action='insertUser', method='post' )
 						.form_innercontainer
 							.pd12_24.flat_shadow.bgprimary_color
 								.form_input.white_text
-									select.activeline.txtaccent_colorfall(name='insertUserType')
-										option Alumno
-										option Profesor
-										option Departamento
-										option Asignatura
-							.pd_24
-								.form_input
-									.b_text.left_title Clave
-									input(type='text', placeholder='Clave' name='insertUserIdKey')
-								.form_input
-									.b_text.left_title Nombre(s)
-									input(type='text', placeholder='Nombre(s)' name='insertUserName')
-								.form_input
-									.b_text.left_title Apellidos
-									.double
-										input(type='text', placeholder='Paterno' name='insertUserLastName')
-										input.second(type='text', placeholder='Materno' name='insertUserSecondLastName')
-								.form_input
-									.b_text.left_title Sexo
-									select(name='insertUserSex')
-										option H
-										option M
-								.form_input
-									.b_text.left_title Email
-									input(type='email', placeholder='email@email.com' name='insertUserEmail')
-								.form_input
-									.b_text.left_title Contraseña
-									input(type='password', placeholder='*******' name='insertUserPassword')
-								.form_input(style='height: 52px;')
-									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
-						.form_confirmblock
-							.inner_confirmblock.bg_gray.flat_shadow
-								.pd_24(style='padding-bottom: 16px;')
-									.colhh1.white_text
-										.pd_8.ll_title ¿Realizar esta acción?
-								.pd_12
-									.autooverflow
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color.b_text(type='button' value='Cancelar')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color.b_text(type='submit' value='Aceptar')
-
+									select#select_insertType.activeline.txtaccent_colorfall(name='insertUserType')
+										option(value='student' selected) Alumno
+										option(value='teacher') Profesor
+										option(value='department') Academia
+										option(value='subject') Asignatura
+										option(value='course') Grupo
+							form#show_userinsert.hidden_form( name='insert_new', action='insertUser', method='post' )
+								.pd_24
+									.form_input
+										.b_text.left_title Clave
+										input(type='text', placeholder='Clave' name='insertUserIdKey')
+									.form_input
+										.b_text.left_title Nombre(s)
+										input(type='text', placeholder='Nombre(s)' name='insertUserName')
+									.form_input
+										.b_text.left_title Apellidos
+										.double
+											input(type='text', placeholder='Paterno' name='insertUserLastName')
+											input.second(type='text', placeholder='Materno' name='insertUserSecondLastName')
+									.form_input
+										.b_text.left_title Sexo
+										select(name='insertUserSex')
+											option H
+											option M
+									.form_input
+										.b_text.left_title Email
+										input(type='email', placeholder='email@email.com' name='insertUserEmail')
+									.form_input
+										.b_text.left_title Contraseña
+										input(type='password', placeholder='*******' name='insertUserPassword')
+									.form_input(style='height: 52px;')
+										span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+								.form_confirmblock
+									.inner_confirmblock.bg_gray.flat_shadow
+										.pd_24(style='padding-bottom: 16px;')
+											.colhh1.white_text
+												.pd_8.ll_title ¿Realizar esta acción?
+										.pd_12
+											.autooverflow
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text(type='submit' value='Aceptar')
+							form#show_deptinsert.hidden_form( name='insert_new', action='insertDept', method='post' )
+								.pd_24
+									.form_input
+										.b_text.left_title Clave
+										input(type='text', placeholder='Clave' name='insertDeptIdKey')
+									.form_input
+										.b_text.left_title Nombre
+										input(type='text', placeholder='Nombre' name='insertDeptName')
+									.form_input(style='height: 52px;')
+										span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+								.form_confirmblock
+									.inner_confirmblock.bg_gray.flat_shadow
+										.pd_24(style='padding-bottom: 16px;')
+											.colhh1.white_text
+												.pd_8.ll_title ¿Realizar esta acción?
+										.pd_12
+											.autooverflow
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text(type='submit' value='Aceptar')
+							form#show_subjectinsert.hidden_form( name='insert_new', action='insertSubject', method='post' )
+								.pd_24
+									.form_input
+										.b_text.left_title Clave
+										input(type='text', placeholder='Clave' name='insertSubjectIdKey')
+									.form_input
+										.b_text.left_title Nombre
+										input(type='text', placeholder='Nombre' name='insertSubjectName')
+									.form_input
+										.b_text.left_title Nivel
+										input(type='text', placeholder='Nombre' name='insertSubjectLevel')
+									.form_input
+										.b_text.left_title Academia
+										input(type='text', placeholder='Nombre' name='insertSubjectDept')
+									.form_input(style='height: 52px;')
+										span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+								.form_confirmblock
+									.inner_confirmblock.bg_gray.flat_shadow
+										.pd_24(style='padding-bottom: 16px;')
+											.colhh1.white_text
+												.pd_8.ll_title ¿Realizar esta acción?
+										.pd_12
+											.autooverflow
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text(type='submit' value='Aceptar')
+							form#show_courseinsert.hidden_form( name='insert_new', action='insertCourse', method='post' )
+								.pd_24
+									.form_input
+										.b_text.left_title Clave
+										input(type='text', placeholder='Clave' name='insertCourseIdKey')
+									.form_input
+										.b_text.left_title Nombre
+										input(type='text', placeholder='Nombre' name='insertCourseName')
+									.form_input
+										.b_text.left_title Nivel
+										input(type='text', placeholder='Nombre' name='insertCourseLevel')
+									.form_input(style='height: 52px;')
+										span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+								.form_confirmblock
+									.inner_confirmblock.bg_gray.flat_shadow
+										.pd_24(style='padding-bottom: 16px;')
+											.colhh1.white_text
+												.pd_8.ll_title ¿Realizar esta acción?
+										.pd_12
+											.autooverflow
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text(type='submit' value='Aceptar')
 		.topspace
 		.page_container(ng-controller="todos", ng-init="cargarTodos()")
 			.block_container
@@ -91,8 +163,11 @@ block content
 					.colhh1.bgaccent_color2.flat_shadow
 						.search
 							span.searchicon
-							input#buscar_slide(type='text',name='buscar', placeholder='Buscar una Persona o Asignatura')
-					#listcontainer.colhh1.h_listindex.first
+							input#buscar_slide(type='text',name='buscar', placeholder='Buscar Cualquier Cosa')
+					#listcontainer.colhh1
+							.colhh1.load_container#management_showall
+								.load
+									.spinner
 							.colhh1.slide_list( ng-repeat="item in adminsInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Administrador')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
@@ -109,14 +184,6 @@ block content
 												.sl_title Asignaturas
 											.pd_llist
 												.pd_l12 Sin Asignaturas
-											.colhh1.hover
-												.listitem_img
-													span A
-												.listitem_info
-													.listitem_title 
-														b Algebra
-													.listitem_bottomdata
-														| 5 grupos
 							.colhh1.slide_list( ng-repeat="item in studentsInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Alumno')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
@@ -137,8 +204,9 @@ block content
 														span B
 													.listitem_info
 														.listitem_title 
-															b {{aux.subjectName}}, {{aux.courseName}}
+															b {{aux.subjectName}}
 														.listitem_bottomdata
+															| {{aux.courseName}}
 							.colhh1.slide_list( ng-repeat="item in teachersInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Profesor')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
@@ -159,8 +227,9 @@ block content
 														span B
 													.listitem_info
 														.listitem_title 
-															b {{aux2.subjectName}}, {{aux2.courseName}}
-														.listitem_bottomdata							
+															b {{aux2.subjectName}}
+														.listitem_bottomdata
+															| {{aux2.courseName}}						
 							//.colhh1.slide_list(data-name='Humanistica' data-type='Departamento')
 								//.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									//.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
@@ -200,9 +269,4 @@ block content
 												//.pd_4
 												//.colhh1.pd_l12 Nivel:
 													//span.margin_l 1
-					.colhh1.h_listindex
-							
-					.colhh1.h_listindex
-							
-					.colhh1.h_listindex
 

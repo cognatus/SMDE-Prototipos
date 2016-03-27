@@ -146,6 +146,32 @@ jQuery(document).on('ready' ,function(){
 
 
 /*-------------------------------------------------------------------------------------
+		INSERTS FORM CONTROL
+---------------------------------------------------------------------------------------*/
+
+	jQuery('#show_deptinsert, #show_subjectinsert, #show_courseinsert').hide();
+
+	jQuery('#select_insertType').on('change' ,function(){
+		var $this = jQuery(this);
+		if( $this.val() == 'student' || $this.val() == 'teacher' ){
+			jQuery('.hidden_form').hide();
+			jQuery('#show_userinsert').show();
+		}
+		else if( $this.val() == 'department' ){
+			jQuery('.hidden_form').hide();
+			jQuery('#show_deptinsert').show();
+		}
+		else if( $this.val() == 'subject' ){
+			jQuery('.hidden_form').hide();
+			jQuery('#show_subjectinsert').show();
+		}
+		else if( $this.val() == 'course' ){
+			jQuery('.hidden_form').hide();
+			jQuery('#show_courseinsert').show();
+		}
+	});
+
+/*-------------------------------------------------------------------------------------
 		HORIZONTAL LIST CONTROL
 ---------------------------------------------------------------------------------------*/ 
 
@@ -492,31 +518,35 @@ jQuery(document).ready(function(){
 
 function ajaxDone(){
 
-	jQuery('.innerlistitem').hide();	
+	jQuery('#management_showall').css('display','none');
 
-	var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
-		'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
-		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
-		'bg_purple','bg_pink','bg_blue','bg_bluegray','bg_amber','bg_lime',
-		// Numbers colors
-		'bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
+		jQuery('.innerlistitem').hide();	
 
-	var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
+		var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
+			'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
+			'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
+			'bg_purple','bg_pink','bg_blue','bg_bluegray','bg_amber','bg_lime',
+			// Numbers colors
+			'bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
 
-	jQuery('.listitem, .hover').each(function(){
+		var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
 
-		var circleLetter = jQuery(this).find('.listitem_title b').text();
-		var span = jQuery(this).find('.listitem_img span');
-		var firstChar = circleLetter.charAt(0).toUpperCase();
+		jQuery('.listitem, .hover').each(function(){
 
-		span.text(firstChar);
+			var circleLetter = jQuery(this).find('.listitem_title b').text();
+			var span = jQuery(this).find('.listitem_img span');
+			var firstChar = circleLetter.charAt(0).toUpperCase();
 
-		for( var i = 0; i <= characters.length; i++ ){
-			if ( firstChar == characters[i] ){
-				span.addClass(colorsArray[i]);
-				break;
+			span.text(firstChar);
+
+			for( var i = 0; i <= characters.length; i++ ){
+				if ( firstChar == characters[i] ){
+					span.addClass(colorsArray[i]);
+					break;
+				}
 			}
-		}
 
-	});
+		});
 }
+
+ajaxDone();
