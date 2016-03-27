@@ -2,6 +2,8 @@ extends layout
 
 block content
 
+	script( type='text/javascript' src='/js/management.js' )
+	#esperonomatarelcss(ng-app='management')
 		#new_item.float_buttoncontainer( title='Agregar Usuario' )
 			span.bg_plus.bgaccent_color
 				
@@ -60,7 +62,7 @@ block content
 											input.txtaccent_color.b_text(type='submit' value='Aceptar')
 
 		.topspace
-		.page_container
+		.page_container(ng-controller="todos", ng-init="cargarTodos()")
 			.block_container
 				.colhh1.profile_img2
 					.photo
@@ -91,108 +93,125 @@ block content
 							span.searchicon
 							input#buscar_slide(type='text',name='buscar', placeholder='Buscar una Persona o Asignatura')
 					#listcontainer.colhh1.h_listindex.first
-						.colhh1.slide_list(data-name='Nombre Completo' data-type='Profesor')
-							.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
-								.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
-								.listitem_img
-									img(src='images/profilephoto.png')
-								.listitem_info
-									.listitem_title 
-										b Nombre Completo
-									.listitem_bottomdata Profesor
-							.colhh1.innerlistitem
-								.colhh1.border_bottom
-									.list_borderleft
-										.pd_llist
-											.sl_title Información
-										.pd_llist
-											.pd_l12
-												| 7 grupos, 5 asignaturas
-										.pd_llist
-											.sl_title Asignaturas
-										.pd_llist
-											.pd_l12 Sin Asignaturas
-										.colhh1.hover
-											.listitem_img
-												span A
-											.listitem_info
-												.listitem_title 
-													b Algebra
-												.listitem_bottomdata
-													| 5 grupos
-						.colhh1.slide_list(data-name='Nombre Completo' data-type='Alumno')
-							.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
-								.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
-								.listitem_img
-									img(src='images/profilephoto.png')
-								.listitem_info
-									.listitem_title 
-										b Nombre Completo
-									.listitem_bottomdata Alumno
-							.colhh1.innerlistitem
-								.colhh1.border_bottom
-									.list_borderleft
-										.pd_llist
-											.sl_title Información
-										.pd_llist
-											.pd_l12
-												| 3 grupos, 8 asignaturas
-										.pd_llist
-											.sl_title Asignaturas
-										.pd_llist
-											.pd_l12 Sin Asignaturas
-										.colhh1.hover
-											.listitem_img
-												span B
-											.listitem_info
-												.listitem_title 
-													b Biología
-												.listitem_bottomdata
-						.colhh1.slide_list(data-name='Humanistica' data-type='Departamento')
-							.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
-								.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
-								.listitem_img
-									span A
-								.listitem_info
-									.listitem_title 
-										b Humanistica
-									.listitem_bottomdata
-										| Departamento
-							.colhh1.innerlistitem
-								.colhh1.border_bottom
-									.list_borderleft
-										.pd_llist
-											.sl_title Información
-										.pd_llist
-											.colhh1.pd_l12 Asignaturas: 
-												span.margin_l Civismo, Desarrollo Personal
-						.colhh1.slide_list(data-name='Geografía' data-type='Asignatura')
-							.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
-								.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
-								.listitem_img
-									span A
-								.listitem_info
-									.listitem_title 
-										b Geografía
-									.listitem_bottomdata
-										| Asignatura
-							.colhh1.innerlistitem
-								.colhh1.border_bottom
-									.list_borderleft
-										.pd_llist
-											.sl_title Información
-										.pd_llist
-											.colhh1.pd_l12 Academia: 
-												span.margin_l Humanisticas
-											.pd_4
-											.colhh1.pd_l12 Nivel:
-												span.margin_l 1
+							.colhh1.slide_list( ng-repeat="item in adminsInfo" )
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info
+										.listitem_title 
+											b {{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}
+										.listitem_bottomdata Profesor
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
+											.pd_llist
+												.sl_title Información
+											.pd_llist
+												.pd_l12
+													| Esto ya no maigo
+											.pd_llist
+												.sl_title Asignaturas
+											.pd_llist
+												.pd_l12 Sin Asignaturas
+											.colhh1.hover
+												.listitem_img
+													span A
+												.listitem_info
+													.listitem_title 
+														b Algebra
+													.listitem_bottomdata
+														| 5 grupos
+							.colhh1.slide_list( ng-repeat="item in studentsInfo" )
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info
+										.listitem_title 
+											b {{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}
+										.listitem_bottomdata Alumno
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
+											.pd_llist
+												.sl_title Información
+											.pd_llist
+												.sl_title Asignaturas
+											.colhh1.hover( ng-init="verCual(item.idStudent)" )
+												div( ng-repeat="aux in auxSubject")
+													.listitem_img
+														span B
+													.listitem_info
+														.listitem_title 
+															b {{aux.subjectName}}, {{aux.courseName}}
+														.listitem_bottomdata
+							.colhh1.slide_list( ng-repeat="item in teachersInfo" )
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info
+										.listitem_title 
+											b {{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}
+										.listitem_bottomdata Profesor
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
+											.pd_llist
+												.sl_title Información
+											.pd_llist
+												.sl_title Asignaturas
+											.colhh1.hover( ng-init="verCual2(item.idTeacher)" )
+												div( ng-repeat="aux2 in auxSubject2")
+													.listitem_img
+														span B
+													.listitem_info
+														.listitem_title 
+															b {{aux2.subjectName}}, {{aux2.courseName}}
+														.listitem_bottomdata							
+							//.colhh1.slide_list(data-name='Humanistica' data-type='Departamento')
+								//.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									//.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
+									//.listitem_img
+										//span A
+									//.listitem_info
+										//.listitem_title 
+											//b Humanistica
+										//.listitem_bottomdata
+											//| Departamento
+								//.colhh1.innerlistitem
+									//.colhh1.border_bottom
+										//.list_borderleft
+											//.pd_llist
+												//.sl_title Información
+											//.pd_llist
+												//.colhh1.pd_l12 Asignaturas: 
+													//span.margin_l Civismo, Desarrollo Personal
+							//.colhh1.slide_list(data-name='Geografía' data-type='Asignatura')
+								//.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									//.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
+									//.listitem_img
+										//span A
+									//.listitem_info
+										//.listitem_title 
+											//b Geografía
+										//.listitem_bottomdata
+											//| Asignatura
+								//.colhh1.innerlistitem
+									//.colhh1.border_bottom
+										//.list_borderleft
+											//.pd_llist
+												//.sl_title Información
+											//.pd_llist
+												//.colhh1.pd_l12 Academia: 
+													//span.margin_l Humanisticas
+												//.pd_4
+												//.colhh1.pd_l12 Nivel:
+													//span.margin_l 1
 					.colhh1.h_listindex
 							
 					.colhh1.h_listindex
 							
 					.colhh1.h_listindex
-
-		form(action='prueba', method='post')
-			input(type='submit', value='Prueba')
 

@@ -21,7 +21,6 @@ exports.login = function(req, res){
 		database.query(stringQuery, function(error, result, row){
 			if(!error && result.length > 0) {
 				req.session.datos = result;
-				console.log(result)
 				res.redirect('/main');
 			}else if(i === 3){
 				console.log('ni pedo dude')
@@ -74,7 +73,6 @@ exports.insertUser = function(req, res){
 	var userPassword  = req.body.insertUserPassword ;
 	var userInstitute = req.session.datos[0].Institute_idInstitute;
 
-	//AQUI ESTA EL PUTO ERROR DE SINTAXIS 
 	stringQuery = 'INSERT INTO User' 
 					+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute)'
 					+ ' VALUES ("' + userEmail + '",'
@@ -83,7 +81,7 @@ exports.insertUser = function(req, res){
 					+ ' "' + userSecondLastName + '",'
 					+ ' "' + userSex + '",'
 					+ ' "' + userPassword + '",'
-					+ ' "' + userInstitute + '");;;;;';
+					+ ' "' + userInstitute + '");';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -135,21 +133,19 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 					+ ' FROM User as u'
 					+ ' INNER JOIN Student as s'
 					+ '     ON u.userEmail = s.User_userEmail'
-					+ ' INNER JOIN Student_has_Subject as ss'
+					+ ' INNER JOIN Student_has_Subject_has_Course as ss'
 					+ '     ON s.idStudent = ss.Student_idStudent'
-					+ ' INNER JOIN Subject as su'
-					+ '     ON su.idSubject = ss.Subject_idSubject'
 					+ ' INNER JOIN Subject_has_Course as sc'
+					+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
+					+ '		AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
+					+ ' INNER JOIN Subject as su'
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
-					+ '     ON c.idCourse = sc.Course_idCourse'
+					+ '     ON sc.Course_idCourse = c.idCourse'
 					+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			for (i in result ){
-				console.log( 'Vato en' + result[i].subjectName );
-			}
-			res.redirect('/management')
+			res.send(result);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -161,8 +157,8 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE PROFESORES DE LA BASE DE DATOS
 exports.getTeachersDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT *, idStudent FROM User INNER JOIN Student' 
-				+ ' ON User.userEmail = Student.User_userEmail'
+	stringQuery = 'SELECT *, idTeacher FROM User INNER JOIN Teacher' 
+				+ ' ON User.userEmail = Teacher.User_userEmail'
 				+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -181,21 +177,19 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 					+ ' FROM User as u'
 					+ ' INNER JOIN Teacher as s'
 					+ '     ON u.userEmail = s.User_userEmail'
-					+ ' INNER JOIN Teacher_has_Subject as ss'
+					+ ' INNER JOIN Teacher_has_Subject_has_Course as ss'
 					+ '     ON s.idTeacher = ss.Teacher_idTeacher'
-					+ ' INNER JOIN Subject as su'
-					+ '     ON su.idSubject = ss.Subject_idSubject'
 					+ ' INNER JOIN Subject_has_Course as sc'
+					+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
+					+ '		AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
+					+ ' INNER JOIN Subject as su'
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
-					+ '     ON c.idCourse = sc.Course_idCourse'
+					+ '     ON sc.Course_idCourse = c.idCourse'
 					+ ' WHERE Institute_idInstitute="'+req.session.datos[0].Institute_idInstitute+'";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			for (i in result ){
-				console.log( 'Vato en' + result[i].subjectName );
-			}
-			res.redirect('/management')
+			res.send(result);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');

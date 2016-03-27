@@ -125,7 +125,11 @@ app.get('/error', routes.error);
 
 app.post('/login', post.login);
 app.post('/insertUser', post.insertUser);
-app.post('/prueba', post.getStudentsDatabase);
+app.post('/getAdministratorsDatabase', post.getAdministratorsDatabase);
+app.post('/getStudentsDatabase', post.getStudentsDatabase);
+app.post('/getStudentsSubjectsDatabase', post.getStudentsSubjectsDatabase);
+app.post('/getTeachersDatabase', post.getTeachersDatabase);
+app.post('/getTeachersSubjectsDatabase', post.getTeachersSubjectsDatabase);
 
 http.createServer(app).listen(app.get('port'), function(){
 	var base = new databaseInstance();
