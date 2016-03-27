@@ -2,6 +2,10 @@ var app = angular.module('management', []);
 
 app.controller('todos', function($scope, $http) {
 
+	function ajaxJqueryIssue(){
+		ajaxDone();
+	}
+
 	$scope.adminsInfo = '';
 	$scope.studentsInfo = '';
 	$scope.studentsSubjects = '';
@@ -79,13 +83,15 @@ app.controller('todos', function($scope, $http) {
 			success(function(data2) {
 				$scope.teachersInfo = data;
 				$scope.teachersSubjects = data2;
+				ajaxJqueryIssue();
 			}).
 			error(function() {
 				alert('Error al recuperar info admin');
-			});			
+			});		
 		}).
 		error(function() {
 			alert('Error al recuperar info admin');
 		});
 	}
+
 });

@@ -1,5 +1,5 @@
 $.noConflict();
-jQuery(document).ready(function(){
+jQuery(document).on('ready' ,function(){
 
 	jQuery('#changeTheme').click(function(){
 		if( jQuery(this).is(':checked') ){
@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
 	});
 
 	jQuery('#signatureprogress').css(
-		'width' , 
+		'width', 
 		parseFloat( jQuery('#signaturegralprom').text() ) * 10 + '%' 
 	);
 
@@ -146,27 +146,6 @@ jQuery(document).ready(function(){
 
 
 /*-------------------------------------------------------------------------------------
-		VERTICAL LIST CONTROL
----------------------------------------------------------------------------------------*/ 
-
-	jQuery('.innerlistitem').hide();
-
-	jQuery('.listitem').click(function(){
-
-		var slideD = jQuery(this).siblings('.innerlistitem');
-
-		if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
-			jQuery(this).siblings('.innerlistitem').slideUp();
-		}
-		else{
-			jQuery('.innerlistitem').slideUp();
-			slideD.slideDown();
-		}
-
-	});
-
-
-/*-------------------------------------------------------------------------------------
 		HORIZONTAL LIST CONTROL
 ---------------------------------------------------------------------------------------*/ 
 
@@ -277,6 +256,8 @@ jQuery(document).ready(function(){
 		LIST ITEM CIRCLE CONTROL
 ---------------------------------------------------------------------------------------*/
 
+	jQuery('.innerlistitem').hide();	
+
 	var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
 		'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
 		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
@@ -303,7 +284,9 @@ jQuery(document).ready(function(){
 
 	});
 
-	jQuery('.block_containermsm .listitem, .block_containersettings .listitem').click(function(){
+//-------------------------------------------------------------------------------------
+
+	jQuery('.block_containermsm .listitem, .block_containersettings .listitem').on('click', function(){
 		var title = jQuery(this).attr('data-name');
 		var img = jQuery(this).find('img').attr('src');
 		if( jQuery(window).width() < 1120 ){
@@ -482,3 +465,58 @@ jQuery(document).ready(function(){
 	});
 
 });
+
+
+jQuery(document).ready(function(){
+
+/*-------------------------------------------------------------------------------------
+		VERTICAL LIST CONTROL
+---------------------------------------------------------------------------------------*/ 
+
+	jQuery(document).on('click', '.listitem', function(){
+
+		var slideD = jQuery(this).siblings('.innerlistitem');
+
+		if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
+			jQuery(this).siblings('.innerlistitem').slideUp();
+		}
+		else{
+			jQuery('.innerlistitem').slideUp();
+			slideD.slideDown();
+		}
+
+	});
+
+
+});
+
+function ajaxDone(){
+
+	jQuery('.innerlistitem').hide();	
+
+	var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
+		'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
+		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
+		'bg_purple','bg_pink','bg_blue','bg_bluegray','bg_amber','bg_lime',
+		// Numbers colors
+		'bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
+
+	var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
+
+	jQuery('.listitem, .hover').each(function(){
+
+		var circleLetter = jQuery(this).find('.listitem_title b').text();
+		var span = jQuery(this).find('.listitem_img span');
+		var firstChar = circleLetter.charAt(0).toUpperCase();
+
+		span.text(firstChar);
+
+		for( var i = 0; i <= characters.length; i++ ){
+			if ( firstChar == characters[i] ){
+				span.addClass(colorsArray[i]);
+				break;
+			}
+		}
+
+	});
+}

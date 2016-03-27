@@ -93,7 +93,7 @@ block content
 							span.searchicon
 							input#buscar_slide(type='text',name='buscar', placeholder='Buscar una Persona o Asignatura')
 					#listcontainer.colhh1.h_listindex.first
-							.colhh1.slide_list( ng-repeat="item in adminsInfo" )
+							.colhh1.slide_list( ng-repeat="item in adminsInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Administrador')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 									.listitem_img
@@ -101,15 +101,10 @@ block content
 									.listitem_info
 										.listitem_title 
 											b {{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}
-										.listitem_bottomdata Profesor
+										.listitem_bottomdata Administrador
 								.colhh1.innerlistitem
 									.colhh1.border_bottom
 										.list_borderleft
-											.pd_llist
-												.sl_title Información
-											.pd_llist
-												.pd_l12
-													| Esto ya no maigo
 											.pd_llist
 												.sl_title Asignaturas
 											.pd_llist
@@ -122,7 +117,7 @@ block content
 														b Algebra
 													.listitem_bottomdata
 														| 5 grupos
-							.colhh1.slide_list( ng-repeat="item in studentsInfo" )
+							.colhh1.slide_list( ng-repeat="item in studentsInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Alumno')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 									.listitem_img
@@ -135,18 +130,16 @@ block content
 									.colhh1.border_bottom
 										.list_borderleft
 											.pd_llist
-												.sl_title Información
-											.pd_llist
-												.sl_title Asignaturas
-											.colhh1.hover( ng-init="verCual(item.idStudent)" )
-												div( ng-repeat="aux in auxSubject")
+												.sl_title Grupos y Asignaturas
+											div( ng-init="verCual(item.idStudent)" )
+												.colhh1.hover( ng-repeat="aux in auxSubject" )
 													.listitem_img
 														span B
 													.listitem_info
 														.listitem_title 
 															b {{aux.subjectName}}, {{aux.courseName}}
 														.listitem_bottomdata
-							.colhh1.slide_list( ng-repeat="item in teachersInfo" )
+							.colhh1.slide_list( ng-repeat="item in teachersInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Profesor')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 									.listitem_img
@@ -159,11 +152,9 @@ block content
 									.colhh1.border_bottom
 										.list_borderleft
 											.pd_llist
-												.sl_title Información
-											.pd_llist
-												.sl_title Asignaturas
-											.colhh1.hover( ng-init="verCual2(item.idTeacher)" )
-												div( ng-repeat="aux2 in auxSubject2")
+												.sl_title Grupos y Asignaturas
+											div( ng-init="verCual2(item.idTeacher)" )
+												.colhh1.hover( ng-repeat="aux2 in auxSubject2" )
 													.listitem_img
 														span B
 													.listitem_info

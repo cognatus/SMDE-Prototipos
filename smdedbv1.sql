@@ -79,31 +79,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `smdedbv1`.`User`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `smdedbv1`.`User` ;
-
-CREATE TABLE IF NOT EXISTS `smdedbv1`.`User` (
-  `userEmail` VARCHAR(100) NOT NULL COMMENT '',
-  `userName` VARCHAR(80) NOT NULL COMMENT '',
-  `userLastName` CHAR(80) NOT NULL COMMENT '',
-  `userSecondLastName` CHAR(80) NOT NULL COMMENT '',
-  `userSex` CHAR(1) NOT NULL COMMENT '',
-  `userPassword` VARCHAR(100) NOT NULL COMMENT '',
-  `darkTheme` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '',
-  `msmColor` VARCHAR(30) NULL COMMENT '',
-  `Institute_idInstitute` VARCHAR(30) NOT NULL COMMENT '',
-  PRIMARY KEY (`userEmail`, `Institute_idInstitute`)  COMMENT '',
-  INDEX `fk_User_Institute1_idx` (`Institute_idInstitute` ASC)  COMMENT '',
-  CONSTRAINT `fk_User_Institute1`
-    FOREIGN KEY (`Institute_idInstitute`)
-    REFERENCES `smdedbv1`.`Institute` (`idInstitute`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `smdedbv1`.`Message`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `smdedbv1`.`Message` ;
@@ -128,17 +103,6 @@ CREATE TABLE IF NOT EXISTS `smdedbv1`.`Message` (
     REFERENCES `smdedbv1`.`User` (`userEmail`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `smdedbv1`.`attend`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `smdedbv1`.`attend` ;
-
-CREATE TABLE IF NOT EXISTS `smdedbv1`.`attend` (
-  `Student_idStudent` VARCHAR(30) NOT NULL COMMENT '',
-  PRIMARY KEY (`Student_idStudent`)  COMMENT '')
 ENGINE = InnoDB;
 
 

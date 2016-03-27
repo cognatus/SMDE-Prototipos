@@ -170,7 +170,7 @@ exports.getTeachersDatabase = function(req, res){
 	});
 };
 
-// FUNCION PARA MOSTRAR MATERIAS DE Profesor DE LA BASE DE DATOS
+// FUNCION PARA MOSTRAR MATERIAS DE PROFESOR DE LA BASE DE DATOS
 exports.getTeachersSubjectsDatabase = function(req, res){
 	var database = new base();
 	stringQuery = 'SELECT idTeacher, subjectName, courseName'
