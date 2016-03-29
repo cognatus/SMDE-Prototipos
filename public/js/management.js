@@ -18,6 +18,7 @@ app.controller('todos', function($scope, $http) {
 			if( uno == $scope.studentsSubjects[i].idStudent){
 				$scope.auxSubject.push($scope.studentsSubjects[i]);
 				console.log(uno);
+				ajaxDone();
 			}
 		}
 	};
@@ -29,6 +30,7 @@ app.controller('todos', function($scope, $http) {
 			if( uno == $scope.teachersSubjects[i].idTeacher){
 				$scope.auxSubject2.push($scope.teachersSubjects[i]);
 				console.log(uno);
+				ajaxDone();
 			}
 		}
 	};
@@ -79,7 +81,6 @@ app.controller('todos', function($scope, $http) {
 			success(function(data2) {
 				$scope.teachersInfo = data;
 				$scope.teachersSubjects = data2;
-				ajaxDone();
 			}).
 			error(function() {
 				alert('Error al recuperar info admin');
