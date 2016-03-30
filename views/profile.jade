@@ -2,6 +2,8 @@ extends layout
 
 block content
 
+	script( type='text/javascript' src='/js/management.js' )
+	#profileApp(ng-app='management')
 		#new_item.float_buttoncontainer( title='Editar Perfil' )
 			span.bg_edit.bgaccent_color
 
@@ -44,7 +46,7 @@ block content
 											input.txtaccent_color.b_text(type='submit' value='Aceptar')
 
 		.topspace
-		.page_container
+		.page_container(ng-controller='perfil', ng-init="cargarInfo()")
 			.grid_profilebackgroundcontainer
 				.block_container
 					.colhh1.profile_img

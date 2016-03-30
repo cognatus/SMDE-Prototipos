@@ -23,8 +23,12 @@ html
 						img.circle( src='images/profilephoto.png' )
 				.colhh1.menu_username
 					a( href='/profile' )
-						.pd12_14 Nombre Completo
-							span correo@email.com	
+						.pd12_14 
+							//- | #{datos[0].userName} 
+							//- | #{datos[0].userLastName} 
+							//- | #{datos[0].userSecondLastName}
+							//- span 
+							//- 	| #{datos[0].userEmail}
 			.colhh1.menu_opccontainer
 				.pd_tb_10.border_bottom
 					a( href='/main' )

@@ -3,7 +3,7 @@ extends layout
 block content
 
 	script( type='text/javascript' src='/js/management.js' )
-	#esperonomatarelcss(ng-app='management')
+	#managementApp(ng-app='management')
 		#new_item.float_buttoncontainer( title='Agregar Usuario' )
 			span.bg_plus.bgaccent_color
 				
@@ -92,10 +92,10 @@ block content
 										input(type='text', placeholder='Nombre' name='insertSubjectName')
 									.form_input
 										.b_text.left_title Nivel
-										input(type='text', placeholder='Nombre' name='insertSubjectLevel')
+										input(type='text', placeholder='Nivel' name='insertSubjectLevel')
 									.form_input
 										.b_text.left_title Academia
-										input(type='text', placeholder='Nombre' name='insertSubjectDept')
+										input(type='text', placeholder='Nombre Academia' name='insertSubjectDept')
 									.form_input(style='height: 52px;')
 										span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 								.form_confirmblock
@@ -119,7 +119,7 @@ block content
 										input(type='text', placeholder='Nombre' name='insertCourseName')
 									.form_input
 										.b_text.left_title Nivel
-										input(type='text', placeholder='Nombre' name='insertCourseLevel')
+										input(type='text', placeholder='Nivel' name='insertCourseLevel')
 									.form_input(style='height: 52px;')
 										span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 								.form_confirmblock
@@ -134,7 +134,7 @@ block content
 												span.raised_button.right_float.rippleria-dark(data-rippleria)
 													input.txtaccent_color.b_text(type='submit' value='Aceptar')
 		.topspace
-		.page_container(ng-controller="todos", ng-init="cargarTodos()")
+		.page_container
 			.block_container
 				.colhh1.profile_img2
 					.photo
@@ -159,12 +159,14 @@ block content
 								.pd_16.rippleria-dark( data-rippleria ) Departamentos
 							.h_listitem
 								.pd_16.rippleria-dark( data-rippleria ) Asignaturas
+							.h_listitem
+								.pd_16.rippleria-dark( data-rippleria ) Grupos
 				.block_container.bg_white
 					.colhh1.bgaccent_color2.flat_shadow
 						.search
 							span.searchicon
 							input#buscar_slide(type='text',name='buscar', placeholder='Buscar Cualquier Cosa')
-					#listcontainer.colhh1
+					#listcontainer.colhh1(ng-controller="todos", ng-init="cargarTodos()")
 							.colhh1.load_container#management_showall
 								.load
 									.spinner
@@ -180,10 +182,18 @@ block content
 								.colhh1.innerlistitem
 									.colhh1.border_bottom
 										.list_borderleft
-											.pd_llist
-												.sl_title Asignaturas
-											.pd_llist
-												.pd_l12 Sin Asignaturas
+											.colhh1
+												.pd_llist
+													.sl_title Informacion
+												.pd_llist
+													.pd_l12.uppercase Id: 
+														span.margin_l.none_txttransform {{item.idAdministrator}}
+													.pd_4
+													.pd_l12.uppercase Correo: 
+														span.margin_l.none_txttransform {{item.userEmail}}
+													.pd_4
+													.pd_l12.uppercase Sexo: 
+														span.margin_l.none_txttransform {{item.userSex}}
 							.colhh1.slide_list( ng-repeat="item in studentsInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Alumno')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
@@ -196,17 +206,33 @@ block content
 								.colhh1.innerlistitem
 									.colhh1.border_bottom
 										.list_borderleft
-											.pd_llist
-												.sl_title Grupos y Asignaturas
-											div( ng-init="verCual(item.idStudent)" )
-												.colhh1.hover( ng-repeat="aux in auxSubject" )
-													.listitem_img
-														span B
-													.listitem_info
-														.listitem_title 
-															b {{aux.subjectName}}
-														.listitem_bottomdata
-															| {{aux.courseName}}
+											.colhh1
+												.pd_llist
+													.sl_title Informacion
+												.pd_llist
+													.pd_l12.uppercase Id: 
+														span.margin_l.none_txttransform {{item.idStudent}}
+													.pd_4
+													.pd_l12.uppercase Correo: 
+														span.margin_l.none_txttransform {{item.userEmail}}
+													.pd_4
+													.pd_l12.uppercase Sexo: 
+														span.margin_l.none_txttransform {{item.userSex}}
+											.pd_8
+											.colhh1
+												.pd_llist
+													.sl_title Grupos y Asignaturas
+												div( ng-init="verCual(item.idStudent)" )
+													.colhh1.hover( ng-repeat="aux in auxSubject" )
+														.listitem_img
+															span B
+														.listitem_info
+															.listitem_rightinfo 
+																| {{aux.idSubject}}
+															.listitem_title 
+																b {{aux.subjectName}}
+															.listitem_bottomdata
+																| {{aux.courseName}}
 							.colhh1.slide_list( ng-repeat="item in teachersInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Profesor')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
@@ -219,54 +245,72 @@ block content
 								.colhh1.innerlistitem
 									.colhh1.border_bottom
 										.list_borderleft
+											.colhh1
+												.pd_llist
+													.sl_title Informacion
+												.pd_llist
+													.pd_l12.uppercase Id: 
+														span.margin_l.none_txttransform {{item.idTeacher}}
+													.pd_4
+													.pd_l12.uppercase Correo: 
+														span.margin_l.none_txttransform {{item.userEmail}}
+													.pd_4
+													.pd_l12.uppercase Sexo: 
+														span.margin_l.none_txttransform {{item.userSex}}
+											.pd_8
+											.colhh1
+												.pd_llist
+													.sl_title Grupos y Asignaturas
+												div( ng-init="verCual2(item.idTeacher)" )
+													.colhh1.hover( ng-repeat="aux2 in auxSubject2" )
+														.listitem_img
+															span B
+														.listitem_info
+															.listitem_title 
+																b {{aux2.subjectName}}
+															.listitem_bottomdata
+																| {{aux2.courseName}}						
+							.colhh1.slide_list(ng-repeat="item in departmentInfo" data-name='{{item.departmentName}}' data-type='Academia')
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
+									.listitem_img
+										span A
+									.listitem_info
+										.listitem_title 
+											b {{item.departmentName}}
+										.listitem_bottomdata
+											| Academia
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
 											.pd_llist
-												.sl_title Grupos y Asignaturas
-											div( ng-init="verCual2(item.idTeacher)" )
-												.colhh1.hover( ng-repeat="aux2 in auxSubject2" )
-													.listitem_img
-														span B
-													.listitem_info
-														.listitem_title 
-															b {{aux2.subjectName}}
-														.listitem_bottomdata
-															| {{aux2.courseName}}						
-							//.colhh1.slide_list(data-name='Humanistica' data-type='Departamento')
-								//.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
-									//.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
-									//.listitem_img
-										//span A
-									//.listitem_info
-										//.listitem_title 
-											//b Humanistica
-										//.listitem_bottomdata
-											//| Departamento
-								//.colhh1.innerlistitem
-									//.colhh1.border_bottom
-										//.list_borderleft
-											//.pd_llist
-												//.sl_title Información
-											//.pd_llist
-												//.colhh1.pd_l12 Asignaturas: 
-													//span.margin_l Civismo, Desarrollo Personal
-							//.colhh1.slide_list(data-name='Geografía' data-type='Asignatura')
-								//.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
-									//.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
-									//.listitem_img
-										//span A
-									//.listitem_info
-										//.listitem_title 
-											//b Geografía
-										//.listitem_bottomdata
-											//| Asignatura
-								//.colhh1.innerlistitem
-									//.colhh1.border_bottom
-										//.list_borderleft
-											//.pd_llist
-												//.sl_title Información
-											//.pd_llist
-												//.colhh1.pd_l12 Academia: 
-													//span.margin_l Humanisticas
-												//.pd_4
-												//.colhh1.pd_l12 Nivel:
-													//span.margin_l 1
+												.sl_title Información
+											.pd_llist
+												.pd_l12.uppercase Id:
+													span.margin_l.none_txttransform {{item.idDepartment}}
+												//- .colhh1.pd_l12 Asignaturas: 
+												//- 	span.margin_l Civismo, Desarrollo Personal
+							.colhh1.slide_list(ng-repeat="item in subjectInfo" data-name='{{item.SubjectName}}' data-type='Asignatura')
+								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
+									.listitem_img
+										span A
+									.listitem_info
+										.listitem_title 
+											b {{item.subjectName}}
+										.listitem_bottomdata
+											| Asignatura
+								.colhh1.innerlistitem
+									.colhh1.border_bottom
+										.list_borderleft
+											.pd_llist
+												.sl_title Información
+											.pd_llist
+												.pd_l12.uppercase Id:
+													span.margin_l.none_txttransform {{item.idSubject}}
+												.pd_4
+												.pd_l12.uppercase Nivel:
+													span.margin_l.none_txttransform {{item.subjectLevel}}
+												//- .colhh1.pd_l12 Asignaturas: 
+												//- 	span.margin_l Civismo, Desarrollo Personal
 

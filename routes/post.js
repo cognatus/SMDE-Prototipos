@@ -20,8 +20,8 @@ exports.login = function(req, res){
 	var consulta = function(){
 		database.query(stringQuery, function(error, result, row){
 			if(!error && result.length > 0) {
-				req.session.datos = result;
 				res.redirect('/main');
+				req.session.datos = result;
 			}else if(i === 3){
 				console.log('ni pedo dude')
 				res.redirect('/error')
@@ -75,31 +75,31 @@ exports.insertUser = function(req, res){
 	var userInstitute = req.session.datos[0].Institute_idInstitute ;
 
 	stringQuery = 'BEGIN;';
+	stringQuery = '\n';
 
-	stringQuery += 'INSERT INTO User' 
-					+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute)'
-					+ ' VALUES ("' + userEmail + '",'
-					+ ' "' + userName + '",'
-					+ ' "' + userLastName + '",'
-					+ ' "' + userSecondLastName + '",'
-					+ ' "' + userSex + '",'
-					+ ' "' + userPassword + '",'
-					+ ' "' + userInstitute + '");';
+	stringQuery += 'INSERT INTO User';
+	stringQuery += ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute)';
+	stringQuery += ' VALUES ("' + userEmail + '",';
+	stringQuery += ' "' + userName + '",';
+	stringQuery += ' "' + userLastName + '",';
+	stringQuery += ' "' + userSecondLastName + '",';
+	stringQuery += ' "' + userSex + '",';
+	stringQuery += ' "' + userPassword + '",';
+	stringQuery += ' "' + userInstitute + '");';
+	stringQuery+= '\n';
 
 	if( userType == 'student' ){
-		stringQuery += 'INSERT INTO Student' 
-					+ ' (idStudent, User_userEmail)'
-					+ ' VALUES ("' + userIdKey + '",'
-					+ ' "' + userEmail + '");';
+		stringQuery += 'INSERT INTO Student (idStudent, User_userEmail)';
+		stringQuery += ' VALUES ("' + userIdKey + '", "' + userEmail + '");';
+		stringQuery += '\n';
+		stringQuery += 'COMMIT;';
 	}
 	else if( userType == 'teacher' ){
-		stringQuery += 'INSERT INTO Teacher' 
-					+ ' (idTeacher, User_userEmail)'
-					+ ' VALUES ("' + userIdKey + '",'
-					+ ' "' + userEmail + '");';
+		stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail)';
+		stringQuery += ' VALUES ("' + userIdKey + '", "' + userEmail + '");';
+		stringQuery += '\n';
+		stringQuery += 'COMMIT;';
 	}
-
-	stringQuery += 'COMMIT;'
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -189,7 +189,7 @@ exports.insertCourse = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE administradores DE LA BASE DE DATOS
 exports.getAdministratorsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT *, idAdministrator FROM User INNER JOIN Administrator' 
+	stringQuery = 'SELECT User.*, idAdministrator FROM User INNER JOIN Administrator' 
 				+ ' ON User.userEmail = Administrator.User_userEmail'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
@@ -205,7 +205,7 @@ exports.getAdministratorsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE ALUMNOS DE LA BASE DE DATOS
 exports.getStudentsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT *, idStudent FROM User INNER JOIN Student' 
+	stringQuery = 'SELECT User.*, idStudent FROM User INNER JOIN Student' 
 				+ ' ON User.userEmail = Student.User_userEmail'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
@@ -221,7 +221,7 @@ exports.getStudentsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR MATERIAS DE ALUMNOS DE LA BASE DE DATOS
 exports.getStudentsSubjectsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT idStudent, subjectName, courseName'
+	stringQuery = 'SELECT idStudent, idSubject, subjectName, courseName'
 					+ ' FROM User as u'
 					+ ' INNER JOIN Student as s'
 					+ '     ON u.userEmail = s.User_userEmail'
@@ -249,7 +249,7 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE PROFESORES DE LA BASE DE DATOS
 exports.getTeachersDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT *, idTeacher FROM User INNER JOIN Teacher' 
+	stringQuery = 'SELECT User.*, idTeacher FROM User INNER JOIN Teacher' 
 				+ ' ON User.userEmail = Teacher.User_userEmail'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
@@ -265,7 +265,7 @@ exports.getTeachersDatabase = function(req, res){
 // FUNCION PARA MOSTRAR MATERIAS DE PROFESOR DE LA BASE DE DATOS
 exports.getTeachersSubjectsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT idTeacher, subjectName, courseName'
+	stringQuery = 'SELECT idTeacher, idSubject, subjectName, courseName'
 					+ ' FROM User as u'
 					+ ' INNER JOIN Teacher as s'
 					+ '     ON u.userEmail = s.User_userEmail'
@@ -289,3 +289,62 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 	});
 
 };
+
+// FUNCION PARA MOSTRAR DATOS DE DEPARTAMENTOS DE LA BASE DE DATOS
+exports.getDepartmentsDatabase = function(req, res){
+	var database = new base();
+	stringQuery = 'SELECT * FROM Department'
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.send(result);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+// FUNCION PARA MOSTRAR DATOS DE ASIGNATURAS DE LA BASE DE DATOS
+exports.getSubjectsDatabase = function(req, res){
+	var database = new base();
+	stringQuery = 'SELECT * FROM Subject'
+				+ ' WHERE Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.send(result);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+/*// FUNCION PARA MOSTRAR DATOS DE CURSOS DE LA BASE DE DATOS
+exports.getCoursesDatabase = function(req, res){
+	var database = new base();
+	stringQuery = 'SELECT * FROM Department'
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.send(result);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};*/
+
+/*exports.getProfileInfo = function(req, res){
+	var database = new base();
+	stringQuery = 'SELECT * FROM User' 
+				+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.send(result);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};*/

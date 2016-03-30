@@ -76,6 +76,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .rel_pos{position: relative;}
 .abs_pos{position: absolute;}
 
+.none_txttransform{text-transform: none;}
+
 /*---------------------------------------------------------------------------------------
 	GRID
 -----------------------------------------------------------------------------------------*/
@@ -1853,7 +1855,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .load{
 	text-align: center;
 	width: auto;
-	padding: 64px;
+	padding: 120px 24px 120px 24px;
 }
 
 /*---------------------------------------------------------------------------------------
