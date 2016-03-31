@@ -8,8 +8,8 @@ app.controller('todos', function($scope, $http) {
 	$scope.teachersInfo = '';
 	$scope.teachersSubjects = '';
 	$scope.departmentInfo= '';
-	/*$scope.subjectInfo= '';
-	$scope.courseInfo= '';*/
+	$scope.subjectInfo= '';
+	$scope.courseInfo= '';
 
 	$scope.auxSubject = [];
 	$scope.auxSubject2 = [];
@@ -25,7 +25,7 @@ app.controller('todos', function($scope, $http) {
 			$scope.adminsInfo = data;
 		}).
 		error(function() {
-			alert('Error al recuperar info admin');
+			alert('Error al obtener información de Aministradores');
 		});
 		//Obtiene Alumnos
 		$http({
@@ -42,11 +42,11 @@ app.controller('todos', function($scope, $http) {
 				$scope.studentsSubjects = data2;
 			}).
 			error(function() {
-				alert('Error al recuperar info admin');
+				alert('Error al obtener información de Asignaturas de Alumnos');
 			});			
 		}).
 		error(function() {
-			alert('Error al recuperar info admin');
+			alert('Error al obtener información de Alumnos');
 		});
 		//Obtiene Profesores
 		$http({
@@ -63,11 +63,11 @@ app.controller('todos', function($scope, $http) {
 				$scope.teachersSubjects = data2;
 			}).
 			error(function() {
-				alert('Error al recuperar info admin');
+				alert('Error al obtener información de Asignaturas de Profesores');
 			});
 		}).
 		error(function() {
-			alert('Error al recuperar info admin');
+			alert('Error al obtener información de Profesores');
 		});
 		//Obtiene Departamentos
 		$http({
@@ -78,7 +78,7 @@ app.controller('todos', function($scope, $http) {
 			$scope.departmentInfo = data;
 		}).
 		error(function() {
-			alert('Error al recuperar info admin');
+			alert('Error al obtener información de Departamentos');
 		});
 		//Obtiene Asignaturas
 		$http({
@@ -89,7 +89,18 @@ app.controller('todos', function($scope, $http) {
 			$scope.subjectInfo = data;
 		}).
 		error(function() {
-			alert('Error al recuperar info admin');
+			alert('Error al obtener información de Asignaturas');
+		});
+		//Obtiene Grupos
+		$http({
+			method: 'POST',
+			url: '/getCoursesDatabase'
+		}).
+		success(function(data) {
+			$scope.courseInfo = data;
+		}).
+		error(function() {
+			alert('Error al obtener información de Grupos');
 		});
 	}
 

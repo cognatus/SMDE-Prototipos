@@ -39,10 +39,11 @@ if ('development' == app.get('env')) {
 //conecta a la DB MySQL
 function databaseInstance(){
 	var connection = mysql.createConnection({
-		host     : 'localhost',
-		password : 'n0m3l0s3',
-		user     : 'root',
-		database : 'smdedbv1',
+		multipleStatements: true,
+		host: 'localhost',
+		password: 'n0m3l0s3',
+		user: 'root',
+		database: 'smdedbv1',
 		port: 8080
 	});
 	return connection;
@@ -135,6 +136,7 @@ app.post('/getTeachersDatabase', post.getTeachersDatabase);
 app.post('/getTeachersSubjectsDatabase', post.getTeachersSubjectsDatabase);
 app.post('/getDepartmentsDatabase', post.getDepartmentsDatabase);
 app.post('/getSubjectsDatabase', post.getSubjectsDatabase);
+app.post('/getCoursesDatabase', post.getCoursesDatabase);
 /*app.post('/getProfileInfo', post.getProfileInfo);*/
 
 http.createServer(app).listen(app.get('port'), function(){

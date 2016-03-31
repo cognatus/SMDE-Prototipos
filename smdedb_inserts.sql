@@ -55,11 +55,11 @@ INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `D
 VALUES ('SDF46DF2332', 'Comunicacion', 1, 'HASD45465', 'PoliV9');
 
 -- grupos cualquiera
-INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`) 
-VALUES ('DFG8765SDF6', '1IV8', 1);
+INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`, `Institute_idInstitute`) 
+VALUES ('DFG8765SDF6', '1IV8', 1, 'PoliV9');
 
-INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`) 
-VALUES ('DFG8765QWE7', '1IV5', 1);
+INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`, `Institute_idInstitute`) 
+VALUES ('DFG8765QWE7', '1IV5', 1, 'PoliV9');
 
 -- Relacion grupo materia
 INSERT INTO `smdedbv1`.`Subject_has_Course` (`Course_idCourse`, `Subject_idSubject`) 

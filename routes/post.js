@@ -64,7 +64,6 @@ exports.login = function(req, res){
 //AGREGAR UN NUEVO USUARIO
 exports.insertUser = function(req, res){
 	var database = new base();
-	var userType = req.body.insertUserType ;
 	var userIdKey = req.body.insertUserIdKey ;
 	var userEmail = req.body.insertUserEmail ;
 	var userName = req.body.insertUserName ;
@@ -75,35 +74,34 @@ exports.insertUser = function(req, res){
 	var userInstitute = req.session.datos[0].Institute_idInstitute ;
 
 	stringQuery = 'BEGIN;';
-	stringQuery = '\n';
-
 	stringQuery += 'INSERT INTO User';
-	stringQuery += ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute)';
-	stringQuery += ' VALUES ("' + userEmail + '",';
-	stringQuery += ' "' + userName + '",';
-	stringQuery += ' "' + userLastName + '",';
-	stringQuery += ' "' + userSecondLastName + '",';
-	stringQuery += ' "' + userSex + '",';
-	stringQuery += ' "' + userPassword + '",';
-	stringQuery += ' "' + userInstitute + '");';
-	stringQuery+= '\n';
+	stringQuery += ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES (';
+	stringQuery += '"' + userEmail + '", ';
+	stringQuery += '"' + userName + '", ';
+	stringQuery += '"' + userLastName + '", ';
+	stringQuery += '"' + userSecondLastName + '", ';
+	stringQuery += '"' + userSex + '", ';
+	stringQuery += '"' + userPassword + '", ';
+	stringQuery += '"' + userInstitute + '");';
+
+	var userType = req.body.insertUserType ;
 
 	if( userType == 'student' ){
-		stringQuery += 'INSERT INTO Student (idStudent, User_userEmail)';
-		stringQuery += ' VALUES ("' + userIdKey + '", "' + userEmail + '");';
-		stringQuery += '\n';
-		stringQuery += 'COMMIT;';
+		stringQuery += 'INSERT INTO Student (idStudent, User_userEmail) VALUES (';
+		stringQuery += '"' + userIdKey + '", ';
+		stringQuery += '"' + userEmail + '");';
 	}
 	else if( userType == 'teacher' ){
-		stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail)';
-		stringQuery += ' VALUES ("' + userIdKey + '", "' + userEmail + '");';
-		stringQuery += '\n';
-		stringQuery += 'COMMIT;';
+		stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail) VALUES (';
+		stringQuery += '"' + userIdKey + '", ';
+		stringQuery += '"' + userEmail + '");';
 	}
+
+	stringQuery += 'COMMIT;';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log('Furulo el insert');
+			console.log('Insert Correcto');
 			res.redirect('/management');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
@@ -168,12 +166,14 @@ exports.insertCourse = function(req, res){
 	var courseIdKey = req.body.insertCourseIdKey ;
 	var courseName  = req.body.insertCourseName ;
 	var courseLevel = req.body.insertCourseLevel ;
+	var courseInstitute = req.session.datos[0].Institute_idInstitute;
 
 	stringQuery = 'INSERT INTO Course' 
-					+ ' (idCourse, courseName, courseLevel)'
+					+ ' (idCourse, courseName, courseLevel, Institute_idInstitute)'
 					+ ' VALUES ("' + courseIdKey + '",'
 					+ ' "' + courseName + '",'
-					+ ' "' + courseLevel + '");';
+					+ ' "' + courseLevel + '",'
+					+ ' "' + courseInstitute + '");';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -234,7 +234,7 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
 					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+					+ ' WHERE su.Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -278,7 +278,7 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
 					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+					+ ' WHERE su.Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -320,11 +320,11 @@ exports.getSubjectsDatabase = function(req, res){
 	});
 };
 
-/*// FUNCION PARA MOSTRAR DATOS DE CURSOS DE LA BASE DE DATOS
+// FUNCION PARA MOSTRAR DATOS DE CURSOS DE LA BASE DE DATOS
 exports.getCoursesDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT * FROM Department'
-				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+	stringQuery = 'SELECT * FROM Course'
+					+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -333,7 +333,8 @@ exports.getCoursesDatabase = function(req, res){
 			res.redirect('/error');
 		}
 	});
-};*/
+
+};
 
 /*exports.getProfileInfo = function(req, res){
 	var database = new base();

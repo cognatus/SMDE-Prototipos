@@ -490,6 +490,18 @@ jQuery(document).on('ready' ,function(){
 
 	});
 
+	jQuery('#mgm_filter .h_listitem').on('click', function(){
+		var type = jQuery(this).attr('data-filter');
+		if (type != 'Todo'){
+			jQuery('.managementlist .slide_list').hide();
+			jQuery('.managementlist .slide_list[data-type="' + type + '"]').show();	
+		}
+		else{
+			jQuery('.managementlist .slide_list').show();
+		}
+	});
+
+
 });
 
 
