@@ -107,11 +107,11 @@
 
 	.form_input .double, .form_input .triple{width: calc(100% - 120px);display: inline-block;}
 
-	.form_input .double input{width: calc(50% - 6px);}
+	.form_input .double input, .form_input .double select{width: calc(50% - 6px);}
 
 	.form_input .triple input{width: calc(33.33333% - 8px);}
 
-	.form_input .double input.second, .form_input .triple input.third{margin-left: 12px;}
+	.form_input .double input.second, .form_input .double input.select ,.form_input .triple input.third{margin-left: 12px;}
 
 	.index_container .pd{
 		padding: 88px;

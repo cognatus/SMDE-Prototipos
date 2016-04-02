@@ -28,7 +28,7 @@ block content
 								.pd_24
 									.form_input
 										.b_text.left_title Clave
-										input(type='text', placeholder='Clave' name='insertUserIdKey')
+										input(type='text', placeholder='Clave' maxlength='20' name='insertUserIdKey')
 									.form_input
 										.b_text.left_title Nombre(s)
 										input(type='text', placeholder='Nombre(s)' name='insertUserName')
@@ -65,7 +65,7 @@ block content
 								.pd_24
 									.form_input
 										.b_text.left_title Clave
-										input(type='text', placeholder='Clave' name='insertDeptIdKey')
+										input(type='text', placeholder='Clave' maxlength='20' name='insertDeptIdKey')
 									.form_input
 										.b_text.left_title Nombre
 										input(type='text', placeholder='Nombre' name='insertDeptName')
@@ -86,7 +86,7 @@ block content
 								.pd_24
 									.form_input
 										.b_text.left_title Clave
-										input(type='text', placeholder='Clave' name='insertSubjectIdKey')
+										input(type='text', placeholder='Clave' maxlength='20' name='insertSubjectIdKey')
 									.form_input
 										.b_text.left_title Nombre
 										input(type='text', placeholder='Nombre' name='insertSubjectName')
@@ -113,7 +113,7 @@ block content
 								.pd_24
 									.form_input
 										.b_text.left_title Clave
-										input(type='text', placeholder='Clave' name='insertCourseIdKey')
+										input(type='text', placeholder='Clave' maxlength='20' name='insertCourseIdKey')
 									.form_input
 										.b_text.left_title Nombre
 										input(type='text', placeholder='Nombre' name='insertCourseName')
@@ -142,8 +142,8 @@ block content
 							img.circle( src='images/profilephoto.png' )
 					.name
 						.pd_18
-							b Admin
-							span Institución: CEFO
+							b #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
+							span Institución: #{datos[0].Institute_idInstitute}
 			.h_listcontainer
 				.colhh1.bg_lightgray(style='margin-bottom: -8px;')
 					.colhh1.rel_pos
@@ -156,7 +156,7 @@ block content
 							.h_listitem(data-filter='Profesor')
 								.pd_16.rippleria-dark( data-rippleria ) Profesores
 							.h_listitem(data-filter='Academia')
-								.pd_16.rippleria-dark( data-rippleria ) Departamentos
+								.pd_16.rippleria-dark( data-rippleria ) Academias
 							.h_listitem(data-filter='Asignatura')
 								.pd_16.rippleria-dark( data-rippleria ) Asignaturas
 							.h_listitem(data-filter='Grupo')
@@ -186,14 +186,14 @@ block content
 							//- 					.pd_llist
 							//- 						.sl_title Informacion
 							//- 					.pd_llist
-							//- 						.pd_l12.uppercase Id: 
-							//- 							span.margin_l.none_txttransform {{item.idAdministrator}}
+							//- 						.pd_l12.sl_title Id: 
+							//- 							span.margin_l.normal_txt {{item.idAdministrator}}
 							//- 						.pd_4
-							//- 						.pd_l12.uppercase Correo: 
-							//- 							span.margin_l.none_txttransform {{item.userEmail}}
+							//- 						.pd_l12.sl_title Correo: 
+							//- 							span.margin_l.normal_txt {{item.userEmail}}
 							//- 						.pd_4
-							//- 						.pd_l12.uppercase Sexo: 
-							//- 							span.margin_l.none_txttransform {{item.userSex}}
+							//- 						.pd_l12.sl_title Sexo: 
+							//- 							span.margin_l.normal_txt {{item.userSex}}
 							.colhh1.slide_list( ng-repeat="item in studentsInfo" data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Alumno')
 								.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
 									.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
@@ -210,14 +210,14 @@ block content
 												.pd_llist
 													.sl_title Informacion
 												.pd_llist
-													.pd_l12.uppercase Id: 
-														span.margin_l.none_txttransform {{item.idStudent}}
+													.pd_l12.sl_title Id: 
+														span.margin_l.normal_txt {{item.idStudent}}
 													.pd_4
-													.pd_l12.uppercase Correo: 
-														span.margin_l.none_txttransform {{item.userEmail}}
+													.pd_l12.sl_title Correo: 
+														span.margin_l.normal_txt {{item.userEmail}}
 													.pd_4
-													.pd_l12.uppercase Sexo: 
-														span.margin_l.none_txttransform {{item.userSex}}
+													.pd_l12.sl_title Sexo: 
+														span.margin_l.normal_txt {{item.userSex}}
 											.pd_8
 											.colhh1
 												.pd_llist
@@ -249,14 +249,14 @@ block content
 												.pd_llist
 													.sl_title Informacion
 												.pd_llist
-													.pd_l12.uppercase Id: 
-														span.margin_l.none_txttransform {{item.idTeacher}}
+													.pd_l12.sl_title Id: 
+														span.margin_l.normal_txt {{item.idTeacher}}
 													.pd_4
-													.pd_l12.uppercase Correo: 
-														span.margin_l.none_txttransform {{item.userEmail}}
+													.pd_l12.sl_title Correo: 
+														span.margin_l.normal_txt {{item.userEmail}}
 													.pd_4
-													.pd_l12.uppercase Sexo: 
-														span.margin_l.none_txttransform {{item.userSex}}
+													.pd_l12.sl_title Sexo: 
+														span.margin_l.normal_txt {{item.userSex}}
 											.pd_8
 											.colhh1
 												.pd_llist
@@ -288,8 +288,8 @@ block content
 											.pd_llist
 												.sl_title Información
 											.pd_llist
-												.pd_l12.uppercase Id:
-													span.margin_l.none_txttransform {{item.idDepartment}}
+												.pd_l12.sl_title Id:
+													span.margin_l.normal_txt {{item.idDepartment}}
 												//- .colhh1.pd_l12 Asignaturas: 
 												//- 	span.margin_l Civismo, Desarrollo Personal
 							.colhh1.slide_list(ng-repeat="item in subjectInfo" data-name='{{item.SubjectName}}' data-type='Asignatura')
@@ -308,11 +308,11 @@ block content
 											.pd_llist
 												.sl_title Información
 											.pd_llist
-												.pd_l12.uppercase Id:
-													span.margin_l.none_txttransform {{item.idSubject}}
+												.pd_l12.sl_title Id:
+													span.margin_l.normal_txt {{item.idSubject}}
 												.pd_4
-												.pd_l12.uppercase Nivel:
-													span.margin_l.none_txttransform {{item.subjectLevel}}
+												.pd_l12.sl_title Nivel:
+													span.margin_l.normal_txt {{item.subjectLevel}}
 												//- .colhh1.pd_l12 Asignaturas: 
 												//- 	span.margin_l Civismo, Desarrollo Personal
 							.colhh1.slide_list(ng-repeat="item in courseInfo" data-name='{{item.courseName}}' data-type='Grupo')
@@ -331,9 +331,9 @@ block content
 											.pd_llist
 												.sl_title Información
 											.pd_llist
-												.pd_l12.uppercase Id:
-													span.margin_l.none_txttransform {{item.idCourse}}
+												.pd_l12.sl_title Id:
+													span.margin_l.normal_txt {{item.idCourse}}
 												.pd_4
-												.pd_l12.uppercase Nivel:
-													span.margin_l.none_txttransform {{item.courseLevel}}
+												.pd_l12.sl_title Nivel:
+													span.margin_l.normal_txt {{item.courseLevel}}
 

@@ -63,16 +63,6 @@ block content
 									b Nombre Completo
 								.listitem_bottomdata  Lorem ipsum dolor sit amet
 						.colhh1(style='height: 82px;')
-						form(name='formDesignTheme')
-							.pd_32
-								.colhh1.ll_title.opacity_color ¿Tema oscuro o claro?
-								.pd_12
-								.form_input(style='height: 40px;line-height:40px;')
-									.pd_l18
-										.autocol Activar Tema Oscuro
-										.right_float
-											input(type='checkbox' id='changeTheme', hidden)
-											label.switch(for='changeTheme')
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
@@ -89,6 +79,9 @@ block content
 								.pd_16.hover.rippleria-dark(data-rippleria) Vaciar
 								.pd_16.hover.rippleria-dark(data-rippleria) Buscar
 					.msmcontent
+						if datos[0].msmColor != undefined
+							style.
+								.leftmsm{background-color: #{datos[0].msmColor};}
 						.msm_innercontent
 							.colhh1
 								.msm_pd

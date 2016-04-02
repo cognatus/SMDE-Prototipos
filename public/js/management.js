@@ -1,5 +1,6 @@
 var app = angular.module('management', []);
 
+
 app.controller('todos', function($scope, $http) {
 
 	$scope.adminsInfo = '';

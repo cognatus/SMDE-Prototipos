@@ -15,7 +15,12 @@ html
 		script( type='text/javascript' src="/material_spinner/dist/js/material.spinner.min.js" )
 		script( type='text/javascript' src='/rippleclick/js/jquery.rippleria.js' )
 		script( type='text/javascript' src='/js/viewscontrol.js' )
-	body
+	- var bodyClass
+	if datos[0].darkTheme == true
+		- bodyClass = 'dark_theme'
+	else
+		-bodyClass = ''
+	body(class=bodyClass)
 		#menu.menu_grid.bg_white
 			.colhh1.menu_userbg
 				.menu_userimg
@@ -24,11 +29,11 @@ html
 				.colhh1.menu_username
 					a( href='/profile' )
 						.pd12_14 
-							//- | #{datos[0].userName} 
-							//- | #{datos[0].userLastName} 
-							//- | #{datos[0].userSecondLastName}
-							//- span 
-							//- 	| #{datos[0].userEmail}
+							| #{datos[0].userName} 
+							| #{datos[0].userLastName} 
+							| #{datos[0].userSecondLastName}
+							span 
+								| #{datos[0].userEmail}
 			.colhh1.menu_opccontainer
 				.pd_tb_10.border_bottom
 					a( href='/main' )

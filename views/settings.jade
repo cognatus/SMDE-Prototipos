@@ -63,7 +63,7 @@ block content
 									.pd_32
 										.colhh1 
 											.b_text Actual: 
-												.opacity_color correo@mail.com
+												.opacity_color #{datos[0].userEmail}
 											.pd_12
 										.form_input
 											.b_text.left_title Correo
@@ -273,7 +273,8 @@ block content
 										span.raised_button.right_float.rippleria-dark(data-rippleria)
 											input.txtaccent_color.b_text(type='submit' value='Guardar Cambios')
 							.colhh1.settings_inneritem
-								form(name='formDesignTheme')
+
+								form(name='formDesignTheme' id='formDesignTheme' method='post' action='setProfileTheme')
 									.pd_32
 										.colhh1.ll_title.opacity_color ¿Tema oscuro o claro?
 										.pd_12
@@ -281,14 +282,20 @@ block content
 											.pd_l18
 												.autocol Activar Tema Oscuro
 												.right_float
-													input(type='checkbox' id='changeTheme', hidden)
+													- var isCheked
+													if datos[0].darkTheme == 1
+														- isChecked = true
+													else
+														- isChecked = false
+													input(type='checkbox' id='changeTheme', checked=isChecked name='changeTheme' hidden, onChange='document.getElementById("formDesignTheme").submit()')
 													label.switch(for='changeTheme')
 							.colhh1.settings_inneritem
 								.pd_8
 								.pd_18.settings_colors.center_text
 									//- script colors 
-								form(name='settingsform_updateMsmColor')
+								form(name='settingsform_updateMsmColor' action='setProfileMsmColor' method='post')
 									.pd_24
 										.form_input(style='height: 52px;')
+											input(type='text' name='msmValueColor' value='' id='msmValueColor' hidden)
 											span.bgaccent_color.bg_check.submit.circle.rippleria-dark(data-rippleria title='Confirmar')
 												input(type='submit' value='')

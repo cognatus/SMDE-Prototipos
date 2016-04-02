@@ -270,10 +270,12 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
-.bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download{
+.bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete{
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;
 }
+
+.bg_delete{background-image: url('/images/delete.png');}
 
 .bg_attachment{background-image: url('/images/attachment.png');background-size: 52%;}
 
@@ -1479,11 +1481,11 @@ option{background-color: #fff;}
 
 .form_input .double, .form_input .triple{width: 100%;}
 
-.form_input .double input{width: calc(50% - 6px);}
+.form_input .double input, .form_input .double select{width: calc(50% - 6px);}
 
 .form_input .triple input{width: calc(33.33333% - 8px);}
 
-.form_input .double input.second, .form_input .triple input.third{margin-left: 12px;}
+.form_input .double input.second, .form_input .triple input.third, .form_input .double select.second{margin-left: 12px;}
 
 .form_input textarea{margin-top: 6px;}
 
@@ -1704,6 +1706,16 @@ input:checked + .switch:active::before {
 	margin-left: 18px;
 }
 
+.listitemactions{
+	padding-top: 0;
+}
+.listitemactions span{
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	margin-left: 12px;
+}
+
 /*---------------------------------------------------------------------------------------
 	SETTINGS
 -----------------------------------------------------------------------------------------*/
@@ -1889,6 +1901,14 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme .bg_white{
 	background-color: #424242;
+}
+
+.dark_theme .bg_lightgray{
+	background-color: #212121;
+}
+
+.dark_theme .h_listtopcontainer{
+	color: rgba(255,255,255,0.5);
 }
 
 .dark_theme .hover:hover{background-color: rgba(255,255,255,0.04);}

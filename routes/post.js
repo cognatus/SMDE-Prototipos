@@ -349,3 +349,43 @@ exports.getCoursesDatabase = function(req, res){
 		}
 	});
 };*/
+
+exports.setProfileTheme = function(req, res){
+	var database = new base();
+	var isChecked = req.body.changeTheme;
+
+	stringQuery = 'UPDATE User SET darkTheme=0'
+		+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;	
+	
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Cambio de tema correctamento');
+			res.redirect('/settings');
+			consulta();
+		}else{
+			console.log('Error en esta sentencia: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+exports.setProfileMsmColor = function(req, res){
+	var database = new base();
+	var msmColor = req.body.msmValueColor;
+	stringQuery = 'UPDATE User SET msmColor="' + msmColor + '"'
+	+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";';
+	
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Cambio de color correcto');
+			res.redirect('/settings');
+		}else{
+			console.log('Error en esta sentencia: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});	
+};
+
+
+
+// TODO REFERENTE A LA AGENDA

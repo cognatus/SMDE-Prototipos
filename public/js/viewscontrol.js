@@ -1,14 +1,14 @@
 $.noConflict();
 jQuery(document).on('ready' ,function(){
 
-	jQuery('#changeTheme').click(function(){
+/*	jQuery('#changeTheme').click(function(){
 		if( jQuery(this).is(':checked') ){
 			jQuery('body').addClass('dark_theme');
 		}
 		else{
 			jQuery('body').removeClass('dark_theme');
 		}
-	});
+	});*/
 
 	jQuery('.sign_field input.textfield').focus(function(){
 		var firstImg = jQuery(this).siblings('img').attr('src');
@@ -19,6 +19,17 @@ jQuery(document).on('ready' ,function(){
 		jQuery('.sign_field input.textfield').blur(function(){
 			jQuery(this).siblings('img').attr('src' , firstImg);
 		});
+	});
+
+	jQuery('.listitem, .slide_list').each(function(){
+		if( jQuery(this).parents('.listcontainer').find('.slide_list, .listitem').length > 0 ){
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').hide();
+		}
+		else{
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').show();
+		}
+	
+
 	});
 
 	jQuery('#signatureprogress').css(
@@ -274,9 +285,21 @@ jQuery(document).on('ready' ,function(){
 	}
 
 	jQuery('.settings_colors span').click(function(){
+		var color = jQuery(this).css('background-color');
 		jQuery(this).addClass('bg_check');
 		jQuery(this).siblings('span').removeClass('bg_check');
+		jQuery('#msmValueColor').val(rgb2hex(color));
 	});
+
+	function rgb2hex(rgb) {
+	    if (/^#[0-9A-F]{6}$/i.test(rgb)) return rgb;
+
+	    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+	    function hex(x) {
+	        return ("0" + parseInt(x).toString(16)).slice(-2);
+	    }
+	    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+	}
 
 /*-------------------------------------------------------------------------------------
 		LIST ITEM CIRCLE CONTROL

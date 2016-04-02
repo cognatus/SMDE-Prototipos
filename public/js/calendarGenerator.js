@@ -173,7 +173,7 @@ jQuery(document).ready(function(){
              anim_hide.hide();
         });
     });
-    
+
 });
 
 function carga(calendarDay){

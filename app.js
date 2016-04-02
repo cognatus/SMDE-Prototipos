@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var post = require('./routes/post');
+var calendarPost = require('./routes/calendarPost');
 var http = require('http');
 var path = require('path');
 /*var session = require('client-sessions');*/
@@ -138,6 +139,12 @@ app.post('/getDepartmentsDatabase', post.getDepartmentsDatabase);
 app.post('/getSubjectsDatabase', post.getSubjectsDatabase);
 app.post('/getCoursesDatabase', post.getCoursesDatabase);
 /*app.post('/getProfileInfo', post.getProfileInfo);*/
+app.post('/setProfileTheme', post.setProfileTheme);
+app.post('/setProfileMsmColor', post.setProfileMsmColor);
+//Todo referente a la agenda
+app.post('/insertReminder', calendarPost.insertReminder);
+app.post('/getRemindersDatabase', calendarPost.getRemindersDatabase);
+app.post('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 
 http.createServer(app).listen(app.get('port'), function(){
 	var base = new databaseInstance();
@@ -149,5 +156,6 @@ http.createServer(app).listen(app.get('port'), function(){
 		}
 	});
 	post.constructor(databaseInstance);
+	calendarPost.constructor(databaseInstance);
 	console.log('SMDE server listening on port ' + app.get('port'));
 });
