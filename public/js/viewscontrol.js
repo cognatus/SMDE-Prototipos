@@ -28,8 +28,15 @@ jQuery(document).on('ready' ,function(){
 		else{
 			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').show();
 		}
-	
+	});
 
+	jQuery('.hover').each(function(){
+		if( jQuery(this).parents('.listcontainer').find('.hover').length > 0 ){
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').hide();
+		}
+		else{
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').show();
+		}
 	});
 
 	jQuery('#signatureprogress').css(
@@ -475,19 +482,22 @@ jQuery(document).on('ready' ,function(){
 
 		var currentQuery = jQuery('#buscar').val().toUpperCase();
 		jQuery('#listcontainer .listitem').hide();
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + currentQuery + '"</b></div>');
 
 		if(currentQuery != ''){
-			jQuery('#listcontainer .listitem ').each(function(){
+			jQuery('#listcontainer .listitem').each(function(){
 				var currentKeyboard = jQuery(this).attr('data-name').toUpperCase();
 				var currentKeyboard2 = jQuery(this).attr('data-type').toUpperCase();
 
 				if( currentKeyboard.indexOf(currentQuery) >= 0 || currentKeyboard2.indexOf(currentQuery) >= 0 ){
 					jQuery(this).show();
+					jQuery('.no_result').html('');
 				}
 			});
 		}
 		else{
 			jQuery('#listcontainer .listitem').show();
+			jQuery('.no_result').html('');
 		}
 
 	});
@@ -496,6 +506,7 @@ jQuery(document).on('ready' ,function(){
 
 		var currentQuery = jQuery('#buscar_slide').val().toUpperCase();
 		jQuery('#listcontainer .slide_list').hide();
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + currentQuery + '"</b></div>');
 
 		if(currentQuery != ''){
 			jQuery('#listcontainer .slide_list').each(function(){
@@ -504,11 +515,13 @@ jQuery(document).on('ready' ,function(){
 
 				if( currentKeyboard.indexOf(currentQuery) >= 0 || currentKeyboard2.indexOf(currentQuery) >= 0 ){
 					jQuery(this).show();
+					jQuery('.no_result').html('');
 				}
 			});
 		}
 		else{
 			jQuery('#listcontainer .slide_list').show();
+			jQuery('.no_result').html('');
 		}
 
 	});

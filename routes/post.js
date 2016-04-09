@@ -23,8 +23,15 @@ exports.login = function(req, res){
 				res.redirect('/main');
 				req.session.datos = result;
 			}else if(i === 3){
-				console.log('ni pedo dude')
-				res.redirect('/error')
+				console.log('ni pedo dude');
+				res.render('error' , {
+					errorData: {
+						errorTitle: 'Error al iniciar sesión',
+						errorItem: ['-  Usuario o contraseña incorrecta',
+						'-  El usuario no existe dentro del sistema'],
+						backUrl: '/login'
+					}
+				});
 			}else{
 				console.log('nope');
 				which_vato(i++);
@@ -336,32 +343,17 @@ exports.getCoursesDatabase = function(req, res){
 
 };
 
-/*exports.getProfileInfo = function(req, res){
-	var database = new base();
-	stringQuery = 'SELECT * FROM User' 
-				+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;
-	database.query(stringQuery, function(error, result, row){
-		if(!error) {
-			res.send(result);
-		}else{
-			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
-		}
-	});
-};*/
-
 exports.setProfileTheme = function(req, res){
 	var database = new base();
 	var isChecked = req.body.changeTheme;
 
-	stringQuery = 'UPDATE User SET darkTheme=0'
+	stringQuery = 'UPDATE User SET darkTheme=1'
 		+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;	
 	
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log('Cambio de tema correctamento');
 			res.redirect('/settings');
-			consulta();
 		}else{
 			console.log('Error en esta sentencia: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');

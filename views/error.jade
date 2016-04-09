@@ -13,16 +13,21 @@ html
 		.bg_opacity
 			.error_container
 				.colhh1.bg_red.white_text.flat_shadow
-					.pd_24
+					.pd_32
 						.error_title
 							span.v_top(style='background-image: url("images/alert-circle.png")')
-							.autocol.bm_title.pd_12.v_top Error
+							.autocol.bm_title.pd_12.v_top #{errorData.errorTitle}!
 						.pd_8
-						.pd_8 Ha ocurrido un error durante la operación
-							.pd_16
-								.pd_4
-									| - Razón 1
-								.pd_4
-									| - Razón 2
+						.pd_8.ml_title.normal_txt Se presento un error por lo siguiente:
+						.pd_16.normal_txt
+							.pd_4
+								| #{errorData.errorItem[0]}
+							.pd_4
+								| #{errorData.errorItem[1]}
+						.pd_8
+						.colhh1(style='height: 52px;')
+							a(href='#{errorData.backUrl}')
+								span.bg_lightblue.float_button.right_float.flat_shadow.borad.rippleria-dark(data-rippleria)
+									.white_text.pd_16.uppercase.b_text Regresar
 
 		
