@@ -2,8 +2,8 @@ extends layout
 
 block content
 
-	script( type='text/javascript' src='/js/management.js' )
-	#profileApp(ng-app='profileInfo')
+	script( type='text/javascript' src='/js/profileSubjects.js' )
+	div
 		#new_item.float_buttoncontainer( title='Editar Perfil' )
 			span.bg_edit.bgaccent_color
 
@@ -46,7 +46,7 @@ block content
 											input.txtaccent_color.b_text(type='submit' value='Aceptar')
 
 		.topspace
-		.page_container(ng-controller='profile', ng-init="cargarInfo()")
+		.page_container
 			.grid_profilebackgroundcontainer
 				.block_container
 					.colhh1.profile_img
@@ -160,21 +160,21 @@ block content
 													.pd_8
 														| 2 grupos en común, 19 contactos en común
 					.colhh1.h_listindex
-						.block_container.bg_white
+						#profileApp.block_container.bg_white(ng-app='proSub')
 							.colhh1.empty_blocktext.center_text
 								.pd_64
 									span.v_middle(style= 'background-image: url("images/close-box.png")')
 									.autocol.pd_12.mm_title No tienes ninguna asignatura.
-							.listcontainer
-								.colhh1.slide_list
-									.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='nombre_asig')
+							.listcontainer(ng-controller='proSubjects' ng-init='cargarInfo()')
+								.colhh1.slide_list(ng-repeat='item in profileSubjects')
+									.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='{{item.subjectName}}')
 										.listitem_img
 											span A
 										.listitem_info
 											.listitem_rightinfo Promedio: 
 												label.subject_prom 8.46
 											.listitem_title 
-												b Nombre Asignatura
+												b {{item.subjectName}}
 											.listitem_bottomdata.rank
 												span.bg_blue
 												span.bg_blue
@@ -187,10 +187,10 @@ block content
 													.sl_title Información
 												.pd_llist
 													.colhh1.pd_l12 Grupo: 
-														span.margin_l 4IV2
+														span.margin_l {{item.courseName}}
 													.pd_4
 													.colhh1.pd_l12 Academia: 
-														span.margin_l Matematicas
+														span.margin_l {{item.departmentName}}
 													.pd_4
 													.colhh1.pd_l12 Nivel:
-														span.margin_l 1
+														span.margin_l {{item.subjectLevel}}

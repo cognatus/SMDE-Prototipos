@@ -7,6 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var post = require('./routes/post');
 var calendarPost = require('./routes/calendarPost');
+var profilePost = require('./routes/profilePost');
 var http = require('http');
 var path = require('path');
 /*var session = require('client-sessions');*/
@@ -126,6 +127,8 @@ app.get('/error', routes.error);
 
 /*Metodos POST*/
 app.post('/login', post.login);
+
+//Todo lo referente a la gestión
 app.post('/insertUser', post.insertUser);
 app.post('/insertDept', post.insertDept);
 app.post('/insertSubject', post.insertSubject);
@@ -138,9 +141,12 @@ app.post('/getTeachersSubjectsDatabase', post.getTeachersSubjectsDatabase);
 app.post('/getDepartmentsDatabase', post.getDepartmentsDatabase);
 app.post('/getSubjectsDatabase', post.getSubjectsDatabase);
 app.post('/getCoursesDatabase', post.getCoursesDatabase);
-/*app.post('/getProfileInfo', post.getProfileInfo);*/
-app.post('/setProfileTheme', post.setProfileTheme);
-app.post('/setProfileMsmColor', post.setProfileMsmColor);
+
+//Todo referente al perfil
+app.post('/setProfileTheme', profilePost.setProfileTheme);
+app.post('/setProfileMsmColor', profilePost.setProfileMsmColor);
+app.post('/getProfileSubjectsDatabase', profilePost.getProfileSubjectsDatabase);
+
 //Todo referente a la agenda
 app.post('/insertReminder', calendarPost.insertReminder);
 app.post('/getRemindersDatabase', calendarPost.getRemindersDatabase);

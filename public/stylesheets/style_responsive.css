@@ -225,7 +225,7 @@
 		width: 500px;
 	}
 
-	.top_list{box-shadow: none;background-color: transparent;margin-bottom: 0;}
+	.top_list, .dark_theme .top_list{box-shadow: none;background-color: transparent;margin-bottom: 0;}
 
 	.top_list .h_listtopcontainer{color: rgba(255,255,255,0.9);margin-top: 12px;}
 

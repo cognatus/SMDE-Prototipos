@@ -79,6 +79,7 @@ exports.insertUser = function(req, res){
 	var userSex = req.body.insertUserSex ;
 	var userPassword  = req.body.insertUserPassword ;
 	var userInstitute = req.session.datos[0].Institute_idInstitute ;
+	var userType = req.body.insertUserType ;
 
 	stringQuery = 'BEGIN;';
 	stringQuery += 'INSERT INTO User';
@@ -91,18 +92,9 @@ exports.insertUser = function(req, res){
 	stringQuery += '"' + userPassword + '", ';
 	stringQuery += '"' + userInstitute + '");';
 
-	var userType = req.body.insertUserType ;
-
-	if( userType == 'student' ){
-		stringQuery += 'INSERT INTO Student (idStudent, User_userEmail) VALUES (';
-		stringQuery += '"' + userIdKey + '", ';
-		stringQuery += '"' + userEmail + '");';
-	}
-	else if( userType == 'teacher' ){
-		stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail) VALUES (';
-		stringQuery += '"' + userIdKey + '", ';
-		stringQuery += '"' + userEmail + '");';
-	}
+	stringQuery += 'INSERT INTO ' + userType + ' (id' + userType + ', User_userEmail) VALUES (';
+	stringQuery += '"' + userIdKey + '", ';
+	stringQuery += '"' + userEmail + '");';
 
 	stringQuery += 'COMMIT;';
 
@@ -112,7 +104,14 @@ exports.insertUser = function(req, res){
 			res.redirect('/management');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al registrar Usuario',
+					errorItem: ['-  Tipo de usuario incorrecto',
+					'-  La clave ya existe'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -342,42 +341,3 @@ exports.getCoursesDatabase = function(req, res){
 	});
 
 };
-
-exports.setProfileTheme = function(req, res){
-	var database = new base();
-	var isChecked = req.body.changeTheme;
-
-	stringQuery = 'UPDATE User SET darkTheme=1'
-		+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;	
-	
-	database.query(stringQuery, function(error, result, row){
-		if(!error) {
-			console.log('Cambio de tema correctamento');
-			res.redirect('/settings');
-		}else{
-			console.log('Error en esta sentencia: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
-		}
-	});
-};
-
-exports.setProfileMsmColor = function(req, res){
-	var database = new base();
-	var msmColor = req.body.msmValueColor;
-	stringQuery = 'UPDATE User SET msmColor="' + msmColor + '"'
-	+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";';
-	
-	database.query(stringQuery, function(error, result, row){
-		if(!error) {
-			console.log('Cambio de color correcto');
-			res.redirect('/settings');
-		}else{
-			console.log('Error en esta sentencia: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
-		}
-	});	
-};
-
-
-
-// TODO REFERENTE A LA AGENDA
