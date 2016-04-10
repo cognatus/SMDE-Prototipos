@@ -12,10 +12,6 @@ app.controller('todos', function($scope, $http) {
 	$scope.subjectInfo= '';
 	$scope.courseInfo= '';
 
-	$scope.auxSubject = [];
-	$scope.auxSubject2 = [];
-
-
 	$scope.cargarTodos = function(){
 		//Obtiene admins
 		$http({

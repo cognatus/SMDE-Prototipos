@@ -135,8 +135,8 @@ app.post('/insertSubject', post.insertSubject);
 app.post('/insertCourse', post.insertCourse);
 app.post('/getAdministratorsDatabase', post.getAdministratorsDatabase);
 app.post('/getStudentsDatabase', post.getStudentsDatabase);
-app.post('/getStudentsSubjectsDatabase', post.getStudentsSubjectsDatabase);
 app.post('/getTeachersDatabase', post.getTeachersDatabase);
+app.post('/getStudentsSubjectsDatabase', post.getStudentsSubjectsDatabase);
 app.post('/getTeachersSubjectsDatabase', post.getTeachersSubjectsDatabase);
 app.post('/getDepartmentsDatabase', post.getDepartmentsDatabase);
 app.post('/getSubjectsDatabase', post.getSubjectsDatabase);
@@ -146,6 +146,8 @@ app.post('/getCoursesDatabase', post.getCoursesDatabase);
 app.post('/setProfileTheme', profilePost.setProfileTheme);
 app.post('/setProfileMsmColor', profilePost.setProfileMsmColor);
 app.post('/getProfileSubjectsDatabase', profilePost.getProfileSubjectsDatabase);
+app.post('/getProfileContactsTeachers', profilePost.getProfileContactsTeachers);
+app.post('/getProfileContactStudents', profilePost.getProfileContactsTeachers);
 
 //Todo referente a la agenda
 app.post('/insertReminder', calendarPost.insertReminder);

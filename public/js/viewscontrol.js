@@ -171,19 +171,19 @@ jQuery(document).on('ready' ,function(){
 
 	jQuery('#select_insertType').on('change' ,function(){
 		var $this = jQuery(this);
-		if( $this.val() == 'student' || $this.val() == 'teacher' ){
+		if( $this.val() == 'Student' || $this.val() == 'Teacher' ){
 			jQuery('.hidden_form').hide();
 			jQuery('#show_userinsert').show();
 		}
-		else if( $this.val() == 'department' ){
+		else if( $this.val() == 'Department' ){
 			jQuery('.hidden_form').hide();
 			jQuery('#show_deptinsert').show();
 		}
-		else if( $this.val() == 'subject' ){
+		else if( $this.val() == 'Subject' ){
 			jQuery('.hidden_form').hide();
 			jQuery('#show_subjectinsert').show();
 		}
-		else if( $this.val() == 'course' ){
+		else if( $this.val() == 'Course' ){
 			jQuery('.hidden_form').hide();
 			jQuery('#show_courseinsert').show();
 		}

@@ -227,20 +227,20 @@ exports.getStudentsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR MATERIAS DE ALUMNOS DE LA BASE DE DATOS
 exports.getStudentsSubjectsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT idStudent, idSubject, subjectName, courseName'
-					+ ' FROM User as u'
-					+ ' INNER JOIN Student as s'
-					+ '     ON u.userEmail = s.User_userEmail'
-					+ ' INNER JOIN Student_has_Subject_has_Course as ss'
-					+ '     ON s.idStudent = ss.Student_idStudent'
-					+ ' INNER JOIN Subject_has_Course as sc'
-					+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
-					+ '		AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
-					+ ' INNER JOIN Subject as su'
-					+ '     ON sc.Subject_idSubject = su.idSubject'
-					+ ' INNER JOIN Course as c'
-					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE su.Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+	stringQuery = 'SELECT userEmail, idStudent, idSubject, subjectName, courseName'
+				+ ' FROM User AS u'
+				+ ' INNER JOIN Student AS s'
+				+ '     ON u.userEmail = s.User_userEmail'
+				+ ' INNER JOIN Student_has_Subject_has_Course AS ss'
+				+ '     ON s.idStudent = ss.Student_idStudent'
+				+ ' INNER JOIN Subject_has_Course AS sc'
+				+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
+				+ ' 	AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
+				+ ' INNER JOIN Subject AS su'
+				+ '     ON sc.Subject_idSubject = su.idSubject'
+				+ ' INNER JOIN Course AS c'
+				+ '     ON sc.Course_idCourse = c.idCourse'
+				+ ' WHERE su.Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
