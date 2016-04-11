@@ -164,21 +164,95 @@ SELECT userEmail, idStudent, userName, userLastName, userSecondLastName, userSex
 	    ON sc.Subject_idSubject = su.idSubject
 	INNER JOIN Course AS c
 	    ON sc.Course_idCourse = c.idCourse;
+	ORDER BY c.courseName ASC;
 
 
-SELECT userName, userLastName, userSecondLastName, subjectName, courseName
-	FROM Subject AS su
-	INNER JOIN Subject_has_Course AS shc
-		ON shc.Subject_idSubject = su.idSubject
-	INNER JOIN Course AS c
-		ON c.idCourse = shc.Course_idCourse
+SELECT userEmail, idStudent, subjectName, idSubject, idCourse, courseName
+	FROM User AS u
+	INNER JOIN Student AS s
+		ON u.userEmail = s.User_userEmail
 	INNER JOIN Student_has_Subject_has_Course AS shshc
+		ON shshc.Student_idStudent = s.idStudent
+	INNER JOIN Subject_has_Course AS shc
 		ON shshc.Subject_has_Course_Subject_idSubject = shc.Subject_idSubject
 		AND shshc.Subject_has_Course_Course_idCourse = shc.Course_idCourse
-	INNER JOIN Student AS s
+	INNER Join Subject AS su
+		ON su.idSubject = shc.Subject_idSubject
+	INNER JOIN Course AS c 
+		ON c.idCourse = shc.Course_idCourse;
+
+SELECT userEmail, idTeacher, subjectName, idSubject, idCourse, courseName
+	FROM User AS u
+	INNER JOIN Teacher AS s
+		ON u.userEmail = s.User_userEmail
+	INNER JOIN Teacher_has_Subject_has_Course AS shshc
+		ON shshc.Teacher_idTeacher = s.idTeacher
+	INNER JOIN Subject_has_Course AS shc
+		ON shshc.Subject_has_Course_Subject_idSubject = shc.Subject_idSubject
+		AND shshc.Subject_has_Course_Course_idCourse = shc.Course_idCourse
+	INNER Join Subject AS su
+		ON su.idSubject = shc.Subject_idSubject
+	INNER JOIN Course AS c 
+		ON c.idCourse = shc.Course_idCourse;
+
+--CONTACTOS ALUMNOS-ALUMNOS
+SET @tipo = 'vato@vato.com';
+SELECT idStudent, userEmail ,
+	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`
+	FROM Student_has_Subject_has_Course AS shshc
+    INNER JOIN Student AS s 
 		ON s.idStudent = shshc.Student_idStudent
 	INNER JOIN User AS u
 		ON u.userEmail = s.User_userEmail
-	WHERE shshc.Subject_has_Course_Subject_idSubject IN (
-    	SELECT Subject_has_Course_Subject_idSubject FROM Student_has_Subject_has_Course HAVING count(*) > 1
-	);
+	WHERE userEmail = @tipo;
+
+SELECT userEmail, userName, userLastName, userSecondLastName
+	FROM Student_has_Subject_has_Course AS shshc
+    INNER JOIN Student AS s 
+		ON s.idStudent = shshc.Student_idStudent
+	INNER JOIN User AS u
+		ON u.userEmail = s.User_userEmail
+	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject
+	AND userEmail != @tipo;
+
+-- CONTACTOS ALUMNOS-PROFES
+SET @tipo = 'vato@vato.com';
+SELECT idStudent, userEmail ,
+	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`
+	FROM Student_has_Subject_has_Course AS shshc
+    INNER JOIN Student AS s
+		ON s.idStudent = shshc.Student_idStudent
+	INNER JOIN User AS u
+		ON u.userEmail = s.User_userEmail
+	WHERE userEmail = @tipo;
+
+SELECT userEmail, userName, userLastName, userSecondLastName
+	FROM Teacher_has_Subject_has_Course AS shshc
+    INNER JOIN Teacher AS s
+		ON s.idTeacher = shshc.Teacher_idTeacher
+	INNER JOIN User AS u
+		ON u.userEmail = s.User_userEmail
+	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject;
+
+-- CONTACTOS PROFES-PROFES
+SET @tipo = 'profe@profe.com';
+SELECT idTeacher, userEmail ,
+	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`
+	FROM Teacher_has_Subject_has_Course AS shshc
+    INNER JOIN Teacher AS s
+		ON s.idTeacher = shshc.Teacher_idTeacher
+	INNER JOIN User AS u
+		ON u.userEmail = s.User_userEmail
+	WHERE userEmail = @tipo;
+
+SELECT userEmail, userName, userLastName, userSecondLastName
+	FROM Teacher_has_Subject_has_Course AS shshc
+    INNER JOIN Teacher AS s
+		ON s.idTeacher = shshc.Teacher_idTeacher
+	INNER JOIN User AS u
+		ON u.userEmail = s.User_userEmail
+	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject
+	AND userEmail != @tipo;
+
+
+

@@ -40,23 +40,25 @@ exports.setProfileMsmColor = function(req, res){
 	});	
 };
 
-// FUNCION PARA MOSTRAR MATERIAS DE PROFESOR DE LA BASE DE DATOS
+// FUNCION PARA MOSTRAR MATERIAS DE ALUMNO DE LA BASE DE DATOS
 exports.getProfileSubjectsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT idTeacher, idSubject, subjectName, subjectLevel, courseName'
-					+ ' FROM User as u'
-					+ ' INNER JOIN Teacher as s'
-					+ '     ON u.userEmail = s.User_userEmail'
-					+ ' INNER JOIN Teacher_has_Subject_has_Course as ss'
-					+ '     ON s.idTeacher = ss.Teacher_idTeacher'
-					+ ' INNER JOIN Subject_has_Course as sc'
-					+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
-					+ '		AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
-					+ ' INNER JOIN Subject as su'
-					+ '     ON sc.Subject_idSubject = su.idSubject'
-					+ ' INNER JOIN Course as c'
-					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE u.userEmail="' + req.session.datos[0].userEmail + '";' ;
+	stringQuery = 'SELECT userEmail, idStudent, subjectName, idSubject, idCourse, courseName, departmentName'
+				+ ' FROM User AS u'
+				+ ' INNER JOIN Student AS s'
+				+ ' 	ON u.userEmail = s.User_userEmail'
+				+ ' INNER JOIN Student_has_Subject_has_Course AS shshc'
+				+ ' 	ON shshc.Student_idStudent = s.idStudent'
+				+ ' INNER JOIN Subject_has_Course AS shc'
+				+ ' 	ON shshc.Subject_has_Course_Subject_idSubject = shc.Subject_idSubject'
+				+ ' 	AND shshc.Subject_has_Course_Course_idCourse = shc.Course_idCourse'
+				+ ' INNER Join Subject AS su'
+				+ ' 	ON su.idSubject = shc.Subject_idSubject'
+				+ ' INNER JOIN Course AS c '
+				+ ' 	ON c.idCourse = shc.Course_idCourse'
+				+ ' INNER JOIN Department AS d '
+				+ ' 	ON d.idDepartment = su.Department_idDepartment'
+				+ ' WHERE userEmail = "' + req.session.datos[0].userEmail + '";';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -71,20 +73,25 @@ exports.getProfileSubjectsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)
 exports.getProfileContactsStudents = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT userName, userLastName, userSecondLastName, Subject.*, Course.*'
-					+ ' FROM Subject AS su'
-					+ ' INNER JOIN Subject_has_Course AS shc'
-					+ ' 	ON sch.Subject_idSubject = su.idSubject'
-					+ ' INNER JOIN Course AS c'
-					+ ' 	ON c.idCourse = shc.Course_idCourse'
-					+ ' INNER JOIN Student_has_Subject_has_Course AS shshc'
-					+ ' 	ON shshc.Subject_has_Course_Subject_idSubject = shc.Subject_idSubject'
-					+ ' 	AND shshc.Subject_has_Course_Course_idCourse = shc.Course_idCourse'
-					+ ' INNER JOIN Student AS s'
-					+ ' 	ON s.idStudent = shshc.Student_idStudent'
-					+ ' INNER JOIN User AS u'
-					+ ' 	ON u.userEmail = s.User_userEmail'
-					+ ' WHERE u.User_userEmail = ' + req.session.datos[0].userEmail + ';';
+
+	//SI EL USUARIO ES TIPO ALUMNO
+	stringQuery = 'SET @tipo = "' + req.session.datos[0].userEmail + '"'
+			+ ' SELECT idStudent, userEmail,'
+			+ ' 	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`'
+			+ ' 	FROM Student_has_Subject_has_Course AS shshc'
+			+ '     INNER JOIN Student AS s '
+			+ ' 		ON s.idStudent = shshc.Student_idStudent'
+			+ ' 	INNER JOIN User AS u'
+			+ ' 		ON u.userEmail = s.User_userEmail'
+			+ ' 	WHERE userEmail = @tipo;'
+			+ ' SELECT userEmail, userName, userLastName, userSecondLastName'
+			+ ' 	FROM Student_has_Subject_has_Course AS shshc'
+			+ '     INNER JOIN Student AS s '
+			+ ' 		ON s.idStudent = shshc.Student_idStudent'
+			+ ' 	INNER JOIN User AS u'
+			+ ' 		ON u.userEmail = s.User_userEmail'
+			+ ' 	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject'
+			+ ' 	AND userEmail != @tipo; ';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -100,20 +107,25 @@ exports.getProfileContactsStudents = function(req, res){
 // FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)
 exports.getProfileContactsTeachers = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT userName, userLastName, userSecondLastName, Subject.*, Course.*'
-					+ ' FROM User AS u'
-					+ ' INNER JOIN Student AS s'
-					+ '     ON u.userEmail = s.User_userEmail'
-					+ ' INNER JOIN Teacher_has_Subject_has_Course AS ss'
-					+ '     ON s.idTeacher = ss.Teacher_idTeacher'
-					+ ' INNER JOIN Subject_has_Course AS sc'
-					+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
-					+ '		AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
-					+ ' INNER JOIN Subject AS su'
-					+ '     ON sc.Subject_idSubject = su.idSubject'
-					+ ' INNER JOIN Course AS c'
-					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE u.userEmail="' + req.session.datos[0].userEmail + '";' ;
+
+	//SI EL USUARIO ES TIPO PROFESOR
+	stringQuery = 'SET @tipo = "' + req.session.datos[0].userEmail + '"'
+			+ ' SELECT idTeacher, userEmail,'
+			+ ' 	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`'
+			+ ' 	FROM Teacher_has_Subject_has_Course AS shshc'
+			+ '     INNER JOIN Teacher AS s '
+			+ ' 		ON s.idTeacher = shshc.Teacher_idTeacher'
+			+ ' 	INNER JOIN User AS u'
+			+ ' 		ON u.userEmail = s.User_userEmail'
+			+ ' 	WHERE userEmail = @tipo;'
+			+ ' SELECT userEmail, userName, userLastName, userSecondLastName'
+			+ ' 	FROM Teacher_has_Subject_has_Course AS shshc'
+			+ '     INNER JOIN Teacher AS s '
+			+ ' 		ON s.idTeacher = shshc.Teacher_idTeacher'
+			+ ' 	INNER JOIN User AS u'
+			+ ' 		ON u.userEmail = s.User_userEmail'
+			+ ' 	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject'
+			+ ' 	AND userEmail != @tipo; ';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);

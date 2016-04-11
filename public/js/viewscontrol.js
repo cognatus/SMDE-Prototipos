@@ -568,6 +568,24 @@ function ajaxDone(){
 
 	jQuery('#management_showall').css('display','none');
 
+	jQuery('.listitem, .slide_list').each(function(){
+		if( jQuery(this).parents('.listcontainer').find('.slide_list, .listitem').length > 0 ){
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').hide();
+		}
+		else{
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').show();
+		}
+	});
+
+	jQuery('.hover').each(function(){
+		if( jQuery(this).parents('.listcontainer').find('.hover').length > 0 ){
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').hide();
+		}
+		else{
+			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').show();
+		}
+	});
+
 		jQuery('.innerlistitem').hide();	
 
 		var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',

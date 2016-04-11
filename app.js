@@ -146,8 +146,8 @@ app.post('/getCoursesDatabase', post.getCoursesDatabase);
 app.post('/setProfileTheme', profilePost.setProfileTheme);
 app.post('/setProfileMsmColor', profilePost.setProfileMsmColor);
 app.post('/getProfileSubjectsDatabase', profilePost.getProfileSubjectsDatabase);
+app.post('/getProfileContactsStudents', profilePost.getProfileContactsStudents);
 app.post('/getProfileContactsTeachers', profilePost.getProfileContactsTeachers);
-app.post('/getProfileContactStudents', profilePost.getProfileContactsTeachers);
 
 //Todo referente a la agenda
 app.post('/insertReminder', calendarPost.insertReminder);
@@ -164,6 +164,7 @@ http.createServer(app).listen(app.get('port'), function(){
 		}
 	});
 	post.constructor(databaseInstance);
+	profilePost.constructor(databaseInstance);
 	calendarPost.constructor(databaseInstance);
 	console.log('SMDE server listening on port ' + app.get('port'));
 });

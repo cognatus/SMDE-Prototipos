@@ -213,7 +213,8 @@ exports.getStudentsDatabase = function(req, res){
 	var database = new base();
 	stringQuery = 'SELECT User.*, idStudent FROM User INNER JOIN Student' 
 				+ ' ON User.userEmail = Student.User_userEmail'
-				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' ORDER BY userName ASC;';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
@@ -257,7 +258,8 @@ exports.getTeachersDatabase = function(req, res){
 	var database = new base();
 	stringQuery = 'SELECT User.*, idTeacher FROM User INNER JOIN Teacher' 
 				+ ' ON User.userEmail = Teacher.User_userEmail'
-				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' ORDER BY userName ASC;';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.send(result);
