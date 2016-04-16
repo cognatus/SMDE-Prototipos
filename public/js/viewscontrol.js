@@ -561,9 +561,11 @@ jQuery(document).on('ready' ,function(){
 
 
 jQuery(document).ready(function(){
-	jQuery(document).ajaxComplete(){
+	jQuery(document).ajaxComplete(function(){
 
-	jQuery('#management_showall').css('display','none');
+		jQuery('#management_showall').css('display','none');
+
+	});
 
 /*	jQuery('.listitem, .slide_list').each(function(){
 		if( jQuery(this).parents('.listcontainer').find('.slide_list, .listitem').length > 0 ){
@@ -610,7 +612,6 @@ jQuery(document).ready(function(){
 			}
 
 		});*/
-	}
 
 });
 
