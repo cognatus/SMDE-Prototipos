@@ -22,7 +22,6 @@ function showAdmins(){
         timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
-            ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -38,7 +37,6 @@ function showStudents(){
         timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
-            ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -54,7 +52,6 @@ function showTeachers(){
         timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
-            ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -74,7 +71,6 @@ function showStudentSubjects(studentEmail){
         data: parameters,
         success: function(data) {
             jQuery('.studentsubjects_list').append(data);
-            ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -90,7 +86,6 @@ function showSubjects(){
         timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
-            ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -106,7 +101,6 @@ function showDepartments(){
         timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
-            ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -122,7 +116,6 @@ function showCourses(){
         timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
-            ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);

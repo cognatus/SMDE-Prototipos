@@ -11,9 +11,9 @@ function showContactsStudents(){
         method: 'GET',
         url: '/getProfileContactsStudents',
         cache: false,
+        timeout: 5000,
         success: function(data) {
-            jQuery('.managementlist').append(data);
-            ajaxDone();
+            jQuery('#contacts_list').append(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -26,9 +26,9 @@ function showProfileSubjects(){
         method: 'GET',
         url: '/getProfileSubjectsDatabase',
         cache: false,
+        timeout: 5000,
         success: function(data) {
-            jQuery('.managementlist').append(data);
-            ajaxDone();
+            jQuery('#subjects_list').append(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);

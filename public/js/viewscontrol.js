@@ -279,6 +279,25 @@ jQuery(document).on('ready' ,function(){
 		});
 	});
 
+
+/*-------------------------------------------------------------------------------------
+		VERTICAL LIST CONTROL
+---------------------------------------------------------------------------------------*/ 
+
+	jQuery(document).on('click', '.listitem', function(){
+
+		var slideD = jQuery(this).siblings('.innerlistitem');
+
+		if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
+			jQuery(this).siblings('.innerlistitem').slideUp();
+		}
+		else{
+			jQuery('.innerlistitem').slideUp();
+			slideD.slideDown();
+		}
+
+	});
+
 /*-------------------------------------------------------------------------------------
 		SETTINGS CONTROL
 ---------------------------------------------------------------------------------------*/
@@ -542,32 +561,11 @@ jQuery(document).on('ready' ,function(){
 
 
 jQuery(document).ready(function(){
-
-/*-------------------------------------------------------------------------------------
-		VERTICAL LIST CONTROL
----------------------------------------------------------------------------------------*/ 
-
-	jQuery(document).on('click', '.listitem', function(){
-
-		var slideD = jQuery(this).siblings('.innerlistitem');
-
-		if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
-			jQuery(this).siblings('.innerlistitem').slideUp();
-		}
-		else{
-			jQuery('.innerlistitem').slideUp();
-			slideD.slideDown();
-		}
-
-	});
-
-});
-
-function ajaxDone(){
+	jQuery(document).ajaxComplete(){
 
 	jQuery('#management_showall').css('display','none');
 
-	jQuery('.listitem, .slide_list').each(function(){
+/*	jQuery('.listitem, .slide_list').each(function(){
 		if( jQuery(this).parents('.listcontainer').find('.slide_list, .listitem').length > 0 ){
 			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').hide();
 		}
@@ -611,5 +609,8 @@ function ajaxDone(){
 				}
 			}
 
-		});
-}
+		});*/
+	}
+
+});
+
