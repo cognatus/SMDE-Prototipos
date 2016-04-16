@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 
 function showContactsStudents(){
 	jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getProfileContactsStudents',
         cache: false,
         success: function(data) {
@@ -23,7 +23,7 @@ function showContactsStudents(){
 
 function showProfileSubjects(){
     jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getProfileSubjectsDatabase',
         cache: false,
         success: function(data) {

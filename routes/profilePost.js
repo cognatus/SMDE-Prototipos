@@ -58,7 +58,7 @@ exports.getProfileSubjectsDatabase = function(req, res){
 				+ '     ON sc.Course_idCourse = c.idCourse'
 				+ ' INNER JOIN Department AS d'
 				+ '     ON d.idDepartment = su.Department_idDepartment'
-				+ ' WHERE userEmail  = "' + req.session.datos[0].userEmail + '"'
+				+ ' WHERE u.userEmail  = "' + req.session.datos[0].userEmail + '"'
 				+ ' ORDER BY su.subjectName ASC;'
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {

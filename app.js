@@ -133,21 +133,21 @@ app.post('/insertUser', post.insertUser);
 app.post('/insertDept', post.insertDept);
 app.post('/insertSubject', post.insertSubject);
 app.post('/insertCourse', post.insertCourse);
-app.post('/getAdministratorsDatabase', post.getAdministratorsDatabase);
-app.post('/getStudentsDatabase', post.getStudentsDatabase);
-app.post('/getTeachersDatabase', post.getTeachersDatabase);
-app.post('/getStudentsSubjectsDatabase', post.getStudentsSubjectsDatabase);
-app.post('/getTeachersSubjectsDatabase', post.getTeachersSubjectsDatabase);
-app.post('/getDepartmentsDatabase', post.getDepartmentsDatabase);
-app.post('/getSubjectsDatabase', post.getSubjectsDatabase);
-app.post('/getCoursesDatabase', post.getCoursesDatabase);
+app.get('/getAdministratorsDatabase', post.getAdministratorsDatabase);
+app.get('/getStudentsDatabase', post.getStudentsDatabase);
+app.get('/getTeachersDatabase', post.getTeachersDatabase);
+app.get('/getStudentsSubjectsDatabase', post.getStudentsSubjectsDatabase);
+app.get('/getTeachersSubjectsDatabase', post.getTeachersSubjectsDatabase);
+app.get('/getDepartmentsDatabase', post.getDepartmentsDatabase);
+app.get('/getSubjectsDatabase', post.getSubjectsDatabase);
+app.get('/getCoursesDatabase', post.getCoursesDatabase);
 
 //Todo referente al perfil
 app.post('/setProfileTheme', profilePost.setProfileTheme);
 app.post('/setProfileMsmColor', profilePost.setProfileMsmColor);
-app.post('/getProfileSubjectsDatabase', profilePost.getProfileSubjectsDatabase);
-app.post('/getProfileContactsStudents', profilePost.getProfileContactsStudents);
-app.post('/getProfileContactsTeachers', profilePost.getProfileContactsTeachers);
+app.get('/getProfileSubjectsDatabase', profilePost.getProfileSubjectsDatabase);
+app.get('/getProfileContactsStudents', profilePost.getProfileContactsStudents);
+app.get('/getProfileContactsTeachers', profilePost.getProfileContactsTeachers);
 
 //Todo referente a la agenda
 app.post('/insertReminder', calendarPost.insertReminder);

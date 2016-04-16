@@ -7,18 +7,19 @@ jQuery(document).ready(function(){
     showDepartments();
     showCourses();
 
-    jQuery('.student').click(function(){
+    /*jQuery('.student').click(function(){
         var studentEmail = jQuery(this).find('.stsbid').attr('data-id');
         showStudentSubjects(studentEmail);
-    });
+    });*/
 
 });
 
 function showAdmins(){
 	jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getAdministratorsDatabase',
         cache: false,
+        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
             ajaxDone();
@@ -31,9 +32,10 @@ function showAdmins(){
 
 function showStudents(){
     jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getStudentsDatabase',
         cache: false,
+        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
             ajaxDone();
@@ -46,9 +48,10 @@ function showStudents(){
 
 function showTeachers(){
     jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getTeachersDatabase',
         cache: false,
+        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
             ajaxDone();
@@ -64,9 +67,10 @@ function showStudentSubjects(studentEmail){
     var parameters = { studentEmail: studentEmail }
 
     jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getStudentsSubjectsDatabase',
         cache: false,
+        timeout: 5000,
         data: parameters,
         success: function(data) {
             jQuery('.studentsubjects_list').append(data);
@@ -80,9 +84,10 @@ function showStudentSubjects(studentEmail){
 
 function showSubjects(){
     jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getSubjectsDatabase',
         cache: false,
+        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
             ajaxDone();
@@ -95,9 +100,10 @@ function showSubjects(){
 
 function showDepartments(){
     jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getDepartmentsDatabase',
         cache: false,
+        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
             ajaxDone();
@@ -110,9 +116,10 @@ function showDepartments(){
 
 function showCourses(){
     jQuery.ajax({
-        method: 'POST',
+        method: 'GET',
         url: '/getCoursesDatabase',
         cache: false,
+        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
             ajaxDone();
