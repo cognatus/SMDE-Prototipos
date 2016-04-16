@@ -61,7 +61,8 @@ exports.getProfileSubjectsDatabase = function(req, res){
 				+ ' WHERE userEmail = "' + req.session.datos[0].userEmail + '";';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			subjectsProfileData = result;
+			res.send(subjectsProfileData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -74,9 +75,9 @@ exports.getProfileSubjectsDatabase = function(req, res){
 exports.getProfileContactsStudents = function(req, res){
 	var database = new base();
 
-	//SI EL USUARIO ES TIPO ALUMNO
-	stringQuery= 'SELECT userEmail, userName, userLastName, userSecondLastName, subjectName, courseName '
-				'FROM Student_has_Subject_has_Course a '
+	//SI EL USUARIO ES TIPO ALUMNO (CONTACTOS TIPO ALUMNO)
+	stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName, subjectName, courseName '
+				' FROM Student_has_Subject_has_Course a '
 				'	JOIN Student_has_Subject_has_Course b '
 				'		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
 				'		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
@@ -93,13 +94,13 @@ exports.getProfileContactsStudents = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			profileContactsStudents = result;
+			res.send(profileContactsStudents);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
 		}
 	});
-
 };
 
 // FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)

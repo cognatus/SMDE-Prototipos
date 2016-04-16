@@ -267,8 +267,8 @@ exports.getTeachersDatabase = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			teacherData = result;
-			res.send(teacherData);
+			teachersData = result;
+			res.send(teachersData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -314,7 +314,8 @@ exports.getDepartmentsDatabase = function(req, res){
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			departmentsData = result;
+			res.send(departmentsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -329,7 +330,8 @@ exports.getSubjectsDatabase = function(req, res){
 				+ ' WHERE Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			subjectsData = result;
+			res.send(subjectsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -344,7 +346,8 @@ exports.getCoursesDatabase = function(req, res){
 					+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			coursesData = result;
+			res.send(coursesData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');

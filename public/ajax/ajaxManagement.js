@@ -2,8 +2,12 @@
 jQuery(document).ready(function(){
     showAdmins();
     showStudents();
+    showTeachers();
+    showSubjects();
+    showDepartments();
+    showCourses();
 
-    jQuery('.slide_list.student').on('click', function(){
+    jQuery('.student').click(function(){
         var studentEmail = jQuery(this).find('.stsbid').attr('data-id');
         showStudentSubjects(studentEmail);
     });
@@ -56,15 +60,61 @@ function showTeachers(){
 }
 
 function showStudentSubjects(studentEmail){
-     jQuery.ajax({
+
+    var parameters = { studentEmail: studentEmail }
+
+    jQuery.ajax({
         method: 'POST',
         url: '/getStudentsSubjectsDatabase',
         cache: false,
-        data: {
-            studentEmail : studentEmail
+        data: parameters,
+        success: function(data) {
+            jQuery('.studentsubjects_list').append(data);
+            ajaxDone();
         },
-        success: function(subData) {
-            jQuery('.studentsubjects_list').append(subData);
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+}
+
+function showSubjects(){
+    jQuery.ajax({
+        method: 'POST',
+        url: '/getSubjectsDatabase',
+        cache: false,
+        success: function(data) {
+            jQuery('.managementlist').append(data);
+            ajaxDone();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+}
+
+function showDepartments(){
+    jQuery.ajax({
+        method: 'POST',
+        url: '/getDepartmentsDatabase',
+        cache: false,
+        success: function(data) {
+            jQuery('.managementlist').append(data);
+            ajaxDone();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+}
+
+function showCourses(){
+    jQuery.ajax({
+        method: 'POST',
+        url: '/getCoursesDatabase',
+        cache: false,
+        success: function(data) {
+            jQuery('.managementlist').append(data);
             ajaxDone();
         },
         error: function(jqXHR, textStatus, errorThrown) {
