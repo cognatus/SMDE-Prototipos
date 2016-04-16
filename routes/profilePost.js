@@ -40,25 +40,26 @@ exports.setProfileMsmColor = function(req, res){
 	});	
 };
 
-// FUNCION PARA MOSTRAR MATERIAS DE ALUMNO DE LA BASE DE DATOS
+// FUNCION PARA MOSTRAR MATERIAS DE PERFIL DE LA BASE DE DATOS
 exports.getProfileSubjectsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT userEmail, idStudent, subjectName, idSubject, idCourse, courseName, departmentName'
+	stringQuery = 'SELECT subjectName, courseName, subjectLevel, departmentName'
 				+ ' FROM User AS u'
 				+ ' INNER JOIN Student AS s'
-				+ ' 	ON u.userEmail = s.User_userEmail'
-				+ ' INNER JOIN Student_has_Subject_has_Course AS shshc'
-				+ ' 	ON shshc.Student_idStudent = s.idStudent'
-				+ ' INNER JOIN Subject_has_Course AS shc'
-				+ ' 	ON shshc.Subject_has_Course_Subject_idSubject = shc.Subject_idSubject'
-				+ ' 	AND shshc.Subject_has_Course_Course_idCourse = shc.Course_idCourse'
-				+ ' INNER Join Subject AS su'
-				+ ' 	ON su.idSubject = shc.Subject_idSubject'
-				+ ' INNER JOIN Course AS c '
-				+ ' 	ON c.idCourse = shc.Course_idCourse'
-				+ ' INNER JOIN Department AS d '
-				+ ' 	ON d.idDepartment = su.Department_idDepartment'
-				+ ' WHERE userEmail = "' + req.session.datos[0].userEmail + '";';
+				+ '     ON u.userEmail = s.User_userEmail'
+				+ ' INNER JOIN Student_has_Subject_has_Course AS ss'
+				+ '     ON s.idStudent = ss.Student_idStudent'
+				+ ' INNER JOIN Subject_has_Course AS sc'
+				+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
+				+ ' 	AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
+				+ ' INNER JOIN Subject AS su'
+				+ '     ON sc.Subject_idSubject = su.idSubject'
+				+ ' INNER JOIN Course AS c'
+				+ '     ON sc.Course_idCourse = c.idCourse'
+				+ ' INNER JOIN Department AS d'
+				+ '     ON d.idDepartment = su.Department_idDepartment'
+				+ ' WHERE userEmail  = "' + req.session.datos[0].userEmail + '"'
+				+ ' ORDER BY su.subjectName ASC;'
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			subjectsProfileData = result;
