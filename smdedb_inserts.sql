@@ -163,7 +163,7 @@ SELECT userEmail, idStudent, userName, userLastName, userSecondLastName, userSex
 	INNER JOIN Subject AS su
 	    ON sc.Subject_idSubject = su.idSubject
 	INNER JOIN Course AS c
-	    ON sc.Course_idCourse = c.idCourse;
+	    ON sc.Course_idCourse = c.idCourse
 	ORDER BY c.courseName ASC;
 
 
@@ -195,64 +195,63 @@ SELECT userEmail, idTeacher, subjectName, idSubject, idCourse, courseName
 	INNER JOIN Course AS c 
 		ON c.idCourse = shc.Course_idCourse;
 
---CONTACTOS ALUMNOS-ALUMNOS
+
+--CONTACTOS AlUMNO-ALUMNO Y CURSO EN QUE COINCIDEN
 SET @tipo = 'vato@vato.com';
-SELECT idStudent, userEmail ,
-	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`
-	FROM Student_has_Subject_has_Course AS shshc
-    INNER JOIN Student AS s 
-		ON s.idStudent = shshc.Student_idStudent
-	INNER JOIN User AS u
-		ON u.userEmail = s.User_userEmail
-	WHERE userEmail = @tipo;
 
-SELECT userEmail, userName, userLastName, userSecondLastName
-	FROM Student_has_Subject_has_Course AS shshc
-    INNER JOIN Student AS s 
-		ON s.idStudent = shshc.Student_idStudent
-	INNER JOIN User AS u
+SELECT userEmail, a.*, subjectName, courseName 
+FROM Student_has_Subject_has_Course a
+	JOIN Student_has_Subject_has_Course b
+		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject
+		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse
+		AND a.Student_idStudent != b.Student_idStudent
+	INNER JOIN Subject as sub
+		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject
+	INNER JOIN Course as c
+		ON c.idCourse = a.Subject_has_Course_Course_idCourse
+	INNER JOIN Student as s
+		ON s.idStudent = a.Student_idStudent
+	INNER JOIN User as u
 		ON u.userEmail = s.User_userEmail
-	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject
-	AND userEmail != @tipo;
+	WHERE userEmail != @tipo;
 
--- CONTACTOS ALUMNOS-PROFES
+--CONTACTOS AlUMNO-PROFE Y CURSO EN QUE COINCIDEN
 SET @tipo = 'vato@vato.com';
-SELECT idStudent, userEmail ,
-	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`
-	FROM Student_has_Subject_has_Course AS shshc
-    INNER JOIN Student AS s
-		ON s.idStudent = shshc.Student_idStudent
-	INNER JOIN User AS u
-		ON u.userEmail = s.User_userEmail
-	WHERE userEmail = @tipo;
 
-SELECT userEmail, userName, userLastName, userSecondLastName
-	FROM Teacher_has_Subject_has_Course AS shshc
-    INNER JOIN Teacher AS s
-		ON s.idTeacher = shshc.Teacher_idTeacher
-	INNER JOIN User AS u
+SELECT userEmail, subjectName, courseName 
+FROM Teacher_has_Subject_has_Course a
+	INNER JOIN Student_has_Subject_has_Course b
+		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject
+		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse
+        AND b.Student_idStudent
+	INNER JOIN Subject as sub
+		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject
+	INNER JOIN Course as c
+		ON c.idCourse = a.Subject_has_Course_Course_idCourse
+	INNER JOIN Teacher as s
+		ON s.idTeacher = a.Teacher_idTeacher
+	INNER JOIN User as u
 		ON u.userEmail = s.User_userEmail
-	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject;
+	WHERE userEmail != @tipo; 
 
--- CONTACTOS PROFES-PROFES
+
+--CONTACTOS PROFE-PROFE Y CURSO EN QUE COINCIDEN
 SET @tipo = 'profe@profe.com';
-SELECT idTeacher, userEmail ,
-	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`
-	FROM Teacher_has_Subject_has_Course AS shshc
-    INNER JOIN Teacher AS s
-		ON s.idTeacher = shshc.Teacher_idTeacher
-	INNER JOIN User AS u
-		ON u.userEmail = s.User_userEmail
-	WHERE userEmail = @tipo;
 
-SELECT userEmail, userName, userLastName, userSecondLastName
-	FROM Teacher_has_Subject_has_Course AS shshc
-    INNER JOIN Teacher AS s
-		ON s.idTeacher = shshc.Teacher_idTeacher
-	INNER JOIN User AS u
+SELECT userEmail, a.*, subjectName, courseName 
+FROM Teacher_has_Subject_has_Course a
+	JOIN Teacher_has_Subject_has_Course b
+		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject
+		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse
+		AND a.Teacher_idTeacher != b.Teacher_idTeacher
+	INNER JOIN Subject as sub
+		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject
+	INNER JOIN Course as c
+		ON c.idCourse = a.Subject_has_Course_Course_idCourse
+	INNER JOIN Teacher as s
+		ON s.idTeacher = a.Teacher_idTeacher
+	INNER JOIN User as u
 		ON u.userEmail = s.User_userEmail
-	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject
-	AND userEmail != @tipo;
-
+	WHERE userEmail != @tipo;
 
 

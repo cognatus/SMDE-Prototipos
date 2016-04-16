@@ -144,9 +144,10 @@ block content
 							#listcontainer.listcontainer
 								.colhh1.no_result
 								div(ng-controler='proStuContacts' ng-init='cargarAlumnos()')
-									.colhh1.slide_list(ng-repeat='item in profileStuContacts' data-name='{{item.userName}}' data-type='Alumno')
+									.colhh1.slide_list(ng-repeat='item in profileStuContacts' data-name='{{item.userName}} {{item.userLastName}} {{item.userSecondLastName}}' data-type='Alumno')
 										.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
-											.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
+											a(href='/messages')
+												.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
 											.listitem_img
 												img(src='images/profilephoto.png')
 											.listitem_info
@@ -156,11 +157,26 @@ block content
 										.colhh1.innerlistitem
 											.colhh1.border_bottom
 												.list_borderleft
-													.pd_llist
-														.sl_title Información
-													.pd_llist
-														.colhh1.pd_l12 Correo: 
-															span.margin_l {{item.userEmail}}
+													.colhh1
+														.pd_llist
+															.sl_title Información
+														.pd_llist
+															.colhh1.pd_l12 Correo: 
+																span.margin_l {{item.userEmail}}
+													.pd_8
+													.colhh1
+														.pd_llist
+															.sl_title Cursos en común
+														.subjectslist
+															.colhh1.hover
+																.listitem_img
+																	span B
+																.listitem_info
+																	.listitem_title 
+																		b {{item.subjectName}}
+																	.listitem_bottomdata
+																		| Grupo: {{item.courseName}}
+
 					.colhh1.h_listindex
 						.block_container.bg_white
 							.colhh1.empty_blocktext.center_text
@@ -173,7 +189,7 @@ block content
 										.listitem_img
 											span A
 										.listitem_info
-											.listitem_rightinfo Promedio: 
+											.listitem_rightinfo Promedio:
 												label.subject_prom
 											.listitem_title 
 												b {{item.subjectName}}

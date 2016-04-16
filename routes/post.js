@@ -200,7 +200,8 @@ exports.getAdministratorsDatabase = function(req, res){
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			adminsData = result;
+			res.send(adminsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -217,7 +218,8 @@ exports.getStudentsDatabase = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			studentsData = result
+			res.send(studentsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -228,7 +230,8 @@ exports.getStudentsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR MATERIAS DE ALUMNOS DE LA BASE DE DATOS
 exports.getStudentsSubjectsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT userEmail, idStudent, idSubject, subjectName, courseName'
+	var studentEmail = req.query.studentEmail;
+	stringQuery = 'SELECT idCourse, idSubject, subjectName, courseName'
 				+ ' FROM User AS u'
 				+ ' INNER JOIN Student AS s'
 				+ '     ON u.userEmail = s.User_userEmail'
@@ -241,10 +244,12 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 				+ '     ON sc.Subject_idSubject = su.idSubject'
 				+ ' INNER JOIN Course AS c'
 				+ '     ON sc.Course_idCourse = c.idCourse'
-				+ ' WHERE su.Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+				+ ' WHERE su.Department_Institute_idInstitute= "' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' AND userEmail= "' + studentEmail + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			studentSubjects = result;
+			res.send(studentSubjects);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -262,7 +267,8 @@ exports.getTeachersDatabase = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			teacherData = result;
+			res.send(teacherData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -273,6 +279,7 @@ exports.getTeachersDatabase = function(req, res){
 // FUNCION PARA MOSTRAR MATERIAS DE PROFESOR DE LA BASE DE DATOS
 exports.getTeachersSubjectsDatabase = function(req, res){
 	var database = new base();
+	var teacherEmail = req.query.teacherEmail;
 	stringQuery = 'SELECT idTeacher, idSubject, subjectName, courseName'
 					+ ' FROM User as u'
 					+ ' INNER JOIN Teacher as s'
@@ -286,10 +293,12 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 					+ '     ON sc.Subject_idSubject = su.idSubject'
 					+ ' INNER JOIN Course as c'
 					+ '     ON sc.Course_idCourse = c.idCourse'
-					+ ' WHERE su.Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+					+ ' WHERE su.Department_Institute_idInstitute= "' + req.session.datos[0].Institute_idInstitute + '"' 
+					+ ' AND userEmail= "' + teacherEmail + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			teacherSubjects = result;
+			res.send(teacherSubjects);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');

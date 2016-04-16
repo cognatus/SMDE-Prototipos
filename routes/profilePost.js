@@ -75,23 +75,21 @@ exports.getProfileContactsStudents = function(req, res){
 	var database = new base();
 
 	//SI EL USUARIO ES TIPO ALUMNO
-	stringQuery = 'SET @tipo = "' + req.session.datos[0].userEmail + '"'
-			+ ' SELECT idStudent, userEmail,'
-			+ ' 	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`'
-			+ ' 	FROM Student_has_Subject_has_Course AS shshc'
-			+ '     INNER JOIN Student AS s '
-			+ ' 		ON s.idStudent = shshc.Student_idStudent'
-			+ ' 	INNER JOIN User AS u'
-			+ ' 		ON u.userEmail = s.User_userEmail'
-			+ ' 	WHERE userEmail = @tipo;'
-			+ ' SELECT userEmail, userName, userLastName, userSecondLastName'
-			+ ' 	FROM Student_has_Subject_has_Course AS shshc'
-			+ '     INNER JOIN Student AS s '
-			+ ' 		ON s.idStudent = shshc.Student_idStudent'
-			+ ' 	INNER JOIN User AS u'
-			+ ' 		ON u.userEmail = s.User_userEmail'
-			+ ' 	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject'
-			+ ' 	AND userEmail != @tipo; ';
+	stringQuery= 'SELECT userEmail, userName, userLastName, userSecondLastName, subjectName, courseName '
+				'FROM Student_has_Subject_has_Course a '
+				'	JOIN Student_has_Subject_has_Course b '
+				'		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+				'		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+				'		AND a.Student_idStudent != b.Student_idStudent '
+				'	INNER JOIN Subject as sub '
+				'		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject '
+				'	INNER JOIN Course as c '
+				'		ON c.idCourse = a.Subject_has_Course_Course_idCourse '
+				'	INNER JOIN Student as s '
+				'		ON s.idStudent = a.Student_idStudent '
+				'	INNER JOIN User as u '
+				'		ON u.userEmail = s.User_userEmail '
+				'	WHERE userEmail != "' + req.session.datos[0].userEmail + '";' 
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
