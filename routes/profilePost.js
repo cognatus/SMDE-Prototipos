@@ -162,11 +162,14 @@ exports.getStudentCoincidences = function(req, res){
 				+ '		ON u.userEmail = s.User_userEmail '
 				+ '	WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
 				+ '	AND b.Student_idStudent != "' + req.session.datos[0].idStudent + '" '
-				+ '	AND b.Student_idStudent = "' + studentEmail + '"; ';
+				+ '	AND s.User_userEmail = "' + studentEmail + '"; ';
+
+
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			studentCoincidences = result;
+			console.log(stringQuery);
 			res.send(studentCoincidences);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
@@ -197,7 +200,7 @@ exports.getTeacherCoincidences = function(req, res){
 				+ '		ON u.userEmail = t.User_userEmail '
 				+ '	WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
 				+ '	AND b.Teacher_idTeacher != "' + req.session.datos[0].idStudent + '" '
-				+ '	AND b.Teacher_idTeacher = "' + teacherEmail + '"; ';
+				+ '	AND t.User_userEmail = "' + teacherEmail + '"; ';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
