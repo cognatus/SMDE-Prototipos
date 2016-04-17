@@ -145,6 +145,7 @@ exports.getProfileContactsTeachers = function(req, res){
 exports.getStudentCoincidences = function(req, res){
 	var database = new base();
 	var studentEmail = req.query.studentEmail;
+	
 	//SI EL USUARIO ES TIPO ALUMNO
 	stringQuery = 'SELECT subjectName, courseName '
 				+ ' FROM Student_has_Subject_has_Course a '

@@ -34,7 +34,6 @@ function showContactsStudents(){
                             container.find('.person_subjectslist').append('<div class="colhh1 hover">'
                             + '<div class="listitem_img"><span>B</span></div>'
                             + '<div class="listitem_info">'
-                            + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
                             + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
                             + '<div class="listitem_bottomdata">Grupo: ' + subject.courseName + '</div>'
                             + '</div>'
