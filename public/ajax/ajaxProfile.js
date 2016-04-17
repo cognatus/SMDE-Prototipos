@@ -1,20 +1,19 @@
 
 jQuery(document).ready(function(){
         
-    showContactsStudents();
-    showContactsTeachers();
-    showProfileSubjects();
+    setTimeout(showContactsStudents, 3000);
 
 });
 
 function showContactsStudents(){
-	jQuery.ajax({
-        method: 'GET',
+    jQuery.ajax({
+        type: 'GET',
         url: 'getProfileContactsStudents',
         cache: false,
         success: function(data) {
             jQuery('#contacts_list').append(data);
-            
+            showContactsTeachers();
+
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_student').click(function(){
                 var selectorCont = jQuery(this);
@@ -35,6 +34,7 @@ function showContactsStudents(){
                             container.find('.person_subjectslist').append('<div class="colhh1 hover">'
                             + '<div class="listitem_img"><span>B</span></div>'
                             + '<div class="listitem_info">'
+                            + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
                             + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
                             + '<div class="listitem_bottomdata">Grupo: ' + subject.courseName + '</div>'
                             + '</div>'
@@ -46,9 +46,10 @@ function showContactsStudents(){
                     }
                 });
             });
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            console.log('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
@@ -60,6 +61,7 @@ function showContactsTeachers(){
         cache: false,
         success: function(data) {
             jQuery('#contacts_list').append(data);
+            showProfileSubjects();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_teacher').click(function(){

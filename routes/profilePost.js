@@ -168,7 +168,6 @@ exports.getStudentCoincidences = function(req, res){
 		if(!error) {
 			studentCoincidences = result;
 			res.send(studentCoincidences);
-			console.log('Consulta correctamente')
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
