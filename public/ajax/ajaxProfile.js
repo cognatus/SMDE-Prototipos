@@ -9,11 +9,11 @@ jQuery(document).ready(function(){
 function showContactsStudents(){
 	jQuery.ajax({
         method: 'GET',
-        url: '/getProfileContactsStudents',
+        url: 'getProfileContactsStudents',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('#contacts_list').append(data);
+            console.log(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -24,9 +24,8 @@ function showContactsStudents(){
 function showProfileSubjects(){
     jQuery.ajax({
         method: 'GET',
-        url: '/getProfileSubjectsDatabase',
+        url: 'getProfileSubjectsDatabase',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('#subjects_list').append(data);
         },

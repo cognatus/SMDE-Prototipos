@@ -1,11 +1,9 @@
 
 jQuery(document).ready(function(){
-    showAdmins();
-    showStudents();
-    showTeachers();
-    showSubjects();
-    showDepartments();
-    showCourses();
+
+    jQuery('#management_showall').show(function(){
+        setTimeout(showAdmins, 3000);
+    });
 
     /*jQuery('.student').click(function(){
         var studentEmail = jQuery(this).find('.stsbid').attr('data-id');
@@ -16,109 +14,135 @@ jQuery(document).ready(function(){
 
 function showAdmins(){
 	jQuery.ajax({
-        method: 'GET',
-        url: '/getAdministratorsDatabase',
+        type: 'GET',
+        url: 'getAdministratorsDatabase',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
+            showStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            console.log('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
 
 function showStudents(){
     jQuery.ajax({
-        method: 'GET',
-        url: '/getStudentsDatabase',
+        type: 'GET',
+        url: 'getStudentsDatabase',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
+            showTeachers();
+            jQuery('.item_student').click(function(){
+                var stuId = jQuery(this).attr('data-id');
+                showStudentSubjects(stuId);
+            });
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            console.log('Error: ' + textStatus + " " + errorThrown);
+        }
+    });
+}
+
+function showStudentSubjects(stuId){
+    jQuery.ajax({
+        type: 'GET',
+        url: 'getStudentsSubjectsDatabase',
+        cache: false,
+        data: {
+            studentEmail: stuId
+        },
+        success: function(data2) {
+            alert('¡Asignaturas cargadas de: ' + stuId);
+            alert(data2);
+            jQuery('.studentsubjects_list[data-id="' + stuId + '"]').append(data2);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
 
 function showTeachers(){
     jQuery.ajax({
-        method: 'GET',
-        url: '/getTeachersDatabase',
+        type: 'GET',
+        url: 'getTeachersDatabase',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
+            showSubjects();
+            jQuery('.item_teacher').click(function(){
+                var stuId = jQuery(this).attr('data-id');
+                showStudentSubjects(stuId);
+            });
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            console.log('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
 
-function showStudentSubjects(studentEmail){
-
-    var parameters = { studentEmail: studentEmail }
-
+function showTeachersSubjects(stuId){
     jQuery.ajax({
-        method: 'GET',
-        url: '/getStudentsSubjectsDatabase',
+        type: 'GET',
+        url: 'getTeachersSubjectsDatabase',
         cache: false,
-        timeout: 5000,
-        data: parameters,
-        success: function(data) {
-            jQuery('.studentsubjects_list').append(data);
+        data: {
+            studentEmail: stuId
+        },
+        success: function(data2) {
+            alert('¡Asignaturas cargadas de: ' + stuId);
+            alert(data2);
+            jQuery('.teachersubjects_list[data-id="' + stuId + '"]').append(data2);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
 
 function showSubjects(){
     jQuery.ajax({
-        method: 'GET',
-        url: '/getSubjectsDatabase',
+        type: 'GET',
+        url: 'getSubjectsDatabase',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
+            showDepartments();
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            console.log('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
 
 function showDepartments(){
     jQuery.ajax({
-        method: 'GET',
-        url: '/getDepartmentsDatabase',
+        type: 'GET',
+        url: 'getDepartmentsDatabase',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
+            showCourses();
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            console.log('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
 
 function showCourses(){
     jQuery.ajax({
-        method: 'GET',
-        url: '/getCoursesDatabase',
+        type: 'GET',
+        url: 'getCoursesDatabase',
         cache: false,
-        timeout: 5000,
         success: function(data) {
             jQuery('.managementlist').append(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            console.log('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }

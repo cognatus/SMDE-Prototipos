@@ -149,7 +149,7 @@ block content
 					.colhh1.rel_pos
 						.h_listline.bgaccent_color
 						.h_listtopcontainer#mgm_filter
-							.h_listitem.first(data-filter='Todo')
+							#load_all.h_listitem.first(data-filter='Todo')
 								.pd_16.rippleria-dark( data-rippleria ) Todo
 							.h_listitem(data-filter='Alumno')
 								.pd_16.rippleria-dark( data-rippleria ) Alumnos
@@ -166,7 +166,7 @@ block content
 						.search
 							span.searchicon
 							input#buscar_slide(type='text',name='buscar', placeholder='Buscar Cualquier Cosa')
-					#listcontainer.colhh1.managementlist()
+					#listcontainer.colhh1.managementlist
 						.colhh1.load_container#management_showall
 							.load
 								.spinner
@@ -200,7 +200,7 @@ block content
 						if studentsData != undefined
 							each item in studentsData
 								.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
-									.colhh1.hover.listitem.rel_pos.rippleria-dark.student(data-rippleria)
+									.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-id='#{item.userEmail}')
 										.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 										.listitem_img
 											img(src='images/profilephoto.png')
@@ -219,7 +219,7 @@ block content
 															span.margin_l.normal_txt #{item.idStudent}
 														.pd_4
 														.pd_l12.sl_title Correo: 
-															span.margin_l.normal_txt.stsbid(data-id='#{item.userEmail}') #{item.userEmail}
+															span.margin_l.normal_txt #{item.userEmail}
 														.pd_4
 														.pd_l12.sl_title Sexo: 
 															span.margin_l.normal_txt #{item.userSex}
@@ -227,7 +227,7 @@ block content
 												.colhh1
 													.pd_llist
 														.sl_title Grupos y Asignaturas
-													.studentsubjects_list
+													.studentsubjects_list(data-id='#{item.userEmail}')
 														if studentSubjects =! undefined
 															each subItem in studentSubjects
 																.colhh1.hover
@@ -235,15 +235,15 @@ block content
 																		span B
 																	.listitem_info
 																		.listitem_rightinfo 
-																			| {{subItem.idSubject}}
+																			| #{subItem.idSubject}
 																		.listitem_title 
-																			b {{subItem.subjectName}}
+																			b #{subItem.subjectName}
 																		.listitem_bottomdata
-																			| Grupo: {{subItem.courseName}}
+																			| Grupo: #{subItem.courseName}
 						if teachersData != undefined
 							each item in teachersData
 								.colhh1.slide_list.teacher(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Profesor')
-									.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+									.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-id='#{item.userEmail}')
 										.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Editar')
 										.listitem_img
 											img(src='images/profilephoto.png')
@@ -270,7 +270,7 @@ block content
 												.colhh1
 													.pd_llist
 														.sl_title Grupos y Asignaturas
-													.teachersubjects_list
+													.teachersubjects_list(data-id='#{item.userEmail}')
 														if teacherSubjects =! undefined
 															each subItem in teacherSubjects
 																.colhh1.hover
@@ -278,11 +278,11 @@ block content
 																		span B
 																	.listitem_info
 																		.listitem_rightinfo 
-																			| {{subItem.idSubject}}
+																			| #{subItem.idSubject}
 																		.listitem_title 
-																			b {{subItem.subjectName}}
+																			b #{subItem.subjectName}
 																		.listitem_bottomdata
-																			| Grupo: {{subItem.courseName}}
+																			| Grupo: #{subItem.courseName}
 						if subjectsData != undefined
 							each item in subjectsData
 								.colhh1.slide_list(data-name='#{item.SubjectName}' data-type='Asignatura')

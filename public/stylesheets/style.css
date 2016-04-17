@@ -1864,6 +1864,8 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	LOAD - SPINNER
 -----------------------------------------------------------------------------------------*/
 
+.load_container{display: none;}
+
 .load{
 	text-align: center;
 	width: auto;

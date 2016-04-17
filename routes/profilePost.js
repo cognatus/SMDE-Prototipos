@@ -76,8 +76,8 @@ exports.getProfileSubjectsDatabase = function(req, res){
 exports.getProfileContactsStudents = function(req, res){
 	var database = new base();
 
-	//SI EL USUARIO ES TIPO ALUMNO (CONTACTOS TIPO ALUMNO)
-	stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName, subjectName, courseName '
+	//SI EL USUARIO ES TIPO ALUMNO
+	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, subjectName, courseName '
 				+ ' FROM Student_has_Subject_has_Course a '
 				+ '	JOIN Student_has_Subject_has_Course b '
 				+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
@@ -91,7 +91,7 @@ exports.getProfileContactsStudents = function(req, res){
 				+ '		ON s.idStudent = a.Student_idStudent '
 				+ '	INNER JOIN User as u '
 				+ '		ON u.userEmail = s.User_userEmail '
-				+ '	WHERE u.userEmail != "' + req.session.datos[0].userEmail + '";' 
+				+ '	WHERE s.User_userEmail != "' + req.session.datos[0].userEmail + '";';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -109,7 +109,7 @@ exports.getProfileContactsTeachers = function(req, res){
 	var database = new base();
 
 	//SI EL USUARIO ES TIPO PROFESOR
-	stringQuery = 'SET @tipo = "' + req.session.datos[0].userEmail + '"'
+	stringQuery = 'SET @tipo = "' + req.session.datos[0].userEmail + '";'
 			+ ' SELECT idTeacher, userEmail,'
 			+ ' 	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`'
 			+ ' 	FROM Teacher_has_Subject_has_Course AS shshc'
