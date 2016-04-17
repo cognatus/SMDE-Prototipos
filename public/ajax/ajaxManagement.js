@@ -35,32 +35,43 @@ function showStudents(){
         success: function(data) {
             jQuery('.managementlist').append(data);
             showTeachers();
+
+            //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_student').click(function(){
-                var stuId = jQuery(this).attr('data-id');
-                showStudentSubjects(stuId);
+                var selectorCont = jQuery(this);
+                var container = jQuery(this).siblings('.innerlistitem');
+                var stuId = selectorCont.siblings('.innerlistitem').attr('data-id');
+                container.find('.studentsubjects_list').empty();
+                jQuery.ajax({
+                    type: 'GET',
+                    url: 'getStudentsSubjectsDatabase',
+                    cache: false,
+                    data: {
+                        studentEmail: stuId
+                    },
+                    success: function(data2) {
+                        console.log(data2);
+                        for(var i in data2){
+                            var subject = data2[i];
+                            container.find('.studentsubjects_list').append('<div class="colhh1 hover">'
+                            + '<div class="listitem_img"><span>B</span></div>'
+                            + '<div class="listitem_info">'
+                            + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
+                            + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
+                            + '<div class="listitem_bottomdata">Grupo: ' + subject.courseName + '</div>'
+                            + '</div>'
+                            + '</div>');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error: ' + textStatus + " " + errorThrown);
+                    }
+                });
             });
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        }
-    });
-}
-
-function showStudentSubjects(stuId){
-    jQuery.ajax({
-        type: 'GET',
-        url: 'getStudentsSubjectsDatabase',
-        cache: false,
-        data: {
-            studentEmail: stuId
-        },
-        success: function(data2) {
-            alert('¡Asignaturas cargadas de: ' + stuId);
-            alert(data2);
-            jQuery('.studentsubjects_list[data-id="' + stuId + '"]').append(data2);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }
@@ -73,32 +84,43 @@ function showTeachers(){
         success: function(data) {
             jQuery('.managementlist').append(data);
             showSubjects();
+
+            //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_teacher').click(function(){
-                var stuId = jQuery(this).attr('data-id');
-                showStudentSubjects(stuId);
+                var selectorCont = jQuery(this);
+                var container = jQuery(this).siblings('.innerlistitem');
+                var teaId = selectorCont.siblings('.innerlistitem').attr('data-id');
+                container.find('.teachersubjects_list').empty();
+                jQuery.ajax({
+                    type: 'GET',
+                    url: 'getTeachersSubjectsDatabase',
+                    cache: false,
+                    data: {
+                        teacherEmail: teaId
+                    },
+                    success: function(data2) {
+                        console.log(data2);
+                        for(var i in data2){
+                            var subject = data2[i];
+                            container.find('.studentsubjects_list').append('<div class="colhh1 hover">'
+                            + '<div class="listitem_img"><span>B</span></div>'
+                            + '<div class="listitem_info">'
+                            + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
+                            + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
+                            + '<div class="listitem_bottomdata">Grupo: ' + subject.courseName + '</div>'
+                            + '</div>'
+                            + '</div>');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error: ' + textStatus + " " + errorThrown);
+                    }
+                });
             });
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        }
-    });
-}
-
-function showTeachersSubjects(stuId){
-    jQuery.ajax({
-        type: 'GET',
-        url: 'getTeachersSubjectsDatabase',
-        cache: false,
-        data: {
-            studentEmail: stuId
-        },
-        success: function(data2) {
-            alert('¡Asignaturas cargadas de: ' + stuId);
-            alert(data2);
-            jQuery('.teachersubjects_list[data-id="' + stuId + '"]').append(data2);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Error: ' + textStatus + " " + errorThrown);
         }
     });
 }

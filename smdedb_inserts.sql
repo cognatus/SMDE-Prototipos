@@ -197,42 +197,45 @@ SELECT userEmail, idTeacher, subjectName, idSubject, idCourse, courseName
 
 
 --CONTACTOS AlUMNO-ALUMNO Y CURSO EN QUE COINCIDEN
-SET @tipo = 'vato@vato.com';
+SET @tipo = 'VATOASDSAD46844';
 
-SELECT userEmail, a.*, subjectName, courseName 
+SELECT userEmail, userName, userLastName, userSecondLastName, subjectName, courseName 
 FROM Student_has_Subject_has_Course a
 	JOIN Student_has_Subject_has_Course b
 		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject
 		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse
 		AND a.Student_idStudent != b.Student_idStudent
 	INNER JOIN Subject as sub
-		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject
+		ON sub.idSubject = b.Subject_has_Course_Subject_idSubject
 	INNER JOIN Course as c
-		ON c.idCourse = a.Subject_has_Course_Course_idCourse
+		ON c.idCourse = b.Subject_has_Course_Course_idCourse
 	INNER JOIN Student as s
-		ON s.idStudent = a.Student_idStudent
+		ON s.idStudent = b.Student_idStudent
 	INNER JOIN User as u
 		ON u.userEmail = s.User_userEmail
-	WHERE userEmail != @tipo;
+	WHERE a.Student_idStudent = @tipo
+    AND b.Student_idStudent != @tipo;
 
 --CONTACTOS AlUMNO-PROFE Y CURSO EN QUE COINCIDEN
-SET @tipo = 'vato@vato.com';
 
-SELECT userEmail, subjectName, courseName 
-FROM Teacher_has_Subject_has_Course a
-	INNER JOIN Student_has_Subject_has_Course b
+SET @tipo = 'VATOASDSAD46844';
+
+SELECT userEmail, userName, userLastName, userSecondLastName, subjectName, courseName 
+FROM Student_has_Subject_has_Course a
+	JOIN Teacher_has_Subject_has_Course b
 		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject
 		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse
-        AND b.Student_idStudent
+		AND a.Student_idStudent != b.Teacher_idTeacher
 	INNER JOIN Subject as sub
-		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject
+		ON sub.idSubject = b.Subject_has_Course_Subject_idSubject
 	INNER JOIN Course as c
-		ON c.idCourse = a.Subject_has_Course_Course_idCourse
-	INNER JOIN Teacher as s
-		ON s.idTeacher = a.Teacher_idTeacher
+		ON c.idCourse = b.Subject_has_Course_Course_idCourse
+	INNER JOIN Teacher as t
+		ON t.idTeacher = b.Teacher_idTeacher
 	INNER JOIN User as u
-		ON u.userEmail = s.User_userEmail
-	WHERE userEmail != @tipo; 
+		ON u.userEmail = t.User_userEmail
+	WHERE a.Student_idStudent = @tipo
+    AND b.Teacher_idTeacher != @tipo;
 
 
 --CONTACTOS PROFE-PROFE Y CURSO EN QUE COINCIDEN
@@ -254,4 +257,23 @@ FROM Teacher_has_Subject_has_Course a
 		ON u.userEmail = s.User_userEmail
 	WHERE userEmail != @tipo;
 
+
+--MOTRAR MATERIAS DE LAS PERSONAS QUE COINCIDEN
+SELECT subjectName, courseName
+FROM Student_has_Subject_has_Course a
+JOIN Student_has_Subject_has_Course b
+	ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject
+	AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse
+	AND a.Student_idStudent != b.Student_idStudent
+INNER JOIN Subject as sub
+	ON sub.idSubject = a.Subject_has_Course_Subject_idSubject
+INNER JOIN Course as c
+	ON c.idCourse = a.Subject_has_Course_Course_idCourse
+INNER JOIN Student as s
+	ON s.idStudent = b.Student_idStudent
+INNER JOIN User as u
+	ON u.userEmail = s.User_userEmail
+WHERE a.Student_idStudent = "VATOASDSAD46844"
+AND b.Student_idStudent != "VATOASDSAD46844"
+AND b.Student_idStudent = "VATO464568"; 
 

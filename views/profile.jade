@@ -143,10 +143,10 @@ block content
 									.autocol.pd_12.mm_title No tienes contactos.
 							#listcontainer.listcontainer
 								.colhh1.no_result
-								if profileContactsStudents =! undefined
+								if profileContactsStudents != undefined
 									each item in profileContactsStudents
 										.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
-											.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria)
+											.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria)
 												a(href='/messages')
 													.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
 												.listitem_img
@@ -155,7 +155,7 @@ block content
 													.listitem_title 
 														b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
 													.listitem_bottomdata Alumno
-											.colhh1.innerlistitem
+											.colhh1.innerlistitem(data-id='#{item.userEmail}')
 												.colhh1.border_bottom
 													.list_borderleft
 														.colhh1
@@ -168,15 +168,49 @@ block content
 														.colhh1
 															.pd_llist
 																.sl_title Cursos en común
-															.subjectslist
-																.colhh1.hover
-																	.listitem_img
-																		span B
-																	.listitem_info
-																		.listitem_title 
-																			b #{item.subjectName}
-																		.listitem_bottomdata
-																			| Grupo: #{item.courseName}
+															.person_subjectslist
+																//- .colhh1.hover
+																//- 	.listitem_img
+																//- 		span B
+																//- 	.listitem_info
+																//- 		.listitem_title 
+																//- 			b #{item.subjectName}
+																//- 		.listitem_bottomdata
+																//- 			| Grupo: #{item.courseName}
+								if profileContactsTeachers != undefined
+									each item in profileContactsTeachers
+										.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Profesor')
+											.colhh1.hover.listitem.rel_pos.rippleria-dark.item_teacher(data-rippleria)
+												a(href='/messages')
+													.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
+												.listitem_img
+													img(src='images/profilephoto.png')
+												.listitem_info
+													.listitem_title 
+														b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+													.listitem_bottomdata Profesor
+											.colhh1.innerlistitem(data-id='#{item.userEmail}')
+												.colhh1.border_bottom
+													.list_borderleft
+														.colhh1
+															.pd_llist
+																.sl_title Información
+															.pd_llist
+																.colhh1.pd_l12 Correo: 
+																	span.margin_l #{item.userEmail}
+														.pd_8
+														.colhh1
+															.pd_llist
+																.sl_title Cursos en común
+															.person_subjectslist
+																//- .colhh1.hover
+																//- 	.listitem_img
+																//- 		span B
+																//- 	.listitem_info
+																//- 		.listitem_title 
+																//- 			b #{item.subjectName}
+																//- 		.listitem_bottomdata
+																//- 			| Grupo: #{item.courseName}
 					.colhh1.h_listindex
 						#subjects_list.block_container.bg_white
 							.colhh1.empty_blocktext.center_text

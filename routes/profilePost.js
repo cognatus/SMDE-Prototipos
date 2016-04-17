@@ -77,7 +77,7 @@ exports.getProfileContactsStudents = function(req, res){
 	var database = new base();
 
 	//SI EL USUARIO ES TIPO ALUMNO
-	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, subjectName, courseName '
+	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
 				+ ' FROM Student_has_Subject_has_Course a '
 				+ '	JOIN Student_has_Subject_has_Course b '
 				+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
@@ -88,10 +88,12 @@ exports.getProfileContactsStudents = function(req, res){
 				+ '	INNER JOIN Course as c '
 				+ '		ON c.idCourse = a.Subject_has_Course_Course_idCourse '
 				+ '	INNER JOIN Student as s '
-				+ '		ON s.idStudent = a.Student_idStudent '
+				+ '		ON s.idStudent = b.Student_idStudent '
 				+ '	INNER JOIN User as u '
 				+ '		ON u.userEmail = s.User_userEmail '
-				+ '	WHERE s.User_userEmail != "' + req.session.datos[0].userEmail + '";';
+				+ '	WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+				+ '	AND b.Student_idStudent != "' + req.session.datos[0].idStudent + '" '
+				+ '	GROUP BY b.Student_idStudent;';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -108,31 +110,103 @@ exports.getProfileContactsStudents = function(req, res){
 exports.getProfileContactsTeachers = function(req, res){
 	var database = new base();
 
-	//SI EL USUARIO ES TIPO PROFESOR
-	stringQuery = 'SET @tipo = "' + req.session.datos[0].userEmail + '";'
-			+ ' SELECT idTeacher, userEmail,'
-			+ ' 	@course := `Subject_has_Course_Course_idCourse`, @subject := `Subject_has_Course_Subject_idSubject`'
-			+ ' 	FROM Teacher_has_Subject_has_Course AS shshc'
-			+ '     INNER JOIN Teacher AS s '
-			+ ' 		ON s.idTeacher = shshc.Teacher_idTeacher'
-			+ ' 	INNER JOIN User AS u'
-			+ ' 		ON u.userEmail = s.User_userEmail'
-			+ ' 	WHERE userEmail = @tipo;'
-			+ ' SELECT userEmail, userName, userLastName, userSecondLastName'
-			+ ' 	FROM Teacher_has_Subject_has_Course AS shshc'
-			+ '     INNER JOIN Teacher AS s '
-			+ ' 		ON s.idTeacher = shshc.Teacher_idTeacher'
-			+ ' 	INNER JOIN User AS u'
-			+ ' 		ON u.userEmail = s.User_userEmail'
-			+ ' 	WHERE Subject_has_Course_Course_idCourse = @course AND Subject_has_Course_Subject_idSubject = @subject'
-			+ ' 	AND userEmail != @tipo; ';
+	//SI EL USUARIO ES TIPO AlUMNO
+	stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName '
+				+ ' FROM Student_has_Subject_has_Course a '
+				+ ' JOIN Teacher_has_Subject_has_Course b '
+				+ ' 	ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+				+ ' 	AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+				+ ' 	AND a.Student_idStudent != b.Teacher_idTeacher '
+				+ ' INNER JOIN Subject as sub '
+				+ ' 	ON sub.idSubject = b.Subject_has_Course_Subject_idSubject '
+				+ ' INNER JOIN Course as c '
+				+ ' 	ON c.idCourse = b.Subject_has_Course_Course_idCourse '
+				+ ' INNER JOIN Teacher as t '
+				+ ' 	ON t.idTeacher = b.Teacher_idTeacher '
+				+ ' INNER JOIN User as u '
+				+ ' 	ON u.userEmail = t.User_userEmail '
+				+ ' WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+				+ '    AND b.Teacher_idTeacher != "'  + req.session.datos[0].idStudent +  '" ';
+				+ '	GROUP BY b.Teacher_idTeacher;';
+	
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			profileContactsTeachers = result;
+			res.send(profileContactsTeachers);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
 		}
 	});
 
+};
+
+// FUNCION PARA MOSTRAR COINCIDENCIAS (ESTUDIANTES)
+exports.getStudentCoincidences = function(req, res){
+	var database = new base();
+	var studentEmail = req.query.studentEmail;
+	//SI EL USUARIO ES TIPO ALUMNO
+	stringQuery = 'SELECT subjectName, courseName '
+				+ ' FROM Student_has_Subject_has_Course a '
+				+ '	JOIN Student_has_Subject_has_Course b '
+				+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+				+ '		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+				+ '		AND a.Student_idStudent != b.Student_idStudent '
+				+ '	INNER JOIN Subject as sub '
+				+ '		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject '
+				+ '	INNER JOIN Course as c '
+				+ '		ON c.idCourse = a.Subject_has_Course_Course_idCourse '
+				+ '	INNER JOIN Student as s '
+				+ '		ON s.idStudent = b.Student_idStudent '
+				+ '	INNER JOIN User as u '
+				+ '		ON u.userEmail = s.User_userEmail '
+				+ '	WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+				+ '	AND b.Student_idStudent != "' + req.session.datos[0].idStudent + '" '
+				+ '	AND b.Student_idStudent = "' + studentEmail + '"; ';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			studentCoincidences = result;
+			res.send(studentCoincidences);
+			console.log('Consulta correctamente')
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+
+// FUNCION PARA MOSTRAR COINCIDENCIAS (PROFESORES)
+exports.getTeacherCoincidences = function(req, res){
+	var database = new base();
+	var teacherEmail = req.query.teacherEmail;
+	//SI EL USUARIO ES TIPO ALUMNO
+	stringQuery = 'SELECT subjectName, courseName '
+				+ ' FROM Student_has_Subject_has_Course a '
+				+ '	JOIN Teacher_has_Subject_has_Course b '
+				+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+				+ '		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+				+ '		AND a.Student_idStudent != b.Teacher_idTeacher '
+				+ '	INNER JOIN Subject as sub '
+				+ '		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject '
+				+ '	INNER JOIN Course as c '
+				+ '		ON c.idCourse = a.Subject_has_Course_Course_idCourse '
+				+ '	INNER JOIN Teacher as t '
+				+ '		ON t.idTeacher = b.Teacher_idTeacher '
+				+ '	INNER JOIN User as u '
+				+ '		ON u.userEmail = t.User_userEmail '
+				+ '	WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+				+ '	AND b.Teacher_idTeacher != "' + req.session.datos[0].idStudent + '" '
+				+ '	AND b.Teacher_idTeacher = "' + teacherEmail + '"; ';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			teacherCoincidences = result;
+			res.send(teacherCoincidences);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
 };

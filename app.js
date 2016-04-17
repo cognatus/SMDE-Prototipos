@@ -148,6 +148,8 @@ app.post('/setProfileMsmColor', profilePost.setProfileMsmColor);
 app.get('/getProfileSubjectsDatabase', profilePost.getProfileSubjectsDatabase);
 app.get('/getProfileContactsStudents', profilePost.getProfileContactsStudents);
 app.get('/getProfileContactsTeachers', profilePost.getProfileContactsTeachers);
+app.get('/getStudentCoincidences', profilePost.getStudentCoincidences);
+app.get('/getTeacherCoincidences', profilePost.getTeacherCoincidences);
 
 //Todo referente a la agenda
 app.post('/insertReminder', calendarPost.insertReminder);

@@ -231,6 +231,7 @@ exports.getStudentsDatabase = function(req, res){
 exports.getStudentsSubjectsDatabase = function(req, res){
 	var database = new base();
 	var studentEmail = req.query.studentEmail;
+
 	stringQuery = 'SELECT idCourse, idSubject, subjectName, courseName'
 				+ ' FROM User AS u'
 				+ ' INNER JOIN Student AS s'
@@ -246,6 +247,7 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 				+ '     ON sc.Course_idCourse = c.idCourse'
 				+ ' WHERE su.Department_Institute_idInstitute= "' + req.session.datos[0].Institute_idInstitute + '"' 
 				+ ' AND userEmail= "' + studentEmail + '";' ;
+				
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			studentSubjects = result;
@@ -280,6 +282,7 @@ exports.getTeachersDatabase = function(req, res){
 exports.getTeachersSubjectsDatabase = function(req, res){
 	var database = new base();
 	var teacherEmail = req.query.teacherEmail;
+
 	stringQuery = 'SELECT idTeacher, idSubject, subjectName, courseName'
 					+ ' FROM User as u'
 					+ ' INNER JOIN Teacher as s'
@@ -295,6 +298,7 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 					+ '     ON sc.Course_idCourse = c.idCourse'
 					+ ' WHERE su.Department_Institute_idInstitute= "' + req.session.datos[0].Institute_idInstitute + '"' 
 					+ ' AND userEmail= "' + teacherEmail + '";' ;
+
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			teacherSubjects = result;
@@ -343,7 +347,7 @@ exports.getSubjectsDatabase = function(req, res){
 exports.getCoursesDatabase = function(req, res){
 	var database = new base();
 	stringQuery = 'SELECT * FROM Course'
-					+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			coursesData = result;

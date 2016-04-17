@@ -566,6 +566,32 @@ jQuery(document).ready(function(){
 
 		jQuery('#management_showall').hide();
 
+		var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
+			'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
+			'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
+			'bg_purple','bg_pink','bg_blue','bg_bluegray','bg_amber','bg_lime',
+			// Numbers colors
+			'bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
+
+		var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
+
+		jQuery('.hover').each(function(){
+
+			var circleLetter = jQuery(this).find('.listitem_title b').text();
+			var span = jQuery(this).find('.listitem_img span');
+			var firstChar = circleLetter.charAt(0).toUpperCase();
+
+			span.text(firstChar);
+
+			for( var i = 0; i <= characters.length; i++ ){
+				if ( firstChar == characters[i] ){
+					span.addClass(colorsArray[i]);
+					break;
+				}
+			}
+
+		});
+
 	});
 
 });
@@ -601,7 +627,7 @@ jQuery(document).ready(function(){
 
 		var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
 
-		jQuery('.listitem, .hover').each(function(){
+		jQuery('.hover').each(function(){
 
 			var circleLetter = jQuery(this).find('.listitem_title b').text();
 			var span = jQuery(this).find('.listitem_img span');
