@@ -45,7 +45,7 @@ function databaseInstance(){
 		password: 'n0m3l0s3',
 		user: 'root',
 		database: 'smdedbv1',
-		port: '8080'
+		port: 8080
 	});
 	return connection;
 };
