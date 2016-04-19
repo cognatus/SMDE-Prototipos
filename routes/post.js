@@ -46,7 +46,7 @@ exports.login = function(req, res){
 				stringQuery = 'SELECT * FROM User INNER JOIN Administrator' 
 				+ ' ON User.userEmail = Administrator.User_userEmail' 
 				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
-				req.session.privilegio = 0;
+				req.session.privilegio = 3;
 				break;
 			case 1:
 				stringQuery = 'SELECT * FROM User INNER JOIN Student' 
@@ -105,9 +105,9 @@ exports.insertStudent = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al registrar Usuario',
-					errorItem: ['-  Tipo de usuario incorrecto',
-					'-  La clave ya existe'],
+					errorTitle: 'Error al insertar Alumno',
+					errorItem: ['-  Es posible que la clave ya exista',
+					'-  Problemas con el Servidor'],
 					backUrl: '/management'
 				}
 			});
@@ -152,9 +152,9 @@ exports.insertTeacher = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al registrar Usuario',
-					errorItem: ['-  Tipo de usuario incorrecto',
-					'-  La clave ya existe'],
+					errorTitle: 'Error al insertar Profesor',
+					errorItem: ['-  Es posible que la clave ya exista',
+					'-  Problemas con el Servidor'],
 					backUrl: '/management'
 				}
 			});
@@ -181,7 +181,14 @@ exports.insertDept = function(req, res){
 			res.redirect('/management');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al insertar Academia',
+					errorItem: ['-  Es posible que la clave ya exista',
+					'-  Problemas con el Servidor'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -208,7 +215,14 @@ exports.insertSubject = function(req, res){
 			res.redirect('/management');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al insertar Asignatura',
+					errorItem: ['-  Es posible que la clave ya exista',
+					'-  Problemas con el Servidor'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -233,7 +247,14 @@ exports.insertCourse = function(req, res){
 			res.redirect('/management');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al insertar Grupo',
+					errorItem: ['-  Es posible que la clave ya exista',
+					'-  Problemas con el Servidor'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -250,7 +271,14 @@ exports.getAdministratorsDatabase = function(req, res){
 			res.send(adminsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Administradores',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/login'
+				}
+			});
 		}
 	});
 };
@@ -268,7 +296,14 @@ exports.getStudentsDatabase = function(req, res){
 			res.send(studentsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Alumnos',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -300,7 +335,14 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 			res.send(studentSubjects);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Asignaturas de Alumnos',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 
@@ -319,7 +361,14 @@ exports.getTeachersDatabase = function(req, res){
 			res.send(teachersData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Profesores',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -351,7 +400,14 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 			res.send(teacherSubjects);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Asignaturas Profesores',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 
@@ -368,7 +424,14 @@ exports.getDepartmentsDatabase = function(req, res){
 			res.send(departmentsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Academias',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -384,7 +447,14 @@ exports.getSubjectsDatabase = function(req, res){
 			res.send(subjectsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Asignaturas',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 };
@@ -400,7 +470,14 @@ exports.getCoursesDatabase = function(req, res){
 			res.send(coursesData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al obtener Grupos',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Problemas con la Base de Datos'],
+					backUrl: '/management'
+				}
+			});
 		}
 	});
 

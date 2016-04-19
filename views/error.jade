@@ -20,10 +20,9 @@ html
 						.pd_8
 						.pd_8.ml_title.normal_txt Se presento un error por lo siguiente:
 						.pd_16.normal_txt
-							.pd_4
-								| #{errorData.errorItem[0]}
-							.pd_4
-								| #{errorData.errorItem[1]}
+							-for(var i = 0; i <= errorData.errorItem.length; i++ )
+								.pd_4
+									| #{errorData.errorItem[i]}
 						.pd_8
 						.colhh1(style='height: 52px;')
 							a(href='#{errorData.backUrl}')

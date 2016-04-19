@@ -59,7 +59,13 @@ function databaseInstance(){
 		if( req.session.datos ){
 			next();
 		}else{
-			res.redirect('error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error con la Sesión',
+					errorItem: ['-  Problemas con el Servidor'],
+					backUrl: '/management'
+				}
+			});
 		}
 	 }
 
@@ -80,7 +86,13 @@ function databaseInstance(){
 		}else if( req.session.privilegio == 1 ){
 			next();
 		}else{
-			res.redirect('error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error con la Sesión',
+					errorItem: ['-  Problemas con el Servidor'],
+					backUrl: '/management'
+				}
+			});
 		}
 	 }
 
@@ -92,7 +104,13 @@ function databaseInstance(){
 		}else if( req.session.privilegio == 2 ){
 			next();
 		}else{
-			res.redirect('error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error con la Sesión',
+					errorItem: ['-  Problemas con el Servidor'],
+					backUrl: '/management'
+				}
+			});
 		}
 	 }
 
