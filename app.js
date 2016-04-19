@@ -42,9 +42,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0',
+		password: 'n0m3l0s3',
 		user: 'root',
 		database: 'smdedbv1',
+		port: '8080'
 	});
 	return connection;
 };
@@ -127,7 +128,8 @@ app.get('/error', routes.error);
 app.post('/login', loginN, post.login);
 
 //Todo lo referente a la gestión
-app.post('/insertUser', post.insertUser);
+app.post('/insertStudent', post.insertStudent);
+app.post('/insertTeacher', post.insertTeacher);
 app.post('/insertDept', post.insertDept);
 app.post('/insertSubject',post.insertSubject);
 app.post('/insertCourse', post.insertCourse);

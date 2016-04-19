@@ -68,18 +68,17 @@ exports.login = function(req, res){
 
 };
 
-//AGREGAR UN NUEVO USUARIO
-exports.insertUser = function(req, res){
+//AGREGAR UN NUEVO ALUMNO
+exports.insertStudent = function(req, res){
 	var database = new base();
-	var userIdKey = req.body.insertUserIdKey ;
-	var userEmail = req.body.insertUserEmail ;
-	var userName = req.body.insertUserName ;
-	var userLastName = req.body.insertUserLastName ;
-	var userSecondLastName = req.body.insertUserSecondLastName ;
-	var userSex = req.body.insertUserSex ;
-	var userPassword  = req.body.insertUserPassword ;
+	var userIdKey = req.body.insertStudentIdKey ;
+	var userEmail = req.body.insertStudentEmail ;
+	var userName = req.body.insertStudentName ;
+	var userLastName = req.body.insertStudentLastName ;
+	var userSecondLastName = req.body.insertStudentSecondLastName ;
+	var userSex = req.body.insertStudentSex ;
+	var userPassword  = req.body.insertStudentPassword ;
 	var userInstitute = req.session.datos[0].Institute_idInstitute ;
-	var userType = req.body.insertUserType ;
 
 	stringQuery = 'BEGIN;';
 	stringQuery += 'INSERT INTO User';
@@ -92,7 +91,54 @@ exports.insertUser = function(req, res){
 	stringQuery += '"' + userPassword + '", ';
 	stringQuery += '"' + userInstitute + '");';
 
-	stringQuery += 'INSERT INTO ' + userType + ' (id' + userType + ', User_userEmail) VALUES (';
+	stringQuery += 'INSERT INTO Student (idStudent, User_userEmail) VALUES (';
+	stringQuery += '"' + userIdKey + '", ';
+	stringQuery += '"' + userEmail + '");';
+
+	stringQuery += 'COMMIT;';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Insert Correcto');
+			res.redirect('/management');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al registrar Usuario',
+					errorItem: ['-  Tipo de usuario incorrecto',
+					'-  La clave ya existe'],
+					backUrl: '/management'
+				}
+			});
+		}
+	});
+};
+
+//AGREGAR UN NUEVO PROFESOR
+exports.insertTeacher = function(req, res){
+	var database = new base();
+	var userIdKey = req.body.insertTeacherIdKey ;
+	var userEmail = req.body.insertTeacherEmail ;
+	var userName = req.body.insertTeacherName ;
+	var userLastName = req.body.insertTeacherLastName ;
+	var userSecondLastName = req.body.insertTeacherSecondLastName ;
+	var userSex = req.body.insertTeacherSex ;
+	var userPassword  = req.body.insertTeacherPassword ;
+	var userInstitute = req.session.datos[0].Institute_idInstitute ;
+
+	stringQuery = 'BEGIN;';
+	stringQuery += 'INSERT INTO User';
+	stringQuery += ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES (';
+	stringQuery += '"' + userEmail + '", ';
+	stringQuery += '"' + userName + '", ';
+	stringQuery += '"' + userLastName + '", ';
+	stringQuery += '"' + userSecondLastName + '", ';
+	stringQuery += '"' + userSex + '", ';
+	stringQuery += '"' + userPassword + '", ';
+	stringQuery += '"' + userInstitute + '");';
+
+	stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail) VALUES (';
 	stringQuery += '"' + userIdKey + '", ';
 	stringQuery += '"' + userEmail + '");';
 

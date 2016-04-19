@@ -12,15 +12,17 @@ exports.login = function(req, res){
 };
 
 exports.main = function(req, res){
-  res.render('main', { title: 'SMDE - Inicio',
-                      datos:  req.session.datos,
-                      privi:  req.session.privilegio });
+  res.render('main', { 
+    title: 'SMDE - Inicio',
+    datos:  req.session.datos,
+    privi:  req.session.privilegio });
 };
 
 exports.profile = function(req, res){
-  res.render('profile', { title: 'SMDE - Perfil',
-                        datos:  req.session.datos,
-                        privi:  req.session.privilegio });
+  res.render('profile', { 
+    title: 'SMDE - Perfil',
+    datos:  req.session.datos,
+    privi:  req.session.privilegio });
 };
 
 exports.subjects = function(req, res){
