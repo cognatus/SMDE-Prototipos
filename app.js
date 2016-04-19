@@ -30,7 +30,6 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 /*app.use(session({
-
 }));*/
 
 // development only
@@ -54,83 +53,83 @@ function databaseInstance(){
 * Funciones para comprobar el tipo de usuario
 */
 
- //cualquier sesion
- function login(req, res, next){
-	if( req.session.datos ){
-		next();
-	}else{
-		res.redirect('error');
-	}
- }
+	//cualquier sesion
+	function login(req, res, next){
+		if( req.session.datos ){
+			next();
+		}else{
+			res.redirect('error');
+		}
+	 }
 
- //sin iniciar sesion
- function loginN(req, res, next){
-	if( !req.session.datos ){
-		next();
-	}else{
-		res.redirect('error');
-	}
- }
+	//sin iniciar sesion
+	function loginN(req, res, next){
+		if( !req.session.datos ){
+			next();
+		}else{
+			res.redirect('main');
+		}
+	 }
 
- //solo granjero
- function loginG(req, res, next){
-	var aux = req.session.datos;
-	if( !aux ){
-		res.redirect('error');
-	}else if( req.session.privilegio == 1 ){
-		next();
-	}else{
-		res.redirect('error');
-	}
- }
+	//solo alumno
+	function loginS(req, res, next){
+		var aux = req.session.datos;
+		if( !aux ){
+			res.redirect('error');
+		}else if( req.session.privilegio == 1 ){
+			next();
+		}else{
+			res.redirect('error');
+		}
+	 }
 
- //solo gestor semillas(o como se llame el segundo usuario)
- function loginS(req, res, next){
-	var aux = req.session.datos;
-	if( !aux ){
-		res.redirect('error');
-	}else if( req.session.privilegio == 2 ){
-		next();
-	}else{
-		res.redirect('error');
-	}
- }
+	//solo profesor
+	function loginP(req, res, next){
+		var aux = req.session.datos;
+		if( !aux ){
+			res.redirect('error');
+		}else if( req.session.privilegio == 2 ){
+			next();
+		}else{
+			res.redirect('error');
+		}
+	 }
 
- //solo administrador
- function loginA(req, res, next){
-	var aux = req.session.datos;
-	if( !aux ){
-		res.redirect('error');
-	}else if( req.session.privilegio == 3 ){
-		next();
-	}else{
-		res.redirect('error');
-	}
- }
+	//solo administrador
+	function loginA(req, res, next){
+		var aux = req.session.datos;
+		if( !aux ){
+			res.redirect('error');
+		}else if( req.session.privilegio == 3 ){
+			next();
+		}else{
+			res.redirect('error');
+		}
+	 }
 
 /*Metodos GET*/
 
-app.get('/', routes.index);
-app.get('/login', routes.login);
-app.get('/main', routes.main);
-app.get('/profile', routes.profile);
-app.get('/messages', routes.messages);
-app.get('/contents', routes.contents);
-app.get('/subjects', routes.subjects);
-app.get('/foro', routes.foro);
-app.get('/settings', routes.settings);
-app.get('/calendar', routes.calendar);
-app.get('/management', routes.management);
+app.get('/', loginN, routes.index);
+app.get('/login', loginN, routes.login);
+app.get('/main', login, routes.main);
+app.get('/profile', login, routes.profile);
+app.get('/messages', login, routes.messages);
+app.get('/contents', login, routes.contents);
+app.get('/subjects', login, routes.subjects);
+app.get('/foro', login, routes.foro);
+app.get('/settings', login, routes.settings);
+app.get('/calendar', login, routes.calendar);
+app.get('/management', loginA, routes.management);
 app.get('/error', routes.error);
 
 
 /*Metodos POST*/
-app.post('/login', post.login);
+app.post('/login', loginN, post.login);
 
 //Todo lo referente a la gestión
 app.post('/insertUser', post.insertUser);
 app.post('/insertDept', post.insertDept);
-app.post('/insertSubject', post.insertSubject);
+app.post('/insertSubject',post.insertSubject);
 app.post('/insertCourse', post.insertCourse);
 app.get('/getAdministratorsDatabase', post.getAdministratorsDatabase);
 app.get('/getStudentsDatabase', post.getStudentsDatabase);

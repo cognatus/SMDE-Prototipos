@@ -15,7 +15,7 @@
 	}
 
 	.top_pallete_inner{
-	 	padding-bottom: 128px;
+	 	padding-bottom: 96px;
 	 	z-index: -10;
 	}
 
@@ -229,17 +229,8 @@
 
 	.top_list .h_listtopcontainer{color: rgba(255,255,255,0.9);margin-top: 12px;}
 
-	.calendar_container{height: 450px;}
+	.calendar_container{width: 480px;margin-left: 0;display: inline-block;}
 
-	.calendar_colortitle{height: 100%;display: inline-block;width: 450px;vertical-align: top;
-		box-shadow: 1px 0px 2px rgba(0,0,0,0.24);z-index: 6;}
-
-	.calendar_monthcontainer{display: inline-block;width: calc(100% - 450px);vertical-align: top;margin-top: 7px;}
-
-	.tablecalendar .day{
-		height: 52px;
-	}
-
-	.calendar .today_title{margin-top: 78px;}
+	.calendar_allr{width: calc(100% - 496px);margin-left: 16px;display: inline-block;}
 
 }

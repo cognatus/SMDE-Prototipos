@@ -12,24 +12,24 @@ html
 		script( type='text/javascript' src='/js/jquery.js' )
 		script( type='text/javascript' src="/material_spinner/dist/js/material.spinner.min.js" )
 		script( type='text/javascript' src='/js/viewscontrol.js')
-	body.bgprimary_color
+	body.bgprimary_colorDarker
 		.op_bg
 			.colhh1.center_text
 				.login_title.white_text
 					img.v_middle(src='images/laptop-chromebook_white.png') 
 					| SMDE
-			.login_container.bgaccent_color.borad
+			.login_container.bgprimary_color.borad
 				.pd_32
 					.colhh1.center_text.loginimg
-						img.circle(src='images/accountlogin.png')
-						.pd_8
+						.colhh1
 							.ml_title.opacity_color.normal_txt Inicia Sesión
+						img.circle(src='images/accountlogin.png')
 					form.colhh1(action='login', method='post')
 						.sign_field.pd_tb_10.rel_pos
 							img( src='images/account.png' )
-							input.textfield.white_text.borad( type='email' , name='sign_user' )
+							input.textfield.white_text( type='email' , name='sign_user' , placeholder='Usuario')
 						.sign_field.pd_tb_10.rel_pos
 							img( src='images/lock.png' )
-							input.textfield.white_text.borad( type='password' , name='sign_key' )
-						.sign_field(style = 'margin-top: 16px;height: 60px;')
-							input.signbutton.bg_amber.circle.bg_login(type='submit' , name='sign_submit' , value='')
+							input.textfield.white_text( type='password' , name='sign_key' , placeholder='Contraseña')
+						.sign_field(style = 'margin-top: 32px;')
+							input.signbutton.bgaccent_color.uppercase.borad(type='submit' , name='sign_submit' , value='Iniciar')

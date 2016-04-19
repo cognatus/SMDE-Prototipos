@@ -54,7 +54,7 @@ Calendar.prototype.generateHTML = function(){
                     html += '<div class="pd_8 today bgaccent_color3 flat_shadow white_text circle"><div class="num"><span>';    
                 }
                 else{
-                    html += '<div class="pd_8 circle"><div class="num"><span>';
+                    html += '<div class="pd_8 circle hover"><div class="num"><span>';
                 }
                 html += day;
                 html += '</span><div class="dot_cont">';

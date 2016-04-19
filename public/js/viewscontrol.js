@@ -167,13 +167,17 @@ jQuery(document).on('ready' ,function(){
 		INSERTS FORM CONTROL
 ---------------------------------------------------------------------------------------*/
 
-	jQuery('#show_deptinsert, #show_subjectinsert, #show_courseinsert').hide();
+	jQuery('#show_teacherinsert, #show_deptinsert, #show_subjectinsert, #show_courseinsert').hide();
 
 	jQuery('#select_insertType').on('change' ,function(){
 		var $this = jQuery(this);
-		if( $this.val() == 'Student' || $this.val() == 'Teacher' ){
+		if( $this.val() == 'Student'){
 			jQuery('.hidden_form').hide();
-			jQuery('#show_userinsert').show();
+			jQuery('#show_studentinsert').show();
+		}
+		if( $this.val() == 'Teacher'){
+			jQuery('.hidden_form').hide();
+			jQuery('#show_teacherinsert').show();
 		}
 		else if( $this.val() == 'Department' ){
 			jQuery('.hidden_form').hide();

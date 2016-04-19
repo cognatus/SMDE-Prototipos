@@ -24,7 +24,7 @@ block content
 										option(value='Department') Academia
 										option(value='Subject') Asignatura
 										option(value='Course') Grupo
-							form#show_userinsert.hidden_form( name='insert_new', action='insertUser', method='post' )
+							form#show_studentinsert.hidden_form( name='insert_new', action='insertUser', method='post' )
 								.pd_24
 									.form_input
 										.b_text.left_title Clave
@@ -57,10 +57,47 @@ block content
 												.pd_8.ll_title ¿Realizar esta acción?
 										.pd_12
 											.autooverflow
-												span.raised_button.right_float.rippleria-dark(data-rippleria)
+												span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
 													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 												span.raised_button.right_float.rippleria-dark(data-rippleria)
-													input.txtaccent_color.b_text(type='submit' value='Aceptar')
+													input.txtaccent_color2.b_text(type='submit' value='Aceptar')
+							form#show_teacherinsert.hidden_form( name='insert_new', action='insertUser', method='post' )
+								.pd_24
+									.form_input
+										.b_text.left_title Clave
+										input(type='text', placeholder='Clave' maxlength='20' name='insertUserIdKey')
+									.form_input
+										.b_text.left_title Nombre(s)
+										input(type='text', placeholder='Nombre(s)' name='insertUserName')
+									.form_input
+										.b_text.left_title Apellidos
+										.double
+											input(type='text', placeholder='Paterno' name='insertUserLastName')
+											input.second(type='text', placeholder='Materno' name='insertUserSecondLastName')
+									.form_input
+										.b_text.left_title Sexo
+										select(name='insertUserSex')
+											option H
+											option M
+									.form_input
+										.b_text.left_title Email
+										input(type='email', placeholder='email@email.com' name='insertUserEmail')
+									.form_input
+										.b_text.left_title Contraseña
+										input(type='password', placeholder='*******' name='insertUserPassword')
+									.form_input(style='height: 52px;')
+										span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+								.form_confirmblock
+									.inner_confirmblock.bg_gray.flat_shadow
+										.pd_24(style='padding-bottom: 16px;')
+											.colhh1.white_text
+												.pd_8.ll_title ¿Realizar esta acción?
+										.pd_12
+											.autooverflow
+												span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
+												span.raised_button.right_float.rippleria-dark(data-rippleria)
+													input.txtaccent_color2.b_text(type='submit' value='Aceptar')
 							form#show_deptinsert.hidden_form( name='insert_new', action='insertDept', method='post' )
 								.pd_24
 									.form_input
@@ -78,10 +115,10 @@ block content
 												.pd_8.ll_title ¿Realizar esta acción?
 										.pd_12
 											.autooverflow
-												span.raised_button.right_float.rippleria-dark(data-rippleria)
+												span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
 													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 												span.raised_button.right_float.rippleria-dark(data-rippleria)
-													input.txtaccent_color.b_text(type='submit' value='Aceptar')
+													input.txtaccent_color2.b_text(type='submit' value='Aceptar')
 							form#show_subjectinsert.hidden_form( name='insert_new', action='insertSubject', method='post' )
 								.pd_24
 									.form_input
@@ -105,10 +142,10 @@ block content
 												.pd_8.ll_title ¿Realizar esta acción?
 										.pd_12
 											.autooverflow
-												span.raised_button.right_float.rippleria-dark(data-rippleria)
+												span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
 													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 												span.raised_button.right_float.rippleria-dark(data-rippleria)
-													input.txtaccent_color.b_text(type='submit' value='Aceptar')
+													input.txtaccent_color2.b_text(type='submit' value='Aceptar')
 							form#show_courseinsert.hidden_form( name='insert_new', action='insertCourse', method='post' )
 								.pd_24
 									.form_input
@@ -129,10 +166,10 @@ block content
 												.pd_8.ll_title ¿Realizar esta acción?
 										.pd_12
 											.autooverflow
-												span.raised_button.right_float.rippleria-dark(data-rippleria)
+												span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
 													input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 												span.raised_button.right_float.rippleria-dark(data-rippleria)
-													input.txtaccent_color.b_text(type='submit' value='Aceptar')
+													input.txtaccent_color2.b_text(type='submit' value='Aceptar')
 		.topspace
 		.page_container
 			.block_container
