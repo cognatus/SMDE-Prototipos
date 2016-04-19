@@ -519,7 +519,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	display: inline-block;
 	width: 24px;
 	height: 24px;
-	margin: 18px 24px 6px 0;
+	margin: 16px 24px 8px 0;
 	padding: 0;
 	position: absolute;top: 10px;left: 0;
 }
