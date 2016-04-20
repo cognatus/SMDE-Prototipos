@@ -195,7 +195,8 @@ jQuery(document).on('ready' ,function(){
 
 	if(jQuery(window).width() >= 1120){
 		jQuery('.mgmlisthor .h_listline').css('height' , jQuery('.mgmlisthor .h_listitem.first').outerHeight() );
-		jQuery('.mgmlisthor .h_listline').css('width' , '4px' );
+		jQuery('.mgmlisthor .h_listline').css('width' , '2px');
+		jQuery('.mgmlisthor .h_listitem.first').trigger('click');
 	}
 
 	jQuery('.h_listcontainer .h_listitem').click(function(){
@@ -210,25 +211,19 @@ jQuery(document).on('ready' ,function(){
 		var oftop = jQuery(this).outerHeight() + offset.top - jQuery('.h_listline').height();
 
 		if (elem.parents('.mgmlisthor').length > 0 && jQuery(window).width() >= 1120) {
+			jQuery('.h_listitem').removeClass('vlist_bg b_text');
+			elem.addClass('vlist_bg b_text');
 			jQuery('.h_listline').animate({
-				width: '4px',
+				width: '2px',
 				left : offset.left,
 				top : oftop
-			});
+			},0);
 		}
 		else{
 			jQuery('.h_listline').animate({
 				width : jQuery(this).css('width'),
 				left : offset.left,
 				top : oftop
-			});
-		}
-
-		if(jQuery(window).width() >= 1120){
-			jQuery('.mgmlisthor .h_listline').animate({
-				left : offset.left,
-				top : oftop,
-				width: '4px'
 			});
 		}
 	});

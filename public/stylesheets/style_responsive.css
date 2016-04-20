@@ -4,6 +4,10 @@
 
 	.colhh4{width: 50%;display: inline-block;}
 
+	.float_buttoncontainer{
+		top: 162px;
+	}
+
 	.top_pallete{
 		text-align: center;
 	}
@@ -15,12 +19,12 @@
 	}
 
 	.top_pallete_inner{
-	 	padding-bottom: 120px;
+	 	padding-bottom: 128px;
 	 	z-index: -10;
 	}
 
 	.page_container{
-		width: calc(100% - 140px);
+		width: calc(100% - 220px);
 		margin: 0 auto;
 	}
 
@@ -41,7 +45,6 @@
 		position: relative;
 		z-index: 49;
 		border-radius: 1px;
-		margin: 12px auto;
 	}
 
 	.block_containermsm, .block_containersettings{
@@ -187,28 +190,10 @@
 	}
 
 	.float_buttoncontainer.leftlist_floatbutton{
+		top: auto;
 		left: 372px;
 		bottom: 48px;
 	}
-
-	/*.float_buttoncontainer{
-		width: 36px;
-		height: 36px;
-		right: 56px;
-		top: 14px;
-		box-shadow: none;
-	}
-
-	.float_buttoncontainer span{
-		background-color: transparent;
-		background-size: 20px;
-	}
-
-	.float_buttoncontainer:hover{
-		box-shadow: none;
-		width: 36px;height: 36px;
-		background-color: rgba(0,0,0,0.1);
-	}*/
 
 	.mr_8{margin-right: 8px;}
 	.ml_8{margin-left: 8px;}
@@ -233,11 +218,21 @@
 
 	.mgmlisthor{display: inline-block;width: 280px;}
 
-	.mgmlisthor .h_listline{height: 49px;width: 4px;top: 0;}
+	.mgmlisthor .h_listline{height: 49px;width: 3px;top: 0;}
 
-	.mgmlisthor .h_listitem{display: block;width: auto;}
+	.mgmlisthor .h_listitem{
+		display: block;
+		width: auto;
+		font-size: 13px;
+		font-weight: normal;
+		text-transform: none;
+		border-bottom: 1px solid rgba(0,0,0,0.04);
+		color: #212121;
+	}
 
-	.mgmlisthor .h_listitem:hover{padding-left: 8px;}
+	.mgmlisthor .h_listitem.b_text{font-weight: bold;}
+
+	.mgmlisthor .h_listitem .pd_16{padding: 11px 18px 11px 21px;}
 
 	.mgm_listcontainer{display: inline-block;width: calc(100% - 296px);margin-left: 16px;}
 

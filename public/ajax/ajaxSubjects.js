@@ -1,7 +1,7 @@
 
 jQuery(document).ready(function(){
 
-    setTimeout(showProfileSubjects, 2000);
+    showProfileSubjects();
 
 /*-------------------------------------------------------------------------------------
         SUBJECTS ADD - REMOVE CONTROL

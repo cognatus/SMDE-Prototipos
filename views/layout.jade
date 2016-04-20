@@ -42,30 +42,33 @@ html
 						.opc.hover
 							span( style='background-image: url("images/home.png")' )
 							label Inicio
-					a( href='/subjects' )
-						.opc.hover
-							span( style='background-image: url("images/book-multiple.png")' )
-							label Asignaturas
-					a( href='/calendar' )
-						.opc.hover
-							span( style='background-image: url("images/calendar.png")' )
-							label Agenda
+					- if (privilegio == 1 || privilegio == 2)
+						a( href='/subjects' )
+							.opc.hover
+								span( style='background-image: url("images/book-multiple.png")' )
+								label Asignaturas
+						a( href='/calendar' )
+							.opc.hover
+								span( style='background-image: url("images/calendar.png")' )
+								label Agenda
 					a( href='/messages' )
 						.opc.hover
 							span( style='background-image: url("images/email.png")' )
 							label Mensajes
-					a( href='/contents' )
-						.opc.hover
-							span( style='background-image: url("images/book-open.png")' )
-							label Contenidos
-					a( href='/foro' )
-						.opc.hover
-							span( style='background-image: url("images/forum.png")' )
-							label Foro
-					a( href='/management' )
-						.opc.hover
-							span( style='background-image: url("images/laptop.png")' )
-							label Gestión
+					- if (privilegio == 1 || privilegio == 2)
+						a( href='/contents' )
+							.opc.hover
+								span( style='background-image: url("images/book-open.png")' )
+								label Contenidos
+						a( href='/foro' )
+							.opc.hover
+								span( style='background-image: url("images/forum.png")' )
+								label Foro
+					- if (privilegio == 3)
+						a( href='/management' )
+							.opc.hover
+								span( style='background-image: url("images/laptop.png")' )
+								label Gestión
 					a( href='/profile' )
 						.opc.hover
 							span( style='background-image: url("images/account-circle.png")' )
@@ -75,13 +78,13 @@ html
 						.opc.hover
 							span( style='background-image: url("images/settings.png")' )
 							label Ajustes
-					a( href='/login' )
+					a( href='/logout' )
 						.opc.hover
 							span( style='background-image: url("images/logout.png")' )
 							label Cerrar sesión		
 		.back_menu
 		.body_container
-			.top_pallete_inner.flat_shadow.border_bottom.bgprimary_color
+			.top_pallete_inner.flat_shadow.bgprimary_color
 			.top_pallete.colhh1.bgprimary_color
 				#menubutton.menu_button( title='Menu' )
 					span
@@ -92,9 +95,11 @@ html
 				.icon_container
 					.notif_icon.circle.rippleria-dark( data-rippleria title='Notificaciones' )
 				.notifications_hidden.flat_shadow.bg_lightgray
-					.colhh1.center_text.rel_pos.flat_shadow.bgaccent_color.white_text
-						.pd_12.ll_title Notificaciones
-							span#settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings_white.png")' title='Configuración')
+					.colhh1.center_text.rel_pos.border_bottom
+						.bg_lightgray
+							.pd_12.ll_title Notificaciones
+							a(href='/settings')
+								span#settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings.png")' title='Configuración')
 					.colhh1.notifscroll.listcontainer
 						.colhh1.empty_blocktext.center_text
 							.centerempty
@@ -110,6 +115,6 @@ html
 									.listitem_rightinfo 10 sep
 									.listitem_title 
 										b Titulo de Notificación
-									.listitem_bottomdata Vista previa de notificación 
+									.listitem_bottomdata Vista previa de notificación
 
 			block content

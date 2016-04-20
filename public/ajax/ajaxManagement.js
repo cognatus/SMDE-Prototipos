@@ -2,7 +2,7 @@
 jQuery(document).ready(function(){
 
     jQuery('#management_showall').show(function(){
-        setTimeout(showAdmins, 2000);
+        showAdmins();
     });
 
 });
@@ -32,11 +32,10 @@ function showStudents(){
             showTeachers();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
-            jQuery('.item_student').click(function(){
+            jQuery('.item_student').one('click', function(){
                 var selectorCont = jQuery(this);
                 var container = jQuery(this).siblings('.innerlistitem');
                 var stuId = selectorCont.siblings('.innerlistitem').attr('data-id');
-                container.find('.studentsubjects_list').empty();
                 jQuery.ajax({
                     type: 'GET',
                     url: 'getStudentsSubjectsDatabase',
@@ -81,11 +80,10 @@ function showTeachers(){
             showSubjects();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
-            jQuery('.item_teacher').click(function(){
+            jQuery('.item_teacher').one('click', function(){
                 var selectorCont = jQuery(this);
                 var container = jQuery(this).siblings('.innerlistitem');
                 var teaId = selectorCont.siblings('.innerlistitem').attr('data-id');
-                container.find('.teachersubjects_list').empty();
                 jQuery.ajax({
                     type: 'GET',
                     url: 'getTeachersSubjectsDatabase',

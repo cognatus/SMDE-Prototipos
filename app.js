@@ -64,7 +64,7 @@ function databaseInstance(){
 				errorData: {
 					errorTitle: 'Error con la Sesión',
 					errorItem: ['-  Problemas con el Servidor'],
-					backUrl: '/management'
+					backUrl: '/login'
 				}
 			});
 		}
@@ -91,7 +91,7 @@ function databaseInstance(){
 				errorData: {
 					errorTitle: 'Error con la Sesión',
 					errorItem: ['-  Problemas con el Servidor'],
-					backUrl: '/management'
+					backUrl: '/login'
 				}
 			});
 		}
@@ -109,7 +109,7 @@ function databaseInstance(){
 				errorData: {
 					errorTitle: 'Error con la Sesión',
 					errorItem: ['-  Problemas con el Servidor'],
-					backUrl: '/management'
+					backUrl: '/login'
 				}
 			});
 		}
@@ -123,7 +123,13 @@ function databaseInstance(){
 		}else if( req.session.privilegio == 3 ){
 			next();
 		}else{
-			res.redirect('error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error con la Sesión',
+					errorItem: ['-  Problemas con el Servidor'],
+					backUrl: '/login'
+				}
+			});
 		}
 	 }
 
@@ -141,6 +147,7 @@ app.get('/settings', login, routes.settings);
 app.get('/calendar', login, routes.calendar);
 app.get('/management', login, routes.management);
 app.get('/error', routes.error);
+app.get('/logout', post.logout);
 
 
 /*Metodos POST*/
@@ -165,6 +172,7 @@ app.get('/getCoursesDatabase', post.getCoursesDatabase);
 app.post('/setProfileTheme', profilePost.setProfileTheme);
 app.post('/setProfileMsmColor', profilePost.setProfileMsmColor);
 app.get('/getProfileSubjectsDatabase', profilePost.getProfileSubjectsDatabase);
+app.get('/getProfileContactsAdministrators', profilePost.getProfileContactsAdministrators);
 app.get('/getProfileContactsStudents', profilePost.getProfileContactsStudents);
 app.get('/getProfileContactsTeachers', profilePost.getProfileContactsTeachers);
 app.get('/getStudentCoincidences', profilePost.getStudentCoincidences);

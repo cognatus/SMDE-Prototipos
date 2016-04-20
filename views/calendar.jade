@@ -18,21 +18,22 @@ block content
 						.form_innercontainer
 							.pd12_24.flat_shadow.bgprimary_color
 								.form_input.white_text
-									input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo')
+									input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo' required)
 							.pd_24
 								.form_input
 									.b_text.left_title Asunto
 									select
 										option Recordatorio
-										//- Si es profesor
-										option Publicación
+										- if (privilegio == 2)
+											option Publicación
 								//- Si es profesor
-								.form_input
-									.b_text.left_title Grupo
-									select
-										option Grupo 1
-										option Grupo 2
-										option Grupo 3
+								- if (privilegio == 2)
+									.form_input
+										.b_text.left_title Grupo
+										select#showSubjectsCourses
+											option Grupo 1
+											option Grupo 2
+											option Grupo 3
 								.form_input
 									.b_text.left_title Fecha Limite
 									.triple
@@ -42,19 +43,29 @@ block content
 								.form_input
 									.b_text.left_title Hora Limite
 									.double
-										input(type='text', placeholder='hh' name='formCalendarHour' maxlength='2')
-										input.second(type='text', placeholder='mm' name='formCalendarMinute' maxlength='2')
+										select(name='formCalendarHour')
+											option(value='Hora' disabled) Hora
+											- for(var h = 0; h <= 24; h++)
+												- if ( h < 10 )
+													- h = '0' + h
+												option(value=h)= h
+										select.second(name='formCalendarMinute')
+											option(value='Minuto' disabled) Minuto
+											- for(var m = 0; m <= 60; m++)
+												- if ( m < 10 )
+													- m = '0' + m
+												option(value=m)= m
 								.form_input
 									.b_text Descripción
 									textarea(placeholder='Añade una Descripción')
-								//- Si es profesor
-								.form_input
-									.input_filecontainer
-										input(type='file' name='attachedfile' id='attachedfile')
-									.file_buttoncontainer
-										span#trigger_fbutton.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
-										.right_float
-											#file_value.ll_title.opacity_color.border_thick Seleccionar Archivo
+								- if (privilegio == 2)
+									.form_input
+										.input_filecontainer
+											input(type='file' name='attachedfile' id='attachedfile')
+										.file_buttoncontainer
+											span#trigger_fbutton.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
+											.right_float
+												#file_value.ll_title.opacity_color.border_thick Seleccionar Archivo
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 						.form_confirmblock

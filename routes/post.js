@@ -68,6 +68,11 @@ exports.login = function(req, res){
 
 };
 
+exports.logout = function(req,res){
+	req.session.destroy();
+	res.redirect('/login');
+}
+
 //AGREGAR UN NUEVO ALUMNO
 exports.insertStudent = function(req, res){
 	var database = new base();
@@ -271,14 +276,7 @@ exports.getAdministratorsDatabase = function(req, res){
 			res.send(adminsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Administradores',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/login'
-				}
-			});
+			res.send('error');
 		}
 	});
 };
@@ -296,14 +294,7 @@ exports.getStudentsDatabase = function(req, res){
 			res.send(studentsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Alumnos',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
-				}
-			});
+			res.send('error');
 		}
 	});
 };
@@ -335,14 +326,7 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 			res.send(studentSubjects);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Asignaturas de Alumnos',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
-				}
-			});
+			res.send('error');
 		}
 	});
 
@@ -361,14 +345,7 @@ exports.getTeachersDatabase = function(req, res){
 			res.send(teachersData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Profesores',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
-				}
-			});
+			res.send('error');
 		}
 	});
 };
@@ -400,14 +377,7 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 			res.send(teacherSubjects);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Asignaturas Profesores',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
-				}
-			});
+			res.send('error');
 		}
 	});
 
@@ -424,14 +394,7 @@ exports.getDepartmentsDatabase = function(req, res){
 			res.send(departmentsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Academias',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
-				}
-			});
+			res.send('error');
 		}
 	});
 };
@@ -447,14 +410,7 @@ exports.getSubjectsDatabase = function(req, res){
 			res.send(subjectsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Asignaturas',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
-				}
-			});
+			res.send('error');
 		}
 	});
 };
@@ -470,14 +426,7 @@ exports.getCoursesDatabase = function(req, res){
 			res.send(coursesData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error al obtener Grupos',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
-				}
-			});
+			res.send('error');
 		}
 	});
 
