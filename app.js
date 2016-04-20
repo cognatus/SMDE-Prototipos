@@ -8,6 +8,7 @@ var routes = require('./routes');
 var post = require('./routes/post');
 var calendarPost = require('./routes/calendarPost');
 var profilePost = require('./routes/profilePost');
+var subjectsPost = require('./routes/subjectsPost');
 var http = require('http');
 var path = require('path');
 /*var session = require('client-sessions');*/
@@ -138,7 +139,7 @@ app.get('/subjects', login, routes.subjects);
 app.get('/foro', login, routes.foro);
 app.get('/settings', login, routes.settings);
 app.get('/calendar', login, routes.calendar);
-app.get('/management', loginA, routes.management);
+app.get('/management', login, routes.management);
 app.get('/error', routes.error);
 
 
@@ -174,6 +175,9 @@ app.post('/insertReminder', calendarPost.insertReminder);
 app.post('/getRemindersDatabase', calendarPost.getRemindersDatabase);
 app.post('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 
+//Todo referente a la vista de Asignaturas
+app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);
+
 http.createServer(app).listen(app.get('port'), function(){
 	var base = new databaseInstance();
 	base.connect(function(error){
@@ -186,5 +190,6 @@ http.createServer(app).listen(app.get('port'), function(){
 	post.constructor(databaseInstance);
 	profilePost.constructor(databaseInstance);
 	calendarPost.constructor(databaseInstance);
+	subjectsPost.constructor(databaseInstance);
 	console.log('SMDE server listening on port ' + app.get('port'));
 });

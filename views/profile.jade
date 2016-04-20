@@ -40,7 +40,7 @@ block content
 										.pd_8.ll_title ¿Realizar esta acción?
 								.pd_12
 									.autooverflow
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
+										span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
 											input.txtaccent_color.b_text(type='button' value='Cancelar')
 										span.raised_button.right_float.rippleria-dark(data-rippleria)
 											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
@@ -67,7 +67,7 @@ block content
 								span #{datos[0].userEmail}
 				.form_profilephoto.block_container.bg_white
 					.pd_16.bg_lightgray
-						.b_text Foto de Perfil
+						.ll_title Foto de Perfil
 					.colhh1
 						.pd_24
 							.form_input
@@ -97,7 +97,7 @@ block content
 
 			.grid_rightcontainer
 				.colhh1.h_listcontainer
-					.rel_pos.top_list.bg_lightgray
+					.rel_pos.bg_white.block_container
 						.h_listline.bgaccent_color
 						.h_listtopcontainer
 							.h_listitem.first
@@ -109,39 +109,46 @@ block content
 
 					.colhh1.h_listindex.first
 						.block_container.bg_white
-							.pd_18
+							.pd_18.bg_lightgray
 								.colhh1.ll_title Personal
-								.pd_8
-								.colhh1
-									.pd_8  Nombre: 
-										span.margin_l #{datos[0].userName}
-									.pd_8  Apellido Paterno:
-										label.normal_txt.margin_l #{datos[0].userLastName}
-									.pd_8  Apellido Materno: 
-										label.normal_txt.margin_l #{datos[0].userSecondLastName}
-									.pd_8  Sexo:
-										label.normal_txt.margin_l #{datos[0].userSex}
-						.block_container.bg_white
 							.pd_18
-								.colhh1.ll_title Académico
-								.pd_8
+								.pd_4
 								.colhh1
-									.pd_4  Institución: 
-										span.margin_l #{datos[0].Institute_idInstitute}
-									.pd_4  Asignaturas Inscritas: 
-										span.margin_l 6
-
+									.pd_l8.sl_title Nombre: 
+										span.margin_l.normal_txt #{datos[0].userName}
+									.pd_8
+									.pd_l8.sl_title Apellido Paterno: 
+										span.margin_l.normal_txt #{datos[0].userLastName}
+									.pd_8
+									.pd_l8.sl_title Apellido Materno: 
+										span.margin_l.normal_txt #{datos[0].userSecondLastName}
+									.pd_8
+									.pd_l8.sl_title Sexo: 
+										span.margin_l.normal_txt #{datos[0].userSex}
+								.pd_4
+						.block_container.bg_white
+							.pd_18.bg_lightgray
+								.colhh1.ll_title Académico
+							.pd_18
+								.pd_4
+								.colhh1
+									.pd_l8.sl_title  Institución: 
+										span.margin_l.normal_txt #{datos[0].Institute_idInstitute}
+									.pd_8
+									.pd_l8.sl_title  Asignaturas Inscritas: 
+										span.margin_l.normal_txt 6
+								.pd_4
 					.colhh1.h_listindex
 						#contacts_list.block_container.bg_white
 							.colhh1.bg_lightgray
 								.search
 									span.searchicon
 									input#buscar_slide(type='text',name='buscar', placeholder='Buscar un contacto')
-							.colhh1.empty_blocktext.center_text
-								.pd_64
-									span.v_middle(style= 'background-image: url("images/account-remove.png")')
-									.autocol.pd_12.mm_title No tienes contactos.
 							#listcontainer.listcontainer
+								.colhh1.empty_blocktext.center_text
+									.pd_64
+										span.v_middle(style= 'background-image: url("images/account-remove.png")')
+										.autocol.pd_12.mm_title No tienes contactos.
 								.colhh1.no_result
 								if profileContactsStudents != undefined
 									each item in profileContactsStudents
@@ -162,8 +169,8 @@ block content
 															.pd_llist
 																.sl_title Información
 															.pd_llist
-																.colhh1.pd_l12 Correo: 
-																	span.margin_l #{item.userEmail}
+																.colhh1.pd_l12.sl_title Correo: 
+																	span.margin_l.normal_txt #{item.userEmail}
 														.pd_8
 														.colhh1
 															.pd_llist
@@ -196,8 +203,8 @@ block content
 															.pd_llist
 																.sl_title Información
 															.pd_llist
-																.colhh1.pd_l12 Correo: 
-																	span.margin_l #{item.userEmail}
+																.colhh1.pd_l12.sl_title Correo: 
+																	span.margin_l.normal_txt #{item.userEmail}
 														.pd_8
 														.colhh1
 															.pd_llist
@@ -212,12 +219,12 @@ block content
 																//- 		.listitem_bottomdata
 																//- 			| Grupo: #{item.courseName}
 					.colhh1.h_listindex
-						#subjects_list.block_container.bg_white
-							.colhh1.empty_blocktext.center_text
-								.pd_64
-									span.v_middle(style= 'background-image: url("images/close-box.png")')
-									.autocol.pd_12.mm_title No tienes ninguna asignatura.
-							.listcontainer
+						.block_container.bg_white
+							#subjects_list.listcontainer
+								.colhh1.empty_blocktext.center_text
+									.pd_64
+										span.v_middle(style= 'background-image: url("images/close-box.png")')
+										.autocol.pd_12.mm_title No tienes ninguna asignatura.
 								if subjectsProfileData != undefined
 									each item in subjectsProfileData
 										.colhh1.slide_list
@@ -241,11 +248,11 @@ block content
 														.pd_llist
 															.sl_title Información
 														.pd_llist
-															.colhh1.pd_l12 Grupo: 
-																span.margin_l #{item.courseName}
+															.colhh1.pd_l12.sl_title Grupo: 
+																span.margin_l.normal_txt #{item.courseName}
 															.pd_4
-															.colhh1.pd_l12 Academia: 
-																span.margin_l #{item.departmentName}
+															.colhh1.pd_l12.sl_title Academia: 
+																span.margin_l.normal_txt #{item.departmentName}
 															.pd_4
-															.colhh1.pd_l12 Nivel:
-																span.margin_l #{item.subjectLevel}
+															.colhh1.pd_l12.sl_title Nivel:
+																span.margin_l.normal_txt #{item.subjectLevel}

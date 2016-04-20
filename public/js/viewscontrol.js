@@ -21,21 +21,12 @@ jQuery(document).on('ready' ,function(){
 		});
 	});
 
-	jQuery('.listitem, .slide_list').each(function(){
-		if( jQuery(this).parents('.listcontainer').find('.slide_list, .listitem').length > 0 ){
-			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').hide();
+	jQuery('.listcontainer').each(function(){
+		if( jQuery(this).find('.listitem, .hover').length > 0 ){
+			jQuery(this).find('.empty_blocktext').hide();
 		}
 		else{
-			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').show();
-		}
-	});
-
-	jQuery('.hover').each(function(){
-		if( jQuery(this).parents('.listcontainer').find('.hover').length > 0 ){
-			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').hide();
-		}
-		else{
-			jQuery(this).parents('.listcontainer').siblings('.empty_blocktext').show();
+			jQuery(this).find('.empty_blocktext').show();
 		}
 	});
 
@@ -200,11 +191,17 @@ jQuery(document).on('ready' ,function(){
 	jQuery('.h_listindex').hide();
 	jQuery('.h_listindex.first').show();	
 
-	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').outerWidth(true) );
+	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').outerWidth() );
+
+	if(jQuery(window).width() >= 1120){
+		jQuery('.mgmlisthor .h_listline').css('height' , jQuery('.mgmlisthor .h_listitem.first').outerHeight() );
+		jQuery('.mgmlisthor .h_listline').css('width' , '4px' );
+	}
 
 	jQuery('.h_listcontainer .h_listitem').click(function(){
 		var h_index = jQuery(this).parents('.h_listcontainer').find('.h_listindex');
 		var pos = jQuery(this).index();
+		var elem = jQuery(this);
 		
 		h_index.hide();
 		h_index.eq(pos).show();
@@ -212,11 +209,28 @@ jQuery(document).on('ready' ,function(){
 		var offset = jQuery(this).position();
 		var oftop = jQuery(this).outerHeight() + offset.top - jQuery('.h_listline').height();
 
-		jQuery('.h_listline').animate({
-			width : jQuery(this).css('width'),
-			left : offset.left,
-			top : oftop
-		});
+		if (elem.parents('.mgmlisthor').length > 0 && jQuery(window).width() >= 1120) {
+			jQuery('.h_listline').animate({
+				width: '4px',
+				left : offset.left,
+				top : oftop
+			});
+		}
+		else{
+			jQuery('.h_listline').animate({
+				width : jQuery(this).css('width'),
+				left : offset.left,
+				top : oftop
+			});
+		}
+
+		if(jQuery(window).width() >= 1120){
+			jQuery('.mgmlisthor .h_listline').animate({
+				left : offset.left,
+				top : oftop,
+				width: '4px'
+			});
+		}
 	});
 
 	jQuery('.block_containersettings .settingsitem').click(function(){
@@ -228,61 +242,6 @@ jQuery(document).on('ready' ,function(){
 		settings_index.hide();
 		settings_index.eq(pos).fadeIn(500);
 	});
-
-/*-------------------------------------------------------------------------------------
-		SUBJECTS ADD - REMOVE CONTROL
----------------------------------------------------------------------------------------*/
-
-	jQuery('#new_subjects .listitem .listitem_righticon').click( function(){
-		var appendedSubjects = jQuery('#added_subjects');
-		var newSubjects = jQuery('#newSubjects');
-		var item =  jQuery(this).parents('.listitem').clone();
-
-		var itemId = item.attr('id');
-
-		console.log(itemId);
-
-		if(appendedSubjects.find('#' + itemId).length == 0 ){
-			appendedSubjects.append(item);
-		}
-
-		var listSort = jQuery('#added_subjects');
-		listSortItem = listSort.children('.listitem');
-
-		listSortItem.sort(function(a,b){
-			var an = a.getAttribute('data-name'),
-				bn = b.getAttribute('data-name');
-
-			if(an > bn) {
-				return 1;
-			}
-			if(an < bn) {
-				return -1;
-			}
-			return 0;
-		});
-
-		listSortItem.detach().appendTo(listSort);
-		
-
-		if( jQuery('#added_subjects').find('.listitem').length > 0 ){
-			jQuery('#sub_hide').hide();
-			jQuery('#added_subjects .listitem_righticon').removeClass('bg_plusgray');
-			jQuery('#added_subjects .listitem_righticon').addClass('bg_closegray');
-		}
-
-		jQuery('#added_subjects .listitem .listitem_righticon').click( function(){
-
-			var itemQuit =  jQuery(this).parents('.listitem');
-			itemQuit.remove();
-
-			if( jQuery('#added_subjects').find('.listitem').length < 1 ){
-				jQuery('#sub_hide').show();
-			}
-
-		});
-	});
-
 
 /*-------------------------------------------------------------------------------------
 		VERTICAL LIST CONTROL

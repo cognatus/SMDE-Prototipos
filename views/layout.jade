@@ -16,7 +16,7 @@ html
 		script( type='text/javascript' src='/rippleclick/js/jquery.rippleria.js' )
 		script( type='text/javascript' src='/js/viewscontrol.js' )
 	- var bodyClass
-	if req.session.privilegio != undefined
+	//- if req.session.privilegio != undefined
 		- var privilegio = req.session.privilegio
 	if datos[0].darkTheme == 1
 		- bodyClass = 'dark_theme'
@@ -42,36 +42,33 @@ html
 						.opc.hover
 							span( style='background-image: url("images/home.png")' )
 							label Inicio
-					-if(privilegio == 1 || privilegio == 2)
-						a( href='/subjects' )
-							.opc.hover
-								span( style='background-image: url("images/book-multiple.png")' )
-								label Asignaturas
-						a( href='/calendar' )
-							.opc.hover
-								span( style='background-image: url("images/calendar.png")' )
-								label Agenda
+					a( href='/subjects' )
+						.opc.hover
+							span( style='background-image: url("images/book-multiple.png")' )
+							label Asignaturas
+					a( href='/calendar' )
+						.opc.hover
+							span( style='background-image: url("images/calendar.png")' )
+							label Agenda
 					a( href='/messages' )
 						.opc.hover
 							span( style='background-image: url("images/email.png")' )
 							label Mensajes
-					-if(privilegio == 1 || privilegio == 2)
-						a( href='/contents' )
-							.opc.hover
-								span( style='background-image: url("images/pen.png")' )
-								label Contenidos
-						a( href='/foro' )
-							.opc.hover
-								span( style='background-image: url("images/library.png")' )
-								label Foro
-					-if(privilegio == 3)
-						a( href='/management' )
-							.opc.hover
-								span( style='background-image: url("images/laptop.png")' )
-								label Gestión
+					a( href='/contents' )
+						.opc.hover
+							span( style='background-image: url("images/book-open.png")' )
+							label Contenidos
+					a( href='/foro' )
+						.opc.hover
+							span( style='background-image: url("images/forum.png")' )
+							label Foro
+					a( href='/management' )
+						.opc.hover
+							span( style='background-image: url("images/laptop.png")' )
+							label Gestión
 					a( href='/profile' )
 						.opc.hover
-							span( style='background-image: url("images/account-box.png")' )
+							span( style='background-image: url("images/account-circle.png")' )
 							label Perfil
 				.pd_tb_10
 					a( href='/settings' )
@@ -94,18 +91,18 @@ html
 			.notifications_container.notif
 				.icon_container
 					.notif_icon.circle.rippleria-dark( data-rippleria title='Notificaciones' )
-				.notifications_hidden.flat_shadow.white_text
-					.colhh1.border_bottom.center_text.border_bottom.rel_pos
+				.notifications_hidden.flat_shadow.bg_lightgray
+					.colhh1.center_text.rel_pos.flat_shadow.bgaccent_color.white_text
 						.pd_12.ll_title Notificaciones
 							span#settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings_white.png")' title='Configuración')
-					.colhh1.notifscroll
+					.colhh1.notifscroll.listcontainer
 						.colhh1.empty_blocktext.center_text
 							.centerempty
 								.pd_64
 									span.v_middle(style= 'background-image: url("images/bell-off.png")')
 									.autocol.mm_title.pd_12 No tienes notificaciones.
 									.ll_title.normal_txt Tus notificaciones apareceran aqui.
-						.colhh1.notif_listcontainer.listcontainer
+						.colhh1.notif_listcontainer
 							.colhh1.hover(data-rippleria)
 								.listitem_img
 									span A

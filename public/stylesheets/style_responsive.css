@@ -15,12 +15,12 @@
 	}
 
 	.top_pallete_inner{
-	 	padding-bottom: 96px;
+	 	padding-bottom: 120px;
 	 	z-index: -10;
 	}
 
 	.page_container{
-		width: calc(100% - 180px);
+		width: calc(100% - 140px);
 		margin: 0 auto;
 	}
 
@@ -80,7 +80,7 @@
 	}
 
 	.hidden_block{
-		width: 520px;
+		width: 560px;
 		margin: 48px auto;
 		height: auto;
 		border-radius: 1px;
@@ -179,7 +179,7 @@
 	.sett_margrid{margin-left: 16px;}
 
 	.msmtopname{
-		padding: 19px 18px 19px 18px;
+		padding-left: 18px;
 	}
 
 	.msmtopname .backicon{
@@ -225,12 +225,20 @@
 		width: 500px;
 	}
 
-	.top_list, .dark_theme .top_list{box-shadow: none;background-color: transparent;margin-bottom: 0;}
-
-	.top_list .h_listtopcontainer{color: rgba(255,255,255,1);margin-top: 12px;}
-
 	.calendar_container{width: 480px;margin-left: 0;display: inline-block;}
+	
+	.calendar_imgcontainer{height: 320px;}
 
 	.calendar_allr{width: calc(100% - 496px);margin-left: 16px;display: inline-block;}
+
+	.mgmlisthor{display: inline-block;width: 280px;}
+
+	.mgmlisthor .h_listline{height: 49px;width: 4px;top: 0;}
+
+	.mgmlisthor .h_listitem{display: block;width: auto;}
+
+	.mgmlisthor .h_listitem:hover{padding-left: 8px;}
+
+	.mgm_listcontainer{display: inline-block;width: calc(100% - 296px);margin-left: 16px;}
 
 }

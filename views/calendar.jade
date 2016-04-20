@@ -52,7 +52,7 @@ block content
 									.input_filecontainer
 										input(type='file' name='attachedfile' id='attachedfile')
 									.file_buttoncontainer
-										span#trigger_fbutton.bg_attachment_white.circle.bg_pink.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
+										span#trigger_fbutton.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 										.right_float
 											#file_value.ll_title.opacity_color.border_thick Seleccionar Archivo
 								.form_input(style='height: 52px;')
@@ -64,9 +64,9 @@ block content
 										.pd_8.ll_title ¿Realizar esta acción?
 								.pd_12
 									.autooverflow
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color.b_text(type='button' value='Cancelar')
 										span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
+											input.txtaccent_color.b_text(type='button' value='Cancelar')
+										span.raised_button.right_float.rippleria-dark(data-rippleria)
 											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
 
 		.topspace
@@ -136,20 +136,20 @@ block content
 								.listcontainer
 
 				.calendar_allr.v_top
-					.block_container.bg_landscape.calendar_imgcontainer		
+					.block_container.bg_calendar.calendar_imgcontainer
+						.colhh1.white_text
+							.bg_opacity.pd_18.uppercase
+								.ll_title#calendar_bgtitle
 					.block_container.bg_white
 						.colhh1.bg_lightgray
 							.pd_18.ll_title Todo
 						.colhh1
-							.colhh1.load_container#calendar_showall
-								.load
-									.spinner
-							.colhh1.empty_blocktext.center_text
-								.pd_64
-									span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
-									.autocol.mm_title.pd_12 No hay eventos ni tareas.
-									.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo evento.
 							.listcontainer
+								.colhh1.empty_blocktext.center_text
+									.pd_64
+										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
+										.autocol.mm_title.pd_12 No hay eventos ni tareas.
+										.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo evento.
 								.colhh1.slide_list
 									.colhh1.hover.listitem.rippleria-dark(data-rippleria)
 										.listitem_img
@@ -173,10 +173,13 @@ block content
 													.sl_title Descripción
 													.pd_16.justify_text
 														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
-													.attached_filecontainer.autooverflow.hover
-														span.v_middle.bg_file.bg_purple.borad
+													.attached_filecontainer.autooverflow
+														span.v_middle.bg_file.bg_blue.borad
 														div.v_middle.sl_title.opacity_color Nombre del archivo Adjunto
-														span.right_float.bg_download.hover(title='Descargar')
+														span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
 											.pd_24.listitemactions.autooverflow
 												span.circle.right_float.bg_delete.hover(title='Eliminar')
 												span.circle.right_float.bg_editgray.hover(title='Responder')
+							.colhh1.load_container#calendar_showall
+								.load
+									.spinner

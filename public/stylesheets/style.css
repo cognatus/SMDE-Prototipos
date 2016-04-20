@@ -109,8 +109,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	display: inline-block;
 }
 
-.top_list{margin-bottom: -8px;}
-
 .h_listcontainer .h_listtopcontainer{
 	color: rgba(0,0,0,0.5);
 	font-weight: bold;
@@ -154,7 +152,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .pd12_14{padding: 12px 14px 12px 14px;width: auto;}
 .pd12_18{padding: 12px 18px 12px 18px;width: auto;}
 .pd18_32{padding: 18px 32px 18px 32px;width: auto;}
-.pd_llist{padding-left: 18px;padding-bottom: 10px;padding-right: 18px;width: auto;}
+.pd_llist{padding-left: 24px;padding-bottom: 12px;padding-right: 24px;width: auto;}
 .pd_l4{padding-left: 4px;width: auto;}
 .pd_l8{padding-left: 8px;width: auto;}
 .pd_l12{padding-left: 12px;width: auto;}
@@ -222,14 +220,15 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .txtprimary_colorDarker{color: #0288D1;}
 .txtaccent_color{color: #FF5252;}
 .txtaccent_colorfall{color: #FFFF00;}
-.txtaccent_color2{color: #00BFA5;}
+.txtaccent_color2{color: #FFC400;}
+.txtaccent_color3{color: #D500F9;}
 .txt_red{color: #F44336;}
 
 .bgprimary_color{background-color: #03A9F4;}
 .bgprimary_colorDarker{background-color: #0288D1;}
 .bgaccent_color{background-color: #FF5252;}
 .bgaccent_colorfall{background-color: #FFFF00;}
-.bgaccent_color2{background-color: #00BFA5;}
+.bgaccent_color2{background-color: #FFC400;}
 .bgaccent_color3{background-color: #D500F9;}
 
 .bg_darker{background-color: rgba(0,0,0,0.05);}
@@ -271,8 +270,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	background-attachment: fixed;	
 }
 
-.bg_landscape{
-	background-image: url('/images/landscape_flat.png');
+.bg_calendar{
+	background-image: url('/images/calendar_1.jpg');
 	background-size: cover;background-repeat: no-repeat;
 	background-position: center;
 }
@@ -321,7 +320,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .border_bottomthick{border-bottom: 2px solid rgba(0,0,0,0.4);}
 
-.border_accentcolor{border-color: #03A9F4;}
+.border_accentcolor{border-color: #FFC400;}
 
 .inbox_shadow{box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);}
 
@@ -378,10 +377,10 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .text_shadow{text-shadow: 0px 1px 1px rgba(0,0,0,0.5);}
 
-.border_left{border-left: 4px solid #00BFA5;}
+.border_left{border-left: 4px solid #FFC400;}
 
-.list_borderleft{border-left: 4px solid #00BFA5;margin-top: 8px;
-	padding-top: 8px;margin-left: 38px;margin-bottom: 18px;}
+.list_borderleft{border-left: 4px solid #FFC400;margin-top: 8px;
+	padding-top: 8px;margin-left: 34px;margin-bottom: 18px;}
 
 /*---------------------------------------------------------------------------------------
 	ALIGN
@@ -537,10 +536,10 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	padding: 0 4px 0 4px;
 }
 
-.sign_field input.textfield::-webkit-input-placeholder{color: rgba(255,255,255,0.3);}
-.sign_field input.textfield:-moz-placeholder{color: rgba(255,255,255,0.3);}
-.sign_field input.textfield::-moz-placeholder{color: rgba(255,255,255,0.3);}
-.sign_field input.textfield:-ms-input-placeholder{color: rgba(255,255,255,0.3);}
+.sign_field input.textfield::-webkit-input-placeholder{color: rgba(0,0,0,0.2);}
+.sign_field input.textfield:-moz-placeholder{color: rgba(0,0,0,0.2);}
+.sign_field input.textfield::-moz-placeholder{color: rgba(0,0,0,0.2);}
+.sign_field input.textfield:-ms-input-placeholder{color: rgba(0,0,0,0.2);}
 
 .sign_field input.textfield:focus{border-color: #fff;border-width: 2px;height: 39px;}
 
@@ -795,7 +794,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .block_containermsm{
 	overflow: hidden;
 	height: calc(100% - 64px);
-	background-color: #fafafa;
 }
 
 .block_containersettings{
@@ -952,7 +950,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .notifications_hidden{
 	display: none;
 	width: 300px;
-	background-color: rgba(20,20,20,0.9);
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -1026,9 +1023,9 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .listitem_img{
 	display: inline-block;
-	width: 46px;
-	height: 46px;
-	padding: 18px;
+	width: 49px;
+	height: 49px;
+	padding: 11px 15px 12px 13px;
 	vertical-align: middle;
 	text-align: center;
 }
@@ -1044,18 +1041,18 @@ span.title_rightoptionicon#settings_icon:hover{
 	display: block;
 	width: 100%;height: 100%;
 	font-size: 26px;
-	line-height: 46px;
+	line-height: 50px;
 	font-weight: lighter;
 	border-radius: 60px;-webkit-border-radius: 60px;-moz-border-radius: 60px;-o-border-radius: 60px;
 	color: #fff;
 }
 
 .listitem_info{
-	padding: 22px 18px 20px 0;
+	padding: 16px 15px 16px 0;
 	display: inline-block;
 	height: 40px;
 	vertical-align: top;
-	width: calc(100% - 100px);
+	width: calc(100% - 92px);
 	position: relative;
 }
 
@@ -1065,7 +1062,7 @@ span.title_rightoptionicon#settings_icon:hover{
 	position: absolute;
 	z-index: 1;
 	right: 18px;
-	top: 21px;
+	top: 16px;
 }
 
 .listitem_righticon:hover{
@@ -1075,12 +1072,14 @@ span.title_rightoptionicon#settings_icon:hover{
 .listitem_title{
 	overflow: hidden;
 	width: calc(100% - 60px);
-	height: 17px;
+	height: 18px;
+	font-size: 15px;
 }
 
 .listitem_title b{
 	width: auto;
 	display: inline-block;
+	font-weight: 500;
 }
 
 .left_listcontainer{
@@ -1089,7 +1088,7 @@ span.title_rightoptionicon#settings_icon:hover{
 }
 
 .listitem_bottomdata{
-	opacity: 0.7;
+	opacity: 0.6;
 	margin-top: 6px;
 	overflow: hidden;
 	height: 17px;
@@ -1098,8 +1097,8 @@ span.title_rightoptionicon#settings_icon:hover{
 .listitem_rightinfo{
 	opacity: 0.5;
 	position: absolute;
-	top: 22px;
-	right: 18px;
+	top: 16px;
+	right: 15px;
 	font-size: 11px;
 }
 
@@ -1112,8 +1111,8 @@ span.title_rightoptionicon#settings_icon:hover{
 -----------------------------------------------------------------------------------------*/
 
 .msmtopname{
-	padding: 19px 18px 19px 46px;
-	height: 16px;
+	padding: 22px 18px 22px 46px;
+	height: 17px;
 	font-size: 15px;
 	position: relative;
 }
@@ -1136,7 +1135,6 @@ span.title_rightoptionicon#settings_icon:hover{
 }
 
 .msmtopname .letter{
-	opacity: 0.7;
 	font-size: 24px;
 	width: 28px;
 	height: 28px;
@@ -1172,19 +1170,20 @@ span.title_rightoptionicon#settings_icon:hover{
 .backicon:hover, .backicon_white:hover{background-color: rgba(0,0,0,0.04);}
 
 .msmcontent{
-	height: calc(100% - 54px);
+	width: auto;
+	height: calc(100% - 73px);
 	position: relative;
-	top: 0;
-	left: 0;
-	vertical-align: top;
+	left: 0;top: 0;
+	padding: 12px;padding-top: 0;
 }
 
 .msm_innercontent{
 	width: 100%;
-	height: calc(100% - 62px);
+	height: calc(100% - 65px);
 	overflow: auto;
 	position: relative;
-	top: -5px;left: 0;
+	left: 0;
+	background-color: #f2f2f2;
 }
 
 .msminput{
@@ -1194,7 +1193,7 @@ span.title_rightoptionicon#settings_icon:hover{
 	z-index: 99;
 	display: block;
 	height: 62px;
-	background-color: rgba(127,127,127,0.1);
+	background-color: #f2f2f2;
 }
 
 .msminput input[type='text']{
@@ -1361,21 +1360,18 @@ span.title_rightoptionicon#settings_icon:hover{
 }
 
 .notif .listitem_img{
-	padding: 12px;
 	width: 40px;
 }
 
 .notif .listitem_img span{
-	position: relative;top: 4px;
+	position: relative;top: 2px;
 	width: 40px;height: 40px;
 	font-size: 23px;
 	line-height: 40px;
 }
 
 .notif .listitem_info{
-	width: calc(100% - 82px);
-	padding-top: 19px;
-	padding-bottom: 19px; 
+	width: calc(100% - 83px);
 }
 
 .notif .listitem_rightinfo{
@@ -1556,14 +1552,14 @@ input[type=radio]:not(old) + label > span{
 }
 input[type=radio]:not(old):hover + label > span > span{
 	display: block;width: 6px;height: 6px;margin: 7px;
-	background-color: #D500F9;
+	background-color: #FFC400;
 }
 input[type=radio]:not(old):checked + label > span{
-	border-color: #D500F9;
+	border-color: #FFC400;
 }
 input[type=radio]:not(old):checked + label > span > span{
 	display: block;width: 16px;height: 16px;margin: 2px;
-	background-color: #D500F9;
+	background-color: #FFC400;
 }
 .switch {
   display: inline-block;position: relative;width: 40px;height: 16px;border-radius: 8px;
@@ -1602,7 +1598,7 @@ input:checked + .switch:active::before {
 
 .calendar_imgcontainer{
 	width: 100%;
-	height: 240px;
+	height: 220px;
 }
 
 .calendar_colortitle{box-shadow: 0px 1px 2px rgba(0,0,0,0.24);position: relative;}
@@ -1852,7 +1848,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .flat_shadow, .block_container, .hidden_block, .minimenu_hidden, .sign_field input.signbutton{
 	box-shadow: 0 1px 2px rgba(0,0,0,0.24);}
 
-.msminput input[type='submit'], .form_input span.submit, {
+.msminput input[type='submit'], .form_input span.submit{
 	box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
 }
 
@@ -1913,10 +1909,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme .border_bottom{border-color: rgba(255,255,255,0.1);}
 
-.dark_theme .block_containermsm{
-	background-color: #303030;
-}
-
 .dark_theme .opacity_color{
 	color: rgba(255,255,255,0.5);
 }
@@ -1927,6 +1919,10 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme .bg_lightgray{
 	background-color: #212121;
+}
+
+.dark_theme .msm_innercontent, .dark_theme .msminput{
+	background-color: #303030;
 }
 
 .dark_theme .h_listtopcontainer{
@@ -1968,13 +1964,13 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 }
 
 .dark_theme input[type=radio]:not(old):hover + label > span > span{
-	background-color: #80cbc4;
+	background-color: #FFC400;
 }
 .dark_theme input[type=radio]:not(old):checked + label > span{
-	border-color: #80cbc4;
+	border-color: #FFC400;
 }
 .dark_theme input[type=radio]:not(old):checked + label > span > span{
-	background-color: #80cbc4;
+	background-color: #FFC400;
 }
 .dark_theme .switch {
   background: rgba(255,255,255,0.3);

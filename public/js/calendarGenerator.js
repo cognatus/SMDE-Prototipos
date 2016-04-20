@@ -14,6 +14,7 @@ days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 current_date = new Date();
 mes = current_date.getMonth();
 anio = current_date.getFullYear();
+var realmes = mes + 1;
 
 function Calendar(month, year) {
   this.month = (isNaN(month) || month == null) ? current_date.getMonth() : month;
@@ -27,8 +28,10 @@ Calendar.prototype.generateHTML = function(){
     var firstDay = new Date(this.year, this.month, 1);
     var startingDay = firstDay.getDay();
     jQuery('.calendar #month').text( months_labels[this.month] );
+    jQuery('#calendar_bgtitle').text( months_labels[current_date.getMonth()] );
     jQuery('.calendar #year').text( this.year );
     jQuery('.calendar #weekday').text( days_labels[current_date.getDay()] );
+    jQuery('.bg_calendar').css('background-image' , 'url("/images/calendar_' + realmes + '.jpg")');
       
       // Numero de dias en el mes
       var monthLength = days_in_month[this.month];

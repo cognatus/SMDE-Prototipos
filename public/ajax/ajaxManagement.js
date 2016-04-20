@@ -2,13 +2,8 @@
 jQuery(document).ready(function(){
 
     jQuery('#management_showall').show(function(){
-        setTimeout(showAdmins, 3000);
+        setTimeout(showAdmins, 2000);
     });
-
-    /*jQuery('.student').click(function(){
-        var studentEmail = jQuery(this).find('.stsbid').attr('data-id');
-        showStudentSubjects(studentEmail);
-    });*/
 
 });
 
@@ -18,7 +13,7 @@ function showAdmins(){
         url: 'getAdministratorsDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.managementlist').append(data);
+            jQuery('.mgm_adminslist').append(data);
             showStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -33,7 +28,7 @@ function showStudents(){
         url: 'getStudentsDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.managementlist').append(data);
+            jQuery('.mgm_studentslist').append(data);
             showTeachers();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
@@ -53,7 +48,7 @@ function showStudents(){
                         console.log(data2);
                         for(var i in data2){
                             var subject = data2[i];
-                            container.find('.studentsubjects_list').append('<div class="colhh1 hover">'
+                            container.find('.studentsubjects_list').append('<div class="colhh1 pd_l12 hover">'
                             + '<div class="listitem_img"><span>B</span></div>'
                             + '<div class="listitem_info">'
                             + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
@@ -82,7 +77,7 @@ function showTeachers(){
         url: 'getTeachersDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.managementlist').append(data);
+            jQuery('.mgm_teacherslist').append(data);
             showSubjects();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
@@ -102,7 +97,7 @@ function showTeachers(){
                         console.log(data2);
                         for(var i in data2){
                             var subject = data2[i];
-                            container.find('.teachersubjects_list').append('<div class="colhh1 hover">'
+                            container.find('.teachersubjects_list').append('<div class="colhh1 pd_l12 hover">'
                             + '<div class="listitem_img"><span>B</span></div>'
                             + '<div class="listitem_info">'
                             + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
@@ -131,7 +126,7 @@ function showSubjects(){
         url: 'getSubjectsDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.managementlist').append(data);
+            jQuery('.mgm_subjectslist').append(data);
             showDepartments();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -146,7 +141,7 @@ function showDepartments(){
         url: 'getDepartmentsDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.managementlist').append(data);
+            jQuery('.mgm_departmentslist').append(data);
             showCourses();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -161,7 +156,7 @@ function showCourses(){
         url: 'getCoursesDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.managementlist').append(data);
+            jQuery('.mgm_courseslist').append(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);

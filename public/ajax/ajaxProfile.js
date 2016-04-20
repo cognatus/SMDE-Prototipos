@@ -31,7 +31,7 @@ function showContactsStudents(){
                         console.log(data2);
                         for(var i in data2){
                             var subject = data2[i];
-                            container.find('.person_subjectslist').append('<div class="colhh1 hover">'
+                            container.find('.person_subjectslist').append('<div class="colhh1 pd_l12 hover">'
                             + '<div class="listitem_img"><span>B</span></div>'
                             + '<div class="listitem_info">'
                             + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
@@ -79,7 +79,7 @@ function showContactsTeachers(){
                         console.log(data2);
                         for(var i in data2){
                             var subject = data2[i];
-                            container.find('.person_subjectslist').append('<div class="colhh1 hover">'
+                            container.find('.person_subjectslist').append('<div class="colhh1 pd_l12 hover">'
                             + '<div class="listitem_img"><span>B</span></div>'
                             + '<div class="listitem_info">'
                             + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
