@@ -9,9 +9,9 @@ function showContactsAdministrators(){
     jQuery.ajax({
         method: 'GET',
         url: 'getProfileContactsAdministrators',
-        cache: false,
+        cache: true,
         success: function(data) {
-            jQuery('#subjects_list').append(data);
+            jQuery('#contacts_list').append(data);
             showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -24,7 +24,7 @@ function showContactsStudents(){
     jQuery.ajax({
         type: 'GET',
         url: 'getProfileContactsStudents',
-        cache: false,
+        cache: true,
         success: function(data) {
             jQuery('#contacts_list').append(data);
             showContactsTeachers();
@@ -37,7 +37,7 @@ function showContactsStudents(){
                 jQuery.ajax({
                     type: 'GET',
                     url: 'getStudentCoincidences',
-                    cache: false,
+                    cache: true,
                     data: {
                         studentEmail: stuId
                     },
@@ -71,7 +71,7 @@ function showContactsTeachers(){
     jQuery.ajax({
         method: 'GET',
         url: 'getProfileContactsTeachers',
-        cache: false,
+        cache: true,
         success: function(data) {
             jQuery('#contacts_list').append(data);
             showProfileSubjects();
@@ -84,7 +84,7 @@ function showContactsTeachers(){
                 jQuery.ajax({
                     type: 'GET',
                     url: 'getTeacherCoincidences',
-                    cache: false,
+                    cache: true,
                     data: {
                         teacherEmail: teaId
                     },
@@ -117,7 +117,7 @@ function showProfileSubjects(){
     jQuery.ajax({
         method: 'GET',
         url: 'getProfileSubjectsDatabase',
-        cache: false,
+        cache: true,
         success: function(data) {
             jQuery('#subjects_list').append(data);
         },

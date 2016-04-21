@@ -100,28 +100,18 @@ exports.getProfileSubjectsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)
 exports.getProfileContactsAdministrators = function(req, res){
 	var database = new base();
-		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
-					+ ' FROM Student_has_Subject_has_Course a '
-					+ '	JOIN Student_has_Subject_has_Course b '
-					+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
-					+ '		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
-					+ '		AND a.Student_idStudent != b.Student_idStudent '
-					+ '	INNER JOIN Subject as sub '
-					+ '		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject '
-					+ '	INNER JOIN Course as c '
-					+ '		ON c.idCourse = a.Subject_has_Course_Course_idCourse '
-					+ '	INNER JOIN Student as s '
-					+ '		ON s.idStudent = b.Student_idStudent '
-					+ '	INNER JOIN User as u '
-					+ '		ON u.userEmail = s.User_userEmail '
-					+ '	WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
-					+ '	AND b.Student_idStudent != "' + req.session.datos[0].idStudent + '" '
-					+ '	GROUP BY b.Student_idStudent;';
+
+	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+				+ ' FROM User AS u'
+				+ ' INNER JOIN Administrator AS a ' 
+				+ ' ON u.userEmail = a.User_userEmail '
+				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '" '
+				+ ' AND u.userEmail != "' + req.session.datos[0].userEmail + '";' ;
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			profileContactsStudents = result;
-			res.send(profileContactsStudents);
+			profileContactsAdministrators = result;
+			res.send(profileContactsAdministrators);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -155,7 +145,7 @@ exports.getProfileContactsStudents = function(req, res){
 	}
 
 	//SI EL USUARIO ES TIPO PROFESOR
-	else if(	req.session.privilegio == 2	){
+	else if( req.session.privilegio == 2 ){
 		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
 					+ ' FROM Teacher_has_Subject_has_Course a '
 					+ '	JOIN Student_has_Subject_has_Course b '
@@ -173,6 +163,16 @@ exports.getProfileContactsStudents = function(req, res){
 					+ '	WHERE a.Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
 					+ '	AND b.Student_idStudent != "' + req.session.datos[0].idTeacher + '" '
 					+ '	GROUP BY b.Student_idStudent;';
+	}
+
+	// SI EL USUARIO ES TIPO ADMIN
+	else if(req.session.privilegio == 3){
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+				+ ' FROM User AS u '
+				+ ' INNER JOIN Student AS s' 
+				+ ' ON u.userEmail = s.User_userEmail'
+				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' ORDER BY userName ASC;';
 	}
 
 	database.query(stringQuery, function(error, result, row){
@@ -230,6 +230,16 @@ exports.getProfileContactsTeachers = function(req, res){
 					+ ' WHERE a.Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
 					+ '    AND b.Teacher_idTeacher != "'  + req.session.datos[0].idTeacher +  '" ';
 					+ '	GROUP BY b.Teacher_idTeacher;';
+	}
+
+	// SI EL USUARIO ES TIPO ADMIN
+	else if(req.session.privilegio == 3){
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+				+ ' FROM User AS u '
+				+ ' INNER JOIN Teacher AS t' 
+				+ ' ON u.userEmail = t.User_userEmail'
+				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' ORDER BY userName ASC;';
 	}
 	
 	database.query(stringQuery, function(error, result, row){

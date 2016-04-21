@@ -277,3 +277,28 @@ WHERE a.Student_idStudent = "VATOASDSAD46844"
 AND b.Student_idStudent != "VATOASDSAD46844"
 AND b.Student_idStudent = "VATO464568"; 
 
+-- Asignaturas para inscribir que no tiene el Alumno
+SELECT idSubject, idCourse, subjectName, courseName
+FROM Subject_has_Course a
+INNER JOIN Subject AS s
+	ON s.idSubject = a.Subject_idSubject
+INNER JOIN Course AS c
+	ON c.idCourse = a.Course_idCourse
+WHERE Subject_idSubject IN(
+	SELECT Subject_has_Course_Subject_idSubject 
+	FROM Student_has_Subject_has_Course b
+	WHERE b.Student_idStudent = 'VATOASDSAD46844'
+) = a.Subject_idSubject;
+
+-- Asignaturas para inscribir que no tiene el Profesor
+SELECT idSubject, idCourse, subjectName, courseName
+FROM Subject_has_Course a
+INNER JOIN Subject AS s
+	ON s.idSubject = a.Subject_idSubject
+INNER JOIN Course AS c
+	ON c.idCourse = a.Course_idCourse
+WHERE Subject_idSubject IN(
+	SELECT Subject_has_Course_Subject_idSubject 
+	FROM Teacher_has_Subject_has_Course b
+	WHERE b.Teacher_idTeacher = 'VATOASDSAD46844'
+) = a.Subject_idSubject;

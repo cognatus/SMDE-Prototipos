@@ -15,16 +15,41 @@ exports.constructor = function (basee) {
 exports.getSubjectsCoursesDatabase = function(req, res){
 	var database = new base();
 
-	stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName, departmentName, subjectLevel '
-					+ ' FROM Subject_has_Course as sc '
-					+ ' INNER JOIN Subject as su '
-					+ '     ON sc.Subject_idSubject = su.idSubject '
-					+ ' INNER JOIN Course as c '
-					+ '     ON sc.Course_idCourse = c.idCourse '
-					+ ' INNER JOIN Department as d '
-					+ '     ON d.idDepartment = su.Department_idDepartment '
-					+ ' WHERE su.Department_Institute_idInstitute= "' + req.session.datos[0].Institute_idInstitute + '" '
-					+ ' ORDER BY courseName ASC, subjectName ASC; '; 
+	// SI EL USUARIO ES TIPO ALUMNO
+	if(req.session.privilegio == 1){
+		stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName, departmentName, subjectLevel '
+					+ ' FROM Subject_has_Course a '
+					+ ' INNER JOIN Subject AS s '
+					+ ' 	ON s.idSubject = a.Subject_idSubject '
+					+ ' INNER JOIN Course AS c '
+					+ ' 	ON c.idCourse = a.Course_idCourse '
+					+ ' INNER JOIN Department AS d '
+					+ ' 	ON d.idDepartment = s.Department_idDepartment '
+					+ ' WHERE Subject_idSubject IN( '
+					+ ' 	SELECT Subject_has_Course_Subject_idSubject  '
+					+ ' 	FROM Student_has_Subject_has_Course b '
+					+ ' 	WHERE b.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+					+ ' ) = a.Subject_idSubject ';
+					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" ';
+	}
+	
+	// SI EL USUARIO ES TIPO PROFESOR
+	if(req.session.privilegio == 2){
+		stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName, departmentName, subjectLevel '
+					+ ' FROM Subject_has_Course a '
+					+ ' INNER JOIN Subject AS s '
+					+ ' 	ON s.idSubject = a.Subject_idSubject '
+					+ ' INNER JOIN Course AS c '
+					+ ' 	ON c.idCourse = a.Course_idCourse '
+					+ ' INNER JOIN Department AS d '
+					+ ' 	ON d.idDepartment = s.Department_idDepartment '
+					+ ' WHERE Subject_idSubject IN( '
+					+ ' 	SELECT Subject_has_Course_Subject_idSubject  '
+					+ ' 	FROM Teacher_has_Subject_has_Course b '
+					+ ' 	WHERE b.Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
+					+ ' ) = a.Subject_idSubject ';
+					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" ';
+	}
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {

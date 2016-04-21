@@ -267,9 +267,11 @@ exports.insertCourse = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE administradores DE LA BASE DE DATOS
 exports.getAdministratorsDatabase = function(req, res){
 	var database = new base();
+
 	stringQuery = 'SELECT User.*, idAdministrator FROM User INNER JOIN Administrator' 
 				+ ' ON User.userEmail = Administrator.User_userEmail'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+				
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			adminsData = result;

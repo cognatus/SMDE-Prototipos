@@ -35,7 +35,12 @@ block content
 							.colhh1
 								.colhh1.opacity_color.sub_listtitle
 									.pd_18.ll_title Inscribir
-								#new_subjects.colhh1.subjects_formlist
+								#new_subjects.colhh1.subjects_formlist.listcontainer
+									.colhh1.empty_blocktext.center_text
+										.pd_64(style='padding-bottom: 48px;padding-top:32px;')
+											span.v_middle(style= 'background-image: url("images/close-box.png")')
+											.autocol.mm_title.pd_12 No hay asignaturas para inscribir.
+											.ll_title.normal_txt Al parecer ya inscribiste todo.
 									if subjectscoursesData != undefined
 										each item in subjectscoursesData
 											.colhh1.slide_list(data-subjectfilter='#{item.subjectName}' data-coursefilter='#{item.courseName}')
@@ -199,7 +204,7 @@ block content
 															.colhh1
 																.pd_llist
 																	.sl_title Alumnos
-							.colhh1.h_listindex
+							#contacts_list.colhh1.h_listindex
 								.colhh1.bg_lightgray
 									.search
 										span.searchicon
@@ -209,13 +214,38 @@ block content
 										.pd_64
 											span.v_middle(style= 'background-image: url("images/account-remove.png")')
 											.autocol.pd_12.mm_title No tienes alumnos.
-									.colhh1.slide_list
-										.colhh1.hover.listitem.rel_pos.rippleria-dark(data-rippleria data-name='Nombre Completo' data-type='Alumno')
-											.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Calificar')
-											.listitem_img
-												img(src='images/profilephoto.png')
-											.listitem_info
-												.listitem_title 
-													b Nombre Completo
-												.listitem_bottomdata Alumno
+									if profileContactsStudents != undefined
+										each item in profileContactsStudents
+											.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
+												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria)
+													a(href='/messages')
+														.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
+													.listitem_img
+														img(src='images/profilephoto.png')
+													.listitem_info
+														.listitem_title 
+															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+														.listitem_bottomdata Alumno
+												.colhh1.innerlistitem(data-id='#{item.userEmail}')
+													.colhh1.border_bottom
+														.list_borderleft
+															.colhh1
+																.pd_llist
+																	.sl_title Información
+																.pd_llist
+																	.colhh1.pd_l12.sl_title Correo: 
+																		span.margin_l.normal_txt #{item.userEmail}
+															.pd_8
+															.colhh1
+																.pd_llist
+																	.sl_title Cursos en común
+																.person_subjectslist
+																	//- .colhh1.hover
+																	//- 	.listitem_img
+																	//- 		span B
+																	//- 	.listitem_info
+																	//- 		.listitem_title 
+																	//- 			b #{item.subjectName}
+																	//- 		.listitem_bottomdata
+																	//- 			| Grupo: #{item.courseName}
 
