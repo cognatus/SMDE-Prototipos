@@ -26,10 +26,12 @@ block content
 								.form_input
 									.b_text.left_title Filtrar:
 									.double
-										select
-											option Asignatura
-											option Grupo
-										select.second
+										select#subcourType.opacity_color.b_text
+											option(value='None' selected) Sin filtro
+											option(value='Subject') Asignatura
+											option(value='Course') Grupo
+										select#subcourList.second.opacity_color.b_text
+											option(value='None' selected) Sin filtro
 							.colhh1
 								.colhh1.opacity_color.sub_listtitle
 									.pd_18.ll_title Inscribir
@@ -42,6 +44,7 @@ block content
 													.listitem_img
 														span A
 													.listitem_info
+														.listitem_alert.txt_red
 														.listitem_title 
 															b #{item.subjectName}
 														.listitem_bottomdata Grupo: #{item.courseName}

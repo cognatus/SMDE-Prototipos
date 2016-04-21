@@ -1053,6 +1053,16 @@ span.title_rightoptionicon#settings_icon:hover{
 	position: relative;
 }
 
+.listitem_info .listitem_alert{
+	position: absolute;
+	right: 80px;
+	width: 100px;
+	z-index: 4;
+	font-size: 13px;
+	height: 15px;
+	top: 21px;
+}
+
 .listitem_righticon{
 	width: 40px;
 	height: 40px;
