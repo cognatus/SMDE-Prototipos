@@ -8,26 +8,7 @@ exports.constructor = function (basee) {
 
 //Esta parte esta super cabrona
 exports.insertReminder = function(req, res){
-	var database = new base();
-	var date = new Date();
-	var day, mon, year;
-	/*day = date.getDate();
-	mon = date.getMonth();
-	year = date.getFullYear();
-	hour = date.getHours();
-	minute = date.getMinutes();
-	second = date.getSeconds();
 	
-	day = day.length < 2 ? '0' + day : day;
-	mon = mon.length < 2 ? '0' + day : mon;
-	year = year.length < 2 ? '0' + year : year;
-	hour = hour.length < 2 ? '0' + hour : hour;
-	minute = minute.length < 2 ? '0' + minute : second;
-	second = second.length < 2 ? '0' + second : second;
-
-	var time = day + '-' + mon + '-' + year;
-	var hour = hour + ':' + minute + ':' + second;*/
-
 	// var reminderIdKey; No se que ponerle xD
 	var reminderTitle = req.body.insertRemindertTitle ;
 	var reminderText  = req.body.insertRemindertText ;

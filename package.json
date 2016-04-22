@@ -9,6 +9,7 @@
     "express": "3.4.4",
     "jade": "*",
     "mysql": "2.0.0-alpha7",
-    "htmlspecialchars": "*"
+    "htmlspecialchars": "*",
+    "jquery" : "*"
   }
 }

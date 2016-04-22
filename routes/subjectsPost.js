@@ -5,11 +5,9 @@ exports.constructor = function (basee) {
 	base = basee;
 }
 
-
 /*
  * POST Methods.
  */
-
 
 // FUNCION PARA MOSTRAR ASIGNATURAS/GRUPOS
 exports.getSubjectsCoursesDatabase = function(req, res){
@@ -30,7 +28,8 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 					+ ' 	FROM Student_has_Subject_has_Course b '
 					+ ' 	WHERE b.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
 					+ ' ) = a.Subject_idSubject ';
-					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" ';
+					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" '
+					+ ' ORDER BY courseName ASC, subjectName ASC; ';
 	}
 	
 	// SI EL USUARIO ES TIPO PROFESOR
@@ -48,7 +47,8 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 					+ ' 	FROM Teacher_has_Subject_has_Course b '
 					+ ' 	WHERE b.Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
 					+ ' ) = a.Subject_idSubject ';
-					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" ';
+					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" '
+					+ ' ORDER BY courseName ASC, subjectName ASC; ';
 	}
 
 	database.query(stringQuery, function(error, result, row){
@@ -62,7 +62,74 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 					errorTitle: 'Error al obtener Grupos',
 					errorItem: ['-  Problemas con el servidor',
 					'-  Problemas con la Base de Datos'],
-					backUrl: '/management'
+					backUrl: '/subjects'
+				}
+			});
+		}
+	});
+
+};
+
+// FUNCION PARA INSERTAR ASIGNATURAS/GRUPOS
+exports.insertSubjectsCoursesSelfUser = function(req, res){
+	var database = new base();
+	
+	var values = [], 
+		subjectsId = [], 
+		coursesId = [];
+
+	var subjectsIdAjaxArray = req.body.subjectId;
+	var coursesIdAjaxArray = req.body.courseId;
+
+	for(item in subjectsIdAjaxArray){
+		subjectsId.push[item];
+	}
+
+	for(item in coursesIdAjaxArray){
+		coursesId.push[item];
+	}
+
+	stringQuery = 'COMMIT;';
+    //VERIFICAR QUE LOS ARREGLOS DE ASIGNATURAS Y GRUPOS SEAN DEL MISMO TAMAÑO PARA PODER INSERTAR
+    if(subjectsId.length == coursesId.length){
+	    // SI EL USUARIO ES TIPO ALUMNO
+	    for( var i = 0; i < subjectsId.length; i++ ) {
+	    	if(req.session.privilegio == 1){
+
+		    	stringQuery	+= 'INSERT INTO Student_has_Subject_has_Course'
+							+ ' (Student_idStudent, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
+							+ ' VALUES' 
+							+ '("'  + req.session.datos[0].idStudent +  '",'
+							+ ' "' + subjectsId[i] + '",'
+							+' "' + coursesId[i] + '");';
+		    	
+			}
+
+			// SI EL USUARIO ES TIPO PROFESOR
+	    	if(req.session.privilegio == 1){
+
+		    	stringQuery	+= 'INSERT INTO Teacher_has_Subject_has_Course'
+							+ ' (Teacher_idTeacher, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
+							+ ' VALUES' 
+							+ '("'  + req.session.datos[0].idTeacher +  '",'
+							+ ' "' + subjectsId[i] + '",'
+							+' "' + coursesId[i] + '");';
+		    	
+			}
+		}
+	}
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.redirect('/subjects');
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al inscribir Curso',
+					errorItem: ['-  Problemas con el servidor',
+					'-  Posiblemente algun dato enviado es nulo o incorrecto'],
+					backUrl: '/subjects'
 				}
 			});
 		}

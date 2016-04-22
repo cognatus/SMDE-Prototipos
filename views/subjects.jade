@@ -5,67 +5,28 @@ block content
 		#new_item.float_buttoncontainer( title='Nueva' )
 			span.bg_plus.bgaccent_color
 
+		.alert_container.flat_shadow.pd_18.borad.bg_white
+			span.bg_alert
+			span.alert_inner
+
 		.hidden_blockcontainer
 			.hidden_blockback.bgaccent_color
 			.hidden_block.bg_white
 				span.close.bg_close.rippleria-dark( data-rippleria )
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.form_title.white_text.flat_shadow Inscribir Asignaturas
+					.pd_18.form_title.white_text.flat_shadow Inscribir Cursos
 				.colhh1.hb_formcontainer
-					form( name='subjects_add' id='subjects_add')
-						.colhh1.form_innercontainer
+					form#add_subjectsform.rel_pos(name='subjects_add')
+						.colhh1.form_innercontainer.border_bottom
 							.colhh1
-								.colhh1.opacity_color.sub_listtitle
-									.pd_18.ll_title Agregadas
-									.pd_18.center_text.ll_title.normal_txt#sub_hide Agrega una asignatura para Inscribir
+								.colhh1.sub_listtitle
+									.pd_18.ll_title Cursos a Inscribir
+									.pd_18.center_text.ll_title.opacity_color#sub_hide Agrega un curso para Inscribir
 										.pd_8
-								#added_subjects.colhh1.subjects_formlist.border_bottom
+								#added_subjects.colhh1.subjects_formlist.added_subjectsformlist
 									//- Aqui van las asignaturas para agregar
-							.pd_24(style='padding-bottom: 0;')
-								.form_input
-									.b_text.left_title Filtrar:
-									.double
-										select#subcourType.opacity_color.b_text
-											option(value='None' selected) Sin filtro
-											option(value='Subject') Asignatura
-											option(value='Course') Grupo
-										select#subcourList.second.opacity_color.b_text
-											option(value='None' selected) Sin filtro
-							.colhh1
-								.colhh1.opacity_color.sub_listtitle
-									.pd_18.ll_title Inscribir
-								#new_subjects.colhh1.subjects_formlist.listcontainer
-									.colhh1.empty_blocktext.center_text
-										.pd_64(style='padding-bottom: 48px;padding-top:32px;')
-											span.v_middle(style= 'background-image: url("images/close-box.png")')
-											.autocol.mm_title.pd_12 No hay asignaturas para inscribir.
-											.ll_title.normal_txt Al parecer ya inscribiste todo.
-									if subjectscoursesData != undefined
-										each item in subjectscoursesData
-											.colhh1.slide_list(data-subjectfilter='#{item.subjectName}' data-coursefilter='#{item.courseName}')
-												.pd_lr8.hover.listitem.rel_pos(data-subject='#{item.idSubject}' data-course='#{item.idCourse}' data-name='#{item.subjectName}')
-													.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
-													.listitem_img
-														span A
-													.listitem_info
-														.listitem_alert.txt_red
-														.listitem_title 
-															b #{item.subjectName}
-														.listitem_bottomdata Grupo: #{item.courseName}
-												.colhh1.innerlistitem
-													.colhh1.border_bottom
-														.list_borderleft
-															.colhh1
-																.pd_llist
-																	.sl_title Información
-																.pd_llist
-																	.pd_l12.sl_title Nivel: 
-																		span.margin_l.normal_txt #{item.subjectLevel}
-																	.pd_4
-																	.pd_l12.sl_title Academia: 
-																		span.margin_l.normal_txt #{item.departmentName}
-							.pd_24
+							.pd_24#addSubjectsCoursesSubmit
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 						.form_confirmblock
@@ -78,8 +39,51 @@ block content
 										span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
 											input.txtaccent_color.b_text(type='button' value='Cancelar')
 										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
-
+											input#submit_addsubjectsform.txtaccent_color2.b_text(type='submit' value='Aceptar')
+					.colhh1
+						.colhh1.sub_listtitle
+							.pd_18.ll_title Cursos Disponibles
+						.pd_24(style='padding-top: 0;')
+							.form_input
+								.b_text.left_title.opacity_color Filtrar:
+								.double
+									select#subcourType.opacity_color.b_text
+										option(value='None' selected) Sin filtro
+										option(value='Subject') Asignatura
+										option(value='Course') Grupo
+									select#subcourList.second.opacity_color.b_text
+										option(value='None' selected) Sin filtro
+						#new_subjects.colhh1.subjects_formlist.listcontainer
+							.colhh1.empty_blocktext.center_text
+								.pd_64(style='padding-bottom: 48px;padding-top: 32px;')
+									span.v_middle(style= 'background-image: url("images/close-box.png")')
+									.autocol.mm_title.pd_12 No hay asignaturas para inscribir.
+									.ll_title.normal_txt Al parecer ya inscribiste todo.
+							if subjectscoursesData != undefined
+								each item in subjectscoursesData
+									.colhh1.slide_list(data-subjectfilter='#{item.subjectName}' data-coursefilter='#{item.courseName}')
+										.pd_lr8.hover.listitem.rel_pos(data-subject='#{item.idSubject}' data-course='#{item.idCourse}' data-name='#{item.subjectName}')
+											.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
+											.listitem_img
+												span A
+											.listitem_info
+												.listitem_alert.txt_red
+												.listitem_title 
+													b #{item.subjectName}
+												.listitem_bottomdata Grupo: #{item.courseName}
+										.colhh1.innerlistitem
+											.colhh1.border_bottom
+												.list_borderleft
+													.colhh1
+														.pd_llist
+															.sl_title Información
+														.pd_llist
+															.pd_l12.sl_title Nivel: 
+																span.margin_l.normal_txt #{item.subjectLevel}
+															.pd_4
+															.pd_l12.sl_title Academia: 
+																span.margin_l.normal_txt #{item.departmentName}
+					.pd_16
 
 		.topspace
 		.page_container

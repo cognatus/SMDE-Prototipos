@@ -264,6 +264,33 @@ exports.insertCourse = function(req, res){
 	});
 };
 
+exports.insertSubjectCourse = function(req, res){
+	var database = new base();
+	var subjectId = req.body.insertSubjectCourseSId ;
+	var courseId = req.body.insertSubjectCourseCId ;
+
+	stringQuery = 'INSERT INTO Subject_has_Course' 
+					+ ' (Subject_idSubject, Course_idCourse)'
+					+ ' VALUES ("' + subjectId + '",'
+					+ ' "' + courseId + '");';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Furulo el insert');
+			res.redirect('/management');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al insertar Curso',
+					errorItem: ['-  El curso ya existe'],
+					backUrl: '/management'
+				}
+			});
+		}
+	});
+};
+
 // FUNCION PARA MOSTRAR DATOS DE administradores DE LA BASE DE DATOS
 exports.getAdministratorsDatabase = function(req, res){
 	var database = new base();

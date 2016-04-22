@@ -280,6 +280,12 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	background-position: center;
 }
 
+.bg_alert{
+	width: 32px;height: 32px;
+	background: url('/images/alert-circle.png') no-repeat center;
+	background-size: 100%; 
+}
+
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete{
 	background-size: 42%;background-repeat: no-repeat;
@@ -711,6 +717,30 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	top: 24px;
 	right: 24px;
 	cursor: pointer;
+}
+
+.alert_container{
+	position: fixed;
+	z-index: 699;
+	font-size: 17px;
+	font-weight: 500;
+	top: 32px;
+	left: calc(50% - 120px);
+	width: 240px;
+	display: none;
+}
+
+.alert_container span{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.alert_container span.bg_alert{
+	margin-right: 12px;
+}
+
+.alert_container span.alert_inner{
+	width: calc(100% - 44px);
 }
 
 /*---------------------------------------------------------------------------------------

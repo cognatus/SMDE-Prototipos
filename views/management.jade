@@ -24,6 +24,7 @@ block content
 									option(value='Department') Academia
 									option(value='Subject') Asignatura
 									option(value='Course') Grupo
+									option(value='SubjectCourse') Curso
 						form#show_studentinsert.hidden_form( name='insert_new', action='insertStudent', method='post' )
 							.pd_24
 								.form_input
@@ -157,6 +158,33 @@ block content
 								.form_input
 									.b_text.left_title Nivel
 									input(type='text', placeholder='Nivel' name='insertCourseLevel')
+								.form_input(style='height: 52px;')
+									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+							.form_confirmblock
+								.inner_confirmblock.bg_gray.flat_shadow
+									.pd_24(style='padding-bottom: 16px;')
+										.colhh1.white_text
+											.pd_8.ll_title ¿Realizar esta acción?
+									.pd_12
+										.autooverflow
+											span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
+												input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
+											span.raised_button.right_float.rippleria-dark(data-rippleria)
+												input.txtaccent_color2.b_text(type='submit' value='Aceptar')
+						form#show_subjectcourseinsert.hidden_form( name='insert_new', action='insertSubjectCourse', method='post' )
+							.pd_24
+								.form_input
+									.b_text.left_title Asignatura
+									select.mgm_subjectslist(name='insertSubjectCourseSId')
+										if subjectsData != undefined
+											each item in subjectsData
+												option(value='#{item.idSubject}') #{item.subjectName}
+								.form_input
+									.b_text.left_title Grupo
+									select.mgm_courseslist(name='insertSubjectCourseCId')
+										if coursesData != undefined
+											each item in coursesData
+												option(value='#{item.idCourse}') #{item.courseName}
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 							.form_confirmblock

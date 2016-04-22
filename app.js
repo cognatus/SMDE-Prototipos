@@ -159,6 +159,7 @@ app.post('/insertTeacher', post.insertTeacher);
 app.post('/insertDept', post.insertDept);
 app.post('/insertSubject',post.insertSubject);
 app.post('/insertCourse', post.insertCourse);
+app.post('/insertSubjectCourse', post.insertSubjectCourse);
 app.get('/getAdministratorsDatabase', post.getAdministratorsDatabase);
 app.get('/getStudentsDatabase', post.getStudentsDatabase);
 app.get('/getTeachersDatabase', post.getTeachersDatabase);
@@ -185,6 +186,7 @@ app.post('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 
 //Todo referente a la vista de Asignaturas
 app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);
+app.post('/insertSubjectsCoursesSelfUser', subjectsPost.insertSubjectsCoursesSelfUser);
 
 http.createServer(app).listen(app.get('port'), function(){
 	var base = new databaseInstance();

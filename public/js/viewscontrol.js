@@ -158,29 +158,29 @@ jQuery(document).on('ready' ,function(){
 		INSERTS FORM CONTROL
 ---------------------------------------------------------------------------------------*/
 
-	jQuery('#show_teacherinsert, #show_deptinsert, #show_subjectinsert, #show_courseinsert').hide();
+	jQuery('.hidden_form').hide();
+	jQuery('#show_studentinsert').show();
 
 	jQuery('#select_insertType').on('change' ,function(){
 		var $this = jQuery(this);
+		jQuery('.hidden_form').hide();
 		if( $this.val() == 'Student'){
-			jQuery('.hidden_form').hide();
 			jQuery('#show_studentinsert').show();
 		}
 		if( $this.val() == 'Teacher'){
-			jQuery('.hidden_form').hide();
 			jQuery('#show_teacherinsert').show();
 		}
 		else if( $this.val() == 'Department' ){
-			jQuery('.hidden_form').hide();
 			jQuery('#show_deptinsert').show();
 		}
 		else if( $this.val() == 'Subject' ){
-			jQuery('.hidden_form').hide();
 			jQuery('#show_subjectinsert').show();
 		}
 		else if( $this.val() == 'Course' ){
-			jQuery('.hidden_form').hide();
 			jQuery('#show_courseinsert').show();
+		}
+		else if( $this.val() == 'SubjectCourse' ){
+			jQuery('#show_subjectcourseinsert').show();
 		}
 	});
 
