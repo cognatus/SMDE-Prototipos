@@ -73,7 +73,7 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 // FUNCION PARA INSERTAR ASIGNATURAS/GRUPOS
 exports.insertSubjectsCoursesSelfUser = function(req, res){
 	var database = new base();
-	
+
 	var values = [], 
 		subjectsId = [], 
 		coursesId = [];
@@ -89,7 +89,7 @@ exports.insertSubjectsCoursesSelfUser = function(req, res){
 		coursesId.push[item];
 	}
 
-	stringQuery = 'COMMIT;';
+	stringQuery = 'BEGIN;';
     //VERIFICAR QUE LOS ARREGLOS DE ASIGNATURAS Y GRUPOS SEAN DEL MISMO TAMAÑO PARA PODER INSERTAR
     if(subjectsId.length == coursesId.length){
 	    // SI EL USUARIO ES TIPO ALUMNO
@@ -118,6 +118,7 @@ exports.insertSubjectsCoursesSelfUser = function(req, res){
 			}
 		}
 	}
+	stringQuery += 'COMMIT;'
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
