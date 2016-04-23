@@ -45,13 +45,13 @@ block content
 									.double
 										select(name='formCalendarHour')
 											option(value='Hora' disabled) Hora
-											- for(var h = 0; h <= 24; h++)
+											- for(var h = 0; h < 24; h++)
 												- if ( h < 10 )
 													- h = '0' + h
 												option(value=h)= h
 										select.second(name='formCalendarMinute')
 											option(value='Minuto' disabled) Minuto
-											- for(var m = 0; m <= 60; m++)
+											- for(var m = 0; m < 60; m++)
 												- if ( m < 10 )
 													- m = '0' + m
 												option(value=m)= m
@@ -190,7 +190,9 @@ block content
 														span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
 											.pd_24.listitemactions.autooverflow
 												span.circle.right_float.bg_delete.hover(title='Eliminar')
-												span.circle.right_float.bg_editgray.hover(title='Responder')
+												span.circle.right_float.bg_archive.hover(title='Archivar')
+												span.circle.right_float.bg_editgray.hover(title='Editar')
+												span.circle.right_float.bg_reply.hover(title='Responder')
 							.colhh1.load_container#calendar_showall
 								.load
 									.spinner

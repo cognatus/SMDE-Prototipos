@@ -287,10 +287,17 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
-.bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete{
+.bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
+.bg_reply{
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;
 }
+
+.bg_archive{background-image: url('/images/archive.png');}
+
+.bg_reply{background-image: url('/images/reply.png');background-size: 46%;}
+
+.bg_pencilbox{background-image: url('/images/pencil-box.png');}
 
 .bg_delete{background-image: url('/images/delete.png');}
 
@@ -1762,8 +1769,8 @@ input:checked + .switch:active::before {
 	padding-top: 0;
 }
 .listitemactions span{
-	width: 40px;
-	height: 40px;
+	width: 42px;
+	height: 42px;
 	display: inline-block;
 	margin-left: 8px;
 }
@@ -1949,7 +1956,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme .menu_opccontainer a{color: #bdbdbd;}
 
-.dark_theme .border_bottom{border-color: rgba(255,255,255,0.1);}
+.dark_theme .border_bottom{border-color: rgba(255,255,255,0.06);}
 
 .dark_theme .opacity_color{
 	color: rgba(255,255,255,0.5);

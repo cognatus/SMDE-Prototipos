@@ -206,7 +206,7 @@ exports.insertSubject = function(req, res){
 	var subjectInstitute = req.session.datos[0].Institute_idInstitute ;
 	var subjectDept  = req.body.insertSubjectDept ;
 
-	stringQuery = 'INSERT INTO Department' 
+	stringQuery = 'INSERT INTO Subject' 
 					+ ' (idSubject, subjectName, subjectLevel, Department_Institute_idInstitute, Department_idDepartment)'
 					+ ' VALUES ("' + subjectIdKey + '",'
 					+ ' "' + subjectName + '",'

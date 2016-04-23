@@ -223,16 +223,20 @@
 	.mgmlisthor .h_listitem{
 		display: block;
 		width: auto;
-		font-size: 13px;
 		font-weight: normal;
 		text-transform: none;
 		border-bottom: 1px solid rgba(0,0,0,0.04);
 		color: #212121;
 	}
+	
+	.dark_theme .mgmlisthor .h_listitem{
+		border-color: rgba(255,255,255,0.04);
+		color: #fafafa;
+	}
 
 	.mgmlisthor .h_listitem.b_text{font-weight: bold;}
 
-	.mgmlisthor .h_listitem .pd_16{padding: 11px 18px 11px 21px;}
+	.mgmlisthor .h_listitem .pd_16{padding: 13px 18px 13px 21px;}
 
 	.mgm_listcontainer{display: inline-block;width: calc(100% - 296px);margin-left: 16px;}
 

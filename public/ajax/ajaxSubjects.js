@@ -1,5 +1,5 @@
 
-jQuery(document).ready(function(){
+jQuery(document).on('ready', function(){
 
     showProfileSubjects();
 
@@ -85,7 +85,7 @@ jQuery(document).ready(function(){
         var itemIdSubject = item.attr('data-subject');
         var itemIdCourse = item.attr('data-course');
 
-        if(appendedSubjects.find('.listitem').length < 6){
+        if(appendedSubjects.find('.listitem').length < 5){
             if(appendedSubjects.find('.listitem[data-subject="' + itemIdSubject + '"]').length == 0 ){
                 appendedSubjects.append(item);
             }
@@ -139,7 +139,8 @@ function showProfileSubjects(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }
 
@@ -154,7 +155,8 @@ function showSubjectsCourses(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }
 
@@ -193,14 +195,16 @@ function showContactsStudents(){
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
-                    }
+                    },
+                    async: 'false'
                 });
             });
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }
 
@@ -230,6 +234,7 @@ function addSubjectsCourses(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }

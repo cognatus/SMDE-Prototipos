@@ -122,6 +122,7 @@ exports.insertSubjectsCoursesSelfUser = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
+			console.log(stringQuery);
 			res.redirect('/subjects');
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);

@@ -1,5 +1,5 @@
 
-jQuery(document).ready(function(){
+jQuery(document).on('ready', function(){
         
     showContactsAdministrators();
 
@@ -16,7 +16,8 @@ function showContactsAdministrators(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }
 
@@ -56,14 +57,16 @@ function showContactsStudents(){
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
-                    }
+                    },
+                    async: 'false'
                 });
             });
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }
 
@@ -103,13 +106,15 @@ function showContactsTeachers(){
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
-                    }
+                    },
+                    async: 'false'
                 });
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }
 
@@ -123,6 +128,7 @@ function showProfileSubjects(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        }
+        },
+        async: 'false'
     });
 }

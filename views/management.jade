@@ -133,7 +133,10 @@ block content
 									input(type='text', placeholder='Nivel' name='insertSubjectLevel')
 								.form_input
 									.b_text.left_title Academia
-									input(type='text', placeholder='Nombre Academia' name='insertSubjectDept')
+									select.mgm_departmentslist(name='insertSubjectDept')
+										if departmentsData != undefined
+											each item in departmentsData
+												option(value='#{item.idDepartment}') #{item.departmentName}
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 							.form_confirmblock
@@ -292,7 +295,7 @@ block content
 													.pd_8
 													.colhh1
 														.pd_llist
-															.sl_title Grupos y Asignaturas
+															.sl_title Cursos
 														.studentsubjects_list
 															//- if studentSubjects != undefined
 															//- 	each subItem in studentSubjects
@@ -336,7 +339,7 @@ block content
 													.pd_8
 													.colhh1
 														.pd_llist
-															.sl_title Grupos y Asignaturas
+															.sl_title Cursos
 														.teachersubjects_list
 															//- if teacherSubjects != undefined
 															//- 	each subItem in teacherSubjects
