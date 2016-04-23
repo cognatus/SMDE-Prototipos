@@ -2,6 +2,8 @@ extends layout
 
 block content
 
+		script( type='text/javascript' src='/ajax/ajaxMessages.js' )
+
 		#new_item.float_buttoncontainer.leftlist_floatbutton( title='Nuevo Mensaje' )
 			span.bg_plus.bgaccent_color
 
@@ -14,10 +16,52 @@ block content
 					.pd_18.form_title.white_text.flat_shadow Nuevo
 				.colhh1.hb_formcontainer
 					form(name='new_messageform')
-						.form_innercontainer
+						#newmsm_form.form_innercontainer
 							.colhh1(style='margin-top:2px;')
-								.form_input2.border_bottom
-									input(type='text', placeholder='Nombre(s)')
+								.form_input2.border_bottom.rel_pos
+									input#search_newmsmcontacts(type='text' placeholder='Para' autocomplete='off')
+									.msm_sendtocontainer
+										//- .msm_sendtocontact.rel_pos(data-email='')
+										//- 	.msm_sendtoremove
+										//- 		.bg_opacity.bg_cross.circle
+										//- 	img.sendtoimg.circle.v_middle(src='images/profilephoto.png')
+										//- 	.name.circle.bg_lightgray.opacity_color.v_middle Alejandro Villarroel
+									#msm_contactscontainer.colhh1.bg_lightgray.autooverflow.flat_shadow
+										.colhh1.no_result
+										.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
+											.pd_12 Administradores
+										if profileContactsAdministrators != undefined
+											each item in profileContactsAdministrators
+												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Administrador')
+													.listitem_img
+														img(src='images/profilephoto.png')
+													.listitem_info
+														.listitem_title 
+															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+														.listitem_bottomdata #{item.userEmail}
+										.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Alumno')
+											.pd_12 Alumnos
+										if profileContactsStudents != undefined
+											each item in profileContactsStudents
+												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Alumno')
+													.listitem_img
+														img(src='images/profilephoto.png')
+													.listitem_info
+														.listitem_title 
+															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+														.listitem_bottomdata #{item.userEmail}
+										.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Profesor')
+											.pd_12 Profesores
+										if profileContactsTeachers != undefined
+											each item in profileContactsTeachers
+												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Profesor')
+													.listitem_img
+														img(src='images/profilephoto.png')
+													.listitem_info
+														.listitem_title 
+															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+														.listitem_bottomdata #{item.userEmail}
+
 								.form_input2
 									textarea(placeholder='Escribe Algo')
 								.pd_24

@@ -288,10 +288,12 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
-.bg_reply{
+.bg_reply, .bg_cross{
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;
 }
+
+.bg_cross{background-image: url('/images/close.png');background-size: 50%;}
 
 .bg_archive{background-image: url('/images/archive.png');}
 
@@ -553,10 +555,10 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	padding: 0 4px 0 4px;
 }
 
-.sign_field input.textfield::-webkit-input-placeholder{color: rgba(0,0,0,0.2);}
-.sign_field input.textfield:-moz-placeholder{color: rgba(0,0,0,0.2);}
-.sign_field input.textfield::-moz-placeholder{color: rgba(0,0,0,0.2);}
-.sign_field input.textfield:-ms-input-placeholder{color: rgba(0,0,0,0.2);}
+.sign_field input.textfield::-webkit-input-placeholder{color: rgba(0,0,0,0.3);}
+.sign_field input.textfield:-moz-placeholder{color: rgba(0,0,0,0.3);}
+.sign_field input.textfield::-moz-placeholder{color: rgba(0,0,0,0.3);}
+.sign_field input.textfield:-ms-input-placeholder{color: rgba(0,0,0,0.3);}
 
 .sign_field input.textfield:focus{border-color: rgb(3,169,244);border-width: 2px;height: 39px;}
 
@@ -1200,6 +1202,62 @@ span.title_rightoptionicon#settings_icon:hover{
 	background-color: #616161;
 }
 
+.msm_sendtocontainer{
+	position: relative;
+	width: auto;
+	padding: 0 18px 0 18px;
+}
+
+.msm_sendtocontact{
+	display: inline-block;
+	margin-right: -12px;
+	margin-bottom: 8px;
+	cursor: pointer;
+}
+
+.msm_sendtocontact .sendtoimg{
+	width: 36px;
+	height: 36px;
+	display: inline;
+	position: relative;
+	z-index: 1;
+}
+
+.msm_sendtocontact .msm_sendtoremove{
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	display: none;
+	z-index: 2;
+}
+
+.msm_sendtocontact .name{
+	display: inline;
+	position: relative;
+	font-size: 15px;
+	padding: 8px 12px 8px 28px;
+	left: -24px;
+	font-weight: 500;
+}
+
+#msm_contactscontainer{
+	position: absolute;
+	width: calc(100% - 36px);
+	z-index: 9;
+	max-height: 322px;
+	left: 18px;
+	display: none;
+}
+
+#msm_contactscontainer .listitem_img{
+	width: 40px;height: 40px;
+	padding: 10px;
+}
+
+#msm_contactscontainer .listitem_bottomdata{margin-top: 3px;}
+
+#msm_contactscontainer .listitem_info{padding-top: 12px;padding-bottom: 10px;}
+
 .backicon, .backicon_white{
 	display: block;
 	width: 54px;
@@ -1553,16 +1611,17 @@ option{background-color: #fff;}
 .form_input2 input[type='text'], .form_input2 textarea{
 	border: none;
 	outline: none;
-	width: calc(100% - 36px);
-	max-width: calc(100% - 36px);
-	min-width: calc(100% - 36px);
 	margin-top: 0;
 	padding: 18px;
 	background-color: transparent;
+	width: calc(100% - 36px);
+	max-width: calc(100% - 36px);
+	min-width: calc(100% - 36px);
 }
 
 .form_input2 textarea{
-	height: 146px;
+	min-height: 200px;
+	max-height: 260px;
 }
 
 .input_filecontainer{display: none;}
