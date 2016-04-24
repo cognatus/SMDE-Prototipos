@@ -1213,6 +1213,14 @@ span.title_rightoptionicon#settings_icon:hover{
 	margin-right: -12px;
 	margin-bottom: 8px;
 	cursor: pointer;
+	width: calc(auto - 24px);
+}
+
+.small_icon{
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
 }
 
 .msm_sendtocontact .sendtoimg{
@@ -1612,7 +1620,8 @@ option{background-color: #fff;}
 	border: none;
 	outline: none;
 	margin-top: 0;
-	padding: 18px;
+	padding: 0 18px 0 18px;
+	height: 52px;
 	background-color: transparent;
 	width: calc(100% - 36px);
 	max-width: calc(100% - 36px);
@@ -1620,8 +1629,9 @@ option{background-color: #fff;}
 }
 
 .form_input2 textarea{
-	min-height: 200px;
-	max-height: 260px;
+	min-height: 240px;
+	max-height: 280px;
+	padding: 18px;
 }
 
 .input_filecontainer{display: none;}

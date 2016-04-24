@@ -20,13 +20,16 @@ block content
 						#newmsm_form.form_innercontainer
 							.colhh1(style='margin-top:2px;')
 								.form_input2.border_bottom.rel_pos
+									input#hidden_inputsendto(type='text' value='' name='insetUsersLobby')
+								.form_input2.border_bottom.rel_pos
 									input#search_newmsmcontacts(type='text' placeholder='Para' autocomplete='off')
-									.msm_sendtocontainer
+									#contacts_to_send.msm_sendtocontainer
 										//- .msm_sendtocontact.rel_pos(data-email='')
 										//- 	.msm_sendtoremove
 										//- 		.bg_opacity.bg_cross.circle
 										//- 	img.sendtoimg.circle.v_middle(src='images/profilephoto.png')
 										//- 	.name.circle.bg_lightgray.opacity_color.v_middle Alejandro Villarroel
+										#msm_addperson.small_icon.circle.v_middle.bg_plusgray.hover.rippleria-dark(data-rippleria)(title='Añadir Persona')
 									#msm_contactscontainer.colhh1.bg_lightgray.autooverflow.flat_shadow
 										.colhh1.no_result
 										.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
@@ -64,7 +67,7 @@ block content
 														.listitem_bottomdata #{item.userEmail}
 
 								.form_input2
-									textarea(placeholder='Escribe Algo')
+									textarea#msm_textarea(placeholder='Escribe Algo')
 								.pd_24
 									.form_input(style='height: 52px;')
 										span.bgaccent_color.bg_send.submit.circle.rippleria-dark( data-rippleria )
@@ -97,45 +100,45 @@ block content
 								span.searchicon
 								input#buscar(type='text',name='buscar', placeholder='Buscar un chat')
 					#listcontainer.autooverflow.left_listcontainer
-						each item in profileContactsAdministrators
-							.colhh1.no_result
-							.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Nombre Completo' data-type='24 Feb')
-								.listitem_img
-									img(src='images/profilephoto.png')
-								.listitem_info.border_bottom
-									.listitem_rightinfo 
-										label 24 
-										label Feb
-									.listitem_title 
-										b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-									.listitem_bottomdata  Lorem ipsum dolor sit amet
-							.colhh1(style='height: 82px;')
-						each item in profileContactsStudents
-							.colhh1.no_result
-							.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Nombre Completo' data-type='24 Feb')
-								.listitem_img
-									img(src='images/profilephoto.png')
-								.listitem_info.border_bottom
-									.listitem_rightinfo 
-										label 24 
-										label Feb
-									.listitem_title 
-										b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-									.listitem_bottomdata  Lorem ipsum dolor sit amet
-							.colhh1(style='height: 82px;')
-						each item in profileContactsTeachers
-							.colhh1.no_result
-							.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Nombre Completo' data-type='24 Feb')
-								.listitem_img
-									img(src='images/profilephoto.png')
-								.listitem_info.border_bottom
-									.listitem_rightinfo 
-										label 24 
-										label Feb
-									.listitem_title 
-										b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-									.listitem_bottomdata  Lorem ipsum dolor sit amet
-							.colhh1(style='height: 82px;')
+						.colhh1.no_result
+						if profileContactsAdministrators != undefined
+							each item in profileContactsAdministrators
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info.border_bottom
+										.listitem_rightinfo 
+											label 24 
+											label Feb
+										.listitem_title 
+											b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										.listitem_bottomdata  Lorem ipsum dolor sit amet
+						if profileContactsStudents != undefined
+							each item in profileContactsStudents
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info.border_bottom
+										.listitem_rightinfo 
+											label 24 
+											label Feb
+										.listitem_title 
+											b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										.listitem_bottomdata  Lorem ipsum dolor sit amet
+						if profileContactsTeachers != undefined
+							each item in profileContactsTeachers
+								.colhh1.no_result
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info.border_bottom
+										.listitem_rightinfo 
+											label 24 
+											label Feb
+										.listitem_title 
+											b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										.listitem_bottomdata  Lorem ipsum dolor sit amet
+						.colhh1(style='height: 82px;')
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
