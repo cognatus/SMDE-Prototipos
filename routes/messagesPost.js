@@ -18,7 +18,7 @@ exports.insertLobby = function(req, res){
 
 	stringQuery += 'INSERT INTO Lobby (idLobby) VALUES(UUID());';
 
-	var idLobby = 'Algo para obtener el mismo id de la lobby generada xD',
+	var idLobby = 'Algo para obtener el mismo id de la lobby generada xD';
 
 	stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
 				+ ' VALUES ("' + owner + '", "' + idLobby + '");';

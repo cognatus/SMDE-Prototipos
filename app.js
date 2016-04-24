@@ -11,7 +11,7 @@ var post = require('./routes/post');
 var calendarPost = require('./routes/calendarPost');
 var profilePost = require('./routes/profilePost');
 var subjectsPost = require('./routes/subjectsPost');
-var subjectsPost = require('./routes/messagesPost');
+var messagesPost = require('./routes/messagesPost');
 var path = require('path');
 var io = require('socket.io')(http);
 

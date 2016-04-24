@@ -81,7 +81,7 @@ exports.insertSubjectsCoursesSelfUser = function(req, res){
 	//ELIMINAMOS EL ULTIMO ELEMENTO POR QUE ES NULO
 	coursesArray.pop();
 
-	for(var i = 0; i < = coursesArray.length; i++){
+	for(var i = 0; i < coursesArray.length; i++){
 
 	}
 
