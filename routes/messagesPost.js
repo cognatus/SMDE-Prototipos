@@ -19,6 +19,8 @@ exports.insertLobby = function(req, res){
 
 	stringQuery += 'INSER INTO Lobby (idLobby) VALUES(UUID());';
 
+	var idLobby = 'Algo para obtener el mismo id de la lobby generada xD'
+
 	for (var i = 0; i< usersArray.lenght; i++) {
 		stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
 					+ ' VALUES ("' + usersArray[i] + '", "' + idLobby + '");';
@@ -28,7 +30,7 @@ exports.insertLobby = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log('Nueva Sala insertada');
+			console.log('Nueva sala insertada correctamente con ' + usersArray.lenght + ' usuarios');
 			res.redirect('/messages');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
