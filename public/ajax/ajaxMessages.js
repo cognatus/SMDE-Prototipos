@@ -17,11 +17,12 @@ jQuery(document).on('ready', function(){
         }
 
         //CREAR ARREGLO DE LOS USUARIOS PARA LA LOBBY
-       /* var string = jQuery('#hidden_inputsendto').val();
+        var string = jQuery('#hidden_inputsendto').val();
         var newString = string.split(',');
-        var index = newString.indexOf('');
-        newString.splice(index, 1);
-        console.log(newString);*/
+        newString.pop();
+        if(string != ''){
+            console.log(newString);
+        }
     });
 
     //MUESTRA EL INPUT PARA AGREGAR UN USUARIO AL CLICKEAR EN EL "+"
@@ -66,6 +67,12 @@ jQuery(document).on('ready', function(){
         }
     });
 
+    //MOSTRAR TODOS LOS CONTACTOS
+    jQuery('#showall_button').click(function(){
+        jQuery('#msm_contactscontainer .listitem').show();     
+    });
+
+    //FUNCION PARA AGREGAR USUARIOS AL LOBBY
     jQuery('#msm_contactscontainer .listitem').click(function(){
 
         //OBTIENE DATOS PARA AGREGAR USUARIO A LOBBY
@@ -83,6 +90,7 @@ jQuery(document).on('ready', function(){
                     + '</div>';
 
         if( jQuery('.msm_sendtocontainer').find('.msm_sendtocontact[data-email="' + email + '"]').length == 0 ){
+            //AGEGAR USUARIO AL LOBBY
             jQuery('.msm_sendtocontainer').prepend(html);
             jQuery('#hidden_inputsendto').val(jQuery('#hidden_inputsendto').val() + email + ',');
         }
@@ -96,13 +104,18 @@ jQuery(document).on('ready', function(){
             jQuery(this).find('.msm_sendtoremove').hide();
         });
 
-        //INSERTA LOS CORREOS AL CAMPO DE TEXTO ORIGINAL QUE SE MANDA AL SERVIDOR
-        jQuery('.msm_sendtocontact').click(function(){
+        //REMUEVE LOS CORREOS DEL CAMPO DE TEXTO ORIGINAL QUE SE MANDA AL SERVIDOR
+        jQuery('.msm_sendtocontainer .msm_sendtocontact').click(function(){
             var string = jQuery('#hidden_inputsendto').val();
             var removeEmail = jQuery(this).attr('data-email');
             var newString = string.replace(removeEmail + ',', '');
             jQuery('#hidden_inputsendto').val(newString);
             jQuery(this).remove();
+            if(jQuery('.msm_sendtocontainer .msm_sendtocontact').length == 0){
+                jQuery('#msm_addperson').hide();
+                jQuery('#search_newmsmcontacts').css('height', origHeight);
+                jQuery('.msm_sendtocontainer').css('margin-top', '0');
+            }
         });
     });
 

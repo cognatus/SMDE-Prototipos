@@ -74,49 +74,45 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 exports.insertSubjectsCoursesSelfUser = function(req, res){
 	var database = new base();
 
-	var values = [], 
-		subjectsId = [], 
-		coursesId = [];
+	var coursesInput = req.body.insertCoursesField;
 
-	var subjectsIdAjaxArray = req.body.subjectId;
-	var coursesIdAjaxArray = req.body.courseId;
+	//PRIMERO SEPARAMOS LOS CURSOS A INSCRIBIR
+	var coursesArray = coursesInput.split(',');
+	//ELIMINAMOS EL ULTIMO ELEMENTO POR QUE ES NULO
+	coursesArray.pop();
 
-	for(item in subjectsIdAjaxArray){
-		subjectsId.push[item];
+	for(var i = 0; i < = coursesArray.length; i++){
+
 	}
 
-	for(item in coursesIdAjaxArray){
-		coursesId.push[item];
-	}
+	//SEPARAMOS ASIGNATURAS DE GRUPOS;
 
 	stringQuery = 'BEGIN;';
-    //VERIFICAR QUE LOS ARREGLOS DE ASIGNATURAS Y GRUPOS SEAN DEL MISMO TAMAÑO PARA PODER INSERTAR
-    if(subjectsId.length == coursesId.length){
-	    // SI EL USUARIO ES TIPO ALUMNO
-	    for( var i = 0; i < subjectsId.length; i++ ) {
-	    	if(req.session.privilegio == 1){
 
-		    	stringQuery	+= 'INSERT INTO Student_has_Subject_has_Course'
-							+ ' (Student_idStudent, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
-							+ ' VALUES' 
-							+ '("'  + req.session.datos[0].idStudent +  '",'
-							+ ' "' + subjectsId[i] + '",'
-							+' "' + coursesId[i] + '");';
-		    	
-			}
+	   // SI EL USUARIO ES TIPO ALUMNO
+	    for( var i = 0; i < coursesArray.length; i++ ) {
+	    if(req.session.privilegio == 1){
 
-			// SI EL USUARIO ES TIPO PROFESOR
-	    	if(req.session.privilegio == 1){
-
-		    	stringQuery	+= 'INSERT INTO Teacher_has_Subject_has_Course'
-							+ ' (Teacher_idTeacher, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
-							+ ' VALUES' 
-							+ '("'  + req.session.datos[0].idTeacher +  '",'
-							+ ' "' + subjectsId[i] + '",'
-							+' "' + coursesId[i] + '");';
-		    	
-			}
+	    	stringQuery	+= 'INSERT INTO Student_has_Subject_has_Course'
+						+ ' (Student_idStudent, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
+						+ ' VALUES' 
+						+ '("'  + req.session.datos[0].idStudent +  '",'
+						+ ' "' + subjectsId[i] + '",'
+						+' "' + coursesId[i] + '");';
 		}
+
+		// SI EL USUARIO ES TIPO PROFESOR
+	    if(req.session.privilegio == 1){
+
+		   	stringQuery	+= 'INSERT INTO Teacher_has_Subject_has_Course'
+						+ ' (Teacher_idTeacher, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
+						+ ' VALUES' 
+						+ '("'  + req.session.datos[0].idTeacher +  '",'
+						+ ' "' + subjectsId[i] + '",'
+						+' "' + coursesId[i] + '");';
+		    	
+		}
+		
 	}
 	stringQuery += 'COMMIT;'
 

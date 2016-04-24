@@ -11,6 +11,7 @@ var post = require('./routes/post');
 var calendarPost = require('./routes/calendarPost');
 var profilePost = require('./routes/profilePost');
 var subjectsPost = require('./routes/subjectsPost');
+var subjectsPost = require('./routes/messagesPost');
 var path = require('path');
 var io = require('socket.io')(http);
 
@@ -228,6 +229,10 @@ app.post('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);
 app.post('/insertSubjectsCoursesSelfUser', subjectsPost.insertSubjectsCoursesSelfUser);
 
+//Todo lo referente a la mensajeria
+app.post('/insertLobby', messagesPost.insertLobby);
+app.get('/getLobbiesDatabase', messagesPost.getLobbiesDatabase);
+
 http.listen(app.get('port'), function(){
 	var base = new databaseInstance();
 	base.connect(function(error){
@@ -241,5 +246,6 @@ http.listen(app.get('port'), function(){
 	profilePost.constructor(databaseInstance);
 	calendarPost.constructor(databaseInstance);
 	subjectsPost.constructor(databaseInstance);
+	messagesPost.constructor(databaseInstance);
 	console.log('SMDE server listening on port ' + app.get('port'));
 });

@@ -84,7 +84,7 @@
 
 	.hidden_block{
 		width: 580px;
-		margin: 48px auto;
+		margin: 40px auto;
 		height: auto;
 		border-radius: 1px;
 		overflow: hidden;
@@ -180,6 +180,35 @@
 	.settings_right{height: 100%;}
 
 	.sett_margrid{margin-left: 16px;}
+
+	.hb_responsive{
+		width: 1080px;
+	}
+
+	.hb_responsive .hb_resgrid{
+		display: inline-block;width: calc(50% - 1px);
+		vertical-align: top;
+		height: 515px;
+	}
+
+	.hb_responsive .hb_resgrid #added_subjects{
+		min-height: 359px;
+		overflow: auto;
+	}
+
+	.hb_responsive .hb_resgrid #sub_hide{
+		margin-top: 148px;
+	}
+
+	.hb_responsive .hb_resgrid #new_subjects{
+		height: calc(100% - 113px);
+		overflow: auto;
+	}
+
+	.hb_responsive .hb_resgrid.resgridright{
+		width: 50%;
+		border-left: 1px solid rgba(0,0,0,0.06);
+	}
 
 	.msmtopname{
 		padding-left: 18px;

@@ -11,9 +11,20 @@ jQuery(document).on('ready', function(){
     var list = jQuery('#subcourList');
     var selectType = jQuery('#subcourType');  
     var showType = jQuery('#subcourType').val();
+    var coursesInput = jQuery('#coursesAddInput');
+
+    jQuery('#subjectsubmitButton').click(function(){
+        var string = jQuery('#coursesAddInput').val();
+        newString = string.split(',');
+        newString.pop();
+        if(string != ''){
+            console.log(newString);
+        }
+    });
 
     jQuery('#new_item').click(function(){
 
+        //ESTO ES PARA PODER FILTRAR POR NOMBRE DE ASIGNATURA O GRUPO
         // OBTENER LAS ASIGNATURAS A PARTIR DE LOS ELEMENTOS DE LISTA Y ELIMINAR DUPLICIDADES
         var subjectsArray = [];
         for( var i = 0; i < listElements.length; i++){
@@ -85,9 +96,11 @@ jQuery(document).on('ready', function(){
         var itemIdSubject = item.attr('data-subject');
         var itemIdCourse = item.attr('data-course');
 
+
         if(appendedSubjects.find('.listitem').length < 5){
             if(appendedSubjects.find('.listitem[data-subject="' + itemIdSubject + '"]').length == 0 ){
                 appendedSubjects.append(item);
+                coursesInput.val(coursesInput.val() + itemIdSubject + '/' + itemIdCourse +',');
             }
             else{
                 jQuery(this).siblings('.listitem_info').find('.listitem_alert').text('Ya agregaste esta Asignatura');
@@ -109,7 +122,7 @@ jQuery(document).on('ready', function(){
             jQuery('#added_subjects .listitem_righticon').attr('title' , 'Eliminar');
         }
 
-        // REMOVER LAS ASIGNATURAS A INSCRIBIR
+        // REMOVER LOS CURSOS A INSCRIBIR
         jQuery('#added_subjects .listitem .listitem_righticon').click( function(){
 
             var itemQuit =  jQuery(this).parents('.listitem');
@@ -118,12 +131,13 @@ jQuery(document).on('ready', function(){
             if( jQuery('#added_subjects').find('.listitem').length < 1 ){
                 jQuery('#sub_hide').show();
             }
-
+            //REMUEVE CURSOS DE LOS CAMPOS ORIGINALES QUE SE MANDAN A SERVIDOR
+            var coursesInputVal = coursesInput.val();
+            var removeSubject = jQuery(this).parents('.listitem').attr('data-subject');
+            var removeGroup = jQuery(this).parents('.listitem').attr('data-course');
+            var newCourseVal = coursesInputVal.replace(removeSubject + '/' + removeGroup + ',', '');
+            jQuery('#coursesAddInput').val(newCourseVal);
         });
-    });
-
-    jQuery('#add_subjectsform').submit(function(){
-        addSubjectsCourses();
     });
 
 });
@@ -200,37 +214,6 @@ function showContactsStudents(){
                 });
             });
 
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
-    });
-}
-
-function addSubjectsCourses(){
-    var subjectsIdArray = [];
-    var coursesIdArray = [];
-
-    var listElement = jQuery('#added_subjects .listitem');
-
-    for( var i = 0; i < listElement.length; i++ ){
-        var subjectId = listElement.eq(i).attr('data-subject');
-        var courseId = listElement.eq(i).attr('data-course');
-
-        subjectsIdArray.push(subjectId);
-        coursesIdArray.push(courseId);
-    }
-
-    jQuery.ajax({
-        type: 'POST',
-        url: 'insertSubjectsCoursesSelfUser',
-        data: { 
-            subjectId: subjectsIdArray,
-            courseId: coursesIdArray
-        },
-        success: function(data) {
-            alert('¡Cursos inscritos correctamente!');
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);

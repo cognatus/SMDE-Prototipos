@@ -11,24 +11,25 @@ block content
 
 		.hidden_blockcontainer
 			.hidden_blockback.bgaccent_color
-			.hidden_block.bg_white
+			.hidden_block.bg_white.hb_responsive
 				span.close.bg_close.rippleria-dark( data-rippleria )
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text.flat_shadow Inscribir Cursos
 				.colhh1.hb_formcontainer
-					form#add_subjectsform.rel_pos(name='subjects_add' action='insertSubjectsCoursesSelfUser' method='POST')
+					form#add_subjectsform.hb_resgrid.rel_pos(name='subjects_add' action='insertSubjectsCoursesSelfUser' method='POST')
+						.form_input2.border_bottom
+							input#coursesAddInput(type='hidden' name='insertCoursesField')
 						.colhh1.form_innercontainer.border_bottom
-							.colhh1
-								.colhh1.sub_listtitle
-									.pd_18.ll_title Cursos a Inscribir
-									.pd_18.center_text.ll_title.opacity_color#sub_hide Agrega un curso para Inscribir
-										.pd_8
-								#added_subjects.colhh1.subjects_formlist.added_subjectsformlist
-									//- Aqui van las asignaturas para agregar
+							.colhh1.sub_listtitle
+								.pd_18.ll_title Cursos a Inscribir
+							#added_subjects.colhh1.subjects_formlist.added_subjectsformlist
+								.pd_18.center_text.ll_title.opacity_color#sub_hide Agrega un curso para Inscribir
+									.pd_8
+								//- Aqui van las asignaturas para agregar
 							.pd_24#addSubjectsCoursesSubmit
 								.form_input(style='height: 52px;')
-									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+									span#subjectsubmitButton.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 						.form_confirmblock
 							.inner_confirmblock.bg_gray.flat_shadow
 								.pd_24(style='padding-bottom: 16px;')
@@ -40,7 +41,7 @@ block content
 											input.txtaccent_color.b_text(type='button' value='Cancelar')
 										span.raised_button.right_float.rippleria-dark(data-rippleria)
 											input#submit_addsubjectsform.txtaccent_color2.b_text(type='submit' value='Aceptar')
-					.colhh1
+					.colhh1.hb_resgrid.resgridright
 						.colhh1.sub_listtitle
 							.pd_18.ll_title Cursos Disponibles
 						.pd_24(style='padding-top: 0;')
@@ -83,7 +84,7 @@ block content
 															.pd_4
 															.pd_l12.sl_title Academia: 
 																span.margin_l.normal_txt #{item.departmentName}
-					.pd_16
+							.pd_16
 
 		.topspace
 		.page_container

@@ -1636,6 +1636,8 @@ option{background-color: #fff;}
 
 .input_filecontainer{display: none;}
 
+#showall_button{cursor: pointer;}
+
 .file_buttoncontainer span{
 	width: 48px;
 	height: 48px;
