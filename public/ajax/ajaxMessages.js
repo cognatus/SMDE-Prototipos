@@ -78,6 +78,7 @@ function showContactsAdministrators(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
+            jQuery('#listcontainer').append(data);
             showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -94,6 +95,7 @@ function showContactsStudents(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
+            jQuery('#listcontainer').append(data);
             showContactsTeachers();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -110,6 +112,7 @@ function showContactsTeachers(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
+            jQuery('#listcontainer').append(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);

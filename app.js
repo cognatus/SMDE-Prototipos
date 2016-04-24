@@ -4,18 +4,20 @@
  */
 
 var express = require('express');
+var app = express();
+var http = require('http').createServer(app);
 var routes = require('./routes');
 var post = require('./routes/post');
 var calendarPost = require('./routes/calendarPost');
 var profilePost = require('./routes/profilePost');
 var subjectsPost = require('./routes/subjectsPost');
-var http = require('http');
 var path = require('path');
+var io = require('socket.io')(http);
+
+
 /*var session = require('client-sessions');*/
 var mysql = require('mysql');
 var htmlspecialchars = require('htmlspecialchars');
-
-var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -33,6 +35,44 @@ app.use(express.static(path.join(__dirname, 'public')));
 /*app.use(session({
 }));*/
 
+/**
+ * Chat
+ */
+
+ var chatsini = io.of('/chatsini').on('connection', function (socket){
+
+ 	socket.on('join', function(data){
+ 		socket.room = data.id;
+ 		socket.join(data.id);
+ 		console.log('YAY!!! si conecto :D')
+
+ 	})
+
+ 	socket.on('cambiarsala', function(data){
+		socket.leave(socket.room);
+		socket.room = data.id;
+		socket.join(data.id);
+ 		console.log('YAY!!! si cambio :D')
+		console.log(socket.room)
+	})
+
+	socket.on('mensaje', function(data){
+
+		console.log(socket.room)
+		socket.in(socket.room).emit('chat', {
+
+                mensaje: data.mensaje,
+                hora: data.hora,
+                minuto: data.minuto,
+                hap: data.hap,
+                emisor: data.emisor
+
+            });
+
+	});
+
+ });
+
 // development only
 if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
@@ -43,10 +83,9 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0s3',
+		password: 'n0m3l0',
 		user: 'root',
-		database: 'smdedbv1',
-		port: 8080
+		database: 'smdedbv1'
 	});
 	return connection;
 };
@@ -188,7 +227,7 @@ app.post('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);
 app.post('/insertSubjectsCoursesSelfUser', subjectsPost.insertSubjectsCoursesSelfUser);
 
-http.createServer(app).listen(app.get('port'), function(){
+http.listen(app.get('port'), function(){
 	var base = new databaseInstance();
 	base.connect(function(error){
 		if(error){
