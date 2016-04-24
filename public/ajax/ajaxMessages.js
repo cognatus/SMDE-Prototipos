@@ -1,4 +1,6 @@
 
+var socket;
+
 jQuery(document).on('ready', function(){
         
     showContactsAdministrators();
@@ -6,6 +8,8 @@ jQuery(document).on('ready', function(){
 /*    jQuery('#search_newmsmcontacts').blur(function(){
         jQuery(this).siblings('#msm_contactscontainer').hide();
     });*/
+
+    socket = io('http://localhost:3000/chatsini');
 
     //FILTRAR CONTACTOS A PARTIR DE BUSQUEDA
     jQuery('#search_newmsmcontacts').keyup(function(){
@@ -119,4 +123,11 @@ function showContactsTeachers(){
         },
         async: 'false'
     });
+}
+
+function elegirUser(user){
+
+    //funciones locas que no quiero poner aun van jir
+    socket.emit('cambiarsala', user);
+
 }
