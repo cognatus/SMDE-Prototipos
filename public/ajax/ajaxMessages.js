@@ -1,5 +1,5 @@
 
-var socket;
+var socket = io('http://localhost:3000/chatsini');
 
 jQuery(document).on('ready', function(){
         
@@ -35,8 +35,6 @@ jQuery(document).on('ready', function(){
     jQuery('#search_newmsmcontacts').focus(function(){
         jQuery('#msm_addperson').hide();
     });
-
-    socket = io('http://localhost:3000/chatsini');
 
     //FILTRAR CONTACTOS A PARTIR DE BUSQUEDA
     jQuery('#search_newmsmcontacts').keyup(function(){
@@ -171,9 +169,23 @@ function showContactsTeachers(){
     });
 }
 
-function elegirUser(user){
+function elegirUser(lobby){
 
-    //funciones locas que no quiero poner aun van jir
-    socket.emit('cambiarsala', user);
+    //este metodo recibe el lobby  y conecta en server
+    socket.emit('cambiarsala', lobby);
+    //weaas de que aparezcan los mensajes del weon con quien habla
+    //de default la primera vez que se cargue la pagina cargara el primer weon
 
 }
+
+function enviaMensaje(){
+
+    socket.emit('mensaje', document.getElementById("newmsm").value);
+
+}
+
+socket.on('mostrar', function(data){
+
+    alert(data.mensaje);
+
+});

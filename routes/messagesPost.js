@@ -44,11 +44,11 @@ exports.insertLobby = function(req, res){
 //FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
 exports.getLobbiesDatabase = function(req, res){
 
-	stringQuery = 'SELECT * FROM Lobby AS l'
-				+ ' INNER JOIN User_has_Lobby AS uhl'
-				+ ' 	ON l.idLobby = uhl.Lobby_idLobby'
-				+ ' INNER JOIN User AS u'
-				+ ' 	ON u.userEmail = uhl.User_userEmail';
+	stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName, Lobby_idLobby'
+				+'FROM User_has_Lobby AS uhl'
+					+'INNER JOIN User AS u'
+						+'ON u.userEmail = uhl.User_userEmail'
+				+'WHERE u.userEmail = '+req.session.datos[0].userEmail+';';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {

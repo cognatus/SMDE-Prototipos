@@ -2,8 +2,8 @@ extends layout
 
 block content
 
-		script( type='text/javascript' src='/ajax/ajaxMessages.js' )
 		script( type='text/javascript' src='/socket.io/socket.io.js' )
+		script( type='text/javascript' src='/ajax/ajaxMessages.js' )
 
 		#new_item.float_buttoncontainer.leftlist_floatbutton( title='Nuevo Mensaje' )
 			span.bg_plus.bgaccent_color
@@ -126,43 +126,43 @@ block content
 											b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
 										.listitem_bottomdata  Lorem ipsum dolor sit amet
 							.colhh1(style='height: 82px;')
-						//- if profileContactsAdministrators != undefined
-						//- 	each item in profileContactsAdministrators
-						//- 		.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb')
-						//- 			.listitem_img
-						//- 				img(src='images/profilephoto.png')
-						//- 			.listitem_info.border_bottom
-						//- 				.listitem_rightinfo 
-						//- 					label 24 
-						//- 					label Feb
-						//- 				.listitem_title 
-						//- 					b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-						//- 				.listitem_bottomdata  Lorem ipsum dolor sit amet
-						//- if profileContactsStudents != undefined
-						//- 	each item in profileContactsStudents
-						//- 		.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb')
-						//- 			.listitem_img
-						//- 				img(src='images/profilephoto.png')
-						//- 			.listitem_info.border_bottom
-						//- 				.listitem_rightinfo 
-						//- 					label 24 
-						//- 					label Feb
-						//- 				.listitem_title 
-						//- 					b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-						//- 				.listitem_bottomdata  Lorem ipsum dolor sit amet
-						//- if profileContactsTeachers != undefined
-						//- 	each item in profileContactsTeachers
-						//- 		.colhh1.no_result
-						//- 		.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb')
-						//- 			.listitem_img
-						//- 				img(src='images/profilephoto.png')
-						//- 			.listitem_info.border_bottom
-						//- 				.listitem_rightinfo 
-						//- 					label 24 
-						//- 					label Feb
-						//- 				.listitem_title 
-						//- 					b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-						//- 				.listitem_bottomdata  Lorem ipsum dolor sit amet
+						if profileContactsAdministrators != undefined
+							each item in profileContactsAdministrators
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb' onclick="elegirUser('#{item.userName}')")
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info.border_bottom
+										.listitem_rightinfo 
+											label 24 
+											label Feb
+										.listitem_title 
+											b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										.listitem_bottomdata  Lorem ipsum dolor sit amet
+						if profileContactsStudents != undefined
+							each item in profileContactsStudents
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb' onclick="elegirUser('#{item.userName}')")
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info.border_bottom
+										.listitem_rightinfo 
+											label 24 
+											label Feb
+										.listitem_title 
+											b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										.listitem_bottomdata  Lorem ipsum dolor sit amet
+						if profileContactsTeachers != undefined
+							each item in profileContactsTeachers
+								.colhh1.no_result
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb' onclick="elegirUser('#{item.userName}')")
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info.border_bottom
+										.listitem_rightinfo 
+											label 24 
+											label Feb
+										.listitem_title 
+											b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										.listitem_bottomdata  Lorem ipsum dolor sit amet
 				.halfgrid.secondgrid
 					.msmtopname
 						span#backicon.backicon.rippleria-dark( data-rippleria )
@@ -216,7 +216,7 @@ block content
 										.msm_img
 											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
 						.colhh1.msminput
-							input( type='text' , name='newmsm' , placeholder='Mensaje' )
-							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='msmsend' , value='')
+							input( type='text' , name='newmsm', id='newmsm' , placeholder='Mensaje' )
+							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='msmsend' , value='', onclick="enviaMensaje()")
 						
 

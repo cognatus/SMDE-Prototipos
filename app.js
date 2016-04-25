@@ -42,31 +42,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 
  var chatsini = io.of('/chatsini').on('connection', function (socket){
 
- 	socket.on('join', function(data){
+ 	/*socket.on('join', function(data){
  		socket.room = data.id;
  		socket.join(data.id);
  		console.log('YAY!!! si conecto :D')
 
- 	})
+ 	})*/
 
  	socket.on('cambiarsala', function(data){
 		socket.leave(socket.room);
-		socket.room = data.id;
-		socket.join(data.id);
+		socket.room = data;
+		socket.join(data);
  		console.log('YAY!!! si cambio :D')
-		console.log(socket.room)
+		console.log('Sala '+socket.room)
 	})
 
 	socket.on('mensaje', function(data){
 
-		console.log(socket.room)
-		socket.in(socket.room).emit('chat', {
+		console.log('mensaje '+socket.room)
+		socket.in(socket.room).emit('mostrar', {
 
-                mensaje: data.mensaje,
-                hora: data.hora,
-                minuto: data.minuto,
-                hap: data.hap,
-                emisor: data.emisor
+                mensaje: data
 
             });
 
@@ -84,10 +80,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0s3',
+		password: 'n0m3l0',
 		user: 'root',
 		database: 'smdedbv1',
-		port: 8080
+		port: 3306
 	});
 	return connection;
 };
