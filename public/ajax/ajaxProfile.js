@@ -43,7 +43,6 @@ function showContactsStudents(){
                         studentEmail: stuId
                     },
                     success: function(data2) {
-                        console.log(data2);
                         for(var i in data2){
                             var subject = data2[i];
                             container.find('.person_subjectslist').append('<div class="colhh1 pd_l12 hover">'
@@ -92,7 +91,6 @@ function showContactsTeachers(){
                         teacherEmail: teaId
                     },
                     success: function(data2) {
-                        console.log(data2);
                         for(var i in data2){
                             var subject = data2[i];
                             container.find('.person_subjectslist').append('<div class="colhh1 pd_l12 hover">'

@@ -22,15 +22,14 @@ html
 				.pd_32
 					.colhh1.center_text.txtprimary_color
 						.ml_title.normal_txt Inicia Sesión
-					.pd_12
 					.colhh1.center_text.loginimg
 						img.circle(src='images/accountlogin.png')
 					form.colhh1(action='login', method='post')
 						.sign_field.pd_tb_10.rel_pos
 							img( src='images/account.png' )
-							input.textfield.txtprimary_color( type='email' , name='sign_user' , placeholder='Usuario')
+							input.textfield.txtprimary_color.borad( type='email' , name='sign_user' , placeholder='Usuario' , required)
 						.sign_field.pd_tb_10.rel_pos
 							img( src='images/lock.png' )
-							input.textfield.txtprimary_color( type='password' , name='sign_key' , placeholder='Contraseña')
-						.sign_field(style = 'margin-top: 32px;')
-							input.signbutton.bgaccent_color.uppercase.borad(type='submit' , name='sign_submit' , value='Iniciar')
+							input.textfield.txtprimary_color.borad( type='password' , name='sign_key' , placeholder='Contraseña' , required)
+						.sign_field.autooverflow(style='margin-top: 12px;')
+							input.signbutton.txtaccent_color.uppercase.b_text.right_float(type='submit' , name='sign_submit' , value='Iniciar')

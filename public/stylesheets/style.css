@@ -513,11 +513,15 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	margin-bottom: 24px;
 }
 
+.login_container .loginimg{
+	padding-top: 24px;
+	padding-bottom: 24px;
+}
+
 .login_container .loginimg img{
 	width: 80px;
 	height: 80px;
-	margin-top: 0;
-	margin-bottom: 12px;
+	margin: 0;
 }
 
 .login_container a{
@@ -539,22 +543,19 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	display: inline-block;
 	width: 24px;
 	height: 24px;
-	margin: 16px 24px 8px 0;
-	padding: 0;
-	position: absolute;top: 10px;left: 0;
+	padding: 12px;
+	position: absolute;
+	top: 10px;left: 0;
 }
 
 .sign_field input.textfield{
 	display: inline-block;
 	outline: none;border: none;
-	background: transparent;
-	border-bottom: 1px solid rgba(0,0,0,0.1); 
-	width: calc(100% - 56px);
+	background: #fff;
+	width: calc(100% - 70px);
 	font-size: 18px;
-	margin: 0;height: 40px;
-	margin-left: 48px;
-	margin-top: 8px;
-	padding: 0 4px 0 4px;
+	margin: 0;height: 48px;
+	padding: 0 14px 0 56px;
 }
 
 .sign_field input.textfield::-webkit-input-placeholder{color: rgba(0,0,0,0.3);}
@@ -562,15 +563,12 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .sign_field input.textfield::-moz-placeholder{color: rgba(0,0,0,0.3);}
 .sign_field input.textfield:-ms-input-placeholder{color: rgba(0,0,0,0.3);}
 
-.sign_field input.textfield:focus{border-color: rgb(3,169,244);border-width: 2px;height: 39px;}
-
 .sign_field input.signbutton{
 	outline: none;
 	border: none;
-	width: 100%;height: 48px;
 	margin: 0;
-	position: relative;
-	color: #fff;font-weight: bold;
+	padding: 16px 0 0 16px;
+	background: transparent; 
 }
 
 .login_bottom{
@@ -1110,13 +1108,16 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .left_listcontainer{
 	width: auto;
-	height: calc(100% - 114px);
+	height: calc(100% - 121px);
 }
+
+.list_title{width: auto;}
 
 .list_title .title{
 	display: inline-block;
-	width: calc(100% - 80px);
+	width: calc(100% - 92px);
 	vertical-align: middle;
+	line-height: 25px;
 }
 
 .list_title .icons{
@@ -1126,9 +1127,9 @@ span.title_rightoptionicon#settings_icon:hover{
 	vertical-align: middle;
 }
 
-.list_title .icons .small_icon{background-size: 20px;margin-right: 4px;}
+.list_title .icons .small_icon{background-size: 20px;margin: 0 0 0 4px;}
 
-.list_title .icons .minimenu_hidden{right: 14px;}
+.list_title .icons .minimenu_hidden{right: 10px;}
 
 .listitem_bottomdata{
 	opacity: 0.6;
@@ -1178,7 +1179,6 @@ span.title_rightoptionicon#settings_icon:hover{
 }
 
 .msmtopname .letter{
-	opacity: 0.8;
 	font-size: 24px;
 	width: 28px;
 	height: 28px;
@@ -1192,7 +1192,7 @@ span.title_rightoptionicon#settings_icon:hover{
 }
 
 .msmtopname .minimenu span{
-	background-color: #616161;
+	background-color: #fff;
 }
 
 .msm_sendtocontainer{
@@ -1279,19 +1279,18 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .msmcontent{
 	width: auto;
-	height: calc(100% - 73px);
+	height: calc(100% - 61px);
 	position: relative;
 	left: 0;top: 0;
-	padding: 12px;padding-top: 0;
+	padding: 0;
 }
 
 .msm_innercontent{
 	width: 100%;
-	height: calc(100% - 65px);
+	height: calc(100% - 63px);
 	overflow: auto;
 	position: relative;
 	left: 0;
-	background-color: #f2f2f2;
 }
 
 .msminput{
@@ -1301,7 +1300,7 @@ span.title_rightoptionicon#settings_icon:hover{
 	z-index: 99;
 	display: block;
 	height: 62px;
-	background-color: #f2f2f2;
+	background-color: #fff;
 }
 
 .msminput input[type='text']{
@@ -1404,8 +1403,6 @@ span.title_rightoptionicon#settings_icon:hover{
 	FORUM
 -----------------------------------------------------------------------------------------*/
 
-.forum_commentcontainer{margin-bottom: 12px;}
-
 .forum_commentimg{width: 40px;display: inline-block;}
 
 .forum_alldata{display: inline-block;width: calc(100% - 40px);}
@@ -1490,7 +1487,6 @@ span.title_rightoptionicon#settings_icon:hover{
 	width: auto;
 	position: relative;
 	padding: 8px;
-	background-color: transparent;
 }
 
 .search span.searchicon, .search span.searchicon_white{
@@ -1958,7 +1954,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .menu_grid{box-shadow: 1px 0px 2px rgba(0,0,0,0.24);}
 
-.flat_shadow, .block_container, .hidden_block, .minimenu_hidden, .sign_field input.signbutton{
+.flat_shadow, .block_container, .hidden_block, .minimenu_hidden{
 	box-shadow: 0 1px 2px rgba(0,0,0,0.24);}
 
 .msminput input[type='submit'], .form_input span.submit{
@@ -1969,11 +1965,11 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	box-shadow: 0px 1px 3px rgba(0,0,0,0.3);	
 }
 
-.msminput input[type='submit']:hover, .sign_field input.signbutton:hover, .form_input span.submit:hover{
+.msminput input[type='submit']:hover, .form_input span.submit:hover{
 	box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
 }
 
-.msminput input[type='submit']:active, .sign_field input.signbutton:active, .form_input span.submit:active{
+.msminput input[type='submit']:active, .form_input span.submit:active{
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
 }
 
@@ -2012,7 +2008,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme::-webkit-scrollbar-track, .dark_theme div::-webkit-scrollbar-track{background-color: #303030;}
 
-.dark_theme::-webkit-scrollbar, .dark_theme div::-webkit-scrollbar{width: 16px;background-color: #424242;}
+.dark_theme::-webkit-scrollbar, .dark_theme div::-webkit-scrollbar{width: 16px;background-color: #525252;}
 
 .dark_theme::-webkit-scrollbar-thumb, .dark_theme div::-webkit-scrollbar-thumb{background-color: #616161;}
 
@@ -2026,25 +2022,19 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	color: rgba(255,255,255,0.5);
 }
 
-.dark_theme .bg_white{
+.dark_theme .bg_white, .dark_theme .msminput{
 	background-color: #424242;
 }
 
 .dark_theme .bg_lightgray{
-	background-color: #212121;
-}
-
-.dark_theme .msm_innercontent, .dark_theme .msminput{
 	background-color: #303030;
 }
 
 .dark_theme .h_listtopcontainer{
-	color: rgba(255,255,255,0.5);
+	color: rgba(255,255,255,0.7);
 }
 
 .dark_theme .hover:hover{background-color: rgba(255,255,255,0.04);}
-
-.dark_theme .msmtopname .minimenu span{background-color: #bdbdbd;}
 
 .dark_theme .form_input input[type='text'], .dark_theme .form_input input[type='email'],
 .dark_theme .form_input input[type='password'], .dark_theme .form_input input[type='text'], 
@@ -2106,7 +2096,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .form_input input[type='text'].activeline, .form_input select.activeline{
 	font-size: 22px;background: #03A9F4;
 	width: 100%;border-color: rgba(255,255,255,0.3);
-	margin-top: 0; 
+	margin-top: 0;color: #fff;
 }
 
 .form_input input[type='text'].activeline:focus, .form_input select.activeline:focus{
@@ -2114,7 +2104,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	padding-bottom: 7px;
 }
 
-.form_input label{
+.form_input .activeline ~ label{
 	color: rgba(255,255,255,0.4); 
  	font-size: 22px;
  	font-weight: normal;

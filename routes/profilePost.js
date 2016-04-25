@@ -7,14 +7,22 @@ exports.constructor = function (basee) {
 
 exports.setProfileTheme = function(req, res){
 	var database = new base();
-	var isChecked = req.body.changeTheme;
+	var theme = req.session.datos[0].darkTheme;
 
-	stringQuery = 'UPDATE User SET darkTheme=1'
-		+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;	
+	if(theme == 0){
+		stringQuery = 'UPDATE User SET darkTheme=1'
+			+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;
+		req.session.datos[0].darkTheme = 1;
+	}
+	if(theme == 1){
+		stringQuery = 'UPDATE User SET darkTheme = 0'
+			+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;
+		req.session.datos[0].darkTheme = 0;
+	}
 	
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log('Cambio de tema correctamento');
+			console.log('Cambio de tema correctamente');
 			res.redirect('/settings');
 		}else{
 			console.log('Error en esta sentencia: ' + stringQuery + ' Error: ' + error);
@@ -26,8 +34,10 @@ exports.setProfileTheme = function(req, res){
 exports.setProfileMsmColor = function(req, res){
 	var database = new base();
 	var msmColor = req.body.msmValueColor;
+
 	stringQuery = 'UPDATE User SET msmColor="' + msmColor + '"'
 	+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";';
+	req.session.datos[0].msmColor = msmColor;
 	
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {

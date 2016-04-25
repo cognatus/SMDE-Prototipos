@@ -282,20 +282,21 @@ block content
 											.pd_l18
 												.autocol Activar Tema Oscuro
 												.right_float
-													- var isCheked
-													if datos[0].darkTheme == 1
-														- isChecked = true
-													else
-														- isChecked = false
-													input(type='checkbox' id='changeTheme', checked=isChecked name='changeTheme' hidden, onChange='document.getElementById("formDesignTheme").submit()')
-													label.switch(for='changeTheme')
+													if (datos[0].darkTheme == 0)
+														input(type='checkbox' id='changeTheme' , name='changeTheme' , hidden , onChange='document.getElementById("formDesignTheme").submit()')
+														label.switch(for='changeTheme')
+													if (datos[0].darkTheme == 1)
+														input(type='checkbox' id='changeTheme' , name='changeTheme' , hidden , onChange='document.getElementById("formDesignTheme").submit()' , checked)
+														label.switch(for='changeTheme')
 							.colhh1.settings_inneritem
 								.pd_8
-								.pd_18.settings_colors.center_text
+								.pd_24.settings_colors.center_text(style='padding-bottom: 8px;')
+									script.
+										var colorMsm = '#{datos[0].msmColor}';
 									//- script colors 
 								form(name='settingsform_updateMsmColor' action='setProfileMsmColor' method='post')
 									.pd_24
 										.form_input(style='height: 52px;')
-											input(type='text' name='msmValueColor' value='' id='msmValueColor' hidden)
+											input(type='hidden' name='msmValueColor' value='' id='msmValueColor')
 											span.bgaccent_color.bg_check.submit.circle.rippleria-dark(data-rippleria title='Confirmar')
 												input(type='submit' value='')

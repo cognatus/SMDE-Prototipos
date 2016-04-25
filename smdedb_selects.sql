@@ -172,3 +172,20 @@ WHERE Subject_idSubject IN(
 	FROM Teacher_has_Subject_has_Course b
 	WHERE b.Teacher_idTeacher = 'VATOASDSAD46844'
 ) = a.Subject_idSubject;
+
+--Conocer lobbies del chat de un usuario y sus participantes
+
+SELECT idLobby, group_concat(User_userEmail separator ', ') AS participantsEmails, group_concat(userName ,' ', userLastName separator ', ') AS participantsNames
+	FROM user_has_lobby AS uhl
+	INNER JOIN User AS u
+		ON u.userEmail = uhl.User_userEmail
+	INNER JOIN Lobby AS l
+		ON l.idLobby = uhl.Lobby_idLobby
+	WHERE Lobby_idLobby IN
+    (
+		SELECT Lobby_idLobby 
+        FROM user_has_lobby
+        WHERE User_userEmail = 'alejandrodnl.cv@hotmail.com'
+    )
+    AND User_userEmail != 'alejandrodnl.cv@hotmail.com' 
+    GROUP BY Lobby_idLobby;

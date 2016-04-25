@@ -2,7 +2,8 @@
 var socket = io('http://localhost:3000/chatsini');
 
 jQuery(document).on('ready', function(){
-        
+    
+    showLobbies();
     showContactsAdministrators();
 
     //OBTIENE LA ALTURA ORIGINAL DEL INPUT DONDE SE AGREGAN MAS USUARIOS
@@ -119,6 +120,22 @@ jQuery(document).on('ready', function(){
 
 });
 
+function showLobbies(){
+    jQuery.ajax({
+        method: 'GET',
+        url: 'getLobbiesDatabase',
+        cache: true,
+        success: function(data) {
+            jQuery('#listcontainer').append(data);
+            showContactsStudents();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        },
+        async: 'false'
+    });
+}
+
 function showContactsAdministrators(){
     jQuery.ajax({
         method: 'GET',
@@ -126,7 +143,7 @@ function showContactsAdministrators(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-            jQuery('#listcontainer').append(data);
+            /*jQuery('#listcontainer').append(data);*/
             showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -143,7 +160,7 @@ function showContactsStudents(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-            jQuery('#listcontainer').append(data);
+           /* jQuery('#listcontainer').append(data);*/
             showContactsTeachers();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -160,7 +177,7 @@ function showContactsTeachers(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-            jQuery('#listcontainer').append(data);
+            /*jQuery('#listcontainer').append(data);*/
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -169,7 +186,7 @@ function showContactsTeachers(){
     });
 }
 
-function elegirUser(lobby){
+function selectLobby(lobby){
 
     //este metodo recibe el lobby  y conecta en server
     socket.emit('cambiarsala', lobby);
@@ -178,7 +195,7 @@ function elegirUser(lobby){
 
 }
 
-function enviaMensaje(){
+function sendNewMessage(){
 
     socket.emit('mensaje', document.getElementById("newmsm").value);
 

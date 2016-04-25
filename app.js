@@ -54,12 +54,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 		socket.room = data;
 		socket.join(data);
  		console.log('YAY!!! si cambio :D')
-		console.log('Sala '+socket.room)
+		console.log('Sala ' + socket.room)
 	})
 
 	socket.on('mensaje', function(data){
 
-		console.log('mensaje '+socket.room)
+		console.log('mensaje ' + socket.room)
 		socket.in(socket.room).emit('mostrar', {
 
                 mensaje: data
@@ -127,7 +127,8 @@ function databaseInstance(){
 			res.render('error' , {
 				errorData: {
 					errorTitle: 'Error con la Sesión',
-					errorItem: ['-  Problemas con el Servidor'],
+					errorItem: ['-  Problemas con el Servidor',
+					'-  No has iniciado sesión'],
 					backUrl: '/login'
 				}
 			});
@@ -145,7 +146,8 @@ function databaseInstance(){
 			res.render('error' , {
 				errorData: {
 					errorTitle: 'Error con la Sesión',
-					errorItem: ['-  Problemas con el Servidor'],
+					errorItem: ['-  Problemas con el Servidor',
+					'-  No has iniciado sesión'],
 					backUrl: '/login'
 				}
 			});
@@ -163,7 +165,8 @@ function databaseInstance(){
 			res.render('error' , {
 				errorData: {
 					errorTitle: 'Error con la Sesión',
-					errorItem: ['-  Problemas con el Servidor'],
+					errorItem: ['-  Problemas con el Servidor',
+					'-  No has iniciado sesión'],
 					backUrl: '/login'
 				}
 			});

@@ -192,7 +192,6 @@ jQuery(document).on('ready' ,function(){
 	if(jQuery(window).width() >= 1120){
 		jQuery('.mgmlisthor .h_listline').css('height' , jQuery('.mgmlisthor .h_listitem.first').outerHeight() );
 		jQuery('.mgmlisthor .h_listline').css('width' , '2px');
-		jQuery('.mgmlisthor .h_listitem.first').trigger('click');
 	}
 
 	jQuery('.h_listcontainer .h_listitem').click(function(){
@@ -238,7 +237,7 @@ jQuery(document).on('ready' ,function(){
 		VERTICAL LIST CONTROL
 ---------------------------------------------------------------------------------------*/ 
 
-	jQuery('.listitem').on('click', function(){
+	jQuery('.slide_list .listitem').on('click', function(){
 
 		var slideD = jQuery(this).siblings('.innerlistitem');
 
@@ -256,19 +255,27 @@ jQuery(document).on('ready' ,function(){
 		SETTINGS CONTROL
 ---------------------------------------------------------------------------------------*/
 
-	var msmColors = ['bg_red','bg_pink','bg_lightpink','bg_purple','bg_darkpurple','bg_indigo','bg_darkblue',
-		'bg_blue','bg_lightblue','bg_cyan','bg_teal','bg_green','bg_lightgreen','bg_lime','bg_yellow','bg_amber',
-		'bg_orange','bg_darkorange','bg_brown','bg_gray','bg_bluegray','bg_darkgray'];
+	var msmColors = ['#f44336','#E91E63','#9C27B0','#673AB7','#3F51B5','#2196F3','#03A9F4','#00BCD4',
+		'#009688','#4CAF50','#8BC34A','#CDDC39','#FFEB3B','#FFC107','#FF9800','#FF5722','#795548',
+		'#9E9E9E','#607D8B','#616161','#424242','#212121'];
 
 	for( var i = 0; i < msmColors.length; i++ ){
-		jQuery('.settings_colors').append('<span class="' + msmColors[i] + ' circle"></span>');
+		jQuery('.settings_colors').append('<span class="circle" style="background-color: ' + msmColors[i] + '"></span>');
+	}
+
+	var spanColor = jQuery('.settings_colors span');
+	for( var jr = 0; jr < spanColor.length; jr++ ){
+		var item = spanColor.get(jr); 
+		if(colorMsm == jQuery(item).css('background-color')){
+			jQuery(item).addClass('bg_check');
+		}
 	}
 
 	jQuery('.settings_colors span').click(function(){
 		var color = jQuery(this).css('background-color');
 		jQuery(this).addClass('bg_check');
 		jQuery(this).siblings('span').removeClass('bg_check');
-		jQuery('#msmValueColor').val(rgb2hex(color));
+		jQuery('#msmValueColor').val(color);
 	});
 
 	function rgb2hex(rgb) {
@@ -317,12 +324,14 @@ jQuery(document).on('ready' ,function(){
 
 	jQuery('.block_containermsm .listitem, .block_containersettings .listitem').on('click', function(){
 		var title = jQuery(this).attr('data-name');
+		var title2 = jQuery(this).attr('title');
 		var img = jQuery(this).find('img').attr('src');
 		if( jQuery(window).width() < 1120 ){
 			jQuery('.block_containermsm, .block_containersettings').animate({ scrollLeft: jQuery('.halfgrid').width() });
 			jQuery('#new_item').hide();
 		}
 		jQuery('.msmtopname label').text(title);
+		jQuery('.msmtopname label').attr('title', title2);
 		jQuery('img#msm_userimg').attr('src' , img );
 		changeLetterColor();
 	});
@@ -330,6 +339,7 @@ jQuery(document).on('ready' ,function(){
 	if( jQuery(window).width() >= 1120 ){
 		jQuery('#listcontainer.left_listcontainer .listitem').first().trigger('click');
 		jQuery('.block_containersettings .listitem').first().trigger('click');
+		jQuery('.h_listitem.first').trigger('click');
 	}
 
 	function changeLetterColor(){
@@ -471,7 +481,9 @@ jQuery(document).on('ready' ,function(){
 		}
 		else{
 			jQuery('#listcontainer .listitem').show();
-			jQuery('#listcontainer.listcontainer .empty_blocktext').show();
+			if(jQuery('#listcontainer .listitem').length == 0){
+				jQuery('#listcontainer.listcontainer .empty_blocktext').show();
+			}
 			jQuery('.no_result').html('');
 		}
 
@@ -496,6 +508,9 @@ jQuery(document).on('ready' ,function(){
 		}
 		else{
 			jQuery('#listcontainer .slide_list').show();
+			if(jQuery('#listcontainer .slide_list').length == 0){
+				jQuery('#listcontainer.listcontainer .empty_blocktext').show();
+			}
 			jQuery('.no_result').html('');
 		}
 
