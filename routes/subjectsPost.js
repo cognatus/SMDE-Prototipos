@@ -81,35 +81,34 @@ exports.insertSubjectsCoursesSelfUser = function(req, res){
 	//ELIMINAMOS EL ULTIMO ELEMENTO POR QUE ES NULO
 	coursesArray.pop();
 
-	for(var i = 0; i < coursesArray.length; i++){
-
-	}
-
-	//SEPARAMOS ASIGNATURAS DE GRUPOS;
-
 	stringQuery = 'BEGIN;';
 
-	   // SI EL USUARIO ES TIPO ALUMNO
-	    for( var i = 0; i < coursesArray.length; i++ ) {
+	//INSERTAMOS LOS CURSOS UNO POR UNO
+	for( var i = 0; i < coursesArray.length; i++ ) {
+	    var coursePos = coursesArray[i];
+	    //SEPARAMOS ASIGNATURAS DE GRUPOS;
+	    var subArray = coursePos.split('/');
+
+	    // SI EL USUARIO ES TIPO ALUMNO
 	    if(req.session.privilegio == 1){
 
 	    	stringQuery	+= 'INSERT INTO Student_has_Subject_has_Course'
 						+ ' (Student_idStudent, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
 						+ ' VALUES' 
 						+ '("'  + req.session.datos[0].idStudent +  '",'
-						+ ' "' + subjectsId[i] + '",'
-						+' "' + coursesId[i] + '");';
+						+ ' "' + subArray[0] + '",'
+						+' "' + subArray[1] + '");';
 		}
 
 		// SI EL USUARIO ES TIPO PROFESOR
-	    if(req.session.privilegio == 1){
+	    if(req.session.privilegio == 2){
 
 		   	stringQuery	+= 'INSERT INTO Teacher_has_Subject_has_Course'
 						+ ' (Teacher_idTeacher, Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
 						+ ' VALUES' 
 						+ '("'  + req.session.datos[0].idTeacher +  '",'
-						+ ' "' + subjectsId[i] + '",'
-						+' "' + coursesId[i] + '");';
+						+ ' "' + subArray[0] + '",'
+						+' "' + subArray[1] + '");';
 		    	
 		}
 		

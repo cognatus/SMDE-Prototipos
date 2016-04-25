@@ -43,21 +43,27 @@ exports.login = function(req, res){
 	var which_vato = function(tipo){
 		switch(tipo) {
 			case 0:
-				stringQuery = 'SELECT * FROM User INNER JOIN Administrator' 
-				+ ' ON User.userEmail = Administrator.User_userEmail' 
-				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
+				stringQuery = 'SELECT * FROM User INNER JOIN Administrator ' 
+				+ ' 	ON User.userEmail = Administrator.User_userEmail ' 
+				+ ' INNER JOIN Institute '
+				+ ' 	ON User.Institute_idInstitute = Institute.idInstitute '
+				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '"; ';
 				req.session.privilegio = 3;
 				break;
 			case 1:
-				stringQuery = 'SELECT * FROM User INNER JOIN Student' 
-				+ ' ON User.userEmail = Student.User_userEmail' 
-				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
+				stringQuery = 'SELECT * FROM User INNER JOIN Student ' 
+				+ ' 	ON User.userEmail = Student.User_userEmail ' 
+				+ ' INNER JOIN Institute '
+				+ ' 	ON User.Institute_idInstitute = Institute.idInstitute '
+				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '"; ';
 				req.session.privilegio = 1;
 				break;
 			case 2:
-				stringQuery = 'SELECT * FROM User INNER JOIN Teacher' 
-				+ ' ON User.userEmail = Teacher.User_userEmail' 
-				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '";' ;
+				stringQuery = 'SELECT * FROM User INNER JOIN Teacher ' 
+				+ ' 	ON User.userEmail = Teacher.User_userEmail ' 
+				+ ' INNER JOIN Institute '
+				+ ' 	ON User.Institute_idInstitute = Institute.idInstitute '
+				+ ' WHERE User.userEmail="' + userNameLogin + '" AND User.userPassword="' + userPassLogin + '"; ';
 				req.session.privilegio = 2;
 				break;
 		}

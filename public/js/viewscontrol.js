@@ -59,10 +59,6 @@ jQuery(document).on('ready' ,function(){
 		jQuery('.notifications_hidden').fadeIn(200);
 	});
 
-	jQuery('span.title_rightoptionicon').click(function(){
-		jQuery(this).find('.minimenu_hidden').fadeIn(200);
-	});
-
 	jQuery('.spinner').spinner({
 		strokeWidth: 5,
 		color: '#00BFA5',
@@ -457,6 +453,7 @@ jQuery(document).on('ready' ,function(){
 
 	jQuery('#buscar').keyup(function(){
 
+		jQuery('#listcontainer.listcontainer .empty_blocktext').hide();
 		var currentQuery = jQuery('#buscar').val().toUpperCase();
 		jQuery('#listcontainer .listitem').hide();
 		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + currentQuery + '"</b></div>');
@@ -474,6 +471,7 @@ jQuery(document).on('ready' ,function(){
 		}
 		else{
 			jQuery('#listcontainer .listitem').show();
+			jQuery('#listcontainer.listcontainer .empty_blocktext').show();
 			jQuery('.no_result').html('');
 		}
 

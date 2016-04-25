@@ -113,7 +113,7 @@ function writeCalendar(month, year){
 
     jQuery('#calendar_month_content .day .pd_8').on('click' ,function(){
 
-        jQuery(window).animate({ scrollTop: 0 });
+        jQuery(window).scrollTop(0);
         var origh = jQuery('.calendar').height();
         jQuery('.calendar_rightinner').css({
             width: origw,

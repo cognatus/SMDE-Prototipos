@@ -288,10 +288,12 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
-.bg_reply, .bg_cross{
+.bg_reply, .bg_cross, .bg_magnify{
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;
 }
+
+.bg_magnify{background-image: url('/images/magnify.png');}
 
 .bg_cross{background-image: url('/images/close.png');background-size: 50%;}
 
@@ -940,8 +942,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .minimenu{
 	cursor: pointer;
 	position: relative;
-	top: 0;
-	right: 0;
 }
 
 .minimenu span{
@@ -1016,35 +1016,11 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	-o-transform: rotateY(180deg);
 }
 
-span.title_rightoptionicon{
-	background: center no-repeat;
-	background-size: 60%;
-	display: inline-block;
-	cursor: pointer;
-	position: absolute;
-	top: 50%;
-	margin-top: -18px;
-	float: right;
-	transition: all ease-in-out 0.3s;
-	width: 36px;
-	height: 36px;
-	right: 10px; 
-}
-
-.title_rightoptionicon .minimenu_hidden{
-	top: 9px;
-	right: 9px;
-}
-
 span.title_rightoptionicon#settings_icon{
 	width: 30px;
 	height: 30px;
 	right: 6px;
 	margin-top: -15px;
-}
-
-span.title_rightoptionicon:hover{
-	background-color: rgba(0,0,0,0.06);
 }
 
 span.title_rightoptionicon#settings_icon:hover{
@@ -1136,6 +1112,23 @@ span.title_rightoptionicon#settings_icon:hover{
 	width: auto;
 	height: calc(100% - 114px);
 }
+
+.list_title .title{
+	display: inline-block;
+	width: calc(100% - 80px);
+	vertical-align: middle;
+}
+
+.list_title .icons{
+	display: inline-block;
+	width: auto;
+	height: 36px;
+	vertical-align: middle;
+}
+
+.list_title .icons .small_icon{background-size: 20px;margin-right: 4px;}
+
+.list_title .icons .minimenu_hidden{right: 14px;}
 
 .listitem_bottomdata{
 	opacity: 0.6;
@@ -2105,15 +2098,37 @@ input[type='submit'], input[type='button']{cursor: pointer;}
   background: #80cbc4;
 }
 
-.form_input input[type='text'].activeline, .form_input select.activeline{font-size: 22px;background: #03A9F4;
-	width: calc(100% - 32px);margin-left: 32px;border-color: rgba(255,255,255,0.3);color: #FFFF00;}
+.form_titlepad{
+	padding: 12px 24px 12px 56px;
+	width: auto;
+}
+
+.form_input input[type='text'].activeline, .form_input select.activeline{
+	font-size: 22px;background: #03A9F4;
+	width: 100%;border-color: rgba(255,255,255,0.3);
+	margin-top: 0; 
+}
 
 .form_input input[type='text'].activeline:focus, .form_input select.activeline:focus{
 	border-bottom: 2px solid #FFFF00;
 	padding-bottom: 7px;
 }
 
-.form_input .activeline::-webkit-input-placeholder{color: rgba(255,255,255,0.5);}
-.form_input .activeline:-moz-placeholder{color: rgba(255,255,255,0.5);}
-.form_input .activeline::-moz-placeholder{color: rgba(255,255,255,0.5);}
-.form_input .activeline:-ms-input-placeholder{color: rgba(255,255,255,0.5);}
+.form_input label{
+	color: rgba(255,255,255,0.4); 
+ 	font-size: 22px;
+ 	font-weight: normal;
+ 	position: absolute;
+	pointer-events: none;
+	left: 0px;
+	top: 8px;
+	transition: 0.2s ease all; 
+	-moz-transition: 0.2s ease all; 
+	-webkit-transition: 0.2s ease all;
+}
+
+input.activeline:focus ~ label, input.activeline:valid ~ label{
+	font-size: 15px;
+	color: #FFFF00;
+	top: -15px;
+}

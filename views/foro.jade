@@ -15,9 +15,10 @@ block content
 				.colhh1.hb_formcontainer
 					form( name='forum_new' )
 						.form_innercontainer
-							.pd12_24.flat_shadow.bgprimary_color
-								.form_input.white_text
-									input.activeline.txtaccent_colorfall(type='text', placeholder='Titulo del tema')
+							.form_titlepad.flat_shadow.bgprimary_color
+								.form_input.white_text.rel_pos
+									input.activeline.white_text(type='text' required)
+									label Título del Tema
 							.pd_24
 								.form_input
 									.b_text.left_title Asignatura
@@ -44,18 +45,21 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid.bg_white
 				.halfgrid
-					.colhh1.bg_lightgray
+					.colhh1.topleftlist
 						.colhh1.list_title.rel_pos
-							.pd_18.ll_title Temas
-							span.title_rightoptionicon.circle(style='background-image: url("/images/list_icon.png")' title='Ordenar Por')
-								.minimenu_hidden.left_text
+							.title
+								.pd_18.ll_title Temas
+							.icons.rel_pos
+								.small_icon.circle.bg_magnify.hover(title='Buscar')
+								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/list_icon.png")' title='Mostrar')
+								.minimenu_hidden.left_text(style='top: 9px;')
 									#sort_alfa.pd_16.hover.rippleria-dark(data-rippleria) Alfabético
 									#sort_date.pd_16.hover.rippleria-dark(data-rippleria) Fecha
 									#sort_subject.pd_16.hover.rippleria-dark(data-rippleria) Asignatura
-						.colhh1
+						.colhh1.bg_lightgray
 							.search
 								span.searchicon
-								input#buscar(type='text',name='buscar', placeholder='Buscar un tema')
+								input#buscar(type='text' name='msm_chatsearch' placeholder='Buscar un Tema' autocomplete='off')
 					#listcontainer.autooverflow.left_listcontainer
 						.colhh1.no_result
 						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Magnetismo' data-date='28' data-type='Física')

@@ -17,9 +17,10 @@ block content
 				.colhh1.hb_formcontainer
 					form( name='forum_new' )
 						.form_innercontainer
-							.pd12_24.flat_shadow.bgprimary_color
-								.form_input.white_text
-									input.activeline.txtaccent_colorfall(type='text', placeholder='Nombre(s)' name='updateProfileUserName')
+							.form_titlepad.flat_shadow.bgprimary_color
+								.form_input.white_text.rel_pos
+									input.activeline.white_text(type='text' required)
+									label Nombres
 							.pd_24
 								.form_input
 									.b_text.left_title Apellidos
@@ -134,7 +135,7 @@ block content
 								.pd_4
 								.colhh1
 									.pd_l8.sl_title  Institución: 
-										span.margin_l.normal_txt #{datos[0].Institute_idInstitute}
+										span.margin_l.normal_txt #{datos[0].instituteName}
 									.pd_8
 									.pd_l8.sl_title  Asignaturas Inscritas: 
 										span.margin_l.normal_txt 6

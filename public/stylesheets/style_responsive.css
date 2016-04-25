@@ -8,14 +8,10 @@
 		top: 162px;
 	}
 
-	.top_pallete{
-		text-align: center;
-	}
-
 	.top_pallete .top_title{
 		font-size: 22px;
 		top: 20px;
-		padding-left: 0;
+		padding-top: 1px;
 	}
 
 	.top_pallete_inner{

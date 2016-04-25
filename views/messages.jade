@@ -90,18 +90,21 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid.bg_white
 				.halfgrid
-					.colhh1.bg_lightgray
+					.colhh1.topleftlist
 						.colhh1.list_title.rel_pos
-							.pd_18.ll_title Chats
-							span.title_rightoptionicon.circle(style='background-image: url("images/list_icon.png")' title='Mostrar')
-								.minimenu_hidden.left_text
+							.title
+								.pd_18.ll_title Inbox
+							.icons.rel_pos
+								.small_icon.circle.bg_magnify.hover(title='Buscar')
+								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/list_icon.png")' title='Mostrar')
+								.minimenu_hidden.left_text(style='top: 9px;')
 									.pd_16.hover.rippleria-dark(data-rippleria) Todo
 									.pd_16.hover.rippleria-dark(data-rippleria) No Leidos
 									.pd_16.hover.rippleria-dark(data-rippleria) Archivados
-						.colhh1
+						.colhh1.bg_lightgray
 							.search
 								span.searchicon
-								input#buscar(type='text',name='buscar', placeholder='Buscar un chat')
+								input#buscar(type='text' name='msm_chatsearch' placeholder='Buscar una conversación' autocomplete='off')
 					#listcontainer.autooverflow.left_listcontainer.listcontainer
 						.colhh1.empty_blocktext.center_text
 							.centerempty
