@@ -187,7 +187,8 @@ jQuery(document).on('ready' ,function(){
 	jQuery('.h_listindex').hide();
 	jQuery('.h_listindex.first').show();	
 
-	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').outerWidth() );
+	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').width() );
+	jQuery('.h_listitem.first').trigger('click');
 
 	if(jQuery(window).width() >= 1120){
 		jQuery('.mgmlisthor .h_listline').css('height' , jQuery('.mgmlisthor .h_listitem.first').outerHeight() );
@@ -339,7 +340,6 @@ jQuery(document).on('ready' ,function(){
 	if( jQuery(window).width() >= 1120 ){
 		jQuery('#listcontainer.left_listcontainer .listitem').first().trigger('click');
 		jQuery('.block_containersettings .listitem').first().trigger('click');
-		jQuery('.h_listitem.first').trigger('click');
 	}
 
 	function changeLetterColor(){
@@ -461,12 +461,16 @@ jQuery(document).on('ready' ,function(){
 		SEARCH BAR
 ---------------------------------------------------------------------------------------*/
 
+	jQuery('#show_searchbar').click(function(){
+		jQuery('.search input').focus();
+	});
+
 	jQuery('#buscar').keyup(function(){
 
 		jQuery('#listcontainer.listcontainer .empty_blocktext').hide();
 		var currentQuery = jQuery('#buscar').val().toUpperCase();
 		jQuery('#listcontainer .listitem').hide();
-		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + currentQuery + '"</b></div>');
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + jQuery('#buscar').val() + '"</b></div>');
 
 		if(currentQuery != ''){
 			jQuery('#listcontainer .listitem').each(function(){
@@ -493,7 +497,7 @@ jQuery(document).on('ready' ,function(){
 
 		var currentQuery = jQuery('#buscar_slide').val().toUpperCase();
 		jQuery('#listcontainer .slide_list').hide();
-		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + currentQuery + '"</b></div>');
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + jQuery('#buscar_slide').val() + '"</b></div>');
 
 		if(currentQuery != ''){
 			jQuery('#listcontainer .slide_list').each(function(){

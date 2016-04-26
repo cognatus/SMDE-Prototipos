@@ -45,19 +45,20 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid.bg_white
 				.halfgrid
-					.colhh1.topleftlist
-						.colhh1.list_title.rel_pos.bgaccent_color.white_text
+					.colhh1.topleftlist.rel_pos.bg_lightgray.flat_shadow
+						.colhh1.list_title.rel_pos
 							.title
 								.pd_18.ll_title Temas
 							.icons.rel_pos
-								.small_icon.circle.bg_magnify.hover(title='Buscar' style='background-image: url("images/magnify_white.png")')
-								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/list_icon_white.png")' title='Mostrar')
+								#show_searchbar.small_icon.circle.bg_magnify.hover(title='Buscar' )
+								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/list_icon.png")' title='Ordenar Por')
 								.minimenu_hidden.left_text(style='top: 9px;')
 									#sort_alfa.pd_16.hover.rippleria-dark(data-rippleria) Alfabético
 									#sort_date.pd_16.hover.rippleria-dark(data-rippleria) Fecha
 									#sort_subject.pd_16.hover.rippleria-dark(data-rippleria) Asignatura
-						.colhh1.bg_lightgray
-							.search
+						.colhh1
+							.search.s_type2.rel_pos
+								span.close_icon(title='Cerrar')
 								span.searchicon
 								input#buscar(type='text' name='msm_chatsearch' placeholder='Buscar un Tema' autocomplete='off')
 					#listcontainer.autooverflow.left_listcontainer
@@ -104,10 +105,10 @@ block content
 								.listitem_bottomdata Historia
 						.colhh1(style='height: 82px;')
 				.halfgrid.secondgrid
-					.msmtopname.bgprimary_colorDarker.white_text
+					.msmtopname.bg_lightgray
 						span#backicon.backicon.rippleria-dark( data-rippleria )
 						.letter.white_text.lighttext.circle
-						label.b_text Título Tema
+						label Título Tema
 						.minimenu_container( title='Opciones' )
 							.minimenu
 								span
@@ -132,6 +133,7 @@ block content
 												.colhh1
 													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
 
-						.colhh1.msminput
-							input( type='text' , name='newmsm' , placeholder='Escribe algo' )
+						form.colhh1.msminput(name='addNewForumComment')
+							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
+							input.bg_lightgray(type='text' , name='newmsm' , placeholder='Escribe algo' )
 							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='msmsend' , value='' )

@@ -51,7 +51,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 .bm_title{
 	font-size: 36px;
-	font-weight: bold;
+	font-weight: 500;
 }
 .mm_title{
 	font-size: 22px;
@@ -59,15 +59,15 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 .ml_title{
 	font-size: 20px;
-	font-weight: bold;
+	font-weight: 500;
 }
 .ll_title{
 	font-size: 15px;
-	font-weight: bold;
+	font-weight: 500;
 }
 .sl_title{
 	font-size: 14px;
-	font-weight: bold;
+	font-weight: 500;
 }
 
 .lighttext{font-weight: lighter;}
@@ -1108,22 +1108,23 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .left_listcontainer{
 	width: auto;
-	height: calc(100% - 121px);
+	height: calc(100% - 105px);
 }
 
 .list_title{width: auto;}
 
 .list_title .title{
 	display: inline-block;
-	width: calc(100% - 92px);
+	width: calc(100% - 98px);
 	vertical-align: middle;
 	line-height: 25px;
+	overflow: hidden;
 }
 
 .list_title .icons{
 	display: inline-block;
 	width: auto;
-	height: 36px;
+	height: 40px;
 	vertical-align: middle;
 }
 
@@ -1159,7 +1160,12 @@ span.title_rightoptionicon#settings_icon:hover{
 	height: 17px;
 	font-size: 15px;
 	position: relative;
+	font-weight: 500;
 }
+
+/*.msmtopname.bg_lightgray, .topleftlist.bg_lightgray{
+	background-color: #80D8FF;
+}*/
 
 .block_containersettings .msmtopname{
 	padding-top: 30px;
@@ -1192,7 +1198,7 @@ span.title_rightoptionicon#settings_icon:hover{
 }
 
 .msmtopname .minimenu span{
-	background-color: #fff;
+	background-color: #616161;
 }
 
 .msm_sendtocontainer{
@@ -1211,8 +1217,8 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .small_icon{
 	display: inline-block;
-	width: 36px;
-	height: 36px;
+	width: 40px;
+	height: 40px;
 	cursor: pointer;
 }
 
@@ -1287,10 +1293,12 @@ span.title_rightoptionicon#settings_icon:hover{
 
 .msm_innercontent{
 	width: 100%;
-	height: calc(100% - 63px);
+	height: calc(100% - 62px);
 	overflow: auto;
 	position: relative;
 	left: 0;
+	top: -1px;
+	box-shadow: inset 0px 1px 2px rgba(0,0,0,0.16);
 }
 
 .msminput{
@@ -1300,19 +1308,27 @@ span.title_rightoptionicon#settings_icon:hover{
 	z-index: 99;
 	display: block;
 	height: 62px;
-	background-color: #fff;
+}
+
+.msminput span{
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	margin: 0 6px 0 6px;
+	vertical-align: middle;
+	background-size: 28px;
+	cursor: pointer;
 }
 
 .msminput input[type='text']{
-	width: calc(100% - 104px);
-	height: 42px;
-	padding: 0 12px 0 12px;
-	margin: 10px;
-	margin-right: 12px;
-	margin-left: 12px;
-	background-color: transparent;
+	vertical-align: middle;
+	width: calc(100% - 156px);
+	height: 50px;
+	padding: 0 16px 0 8px;
+	margin: 6px;
 	border: none;
 	outline: none;
+	background-color: transparent;
 }
 
 .msminput input[type='submit']{
@@ -1489,19 +1505,17 @@ span.title_rightoptionicon#settings_icon:hover{
 	padding: 8px;
 }
 
-.search span.searchicon, .search span.searchicon_white{
-	width: 22px;
-	height: 22px;
+.search span.searchicon, .search span.close_icon{
+	width: 18px;
+	height: 18px;
 	position: absolute;
 	cursor: pointer;
-	left: 22px;top: 18.5px;
+	left: 27px;top: 17px;
 	opacity: 0.7;
 	background: url('/images/magnify.png') no-repeat center;
 	background-size: 100%;
 	display: block;
 }
-
-span.searchicon_white{background-image: url('/images/magnify_white.png');}
 
 /*---------------------------------------------------------------------------------------
 	FORM INPUTS
@@ -1512,13 +1526,14 @@ span.searchicon_white{background-image: url('/images/magnify_white.png');}
 	color: #616161;
 	border: none;
 	outline: none;
-	font-size: 15px;
+	font-size: 14px;
 	padding: 0 24px 0 56px;
-	height: 44px;
+	height: 36px;
 	margin: 0;
+	border-radius: 2px;
 	background-color: #fff;
-	border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;-o-border-radius: 3px;
 }
+.search.s_type2{margin-top: -8px;}
 
 .form_confirmblock{
 	width: 100%;
@@ -1961,10 +1976,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
 }
 
-.search input[type='text']{
-	box-shadow: 0px 1px 3px rgba(0,0,0,0.3);	
-}
-
 .msminput input[type='submit']:hover, .form_input span.submit:hover{
 	box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
 }
@@ -2034,6 +2045,10 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	color: rgba(255,255,255,0.7);
 }
 
+.dark_theme .msmtopname .minimenu span{
+	background-color: #e0e0e0;
+}
+
 .dark_theme .hover:hover{background-color: rgba(255,255,255,0.04);}
 
 .dark_theme .form_input input[type='text'], .dark_theme .form_input input[type='email'],
@@ -2057,7 +2072,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme .minimenu_hidden{color: #e0e0e0;background-color: #212121;}
 
-.dark_theme .search span.searchicon, .search span.searchicon_white{
+.dark_theme .search span.searchicon{
 	background-image: url('/images/magnify_white.png');
 }
 
@@ -2103,6 +2118,20 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	border-bottom: 2px solid #FFFF00;
 	padding-bottom: 7px;
 }
+
+/*.search.s_type2 input[type='text']{
+	color: #fff;
+	background-color: rgba(0,0,0,0.08);
+}
+
+.search.s_type2 input[type='text']::-webkit-input-placeholder{color: rgba(255,255,255,0.6);}
+.search.s_type2 input[type='text']::-moz-placeholder{color: rgba(255,255,255,0.6);}
+.search.s_type2 input[type='text']::-ms-input-placeholder{color: rgba(255,255,255,0.6);}
+.search.s_type2 input[type='text']:-moz-placeholder{color: rgba(255,255,255,0.6);}
+
+.search.s_type2 span.searchicon{
+	background-image: url("/images/magnify_white.png");
+}*/
 
 .form_input .activeline ~ label{
 	color: rgba(255,255,255,0.4); 

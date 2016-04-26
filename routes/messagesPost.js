@@ -8,14 +8,14 @@ exports.constructor = function (basee) {
 exports.insertLobby = function(req, res){
 
 	var now = new Date();
-	var dd = now.getUTCDate();
-	var mm = now.getUTCMonth() + 1;
-	var yyyy = now.getUTCFullYear();
-	var hh = now.getUTCHours();
-	var min = now.getUTCMinutes();
-	var sec = now.getUTCSeconds();
-	var milsec = now.getUTCMilliseconds();
-	var time = dd + '' + mm + '' + yyyy + '' + hh + '' + min + '' + sec + '' + milsec;
+	var dd = now.getDate();
+	var mm = now.getMonth() + 1;
+	var yyyy = now.getFullYear();
+	var hh = now.getHours();
+	var min = now.getMinutes();
+	var sec = now.getSeconds();
+	var milsec = now.getMilliseconds();
+	var time = dd + '' + mm + '' + yyyy + '_' + hh + '' + min + '' + sec + '' + milsec;
 
 	var database = new base();
 	var stringQuery2 = '';
@@ -29,11 +29,11 @@ exports.insertLobby = function(req, res){
 	usersArray.pop();
 	usersArray.push(owner);
 
-	var uniqueId = 'L088Y_' + Math.floor((Math.random() * 596501699) + 16985689) + '_' + time;
+	var uniqueId = 'l0b8Y' + Math.floor((Math.random() * 596501699) + 16985689) + '-' + time;
 
 	stringQuery = 'BEGIN;';
 
-	stringQuery += 'INSERT INTO Lobby (idLobby) VALUES ("' + uniqueId + '");';
+	stringQuery += 'INSERT INTO Lobby (idLobby, lobbyLastUpdate) VALUES ("' + uniqueId + '", NOW());';
 
 	for ( var i = 0; i < usersArray.length; i++ ) {
 			stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
@@ -71,7 +71,10 @@ exports.insertLobby = function(req, res){
 exports.getLobbiesDatabase = function(req, res){
 	var database = new base();
 
-	stringQuery = 'SELECT idLobby, group_concat(User_userEmail separator ", ") AS participantsEmails, group_concat(userName, " ", userLastName separator ", ") AS participantsNames '
+	stringQuery = 'SELECT idLobby, DATE_FORMAT(lobbyLastUpdate, "%d/%m/%Y") AS lobbyDate,'
+				+ ' DATE_FORMAT(lobbyLastUpdate, "%H:%i") AS lobbyHour,'
+				+ ' group_concat(User_userEmail separator ", ") AS participantsEmails,'
+				+ ' group_concat(userName, " ", userLastName separator ", ") AS participantsNames '
 				+ ' FROM user_has_lobby AS uhl '
 				+ ' INNER JOIN User AS u '
 				+ ' 	ON u.userEmail = uhl.User_userEmail '
@@ -84,12 +87,33 @@ exports.getLobbiesDatabase = function(req, res){
 				+ '       	WHERE User_userEmail = "' + req.session.datos[0].userEmail + '" '
 				+ '   	) '
 				+ ' AND User_userEmail != "' + req.session.datos[0].userEmail + '"  '
-				+ ' GROUP BY Lobby_idLobby; '
+				+ ' GROUP BY Lobby_idLobby; ';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			lobbyData = result;
 			res.send(lobbyData);
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.send('Error');
+		}
+	});
+};
+
+//FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
+exports.getSelectedLobby = function(req, res){
+	var database = new base();
+
+	var lobbyId //Con lo que se obtendra la lobby seleccionada;
+
+	stringQuery = 'SELECT * '
+				+ ' FROM Message '
+				+ ' WHERE Lobby_idLobby = "' + lobbyId + '"; ';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			selectedLobbyData = result;
+			res.send(selectedLobbyData);
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.send('Error');
