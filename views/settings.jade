@@ -8,7 +8,7 @@ block content
 				.halfgrid.autooverflow.v_top
 					.colhh1
 						.colhh1.block_container.bg_white(style='margin-top: 0;')
-							.colhh1.border_bottom
+							.colhh1.border_bottom.bg_lightgray
 								.pd_18.ll_title General
 							.colhh1
 								.colhh1.hover.listitem.settingsitem.rippleria-dark(data-rippleria data-name='Correo Electrónico')
@@ -18,7 +18,7 @@ block content
 									.pd_18
 										| Contraseña
 						.colhh1.block_container.bg_white
-							.colhh1.border_bottom
+							.colhh1.border_bottom.bg_lightgray
 								.pd_18.ll_title Seguridad
 							.colhh1
 								.colhh1.hover.listitem.settingsitem.rippleria-dark(data-rippleria data-name='Sesiones Activas')
@@ -28,7 +28,7 @@ block content
 									.pd_18
 										| Alerta de Inicio de Sesión
 						.colhh1.block_container.bg_white
-							.colhh1.border_bottom
+							.colhh1.border_bottom.bg_lightgray
 								.pd_18.ll_title Notificaciones
 							.colhh1
 								.colhh1.hover.listitem.settingsitem.rippleria-dark(data-rippleria data-name='En Aplicación')
@@ -41,7 +41,7 @@ block content
 									.pd_18
 										| Mensaje de Texto (SMS)
 						.colhh1.block_container.bg_white
-							.colhh1.border_bottom
+							.colhh1.border_bottom.bg_lightgray
 								.pd_18.ll_title Interfaz
 							.colhh1
 								.colhh1.hover.listitem.settingsitem.rippleria-dark(data-rippleria data-name='Tema')
@@ -53,10 +53,10 @@ block content
 
 				.halfgrid.secondgrid.v_top
 					.block_container.bg_white(style='margin-top: 0;')
-						.msmtopname
+						.msmtopname.bg_lightgray.border_bottom
 							span#backicon.backicon.rippleria-dark( data-rippleria )
 							.letter.white_text.lighttext.circle
-							label.b_text Configuración
+							label Configuración
 						.colhh1.settings_rightinner
 							.colhh1.settings_inneritem
 								form(name='settingsform_updateEmail') 
@@ -97,11 +97,11 @@ block content
 												input(type='submit' value='')
 							.colhh1.settings_inneritem
 								.pd_12
-								.pd_l24.ll_title.opacity_color Sesión Actual
+								.pd_lr18.ll_title.opacity_color Sesión Actual
 								.pd_4
 								#settings_actualsession.colhh1
 									.colhh1.slide_list
-										.pd_l12.hover.listitem.rippleria-dark(data-rippleria)
+										.pd_lr8.hover.listitem.rippleria-dark(data-rippleria)
 											.listitem_img
 												span A
 											.listitem_info
@@ -114,11 +114,11 @@ block content
 												span.raised_button.flat_shadow.bg_red.borad.right_float(data-rippleria)
 													input.white_text(type='submit' value='Terminar Actividad')
 								.pd_8
-								.pd_l24.ll_title.opacity_color Otras
+								.pd_lr18.ll_title.opacity_color Otras
 								.pd_4
 								#settings_othersession.colhh1
 									.colhh1.slide_list
-										.pd_l12.hover.listitem.rippleria-dark(data-rippleria)
+										.pd_lr8.hover.listitem.rippleria-dark(data-rippleria)
 											.listitem_img
 												span A
 											.listitem_info
@@ -131,7 +131,7 @@ block content
 												span.raised_button.flat_shadow.bg_red.borad.right_float(data-rippleria)
 													input.white_text(type='submit' value='Terminar Actividad')
 									.colhh1.slide_list
-										.pd_l12.hover.listitem.rippleria-dark(data-rippleria)
+										.pd_lr8.hover.listitem.rippleria-dark(data-rippleria)
 											.listitem_img
 												span A
 											.listitem_info
@@ -177,11 +177,11 @@ block content
 												span.circle
 													span.circle
 												.autocol.v_middle No recibir Notificaciones
-									.pd_16(style='height: 48px;')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txt_red.b_text(type='button' value='Cancelar')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color3.b_text(type='submit' value='Guardar Cambios')
+									.pd_24(style='height: 48px;')
+										span.raised_button.bg_red.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='button' value='Cancelar')
+										span.raised_button.bg_blue.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='submit' value='Guardar Cambios')
 							.colhh1.settings_inneritem
 								form(name='settingsNotificationsApp')
 									.pd_32
@@ -207,11 +207,11 @@ block content
 												span.circle
 													span.circle
 												.autocol.v_middle No recibir Notificaciones
-									.pd_16(style='height: 48px;')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txt_red.b_text(type='button' value='Cancelar')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color3.b_text(type='submit' value='Guardar Cambios')
+									.pd_24(style='height: 48px;')
+										span.raised_button.bg_red.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='button' value='Cancelar')
+										span.raised_button.bg_blue.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='submit' value='Guardar Cambios')
 							.colhh1.settings_inneritem
 								form(name='settingsNotificationsMail')
 									.pd_32
@@ -237,11 +237,11 @@ block content
 												span.circle
 													span.circle
 												.autocol.v_middle No recibir Notificaciones
-									.pd_16(style='height: 48px;')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txt_red.b_text(type='button' value='Cancelar')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color3.b_text(type='submit' value='Guardar Cambios')
+									.pd_24(style='height: 48px;')
+										span.raised_button.bg_red.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='button' value='Cancelar')
+										span.raised_button.bg_blue.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='submit' value='Guardar Cambios')
 							.colhh1.settings_inneritem
 								form(name='settingsNotificationsMail')
 									.pd_32
@@ -267,11 +267,11 @@ block content
 												span.circle
 													span.circle
 												.autocol.v_middle No recibir Notificaciones
-									.pd_16(style='height: 48px;')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txt_red.b_text(type='button' value='Cancelar')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color3.b_text(type='submit' value='Guardar Cambios')
+									.pd_24(style='height: 48px;')
+										span.raised_button.bg_red.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='button' value='Cancelar')
+										span.raised_button.bg_blue.flat_shadow.borad.right_float.rippleria-dark(data-rippleria)
+											input.white_text.b_text(type='submit' value='Guardar Cambios')
 							.colhh1.settings_inneritem
 
 								form(name='formDesignTheme' id='formDesignTheme' method='post' action='setProfileTheme')

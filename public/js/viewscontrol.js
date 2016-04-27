@@ -470,7 +470,7 @@ jQuery(document).on('ready' ,function(){
 		jQuery('#listcontainer.listcontainer .empty_blocktext').hide();
 		var currentQuery = jQuery('#buscar').val().toUpperCase();
 		jQuery('#listcontainer .listitem').hide();
-		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + jQuery('#buscar').val() + '"</b></div>');
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para "' + jQuery('#buscar').val() + '"</div>');
 
 		if(currentQuery != ''){
 			jQuery('#listcontainer .listitem').each(function(){
@@ -497,7 +497,7 @@ jQuery(document).on('ready' ,function(){
 
 		var currentQuery = jQuery('#buscar_slide').val().toUpperCase();
 		jQuery('#listcontainer .slide_list').hide();
-		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: <b>"' + jQuery('#buscar_slide').val() + '"</b></div>');
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para "' + jQuery('#buscar_slide').val() + '"</div>');
 
 		if(currentQuery != ''){
 			jQuery('#listcontainer .slide_list').each(function(){

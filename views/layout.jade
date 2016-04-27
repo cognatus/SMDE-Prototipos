@@ -97,9 +97,9 @@ html
 				.notifications_hidden.flat_shadow.bg_lightgray
 					.colhh1.center_text.rel_pos.border_bottom
 						.bg_lightgray
-							.pd_12.ll_title Notificaciones
-							a(href='/settings')
-								span#settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings.png")' title='Configuración')
+							.pd_12.ll_title.notif_title Notificaciones
+								a(href='/settings' title='Ajustes')
+									span#notif_settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings.png")' title='Configuración')
 					.colhh1.notifscroll.listcontainer
 						.colhh1.empty_blocktext.center_text
 							.centerempty
@@ -107,14 +107,14 @@ html
 									span.v_middle(style= 'background-image: url("images/bell-off.png")')
 									.autocol.mm_title.pd_12 No tienes notificaciones.
 									.ll_title.normal_txt Tus notificaciones apareceran aqui.
-						.colhh1.notif_listcontainer
-							.colhh1.hover.rippleria-dark(data-rippleria)
-								.listitem_img
-									span A
-								.listitem_info
-									.listitem_rightinfo 10 sep
-									.listitem_title 
-										b Titulo de Notificación
-									.listitem_bottomdata Vista previa de notificación
+						//- .colhh1.notif_listcontainer
+						//- 	.colhh1.hover.rippleria-dark(data-rippleria)
+						//- 		.listitem_img
+						//- 			span A
+						//- 		.listitem_info
+						//- 			.listitem_rightinfo 10 sep
+						//- 			.listitem_title 
+						//- 				b Titulo de Notificación
+						//- 			.listitem_bottomdata Vista previa de notificación
 
 			block content

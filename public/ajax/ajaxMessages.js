@@ -45,7 +45,7 @@ jQuery(document).on('ready', function(){
         var currentQuery = jQuery('#search_newmsmcontacts').val().toUpperCase();
 
         jQuery('#msm_contactscontainer .listitem').hide();
-        jQuery('#msm_contactscontainer .no_result').html('<div class="pd_24">No se encontro: <b>"' + currentQuery + '"</b></div>');
+        jQuery('#msm_contactscontainer .no_result').html('<div class="pd_24">No se encontro "' + jQuery('#search_newmsmcontacts').val() + '"</div>');
             
         if(currentQuery != ''){
             jQuery('#msm_contactscontainer .listitem').each(function(){

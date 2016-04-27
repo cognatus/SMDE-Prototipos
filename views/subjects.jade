@@ -116,14 +116,15 @@ block content
 			.grid_rightcontainer
 				- if ( privilegio == 1 )
 					.colhh1.block_container.bg_white
-						.pd_16.bg_lightgray
-							.ll_title Mis asignaturas
+						.colhh1.bg_lightgray.border_bottom
+							.pd_18.ll_title Mis asignaturas
 						.colhh1
 							#subjects_list.listcontainer
 								.colhh1.empty_blocktext.center_text
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/close-box.png")')
-										.autocol.pd_12.mm_title No tienes ninguna asignatura.
+										.autocol.pd_12.mm_title Sin cursos.
+										.ll_title.normal_txt Presiona &nbsp; + &nbsp; para inscribir cursos
 								if subjectsProfileData != undefined
 									each item in subjectsProfileData
 										.colhh1.slide_list
@@ -135,10 +136,12 @@ block content
 														label.subject_prom
 													.listitem_title 
 														b #{item.subjectName}
-													.listitem_bottomdata.rank
-														//- - var count = #{item.subjectLevel}
-														//- - for(var i = 0; i < count; i++)
-															//- span.bg_blue
+													.listitem_bottomdata.rank(title='Nivel #{item.subjectLevel}')
+														script.
+															var level = #{item.subjectLevel};
+															for(var i = 0; i < level; i++){
+																document.write('<span class="bg_blue"></span>');
+															}
 											.colhh1.innerlistitem
 												.colhh1.border_bottom
 													.list_borderleft
@@ -182,12 +185,12 @@ block content
 															label.subject_prom
 														.listitem_title 
 															b #{item.subjectName}
-														.listitem_bottomdata.rank
-															span.bg_blue
-															span.bg_blue
-															span.bg_blue
-															span.bg_blue
-															span.bg_blue
+														.listitem_bottomdata.rank(title='Nivel #{item.subjectLevel}')
+															script.
+																var level = #{item.subjectLevel};
+																for(var i = 0; i < level; i++){
+																	document.write('<span class="bg_blue"></span>');
+																}
 												.colhh1.innerlistitem
 													.colhh1.border_bottom
 														.list_borderleft
@@ -208,7 +211,7 @@ block content
 																.pd_llist
 																	.sl_title Alumnos
 							#contacts_list.colhh1.h_listindex
-								.colhh1.bg_lightgray
+								.colhh1.bg_lightgray.border_bottom
 									.search.rel_pos
 										span.searchicon
 										input#buscar_slide(type='text',name='buscar', placeholder='Buscar un alumno')
@@ -222,7 +225,7 @@ block content
 											.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
 												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria)
 													a(href='/messages')
-														.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
+														.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Calificar')
 													.listitem_img
 														img(src='images/profilephoto.png')
 													.listitem_info

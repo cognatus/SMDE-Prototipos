@@ -30,44 +30,45 @@ block content
 										//- 	img.sendtoimg.circle.v_middle(src='images/profilephoto.png')
 										//- 	.name.circle.bg_lightgray.opacity_color.v_middle Alejandro Villarroel
 										#msm_addperson.small_icon.circle.v_middle.bg_plusgray.hover.rippleria-dark(data-rippleria title='Añadir Persona')
-									#msm_contactscontainer.colhh1.bg_lightgray.autooverflow.flat_shadow
-										.colhh1.txtprimary_color.sl_title.msm_contactstitle
+									#msm_contactscontainer.colhh1.bg_white.flat_shadow
+										.colhh1.sl_title.msm_contactstitle.bg_lightgray(style='border-bottom: 1px solid rgba(0,0,0,0.1);')
 											#showall_button.pd_12.autooverflow
 												.right_float Mostrar Todos
-										.colhh1.no_result
-										.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
-											.pd_12 Administradores
-										if profileContactsAdministrators != undefined
-											each item in profileContactsAdministrators
-												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Administrador')
-													.listitem_img
-														img(src='images/profilephoto.png')
-													.listitem_info
-														.listitem_title 
-															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-														.listitem_bottomdata #{item.userEmail}
-										.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Alumno')
-											.pd_12 Alumnos
-										if profileContactsStudents != undefined
-											each item in profileContactsStudents
-												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Alumno')
-													.listitem_img
-														img(src='images/profilephoto.png')
-													.listitem_info
-														.listitem_title 
-															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-														.listitem_bottomdata #{item.userEmail}
-										.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Profesor')
-											.pd_12 Profesores
-										if profileContactsTeachers != undefined
-											each item in profileContactsTeachers
-												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Profesor')
-													.listitem_img
-														img(src='images/profilephoto.png')
-													.listitem_info
-														.listitem_title 
-															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-														.listitem_bottomdata #{item.userEmail}
+										.inner_block
+											.colhh1.no_result
+											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
+												.pd_12.bg_lightgray Administradores
+											if profileContactsAdministrators != undefined
+												each item in profileContactsAdministrators
+													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Administrador')
+														.listitem_img
+															img(src='images/profilephoto.png')
+														.listitem_info
+															.listitem_title 
+																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.listitem_bottomdata #{item.userEmail}
+											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Alumno')
+												.pd_12.bg_lightgray Alumnos
+											if profileContactsStudents != undefined
+												each item in profileContactsStudents
+													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Alumno')
+														.listitem_img
+															img(src='images/profilephoto.png')
+														.listitem_info
+															.listitem_title 
+																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.listitem_bottomdata #{item.userEmail}
+											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Profesor')
+												.pd_12.bg_lightgray Profesores
+											if profileContactsTeachers != undefined
+												each item in profileContactsTeachers
+													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Profesor')
+														.listitem_img
+															img(src='images/profilephoto.png')
+														.listitem_info
+															.listitem_title 
+																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.listitem_bottomdata #{item.userEmail}
 
 								.form_input2
 									textarea#msm_textarea(placeholder='Escribe Algo' name='insertNewLobbyMsm')
@@ -90,7 +91,7 @@ block content
 		.colhh1.bdb_container.block_containermsm
 			.doublegrid.bg_white
 				.halfgrid
-					.colhh1.topleftlist.rel_pos.bg_lightgray.flat_shadow
+					.colhh1.topleftlist.rel_pos.bg_lightgray.border_bottom
 						.colhh1.list_title.rel_pos
 							.title
 								.pd_18.ll_title Inbox
@@ -109,13 +110,13 @@ block content
 						.colhh1.empty_blocktext.center_text
 							.centerempty
 								.pd_64
-									span.v_middle(style= 'background-image: url("images/bell-off.png")')
+									span.v_middle(style= 'background-image: url("images/close-box.png")')
 									.autocol.mm_title.pd_12 No tienes ninguna Conversación.
 									.ll_title.normal_txt Presiona &nbsp; + &nbsp; para iniciar una conversación.
 						.colhh1.no_result
 						if lobbyData != undefined
 							each item in lobbyData
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.participantsNames}' data-type='#{item.lobbyLastUpdate}' onclick='selectLobby("#{item.idLobby}")' title='#{item.participantsEmails}\n#{item.participantsNames}')
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.participantsNames}' data-type='#{item.lobbyDate}' onclick='selectLobby("#{item.idLobby}")')
 									.listitem_img
 										img(src='images/profilephoto.png')
 									.listitem_info.border_bottom
@@ -123,9 +124,8 @@ block content
 											label #{item.lobbyDate}
 											label  #{item.lobbyHour}
 										.listitem_title 
-											b #{item.participantsNames}
+											b(title='#{item.participantsEmails}\n#{item.participantsNames}') #{item.participantsNames}
 										.listitem_bottomdata  Lorem ipsum dolor sit amet
-							.colhh1(style='height: 82px;')
 						//- if profileContactsAdministrators != undefined
 						//- 	each item in profileContactsAdministrators
 						//- 		.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='24 Feb' onclick='elegirUser("#{item.userEmail}")')
@@ -215,7 +215,7 @@ block content
 														span.msm_date 10:34 pm
 										.msm_img
 											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
-						form.colhh1.msminput(name='addNewMsms' onsubmit='sendNewMessage()')
+						form.colhh1.msminput.bg_white(name='addNewMsms' onsubmit='sendNewMessage()')
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
 							input.bg_lightgray( type='text' , name='newmsm', id='newmsm' , placeholder='Mensaje' )
 							input.bgaccent_color.circle.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='')

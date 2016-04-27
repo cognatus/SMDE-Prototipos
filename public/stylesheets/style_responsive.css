@@ -4,14 +4,11 @@
 
 	.colhh4{width: 50%;display: inline-block;}
 
-	.float_buttoncontainer{
-		top: 162px;
-	}
-
 	.top_pallete .top_title{
 		font-size: 22px;
 		top: 20px;
 		text-align: center;
+		padding: 0;
 	}
 
 	.top_pallete_inner{
@@ -20,7 +17,7 @@
 	}
 
 	.page_container{
-		width: calc(100% - 220px);
+		width: calc(100% - 200px);
 		margin: 0 auto;
 	}
 
@@ -250,13 +247,11 @@
 		width: auto;
 		font-weight: normal;
 		text-transform: none;
-		border-bottom: 1px solid rgba(0,0,0,0.04);
-		color: #212121;
+		font-size: 16px;
 	}
 	
 	.dark_theme .mgmlisthor .h_listitem{
-		border-color: rgba(255,255,255,0.04);
-		color: #fafafa;
+		color: #bdbdbd;
 	}
 
 	.mgmlisthor .h_listitem.b_text{font-weight: bold;}
