@@ -65,8 +65,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 		socket.in(socket.room).emit('mostrar', {
 				//le envias lo que tu quieras 
                 mensaje: data
-
-            });
+		});
 
 	});
 

@@ -349,6 +349,42 @@ socket.on('mostrar', function(data){
     //aqui es donde haras que se haga en tiempo real
     //solo es cosa que le pongas las cosas de etiquetas y así para que se muestr
     //pueste que basicamente ya todo se hace en tiempo real
+
+    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+    //LA VARIABLE sessionUser SE OBTIENE DE LA VISTA messages.jade
+    if(lastRightMsm > 0){
+        container.find('.msm_block:last-child').find('.msm_text')
+            .append('<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+                    +   '<div class="rightmsm bg_white">'
+                    +       '<div class="pd_12"> '
+                    +           msm.messageText
+                    +           '<span class="msm_date">'
+                    +               '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                    +           '</span>'
+                    +       '</div>'
+                    +   '</div>'
+                    +'</div>');
+    }
+    else{
+        container.append('<div class="colhh1 margin_bot msm_block">'
+                        +   '<div class="msm_text">'
+                        +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+                        +           '<div class="rightmsm bg_white">'
+                        +               '<i></i>'
+                        +               '<div class="pd_12"> '
+                        +                   msm.messageText
+                        +                   '<span class="msm_date">'
+                        +                       '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                        +                   '</span>'
+                        +               '</div>'
+                        +           '</div>'
+                        +       '</div>'
+                        +   '</div>'
+                        +   '<div class="msm_img">'
+                        +       '<img src="images/profilephoto.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
+                        +   '</div>'
+                        + '</div>');
+    }
     alert(data.mensaje);
 
 });
