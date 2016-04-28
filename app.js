@@ -58,6 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 		console.log('Sala ' + socket.room)
 	})
 
+ 	//Paso 2.
 	socket.on('mensaje', function(data){//recibe lo que quieras
 
 		console.log('mensaje ' + socket.room)
