@@ -72,8 +72,8 @@ exports.insertLobby = function(req, res){
 exports.insertNewMessage = function(req, res){
 	var database = new base();
 
-	var lobby = req.body.lobbyField;
-	var msmText = req.body.addNewMsmField;
+	var lobby = req.query.lobby;
+	var msmText = req.query.message;
 
 	stringQuery = 'BEGIN;'
 

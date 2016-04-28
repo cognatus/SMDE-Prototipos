@@ -65,13 +65,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 		//esta linea dice que va a emitir un evento mostrar en la sala especifica
 		socket.in(socket.room).emit('mostrar', {
 				//le envias lo que tu quieras
-				emisor: data.userEmail,
-				emisorName: data.userName,
-				emisorLastName: data.userLastName,
+				userEmail: data.userEmail,
+				userName: data.userName,
+				userLastName: data.userLastName,
 				idMessage: data.idMessage,
-                mensaje: data.messageText,
-                fecha: data.messageDate,
-                hora: data.messageTime
+                messageText: data.messageText,
+                messageDate: data.messageDate,
+                messageTime: data.messageTime
 		});
 
 	});

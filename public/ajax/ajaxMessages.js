@@ -1,4 +1,3 @@
-
 var socket = io('http://localhost:3000/chatsini');
 
 jQuery(document).on('ready', function(){
@@ -316,27 +315,31 @@ function selectLobby(lobby){
             alert('error ' + textStatus + " " + errorThrown);
         }
     });
-}
 
-function sendNewMessage(){
-
-    //Paso 1.
-    //aqui solo le mandas el mensaje y/o demas informacion que gustes
-    socket.emit('mensaje', addNewMsm.newmsm.value);
-
-    //Mejor aqui para poder ejecutar bien las funciones de sql
-    jQuery.ajax({
-        method: 'POST',
-        url: 'insertNewMessage',
-        cache: true,
-        success: function(data) {
-            jQuery('#msm_contactscontainer').append(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
-        }
+    jQuery('form.msminput').submit(function(){
+        //Paso 1.
+        //aqui solo le mandas el mensaje y/o demas informacion que gustes
+        var msm = jQuery('#newmsm').val();
+        var lobby = jQuery('#lobbyScope').val();
+        jQuery.ajax({
+            method: 'POST',
+            url: 'insertNewMessage',
+            cache: true,
+            data: {
+                message: msm
+                lobby: lobby
+            },
+            success: function(data) {
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });
+        socket.emit('mensaje', msm);
+        jQuery('#newmsm').val('');
+        return false;
     });
-
 }
 
 
