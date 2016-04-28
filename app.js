@@ -49,19 +49,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
  	})*/
 
+ 	//el id que le pasas se lo mandas desde el front, puede ser cualquier cosa
  	socket.on('cambiarsala', function(data){
-		socket.leave(socket.room);
-		socket.room = data;
-		socket.join(data);
+		socket.leave(socket.room);//deja la sala actual
+		socket.room = data;//especificas la sala
+		socket.join(data);//te unes a la sala
  		console.log('YAY!!! si cambio :D')
 		console.log('Sala ' + socket.room)
 	})
 
-	socket.on('mensaje', function(data){
+	socket.on('mensaje', function(data){//recibe lo que quieras
 
 		console.log('mensaje ' + socket.room)
+		//esta linea dice que va a emitir un evento mostrar en la sala especifica
 		socket.in(socket.room).emit('mostrar', {
-
+				//le envias lo que tu quieras 
                 mensaje: data
 
             });

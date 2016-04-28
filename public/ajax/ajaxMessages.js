@@ -336,12 +336,19 @@ function selectLobby(lobby){
 
 function sendNewMessage(){
 
+    //aqui solo le mandas el mensaje o demas informacion que gustes
     socket.emit('mensaje', addNewMsm.newmsm.value);
 
 }
 
 socket.on('mostrar', function(data){
 
+    //este es el importante
+    //lo que enviaste del back en socket.in(socket.room).emit('mostrar', {
+    //lo vas a estar reccibiendo en este metodo
+    //aqui es donde haras que se haga en tiempo real
+    //solo es cosa que le pongas las cosas de etiquetas y así para que se muestr
+    //pueste que basicamente ya todo se hace en tiempo real
     alert(data.mensaje);
 
 });
