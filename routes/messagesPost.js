@@ -51,8 +51,9 @@ exports.insertLobby = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log('Nueva sala creada correctamente con ' + usersArray.length + ' Usuarios');
-			console.log(stringQuery);
+			/*console.log('Nueva sala creada correctamente con ' + usersArray.length + ' Usuarios');
+			console.log(stringQuery);*/
+			res.redirect('/messages');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
@@ -63,6 +64,39 @@ exports.insertLobby = function(req, res){
 					backUrl: '/subjects'
 				}
 			});
+		}
+	});
+};
+
+//FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
+exports.insertNewMessage = function(req, res){
+	var database = new base();
+
+	var lobby = req.body.lobbyField;
+	var msmText = req.body.addNewMsmField;
+
+	stringQuery = 'BEGIN;'
+
+	stringQuery += 'INSERT INTO MESSAGE (idMessage, messageText, messageDateTime, Lobby_idLobby, User_userEmail)'
+				+ ' VALUES '
+				+ ' (UUID(),'
+				+ ' "' + msmText + '",'
+				+ ' NOW(),'
+				+ ' "' + lobby + '",'
+				+ ' "' + req.session.datos[0].userEmail + '");';
+
+	stringQuery += 'UPDATE Lobby SET lobbyLastUpdate = NOW()'
+				+ ' WHERE idLobby = "' + lobby + '";';
+
+	stringQuery += 'COMMIT;'
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log(stringQuery);
+			res.redirect('/messages');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.send('Error');
 		}
 	});
 };
@@ -87,7 +121,8 @@ exports.getLobbiesDatabase = function(req, res){
 				+ '       	WHERE User_userEmail = "' + req.session.datos[0].userEmail + '" '
 				+ '   	) '
 				+ ' AND User_userEmail != "' + req.session.datos[0].userEmail + '"  '
-				+ ' GROUP BY Lobby_idLobby; ';
+				+ ' GROUP BY Lobby_idLobby'
+				+ ' ORDER BY lobbyLastUpdate DESC;'
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -101,14 +136,20 @@ exports.getLobbiesDatabase = function(req, res){
 };
 
 //FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
-exports.getSelectedLobby = function(req, res){
+exports.getSelectedLobbyMessages = function(req, res){
 	var database = new base();
 
-	var lobbyId //Con lo que se obtendra la lobby seleccionada;
+	var lobby = req.query.lobby;
 
-	stringQuery = 'SELECT * '
-				+ ' FROM Message '
-				+ ' WHERE Lobby_idLobby = "' + lobbyId + '"; ';
+	stringQuery = 'SELECT idMessage, messageText,'
+				+ ' 	DATE_FORMAT(messageDateTime, "%d/%m/%Y") AS messageDate,'
+				+ ' 	DATE_FORMAT(messageDateTime, "%H:%i") AS messageTime,'
+				+ ' 	messageStatus, userEmail, userName, userLastName'
+				+ ' FROM Message AS m '
+				+ ' INNER JOIN USER AS u '
+				+ ' 	ON u.userEmail = m.User_userEmail '
+				+ ' WHERE Lobby_idLobby = "' + lobby + '" '
+				+ ' ORDER BY messageDateTime ASC;';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {

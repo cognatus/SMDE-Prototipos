@@ -230,8 +230,9 @@ app.post('/insertSubjectsCoursesSelfUser', subjectsPost.insertSubjectsCoursesSel
 
 //Todo lo referente a la mensajeria
 app.post('/insertLobby', messagesPost.insertLobby);
+app.post('/insertNewMessage', messagesPost.insertNewMessage);
 app.get('/getLobbiesDatabase', messagesPost.getLobbiesDatabase);
-app.get('/getSelectedLobby', messagesPost.getSelectedLobby);
+app.get('/getSelectedLobbyMessages', messagesPost.getSelectedLobbyMessages);
 
 http.listen(app.get('port'), function(){
 	var base = new databaseInstance();

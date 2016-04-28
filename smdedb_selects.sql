@@ -189,3 +189,13 @@ SELECT idLobby, group_concat(User_userEmail separator ', ') AS participantsEmail
     )
     AND User_userEmail != 'alejandrodnl.cv@hotmail.com' 
     GROUP BY Lobby_idLobby;
+
+
+-- Consulta para los mensajes
+SELECT idMessage, messageText,
+	DATE_FORMAT(messageDateTime, "%d/%m/%Y") AS messageDate,
+	DATE_FORMAT(messageDateTime, "%H:%i") AS messageTime,
+	messageStatus, userEmail, userName
+FROM Message AS m
+	INNER JOIN USER AS u 
+		ON u.userEmail = m.User_userEmail;

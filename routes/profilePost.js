@@ -10,7 +10,7 @@ exports.setProfileTheme = function(req, res){
 	var theme = req.session.datos[0].darkTheme;
 
 	if(theme == 0){
-		stringQuery = 'UPDATE User SET darkTheme=1'
+		stringQuery = 'UPDATE User SET darkTheme = 1'
 			+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";' ;
 		req.session.datos[0].darkTheme = 1;
 	}
