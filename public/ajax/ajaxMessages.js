@@ -326,7 +326,7 @@ function selectLobby(lobby){
             url: 'insertNewMessage',
             cache: true,
             data: {
-                message: msm
+                message: msm,
                 lobby: lobby
             },
             success: function(data) {
