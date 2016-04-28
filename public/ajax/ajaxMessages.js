@@ -336,11 +336,14 @@ function selectLobby(lobby){
 
 function sendNewMessage(){
 
-    //aqui solo le mandas el mensaje o demas informacion que gustes
+    //Paso 1.
+    //aqui solo le mandas el mensaje y/o demas informacion que gustes
     socket.emit('mensaje', addNewMsm.newmsm.value);
 
 }
 
+
+//Paso 3.
 socket.on('mostrar', function(data){
 
     //este es el importante
