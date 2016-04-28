@@ -181,7 +181,7 @@ block content
 														span.msm_date 10:34 pm
 										.msm_img
 											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
-						form.colhh1.msminput.bg_white(name='addNewMsms' onsubmit='sendNewMessage()' action='insertNewMessage' method='POST')
+						form.colhh1.msminput.bg_white(name='addNewMsms' onsubmit='sendNewMessage()')
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
 							input.bg_lightgray(type='text' , name='addNewMsmField', id='newmsm' , placeholder='Mensaje', required, autocomplete='off')
 							input#lobbyScope(type='hidden', name='lobbyField', value='')

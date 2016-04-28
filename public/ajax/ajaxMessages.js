@@ -155,18 +155,6 @@ jQuery(document).on('ready', function(){
         }
     });
 
-/*    jQuery('.leftmsm, .rightmsm').each(function(){
-        var itemDate = jQuery(this).find('label.lobby_date').text();
-        var itemTime = jQuery(this).find('label.lobby_time').text();
-
-        if( itemDate == stringDate ){
-            jQuery(this).find('label.lobby_date').hide();
-        }
-        else if( itemDate == stringDateYest ){
-            jQuery(this).find('label.lobby_date').text('Ayer');  
-        }
-    });*/
-
 });
 
 function showLobbies(){
@@ -176,7 +164,6 @@ function showLobbies(){
         cache: true,
         success: function(data) {
             jQuery('#listcontainer').append(data);
-            showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -192,7 +179,6 @@ function showContactsAdministrators(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-            /*jQuery('#listcontainer').append(data);*/
             showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -209,7 +195,6 @@ function showContactsStudents(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-           /* jQuery('#listcontainer').append(data);*/
             showContactsTeachers();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -226,7 +211,6 @@ function showContactsTeachers(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-            /*jQuery('#listcontainer').append(data);*/
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -340,6 +324,19 @@ function sendNewMessage(){
     //aqui solo le mandas el mensaje y/o demas informacion que gustes
     socket.emit('mensaje', addNewMsm.newmsm.value);
 
+    //Mejor aqui para poder ejecutar bien las funciones de sql
+    jQuery.ajax({
+        method: 'POST',
+        url: 'insertNewMessage',
+        cache: true,
+        success: function(data) {
+            jQuery('#msm_contactscontainer').append(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+
 }
 
 
@@ -357,12 +354,12 @@ socket.on('mostrar', function(data){
     //LA VARIABLE sessionUser SE OBTIENE DE LA VISTA messages.jade
     if(lastRightMsm > 0){
         container.find('.msm_block:last-child').find('.msm_text')
-            .append('<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+            .append('<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
                     +   '<div class="rightmsm bg_white">'
                     +       '<div class="pd_12"> '
-                    +           msm.messageText
+                    +           data.messageText
                     +           '<span class="msm_date">'
-                    +               '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                    +               '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
                     +           '</span>'
                     +       '</div>'
                     +   '</div>'
@@ -371,23 +368,22 @@ socket.on('mostrar', function(data){
     else{
         container.append('<div class="colhh1 margin_bot msm_block">'
                         +   '<div class="msm_text">'
-                        +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+                        +       '<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
                         +           '<div class="rightmsm bg_white">'
                         +               '<i></i>'
                         +               '<div class="pd_12"> '
-                        +                   msm.messageText
+                        +                   data.messageText
                         +                   '<span class="msm_date">'
-                        +                       '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                        +                       '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
                         +                   '</span>'
                         +               '</div>'
                         +           '</div>'
                         +       '</div>'
                         +   '</div>'
                         +   '<div class="msm_img">'
-                        +       '<img src="images/profilephoto.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
+                        +       '<img src="images/profilephoto.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
                         +   '</div>'
                         + '</div>');
     }
-    alert(data.mensaje);
 
 });
