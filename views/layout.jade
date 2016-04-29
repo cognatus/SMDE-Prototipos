@@ -19,6 +19,7 @@ html
 			sessionUser = '#{datos[0].userEmail}';
 			sessionUserName = '#{datos[0].userName}';
 			sessionUserLastName = '#{datos[0].userLastName}';
+			sessionUserType = '#{privilegio}';
 	- var bodyClass
 	//- if req.session.privilegio != undefined
 		- var privilegio = req.session.privilegio
@@ -51,10 +52,10 @@ html
 							.opc.hover
 								span( style='background-image: url("images/book-multiple.png")' )
 								label Asignaturas
-						a( href='/calendar' )
-							.opc.hover
-								span( style='background-image: url("images/calendar.png")' )
-								label Agenda
+					a( href='/calendar' )
+						.opc.hover
+							span( style='background-image: url("images/calendar.png")' )
+							label Agenda
 					a( href='/messages' )
 						.opc.hover
 							span( style='background-image: url("images/email.png")' )

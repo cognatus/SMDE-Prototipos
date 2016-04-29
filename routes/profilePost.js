@@ -56,7 +56,7 @@ exports.getProfileSubjectsDatabase = function(req, res){
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
-		stringQuery = 'SELECT subjectName, courseName, subjectLevel, departmentName'
+		stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName, subjectLevel, departmentName'
 					+ ' FROM User AS u'
 					+ ' INNER JOIN Student AS s'
 					+ '     ON u.userEmail = s.User_userEmail'
@@ -76,7 +76,7 @@ exports.getProfileSubjectsDatabase = function(req, res){
 	}
 	//SI EL USUARIO ES TIPO PROFESOR
 	else if(req.session.privilegio == 2){
-		stringQuery = 'SELECT subjectName, courseName, subjectLevel, departmentName'
+		stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName, subjectLevel, departmentName'
 					+ ' FROM User AS u'
 					+ ' INNER JOIN Teacher AS s'
 					+ '     ON u.userEmail = s.User_userEmail'

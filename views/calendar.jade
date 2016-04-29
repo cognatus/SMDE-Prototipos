@@ -2,6 +2,7 @@ extends layout
 
 block content
 		script( type='text/javascript' src='/js/calendarGenerator.js' )
+		script( type='text/javascript' src='/ajax/ajaxCalendar.js' )
 
 		#new_item.float_buttoncontainer( title='Nuevo' )
 			span.bg_plus.bgaccent_color
@@ -14,27 +15,27 @@ block content
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
-					form( name='calendar_newevent' )
+					form#calendarAddNew(name='calendarNewEvent' action='insertReminder' method='POST')
 						.form_innercontainer
 							.form_titlepad.flat_shadow.bgprimary_color
 								.form_input.white_text.rel_pos
-									input.activeline.white_text(type='text' required)
+									input.activeline.white_text(type='text' required name='formCalendarTitle')
 									label Título
 							.pd_24
 								.form_input
 									.b_text.left_title Asunto
-									select
-										option Recordatorio
+									select#selectCalendarPostType
+										option(value='reminder') Recordatorio
 										- if (privilegio == 2)
-											option Publicación
+											option(value='publication') Publicación
 								//- Si es profesor
 								- if (privilegio == 2)
 									.form_input
 										.b_text.left_title Grupo
-										select#showSubjectsCourses
-											option Grupo 1
-											option Grupo 2
-											option Grupo 3
+										select#showSubjectsCourses(name='calendarCourseSelectField')
+											if subjectsProfileData != undefined
+												each item in subjectsProfileData
+													option(value='#{item.idSubject}/#{item.idCourse}') #{item.subjectName} #{item.courseName}
 								.form_input
 									.b_text.left_title Fecha Limite
 									.triple
@@ -44,25 +45,25 @@ block content
 								.form_input
 									.b_text.left_title Hora Limite
 									.double
-										select(name='formCalendarHour')
-											option(value='Hora' disabled) Hora
+										select(name='formCalendarHour' required)
+											option(value='00' disabled selected) Hora
 											- for(var h = 0; h < 24; h++)
 												- if ( h < 10 )
 													- h = '0' + h
 												option(value=h)= h
-										select.second(name='formCalendarMinute')
-											option(value='Minuto' disabled) Minuto
+										select.second(name='formCalendarMinute' required)
+											option(value='00' disabled selected) Minuto
 											- for(var m = 0; m < 60; m++)
 												- if ( m < 10 )
 													- m = '0' + m
 												option(value=m)= m
 								.form_input
 									.b_text Descripción
-									textarea(placeholder='Añade una Descripción')
+									textarea(placeholder='Añade una Descripción' name='formCalendarComment')
 								- if (privilegio == 2)
 									.form_input
 										.input_filecontainer
-											input(type='file' name='attachedfile' id='attachedfile')
+											input(type='file' name='attachedfile' id='attachedfile' value='')
 										.file_buttoncontainer
 											span#trigger_fbutton.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 											.right_float
@@ -80,7 +81,6 @@ block content
 											input.txtaccent_color.b_text(type='button' value='Cancelar')
 										span.raised_button.right_float.rippleria-dark(data-rippleria)
 											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
-
 		.topspace
 		.page_container
 			.colhh1
@@ -156,44 +156,54 @@ block content
 						.colhh1.bg_lightgray.border_bottom
 							.pd_18.ll_title Todo
 						.colhh1
-							.listcontainer
+							#calendar_list.listcontainer
 								.colhh1.empty_blocktext.center_text
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
 										.autocol.mm_title.pd_12 No hay eventos ni tareas.
 										.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo evento.
-								.colhh1.slide_list
-									.colhh1.hover.listitem.rippleria-dark(data-rippleria)
-										.listitem_img
-											span A
-										.listitem_info
-											.listitem_rightinfo 10 sep
-											.listitem_title 
-												b Título
-											.listitem_bottomdata Tipo
-									.colhh1.innerlistitem
-										.colhh1.border_bottom
-											.list_borderleft
-												.pd_llist
-													.sl_title Asignatura: 
-														span.margin_l.normal_txt Nombre Asignatura de Tarea
-													.pd_4
-													.sl_title Fecha Límite: 
-														span.margin_l.normal_txt dd/mm/aaaa hh:mm
-													.pd_4
-												.pd_llist
-													.sl_title Descripción
-													.pd_16.justify_text
-														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
-													.attached_filecontainer.autooverflow
-														span.v_middle.bg_file.bg_blue.borad
-														div.v_middle.sl_title.opacity_color Nombre del archivo Adjunto
-														span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
-											.pd_24.listitemactions.autooverflow
-												span.circle.right_float.bg_delete.hover(title='Eliminar')
-												span.circle.right_float.bg_archive.hover(title='Archivar')
-												span.circle.right_float.bg_editgray.hover(title='Editar')
-												span.circle.right_float.bg_reply.hover(title='Responder')
+								if publicationsData != undefined
+									each item in publicationsData
+										.colhh1.slide_list(data-name='#{item.pubTitle}' data-type='Publicación')
+											.colhh1.hover.listitem.rippleria-dark(data-rippleria)
+												.listitem_img
+													span A
+												.listitem_info
+													.listitem_rightinfo #{item.pubDate} #{item.pubTime}
+													.listitem_title 
+														b #{item.pubTitle}
+													.listitem_bottomdata Publicación
+											.colhh1.innerlistitem
+												.colhh1.border_bottom
+													.list_borderleft
+														.pd_llist
+															.sl_title De: 
+																span.margin_l.normal_txt(title='#{item.userEmail}') #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.pd_4
+															.sl_title Asignatura: 
+																span.margin_l.normal_txt #{item.subjectName}
+															.pd_4
+															.sl_title Grupo: 
+																span.margin_l.normal_txt #{item.courseName}
+															.pd_4
+															.sl_title Entrega: 
+																span.margin_l.normal_txt #{item.pubLimDate}
+															.pd_4
+														.pd_llist
+															.sl_title Descripción
+															.pd_16.justify_text
+																| #{item.pubText}
+															.attached_filecontainer.autooverflow
+																span.v_middle.bg_file.bg_blue.borad
+																div.v_middle.sl_title.opacity_color #{item.publicationAttachedNameFile}
+																span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
+													.pd_24.listitemactions.autooverflow
+														span.circle.right_float.bg_delete.hover(title='Eliminar')
+														span.circle.right_float.bg_archive.hover(title='Archivar')
+														//- if #{item.userEmail} == datos[0].userEmail COMPARAR AL DUEÑO DE LA PUBLICACION CON LA SESION PARA QUE PUEDA EDITAR
+														span.circle.right_float.bg_editgray.hover(title='Editar')
+														- if ( privilegio == 1 )
+															span.circle.right_float.bg_reply.hover(title='Responder')
 							.colhh1.load_container#calendar_showall
 								.load
 									.spinner

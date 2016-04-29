@@ -64,6 +64,23 @@ SELECT userEmail, idTeacher, subjectName, idSubject, idCourse, courseName
 	INNER JOIN Course AS c 
 		ON c.idCourse = shc.Course_idCourse;
 
+--MOSTRAR CURSOS DEL USUARIO
+SELECT idSubject, idCourse, subjectName, courseName, departmentName, subjectLevel
+FROM Subject_has_Course a 
+INNER JOIN Subject AS s 
+	ON s.idSubject = a.Subject_idSubject 
+INNER JOIN Course AS c 
+	ON c.idCourse = a.Course_idCourse 
+INNER JOIN Department AS d 
+	ON d.idDepartment = s.Department_idDepartment 
+WHERE Subject_idSubject IN( 
+	SELECT Subject_has_Course_Subject_idSubject  
+	FROM Student_has_Subject_has_Course b 
+	WHERE b.Student_idStudent = "" 
+) = a.Subject_idSubject 
+AND d.Institute_idInstitute = "" 
+ORDER BY courseName ASC, subjectName ASC;
+
 
 --CONTACTOS AlUMNO-ALUMNO Y CURSO EN QUE COINCIDEN
 SET @tipo = 'VATOASDSAD46844';
@@ -173,8 +190,8 @@ WHERE Subject_idSubject IN(
 	WHERE b.Teacher_idTeacher = 'VATOASDSAD46844'
 ) = a.Subject_idSubject;
 
---Conocer lobbies del chat de un usuario y sus participantes
 
+--Conocer lobbies del chat de un usuario y sus participantes
 SELECT idLobby, group_concat(User_userEmail separator ', ') AS participantsEmails, group_concat(userName ,' ', userLastName separator ', ') AS participantsNames
 	FROM user_has_lobby AS uhl
 	INNER JOIN User AS u
@@ -199,3 +216,53 @@ SELECT idMessage, messageText,
 FROM Message AS m
 	INNER JOIN USER AS u 
 		ON u.userEmail = m.User_userEmail;
+
+--Consulta para publicaciones
+
+--Si es alumno
+SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,
+	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,
+	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,
+	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName
+	FROM Publication AS p 
+	INNER JOIN Teacher AS t 
+		ON t.User_userEmail = p.Teacher_User_userEmail 
+	INNER JOIN User AS u 
+		ON u.userEmail = t.User_userEmail
+	INNER JOIN Subject_has_Course AS shc 
+		ON shc.Subject_idSubject = p.Subject_has_Course_Subject_idSubject 
+		AND shc.Course_idCourse = p.Subject_has_Course_Course_idCourse
+	INNER JOIN Subject AS s 
+		ON s.idSubject = shc.Subject_idSubject 
+	INNER JOIN Course As c 
+		On c.idCourse = shc.Course_idCourse
+	INNER JOIN Student_has_Subject_has_Course AS st
+	WHERE st.Subject_has_Course_Subject_idSubject IN(
+		SELECT Subject_has_Course_Subject_idSubject
+			FROM Student_has_Subject_has_Course
+            WHERE Student_idStudent = 'VATOASDSAD46844'
+    )
+    AND st.Subject_has_Course_Course_idCourse IN(
+		SELECT Subject_has_Course_Course_idCourse
+			FROM Student_has_Subject_has_Course
+            WHERE Student_idStudent = 'VATOASDSAD46844'
+    )
+    GROUP BY idPublication;
+    
+--Si es profe
+SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,
+	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,
+	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,
+	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName
+	FROM Publication AS p 
+	INNER JOIN Teacher AS t 
+		ON t.User_userEmail = p.Teacher_User_userEmail 
+	INNER JOIN User AS u 
+		ON u.userEmail = t.User_userEmail
+	INNER JOIN Subject_has_Course AS shc 
+		ON shc.Subject_idSubject = p.Subject_has_Course_Subject_idSubject 
+		AND shc.Course_idCourse = p.Subject_has_Course_Course_idCourse
+	INNER JOIN Subject AS s 
+		ON s.idSubject = shc.Subject_idSubject 
+	INNER JOIN Course As c 
+		On c.idCourse = shc.Course_idCourse;

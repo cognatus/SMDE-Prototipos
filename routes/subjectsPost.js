@@ -9,7 +9,7 @@ exports.constructor = function (basee) {
  * POST Methods.
  */
 
-// FUNCION PARA MOSTRAR ASIGNATURAS/GRUPOS
+// FUNCION PARA MOSTRAR ASIGNATURAS/GRUPOS DEL USUARIO
 exports.getSubjectsCoursesDatabase = function(req, res){
 	var database = new base();
 

@@ -194,8 +194,8 @@ function carga(calendarDay){
 
     console.log( 'Día Form: ' + writeday );
     console.log( 'Mes Form: ' + writemonth );
-    document.calendar_newevent.formCalendarDay.value = writeday;
-    document.calendar_newevent.formCalendarMonth.value = writemonth;
-    document.calendar_newevent.formCalendarYear.value = anio;
+    document.calendarNewEvent.formCalendarDay.value = writeday;
+    document.calendarNewEvent.formCalendarMonth.value = writemonth;
+    document.calendarNewEvent.formCalendarYear.value = anio;
     document.getElementById("selectedDate").innerHTML = calendarDay + ' ' + super_months_labels[mes] + ' ' + anio;
 }

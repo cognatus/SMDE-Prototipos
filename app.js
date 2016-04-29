@@ -227,9 +227,10 @@ app.get('/getStudentCoincidences', profilePost.getStudentCoincidences);
 app.get('/getTeacherCoincidences', profilePost.getTeacherCoincidences);
 
 //Todo referente a la agenda
+app.post('/insertPublication', calendarPost.insertPublication);
 app.post('/insertReminder', calendarPost.insertReminder);
-app.post('/getRemindersDatabase', calendarPost.getRemindersDatabase);
-app.post('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
+app.get('/getRemindersDatabase', calendarPost.getRemindersDatabase);
+app.get('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 
 //Todo referente a la vista de Asignaturas
 app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);

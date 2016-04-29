@@ -3,6 +3,11 @@ jQuery(document).on('ready', function(){
 
     jQuery('#management_showall').show(function(){
         showAdmins();
+        showStudents();
+        showTeachers();
+        showSubjects();
+        showDepartments();
+        showCourses();
     });
 
 });
@@ -14,7 +19,6 @@ function showAdmins(){
         cache: false,
         success: function(data) {
             jQuery('.mgm_adminslist').append(data);
-            showStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
@@ -30,7 +34,6 @@ function showStudents(){
         cache: false,
         success: function(data) {
             jQuery('.mgm_studentslist').append(data);
-            showTeachers();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_student').one('click', function(){
@@ -79,7 +82,6 @@ function showTeachers(){
         cache: false,
         success: function(data) {
             jQuery('.mgm_teacherslist').append(data);
-            showSubjects();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_teacher').one('click', function(){
@@ -128,7 +130,6 @@ function showSubjects(){
         cache: false,
         success: function(data) {
             jQuery('.mgm_subjectslist').append(data);
-            showDepartments();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
@@ -144,7 +145,6 @@ function showDepartments(){
         cache: false,
         success: function(data) {
             jQuery('.mgm_departmentslist').append(data);
-            showCourses();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);

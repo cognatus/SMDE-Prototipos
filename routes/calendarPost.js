@@ -6,49 +6,97 @@ exports.constructor = function (basee) {
 }
 
 
-//Esta parte esta super cabrona
+//FUNCION PARA INSERTAR UN NUEVO RECORDATORIO
 exports.insertReminder = function(req, res){
+	var database = new base();
+
+	var reminderTitle = req.body.formCalendarTitle ;
+	var reminderText  = req.body.formCalendarComment ;
+	var day = req.body.formCalendarDay;
+	var month = req.body.formCalendarMonth;
+	var year = req.body.formCalendarYear;
+	var hour = req.body.formCalendarHour;
+	var minutes = req.body.formCalendarMinute;
 	
-	// var reminderIdKey; No se que ponerle xD
-	var reminderTitle = req.body.insertRemindertTitle ;
-	var reminderText  = req.body.insertRemindertText ;
-	/*var reminderTime =  time + ' ' + hour;*/
-	var reminderDateTime =  'NOW()';
-	var remDay = req.body.formCalendarDay;
-	var remMonth = req.body.formCalendarMonth;
-	var remYear = req.body.formCalendarYear;
-	var remHour = req.body.formCalendarHour;
-	var remMinutes = req.body.formCalendarMinutes;
-	
-	var reminderLimitDate = remYear + '-' + remMonth + '-' + remDay + ' ' + remHour + ':' + remMinutes + ':00' ;
+	var reminderLimitDate = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':00' ;
 	var reminderOwner = req.session.datos[0].userEmail;
-	var notifUrl= ''; //Tampoco se que poner aqui esta muy cabron esto maigo
 
 	stringQuery = 'BEGIN;'
 	stringQuery += 'INSERT INTO Reminder' 
 					+ ' (idReminder, reminderTitle, reminderText, reminderDateTime, reminderLimitDate, User_userEmail)'
-					+ ' VALUES ("' + reminderIdKey + '",'
+					+ ' VALUES ("UUID()",'
 					+ ' "' + reminderTitle + '",'
 					+ ' "' + reminderText + '",'
-					+ ' "' + reminderDateTime + '",'
+					+ ' NOW(),'
 					+ ' "' + reminderLimitDate + '",'
 					+ ' "' + reminderOwner + '");';
-	stringQuery += 'INSERT INTO Notification' 
-					+ ' (idNotification, notifTitle, notifText, notifDateTime, notifZelda)'
-					+ ' VALUES ("' + reminderIdKey + '",'
-					+ ' "Nueva Publicación",'
-					+ ' "Un profesor creo una nueva Publicación",'
-					+ ' "' + reminderDateTime + '",'
-					+ ' "' + notifUrl + '");';
 	stringQuery += 'COMMIT;'
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log('Furulo el insert');
-			res.redirect('/management');
+			console.log('Nuevo recordatorio insertado correctamente');
+			res.redirect('/calendar');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
-			res.redirect('/error');
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al insertar Publicación',
+					errorItem: ['-  Fecha Incorrecta',
+					'-  Problemas con el Servidor'],
+					backUrl: '/calendar'
+				}
+			});
+		}
+	});
+};
+
+//FUNCION PARA INSERTAR UNA NUEVA PUBLICACIÓN
+exports.insertPublication = function(req, res){
+	var database = new base();
+	
+	var publicationTitle = req.body.formCalendarTitle;
+	var publicationText  = req.body.formCalendarComment;
+	//OBTENERMOS EL CURSO AL QUE QUEREMOS PUBLICAR
+	var course = req.body.calendarCourseSelectField; 
+	var day = req.body.formCalendarDay;
+	var month = req.body.formCalendarMonth;
+	var year = req.body.formCalendarYear;
+	var hour = req.body.formCalendarHour;
+	var minutes = req.body.formCalendarMinute;
+	//SEPARAMOS EL idSubject del idCourse POR QUE SE MANDAN EN UNA SOLA CADENA DE TEXTO
+	var subjectCourse = course.split('/');
+	
+	var publicationLimitDate = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':00' ;
+	var publicationOwner = req.session.datos[0].userEmail;
+
+	stringQuery = 'BEGIN;'
+	stringQuery += 'INSERT INTO Publication' 
+					+ ' (idPublication, pubTitle, pubText, pubDateTime, publicationLimitDate, Teacher_User_userEmail,'
+					+ ' Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
+					+ ' VALUES (UUID(),'
+					+ ' "' + publicationTitle + '",'
+					+ ' "' + publicationText + '",'
+					+ ' NOW(),'
+					+ ' "' + publicationLimitDate + '",'
+					+ ' "' + publicationOwner + '",'
+					//			idSubject 					idCourse
+					+ ' "' + subjectCourse[0] + '", "' + subjectCourse[1] + '");';
+	stringQuery += 'COMMIT;'
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			console.log('Nueva Publicación insertada correctamente');
+			res.redirect('/calendar');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al insertar Publicación',
+					errorItem: ['-  Fecha Incorrecta',
+					'-  Problemas con el Servidor'],
+					backUrl: '/calendar'
+				}
+			});
 		}
 	});
 };
@@ -56,14 +104,16 @@ exports.insertReminder = function(req, res){
 // FUNCION PARA MOSTRAR RECORDATORIOS DEL USUARIO
 exports.getRemindersDatabase = function(req, res){
 	var database = new base();
+
 	stringQuery = 'SELECT * FROM Reminder'
 				+ ' WHERE User_userEmail="' + req.session.datos[0].userEmail + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			remindersData = result;
+			res.send(remindersData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.send('Error');
 		}
 	});
 };
@@ -71,14 +121,66 @@ exports.getRemindersDatabase = function(req, res){
 // FUNCION PARA MOSTRAR PUBLICACIONES DEL PROFESOR
 exports.getPublicationsDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT * FROM Publication'
-				+ ' WHERE Teacher_User_userEmail="' + req.session.datos[0].Institute_idInstitute + '";' ;
+
+	//SI EL USUARIO ES TIPO ALUMNO
+	if(req.session.privilegio == 1){
+		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
+					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
+					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,'
+					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
+					+ '		FROM Publication AS p '
+					+ '		INNER JOIN Teacher AS t '
+					+ '			ON t.User_userEmail = p.Teacher_User_userEmail '
+					+ '		INNER JOIN User AS u '
+					+ '			ON u.userEmail = t.User_userEmail '
+					+ '		INNER JOIN Subject_has_Course AS shc '
+					+ '			ON shc.Subject_idSubject = p.Subject_has_Course_Subject_idSubject '
+					+ '			AND shc.Course_idCourse = p.Subject_has_Course_Course_idCourse '
+					+ '		INNER JOIN Subject AS s '
+					+ '			ON s.idSubject = shc.Subject_idSubject '
+					+ '		INNER JOIN Course As c '
+					+ '			On c.idCourse = shc.Course_idCourse '
+					+ '		INNER JOIN Student_has_Subject_has_Course AS st '
+					+ '	WHERE st.Subject_has_Course_Subject_idSubject IN( '
+					+ '		SELECT Subject_has_Course_Subject_idSubject '
+					+ '			FROM Student_has_Subject_has_Course '
+					+ '            WHERE Student_idStudent = "' + req.session.datos[0].idStudent + '"'
+					+ '    ) '
+					+ ' AND st.Subject_has_Course_Course_idCourse IN( '
+					+ '		SELECT Subject_has_Course_Course_idCourse '
+					+ '			FROM Student_has_Subject_has_Course '
+					+ '            WHERE Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+					+ '    ) '
+					+ '    GROUP BY idPublication; ';
+	}
+	//SI EL USUARIO ES TIPO PROFESOR
+	else if(req.session.privilegio == 2){
+		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
+					+ ' DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
+					+ ' DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,'
+					+ ' userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
+					+ ' FROM Publication AS p '
+					+ ' INNER JOIN Teacher AS t '
+					+ ' 	ON t.User_userEmail = p.Teacher_User_userEmail '
+					+ ' INNER JOIN User AS u '
+					+ ' 	ON u.userEmail = t.User_userEmail '
+					+ ' INNER JOIN Subject_has_Course AS shc '
+					+ ' 	ON shc.Subject_idSubject = p.Subject_has_Course_Subject_idSubject '
+					+ ' 	AND shc.Course_idCourse = p.Subject_has_Course_Course_idCourse'
+					+ ' INNER JOIN Subject AS s '
+					+ ' 	ON s.idSubject = shc.Subject_idSubject '
+					+ ' INNER JOIN Course As c '
+					+ ' 	On c.idCourse = shc.Course_idCourse; '
+					+ ' WHERE userEmail = "' + req.session.datos[0].userEmail + '";';
+	}
+
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.send(result);
+			publicationsData = result;
+			res.send(publicationsData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.redirect('/error');
+			res.send('Error');
 		}
 	});
 };

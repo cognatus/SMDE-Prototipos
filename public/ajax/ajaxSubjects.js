@@ -2,6 +2,8 @@
 jQuery(document).on('ready', function(){
 
     showProfileSubjects();
+    showSubjectsCourses();
+    showContactsStudents();
 
 /*-------------------------------------------------------------------------------------
         SUBJECTS ADD - REMOVE CONTROL
@@ -98,15 +100,29 @@ jQuery(document).on('ready', function(){
 
 
         if(appendedSubjects.find('.listitem').length < 5){
-            if(appendedSubjects.find('.listitem[data-subject="' + itemIdSubject + '"]').length == 0 ){
-                appendedSubjects.append(item);
-                coursesInput.val(coursesInput.val() + itemIdSubject + '/' + itemIdCourse +',');
+            if(sessionUserType == 1){
+                if(appendedSubjects.find('.listitem[data-subject="' + itemIdSubject + '"]').length == 0 ){
+                    appendedSubjects.append(item);
+                    coursesInput.val(coursesInput.val() + itemIdSubject + '/' + itemIdCourse +',');
+                }
+                else{
+                    jQuery(this).siblings('.listitem_info').find('.listitem_alert').text('Ya agregaste esta Asignatura');
+                    jQuery(this).siblings('.listitem_info').find('.listitem_alert').show(function(){
+                        jQuery(this).delay(1200).fadeOut();
+                    });
+                }
             }
-            else{
-                jQuery(this).siblings('.listitem_info').find('.listitem_alert').text('Ya agregaste esta Asignatura');
-                jQuery(this).siblings('.listitem_info').find('.listitem_alert').show(function(){
-                    jQuery(this).delay(1200).fadeOut();
-                });
+            else if(sessionUserType == 2){
+                if(appendedSubjects.find('.listitem[data-subject="' + itemIdSubject + '"][data-course="' + itemIdCourse + '"]').length == 0 ){
+                    appendedSubjects.append(item);
+                    coursesInput.val(coursesInput.val() + itemIdSubject + '/' + itemIdCourse +',');
+                }
+                else{
+                    jQuery(this).siblings('.listitem_info').find('.listitem_alert').text('Ya agregaste este Curso');
+                    jQuery(this).siblings('.listitem_info').find('.listitem_alert').show(function(){
+                        jQuery(this).delay(1200).fadeOut();
+                    });
+                }
             }
         }
         else{
@@ -149,7 +165,6 @@ function showProfileSubjects(){
         cache: true,
         success: function(data) {
             jQuery('#subjects_list').append(data);
-            showSubjectsCourses();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -165,7 +180,6 @@ function showSubjectsCourses(){
         cache: true,
         success: function(data) {
             jQuery('#new_subjects').append(data);
-            showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);

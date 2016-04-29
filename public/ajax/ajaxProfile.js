@@ -1,7 +1,10 @@
 
 jQuery(document).on('ready', function(){
         
+    showProfileSubjects();
     showContactsAdministrators();
+    showContactsStudents();
+    showContactsTeachers();
 
 });
 
@@ -12,7 +15,6 @@ function showContactsAdministrators(){
         cache: true,
         success: function(data) {
             jQuery('#contacts_list').append(data);
-            showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -28,7 +30,6 @@ function showContactsStudents(){
         cache: true,
         success: function(data) {
             jQuery('#contacts_list').append(data);
-            showContactsTeachers();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_student').one('click', function(){
@@ -76,7 +77,6 @@ function showContactsTeachers(){
         cache: true,
         success: function(data) {
             jQuery('#contacts_list').append(data);
-            showProfileSubjects();
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
             jQuery('.item_teacher').one('click', function(){

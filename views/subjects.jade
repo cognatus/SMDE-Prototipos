@@ -2,6 +2,7 @@ extends layout
 
 block content
 		script( type='text/javascript' src='/ajax/ajaxSubjects.js' )
+
 		#new_item.float_buttoncontainer( title='Nueva' )
 			span.bg_plus.bgaccent_color
 
@@ -163,7 +164,7 @@ block content
 								.h_listline.bgaccent_color
 								.h_listtopcontainer
 									.h_listitem.first
-										.pd_16.rippleria-dark( data-rippleria ) Asignaturas
+										.pd_16.rippleria-dark( data-rippleria ) Cursos
 									.h_listitem
 										.pd_16.rippleria-dark( data-rippleria ) Alumnos
 						.block_container.bg_white
@@ -216,6 +217,7 @@ block content
 										span.searchicon
 										input#buscar_slide(type='text',name='buscar', placeholder='Buscar un alumno')
 								#listcontainer.listcontainer
+									.colhh1.no_result
 									.colhh1.empty_blocktext.center_text
 										.pd_64
 											span.v_middle(style= 'background-image: url("images/account-remove.png")')

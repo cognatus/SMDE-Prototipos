@@ -4,6 +4,8 @@ jQuery(document).ready(function(){
     
     showLobbies();
     showContactsAdministrators();
+    showContactsStudents();
+    showContactsTeachers();
 
     //OBTIENE LA ALTURA ORIGINAL DEL INPUT DONDE SE AGREGAN MAS USUARIOS
     var origHeight =  jQuery('#search_newmsmcontacts').outerHeight();
@@ -154,7 +156,8 @@ jQuery(document).ready(function(){
         }
     });
 
-    jQuery('form#addNewMsm').submit(function(){
+    jQuery('form#addNewMsm').submit(function(e){
+        e.preventDefault();
 
         var date = new Date();
         var hh = date.getHours();
@@ -229,8 +232,6 @@ jQuery(document).ready(function(){
                 alert('error ' + textStatus + " " + errorThrown);
             }
         });
-
-        return false;
 
     });
 
@@ -409,7 +410,6 @@ function showContactsAdministrators(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-            showContactsStudents();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -425,7 +425,6 @@ function showContactsStudents(){
         cache: true,
         success: function(data) {
             jQuery('#msm_contactscontainer').append(data);
-            showContactsTeachers();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
