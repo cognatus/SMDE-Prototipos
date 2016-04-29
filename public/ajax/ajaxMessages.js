@@ -1,6 +1,6 @@
 var socket = io('http://localhost:3000/chatsini');
 
-jQuery(document).on('ready', function(){
+jQuery(document).ready(function(){
     
     showLobbies();
     showContactsAdministrators();
@@ -154,8 +154,239 @@ jQuery(document).on('ready', function(){
         }
     });
 
+    jQuery('form#addNewMsm').submit(function(){
+
+        var date = new Date();
+        var hh = date.getHours();
+        var mm = date.getMinutes();
+        if( hh < 10 ){ hh = '0' + hh; }
+        if( mm < 10 ){ mm = '0' + mm; }
+        var currentTime = hh + ':' + mm;
+        //Paso 1.
+        //aqui solo le mandas el mensaje y/o demas informacion que gustes
+        var msmText = jQuery('#newmsm').val();
+        var lobby = jQuery('#lobbyScope').val();
+
+        alert('Mensaje: ' + msmText + ' | Lobby: ' + lobby);
+
+         socket.emit('mensaje', {
+            //Estas variables se obtienen de layout.jade
+            userEmail: sessionUser,
+            userName: sessionUserName,
+            userLastName: sessionUserLastName,
+            messageText: msmText,
+            messageTime: currentTime
+        });
+
+        var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+
+        if(lastRightMsm > 0){
+            container.find('.msm_block:last-child').find('.msm_text')
+                .append('<div class="colhh1 autooverflow" data-msm="">'
+                        +   '<div class="rightmsm bg_white">'
+                        +       '<div class="pd_12"> '
+                        +           msmText
+                        +           '<span class="msm_date">'
+                        +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                        +           '</span>'
+                        +       '</div>'
+                        +   '</div>'
+                        +'</div>');
+        }
+        else{
+            container.append('<div class="colhh1 margin_bot msm_block">'
+                            +   '<div class="msm_text">'
+                            +       '<div class="colhh1 autooverflow" data-msm="">'
+                            +           '<div class="rightmsm bg_white">'
+                            +               '<i></i>'
+                            +               '<div class="pd_12"> '
+                            +                   msmText
+                            +                   '<span class="msm_date">'
+                            +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                            +                   '</span>'
+                            +               '</div>'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="msm_img">'
+                            +       '<img src="images/profilephoto.png" title="Yo" class="circle">'
+                            +   '</div>'
+                            + '</div>');
+        }
+
+        jQuery.ajax({
+            method: 'POST',
+            url: 'insertNewMessage',
+            cache: false,
+            data: {
+                message: msmText,
+                lobby: lobby
+            },
+            success: function(data) {
+                msmText = '';
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });
+
+        return false;
+
+    });
+
 });
 
+function selectLobby(lobby){
+    //este metodo recibe el lobby  y conecta en server
+    socket.emit('cambiarsala', lobby);
+    jQuery('#lobbyScope').val(lobby);
+    //Contenedor de los mensajes
+    var container = jQuery('#msm_list');
+    //weaas de que aparezcan los mensajes del weon con quien habla
+    //de default la primera vez que se cargue la pagina mostrara al primer weon
+    container.empty();
+    jQuery.ajax({
+        method: 'GET',
+        url: 'getSelectedLobbyMessages',
+        cache: false,
+        data: {
+            lobby: lobby
+        },
+        success: function(data) {
+            for(var i in data){
+                var msm = data[i];
+                var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm').length;
+                var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+                //LA VARIABLE sessionUser SE OBTIENE DE LA VISTA layout.jade
+                if (msm.userEmail == sessionUser ){
+                    if(lastRightMsm > 0){
+                        container.find('.msm_block:last-child').find('.msm_text')
+                            .append('<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+                                    +   '<div class="rightmsm bg_white">'
+                                    +       '<div class="pd_12"> '
+                                    +           msm.messageText
+                                    +           '<span class="msm_date">'
+                                    +               '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                                    +           '</span>'
+                                    +       '</div>'
+                                    +   '</div>'
+                                    +'</div>');
+                    }
+                    else{
+                        container.append('<div class="colhh1 margin_bot msm_block">'
+                                        +   '<div class="msm_text">'
+                                        +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+                                        +           '<div class="rightmsm bg_white">'
+                                        +               '<i></i>'
+                                        +               '<div class="pd_12"> '
+                                        +                   msm.messageText
+                                        +                   '<span class="msm_date">'
+                                        +                       '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                                        +                   '</span>'
+                                        +               '</div>'
+                                        +           '</div>'
+                                        +       '</div>'
+                                        +   '</div>'
+                                        +   '<div class="msm_img">'
+                                        +       '<img src="images/profilephoto.png" title="Yo" class="circle">'
+                                        +   '</div>'
+                                        + '</div>');
+                    }
+                }
+                else if (msm.userEmail != sessionUser ){
+                     if(lastLeftMsm > 0){
+                        container.find('.msm_block:last-child').find('.msm_text')
+                            .append('<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+                                    +   '<div class="leftmsm white_text">'
+                                    +       '<div class="pd_12"> '
+                                    +           msm.messageText
+                                    +           '<span class="msm_date">'
+                                    +               '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                                    +           '</span>'
+                                    +       '</div>'
+                                    +   '</div>'
+                                    +'</div>');
+                    }
+                    else{
+                        container.append('<div class="colhh1 margin_bot msm_block">'
+                                        +   '<div class="msm_img">'
+                                        +       '<img src="images/profilephoto.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
+                                        +   '</div>'
+                                        +   '<div class="msm_text">'
+                                        +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
+                                        +           '<div class="leftmsm white_text">'
+                                        +               '<i></i>'
+                                        +               '<div class="pd_12"> '
+                                        +                   msm.messageText
+                                        +                   '<span class="msm_date">'
+                                        +                       '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
+                                        +                   '</span>'
+                                        +               '</div>'
+                                        +           '</div>'
+                                        +       '</div>'
+                                        +   '</div>'
+                                        + '</div>');
+                    }
+                }
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+}
+
+
+//Paso 3.
+socket.on('mostrar', function(data){
+
+    //este es el importante
+    //lo que enviaste del back en socket.in(socket.room).emit('mostrar', {
+    //lo vas a estar reccibiendo en este metodo
+    //aqui es donde haras que se haga en tiempo real
+    //solo es cosa que le pongas las cosas de etiquetas y así para que se muestr
+    //pueste que basicamente ya todo se hace en tiempo real
+
+    //Son las burbujas del chat que aparecen del lado derecho
+    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+
+    if(lastRightMsm > 0){
+        container.find('.msm_block:last-child').find('.msm_text')
+            .append('<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
+                    +   '<div class="rightmsm bg_white">'
+                    +       '<div class="pd_12"> '
+                    +           data.messageText
+                    +           '<span class="msm_date">'
+                    +               '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
+                    +           '</span>'
+                    +       '</div>'
+                    +   '</div>'
+                    +'</div>');
+    }
+    else{
+        container.append('<div class="colhh1 margin_bot msm_block">'
+                        +   '<div class="msm_text">'
+                        +       '<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
+                        +           '<div class="rightmsm bg_white">'
+                        +               '<i></i>'
+                        +               '<div class="pd_12"> '
+                        +                   data.messageText
+                        +                   '<span class="msm_date">'
+                        +                       '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
+                        +                   '</span>'
+                        +               '</div>'
+                        +           '</div>'
+                        +       '</div>'
+                        +   '</div>'
+                        +   '<div class="msm_img">'
+                        +       '<img src="images/profilephoto.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
+                        +   '</div>'
+                        + '</div>');
+    }
+
+});
+
+//FUNCIONES AJAX PARA MOSTRAR AL CARGAR LA PAGINA
 function showLobbies(){
     jQuery.ajax({
         method: 'GET',
@@ -217,176 +448,3 @@ function showContactsTeachers(){
         async: 'false'
     });
 }
-
-function selectLobby(lobby){
-    //este metodo recibe el lobby  y conecta en server
-    socket.emit('cambiarsala', lobby);
-    jQuery('#lobbyScope').val(lobby);
-    var container = jQuery('#msm_list');
-    //weaas de que aparezcan los mensajes del weon con quien habla
-    //de default la primera vez que se cargue la pagina mostrara al primer weon
-    container.empty();
-    jQuery.ajax({
-        method: 'GET',
-        url: 'getSelectedLobbyMessages',
-        cache: false,
-        data: {
-            lobby: lobby
-        },
-        success: function(data) {
-            for(var i in data){
-                var msm = data[i];
-                var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm').length;
-                var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
-                //LA VARIABLE sessionUser SE OBTIENE DE LA VISTA messages.jade
-                if (msm.userEmail == sessionUser ){
-                    if(lastRightMsm > 0){
-                        container.find('.msm_block:last-child').find('.msm_text')
-                            .append('<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
-                                    +   '<div class="rightmsm bg_white">'
-                                    +       '<div class="pd_12"> '
-                                    +           msm.messageText
-                                    +           '<span class="msm_date">'
-                                    +               '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
-                                    +           '</span>'
-                                    +       '</div>'
-                                    +   '</div>'
-                                    +'</div>');
-                    }
-                    else{
-                        container.append('<div class="colhh1 margin_bot msm_block">'
-                                        +   '<div class="msm_text">'
-                                        +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
-                                        +           '<div class="rightmsm bg_white">'
-                                        +               '<i></i>'
-                                        +               '<div class="pd_12"> '
-                                        +                   msm.messageText
-                                        +                   '<span class="msm_date">'
-                                        +                       '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
-                                        +                   '</span>'
-                                        +               '</div>'
-                                        +           '</div>'
-                                        +       '</div>'
-                                        +   '</div>'
-                                        +   '<div class="msm_img">'
-                                        +       '<img src="images/profilephoto.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
-                                        +   '</div>'
-                                        + '</div>');
-                    }
-                }
-                else if (msm.userEmail != sessionUser ){
-                     if(lastLeftMsm > 0){
-                        container.find('.msm_block:last-child').find('.msm_text')
-                            .append('<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
-                                    +   '<div class="leftmsm white_text">'
-                                    +       '<div class="pd_12"> '
-                                    +           msm.messageText
-                                    +           '<span class="msm_date">'
-                                    +               '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
-                                    +           '</span>'
-                                    +       '</div>'
-                                    +   '</div>'
-                                    +'</div>');
-                    }
-                    else{
-                        container.append('<div class="colhh1 margin_bot msm_block">'
-                                        +   '<div class="msm_img">'
-                                        +       '<img src="images/profilephoto.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
-                                        +   '</div>'
-                                        +   '<div class="msm_text">'
-                                        +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
-                                        +           '<div class="leftmsm white_text">'
-                                        +               '<i></i>'
-                                        +               '<div class="pd_12"> '
-                                        +                   msm.messageText
-                                        +                   '<span class="msm_date">'
-                                        +                       '<label class="lobby_time" title="' + msm.messageDate + '"> ' + msm.messageTime + '</label>'
-                                        +                   '</span>'
-                                        +               '</div>'
-                                        +           '</div>'
-                                        +       '</div>'
-                                        +   '</div>'
-                                        + '</div>');
-                    }
-                }
-            }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
-        }
-    });
-
-    jQuery('form.msminput').submit(function(){
-        //Paso 1.
-        //aqui solo le mandas el mensaje y/o demas informacion que gustes
-        var msm = jQuery('#newmsm').val();
-        var lobby = jQuery('#lobbyScope').val();
-        jQuery.ajax({
-            method: 'POST',
-            url: 'insertNewMessage',
-            cache: true,
-            data: {
-                message: msm,
-                lobby: lobby
-            },
-            success: function(data) {
-                
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('error ' + textStatus + " " + errorThrown);
-            }
-        });
-        socket.emit('mensaje', msm);
-        jQuery('#newmsm').val('');
-        return false;
-    });
-}
-
-
-//Paso 3.
-socket.on('mostrar', function(data){
-
-    //este es el importante
-    //lo que enviaste del back en socket.in(socket.room).emit('mostrar', {
-    //lo vas a estar reccibiendo en este metodo
-    //aqui es donde haras que se haga en tiempo real
-    //solo es cosa que le pongas las cosas de etiquetas y así para que se muestr
-    //pueste que basicamente ya todo se hace en tiempo real
-
-    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
-    //LA VARIABLE sessionUser SE OBTIENE DE LA VISTA messages.jade
-    if(lastRightMsm > 0){
-        container.find('.msm_block:last-child').find('.msm_text')
-            .append('<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
-                    +   '<div class="rightmsm bg_white">'
-                    +       '<div class="pd_12"> '
-                    +           data.messageText
-                    +           '<span class="msm_date">'
-                    +               '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
-                    +           '</span>'
-                    +       '</div>'
-                    +   '</div>'
-                    +'</div>');
-    }
-    else{
-        container.append('<div class="colhh1 margin_bot msm_block">'
-                        +   '<div class="msm_text">'
-                        +       '<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
-                        +           '<div class="rightmsm bg_white">'
-                        +               '<i></i>'
-                        +               '<div class="pd_12"> '
-                        +                   data.messageText
-                        +                   '<span class="msm_date">'
-                        +                       '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
-                        +                   '</span>'
-                        +               '</div>'
-                        +           '</div>'
-                        +       '</div>'
-                        +   '</div>'
-                        +   '<div class="msm_img">'
-                        +       '<img src="images/profilephoto.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
-                        +   '</div>'
-                        + '</div>');
-    }
-
-});

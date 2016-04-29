@@ -325,7 +325,7 @@ jQuery(document).on('ready' ,function(){
 
 	jQuery('.block_containermsm .listitem, .block_containersettings .listitem').on('click', function(){
 		var title = jQuery(this).attr('data-name');
-		var title2 = jQuery(this).attr('title');
+		var title2 = jQuery(this).attr('data-title');
 		var img = jQuery(this).find('img').attr('src');
 		if( jQuery(window).width() < 1120 ){
 			jQuery('.block_containermsm, .block_containersettings').animate({ scrollLeft: jQuery('.halfgrid').width() });

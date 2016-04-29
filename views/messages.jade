@@ -4,8 +4,6 @@ block content
 
 		script( type='text/javascript' src='/socket.io/socket.io.js' )
 		script( type='text/javascript' src='/ajax/ajaxMessages.js' )
-		script.
-			sessionUser = '#{datos[0].userEmail}';
 
 		if datos[0].msmColor != undefined
 			style.
@@ -122,7 +120,7 @@ block content
 						.colhh1.no_result
 						if lobbyData != undefined
 							each item in lobbyData
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.participantsNames}' data-type='#{item.participantsEmails}' onclick='selectLobby("#{item.idLobby}")')
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.participantsNames}' data-type='#{item.participantsEmails}' data-title='#{item.participantsEmails}' onclick='selectLobby("#{item.idLobby}")')
 									.listitem_img
 										img(src='images/profilephoto.png')
 									.listitem_info.border_bottom
@@ -181,7 +179,7 @@ block content
 														span.msm_date 10:34 pm
 										.msm_img
 											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
-						form.colhh1.msminput.bg_white(action='')
+						form#addNewMsm.colhh1.msminput.bg_white(action='')
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
 							input.bg_lightgray(type='text' , name='addNewMsmField', id='newmsm' , placeholder='Mensaje', required, autocomplete='off')
 							input#lobbyScope(type='hidden', name='lobbyField', value='')
