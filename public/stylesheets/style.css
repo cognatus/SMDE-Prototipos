@@ -336,12 +336,9 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .bg_editgray{background-image: url('/images/pencil.png');}
 
-.border_bottom{border-bottom: 1px solid rgba(0,0,0,0.06);}
-.border_right{border-right: 1px solid rgba(0,0,0,0.06);}
-
-.border_thick{border: 2px solid rgba(0,0,0,0.1);}
-
-.border_bottomthick{border-bottom: 2px solid rgba(0,0,0,0.4);}
+.border_bottom{border-bottom: 1px solid rgba(0,0,0,0.07);}
+.border_right{border-right: 1px solid rgba(0,0,0,0.07);}
+.border_thick{border: 2px solid rgba(0,0,0,0.07);}
 
 .border_accentcolor{border-color: #FFC400;}
 
@@ -438,6 +435,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .margin_l{margin-left: 8px;}
 
 .margin_r{margin-right: 8px;}
+
+.breakword{word-wrap: break-word;}
 
 /*---------------------------------------------------------------------------------------
 	INDEX
@@ -1085,10 +1084,10 @@ span.title_rightoptionicon:hover{
 }
 
 .listitem_info{
-	padding: 16px 15px 15px 0;
+	padding: 16px 13px 15px 0;
 	display: inline-block;
 	vertical-align: top;
-	width: calc(100% - 92px);
+	width: calc(100% - 90px);
 	position: relative;
 }
 
@@ -1168,8 +1167,8 @@ span.title_rightoptionicon:hover{
 .listitem_rightinfo{
 	opacity: 0.5;
 	position: absolute;
-	top: 16px;
-	right: 15px;
+	top: 15px;
+	right: 12px;
 	font-size: 11px;
 }
 
@@ -2055,8 +2054,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme::-webkit-scrollbar-button, .dark_theme div::-webkit-scrollbar-button{height: 18px;}
 
-.dark_theme .border_bottom, .dark_theme .border_right{border-color: rgba(255,255,255,0.06);}
-
 .dark_theme .opacity_color{
 	color: rgba(255,255,255,0.5);
 }
@@ -2080,6 +2077,8 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .dark_theme .rightmsm .msm_date{
 	color: rgba(255,255,255,0.6);
 }
+
+.dark_theme .border_bottom, .dark_theme .border_thick, .dark_theme .border_right{border-color: rgba(255,255,255,0.1);}
 
 .dark_theme .hover:hover{background-color: rgba(255,255,255,0.03);}
 

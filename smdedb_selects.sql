@@ -219,7 +219,6 @@ FROM Message AS m
 
 --Consulta para publicaciones
 
---Si es alumno
 SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,
 	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,
 	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,
@@ -236,33 +235,14 @@ SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,
 		ON s.idSubject = shc.Subject_idSubject 
 	INNER JOIN Course As c 
 		On c.idCourse = shc.Course_idCourse
-	INNER JOIN Student_has_Subject_has_Course AS st
-	WHERE st.Subject_has_Course_Subject_idSubject IN(
+	WHERE p.Subject_has_Course_Subject_idSubject IN(
 		SELECT Subject_has_Course_Subject_idSubject
 			FROM Student_has_Subject_has_Course
             WHERE Student_idStudent = 'VATOASDSAD46844'
     )
-    AND st.Subject_has_Course_Course_idCourse IN(
+    AND p.Subject_has_Course_Course_idCourse IN(
 		SELECT Subject_has_Course_Course_idCourse
 			FROM Student_has_Subject_has_Course
             WHERE Student_idStudent = 'VATOASDSAD46844'
     )
-    GROUP BY idPublication;
-    
---Si es profe
-SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,
-	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,
-	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,
-	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName
-	FROM Publication AS p 
-	INNER JOIN Teacher AS t 
-		ON t.User_userEmail = p.Teacher_User_userEmail 
-	INNER JOIN User AS u 
-		ON u.userEmail = t.User_userEmail
-	INNER JOIN Subject_has_Course AS shc 
-		ON shc.Subject_idSubject = p.Subject_has_Course_Subject_idSubject 
-		AND shc.Course_idCourse = p.Subject_has_Course_Course_idCourse
-	INNER JOIN Subject AS s 
-		ON s.idSubject = shc.Subject_idSubject 
-	INNER JOIN Course As c 
-		On c.idCourse = shc.Course_idCourse;
+GROUP BY idPublication;

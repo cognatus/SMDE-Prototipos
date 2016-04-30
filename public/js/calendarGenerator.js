@@ -52,13 +52,8 @@ Calendar.prototype.generateHTML = function(){
         // Dias de la semana
         for ( var j = 0; j <= 6; j++ ) { 
             if ( day <= monthLength && (i > 0 || j >= startingDay) ) {
-                html += '<div class="day v_top" onclick="carga(' + day + ')">';
-                if( day == current_date.getDate() ){
-                    html += '<div class="pd_8 today bgaccent_color3 flat_shadow white_text circle"><div class="num"><span>';    
-                }
-                else{
-                    html += '<div class="pd_8 circle hover"><div class="num"><span>';
-                }
+                html += '<div class="day v_top" onclick="loadDay(' + day + ')">';
+                html += '<div class="pd_8 circle hover"><div class="num"><span>';
                 html += day;
                 html += '</span><div class="dot_cont">';
                 html += '</div></div></div></div>';
@@ -180,10 +175,9 @@ jQuery(document).ready(function(){
 
 });
 
-function carga(calendarDay){
-    console.log( 'Día: ' + calendarDay );
-    console.log( 'Mes: ' + months_labels[mes] );
-    console.log( 'Año: ' + anio );
+function loadDay(calendarDay){
+
+    jQuery('#calendar_dayeventscont #showByDate .slide_list').remove();
 
     var realm = mes + 1;
 
@@ -192,10 +186,21 @@ function carga(calendarDay){
     var writemonth = realm.toString();
     writemonth = writemonth.length < 2 ? '0' + writemonth : writemonth;
 
-    console.log( 'Día Form: ' + writeday );
-    console.log( 'Mes Form: ' + writemonth );
+    console.log('Día Form: ' + writeday );
+    console.log('Mes Form: ' + writemonth );
+
     document.calendarNewEvent.formCalendarDay.value = writeday;
     document.calendarNewEvent.formCalendarMonth.value = writemonth;
     document.calendarNewEvent.formCalendarYear.value = anio;
     document.getElementById("selectedDate").innerHTML = calendarDay + ' ' + super_months_labels[mes] + ' ' + anio;
+
+    console.log('Día: ' + writeday);
+    console.log('Mes: ' + months_labels[mes]);
+    console.log('Año: ' + anio);
+
+    //LE ENVIA LA FECHA PARA EJECUTAR LA FUNCION AJAX
+    var stringDateToSend = anio + '-' + writemonth + '-' + writeday;
+
+    showPublicationsByDate(stringDateToSend);
+    showRemindersByDate(stringDateToSend);
 }

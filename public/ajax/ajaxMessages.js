@@ -170,8 +170,6 @@ jQuery(document).ready(function(){
         var msmText = jQuery('#newmsm').val();
         var lobby = jQuery('#lobbyScope').val();
 
-        alert('Mensaje: ' + msmText + ' | Lobby: ' + lobby);
-
          socket.emit('mensaje', {
             //Estas variables se obtienen de layout.jade
             userEmail: sessionUser,
@@ -181,52 +179,15 @@ jQuery(document).ready(function(){
             messageTime: currentTime
         });
 
-        var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
-
-        if(lastRightMsm > 0){
-            container.find('.msm_block:last-child').find('.msm_text')
-                .append('<div class="colhh1 autooverflow" data-msm="">'
-                        +   '<div class="rightmsm bg_white">'
-                        +       '<div class="pd_12"> '
-                        +           msmText
-                        +           '<span class="msm_date">'
-                        +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
-                        +           '</span>'
-                        +       '</div>'
-                        +   '</div>'
-                        +'</div>');
-        }
-        else{
-            container.append('<div class="colhh1 margin_bot msm_block">'
-                            +   '<div class="msm_text">'
-                            +       '<div class="colhh1 autooverflow" data-msm="">'
-                            +           '<div class="rightmsm bg_white">'
-                            +               '<i></i>'
-                            +               '<div class="pd_12"> '
-                            +                   msmText
-                            +                   '<span class="msm_date">'
-                            +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
-                            +                   '</span>'
-                            +               '</div>'
-                            +           '</div>'
-                            +       '</div>'
-                            +   '</div>'
-                            +   '<div class="msm_img">'
-                            +       '<img src="images/profilephoto.png" title="Yo" class="circle">'
-                            +   '</div>'
-                            + '</div>');
-        }
-
         jQuery.ajax({
             method: 'POST',
             url: 'insertNewMessage',
-            cache: false,
             data: {
                 message: msmText,
                 lobby: lobby
             },
             success: function(data) {
-                msmText = '';
+                jQuery('#newmsm').val('').focus();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('error ' + textStatus + " " + errorThrown);

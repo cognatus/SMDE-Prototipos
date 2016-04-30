@@ -230,7 +230,9 @@ app.get('/getTeacherCoincidences', profilePost.getTeacherCoincidences);
 app.post('/insertPublication', calendarPost.insertPublication);
 app.post('/insertReminder', calendarPost.insertReminder);
 app.get('/getRemindersDatabase', calendarPost.getRemindersDatabase);
+app.get('/getRemindersDatabaseByDate', calendarPost.getRemindersDatabaseByDate);
 app.get('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
+app.get('/getPublicationsDatabaseByDate', calendarPost.getPublicationsDatabaseByDate);
 
 //Todo referente a la vista de Asignaturas
 app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);
