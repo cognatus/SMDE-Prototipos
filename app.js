@@ -62,8 +62,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 	socket.on('mensaje', function(data){//recibe lo que quieras
 
 		console.log('mensaje ' + socket.room)
+		console.log('mensaje2 ' + data.messageText)
 		//esta linea dice que va a emitir un evento mostrar en la sala especifica
-		socket.in(socket.room).emit('mostrar', {
+		socket.to(socket.room).emit('mostrar', {
+		//socket.emit('mostrar', {
 				//le envias lo que tu quieras
 				//Recibes las variables desde el front
 				userEmail: data.userEmail,
@@ -87,10 +89,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0s3',
+		password: 'n0m3l0',
 		user: 'root',
 		database: 'smdedbv1',
-		port: 8080
+		port: 3306
 	});
 	return connection;
 };

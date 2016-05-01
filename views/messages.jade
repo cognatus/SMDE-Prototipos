@@ -183,6 +183,6 @@ block content
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
 							input.bg_lightgray(type='text' , name='addNewMsmField', id='newmsm' , placeholder='Mensaje', required, autocomplete='off')
 							input#lobbyScope(type='hidden', name='lobbyField', value='')
-							input.bgaccent_color.circle.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='')
+							input.bgaccent_color.circle.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()')
 						
 
