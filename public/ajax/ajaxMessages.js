@@ -2,7 +2,7 @@ var socket = io('http://localhost:3000/chatsini');
 
 function selectLobby(lobby){
     //este metodo recibe el lobby  y conecta en server
-    socket.emit('cambiarsala', 'lobby');
+    socket.emit('cambiarsala', lobby);
     jQuery('#lobbyScope').val(lobby);
     //Contenedor de los mensajes
     var container = jQuery('#msm_list');
@@ -104,7 +104,7 @@ function selectLobby(lobby){
 //Paso 3.
 socket.on('mostrar', function(data){
 
-    alert('llegue hasta aqui'+data.messageText)
+    alert('llegue hasta aqui'+data.messageText);
     //este es el importante
     //lo que enviaste del back en socket.in(socket.room).emit('mostrar', {
     //lo vas a estar reccibiendo en este metodo
@@ -117,12 +117,12 @@ socket.on('mostrar', function(data){
 
     if(lastRightMsm > 0){
         container.find('.msm_block:last-child').find('.msm_text')
-            .append('<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
+            .append('<div class="colhh1 autooverflow">'
                     +   '<div class="rightmsm bg_white">'
                     +       '<div class="pd_12"> '
                     +           data.messageText
                     +           '<span class="msm_date">'
-                    +               '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
+                    +               '<label class="lobby_time" title="Hace un momento"> ' + data.messageTime + '</label>'
                     +           '</span>'
                     +       '</div>'
                     +   '</div>'
@@ -131,13 +131,13 @@ socket.on('mostrar', function(data){
     else{
         container.append('<div class="colhh1 margin_bot msm_block">'
                         +   '<div class="msm_text">'
-                        +       '<div class="colhh1 autooverflow" data-msm="' + data.idMessage + '">'
+                        +       '<div class="colhh1 autooverflow">'
                         +           '<div class="rightmsm bg_white">'
                         +               '<i></i>'
                         +               '<div class="pd_12"> '
                         +                   data.messageText
                         +                   '<span class="msm_date">'
-                        +                       '<label class="lobby_time" title="' + data.messageDate + '"> ' + data.messageTime + '</label>'
+                        +                       '<label class="lobby_time" title="Hace un momento"> ' + data.messageTime + '</label>'
                         +                   '</span>'
                         +               '</div>'
                         +           '</div>'
@@ -165,7 +165,7 @@ jQuery(document).ready(function(){
     jQuery('#msm_textarea').focus(function(){
         if(jQuery('.msm_sendtocontainer .msm_sendtocontact').length > 0){
             jQuery('#search_newmsmcontacts').css('height', '0');
-            jQuery('#contacts_to_send').css('margin-top', '-8px');
+            jQuery('#contacts_to_send').css('margin-top', '-10px');
             jQuery('.msm_sendtocontainer #msm_addperson').show();
         }
 
@@ -307,46 +307,6 @@ jQuery(document).ready(function(){
         }
     });
 
-    jQuery('form#addNewMsm').submit(function(e){
-        e.preventDefault();
-
-        var date = new Date();
-        var hh = date.getHours();
-        var mm = date.getMinutes();
-        if( hh < 10 ){ hh = '0' + hh; }
-        if( mm < 10 ){ mm = '0' + mm; }
-        var currentTime = hh + ':' + mm;
-        //Paso 1.
-        //aqui solo le mandas el mensaje y/o demas informacion que gustes
-        var msmText = jQuery('#newmsm').val();
-        var lobby = jQuery('#lobbyScope').val();
-
-         socket.emit('mensaje', {
-            //Estas variables se obtienen de layout.jade
-            userEmail: sessionUser,
-            userName: sessionUserName,
-            userLastName: sessionUserLastName,
-            messageText: msmText,
-            messageTime: currentTime
-        });
-
-        jQuery.ajax({
-            method: 'POST',
-            url: 'insertNewMessage',
-            data: {
-                message: msmText,
-                lobby: lobby
-            },
-            success: function(data) {
-                jQuery('#newmsm').val('').focus();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('error ' + textStatus + " " + errorThrown);
-            }
-        });
-
-    });
-
 });
 
 
@@ -368,15 +328,42 @@ function showLobbies(){
 }
 
 function enviarMsg(){
+
+    var date = new Date();
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    if( hh < 10 ){ hh = '0' + hh; }
+    if( mm < 10 ){ mm = '0' + mm; }
+    var currentTime = hh + ':' + mm;
+
+    var lobbyScope = jQuery('#lobbyScope').val();
+    var msmText = jQuery('#newmsm').val();
+
     socket.emit('mensaje', {
         
-        //no supe de donde sacar los datos .-.
-        userEmail: 'tu@gefa.com',
-        userName: 'benito',
-        userLastName: 'camelo',
-        messageText: 'tu gfa puto',
-        messageTime: 'hoy'    
+        userEmail: sessionUser,
+        userName: sessionUserName,
+        userLastName: sessionUserLastName,
+        messageText: msmText,
+        messageTime: currentTime   
 
+    });    
+
+    jQuery.ajax({ 
+        type: 'post',
+        url: '/insertNewMessage',
+        data: {
+            messageBody : $('#newmsm').val(),
+            lobbyBody : $('#lobbyScope').val()
+        },
+        dataType: 'application/json',
+        success: function(data) {
+            alert('Success!' + data);
+            jQuery('#newmsm').val('');
+        },
+        error: function(request, status, error){
+            alert("Error: No se pudo enviar el mensaje.");
+        }
     });
 }
 

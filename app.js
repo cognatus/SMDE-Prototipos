@@ -24,6 +24,7 @@ var htmlspecialchars = require('htmlspecialchars');
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(express.bodyParser());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.cookieParser('sabemos todo sobre ti'));
@@ -54,15 +55,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 		socket.leave(socket.room);//deja la sala actual
 		socket.room = data;//especificas la sala
 		socket.join(data);//te unes a la sala
- 		console.log('YAY!!! si cambio :D')
-		console.log('Sala ' + socket.room)
+ 		console.log('YAY!!! si cambio :D');
+		console.log('Sala: ' + socket.room);
 	})
 
  	//Paso 2.
 	socket.on('mensaje', function(data){//recibe lo que quieras
 
-		console.log('mensaje ' + socket.room)
-		console.log('mensaje2 ' + data.messageText)
+		console.log(' ');
+		console.log('---------------------------------------------------------------');
+		console.log('Sala: ' + socket.room);
+		console.log('Mensaje: ' + data.messageText);
+		console.log('Hora: ' + data.messageTime);
+		console.log('De: ' + data.userEmail);
+		console.log('---------------------------------------------------------------');
+		console.log(' ');
+
 		//esta linea dice que va a emitir un evento mostrar en la sala especifica
 		socket.to(socket.room).emit('mostrar', {
 		//socket.emit('mostrar', {
@@ -89,10 +97,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0',
+		password: 'n0m3l0s3',
 		user: 'root',
 		database: 'smdedbv1',
-		port: 3306
+		port: 8080
 	});
 	return connection;
 };

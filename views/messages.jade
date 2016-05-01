@@ -23,7 +23,7 @@ block content
 					form(name='new_messageform' action='insertLobby' method='POST')
 						#newmsm_form.form_innercontainer
 							.colhh1(style='margin-top:2px;')
-								.form_input2.border_bottom.rel_pos
+								.form_input2
 									input#hidden_inputsendto(type='hidden' value='' name='insetUsersLobby')
 								.form_input2.border_bottom.rel_pos
 									input#search_newmsmcontacts(type='text' placeholder='Para' autocomplete='off')
@@ -179,9 +179,9 @@ block content
 														span.msm_date 10:34 pm
 										.msm_img
 											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
-						form#addNewMsm.colhh1.msminput.bg_white(action='')
+						#addNewMsm.colhh1.msminput.bg_white
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
-							input.bg_lightgray(type='text' , name='addNewMsmField', id='newmsm' , placeholder='Mensaje', required, autocomplete='off')
+							input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', required, autocomplete='off')
 							input#lobbyScope(type='hidden', name='lobbyField', value='')
 							input.bgaccent_color.circle.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()')
 						

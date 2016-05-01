@@ -157,6 +157,13 @@ block content
 							.pd_18.ll_title Todo
 						.colhh1
 							#calendar_list.listcontainer
+								.colhh1.opacity_color.b_text.border_bottom
+									.colhh2.hover(data-show='Publicación')
+										.pd_16.center_text.uppercase
+											| Publicaciones
+									.colhh2.hover(data-show='Recordatorio')
+										.pd_16.center_text.uppercase
+											| Recordatorios
 								.colhh1.empty_blocktext.center_text
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
@@ -188,16 +195,18 @@ block content
 															.pd_4
 															.sl_title Entrega: 
 																span.margin_l.normal_txt #{item.pubLimDate}
-															.pd_4
+															.pd_8.border_bottom
 														.pd_llist
 															.sl_title Comentarios
-															.pd_16.justify_text.breakword
+															.pd_16.justify_text.breakword.border_bottom
 																| #{item.pubText}
-															.attached_filecontainer.autooverflow
-																span.v_middle.bg_file.bg_blue.borad
-																div.v_middle.sl_title.opacity_color #{item.publicationAttachedNameFile}
-																span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
-													.pd_24.listitemactions.autooverflow
+														.pd_llist
+															.sl_title Archivos Adjuntos
+														.attached_filecontainer.autooverflow.pd_lr8
+															span.v_middle.bg_file.bg_blue.borad
+															div.v_middle.sl_title.opacity_color #{item.publicationAttachedNameFile}
+															span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
+													.pd_18.listitemactions.autooverflow
 														span.circle.right_float.bg_delete.hover(title='Eliminar')
 														span.circle.right_float.bg_archive.hover(title='Archivar')
 														//- var email = '#{item.userEmail}'
@@ -222,12 +231,12 @@ block content
 														.pd_llist
 															.sl_title Fecha Limite: 
 																span.margin_l.normal_txt #{item.reminderLimDate}
-															.pd_4
+															.pd_8.border_bottom
 														.pd_llist
 															.sl_title Comentarios
 															.pd_16.justify_text.breakword
 																| #{item.reminderText}
-													.pd_24.listitemactions.autooverflow
+													.pd_18.listitemactions.autooverflow
 														span.circle.right_float.bg_delete.hover(title='Eliminar')
 														span.circle.right_float.bg_archive.hover(title='Archivar') 
 														span.circle.right_float.bg_editgray.hover(title='Editar')
