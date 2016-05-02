@@ -92,6 +92,20 @@ jQuery(document).on('ready' ,function(){
 		});
 	});
 
+	jQuery('#profile_photo').click(function(){
+		jQuery('.form_profilephoto').show();
+		jQuery('.form_profileback').hide();
+	});
+
+	jQuery('#profile_back').click(function(){
+		jQuery('.form_profilephoto').hide();
+		jQuery('.form_profileback').show();
+	});
+
+	jQuery('span.close_pimg').click(function(){
+		jQuery(this).parents('.profile_hideitem').hide();
+	});
+
 /*-------------------------------------------------------------------------------------
 		CONFIRM BLOCK
 ---------------------------------------------------------------------------------------*/
@@ -438,21 +452,21 @@ jQuery(document).on('ready' ,function(){
 		INPUT FILE
 ---------------------------------------------------------------------------------------*/
 
-	jQuery('#trigger_fbutton').click(function(){
-		jQuery('#attachedfile').trigger('click');
+	jQuery('.f_select span.trigger').click(function(){
+		jQuery(this).parents('.f_select').find('input[type="file"]').trigger('click');
 	});
 
-	var origText = jQuery('#file_value').text();
+	var origText = jQuery('.f_value').text();
 	
-	jQuery('#attachedfile').on('change' , function(){
+	jQuery('.f_select input[type="file"]').on('change' , function(){
 		var fileValue = jQuery(this).val();
-		jQuery('#file_value').text( fileValue );
+		jQuery(this).parents('.f_select').find('.f_value').text( fileValue );
 		if( fileValue != ''){
-			jQuery('#file_value').addClass('border_accentcolor');
+			jQuery(this).parents('.f_select').find('.f_value').addClass('border_accentcolor');
 		}
 		else{
-			jQuery('#file_value').removeClass('border_accentcolor');
-			jQuery('#file_value').text(origText);
+			jQuery(this).parents('.f_select').find('.f_value').removeClass('border_accentcolor');
+			jQuery(this).parents('.f_select').find('.f_value').text(origText);
 		}
 	});
 

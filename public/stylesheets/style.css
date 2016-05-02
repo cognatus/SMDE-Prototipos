@@ -945,6 +945,14 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	opacity: 0.8;
 }
 
+.form_profilephoto, .form_profileback{display: none;}
+
+.profile_hideitem .small_icon{
+	position: absolute;
+	background-image: url('/images/close_gray.png');
+	top: 7px;right: 8px; 
+}
+
 /*---------------------------------------------------------------------------------------
 	MINIMENU
 -----------------------------------------------------------------------------------------*/
@@ -1689,7 +1697,7 @@ option{background-color: #fff;}
 	width: calc(100% - 72px);
 } 
 	
-#file_value{
+.f_value{
 	width: auto;
 	overflow: hidden;
 	margin-top: 8px;

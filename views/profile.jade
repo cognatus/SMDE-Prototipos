@@ -59,25 +59,42 @@ block content
 									span
 								.minimenu_hidden
 									#profile_photo.pd_16.hover.rippleria-dark(data-rippleria) Foto de Perfil
-									#profile_background.pd_16.hover.rippleria-dark(data-rippleria) Portada
+									#profile_back.pd_16.hover.rippleria-dark(data-rippleria) Portada
 						.photo
 							img.circle( src='images/profilephoto.png' )
 						.name
 							.pd_18
 								b #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
 								span #{datos[0].userEmail}
-				.form_profilephoto.block_container.bg_white
+				.form_profilephoto.block_container.bg_white.profile_hideitem
 					.colhh1.bg_lightgray.border_bottom
-						.pd_18.ll_title Foto de Perfil
+						.pd_18.ll_title.rel_pos Foto de Perfil
+							span.hover.circle.close_pimg.right_float.small_icon.bg_cross(tile='Cerrar')
 					.colhh1
 						.pd_24
-							.form_input
+							.form_input.f_select
 								.input_filecontainer
-									input(type='file' name='attachedfile' id='attachedfile')
+									input(type='file' name='attachedfilepPhoto' id='attachedfilepPhoto')
 								.file_buttoncontainer
-									span#trigger_fbutton.bg_attachment_white.circle.bg_pink.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
+									span.trigger.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 									.right_float
-										#file_value.ll_title.opacity_color.border_thick Seleccionar Archivo
+										.f_value.ll_title.opacity_color.border_thick Seleccionar Archivo
+							.form_input(style='height: 52px;')
+								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+									input(type='submit' value='')
+				.form_profileback.block_container.bg_white.profile_hideitem
+					.colhh1.bg_lightgray.border_bottom
+						.pd_18.ll_title.rel_pos Portada
+							span.hover.circle.close_pimg.right_float.small_icon.bg_cross(tile='Cerrar')
+					.colhh1
+						.pd_24
+							.form_input.f_select
+								.input_filecontainer
+									input(type='file' name='attachedfileBImg' id='attachedfilebImg')
+								.file_buttoncontainer
+									span.trigger.bg_attachment_white.circle.bgaccent_color3.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
+									.right_float
+										.f_value.ll_title.opacity_color.border_thick Seleccionar Archivo
 							.form_input(style='height: 52px;')
 								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 									input(type='submit' value='')

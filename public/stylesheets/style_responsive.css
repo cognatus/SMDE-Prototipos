@@ -167,6 +167,7 @@
 	.halfgrid{width: 400px;}
 	.secondgrid{width: calc(100% - 400px);}
 
+	.block_containermsm, .block_containersettings{overflow: initial;}
 	.block_containersettings .halfgrid{width: 430px;overflow: initial;}
 	.block_containersettings .secondgrid{width: calc(100% - 446px);margin-left: 16px;height: auto;height: 100%;}
 
