@@ -121,29 +121,6 @@ exports.getRemindersDatabase = function(req, res){
 	});
 };
 
-// FUNCION PARA MOSTRAR RECORDATORIOS DEL USUARIO
-exports.getRemindersDatabaseByDate = function(req, res){
-	var database = new base();
-	var selectedDate = req.query.selectedDate;
-
-	stringQuery = 'SELECT idReminder, reminderTitle, reminderText,'
-				+ '	DATE_FORMAT(reminderDateTime, "%d/%m/%Y") AS reminderDate, DATE_FORMAT(reminderDateTime, "%H:%i") AS reminderTime,'
-				+ '	DATE_FORMAT(reminderLimitDate, "%d/%m/%Y %H:%i") AS reminderLimDate'
-				+ ' FROM Reminder '
-				+ ' WHERE User_userEmail="' + req.session.datos[0].userEmail + '" '
-				+ ' AND DATE(reminderLimitDate) = "' + selectedDate + '";';
-
-	database.query(stringQuery, function(error, result, row){
-		if(!error) {
-			remindersDataByDate = result;
-			res.send(remindersDataByDate);
-		}else{
-			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.send('Error');
-		}
-	});
-};
-
 // FUNCION PARA MOSTRAR PUBLICACIONES QUE HACE EL PROFESOR
 exports.getPublicationsDatabase = function(req, res){
 	var database = new base();
@@ -217,89 +194,6 @@ exports.getPublicationsDatabase = function(req, res){
 		if(!error) {
 			publicationsData = result;
 			res.send(publicationsData);
-		}else{
-			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
-			res.send('Error');
-		}
-	});
-};
-
-// FUNCION PARA MOSTRAR PUBLICACIONES QUE HACE EL PROFESOR POR FECHA
-exports.getPublicationsDatabaseByDate = function(req, res){
-	var database = new base();
-	var selectedDate = req.query.selectedDate;
-
-	//SI EL USUARIO ES TIPO ALUMNO
-	if(req.session.privilegio == 1){
-		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
-					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
-					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,'
-					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
-					+ '		FROM Publication AS p '
-					+ '		INNER JOIN Teacher AS t '
-					+ '			ON t.User_userEmail = p.Teacher_User_userEmail '
-					+ '		INNER JOIN User AS u '
-					+ '			ON u.userEmail = t.User_userEmail '
-					+ '		INNER JOIN Subject_has_Course AS shc '
-					+ '			ON shc.Subject_idSubject = p.Subject_has_Course_Subject_idSubject '
-					+ '			AND shc.Course_idCourse = p.Subject_has_Course_Course_idCourse '
-					+ '		INNER JOIN Subject AS s '
-					+ '			ON s.idSubject = shc.Subject_idSubject '
-					+ '		INNER JOIN Course As c '
-					+ '			On c.idCourse = shc.Course_idCourse '
-					+ '	WHERE p.Subject_has_Course_Subject_idSubject IN '
-					+ ' 	( '
-					+ '			SELECT Subject_has_Course_Subject_idSubject '
-					+ '			FROM Student_has_Subject_has_Course '
-					+ '            WHERE Student_idStudent = "' + req.session.datos[0].idStudent + '"'
-					+ ' 	) '
-					+ ' AND p.Subject_has_Course_Course_idCourse IN '
-					+ ' 	( '
-					+ '			SELECT Subject_has_Course_Course_idCourse '
-					+ '			FROM Student_has_Subject_has_Course '
-					+ '            WHERE Student_idStudent = "' + req.session.datos[0].idStudent + '" '
-					+ '    	) '
-					+ ' AND DATE(publicationLimitDate) = "' + selectedDate + '" '
-					+ ' GROUP BY idPublication; ';
-	}
-	//SI EL USUARIO ES TIPO PROFESOR
-	else if(req.session.privilegio == 2){
-		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
-					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
-					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,'
-					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
-					+ '		FROM Publication AS p '
-					+ '		INNER JOIN Teacher AS t '
-					+ '			ON t.User_userEmail = p.Teacher_User_userEmail '
-					+ '		INNER JOIN User AS u '
-					+ '			ON u.userEmail = t.User_userEmail '
-					+ '		INNER JOIN Subject_has_Course AS shc '
-					+ '			ON shc.Subject_idSubject = p.Subject_has_Course_Subject_idSubject '
-					+ '			AND shc.Course_idCourse = p.Subject_has_Course_Course_idCourse '
-					+ '		INNER JOIN Subject AS s '
-					+ '			ON s.idSubject = shc.Subject_idSubject '
-					+ '		INNER JOIN Course As c '
-					+ '			On c.idCourse = shc.Course_idCourse '
-					+ '	WHERE p.Subject_has_Course_Subject_idSubject IN '
-					+ ' 	( '
-					+ '			SELECT Subject_has_Course_Subject_idSubject '
-					+ '			FROM Teacher_has_Subject_has_Course '
-					+ '            WHERE Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '"'
-					+ '    	) '
-					+ ' AND p.Subject_has_Course_Course_idCourse IN '
-					+ ' 	( '
-					+ '			SELECT Subject_has_Course_Course_idCourse '
-					+ '			FROM Teacher_has_Subject_has_Course '
-					+ '            WHERE Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
-					+ '    	) '
-					+ ' AND DATE(publicationLimitDate) = "' + selectedDate + '" '
-					+ ' GROUP BY idPublication; ';
-	}
-
-	database.query(stringQuery, function(error, result, row){
-		if(!error) {
-			publicationsDataByDate = result;
-			res.send(publicationsDataByDate);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('Error');

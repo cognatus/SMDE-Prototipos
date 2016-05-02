@@ -197,10 +197,5 @@ function loadDay(calendarDay){
     console.log('Día: ' + writeday);
     console.log('Mes: ' + months_labels[mes]);
     console.log('Año: ' + anio);
-
-    //LE ENVIA LA FECHA PARA EJECUTAR LA FUNCION AJAX
-    var stringDateToSend = anio + '-' + writemonth + '-' + writeday;
-
-    showPublicationsByDate(stringDateToSend);
-    showRemindersByDate(stringDateToSend);
+    
 }

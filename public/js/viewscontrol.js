@@ -22,7 +22,7 @@ jQuery(document).on('ready' ,function(){
 	});
 
 	jQuery('.listcontainer').each(function(){
-		if( jQuery(this).find('.listitem, .hover').length > 0 ){
+		if( jQuery(this).find('.listitem, .hover, .list_leftitem').length > 0 ){
 			jQuery(this).find('.empty_blocktext').hide();
 		}
 		else{
@@ -318,7 +318,7 @@ jQuery(document).on('ready' ,function(){
 
 	var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
 
-	jQuery('.listitem, .hover').each(function(){
+	jQuery('.listitem, .hover, .list_leftitem').each(function(){
 
 		var circleLetter = jQuery(this).find('.listitem_title b').text();
 		var span = jQuery(this).find('.listitem_img span');
@@ -589,7 +589,7 @@ jQuery(document).ready(function(){
 
 		var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
 
-		jQuery('.hover').each(function(){
+		jQuery('.hover, .list_leftitem').each(function(){
 
 			var circleLetter = jQuery(this).find('.listitem_title b').text();
 			var span = jQuery(this).find('.listitem_img span');

@@ -16,7 +16,7 @@ body {
  	margin: 0;
  	height: 100%;
 	font-family: 'Roboto' , 'Helvetica' , sans-serif;
-	background-color: #f5f5f5;
+	background-color: #eeeeee;
 	color: #424242;
 	font-size: 14px;
 }
@@ -75,6 +75,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .b_text{font-weight: bold;}
 .rel_pos{position: relative;}
 .abs_pos{position: absolute;}
+.underline:hover{text-decoration: underline;cursor: pointer;}
 
 .none_txttransform{text-transform: none;}
 
@@ -148,6 +149,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .pd_40{padding: 40px;width: auto;}
 .pd_48{padding: 48px;width: auto;}
 .pd_64{padding: 64px;width: auto;}
+.pd10_16{padding: 10px 16px 10px 16px;width: auto;}
 .pd12_24{padding: 12px 24px 12px 24px;width: auto;}
 .pd16_24{padding: 16px 24px 16px 24px;width: auto;}
 .pd12_14{padding: 12px 14px 12px 14px;width: auto;}
@@ -359,12 +361,12 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .dark_text{color: rgba(0,0,0,0.5);}
 
 .empty_blocktext{
-	opacity: 0.5;
 	height: 100%;
 	position: relative;
 }
 
 .empty_blocktext .pd_64{
+	opacity: 0.5;
 	padding: 64px 50px 64px 50px;
 }
 
@@ -1766,7 +1768,7 @@ input:checked + .switch:active::before {
 
 .calendar_imgcontainer{
 	width: 100%;
-	height: 220px;
+	height: 210px;
 }
 
 .calendar_colortitle{box-shadow: 0px 1px 2px rgba(0,0,0,0.24);position: relative;}
@@ -1885,11 +1887,12 @@ input:checked + .switch:active::before {
 }
 
 .listitemactions{
-	padding-top: 0;
+	min-height: 40px;
 }
+
 .listitemactions span{
-	width: 42px;
-	height: 42px;
+	width: 40px;
+	height: 40px;
 	display: inline-block;
 	margin-left: 8px;
 }
