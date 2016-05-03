@@ -5,13 +5,17 @@ jQuery(document).ready(function(){
     showPublications();
     showSubjectsCourses();
 
+    jQuery('#showCourseToPost').hide();
+
     jQuery('#selectCalendarPostType').on('change', function(){
         var thisVal = jQuery(this).val();
         if (thisVal == 'reminder'){
             jQuery('form#calendarAddNew').attr('action', 'insertReminder');
+            jQuery('#showCourseToPost').hide();
         }
         if (thisVal == 'publication'){
             jQuery('form#calendarAddNew').attr('action', 'insertPublication');
+            jQuery('#showCourseToPost').fadeIn();
         } 
 
     });

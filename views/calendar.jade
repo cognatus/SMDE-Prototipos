@@ -30,7 +30,7 @@ block content
 											option(value='publication') Publicación
 								//- Si es profesor
 								- if (privilegio == 2)
-									.form_input
+									.form_input#showCourseToPost
 										.b_text.left_title Grupo
 										select#showSubjectsCourses(name='calendarCourseSelectField')
 											if subjectsProfileData != undefined
@@ -176,7 +176,7 @@ block content
 												.listitem_img
 													img(src='images/profilephoto.png' title='#{item.userEmail}')
 												.listitem_info
-													.listitem_rightinfo 
+													.listitem_rightinfo(title=' Publicado el #{item.pubDate} a las #{item.pubTime}')
 														label.item_date #{item.pubDate}
 														label.item_time #{item.pubTime}
 													.listitem_title(title='#{item.userEmail}')  
@@ -219,7 +219,8 @@ block content
 													- if ( privilegio == 2 )
 														span.circle.bg_editgray.hover(title='Editar')
 													span.circle.bg_archive.hover(title='Archivar')
-													span.circle.bg_delete.hover(title='Eliminar')
+													- if ( privilegio == 2 )
+														span.circle.bg_delete.hover(title='Eliminar')
 								if remindersData != undefined
 									each item in remindersData
 										.colhh1.block_container.bg_white.cal_post(data-name='#{item.reminderTitle}' data-type='Recordatorio')
@@ -227,7 +228,7 @@ block content
 												.listitem_img
 													span A
 												.listitem_info
-													.listitem_rightinfo 
+													.listitem_rightinfo(title=' Publicado el #{item.reminderDate} a las #{item.reminderTime}')
 														label.item_date #{item.reminderDate}
 														label.item_time #{item.reminderTime}
 													.listitem_title 
@@ -243,10 +244,11 @@ block content
 													.sl_title Comentarios
 													.pd_16.justify_text.breakword
 														| #{item.reminderText}
-											.pd10_16.listitemactions.autooverflow.bg_lightgray
-												span.circle.right_float.bg_delete.hover(title='Eliminar')
-												span.circle.right_float.bg_archive.hover(title='Archivar') 
-												span.circle.right_float.bg_editgray.hover(title='Editar')
+											.pd10_16.listitemactions.bg_lightgray
+												.autocol.right_float
+													span.circle.bg_editgray.hover(title='Editar')
+													span.circle.bg_archive.hover(title='Archivar') 
+													span.circle.bg_delete.hover(title='Eliminar')
 							.colhh1.load_container#calendar_showall
 								.load
 									.spinner

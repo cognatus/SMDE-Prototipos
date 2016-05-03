@@ -279,12 +279,12 @@ block content
 															label.subject_prom
 														.listitem_title 
 															b #{item.subjectName}
-														.listitem_bottomdata.rank
-															span.bg_blue
-															span.bg_blue
-															span.bg_blue
-															span.bg_blue
-															span.bg_blue
+														.listitem_bottomdata.rank(title='Nivel #{item.subjectLevel}')
+															script.
+																var level = #{item.subjectLevel};
+																for(var i = 0; i < level; i++){
+																	document.write('<span class="bg_blue"></span>');
+																}
 												.colhh1.innerlistitem
 													.colhh1.border_bottom
 														.list_borderleft

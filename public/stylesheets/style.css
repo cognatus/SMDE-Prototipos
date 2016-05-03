@@ -259,7 +259,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .bg_amber{background-color: #FFC107;}
 .bg_brown{background-color: #795548;}
 .bg_bluegray{background-color: #607D8B;}
-.bg_lightgray{background-color: #f5f5f5;}
+.bg_lightgray{background-color: #f9f9f9;}
 .bg_gray{background-color: #616161;}
 .bg_darkgray{background-color: #212121;}
 
@@ -585,6 +585,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	outline: none;
 	border: none;
 	margin: 0;
+	width: 100%;
 	padding: 16px;
 	color: #fff;font-weight: 500;
 	border-radius: 3px;
@@ -1179,7 +1180,7 @@ span.title_rightoptionicon:hover{
 	opacity: 0.5;
 	position: absolute;
 	top: 15px;
-	right: 14px;
+	right: 15px;
 	font-size: 11px;
 }
 
@@ -1577,7 +1578,6 @@ span.title_rightoptionicon:hover{
 	margin: 0;
 	border-radius: 2px;
 	background-color: #fff;
-	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.08);
 }
 .search.s_type2{margin-top: -8px;}
 
@@ -1994,8 +1994,8 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .float_buttoncontainer{
 	position: fixed;
-	width: 60px;
-	height: 60px;
+	width: 57px;
+	height: 57px;
 	right: 24px;
 	bottom: 24px;
 	z-index: 59;
@@ -2081,7 +2081,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 }
 
 .dark_theme .bg_lightgray{
-	background-color: #363636;
+	background-color: #383838;
 }
 
 .dark_theme .h_listtopcontainer{
