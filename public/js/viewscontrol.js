@@ -405,8 +405,8 @@ jQuery(document).on('ready' ,function(){
 
 	function sortDescending(){
 		listSortItemOrder.sort(function(a,b){
-			var an = a.getAttribute(Sort.atribute),
-			bn = b.getAttribute(Sort.atribute);
+			var an = a.getAttribute(Sort.attribute),
+			bn = b.getAttribute(Sort.attribute);
 			if(an > bn) {
 				return 1;
 			}
@@ -419,8 +419,8 @@ jQuery(document).on('ready' ,function(){
 
 	function sortAscending(){
 		listSortItemOrder.sort(function(a,b){
-			var an = a.getAttribute(Sort.atribute),
-			bn = b.getAttribute(Sort.atribute);
+			var an = a.getAttribute(Sort.attribute),
+			bn = b.getAttribute(Sort.attribute);
 			if(an < bn) {
 				return 1;
 			}
@@ -432,19 +432,19 @@ jQuery(document).on('ready' ,function(){
 	}
 
 	jQuery('#sort_alfa').click(function(){
-		Sort.atribute = 'data-name';
+		Sort.attribute = 'data-name';
 		sortToggleClick();
 	});
 
 	
 
 	jQuery('#sort_date').click(function(){
-		Sort.atribute = 'data-date';
+		Sort.attribute = 'data-date';
 		sortToggleClick();
 	});
 
 	jQuery('#sort_subject').click(function(){
-		Sort.atribute = 'data-type';
+		Sort.attribute = 'data-type';
 		sortToggleClick();
 	});
 
@@ -475,11 +475,41 @@ jQuery(document).on('ready' ,function(){
 		SEARCH BAR
 ---------------------------------------------------------------------------------------*/
 
+	jQuery('.search #close_searchbar').hide();
+
 	jQuery('#show_searchbar').click(function(){
-		jQuery('.search input').focus();
+		jQuery('.search.s_type2').fadeIn();
+		jQuery('.search.s_type2 input#buscar').focus();
+	});
+
+	jQuery('.search.s_type2 input#buscar').blur(function(){
+		jQuery('.search.s_type2').fadeOut();
+		jQuery('#listcontainer .listitem').show();
+		jQuery('#listcontainer .no_result').html('');
+		jQuery(this).siblings('.searchicon').show();
+		jQuery(this).val('');
+		jQuery('.search #close_searchbar').hide();
+	});
+
+	jQuery('.search input#buscar_slide').blur(function(){
+		jQuery('#listcontainer .slide_list').show();
+		jQuery('#listcontainer .no_result').html('');
+		jQuery(this).val('');
 	});
 
 	jQuery('#buscar').keyup(function(){
+
+		jQuery('.search #close_searchbar').click(function(){
+			jQuery(this).hide();
+			jQuery('.search.s_type2').fadeOut();
+			jQuery('.search.s_type2 input#buscar').blur().val('');
+			jQuery('#listcontainer .listitem').show();
+			jQuery('#listcontainer .no_result').html('');
+			jQuery(this).siblings('.searchicon').show();
+		});
+
+		jQuery(this).siblings('.searchicon').hide();
+		jQuery(this).siblings('#close_searchbar').show();
 
 		jQuery('#listcontainer.listcontainer .empty_blocktext').hide();
 		var currentQuery = jQuery('#buscar').val().toUpperCase();

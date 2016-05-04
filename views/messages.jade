@@ -78,7 +78,7 @@ block content
 									textarea#msm_textarea(placeholder='Escribe Algo' name='insertNewLobbyMsm')
 								.pd_24
 									.form_input(style='height: 52px;')
-										span.bgaccent_color.bg_send.submit.circle.rippleria-dark( data-rippleria )
+										span.bgaccent_color.circle.bg_send.submit.rippleria-dark(data-rippleria style='background-image: url("images/send.png");background-size: 42%;')
 						.form_confirmblock
 							.inner_confirmblock.bg_gray.flat_shadow
 								.pd_24(style='padding-bottom: 16px;')
@@ -101,7 +101,7 @@ block content
 								.pd_18.ll_title Inbox
 							.icons.rel_pos
 								#show_searchbar.small_icon.circle.bg_magnify.hover(title='Buscar')
-								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/list_icon.png")' title='Mostrar')
+								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/dots-vertical.png");background-size: 24px;' title='Mostrar')
 								.minimenu_hidden.left_text(style='top: 9px;')
 									.pd_16.hover.rippleria-dark(data-rippleria) Todo
 									.pd_16.hover.rippleria-dark(data-rippleria) No Leidos
@@ -109,6 +109,7 @@ block content
 						.colhh1
 							.search.s_type2.rel_pos
 								span.searchicon
+								span#close_searchbar.close_icon(title='Cerrar buscador')
 								input#buscar(type='text' name='msm_chatsearch' placeholder='Buscar una conversación' autocomplete='off')
 					#listcontainer.autooverflow.left_listcontainer.listcontainer
 						.colhh1.empty_blocktext.center_text
@@ -183,6 +184,6 @@ block content
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
 							input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', required, autocomplete='off')
 							input#lobbyScope(type='hidden', name='lobbyField', value='')
-							input.bgaccent_color.circle.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()')
+							input.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()')
 						
 

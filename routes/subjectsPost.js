@@ -23,11 +23,11 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 					+ ' 	ON c.idCourse = a.Course_idCourse '
 					+ ' INNER JOIN Department AS d '
 					+ ' 	ON d.idDepartment = s.Department_idDepartment '
-					+ ' WHERE Subject_idSubject IN( '
+					+ ' WHERE Subject_idSubject NOT IN( '
 					+ ' 	SELECT Subject_has_Course_Subject_idSubject  '
 					+ ' 	FROM Student_has_Subject_has_Course b '
 					+ ' 	WHERE b.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
-					+ ' ) = a.Subject_idSubject ';
+					+ ' ) '
 					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" '
 					+ ' ORDER BY courseName ASC, subjectName ASC; ';
 	}
@@ -42,11 +42,11 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 					+ ' 	ON c.idCourse = a.Course_idCourse '
 					+ ' INNER JOIN Department AS d '
 					+ ' 	ON d.idDepartment = s.Department_idDepartment '
-					+ ' WHERE Subject_idSubject IN( '
-					+ ' 	SELECT Subject_has_Course_Subject_idSubject  '
+					+ ' WHERE (a.Subject_idSubject, a.Course_idCourse) NOT IN( '
+					+ ' 	SELECT Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse  '
 					+ ' 	FROM Teacher_has_Subject_has_Course b '
 					+ ' 	WHERE b.Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
-					+ ' ) = a.Subject_idSubject ';
+					+ ' ) '
 					+ ' AND d.Institute_idInstitute = "' + req.session.datos[0].Institute_idInstitute + '" '
 					+ ' ORDER BY courseName ASC, subjectName ASC; ';
 	}

@@ -17,16 +17,16 @@ block content
 				.colhh1.hb_formcontainer
 					form#calendarAddNew(name='calendarNewEvent' action='insertReminder' method='POST')
 						.form_innercontainer
-							.form_titlepad.flat_shadow.bgprimary_color
+							.form_titlepad.bgprimary_color.flat_shadow
 								.form_input.white_text.rel_pos
-									input.activeline.white_text(type='text' required name='formCalendarTitle')
+									input.activeline.white_text(type='text' required name='formCalendarTitle' autocomplete='off')
 									label Título
 							.pd_24
-								.form_input
-									.b_text.left_title Asunto
-									select#selectCalendarPostType
-										option(value='reminder') Recordatorio
-										- if (privilegio == 2)
+								- if (privilegio == 2)
+									.form_input
+										.b_text.left_title Tipo
+										select#selectCalendarPostType
+											option(value='reminder') Recordatorio
 											option(value='publication') Publicación
 								//- Si es profesor
 								- if (privilegio == 2)
@@ -86,7 +86,7 @@ block content
 			.colhh1
 				.calendar_container.v_top
 					.calendar.bg_white.block_container
-						.colhh1.white_text.center_text.bg_calendar
+						.colhh1.white_text.center_text.bg_calendar.flat_shadow
 							.bg_opacity
 								.colhh1
 									.colhh1.bg_opacity
@@ -141,8 +141,8 @@ block content
 									.colhh1.empty_blocktext.center_text
 										.centerempty
 											.pd_64
-												span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
-												.autocol.mm_title.pd_12 No hay eventos ni tareas para este dia.
+												span.v_middle(style= 'background-image: url("images/calendar-circle.png")')
+												.autocol.mm_title.pd_12 Se muestran solo los eventos de este día.
 												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo evento en este día.
 
 					//- .block_container.bg_calendar.calendar_imgcontainer
@@ -167,11 +167,19 @@ block content
 								.block_container.empty_blocktext.center_text.bg_white
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
-										.autocol.mm_title.pd_12 No hay eventos ni tareas.
-										.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo evento.
+										- if (privilegio == 1 || privilegio == 2)
+											.autocol.mm_title.pd_12 No hay Recordatorios ni publicaciones.
+											- if (privilegio == 1) 
+												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
+											- if (privilegio == 2) 
+												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
+										- if (privilegio == 3)
+											.autocol.mm_title.pd_12 No hay Recordatorios.
+											.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
+
 								if publicationsData != undefined
 									each item in publicationsData
-										.colhh1.block_container.bg_white.cal_post(data-name='#{item.pubTitle}' data-type='Publicación')
+										.colhh1.block_container.bg_white.cal_post(data-name='#{item.pubTitle}' data-type='Publicación' data-date='#{item.pubLimDate}')
 											.colhh1.list_leftitem(style='padding-top: 2px;margin-bottom: 16px;')
 												.listitem_img
 													img(src='images/profilephoto.png' title='#{item.userEmail}')
@@ -194,7 +202,7 @@ block content
 														span.margin_l.normal_txt #{item.courseName}
 													.pd_4
 													.sl_title Entrega: 
-														span.margin_l.normal_txt #{item.pubLimDate}
+														span.margin_l.normal_txt #{item.pubLimDate} a las #{item.pubLimTime}
 													.pd_12.border_bottom
 												.pd_llist
 													.pd_4
@@ -223,7 +231,7 @@ block content
 														span.circle.bg_delete.hover(title='Eliminar')
 								if remindersData != undefined
 									each item in remindersData
-										.colhh1.block_container.bg_white.cal_post(data-name='#{item.reminderTitle}' data-type='Recordatorio')
+										.colhh1.block_container.bg_white.cal_post(data-name='#{item.reminderTitle}' data-type='Recordatorio' data-date='#{item.reminderLimDate}')
 											.colhh1.list_leftitem(style='padding-top: 2px;margin-bottom: 16px;')
 												.listitem_img
 													span A
@@ -237,7 +245,7 @@ block content
 											.pd_lr8
 												.pd_llist
 													.sl_title Fecha Limite: 
-														span.margin_l.normal_txt #{item.reminderLimDate}
+														span.margin_l.normal_txt #{item.reminderLimDate} a las #{item.reminderLimTime}
 													.pd_8.border_bottom
 												.pd_llist
 													.pd_4

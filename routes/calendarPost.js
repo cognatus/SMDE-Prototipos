@@ -107,7 +107,7 @@ exports.getRemindersDatabase = function(req, res){
 
 	stringQuery = 'SELECT idReminder, reminderTitle, reminderText,'
 				+ '	DATE_FORMAT(reminderDateTime, "%d/%m/%Y") AS reminderDate, DATE_FORMAT(reminderDateTime, "%H:%i") AS reminderTime,'
-				+ '	DATE_FORMAT(reminderLimitDate, "%d/%m/%Y %H:%i") AS reminderLimDate'
+				+ '	DATE_FORMAT(reminderLimitDate, "%d/%m/%Y") AS reminderLimDate, DATE_FORMAT(reminderLimitDate, "%H:%i") AS reminderLimTime'
 				+ ' FROM Reminder '
 				+ ' WHERE User_userEmail="' + req.session.datos[0].userEmail + '";' ;
 	database.query(stringQuery, function(error, result, row){
@@ -129,7 +129,7 @@ exports.getPublicationsDatabase = function(req, res){
 	if(req.session.privilegio == 1){
 		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
 					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
-					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,'
+					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y") AS pubLimDate, DATE_FORMAT(publicationLimitDate, "%H:%i") AS pubLimTime,'
 					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
 					+ '		FROM Publication AS p '
 					+ '		INNER JOIN Teacher AS t '
@@ -155,7 +155,7 @@ exports.getPublicationsDatabase = function(req, res){
 	else if(req.session.privilegio == 2){
 		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
 					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
-					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y %H:%i") AS pubLimDate,'
+					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y") AS pubLimDate, DATE_FORMAT(publicationLimitDate, "%H:%i") AS pubLimTime,'
 					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
 					+ '		FROM Publication AS p '
 					+ '		INNER JOIN Teacher AS t '
