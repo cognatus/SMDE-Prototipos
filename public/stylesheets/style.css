@@ -1649,6 +1649,7 @@ span.title_rightoptionicon:hover{
 	max-width: 100%;
 	min-width: 100%;
 	border: none;
+	margin-top: 8px;
 }
 
 .form_input input[type='text']:focus, .form_input input[type='password']:focus, .form_input input[type='email']:focus,
@@ -1769,6 +1770,8 @@ input:checked + .switch:active::before {
 	position: relative;
 	width: 100%;
 }
+
+.calendar_container .block_container{margin-bottom: 16px;}
 
 .calendar_imgcontainer{
 	width: 100%;

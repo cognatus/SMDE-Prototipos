@@ -108,7 +108,9 @@ function writeCalendar(month, year){
 
     jQuery('#calendar_month_content .day .pd_8').on('click' ,function(){
 
-        jQuery(window).scrollTop(0);
+        if(jQuery(window).width() < 640){
+            jQuery(window).scrollTop(jQuery('.calendar').outerHeight());
+        }
         var origh = jQuery('.calendar').height();
         jQuery('.calendar_rightinner').css({
             width: origw,
@@ -177,8 +179,6 @@ jQuery(document).ready(function(){
 
 function loadDay(calendarDay){
 
-    jQuery('#calendar_dayeventscont #showByDate .slide_list').remove();
-
     var realm = mes + 1;
 
     var writeday = calendarDay.toString();
@@ -197,5 +197,30 @@ function loadDay(calendarDay){
     console.log('Día: ' + writeday);
     console.log('Mes: ' + months_labels[mes]);
     console.log('Año: ' + anio);
+
+    var stringDate = writeday + '/' + writemonth + '/' + anio;
+
+    jQuery('.cal_post').hide();
+    jQuery('.cal_post[data-date="' + stringDate + '"]').show();
+    jQuery('.cal_post[data-datepost="' + stringDate + '"]').show();
+
+    function checkEmpty(){
+
+        if(jQuery('.cal_post[style="display: block;"]').length == 0){
+            jQuery('#calendar_list .listcontainer .empty_blocktext').show();
+        }
+        else{
+            jQuery('#calendar_list .listcontainer .empty_blocktext').hide();
+        }
+    }
+
+    setTimeout(checkEmpty, 900);
+
+    jQuery('#backcalendar').click(function(){
+        jQuery('.cal_post').show();
+        if(jQuery('.cal_post').length > 0){
+            jQuery('#calendar_list .empty_blocktext').hide();
+        }
+    });
     
 }
