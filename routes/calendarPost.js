@@ -109,7 +109,8 @@ exports.getRemindersDatabase = function(req, res){
 				+ '	DATE_FORMAT(reminderDateTime, "%d/%m/%Y") AS reminderDate, DATE_FORMAT(reminderDateTime, "%H:%i") AS reminderTime,'
 				+ '	DATE_FORMAT(reminderLimitDate, "%d/%m/%Y") AS reminderLimDate, DATE_FORMAT(reminderLimitDate, "%H:%i") AS reminderLimTime'
 				+ ' FROM Reminder '
-				+ ' WHERE User_userEmail="' + req.session.datos[0].userEmail + '";' ;
+				+ ' WHERE User_userEmail="' + req.session.datos[0].userEmail + '" '
+				+ ' ORDER BY reminderDateTime DESC; ';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			remindersData = result;
@@ -149,7 +150,7 @@ exports.getPublicationsDatabase = function(req, res){
 					+ '			FROM Student_has_Subject_has_Course '
 					+ '            WHERE Student_idStudent = "' + req.session.datos[0].idStudent + '"'
 					+ ' 	) '
-					+ ' GROUP BY idPublication; ';
+					+ ' GROUP BY idPublication ORDER BY pubDateTime DESC; ';
 	}
 	//SI EL USUARIO ES TIPO PROFESOR
 	else if(req.session.privilegio == 2){
@@ -175,7 +176,7 @@ exports.getPublicationsDatabase = function(req, res){
 					+ '			FROM Teacher_has_Subject_has_Course '
 					+ '            WHERE Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '"'
 					+ ' 	) '
-					+ ' GROUP BY idPublication; ';
+					+ ' GROUP BY idPublication ORDER BY pubDateTime DESC; ';
 	}
 
 	database.query(stringQuery, function(error, result, row){
