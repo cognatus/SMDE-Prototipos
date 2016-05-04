@@ -259,7 +259,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 .bg_amber{background-color: #FFC107;}
 .bg_brown{background-color: #795548;}
 .bg_bluegray{background-color: #607D8B;}
-.bg_lightgray{background-color: #f9f9f9;}
+.bg_lightgray{background-color: #f6f6f6;}
 .bg_gray{background-color: #616161;}
 .bg_darkgray{background-color: #212121;}
 
@@ -1339,6 +1339,7 @@ span.title_rightoptionicon:hover{
 	overflow: auto;
 	position: relative;
 	left: 0;
+	background-color: #f2f2f2;
 }
 
 .msminput{
@@ -2084,6 +2085,8 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .dark_theme .bg_lightgray{
 	background-color: #383838;
 }
+
+.dark_theme .msm_innercontent{background-color: #343434;}
 
 .dark_theme .h_listtopcontainer{
 	color: rgba(255,255,255,0.7);
