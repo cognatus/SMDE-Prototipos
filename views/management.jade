@@ -203,15 +203,16 @@ block content
 											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
 	.topspace
 	.page_container
-		.block_container
-			.colhh1.profile_img2
-				.photo
-					a( href='/profile' )
-						img.circle( src='images/profilephoto.png' )
-				.name
-					.pd_18
-						b #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
-						span Institución: #{datos[0].instituteName}
+		.block_container.bg_white.profile_bgcont(style='margin-bottom: 0;')
+			.colhh1.profile_img
+				.photo.center_text
+					img.circle( src='images/profilephoto.png' )
+			.pd_24
+				.colhh1
+					.name.center_text
+						div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
+						span #{datos[0].instituteName}
+		
 		.h_listcontainer
 			.block_container.bg_white.mgmlisthor.v_top
 				.colhh1.rel_pos
@@ -232,7 +233,7 @@ block content
 						.h_listitem(data-filter='Grupo')
 							.pd_16.rippleria-dark( data-rippleria ) Grupos
 			.block_container.bg_white.mgm_listcontainer.v_top
-				.colhh1.bg_lightgray.border_bottom
+				.colhh1.bg_lightgray
 					.search.rel_pos
 						span.searchicon
 						input#buscar_slide(type='text',name='buscar', placeholder='Buscar Cualquier Cosa')

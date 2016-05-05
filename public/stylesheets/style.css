@@ -70,7 +70,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	font-weight: 500;
 }
 
-.lighttext{font-weight: lighter;}
+.lighttext{font-weight: 300;}
 .uppercase{text-transform: uppercase;}
 .b_text{font-weight: bold;}
 .rel_pos{position: relative;}
@@ -339,6 +339,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .bg_editgray{background-image: url('/images/pencil.png');}
 
+.border_t{border: 1px solid rgba(0,0,0,0.07);}
 .border_bottom{border-bottom: 1px solid rgba(0,0,0,0.07);}
 .border_right{border-right: 1px solid rgba(0,0,0,0.07);}
 .border_thick{border: 2px solid rgba(0,0,0,0.07);}
@@ -628,16 +629,15 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 
 .menu_userimg{
-	position: absolute;
-	width: 66px;
-	height: 66px;
-	top: 16px;
-	left: 14px;
+	padding-top: 16px;
+	width: 100%;
+	height: 70px;
 }
 
 .menu_userimg img{
-	width: 100%;
-	height: 100%;
+	width: 66px;
+	height: 66px;
+	border: 2px solid #fff;
 }
 
 .menu_username{
@@ -645,9 +645,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	bottom: 0;
 	left: 0;
 	color: #fff;
-	font-weight: 500;
-	text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
-	font-size: 12.5px;
+	font-weight: normal;
+	font-size: 14px;
 }
 
 .menu_username a{
@@ -882,6 +881,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	margin-bottom: 0;
 }
 
+.mainoptions_container .colhh3{width: 50%;}
+
 .mainoptions span{
 	width: 40px;
 	height: 40px;
@@ -901,14 +902,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }*/
 
 .profile_img{
-	height: 200px;
-	background: url('/images/material_bg.jpg') no-repeat center;
-	background-size: cover;
-	position: relative;
-}
-
-.profile_img2{
-	height: 180px;
+	height: 190px;
 	background: url('/images/material_bg.jpg') no-repeat center;
 	background-size: cover;
 	position: relative;
@@ -919,31 +913,37 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 }
 
 .photo{
-	width: 72px;
-	height: 72px;
+	width: 100%;
+	height: 86px;
 	position: absolute;
-	bottom: 18px;
-	left: 18px;
+	bottom: -43px;
 }
 
 .photo img{
-	width: 100%;
-	height: 100%;
+	width: 80px;
+	height: 80px;
+	border: 3px solid #fff;
 }
 
-.profile_img .name, .profile_img2 .name{
+.profile_bgcont .divider{
+	width: 1px;
+	height: 56px;
 	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: calc(100% - 90px);
-	color: #fff;
-	text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+	left: 50%;
+	top: 2px;
+	margin-left: -0.5px;
+	background-color: rgba(140,140,140,0.3);
 }
 
-.profile_img .name span , .profile_img2 .name span{
+.profile_bgcont .name{
+	font-size: 16px;
+	font-weight: normal;
+	margin-top: 32px;
+}
+
+.profile_bgcont .name span{
 	display: block;
 	width: auto;
-	font-weight: normal;
 	margin-top: 2px;
 	opacity: 0.8;
 }
@@ -1197,7 +1197,8 @@ span.title_rightoptionicon:hover{
 	height: 21px;
 	font-size: 17px;
 	position: relative;
-	font-weight: 500;
+	font-weight: normal;
+	background-color: #f2f2f2;
 }
 
 .block_containersettings .msmtopname{
@@ -1497,34 +1498,25 @@ span.title_rightoptionicon:hover{
 	position: relative;
 }
 
-.progress_emoticon div{
-	position: relative;
-	font-size: 22px;
-	font-weight: normal;
-	display: inline-block;
-	margin-top: 2px;
-}
-
 .progress_emoticon span{
 	display: inline-block;
 	vertical-align: top;
-	float: left;
 	width: 32px;
 	height: 32px;
 	background: url('/images/emoticon.png') no-repeat center;
 	background-size: 32px;
-	margin-right: 32px;
-	margin-bottom: 26px; 
+	margin: 0 16px 0 16px;
 }
 
 .progress_emoticon #indicator{
-	width: 48px;
-	height: 48px;
+	width: 30px;
+	height: 30px;
 	position: absolute;
 	display: block;
 	margin: 0;
-	opacity: 0.3;
-	top: -8px;left: 120px;
+	opacity: 0.2;
+	top: 1px;left: 70.5px;
+	display: none;
 }
 
 .notif .listitem_img{
@@ -2086,7 +2078,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	background-color: #383838;
 }
 
-.dark_theme .msm_innercontent{background-color: #343434;}
+.dark_theme .msm_innercontent, .dark_theme .msmtopname{background-color: #343434;}
 
 .dark_theme .h_listtopcontainer{
 	color: rgba(255,255,255,0.7);
@@ -2100,7 +2092,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	color: rgba(255,255,255,0.6);
 }
 
-.dark_theme .border_bottom, .dark_theme .border_thick, .dark_theme .border_right{border-color: rgba(255,255,255,0.1);}
+.dark_theme .border_bottom, .dark_theme .border_thick, .dark_theme .border_right, .dark_theme .border_t{border-color: rgba(255,255,255,0.1);}
 
 .dark_theme .hover:hover{background-color: rgba(255,255,255,0.035);}
 
@@ -2133,6 +2125,8 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	color: #e0e0e0;
 	background-color: #424242;
 }
+
+.dark_theme .photo img{border-color: #424242;}
 
 .dark_theme input[type=radio]:not(old):hover + label > span > span{
 	background-color: #FFC400;

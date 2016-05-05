@@ -29,18 +29,19 @@ html
 		- bodyClass = ''
 	body(class=bodyClass)
 		#menu.menu_grid.bg_white
-			.colhh1.menu_userbg
-				.menu_userimg
-					a( href='/profile' )
-						img.circle( src='images/profilephoto.png' )
-				.colhh1.menu_username
-					a( href='/profile' )
-						.pd12_14 
-							| #{datos[0].userName} 
-							| #{datos[0].userLastName} 
-							| #{datos[0].userSecondLastName}
-							span 
-								| #{datos[0].userEmail}
+			.colhh1.menu_userbg.center_text
+				.bg_opacity
+					.menu_userimg
+						a( href='/profile' )
+							img.circle( src='images/profilephoto.png' )
+					.colhh1.menu_username
+						a( href='/profile' )
+							.pd_16
+								| #{datos[0].userName} 
+								| #{datos[0].userLastName} 
+								| #{datos[0].userSecondLastName}
+								span 
+									| #{datos[0].userEmail}
 			.colhh1.menu_opccontainer
 				.pd_tb_10.border_bottom
 					a( href='/main' )

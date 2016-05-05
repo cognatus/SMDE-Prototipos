@@ -53,10 +53,6 @@
 
 	.block_containersettings{box-shadow: none;height: auto;}
 
-	.profile_img{
-		height: 260px;
-	}
-
 	.top_pallete .minimenu_container{
 		z-index: 999; 
 	}
@@ -128,6 +124,8 @@
 		width: 33.3333333%;
 		display: inline-block;
 	}
+
+	.mainoptions_container .colhh3{width: 33.333333%;}
 
 	.colhh4{width: 25%;}
 

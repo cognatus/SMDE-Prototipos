@@ -49,25 +49,45 @@ block content
 		.topspace
 		.page_container
 			.grid_profilebackgroundcontainer
-				.block_container
+				.block_container.bg_white.profile_bgcont
 					.colhh1.profile_img
-						.pd_18
+						.pd_18(style='height:20px;')
 							.minimenu_container( title='Opciones' )
 								.minimenu
 									span
 									span
 									span
-								.minimenu_hidden
+								.minimenu_hidden.left
 									#profile_photo.pd_16.hover.rippleria-dark(data-rippleria) Foto de Perfil
 									#profile_back.pd_16.hover.rippleria-dark(data-rippleria) Portada
-						.photo
+						.photo.center_text
 							img.circle( src='images/profilephoto.png' )
-						.name
-							.pd_18
-								b #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
+					.pd_24
+						.colhh1
+							.name.center_text
+								div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
 								span #{datos[0].userEmail}
+					.colhh1.center_text.rel_pos(style='padding-bottom: 24px;')
+						if privilegio != 3
+							.colhh2
+								.pd_4.sl_title
+									| Contactos
+								.pd_4.lighttext#countContacts(style='font-size: 21px;')
+									| 9
+							.divider
+							.colhh2
+								.pd_4.sl_title
+									| Cursos
+								.pd_4.lighttext#countCourses(style='font-size: 21px;')
+									| 4
+						if privilegio == 3
+							.colhh1
+								.pd_4.sl_title
+									| Contactos
+								.pd_4.lighttext#countContacts(style='font-size: 21px;')
+									| 9
 				.form_profilephoto.block_container.bg_white.profile_hideitem
-					.colhh1.bg_lightgray.border_bottom
+					.colhh1
 						.pd_18.ll_title.rel_pos Foto de Perfil
 							span.hover.circle.close_pimg.right_float.small_icon.bg_cross(tile='Cerrar')
 					.colhh1
@@ -78,12 +98,12 @@ block content
 								.file_buttoncontainer
 									span.trigger.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 									.right_float
-										.f_value.ll_title.opacity_color.border_thick Seleccionar Archivo
+										.f_value.ll_title.opacity_color.border_t Seleccionar Archivo
 							.form_input(style='height: 52px;')
 								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 									input(type='submit' value='')
 				.form_profileback.block_container.bg_white.profile_hideitem
-					.colhh1.bg_lightgray.border_bottom
+					.colhh1
 						.pd_18.ll_title.rel_pos Portada
 							span.hover.circle.close_pimg.right_float.small_icon.bg_cross(tile='Cerrar')
 					.colhh1
@@ -94,24 +114,25 @@ block content
 								.file_buttoncontainer
 									span.trigger.bg_attachment_white.circle.bgaccent_color3.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 									.right_float
-										.f_value.ll_title.opacity_color.border_thick Seleccionar Archivo
+										.f_value.ll_title.opacity_color.border_t Seleccionar Archivo
 							.form_input(style='height: 52px;')
 								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 									input(type='submit' value='')
 				.block_container.bg_white.progress_profile
+					.pd_18.ll_title
+						| Rendimiento
 					.pd_18
-						.progress_emoticon
-							#indicator.circle.bgaccent_color
+						.progress_emoticon.center_text
+							#indicator.circle.bg_indigo
 							span( style='background-image: url("/images/emoticon-sad.png")' )
 							span( style='background-image: url("/images/emoticon-neutral.png")' )
 							span( style='background-image: url("/images/emoticon-happy.png")' )
 							span
-							div Tu rendimiento es muy bueno!
 					.pd_18
 						.ll_title Promedio General
 							span#signaturegralprom.right_float.ll_title 8.21
-						.colhh1.bg_lightgray.circle.inbox_shadow
-							#signatureprogress.progress_bar.bgaccent_color.circle
+						.colhh1.bg_lightgray.inbox_shadow.borad
+							#signatureprogress.progress_bar.bgaccent_color2.borad.flat_shadow
 
 			.grid_rightcontainer
 				.colhh1.h_listcontainer
@@ -128,7 +149,7 @@ block content
 
 					.colhh1.h_listindex.first
 						.block_container.bg_white
-							.colhh1.bg_lightgray.border_bottom
+							.colhh1.bg_lightgray
 								.pd_18.ll_title Personal
 							.pd_18
 								.pd_4
@@ -146,7 +167,7 @@ block content
 										span.margin_l.normal_txt #{datos[0].userSex}
 								.pd_4
 						.block_container.bg_white
-							.colhh1.bg_lightgray.border_bottom
+							.colhh1.bg_lightgray
 								.pd_18.ll_title Académico
 							.pd_18
 								.pd_4
@@ -159,7 +180,7 @@ block content
 								.pd_4
 					.colhh1.h_listindex
 						#contacts_list.block_container.bg_white
-							.colhh1.bg_lightgray.border_bottom
+							.colhh1.bg_lightgray
 								.search.rel_pos
 									span.searchicon
 									input#buscar_slide(type='text',name='buscar', placeholder='Buscar un contacto')

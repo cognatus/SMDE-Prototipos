@@ -26,27 +26,14 @@ jQuery(document).ready(function(){
 
     jQuery('.cal_showtype').click(function(){
         //Cambiar el estilo para saber cual esta mostrando
-        jQuery('.cal_showtype').find('.pd_16').removeClass('bgaccent_color white_text');
-        jQuery(this).find('.pd_16').addClass('bgaccent_color white_text');
+        jQuery('.cal_showtype').find('.pd_16').removeClass('bgaccent_color2 white_text');
+        jQuery(this).find('.pd_16').addClass('bgaccent_color2 white_text');
 
         //Mostrar los del mismo tipo
         var type = jQuery(this).attr('data-show');
         jQuery('.calendar_postcontainer').fadeOut();
         jQuery('.calendar_postcontainer[data-type="' + type + '"]').fadeIn();
-
-        if(jQuery('.calendar_postcontainer[data-type="' + type + '"]').find('.cal_post[style="display: block;"]').length > 0){
-            jQuery('.calendar_postcontainer[data-type="' + type + '"]').find('.empty_blocktext').hide();
-        }
-        else{
-            jQuery('.calendar_postcontainer').find('.empty_blocktext').show();
-        }
         
-    });
-
-    jQuery('.cal_showtype').one('click', function(){
-        if(jQuery('#calendar_list .cal_post').length > 0){
-            jQuery('.calendar_postcontainer').find('.empty_blocktext').hide();
-        }
     });
 
     //OBTENER EL DIA ACTUAL PARA CAMBIAR LOS TEXTOS EN lA PARTE DERECHA DE LOS MENSAJES

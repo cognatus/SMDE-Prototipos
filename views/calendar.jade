@@ -67,7 +67,7 @@ block content
 										.file_buttoncontainer
 											span.trigger.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 											.right_float
-												.f_value.ll_title.opacity_color.border_thick Seleccionar Archivo
+												.f_value.ll_title.opacity_color.border_t Seleccionar Archivo
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 						.form_confirmblock
@@ -121,7 +121,7 @@ block content
 										.colhh7.center_text
 											.pd_8.dayname SAB
 									.colhh1.tablecalendar
-										.day_pos.circle.bgaccent_color3
+										.day_pos.circle.bgaccent_color2
 										#calendar_month_content
 										//- .day.v_top.today
 										//- 	.pd_8
@@ -153,11 +153,11 @@ block content
 				.calendar_allr.v_top
 					.colhh1
 						.colhh1.bg_lightgray.block_container
-							.pd_18.ll_title.border_bottom Todo
+							.pd_18.ll_title Todo
 							- if ( privilegio == 1 || privilegio == 2)
 								.colhh1.opacity_color.b_text.bg_white
 									.colhh2.hover.cal_showtype(data-show='Publicación')
-										.pd_16.center_text.uppercase.bgaccent_color.white_text
+										.pd_16.center_text.uppercase.bgaccent_color2.white_text
 											| Publicaciones
 									.colhh2.hover.cal_showtype(data-show='Recordatorio')
 										.pd_16.center_text.uppercase
