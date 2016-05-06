@@ -98,9 +98,16 @@ block content
 							.name.center_text
 								div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
 								span #{datos[0].userEmail}
+					.colhh1.center_text.rel_pos(style='padding-bottom: 24px;')
+						if privilegio != 3
+							.colhh1
+								.pd_4.sl_title
+									| Cursos
+								.pd_4.lighttext#countCourses(style='font-size: 21px;')
+									| 4
 				
 				.block_container.bg_white.progress_profile
-					.pd_18.ll_title
+					.pd_18.ll_title.bg_lightgray
 						| Rendimiento
 					.pd_18
 						.progress_emoticon.center_text
@@ -121,7 +128,7 @@ block content
 						.colhh1.bg_lightgray
 							.pd_18.ll_title Mis asignaturas
 						.colhh1
-							#subjects_list.listcontainer
+							#subjects_list.listcontainer.courses_cl
 								.colhh1.empty_blocktext.center_text
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/close-box.png")')

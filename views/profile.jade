@@ -119,7 +119,7 @@ block content
 								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 									input(type='submit' value='')
 				.block_container.bg_white.progress_profile
-					.pd_18.ll_title
+					.pd_18.ll_title.bg_lightgray
 						| Rendimiento
 					.pd_18
 						.progress_emoticon.center_text
@@ -136,7 +136,7 @@ block content
 
 			.grid_rightcontainer
 				.colhh1.h_listcontainer
-					.rel_pos.bg_white.block_container
+					.rel_pos.block_container.top_hlist(style='box-shadow: none;')
 						.h_listline.bgaccent_color
 						.h_listtopcontainer
 							.h_listitem.first
@@ -178,7 +178,7 @@ block content
 									.pd_l8.sl_title  Asignaturas Inscritas: 
 										span.margin_l.normal_txt 6
 								.pd_4
-					.colhh1.h_listindex
+					.colhh1.h_listindex.contacts_cl
 						#contacts_list.block_container.bg_white
 							.colhh1.bg_lightgray
 								.search.rel_pos
@@ -282,7 +282,7 @@ block content
 																	//- 		.listitem_bottomdata
 																	//- 			| Grupo: #{item.courseName}
 					- if (privilegio == 1 || privilegio == 2)
-						.colhh1.h_listindex
+						.colhh1.h_listindex.courses_cl
 							.block_container.bg_white
 								#subjects_list.listcontainer
 									.colhh1.empty_blocktext.center_text

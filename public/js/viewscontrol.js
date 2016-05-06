@@ -10,6 +10,9 @@ jQuery(document).on('ready' ,function(){
 		}
 	});*/
 
+	jQuery('#countContacts').text( jQuery('.contacts_cl .slide_list').length );
+	jQuery('#countCourses').text( jQuery('.courses_cl .slide_list').length );
+
 	jQuery('.sign_field input.textfield').focus(function(){
 		var firstImg = jQuery(this).siblings('img').attr('src');
 		var newImage = firstImg.slice(0 , -4);

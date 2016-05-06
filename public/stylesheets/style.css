@@ -411,6 +411,10 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	background-color: rgba(0,0,0,0.2);
 }
 
+.bg_opc{
+	background-color: rgba(0,0,0,0.1);
+}
+
 .opacity_color{color: rgba(0,0,0,0.46);}
 
 .text_shadow{text-shadow: 0px 1px 1px rgba(0,0,0,0.5);}
@@ -930,7 +934,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	height: 56px;
 	position: absolute;
 	left: 50%;
-	top: 2px;
+	top: 3px;
 	margin-left: -0.5px;
 	background-color: rgba(140,140,140,0.3);
 }
@@ -955,6 +959,8 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	background-image: url('/images/close_gray.png');
 	top: 7px;right: 8px; 
 }
+
+.top_hlist{margin-bottom: -8px;}
 
 /*---------------------------------------------------------------------------------------
 	MINIMENU

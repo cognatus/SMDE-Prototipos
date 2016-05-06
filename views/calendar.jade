@@ -152,15 +152,14 @@ block content
 
 				.calendar_allr.v_top
 					.colhh1
-						.colhh1.bg_lightgray.block_container
-							.pd_18.ll_title Todo
+						.colhh1.block_container.subl_top(style='box-shadow: none;')
 							- if ( privilegio == 1 || privilegio == 2)
-								.colhh1.opacity_color.b_text.bg_white
+								.colhh1.b_text.opacity_color.center_text.uppercase
 									.colhh2.hover.cal_showtype(data-show='Publicación')
-										.pd_16.center_text.uppercase.bgaccent_color2.white_text
+										.pd_16.bg_opc
 											| Publicaciones
 									.colhh2.hover.cal_showtype(data-show='Recordatorio')
-										.pd_16.center_text.uppercase
+										.pd_16
 											| Recordatorios
 						.colhh1
 							#calendar_list

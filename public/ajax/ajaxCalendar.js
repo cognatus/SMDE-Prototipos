@@ -26,8 +26,8 @@ jQuery(document).ready(function(){
 
     jQuery('.cal_showtype').click(function(){
         //Cambiar el estilo para saber cual esta mostrando
-        jQuery('.cal_showtype').find('.pd_16').removeClass('bgaccent_color2 white_text');
-        jQuery(this).find('.pd_16').addClass('bgaccent_color2 white_text');
+        jQuery('.cal_showtype').find('.pd_16').removeClass('bg_opc');
+        jQuery(this).find('.pd_16').addClass('bg_opc');
 
         //Mostrar los del mismo tipo
         var type = jQuery(this).attr('data-show');
