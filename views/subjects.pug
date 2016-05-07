@@ -1,7 +1,8 @@
 extends layout
 
 block content
-		script( type='text/javascript' src='/ajax/ajaxSubjects.js' )
+		script( type='text/javascript' src='/ajax/ajaxProfile.js' )
+		script( type='text/javascript' src='/js/subjectsControl.js' )
 
 		#new_item.float_buttoncontainer( title='Nueva' )
 			span.bg_plus.bgaccent_color
@@ -62,7 +63,7 @@ block content
 									.autocol.mm_title.pd_12 No hay asignaturas para inscribir.
 									.ll_title.normal_txt Al parecer ya inscribiste todo.
 							if subjectscoursesData != undefined
-								each item in subjectscoursesData
+								- for ( var item in subjectscoursesData)
 									.colhh1.slide_list(data-subjectfilter='#{item.subjectName}' data-coursefilter='#{item.courseName}')
 										.pd_lr8.hover.listitem.rel_pos(data-subject='#{item.idSubject}' data-course='#{item.idCourse}' data-name='#{item.subjectName}')
 											.listitem_righticon.circle.bg_plusgray.rippleria-dark(data-rippleria title='Agregar')
@@ -128,14 +129,14 @@ block content
 						.colhh1.bg_lightgray
 							.pd_18.ll_title Mis asignaturas
 						.colhh1
-							#subjects_list.listcontainer.courses_cl
+							#profilecourses_list.listcontainer.courses_cl
 								.colhh1.empty_blocktext.center_text
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/close-box.png")')
 										.autocol.pd_12.mm_title Sin cursos.
 										.ll_title.normal_txt Presiona &nbsp; + &nbsp; para inscribir cursos
 								if subjectsProfileData != undefined
-									each item in subjectsProfileData
+									for var item in subjectsProfileData
 										.colhh1.slide_list
 											.colhh1.hover.listitem.rippleria-dark(data-name='#{item.subjectName}' data-type='#{item.courseName}')
 												.listitem_img
@@ -144,7 +145,7 @@ block content
 													.listitem_rightinfo Promedio:
 														label.subject_prom
 													.listitem_title 
-														b #{item.subjectName}
+														b =item.subjectName
 													.listitem_bottomdata.rank(title='Nivel #{item.subjectLevel}')
 														script.
 															var level = #{item.subjectLevel};
@@ -158,13 +159,13 @@ block content
 															.sl_title Información
 														.pd_llist
 															.colhh1.pd_l12.sl_title Grupo: 
-																span.margin_l.normal_txt #{item.courseName}
+																span.margin_l.normal_txt= item.courseName
 															.pd_4
 															.colhh1.pd_l12.sl_title Academia: 
-																span.margin_l.normal_txt #{item.departmentName}
+																span.margin_l.normal_txt= item.departmentName
 															.pd_4
 															.colhh1.pd_l12.sl_title Nivel:
-																span.margin_l.normal_txt #{item.subjectLevel}
+																span.margin_l.normal_txt= item.subjectLevel
 				- else if ( privilegio == 2 )
 					.h_listcontainer
 						.block_container.bg_white
@@ -184,7 +185,7 @@ block content
 											.autocol.mm_title.pd_12 No tienes ninguna asignatura.
 											.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar asignaturas.
 									if subjectsProfileData != undefined
-										each item in subjectsProfileData
+										- for (var item in subjectsProfileData)
 											.colhh1.slide_list
 												.colhh1.hover.listitem.rippleria-dark(data-name='#{item.subjectName}' data-type='#{item.courseName}')
 													.listitem_img
@@ -208,13 +209,13 @@ block content
 																	.sl_title Información
 																.pd_llist
 																	.colhh1.pd_l12.sl_title Grupo: 
-																		span.margin_l.normal_txt #{item.courseName}
+																		span.margin_l.normal_txt= item.courseName
 																	.pd_4
 																	.colhh1.pd_l12.sl_title Academia: 
-																		span.margin_l.normal_txt #{item.departmentName}
+																		span.margin_l.normal_txt= item.departmentName
 																	.pd_4
 																	.colhh1.pd_l12.sl_title Nivel:
-																		span.margin_l.normal_txt #{item.subjectLevel}
+																		span.margin_l.normal_txt= item.subjectLevel
 															.pd_8
 															.colhh1
 																.pd_llist

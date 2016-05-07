@@ -1,9 +1,8 @@
 extends layout
 
 block content
+		script( type='text/javascript' src='/ajax/ajaxProfile.js' )
 
-	script( type='text/javascript' src='/ajax/ajaxProfile.js' )
-	div
 		#new_item.float_buttoncontainer( title='Editar Perfil' )
 			span.bg_edit.bgaccent_color
 
@@ -284,13 +283,13 @@ block content
 					- if (privilegio == 1 || privilegio == 2)
 						.colhh1.h_listindex.courses_cl
 							.block_container.bg_white
-								#subjects_list.listcontainer
+								#profilecourses_list.listcontainer
 									.colhh1.empty_blocktext.center_text
 										.pd_64
 											span.v_middle(style= 'background-image: url("images/close-box.png")')
 											.autocol.pd_12.mm_title No tienes ninguna asignatura.
 									if subjectsProfileData != undefined
-										each item in subjectsProfileData
+										- for (var item in subjectsProfileData)
 											.colhh1.slide_list
 												.colhh1.hover.listitem.rippleria-dark(data-name='#{item.subjectName}' data-type='#{item.courseName}')
 													.listitem_img
@@ -313,10 +312,10 @@ block content
 																.sl_title Información
 															.pd_llist
 																.colhh1.pd_l12.sl_title Grupo: 
-																	span.margin_l.normal_txt #{item.courseName}
+																	span.margin_l.normal_txt= item.courseName
 																.pd_4
 																.colhh1.pd_l12.sl_title Academia: 
-																	span.margin_l.normal_txt #{item.departmentName}
+																	span.margin_l.normal_txt= item.departmentName
 																.pd_4
 																.colhh1.pd_l12.sl_title Nivel:
-																	span.margin_l.normal_txt #{item.subjectLevel}
+																	span.margin_l.normal_txt= item.subjectLevel

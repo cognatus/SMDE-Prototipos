@@ -122,7 +122,7 @@ function showProfileSubjects(){
         url: 'getProfileSubjectsDatabase',
         cache: true,
         success: function(data) {
-            jQuery('#subjects_list').append(data);
+            console.log(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
