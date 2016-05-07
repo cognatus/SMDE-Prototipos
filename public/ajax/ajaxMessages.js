@@ -19,7 +19,7 @@ function selectLobby(lobby){
         success: function(data) {
             for(var i in data){
                 var msm = data[i];
-                var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm').length;
+                var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm[data-user="' + msm.userEmail + '"]').length;
                 var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
                 //LA VARIABLE sessionUser SE OBTIENE DE LA VISTA layout.jade
                 if (msm.userEmail == sessionUser ){
@@ -61,7 +61,7 @@ function selectLobby(lobby){
                      if(lastLeftMsm > 0){
                         container.find('.msm_block:last-child').find('.msm_text')
                             .append('<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
-                                    +   '<div class="leftmsm white_text">'
+                                    +   '<div class="leftmsm white_text bg_blue" data-user="' + msm.userEmail + '">'
                                     +       '<div class="pd_12"> '
                                     +           msm.messageText
                                     +           '<span class="msm_date">'
@@ -78,7 +78,7 @@ function selectLobby(lobby){
                                         +   '</div>'
                                         +   '<div class="msm_text">'
                                         +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
-                                        +           '<div class="leftmsm white_text">'
+                                        +           '<div class="leftmsm white_text bg_blue" data-user="' + msm.userEmail + '">'
                                         +               '<i></i>'
                                         +               '<div class="pd_12"> '
                                         +                   msm.messageText

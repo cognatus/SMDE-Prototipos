@@ -57,14 +57,14 @@ exports.insertPublication = function(req, res){
 	var publicationTitle = req.body.formCalendarTitle;
 	var publicationText  = req.body.formCalendarComment;
 	//OBTENERMOS EL CURSO AL QUE QUEREMOS PUBLICAR
-	var course = req.body.calendarCourseSelectField; 
+	var subjectId = req.body.calendarSubjectSelectField;
+	var courseId = req.body.calendarCourseSelectField;
 	var day = req.body.formCalendarDay;
 	var month = req.body.formCalendarMonth;
 	var year = req.body.formCalendarYear;
 	var hour = req.body.formCalendarHour;
 	var minutes = req.body.formCalendarMinute;
 	//SEPARAMOS EL idSubject del idCourse POR QUE SE MANDAN EN UNA SOLA CADENA DE TEXTO
-	var subjectCourse = course.split('/');
 	
 	var publicationLimitDate = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':00' ;
 	var publicationOwner = req.session.datos[0].userEmail;
@@ -79,8 +79,8 @@ exports.insertPublication = function(req, res){
 					+ ' NOW(),'
 					+ ' "' + publicationLimitDate + '",'
 					+ ' "' + publicationOwner + '",'
-					//			idSubject 					idCourse
-					+ ' "' + subjectCourse[0] + '", "' + subjectCourse[1] + '");';
+					//		 idSubject 		  	  idCourse
+					+ ' "' + subjectId + '", "' + courseId + '");';
 	stringQuery += 'COMMIT;'
 
 	database.query(stringQuery, function(error, result, row){
