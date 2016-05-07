@@ -99,35 +99,7 @@ exports.getProfileSubjectsDatabase = function(req, res){
 		if(!error) {
 			subjectsProfileData = result;
 			console.log(subjectsProfileData);
-			for(var i in subjectsProfileData){
-				var item = subjectsProfileData[i];
-				res.send(
-					+ '<div class="colhh1 slide_list">'
-					+ 	'<div class="colhh1 hover listitem rippleria-dark" data-name="' + item.subjectName + '" data-type="' + item.courseName +'">'
-					+		'<div class="listitem_img"><span></span></div>'
-					+		'<div class="listitem_info">'
-					+			'<div class="listitem_rightinfo">Promedio:<label class="subject_prom"></label></div>'
-					+			'<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
-					+			'<div class="listitem_bottomdata rank" title="Nivel ' + item.subjectLevel + '"></div>'
-					+		'</div>'
-					+	'</div>'
-					+	'<div class="colhh1 innerlistitem border_bottom">'
-					+		'<div class="list_borderleft">'
-					+			'<div class="pd_llist">'
-					+				'<div class="sl_title">Información</div>'
-					+			'</div>'
-					+			'<div class="pd_llist">'
-					+				'<div class="colhh1 pd_l12 sl_title">Grupo: <span class="margin_l normal_txt">' + item.courseName + '</span></div>'
-					+				'<div class="pd_4"></div>'
-					+				'<div class="colhh1 pd_l12 sl_title">Academia: <span class="margin_l normal_txt">' + item.departmentName + '</span></div>'
-					+				'<div class="pd_4"></div>'
-					+				'<div class="colhh1 pd_l12 sl_title">Nivel:<span class="margin_l normal_txt">' + item.subjectLevel + '</span></div>'
-					+			'</div>'
-					+		'</div>'
-					+	'</div>'
-					+'</div>'
-					);
-			}
+			res.send(subjectsProfileData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
