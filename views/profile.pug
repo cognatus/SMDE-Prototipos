@@ -288,34 +288,4 @@ block content
 										.pd_64
 											span.v_middle(style= 'background-image: url("images/close-box.png")')
 											.autocol.pd_12.mm_title No tienes ninguna asignatura.
-									if subjectsProfileData != undefined
-										- for (var item in subjectsProfileData)
-											.colhh1.slide_list
-												.colhh1.hover.listitem.rippleria-dark(data-name='#{item.subjectName}' data-type='#{item.courseName}')
-													.listitem_img
-														span A
-													.listitem_info
-														.listitem_rightinfo Promedio:
-															label.subject_prom
-														.listitem_title 
-															b #{item.subjectName}
-														.listitem_bottomdata.rank(title='Nivel #{item.subjectLevel}')
-															script.
-																var level = #{item.subjectLevel};
-																for(var i = 0; i < level; i++){
-																	document.write('<span class="bg_blue"></span>');
-																}
-												.colhh1.innerlistitem
-													.colhh1.border_bottom
-														.list_borderleft
-															.pd_llist
-																.sl_title Información
-															.pd_llist
-																.colhh1.pd_l12.sl_title Grupo: 
-																	span.margin_l.normal_txt= item.courseName
-																.pd_4
-																.colhh1.pd_l12.sl_title Academia: 
-																	span.margin_l.normal_txt= item.departmentName
-																.pd_4
-																.colhh1.pd_l12.sl_title Nivel:
-																	span.margin_l.normal_txt= item.subjectLevel
+									//- Aqui se agrega la lista de asignaturas

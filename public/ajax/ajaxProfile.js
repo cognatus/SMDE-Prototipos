@@ -123,6 +123,7 @@ function showProfileSubjects(){
         cache: true,
         success: function(data) {
             console.log(data);
+            jQuery('#profilecourses_list').append(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
