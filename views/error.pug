@@ -1,0 +1,32 @@
+doctype html
+html
+	head(name='theme-color')
+		title= title
+		meta( charset='UTF-8' )
+		meta( http-equiv='X-UA-Compatible', content='IE=edge,chrome=1' )
+		meta( name="theme-color" content="#0288D1" )
+		meta( name='viewport', content='width=device-width, maximum-scale=1.0 user-scalable=no' )
+		link( rel='shortcut icon', type='image/png', href='images/laptop-chromebook.png' )
+		link( rel='stylesheet', href='/stylesheets/style.css')
+		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
+	body.bg_red
+		.bg_opacity
+			.error_container
+				.colhh1.bg_white.flat_shadow
+					.pd_32
+						.error_title
+							span.v_middle(style='background-image: url("images/alert-circle.png")')
+							.autocol.bm_title.pd_12.v_middle #{errorData.errorTitle}!
+						.pd_8
+						.pd_8.ml_title.normal_txt Se presento un error por lo siguiente:
+						.pd_16.normal_txt
+							-for(var i = 0; i <= errorData.errorItem.length; i++ )
+								.pd_4
+									| #{errorData.errorItem[i]}
+						.pd_8
+						.colhh1(style='height: 52px;')
+							a(href='#{errorData.backUrl}')
+								span.bgaccent_color2.float_button.right_float.flat_shadow.borad.rippleria-dark(data-rippleria)
+									.white_text.pd_16.uppercase.b_text Regresar
+
+		

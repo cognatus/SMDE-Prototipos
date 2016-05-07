@@ -1,0 +1,197 @@
+extends layout
+
+block content
+
+		script( type='text/javascript' src='/socket.io/socket.io.js' )
+		script( type='text/javascript' src='/ajax/ajaxMessages.js' )
+
+		if datos[0].msmColor != undefined
+			style.
+				.leftmsm{background-color: #{datos[0].msmColor};}
+
+		#new_item.float_buttoncontainer.leftlist_floatbutton( title='Nuevo Mensaje' )
+			span.bg_plus.bgaccent_color
+
+		.hidden_blockcontainer
+			.hidden_blockback.bgaccent_color
+			.hidden_block.bg_white
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
+					.pd_18.form_title.white_text.flat_shadow Nuevo
+				.colhh1.hb_formcontainer
+					form(name='new_messageform' action='insertLobby' method='POST')
+						#newmsm_form.form_innercontainer
+							.colhh1(style='margin-top:2px;')
+								.form_input2
+									input#hidden_inputsendto(type='hidden' value='' name='insetUsersLobby')
+								.form_input2.border_bottom.rel_pos
+									input#search_newmsmcontacts(type='text' placeholder='Para' autocomplete='off')
+									#contacts_to_send.msm_sendtocontainer
+										//- .msm_sendtocontact.rel_pos(data-email='')
+										//- 	.msm_sendtoremove
+										//- 		.bg_opacity.bg_cross.circle
+										//- 	img.sendtoimg.circle.v_middle(src='images/profilephoto.png')
+										//- 	.name.circle.bg_lightgray.opacity_color.v_middle Alejandro Villarroel
+										#msm_addperson.small_icon.circle.v_middle.bg_plusgray.hover.rippleria-dark(data-rippleria title='Añadir Persona')
+									#msm_contactscontainer.colhh1.bg_white.flat_shadow
+										.colhh1.sl_title.msm_contactstitle.bg_lightgray(style='border-bottom: 1px solid rgba(0,0,0,0.1);')
+											#showall_button.pd_12.autooverflow
+												.right_float Mostrar Todos
+										.inner_block
+											.colhh1.no_result
+											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
+												.pd_12.bg_lightgray Administradores
+											if profileContactsAdministrators != undefined
+												each item in profileContactsAdministrators
+													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Administrador')
+														.listitem_img
+															img(src='images/profilephoto.png')
+														.listitem_info
+															.listitem_title 
+																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.listitem_bottomdata #{item.userEmail}
+											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Alumno')
+												.pd_12.bg_lightgray Alumnos
+											if profileContactsStudents != undefined
+												each item in profileContactsStudents
+													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Alumno')
+														.listitem_img
+															img(src='images/profilephoto.png')
+														.listitem_info
+															.listitem_title 
+																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.listitem_bottomdata #{item.userEmail}
+											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Profesor')
+												.pd_12.bg_lightgray Profesores
+											if profileContactsTeachers != undefined
+												each item in profileContactsTeachers
+													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Profesor')
+														.listitem_img
+															img(src='images/profilephoto.png')
+														.listitem_info
+															.listitem_title 
+																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.listitem_bottomdata #{item.userEmail}
+
+								.form_input2
+									textarea#msm_textarea(placeholder='Escribe Algo' name='insertNewLobbyMsm')
+								.pd_24
+									.form_input(style='height: 52px;')
+										span.bgaccent_color.circle.bg_send.submit.rippleria-dark(data-rippleria style='background-image: url("images/send.png");background-size: 42%;')
+						.form_confirmblock
+							.inner_confirmblock.bg_gray.flat_shadow
+								.pd_24(style='padding-bottom: 16px;')
+									.colhh1.white_text
+										.pd_8.ll_title ¿Esta seguro de enviar este mensaje?
+								.pd_12
+									.autooverflow
+										span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
+											input.txtaccent_color.b_text(type='button' value='Cancelar')
+										span.raised_button.right_float.rippleria-dark(data-rippleria)
+											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
+
+		.topspace
+		.colhh1.bdb_container.block_containermsm
+			.doublegrid.bg_white
+				.halfgrid
+					.colhh1.topleftlist.rel_pos.bg_lightgray
+						.colhh1.list_title.rel_pos
+							.title
+								.pd_18.ll_title Inbox
+							.icons.rel_pos
+								#show_searchbar.small_icon.circle.bg_magnify.hover(title='Buscar')
+								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/dots-vertical.png");background-size: 24px;' title='Mostrar')
+								.minimenu_hidden.left_text(style='top: 9px;')
+									.pd_16.hover.rippleria-dark(data-rippleria) Todo
+									.pd_16.hover.rippleria-dark(data-rippleria) No Leidos
+									.pd_16.hover.rippleria-dark(data-rippleria) Archivados
+						.colhh1
+							.search.s_type2.rel_pos
+								span.searchicon
+								span#close_searchbar.close_icon(title='Cerrar buscador')
+								input#buscar(type='text' name='msm_chatsearch' placeholder='Buscar una conversación' autocomplete='off')
+					#listcontainer.autooverflow.left_listcontainer.listcontainer
+						.colhh1.empty_blocktext.center_text
+							.centerempty
+								.pd_64
+									span.v_middle(style= 'background-image: url("images/close-box.png")')
+									.autocol.mm_title.pd_12 No tienes ninguna Conversación.
+									.ll_title.normal_txt Presiona &nbsp; + &nbsp; para iniciar una conversación.
+						.colhh1.no_result
+						if lobbyData != undefined
+							each item in lobbyData
+								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.participantsNames}' data-type='#{item.participantsEmails}' data-title='#{item.participantsEmails}' onclick='selectLobby("#{item.idLobby}")')
+									.listitem_img
+										img(src='images/profilephoto.png')
+									.listitem_info.border_bottom
+										.listitem_rightinfo 
+											label.lobby_date #{item.lobbyDate}
+											label.lobby_time  #{item.lobbyHour}
+										.listitem_title 
+											b(title='#{item.participantsEmails}\n#{item.participantsNames}') #{item.participantsNames}
+										.listitem_bottomdata  Lorem ipsum dolor sit amet
+				.halfgrid.secondgrid
+					.msmtopname.bg_white
+						span#backicon.backicon.rippleria-dark( data-rippleria )
+						img#msm_userimg.circle( src='images/profilephoto.png' )
+						label Nombre Completo
+						.minimenu_container( title='Opciones' )
+							.minimenu
+								span
+								span
+								span
+							.minimenu_hidden
+								.pd_16.hover.rippleria-dark(data-rippleria) Archivar
+								.pd_16.hover.rippleria-dark(data-rippleria) Eliminar
+								.pd_16.hover.rippleria-dark(data-rippleria) Vaciar
+								.pd_16.hover.rippleria-dark(data-rippleria) Buscar
+					.msmcontent
+						.msm_innercontent.bg_lightgray
+							.colhh1.msmscrollflag
+								#msm_list.msm_pd
+									.colhh1.margin_bot.msm_block
+										.msm_img
+											img.circle(src='images/profilephoto.png' title='El otro fulano')
+										.msm_text
+											.colhh1.autooverflow
+												.leftmsm.bg_blue.white_text
+													i
+													.pd_12 
+														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum
+														span.msm_date 10:34 pm
+											.colhh1.autooverflow
+												.leftmsm.bg_blue.white_text
+													.pd_12 
+														|  Suspendisse hendrerit ultricies dui ut fringilla.
+														span.msm_date 10:34 pm
+									.colhh1.margin_bot.msm_block
+										.msm_text
+											.colhh1.autooverflow
+												.rightmsm.bg_white
+													i
+													.pd_12 
+														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor.
+														span.msm_date 10:34 pm
+											.colhh1.autooverflow
+												.rightmsm.bg_white
+													.pd_12 
+														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+														span.msm_date 10:34 pm
+										.msm_img
+											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
+
+						//- ESTE ES EL CHIDO MAIGO
+						//- #addNewMsm.colhh1.msminput.bg_white
+						//- 	span.bg_attachment.circle.hover(title='Adjuntar Archivo')
+						//- 	input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', required, autocomplete='off')
+						//- 	input#lobbyScope(type='hidden', name='lobbyField', value='')
+						//- 	input.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()' title = 'Enviar')
+
+						form#addNewMsm.colhh1.msminput.bg_white(action='insertNewMessage' method='POST')
+							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
+							input#newmsm.bg_lightgray(type='text' , name='messageBody' , placeholder='Mensaje', required, autocomplete='off')
+							input#lobbyScope(type='hidden', name='lobbyBody', value='')
+							input.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='', title = 'Enviar')
+						
+

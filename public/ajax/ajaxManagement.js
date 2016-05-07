@@ -22,8 +22,8 @@ function showAdmins(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -63,15 +63,14 @@ function showStudents(){
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
                     }
-     ,
-     async: 'false'           });
+     ,                });
             });
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -111,15 +110,14 @@ function showTeachers(){
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
                     }
-     ,
-     async: 'false'           });
+     ,                });
             });
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -133,8 +131,8 @@ function showSubjects(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -148,8 +146,8 @@ function showDepartments(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -163,7 +161,7 @@ function showCourses(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }

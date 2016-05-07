@@ -164,12 +164,12 @@ function showProfileSubjects(){
         url: 'getProfileSubjectsDatabase',
         cache: true,
         success: function(data) {
-            jQuery('#subjects_list').append(data);
+            console.log(data)
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -183,8 +183,8 @@ function showSubjectsCourses(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -223,15 +223,15 @@ function showContactsStudents(){
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
-                    },
-                    async: 'false'
+                    }
+                    
                 });
             });
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }

@@ -322,8 +322,8 @@ function showLobbies(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -377,8 +377,8 @@ function showContactsAdministrators(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -392,8 +392,8 @@ function showContactsStudents(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }
 
@@ -407,7 +407,7 @@ function showContactsTeachers(){
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
-        },
-        async: 'false'
+        }
+        
     });
 }

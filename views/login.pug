@@ -1,0 +1,35 @@
+doctype html
+html
+	head(name='theme-color')
+		title= title
+		meta( charset='UTF-8' )
+		meta( http-equiv='X-UA-Compatible', content='IE=edge,chrome=1' )
+		meta( name="theme-color" content="#303F9F" )
+		meta( name='viewport', content='width=device-width, maximum-scale=1.0 user-scalable=no' )
+		link( rel='shortcut icon', type='image/png', href='images/laptop-chromebook.png' )
+		link( rel='stylesheet', href='/stylesheets/style.css')
+		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
+		script( type='text/javascript' src='/js/jquery.js' )
+		script( type='text/javascript' src="/material_spinner/dist/js/material.spinner.min.js" )
+		script( type='text/javascript' src='/js/viewscontrol.js')
+	body.bg_img2
+		.op_bg
+			.colhh1.center_text.white_text
+				.login_title
+					img.v_middle(src='images/laptop-chromebook_white.png') 
+					| SMDE
+			.login_container.bg_lightgray.borad
+				.pd_32
+					.colhh1.center_text.txtprimary_color
+						.ml_title.normal_txt Inicia Sesión
+					.colhh1.center_text.loginimg
+						img.circle(src='images/accountlogin.png')
+					form.colhh1(action='login', method='post')
+						.sign_field.pd_tb_10.rel_pos
+							img( src='images/account.png' )
+							input.textfield.txtprimary_color.borad( type='email' , name='sign_user' , placeholder='Usuario' , required)
+						.sign_field.pd_tb_10.rel_pos
+							img( src='images/lock.png' )
+							input.textfield.txtprimary_color.borad( type='password' , name='sign_key' , placeholder='Contraseña' , required)
+						.sign_field(style='margin-top: 12px;height: 50px;')
+							input.signbutton.bgprimary_color.flat_shadow(type='submit' , name='sign_submit' , value='Iniciar')

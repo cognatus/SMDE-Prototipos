@@ -1,0 +1,79 @@
+extends layout
+
+block content
+
+		.topspace
+		.page_container
+			.colhh1.block_container.bg_img2
+				.bg_opacity
+					.pd_64.center_text.white_text.text_shadow
+						.pd_16.bm_title ¡Bienvenido a SMDE #{datos[0].userName}!
+							.pd_8.mm_title El mejor portal académico
+			.block_container.center_text.mainoptions_container(style='box-shadow: none;')
+				- if(privilegio == 1 || privilegio == 2)
+					.colhh3.v_middle
+						.mr_4
+							.block_container.bg_lightpink.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+								a( href='/subjects' )
+									.pd_32.white_text
+										.colhh1 
+											span( style='background-image: url("images/book-multiple_white.png");' )
+										.colhh1.center_text.mm_title Asignaturas
+				.colhh3.v_middle
+					.mr_4
+						.block_container.bg_red.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+							a( href='/calendar' )
+								.pd_32.white_text
+									.colhh1 
+										span( style='background-image: url("images/calendar_white.png");' )
+									.colhh1.center_text.mm_title Agenda
+				.colhh3.v_middle
+					.mr_4
+						.block_container.bg_cyan.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+							a( href='/messages' )
+								.pd_32.white_text
+									.colhh1 
+										span( style='background-image: url("images/email_white.png");' )
+									.colhh1.center_text.mm_title Mensajes
+				- if(privilegio == 1 || privilegio == 2)
+					.colhh3.v_middle
+						.mr_4
+							.block_container.bg_teal.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+								a( href='/contents' )
+									.pd_32.white_text
+										.colhh1 
+											span( style='background-image: url("images/book-open_white.png");' )
+										.colhh1.center_text.mm_title Contenidos
+					.colhh3.v_middle
+						.mr_4
+							.block_container.bg_green.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+								a( href='/foro' )
+									.pd_32.white_text
+										.colhh1 
+											span( style='background-image: url("images/forum_white.png");' )
+										.colhh1.center_text.mm_title Foro
+				- if(privilegio == 3)
+					.colhh3.v_middle
+						.mr_4
+							.block_container.bg_orange.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+								a( href='/management' )
+									.pd_32.white_text
+										.colhh1 
+											span( style='background-image: url("images/laptop_white.png");' )
+										.colhh1.center_text.mm_title Gestión
+				.colhh3.v_middle
+					.mr_4
+						.block_container.bg_purple.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+							a( href='/profile' )
+								.pd_32.white_text
+									.colhh1 
+										span( style='background-image: url("images/account-circle_white.png");' )
+									.colhh1.center_text.mm_title Perfil
+				.colhh3.v_middle
+					.mr_4
+						.block_container.bg_indigo.mainoptions.rippleria-dark( data-rippleria style='margin: 0;')
+							a( href='/settings' )
+								.pd_32.white_text
+									.colhh1 
+										span( style='background-image: url("images/settings_white.png");' )
+									.colhh1.center_text.mm_title Ajustes

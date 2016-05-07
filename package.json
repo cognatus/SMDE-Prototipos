@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "express": "3.4.4",
-    "jade": "*",
+    "pug": "*",
     "socket.io": "*",
     "mysql": "2.0.0-alpha7",
     "htmlspecialchars": "*",

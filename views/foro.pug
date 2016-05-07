@@ -1,0 +1,138 @@
+extends layout
+
+block content
+
+		#new_item.float_buttoncontainer.leftlist_floatbutton( title='Nuevo Tema' )
+			span.bg_plus.bgaccent_color
+
+		.hidden_blockcontainer
+			.hidden_blockback.bgaccent_color
+			.hidden_block.bg_white
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
+					.pd_18.form_title.white_text Nuevo
+				.colhh1.hb_formcontainer
+					form( name='forum_new' )
+						.form_innercontainer
+							.form_titlepad.flat_shadow.bgprimary_color
+								.form_input.white_text.rel_pos
+									input.activeline.white_text(type='text' required)
+									label Título del Tema
+							.pd_24
+								.form_input
+									.b_text.left_title Asignatura
+									input(type='text', placeholder='Asignatura')
+								.form_input
+									.b_text Descripción
+									textarea(placeholder='Descripción')
+								.form_input(style='height: 52px;')
+									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+						.form_confirmblock
+							.inner_confirmblock.bg_gray.flat_shadow
+								.pd_24(style='padding-bottom: 16px;')
+									.colhh1.white_text
+										.pd_8.ll_title ¿Realizar esta acción?
+								.pd_12
+									.autooverflow
+										span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
+											input.txtaccent_color.b_text(type='button' value='Cancelar')
+										span.raised_button.right_float.rippleria-dark(data-rippleria)
+											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
+							
+
+		.topspace
+		.colhh1.bdb_container.block_containermsm
+			.doublegrid.bg_white
+				.halfgrid
+					.colhh1.topleftlist.rel_pos.bg_lightgray
+						.colhh1.list_title.rel_pos
+							.title
+								.pd_18.ll_title Temas
+							.icons.rel_pos
+								#show_searchbar.small_icon.circle.bg_magnify.hover(title='Buscar')
+								.small_icon.circle.bg_magnify.hover.minimenu(style='background-image: url("images/list_icon.png");background-size: 24px;' title='Ordenar Por')
+								.minimenu_hidden.left_text(style='top: 9px;')
+									#sort_alfa.pd_16.hover.rippleria-dark(data-rippleria) Alfabético
+									#sort_date.pd_16.hover.rippleria-dark(data-rippleria) Fecha
+									#sort_subject.pd_16.hover.rippleria-dark(data-rippleria) Asignatura
+						.colhh1
+							.search.s_type2.rel_pos
+								span.searchicon
+								span#close_searchbar.close_icon(title='Cerrar buscador')
+								input#buscar(type='text' name='forum_topicssearch' placeholder='Buscar un Tema' autocomplete='off')
+					#listcontainer.autooverflow.left_listcontainer
+						.colhh1.no_result
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Magnetismo' data-date='28' data-type='Física')
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 
+									label 28 
+									label Mar
+								.listitem_title 
+									b Magnetismo
+								.listitem_bottomdata Física
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Células' data-date='15' data-type='Biología')
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 
+									label 15 
+									label Mar
+								.listitem_title 
+									b Células
+								.listitem_bottomdata Biología
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Derivadas' data-date='19' data-type='Cálculo Diferencial')
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 
+									label 19 
+									label Mar
+								.listitem_title 
+									b Derivadas
+								.listitem_bottomdata Cálculo Diferencial
+						.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='Revolución' data-date='08' data-type='Historia')
+							.listitem_img
+								span A
+							.listitem_info
+								.listitem_rightinfo 
+									label 08 
+									label Mar
+								.listitem_title 
+									b Revolución
+								.listitem_bottomdata Historia
+				.halfgrid.secondgrid
+					.msmtopname.bg_white
+						span#backicon.backicon.rippleria-dark( data-rippleria )
+						.letter.white_text.lighttext.circle
+						label Título Tema
+						.minimenu_container( title='Opciones' )
+							.minimenu
+								span
+								span
+								span
+							.minimenu_hidden
+								.pd_16.hover.rippleria-dark(data-rippleria) Item 1
+								.pd_16.hover.rippleria-dark(data-rippleria) Item 2
+					.msmcontent
+						.msm_innercontent.bg_lightgray
+							.pd_12
+								.forum_commentcontainer.bg_white.rel_pos
+									.pd_18
+										.listitem_rightinfo(style='top: 18px') Jul 28
+										.colhh1.forum_commentimg.v_top
+											img.circle(src='images/profilephoto.png')
+										.colhh1.forum_alldata.v_top
+											.pd_l18
+												.listitem_title 
+													b Nombre Completo
+												.pd_6
+												.colhh1
+													| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
+
+						form.colhh1.msminput(name='addNewForumComment')
+							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
+							input.bg_lightgray(type='text' , name='newmsm' , placeholder='Escribe algo' )
+							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='msmsend' , value='' )

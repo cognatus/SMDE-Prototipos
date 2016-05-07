@@ -1,0 +1,274 @@
+extends layout
+
+block content
+		script( type='text/javascript' src='/js/calendarGenerator.js' )
+		script( type='text/javascript' src='/ajax/ajaxCalendar.js' )
+
+		#new_item.float_buttoncontainer( title='Nuevo' )
+			span.bg_plus.bgaccent_color
+
+		.hidden_blockcontainer
+			.hidden_blockback.bgaccent_color
+			.hidden_block.bg_white
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
+					.pd_18.form_title.white_text Nuevo
+				.colhh1.hb_formcontainer
+					form#calendarAddNew(name='calendarNewEvent' action='insertReminder' method='POST')
+						.form_innercontainer
+							.form_titlepad.bgprimary_color.flat_shadow
+								.form_input.white_text.rel_pos
+									input.activeline.white_text(type='text' required name='formCalendarTitle' autocomplete='off')
+									label Título
+							.pd_24
+								- if (privilegio == 2)
+									.form_input
+										.b_text.left_title Tipo
+										select#selectCalendarPostType
+											option(value='reminder') Recordatorio
+											option(value='publication') Publicación
+								//- Si es profesor
+								- if (privilegio == 2)
+									.form_input#showCourseToPost
+										.b_text.left_title Curso
+										.double
+											select#showSubjectsPost(name='calendarSubjectSelectField')
+												option(disabled selected) Asignatura
+												if subjectsProfileData != undefined
+													each item in subjectsProfileData
+														option(value='#{item.idSubject}') #{item.subjectName}
+											select.second#showCoursesPost(name='calendarCourseSelectField')
+												option(disabled selected) Grupo
+												if subjectsProfileData != undefined
+													each item in subjectsProfileData
+														option(value='#{item.idCourse}') #{item.courseName}
+								.form_input
+									.b_text.left_title Fecha Limite
+									.triple
+										input(type='text', placeholder='DD' name='formCalendarDay' maxlength='2')
+										input.third(type='text', placeholder='MM' name='formCalendarMonth' maxlength='2')
+										input.third(type='text', placeholder='AAAA' name='formCalendarYear' maxlength='4')
+								.form_input
+									.b_text.left_title Hora Limite
+									.double
+										select(name='formCalendarHour' required)
+											option(value='00' disabled) Hora
+											- for(var h = 0; h < 24; h++)
+												- if ( h < 10 )
+													- h = '0' + h
+												option(value=h)= h
+										select.second(name='formCalendarMinute' required)
+											option(value='00' disabled) Minuto
+											- for(var m = 0; m < 60; m++)
+												- if ( m < 10 )
+													- m = '0' + m
+												option(value=m)= m
+								.form_input
+									.b_text Comentarios
+									textarea(placeholder='Añade un Comentario' name='formCalendarComment')
+								- if (privilegio == 2)
+									.form_input.f_select
+										.input_filecontainer
+											input(type='file' name='attachedfile' id='attachedfile' value='')
+										.file_buttoncontainer
+											span.trigger.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
+											.right_float
+												.f_value.ll_title.opacity_color.border_t Seleccionar Archivo
+								.form_input(style='height: 52px;')
+									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
+						.form_confirmblock
+							.inner_confirmblock.bg_gray.flat_shadow
+								.pd_24
+									.colhh1.white_text
+										.pd_8.ll_title ¿Realizar esta acción?
+								.pd_12
+									.autooverflow
+										span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
+											input.txtaccent_color.b_text(type='button' value='Cancelar')
+										span.raised_button.right_float.rippleria-dark(data-rippleria)
+											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
+		.topspace
+		.page_container
+			.colhh1
+				.calendar_container.v_top
+					.calendar.bg_white.block_container
+						.colhh1.white_text.center_text.bg_calendar.flat_shadow
+							.bg_opacity
+								.colhh1
+									.colhh1.bg_opacity
+										.pd_18.ll_title.uppercase 
+											label#weekday Dia Semana
+								.today_title
+									.month_title.uppercase Mes
+									.day_title Dia
+									.year_title Año
+						.colhh1.opacity_color.calendar_monthcontainer
+							.pd_16.center_text
+								#left.v_middle.button.circle.rippleria-dark( data-rippleria onclick='prevMonth()' )
+								#right.v_middle.button.circle.rippleria-dark( data-rippleria onclick='nextMonth()' )
+								.autocol.v_middle.my_cont
+									#month Mes
+									#year Año
+							.colhh1
+								.pd_4
+									.b_text
+										.colhh7.center_text
+											.pd_8.dayname DOM
+										.colhh7.center_text
+											.pd_8.dayname LUN
+										.colhh7.center_text
+											.pd_8.dayname MAR
+										.colhh7.center_text
+											.pd_8.dayname MIE
+										.colhh7.center_text
+											.pd_8.dayname JUE
+										.colhh7.center_text
+											.pd_8.dayname VIE
+										.colhh7.center_text
+											.pd_8.dayname SAB
+									.colhh1.tablecalendar
+										.day_pos.circle.bgaccent_color2
+										#calendar_month_content
+										//- .day.v_top.today
+										//- 	.pd_8
+										//- 		.num 
+										//- 			span 1
+										//- 		.dot_cont
+										//- 			span
+										//- 			span
+										//- 			span
+						.calendar_right.v_top.bg_white
+							.calendar_rightinner
+								.colhh1
+									#calendar_dayevents_title.pd_18.ll_title.border_bottom
+										span#backcalendar.backicon.rippleria-dark( data-rippleria )
+										#selectedDate.right_float Hoy
+								#calendar_dayeventscont.colhh1.autooverflow.listcontainer
+									.colhh1.empty_blocktext.center_text
+										.centerempty
+											.pd_64
+												span.v_middle(style= 'background-image: url("images/calendar-circle.png")')
+												.autocol.mm_title.pd_12 Se muestran solo los eventos publicados o con fecha limite para este día.
+												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo evento en este día.
+
+					//- .block_container.bg_calendar.calendar_imgcontainer
+					//- 	.colhh1.white_text
+					//- 		.bg_opacity.pd_18.uppercase
+					//- 			.ll_title#calendar_bgtitle
+
+				.calendar_allr.v_top
+					.colhh1
+						- if ( privilegio == 1 || privilegio == 2)
+							.colhh1.block_container.subl_top(style='box-shadow: none;')
+								.colhh1.b_text.opacity_color.center_text.uppercase
+									.colhh2.hover.cal_showtype(data-show='Publicación')
+										.pd_16.bg_opc
+											| Publicaciones
+									.colhh2.hover.cal_showtype(data-show='Recordatorio')
+										.pd_16
+											| Recordatorios
+						.colhh1
+							#calendar_list
+								- if(privilegio != 3)
+									.listcontainer.calendar_postcontainer(data-type='Publicación')
+										.block_container.empty_blocktext.center_text.bg_white
+											.pd_64
+												span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
+												.autocol.mm_title.pd_12.dayempty No hay publicaciones
+												- if (privilegio == 1 || privilegio == 3) 
+													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
+												- if (privilegio == 2)
+													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
+										if publicationsData != undefined
+											each item in publicationsData
+												.colhh1.block_container.bg_white.cal_post(data-name='#{item.pubTitle}' data-date='#{item.pubLimDate}' data-datepost='#{item.pubDate}')
+													.colhh1.list_leftitem(style='padding-top: 2px;margin-bottom: 16px;')
+														.listitem_img
+															img(src='images/profilephoto.png' title='#{item.userEmail}')
+														.listitem_info
+															.listitem_rightinfo(title=' Publicado el #{item.pubDate} a las #{item.pubTime}')
+																label.item_date #{item.pubDate}
+																label.item_time #{item.pubTime}
+															.listitem_title(title='#{item.userEmail}')  
+																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+															.listitem_bottomdata #{item.pubTitle}
+													.pd_lr8
+														.pd_llist
+															.sl_title Asunto: 
+																span.margin_l.normal_txt #{item.pubTitle}
+															.pd_4
+															.sl_title Asignatura: 
+																span.margin_l.normal_txt #{item.subjectName}
+															.pd_4
+															.sl_title Grupo: 
+																span.margin_l.normal_txt #{item.courseName}
+															.pd_4
+															.sl_title Entrega: 
+																span.margin_l.normal_txt #{item.pubLimDate} a las #{item.pubLimTime}
+															.pd_12.border_bottom
+														.pd_llist
+															.pd_4
+															.sl_title Comentarios
+															.pd_16.justify_text.breakword.border_bottom
+																| #{item.pubText}
+																.pd_4
+														.pd_llist
+															.pd_4
+															.sl_title Archivos Adjuntos
+															.pd_4
+														.attached_filecontainer.autooverflow.pd_lr8(style='margin-bottom: 18px;')
+															span.v_middle.bg_file.bg_blue.borad
+															div.v_middle.sl_title.opacity_color #{item.publicationAttachedNameFile}
+															span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
+													.pd10_16.listitemactions.bg_lightgray
+														- if ( privilegio == 2 )
+															.autocol.txtprimary_color.sl_title.underline(style='margin-top: 11px;') Mostrar Respuestas
+														.autocol.right_float
+															- if ( privilegio == 1 )
+																span.circle.bg_reply.hover(title='Responder')
+															- if ( privilegio == 2 )
+																span.circle.bg_editgray.hover(title='Editar')
+															span.circle.bg_archive.hover(title='Archivar')
+															- if ( privilegio == 2 )
+																span.circle.bg_delete.hover(title='Eliminar')
+								.listcontainer.calendar_postcontainer(data-type='Recordatorio')
+									.block_container.empty_blocktext.center_text.bg_white
+										.pd_64
+											span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
+											.autocol.mm_title.pd_12.dayempty No hay Recordatorios
+											- if (privilegio == 1 || privilegio == 3) 
+												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
+											- if (privilegio == 2)
+												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
+									if remindersData != undefined
+										each item in remindersData
+											.colhh1.block_container.bg_white.cal_post(data-name='#{item.reminderTitle}'  data-date='#{item.reminderLimDate}' data-datepost='#{item.reminderDate}')
+												.colhh1.list_leftitem(style='padding-top: 2px;margin-bottom: 16px;')
+													.listitem_img
+														span A
+													.listitem_info
+														.listitem_rightinfo(title=' Publicado el #{item.reminderDate} a las #{item.reminderTime}')
+															label.item_date #{item.reminderDate}
+															label.item_time #{item.reminderTime}
+														.listitem_title 
+															b #{item.reminderTitle}
+														.listitem_bottomdata Recordatorio
+												.pd_lr8
+													.pd_llist
+														.sl_title Fecha Límite: 
+															span.margin_l.normal_txt #{item.reminderLimDate} a las #{item.reminderLimTime}
+														.pd_8.border_bottom
+													.pd_llist
+														.pd_4
+														.sl_title Comentarios
+														.pd_16.justify_text.breakword
+															| #{item.reminderText}
+												.pd10_16.listitemactions.bg_lightgray
+													.autocol.right_float
+														span.circle.bg_editgray.hover(title='Editar')
+														span.circle.bg_archive.hover(title='Archivar') 
+														span.circle.bg_delete.hover(title='Eliminar')
+								.colhh1.load_container#calendar_showall
+									.load
+										.spinner

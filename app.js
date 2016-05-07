@@ -23,7 +23,7 @@ var htmlspecialchars = require('htmlspecialchars');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.use(express.bodyParser());
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -97,10 +97,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0s3',
+		password: 'n0m3l0',
 		user: 'root',
 		database: 'smdedbv1',
-		port: 8080
+		port: 3306
 	});
 	return connection;
 };
@@ -202,7 +202,7 @@ app.get('/subjects', login, routes.subjects);
 app.get('/foro', login, routes.foro);
 app.get('/settings', login, routes.settings);
 app.get('/calendar', login, routes.calendar);
-app.get('/management', login, routes.management);
+app.get('/management', loginA, routes.management);
 app.get('/error', routes.error);
 app.get('/logout', post.logout);
 
