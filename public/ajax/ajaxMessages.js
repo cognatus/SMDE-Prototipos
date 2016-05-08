@@ -313,12 +313,32 @@ jQuery(document).ready(function(){
 
 //FUNCIONES AJAX PARA MOSTRAR AL CARGAR LA PAGINA
 function showLobbies(){
+    stringData = '';
     jQuery.ajax({
         method: 'GET',
         url: 'getLobbiesDatabase',
         cache: true,
         success: function(data) {
-            jQuery('#listcontainer').append(data);
+            for(var i in data){
+                var item = data[i];
+                stringData += ''
+                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
+                +    '<div class="listitem_img">
+                +        '<img src="images/profilephoto.png">'
+                +    '</div>'
+                +    '<div class="listitem_info border_bottom">'
+                +        '<div class="listitem_rightinfo">'
+                +            '<label class="lobby_date">' + item.lobbyDate + '</label>
+                +            '<label class="lobby_time"> ' + item.lobbyTime + '</label>'
+                +        '</div>'
+                +        '<div class="listitem_title">'
+                +            '<b title="' + item.participantsEmails + '\n' + item.participantsNames + '">' + item.participantsNames + '</b>'
+                +        '</div>'
+                +        '<div class="listitem_bottomdata">Lorem ipsum dolor sit amet</div>'
+                +    '</div>'
+                + '</div>';
+            }
+            jQuery('#listcontainer').html(stringData);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);

@@ -119,18 +119,7 @@ block content
 									.autocol.mm_title.pd_12 No tienes ninguna Conversación.
 									.ll_title.normal_txt Presiona &nbsp; + &nbsp; para iniciar una conversación.
 						.colhh1.no_result
-						if lobbyData != undefined
-							each item in lobbyData
-								.colhh1.hover.listitem.rippleria-dark(data-rippleria data-name='#{item.participantsNames}' data-type='#{item.participantsEmails}' data-title='#{item.participantsEmails}' onclick='selectLobby("#{item.idLobby}")')
-									.listitem_img
-										img(src='images/profilephoto.png')
-									.listitem_info.border_bottom
-										.listitem_rightinfo 
-											label.lobby_date #{item.lobbyDate}
-											label.lobby_time  #{item.lobbyHour}
-										.listitem_title 
-											b(title='#{item.participantsEmails}\n#{item.participantsNames}') #{item.participantsNames}
-										.listitem_bottomdata  Lorem ipsum dolor sit amet
+						#lobbiesData
 				.halfgrid.secondgrid
 					.msmtopname.bg_white
 						span#backicon.backicon.rippleria-dark( data-rippleria )
