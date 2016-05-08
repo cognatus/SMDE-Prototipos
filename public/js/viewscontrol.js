@@ -586,6 +586,10 @@ jQuery(document).ready(function(){
 
 	jQuery(document).ajaxComplete(function(){
 
+		/*if( jQuery(window).width() >= 1120 ){
+			jQuery('#listcontainer.left_listcontainer .listitem').first().trigger('click');
+		}*/
+
 		jQuery('.listcontainer').each(function(){
 			if( jQuery(this).find('.listitem, .hover').length > 0 ){
 				jQuery(this).find('.empty_blocktext').hide();

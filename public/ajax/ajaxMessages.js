@@ -112,13 +112,14 @@ socket.on('mostrar', function(data){
     //solo es cosa que le pongas las cosas de etiquetas y así para que se muestr
     //pueste que basicamente ya todo se hace en tiempo real
 
-    //Son las burbujas del chat que aparecen del lado derecho
-    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+    var container = jQuery('#msm_list');
+    //Son las burbujas del chat que aparecen del lado izquierdo
+    var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm').length;
 
-    if(lastRightMsm > 0){
+    if(lastLeftMsm > 0){
         container.find('.msm_block:last-child').find('.msm_text')
             .append('<div class="colhh1 autooverflow">'
-                    +   '<div class="rightmsm bg_white">'
+                    +   '<div class="leftmsm bg_blue white_text">'
                     +       '<div class="pd_12"> '
                     +           data.messageText
                     +           '<span class="msm_date">'
@@ -130,9 +131,12 @@ socket.on('mostrar', function(data){
     }
     else{
         container.append('<div class="colhh1 margin_bot msm_block">'
+                        +   '<div class="msm_img">'
+                        +       '<img src="images/profilephoto.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
+                        +   '</div>'
                         +   '<div class="msm_text">'
                         +       '<div class="colhh1 autooverflow">'
-                        +           '<div class="rightmsm bg_white">'
+                        +           '<div class="leftmsm bg_blue white_text">'
                         +               '<i></i>'
                         +               '<div class="pd_12"> '
                         +                   data.messageText
@@ -142,9 +146,6 @@ socket.on('mostrar', function(data){
                         +               '</div>'
                         +           '</div>'
                         +       '</div>'
-                        +   '</div>'
-                        +   '<div class="msm_img">'
-                        +       '<img src="images/profilephoto.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
                         +   '</div>'
                         + '</div>');
     }
@@ -268,43 +269,47 @@ jQuery(document).ready(function(){
                 jQuery('.msm_sendtocontainer').css('margin-top', '0');
             }
         });
+
     });
 
-    //OBTENER EL DIA ACTUAL PARA CAMBIAR LOS TEXTOS EN lA PARTE DERECHA DE LOS MENSAJES
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1;//ENERO ES EL 0
-    var yyyy = today.getFullYear();
+    jQuery(document).ajaxComplete(function(){
+           //OBTENER EL DIA ACTUAL PARA CAMBIAR LOS TEXTOS EN lA PARTE DERECHA DE LOS MENSAJES
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;//ENERO ES EL 0
+        var yyyy = today.getFullYear();
 
-    if( dd < 10 ){ dd = '0' + dd; }
-    if( mm < 10 ){ mm = '0' + mm; }
+        if( dd < 10 ){ dd = '0' + dd; }
+        if( mm < 10 ){ mm = '0' + mm; }
 
-    var yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
+        var yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
 
-    var ddYest = yesterday.getDate();
-    var mmYest = yesterday.getMonth()+1;//ENERO ES EL 0
-    var yyyyYest = yesterday.getFullYear();
+        var ddYest = yesterday.getDate();
+        var mmYest = yesterday.getMonth()+1;//ENERO ES EL 0
+        var yyyyYest = yesterday.getFullYear();
 
-    if( ddYest < 10 ){ ddYest = '0' + ddYest; }
-    if( mmYest < 10 ){ mmYest = '0' + mmYest; }
+        if( ddYest < 10 ){ ddYest = '0' + ddYest; }
+        if( mmYest < 10 ){ mmYest = '0' + mmYest; }
 
-    var stringDate = dd + '/' + mm + '/' + yyyy;
-    var stringDateYest = ddYest + '/' + mmYest + '/' + yyyyYest;
+        var stringDate = dd + '/' + mm + '/' + yyyy;
+        var stringDateYest = ddYest + '/' + mmYest + '/' + yyyyYest;
 
-    jQuery('.listcontainer .listitem').each(function(){
-        var itemDate = jQuery(this).find('label.lobby_date').text();
+        jQuery('.listcontainer .listitem').each(function(){
+            var itemDate = jQuery(this).find('label.lobby_date').text();
 
-        if( itemDate == stringDate ){
-            jQuery(this).find('label.lobby_date').hide();
-        }
-        else if( itemDate == stringDateYest ){
-            jQuery(this).find('label.lobby_date').text('Ayer');
-            jQuery(this).find('label.lobby_time').hide();   
-        }
-        else{
-            jQuery(this).find('label.lobby_time').hide();   
-        }
+            if( itemDate == stringDate ){
+                jQuery(this).find('label.lobby_date').hide();
+            }
+            else if( itemDate == stringDateYest ){
+                jQuery(this).find('label.lobby_date').text('Ayer');
+                jQuery(this).find('label.lobby_time').hide();   
+            }
+            else{
+                jQuery(this).find('label.lobby_time').hide();   
+            }
+        }); 
+
     });
 
 });
@@ -338,7 +343,7 @@ function showLobbies(){
                 +    '</div>'
                 + '</div>';
             }
-            jQuery('#listcontainer').html(stringData);
+            jQuery('#listcontainer #lobbiesData').html(stringData);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -373,18 +378,55 @@ function enviarMsg(){
         type: 'post',
         url: '/insertNewMessage',
         data: {
-            messageBody : $('#newmsm').val(),
-            lobbyBody : $('#lobbyScope').val()
+            messageBody : jQuery('#newmsm').val(),
+            lobbyBody : jQuery('#lobbyScope').val()
         },
-        dataType: 'application/json',
         success: function(data) {
-            alert('Success!' + data);
-            jQuery('#newmsm').val('');
+            jQuery('#newmsm').val('').focus();
         },
         error: function(request, status, error){
-            alert("Error: No se pudo enviar el mensaje.");
+            console.log(error);
         }
     });
+
+    //Contenedor de mensajes
+    var container = jQuery('#msm_list');
+
+    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+
+    if(lastRightMsm > 0){
+        container.find('.msm_block:last-child').find('.msm_text')
+            .append('<div class="colhh1 autooverflow">'
+                    +   '<div class="rightmsm bg_white">'
+                    +       '<div class="pd_12"> '
+                    +           msmText
+                    +           '<span class="msm_date">'
+                    +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                    +           '</span>'
+                    +       '</div>'
+                    +   '</div>'
+                    +'</div>');
+    }
+    else{
+        container.append('<div class="colhh1 margin_bot msm_block">'
+                        +   '<div class="msm_text">'
+                        +       '<div class="colhh1 autooverflow">'
+                        +           '<div class="rightmsm bg_white">'
+                        +               '<i></i>'
+                        +               '<div class="pd_12"> '
+                        +                   msmText
+                        +                   '<span class="msm_date">'
+                        +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                        +                   '</span>'
+                        +               '</div>'
+                        +           '</div>'
+                        +       '</div>'
+                        +   '</div>'
+                        +   '<div class="msm_img">'
+                        +       '<img src="images/profilephoto.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUserLastName + '" class="circle">'
+                        +   '</div>'
+                        + '</div>');
+    }
 }
 
 function showContactsAdministrators(){
