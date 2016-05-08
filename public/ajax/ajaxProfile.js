@@ -125,7 +125,7 @@ function showProfileSubjects(){
             console.log(data);
             for(var i in data){
                 var item = data[i];
-                jQuery('#profilecourses_list').append(
+                stringCourses +=
                 + '<div class="colhh1 slide_list">'
                 +   '<div class="colhh1 hover listitem rippleria-dark" data-name="' + item.subjectName + '" data-type="' + item.courseName +'">'
                 +       '<div class="listitem_img"><span></span></div>'
@@ -149,9 +149,10 @@ function showProfileSubjects(){
                 +           '</div>'
                 +       '</div>'
                 +   '</div>'
-                + '</div>'
-                );
+                + '</div>';
             }
+
+            jQuery('#profilecourses_list').html(stringCourses);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
