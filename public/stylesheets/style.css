@@ -876,6 +876,10 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	margin-bottom: 80px;
 }
 
+.admins .block_container:last-child, .students .block_container:last-child{
+	margin-bottom: 16px;
+}
+
 .colhh2 .block_container:last-child{
 	margin-bottom: 12px;
 	margin-top: 0;
@@ -2054,6 +2058,12 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 }
 
 .no_result{word-wrap: break-word;}
+
+.hidecontent_button{cursor: pointer;}
+
+.hidecontent_button span:hover{text-decoration: underline;}
+
+.subject_prom{display: none;}
 
 /*---------------------------------------------------------------------------------------
 	DARK THEME

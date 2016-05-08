@@ -193,7 +193,7 @@
 	}
 
 	.hb_responsive .hb_resgrid #new_subjects{
-		height: calc(100% - 115px);
+		height: 407px;
 		overflow: auto;
 	}
 

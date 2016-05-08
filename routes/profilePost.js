@@ -98,7 +98,6 @@ exports.getProfileSubjectsDatabase = function(req, res){
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			subjectsProfileData = result;
-			console.log(subjectsProfileData);
 			res.send(subjectsProfileData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);

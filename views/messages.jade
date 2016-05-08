@@ -140,43 +140,43 @@ block content
 						.msm_innercontent.bg_lightgray
 							.colhh1.msmscrollflag
 								#msm_list.msm_pd
-									.colhh1.margin_bot.msm_block
-										.msm_img
-											img.circle(src='images/profilephoto.png' title='El otro fulano')
-										.msm_text
-											.colhh1.autooverflow
-												.leftmsm.bg_blue.white_text
-													i
-													.pd_12 
-														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum
-														span.msm_date 10:34 pm
-											.colhh1.autooverflow
-												.leftmsm.bg_blue.white_text
-													.pd_12 
-														|  Suspendisse hendrerit ultricies dui ut fringilla.
-														span.msm_date 10:34 pm
-									.colhh1.margin_bot.msm_block
-										.msm_text
-											.colhh1.autooverflow
-												.rightmsm.bg_white
-													i
-													.pd_12 
-														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor.
-														span.msm_date 10:34 pm
-											.colhh1.autooverflow
-												.rightmsm.bg_white
-													.pd_12 
-														| Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-														span.msm_date 10:34 pm
-										.msm_img
-											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
+									//- .colhh1.margin_bot.msm_block
+									//- 	.msm_img
+									//- 		img.circle(src='images/profilephoto.png' title='El otro fulano')
+									//- 	.msm_text
+									//- 		.colhh1.autooverflow
+									//- 			.leftmsm.bg_blue.white_text
+									//- 				i
+									//- 				.pd_12 
+									//- 					| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum
+									//- 					span.msm_date 10:34 pm
+									//- 		.colhh1.autooverflow
+									//- 			.leftmsm.bg_blue.white_text
+									//- 				.pd_12 
+									//- 					|  Suspendisse hendrerit ultricies dui ut fringilla.
+									//- 					span.msm_date 10:34 pm
+									//- .colhh1.margin_bot.msm_block
+									//- 	.msm_text
+									//- 		.colhh1.autooverflow
+									//- 			.rightmsm.bg_white
+									//- 				i
+									//- 				.pd_12 
+									//- 					| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor.
+									//- 					span.msm_date 10:34 pm
+									//- 		.colhh1.autooverflow
+									//- 			.rightmsm.bg_white
+									//- 				.pd_12 
+									//- 					| Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+									//- 					span.msm_date 10:34 pm
+									//- 	.msm_img
+									//- 		img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
 
 						//- ESTE ES EL CHIDO MAIGO
-						#addNewMsm.colhh1.msminput.bg_white
+						form#addNewMsm.colhh1.msminput.bg_white
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
 							input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', required, autocomplete='off')
 							input#lobbyScope(type='hidden', name='lobbyField', value='')
-							input.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()' title = 'Enviar')
+							input.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='', title = 'Enviar')
 
 						//- form#addNewMsm.colhh1.msminput.bg_white(action='insertNewMessage' method='POST')
 							//- span.bg_attachment.circle.hover(title='Adjuntar Archivo')

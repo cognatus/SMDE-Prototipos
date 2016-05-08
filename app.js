@@ -23,7 +23,7 @@ var htmlspecialchars = require('htmlspecialchars');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'jade');
 app.use(express.bodyParser());
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -97,10 +97,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0',
+		password: 'n0m3l0s3',
 		user: 'root',
 		database: 'smdedbv1',
-		port: 3306
+		port: 8080
 	});
 	return connection;
 };

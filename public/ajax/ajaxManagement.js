@@ -1,14 +1,12 @@
 
 jQuery(document).on('ready', function(){
 
-    jQuery('#management_showall').show(function(){
-        showAdmins();
-        showStudents();
-        showTeachers();
-        showSubjects();
-        showDepartments();
-        showCourses();
-    });
+    showAdmins();
+    showStudents();
+    showTeachers();
+    showSubjects();
+    showDepartments();
+    showCourses();
 
 });
 

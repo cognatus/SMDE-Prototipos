@@ -104,7 +104,6 @@ function selectLobby(lobby){
 //Paso 3.
 socket.on('mostrar', function(data){
 
-    alert('llegue hasta aqui'+data.messageText);
     //este es el importante
     //lo que enviaste del back en socket.in(socket.room).emit('mostrar', {
     //lo vas a estar reccibiendo en este metodo
@@ -152,12 +151,175 @@ socket.on('mostrar', function(data){
 
 });
 
+//FUNCIONES AJAX PARA MOSTRAR AL CARGAR LA PAGINA
+function showLobbies(){
+    stringData = '';
+    jQuery.ajax({
+        method: 'GET',
+        url: 'getLobbiesDatabase',
+        cache: true,
+        success: function(data) {
+            for(var i in data){
+                var item = data[i];
+                stringData += ''
+                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
+                +    '<div class="listitem_img">'
+                +        '<img src="images/profilephoto.png">'
+                +    '</div>'
+                +    '<div class="listitem_info border_bottom">'
+                +        '<div class="listitem_rightinfo">'
+                +            '<label class="lobby_date">' + item.lobbyDate + '</label>'
+                +            '&nbsp;<label class="lobby_time">' + item.lobbyHour + '</label>'
+                +        '</div>'
+                +        '<div class="listitem_title">'
+                +            '<b title="' + item.participantsEmails + '\n' + item.participantsNames + '">' + item.participantsNames + '</b>'
+                +        '</div>'
+                +        '<div class="listitem_bottomdata">Lorem ipsum dolor sit amet</div>'
+                +    '</div>'
+                + '</div>';
+            }
+            jQuery('#listcontainer #lobbiesData').html(stringData);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+        
+    });
+}
+
+function showContactsAdministrators(){
+    jQuery.ajax({
+        method: 'GET',
+        url: 'getProfileContactsAdministrators',
+        cache: true,
+        success: function(data) {
+            jQuery('#msm_contactscontainer').append(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+        
+    });
+}
+
+function showContactsStudents(){
+    jQuery.ajax({
+        type: 'GET',
+        url: 'getProfileContactsStudents',
+        cache: true,
+        success: function(data) {
+            jQuery('#msm_contactscontainer').append(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log('Error: ' + textStatus + " " + errorThrown);
+        }
+        
+    });
+}
+
+function showContactsTeachers(){
+    jQuery.ajax({
+        method: 'GET',
+        url: 'getProfileContactsTeachers',
+        cache: true,
+        success: function(data) {
+            jQuery('#msm_contactscontainer').append(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+           
+    });
+}
+
+function enviarMsg(){
+
+    var date = new Date();
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    if( hh < 10 ){ hh = '0' + hh; }
+    if( mm < 10 ){ mm = '0' + mm; }
+    var currentTime = hh + ':' + mm;
+
+    var lobbyScope = jQuery('#lobbyScope').val();
+    var msmText = jQuery('#newmsm').val();
+
+    socket.emit('mensaje', {
+        
+        userEmail: sessionUser,
+        userName: sessionUserName,
+        userLastName: sessionUserLastName,
+        messageText: msmText,
+        messageTime: currentTime   
+
+    });    
+
+    jQuery.ajax({ 
+        type: 'post',
+        url: '/insertNewMessage',
+        data: {
+            messageBody : jQuery('#newmsm').val(),
+            lobbyBody : jQuery('#lobbyScope').val()
+        },
+        success: function(data) {
+            jQuery('#newmsm').val('').focus();
+        },
+        error: function(request, status, error){
+            console.log(error);
+        }
+    });
+
+    //Contenedor de mensajes
+    var container = jQuery('#msm_list');
+
+    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+
+    if(lastRightMsm > 0){
+        container.find('.msm_block:last-child').find('.msm_text')
+            .append('<div class="colhh1 autooverflow">'
+                    +   '<div class="rightmsm bg_white">'
+                    +       '<div class="pd_12"> '
+                    +           msmText
+                    +           '<span class="msm_date">'
+                    +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                    +           '</span>'
+                    +       '</div>'
+                    +   '</div>'
+                    +'</div>');
+    }
+    else{
+        container.append('<div class="colhh1 margin_bot msm_block">'
+                        +   '<div class="msm_text">'
+                        +       '<div class="colhh1 autooverflow">'
+                        +           '<div class="rightmsm bg_white">'
+                        +               '<i></i>'
+                        +               '<div class="pd_12"> '
+                        +                   msmText
+                        +                   '<span class="msm_date">'
+                        +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                        +                   '</span>'
+                        +               '</div>'
+                        +           '</div>'
+                        +       '</div>'
+                        +   '</div>'
+                        +   '<div class="msm_img">'
+                        +       '<img src="images/profilephoto.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUserLastName + '" class="circle">'
+                        +   '</div>'
+                        + '</div>');
+    }
+}
+
 jQuery(document).ready(function(){
     
     showLobbies();
     showContactsAdministrators();
     showContactsStudents();
     showContactsTeachers();
+
+    jQuery('form#addNewMsm').submit(function(){
+        enviarMsg();
+        return false;
+    });
 
     //OBTIENE LA ALTURA ORIGINAL DEL INPUT DONDE SE AGREGAN MAS USUARIOS
     var origHeight =  jQuery('#search_newmsmcontacts').outerHeight();
@@ -313,163 +475,3 @@ jQuery(document).ready(function(){
     });
 
 });
-
-
-
-//FUNCIONES AJAX PARA MOSTRAR AL CARGAR LA PAGINA
-function showLobbies(){
-    stringData = '';
-    jQuery.ajax({
-        method: 'GET',
-        url: 'getLobbiesDatabase',
-        cache: true,
-        success: function(data) {
-            for(var i in data){
-                var item = data[i];
-                stringData += ''
-                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
-                +    '<div class="listitem_img">'
-                +        '<img src="images/profilephoto.png">'
-                +    '</div>'
-                +    '<div class="listitem_info border_bottom">'
-                +        '<div class="listitem_rightinfo">'
-                +            '<label class="lobby_date">' + item.lobbyDate + '</label>'
-                +            '<label class="lobby_time"> ' + item.lobbyHour + '</label>'
-                +        '</div>'
-                +        '<div class="listitem_title">'
-                +            '<b title="' + item.participantsEmails + '\n' + item.participantsNames + '">' + item.participantsNames + '</b>'
-                +        '</div>'
-                +        '<div class="listitem_bottomdata">Lorem ipsum dolor sit amet</div>'
-                +    '</div>'
-                + '</div>';
-            }
-            jQuery('#listcontainer #lobbiesData').html(stringData);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
-        }
-        
-    });
-}
-
-function enviarMsg(){
-
-    var date = new Date();
-    var hh = date.getHours();
-    var mm = date.getMinutes();
-    if( hh < 10 ){ hh = '0' + hh; }
-    if( mm < 10 ){ mm = '0' + mm; }
-    var currentTime = hh + ':' + mm;
-
-    var lobbyScope = jQuery('#lobbyScope').val();
-    var msmText = jQuery('#newmsm').val();
-
-    socket.emit('mensaje', {
-        
-        userEmail: sessionUser,
-        userName: sessionUserName,
-        userLastName: sessionUserLastName,
-        messageText: msmText,
-        messageTime: currentTime   
-
-    });    
-
-    jQuery.ajax({ 
-        type: 'post',
-        url: '/insertNewMessage',
-        data: {
-            messageBody : jQuery('#newmsm').val(),
-            lobbyBody : jQuery('#lobbyScope').val()
-        },
-        success: function(data) {
-            jQuery('#newmsm').val('').focus();
-        },
-        error: function(request, status, error){
-            console.log(error);
-        }
-    });
-
-    //Contenedor de mensajes
-    var container = jQuery('#msm_list');
-
-    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
-
-    if(lastRightMsm > 0){
-        container.find('.msm_block:last-child').find('.msm_text')
-            .append('<div class="colhh1 autooverflow">'
-                    +   '<div class="rightmsm bg_white">'
-                    +       '<div class="pd_12"> '
-                    +           msmText
-                    +           '<span class="msm_date">'
-                    +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
-                    +           '</span>'
-                    +       '</div>'
-                    +   '</div>'
-                    +'</div>');
-    }
-    else{
-        container.append('<div class="colhh1 margin_bot msm_block">'
-                        +   '<div class="msm_text">'
-                        +       '<div class="colhh1 autooverflow">'
-                        +           '<div class="rightmsm bg_white">'
-                        +               '<i></i>'
-                        +               '<div class="pd_12"> '
-                        +                   msmText
-                        +                   '<span class="msm_date">'
-                        +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
-                        +                   '</span>'
-                        +               '</div>'
-                        +           '</div>'
-                        +       '</div>'
-                        +   '</div>'
-                        +   '<div class="msm_img">'
-                        +       '<img src="images/profilephoto.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUserLastName + '" class="circle">'
-                        +   '</div>'
-                        + '</div>');
-    }
-}
-
-function showContactsAdministrators(){
-    jQuery.ajax({
-        method: 'GET',
-        url: 'getProfileContactsAdministrators',
-        cache: true,
-        success: function(data) {
-            jQuery('#msm_contactscontainer').append(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
-        }
-        
-    });
-}
-
-function showContactsStudents(){
-    jQuery.ajax({
-        type: 'GET',
-        url: 'getProfileContactsStudents',
-        cache: true,
-        success: function(data) {
-            jQuery('#msm_contactscontainer').append(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
-        }
-        
-    });
-}
-
-function showContactsTeachers(){
-    jQuery.ajax({
-        method: 'GET',
-        url: 'getProfileContactsTeachers',
-        cache: true,
-        success: function(data) {
-            jQuery('#msm_contactscontainer').append(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
-        }
-        
-    });
-}
