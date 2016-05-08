@@ -113,7 +113,7 @@ socket.on('mostrar', function(data){
 
     var container = jQuery('#msm_list');
     //Son las burbujas del chat que aparecen del lado izquierdo
-    var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm').length;
+    var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm[data-user="' + data.userEmail + '"]').length;
 
     if(lastLeftMsm > 0){
         container.find('.msm_block:last-child').find('.msm_text')
@@ -188,12 +188,26 @@ function showLobbies(){
 }
 
 function showContactsAdministrators(){
+    stringDataAdmins = '';
     jQuery.ajax({
         method: 'GET',
         url: 'getProfileContactsAdministrators',
         cache: true,
         success: function(data) {
-            jQuery('#msm_contactscontainer').append(data);
+            for(var i in data){
+                var item = data[i];
+                stringDataAdmins += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
+                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                                +       '<div class="listitem_info">'
+                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                                +           '<div class="listitem_bottomdata">' + item.userEmail
+                                +           '</div>'
+                                +       '</div>'
+                                +   '</div>'
+            }
+
+            jQuery('#profilecontacts_list .admins').html(stringDataAdmins);
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -203,12 +217,25 @@ function showContactsAdministrators(){
 }
 
 function showContactsStudents(){
+    stringDataStudents = '';
     jQuery.ajax({
         type: 'GET',
         url: 'getProfileContactsStudents',
         cache: true,
         success: function(data) {
-            jQuery('#msm_contactscontainer').append(data);
+            for(var i in data){
+                var item = data[i];
+                stringDataStudents += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
+                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                                +       '<div class="listitem_info">'
+                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                                +           '<div class="listitem_bottomdata">' + item.userEmail
+                                +           '</div>'
+                                +       '</div>'
+                                +   '</div>'
+            }
+
+            jQuery('#profilecontacts_list .students').html(stringDataStudents);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
@@ -218,12 +245,25 @@ function showContactsStudents(){
 }
 
 function showContactsTeachers(){
+    stringDataTeachers = '';
     jQuery.ajax({
         method: 'GET',
         url: 'getProfileContactsTeachers',
         cache: true,
         success: function(data) {
-            jQuery('#msm_contactscontainer').append(data);
+            for(var i in data){
+                var item = data[i];
+                stringDataTeachers += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
+                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                                +       '<div class="listitem_info">'
+                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                                +           '<div class="listitem_bottomdata">' + item.userEmail
+                                +           '</div>'
+                                +       '</div>'
+                                +   '</div>'
+            }
+
+            jQuery('#profilecontacts_list .teachers').html(stringDataTeachers);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -244,69 +284,76 @@ function enviarMsg(){
     var lobbyScope = jQuery('#lobbyScope').val();
     var msmText = jQuery('#newmsm').val();
 
-    socket.emit('mensaje', {
-        
-        userEmail: sessionUser,
-        userName: sessionUserName,
-        userLastName: sessionUserLastName,
-        messageText: msmText,
-        messageTime: currentTime   
+    if(msmText != null && msmText != ''){
 
-    });    
+        socket.emit('mensaje', {
+            
+            userEmail: sessionUser,
+            userName: sessionUserName,
+            userLastName: sessionUserLastName,
+            messageText: msmText,
+            messageTime: currentTime   
 
-    jQuery.ajax({ 
-        type: 'post',
-        url: '/insertNewMessage',
-        data: {
-            messageBody : jQuery('#newmsm').val(),
-            lobbyBody : jQuery('#lobbyScope').val()
-        },
-        success: function(data) {
-            jQuery('#newmsm').val('').focus();
-        },
-        error: function(request, status, error){
-            console.log(error);
-        }
-    });
+        });    
 
-    //Contenedor de mensajes
-    var container = jQuery('#msm_list');
+        jQuery.ajax({ 
+            type: 'post',
+            url: '/insertNewMessage',
+            data: {
+                messageBody : jQuery('#newmsm').val(),
+                lobbyBody : jQuery('#lobbyScope').val()
+            },
+            success: function(data) {
+                jQuery('#newmsm').focus().val('');
+            },
+            error: function(request, status, error){
+                console.log(error);
+            }
+        });
 
-    var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+        //Contenedor de mensajes
+        var container = jQuery('#msm_list');
 
-    if(lastRightMsm > 0){
-        container.find('.msm_block:last-child').find('.msm_text')
-            .append('<div class="colhh1 autooverflow">'
-                    +   '<div class="rightmsm bg_white">'
-                    +       '<div class="pd_12"> '
-                    +           msmText
-                    +           '<span class="msm_date">'
-                    +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
-                    +           '</span>'
-                    +       '</div>'
-                    +   '</div>'
-                    +'</div>');
-    }
-    else{
-        container.append('<div class="colhh1 margin_bot msm_block">'
-                        +   '<div class="msm_text">'
-                        +       '<div class="colhh1 autooverflow">'
-                        +           '<div class="rightmsm bg_white">'
-                        +               '<i></i>'
-                        +               '<div class="pd_12"> '
-                        +                   msmText
-                        +                   '<span class="msm_date">'
-                        +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
-                        +                   '</span>'
-                        +               '</div>'
-                        +           '</div>'
+        var lastRightMsm = jQuery('#msm_list .msm_block:last-child').find('.rightmsm').length;
+
+        if(lastRightMsm > 0){
+            container.find('.msm_block:last-child').find('.msm_text')
+                .append('<div class="colhh1 autooverflow">'
+                        +   '<div class="rightmsm bg_white">'
+                        +       '<div class="pd_12"> '
+                        +           msmText
+                        +           '<span class="msm_date">'
+                        +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                        +           '</span>'
                         +       '</div>'
                         +   '</div>'
-                        +   '<div class="msm_img">'
-                        +       '<img src="images/profilephoto.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUserLastName + '" class="circle">'
-                        +   '</div>'
-                        + '</div>');
+                        +'</div>');
+        }
+        else{
+            container.append('<div class="colhh1 margin_bot msm_block">'
+                            +   '<div class="msm_text">'
+                            +       '<div class="colhh1 autooverflow">'
+                            +           '<div class="rightmsm bg_white">'
+                            +               '<i></i>'
+                            +               '<div class="pd_12"> '
+                            +                   msmText
+                            +                   '<span class="msm_date">'
+                            +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
+                            +                   '</span>'
+                            +               '</div>'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="msm_img">'
+                            +       '<img src="images/profilephoto.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUserLastName + '" class="circle">'
+                            +   '</div>'
+                            + '</div>');
+        }
     }
+    else{
+        alert('El mensaje no puede estar vacio');
+    }
+
 }
 
 jQuery(document).ready(function(){
@@ -316,9 +363,9 @@ jQuery(document).ready(function(){
     showContactsStudents();
     showContactsTeachers();
 
-    jQuery('form#addNewMsm').submit(function(){
+    jQuery('form#addNewMsm').submit(function(event){
+        event.preventDefault();
         enviarMsg();
-        return false;
     });
 
     //OBTIENE LA ALTURA ORIGINAL DEL INPUT DONDE SE AGREGAN MAS USUARIOS
@@ -330,6 +377,7 @@ jQuery(document).ready(function(){
             jQuery('#search_newmsmcontacts').css('height', '0');
             jQuery('#contacts_to_send').css('margin-top', '-10px');
             jQuery('.msm_sendtocontainer #msm_addperson').show();
+            jQuery('#msm_contactscontainer').hide();
         }
 
         //CREAR ARREGLO DE LOS USUARIOS PARA LA LOBBY
@@ -350,17 +398,16 @@ jQuery(document).ready(function(){
     //ESCONDE EL BOTON PARA AGREGAR CUANDO ESTE SOBRE EL INPUT QUE AGREGA USUARIOS AL LOBBY
     jQuery('#search_newmsmcontacts').focus(function(){
         jQuery('#msm_addperson').hide();
+        jQuery('#msm_contactscontainer').show();
     });
 
     //FILTRAR CONTACTOS A PARTIR DE BUSQUEDA
     jQuery('#search_newmsmcontacts').keyup(function(){
 
-        jQuery(this).siblings('#msm_contactscontainer').show();
-
         var currentQuery = jQuery('#search_newmsmcontacts').val().toUpperCase();
 
         jQuery('#msm_contactscontainer .listitem').hide();
-        jQuery('#msm_contactscontainer .no_result').html('<div class="pd_24">No se encontro "' + jQuery('#search_newmsmcontacts').val() + '"</div>');
+        jQuery('#msm_contactscontainer .no_result').html('<div class="pd_24">No hay resultados para: "' + jQuery('#search_newmsmcontacts').val() + '"</div>');
             
         if(currentQuery != ''){
             jQuery('#msm_contactscontainer .listitem').each(function(){
@@ -377,61 +424,7 @@ jQuery(document).ready(function(){
         else{
             jQuery('#msm_contactscontainer .listitem').show();
             jQuery('#msm_contactscontainer .no_result').html('');
-            jQuery('#msm_contactscontainer').hide();
         }
-    });
-
-    //MOSTRAR TODOS LOS CONTACTOS
-    jQuery('#showall_button').click(function(){
-        jQuery('#msm_contactscontainer .listitem').show();     
-    });
-
-    //FUNCION PARA AGREGAR USUARIOS AL LOBBY
-    jQuery('#msm_contactscontainer .listitem').click(function(){
-
-        //OBTIENE DATOS PARA AGREGAR USUARIO A LOBBY
-        var name = jQuery(this).attr('data-name');
-        var email = jQuery(this).attr('data-email');
-        var imgsrc = jQuery(this).find('.listitem_img img').attr('src');
-
-
-        //AGREGA UN NUEVO USUARIO PARA EL LOBBY
-        var html = '<div data-email="' + email + '" class="msm_sendtocontact rel_pos" title="Quitar">'
-                    + '<div class="msm_sendtoremove">'
-                    + '<div class="bg_opacity bg_cross circle"></div>'
-                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle"/>'
-                    + '<div class="name circle bg_lightgray opacity_color v_middle">' + name + '</div>'
-                    + '</div>';
-
-        if( jQuery('.msm_sendtocontainer').find('.msm_sendtocontact[data-email="' + email + '"]').length == 0 ){
-            //AGEGAR USUARIO AL LOBBY
-            jQuery('.msm_sendtocontainer').prepend(html);
-            jQuery('#hidden_inputsendto').val(jQuery('#hidden_inputsendto').val() + email + ',');
-        }
-
-        jQuery(this).parents('#msm_contactscontainer').hide();
-        jQuery('#search_newmsmcontacts').val('').focus();
-
-        jQuery('.msm_sendtocontact').hover(function(){
-            jQuery(this).find('.msm_sendtoremove').show();
-        }, function(){
-            jQuery(this).find('.msm_sendtoremove').hide();
-        });
-
-        //REMUEVE LOS CORREOS DEL CAMPO DE TEXTO ORIGINAL QUE SE MANDA AL SERVIDOR
-        jQuery('.msm_sendtocontainer .msm_sendtocontact').click(function(){
-            var string = jQuery('#hidden_inputsendto').val();
-            var removeEmail = jQuery(this).attr('data-email');
-            var newString = string.replace(removeEmail + ',', '');
-            jQuery('#hidden_inputsendto').val(newString);
-            jQuery(this).remove();
-            if(jQuery('.msm_sendtocontainer .msm_sendtocontact').length == 0){
-                jQuery('#msm_addperson').hide();
-                jQuery('#search_newmsmcontacts').css('height', origHeight);
-                jQuery('.msm_sendtocontainer').css('margin-top', '0');
-            }
-        });
-
     });
 
     jQuery(document).ajaxComplete(function(){
@@ -470,8 +463,61 @@ jQuery(document).ready(function(){
             else{
                 jQuery(this).find('label.lobby_time').hide();   
             }
-        }); 
+        });
+
+        addUsersToLobby();
 
     });
 
 });
+
+function addUsersToLobby(){
+        //FUNCION PARA AGREGAR USUARIOS AL LOBBY
+    jQuery('#msm_contactscontainer .listitem').click(function(){
+
+        //OBTIENE DATOS PARA AGREGAR USUARIO A LOBBY
+        var name = jQuery(this).attr('data-name');
+        var email = jQuery(this).attr('data-email');
+        var imgsrc = jQuery(this).find('.listitem_img img').attr('src');
+
+
+        //AGREGA UN NUEVO USUARIO PARA EL LOBBY
+        var html = '<div data-email="' + email + '" class="msm_sendtocontact rel_pos" title="Quitar">'
+                    + '<div class="msm_sendtoremove">'
+                    + '<div class="bg_opacity bg_cross circle"></div>'
+                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle"/>'
+                    + '<div class="name circle bg_lightgray opacity_color v_middle">' + name + '</div>'
+                    + '</div>';
+
+        if( jQuery('.msm_sendtocontainer').find('.msm_sendtocontact[data-email="' + email + '"]').length == 0 ){
+            //AGEGAR USUARIO AL LOBBY
+            jQuery('.msm_sendtocontainer').prepend(html);
+            jQuery('#hidden_inputsendto').val(jQuery('#hidden_inputsendto').val() + email + ',');
+        }
+
+        jQuery('#search_newmsmcontacts').val('').focus();
+
+        jQuery('.msm_sendtocontact').hover(function(){
+            jQuery(this).find('.msm_sendtoremove').show();
+        }, function(){
+            jQuery(this).find('.msm_sendtoremove').hide();
+        });
+
+
+        var origHeight =  jQuery('#search_newmsmcontacts').outerHeight();
+        //REMUEVE LOS CORREOS DEL CAMPO DE TEXTO ORIGINAL QUE SE MANDA AL SERVIDOR
+        jQuery('.msm_sendtocontainer .msm_sendtocontact').click(function(){
+            var string = jQuery('#hidden_inputsendto').val();
+            var removeEmail = jQuery(this).attr('data-email');
+            var newString = string.replace(removeEmail + ',', '');
+            jQuery('#hidden_inputsendto').val(newString);
+            jQuery(this).remove();
+            if(jQuery('.msm_sendtocontainer .msm_sendtocontact').length == 0){
+                jQuery('#msm_addperson').hide();
+                jQuery('#search_newmsmcontacts').css('height', origHeight);
+                jQuery('.msm_sendtocontainer').css('margin-top', '0');
+            }
+        });
+
+    });
+}

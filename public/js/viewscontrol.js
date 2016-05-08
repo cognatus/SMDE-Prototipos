@@ -110,7 +110,7 @@ jQuery(document).on('ready' ,function(){
 		CONFIRM BLOCK
 ---------------------------------------------------------------------------------------*/
 
-	jQuery('.hb_formcontainer .form_input span.submit').click(function(){
+	jQuery('.hb_formcontainer span.submit').click(function(){
 		jQuery(this).parents('.hb_formcontainer').find('.form_confirmblock').fadeIn();
 	});
 
@@ -317,7 +317,7 @@ jQuery(document).on('ready' ,function(){
 
 //-------------------------------------------------------------------------------------
 
-	jQuery('.block_containermsm .listitem, .block_containersettings .listitem').on('click', function(){
+	jQuery('.block_containersettings .listitem').on('click', function(){
 		var title = jQuery(this).attr('data-name');
 		var title2 = jQuery(this).attr('data-title');
 		var img = jQuery(this).find('img').attr('src');
@@ -472,7 +472,7 @@ jQuery(document).on('ready' ,function(){
 	});
 
 	jQuery('.search input#search_block').blur(function(){
-		jQuery('#listcontainer .slide_list').show();
+		jQuery('#listcontainer .slide_list, #listcontainer .block_container').show();
 		jQuery('#listcontainer .no_result').html('');
 		jQuery(this).val('');
 	});
@@ -494,7 +494,7 @@ jQuery(document).on('ready' ,function(){
 		jQuery('#listcontainer.listcontainer .empty_blocktext').hide();
 		var currentQuery = jQuery('#buscar').val().toUpperCase();
 		jQuery('#listcontainer .listitem').hide();
-		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para "' + jQuery('#buscar').val() + '"</div>');
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: "' + jQuery('#buscar').val() + '"</div>');
 
 		if(currentQuery != ''){
 			jQuery('#listcontainer .listitem').each(function(){
@@ -521,7 +521,7 @@ jQuery(document).on('ready' ,function(){
 
 		var currentQuery = jQuery('#search_block').val().toUpperCase();
 		jQuery('#listcontainer .slide_list, #listcontainer .block_container').hide();
-		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para "' + jQuery('#search_block').val() + '"</div>');
+		jQuery('#listcontainer .no_result').html('<div class="pd_24">No hay resultados para: "' + jQuery('#search_block').val() + '"</div>');
 
 		if(currentQuery != ''){
 			jQuery('#listcontainer .slide_list, #listcontainer .block_container').each(function(){
@@ -563,7 +563,7 @@ jQuery(document).ready(function(){
 
 	//Aqui se ejecutan las funciones al momento que inician las peticiones ajax
 	jQuery(document).ajaxStart(function(){
-		jQuery('#management_showall').hide();
+		jQuery('#management_showall').show();
 	});
 
 	//Aqui se ejecutan las funciones inmediatamente al terminar con las peticiones ajax
@@ -583,26 +583,6 @@ jQuery(document).ready(function(){
 			else{
 				jQuery(this).find('.empty_blocktext').show();
 			}
-		});
-
-/*-------------------------------------------------------------------------------------
-		VERTICAL LIST CONTROL
----------------------------------------------------------------------------------------*/ 
-
-		jQuery('.innerlistitem').hide();
-
-		jQuery('.slide_list .listitem').on('click', function(){
-
-			var slideD = jQuery(this).siblings('.innerlistitem');
-
-			if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
-				jQuery(this).siblings('.innerlistitem').slideUp();
-			}
-			else{
-				jQuery('.innerlistitem').slideUp();
-				slideD.slideDown();
-			}
-
 		});
 
 		jQuery('#management_showall').hide();
@@ -631,6 +611,20 @@ jQuery(document).ready(function(){
 				}
 			}
 
+		});
+
+		jQuery('.block_containermsm .listitem').on('click', function(){
+			var title = jQuery(this).attr('data-name');
+			var title2 = jQuery(this).attr('data-title');
+			var img = jQuery(this).find('img').attr('src');
+			if( jQuery(window).width() < 1120 ){
+				jQuery('.block_containermsm').animate({ scrollLeft: jQuery('.halfgrid').width() });
+				jQuery('#new_item').hide();
+			}
+			jQuery('.msmtopname label').text(title);
+			jQuery('.msmtopname label').attr('title', title2);
+			jQuery('img#msm_userimg').attr('src' , img );
+			changeLetterColor();
 		});
 
 	});

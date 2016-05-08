@@ -56,13 +56,14 @@ block content
 										option(value='Course') Grupo
 									select#subcourList.second.opacity_color.b_text
 										option(value='None' selected) Sin filtro
-						.colhh1.subjects_formlist.listcontainer
+						#new_subjects.colhh1.subjects_formlist.listcontainer
 							.colhh1.empty_blocktext.center_text
 								.pd_64(style='padding-bottom: 48px;padding-top: 32px;')
 									span.v_middle(style= 'background-image: url("images/close-box.png")')
 									.autocol.mm_title.pd_12 No hay asignaturas para inscribir.
 									.ll_title.normal_txt Al parecer ya inscribiste todo.
-							#new_subjects
+							#coursesToAdd
+								//- Aqui se agregan los cursos para inscribir
 
 		.topspace
 		.page_container
@@ -117,7 +118,7 @@ block content
 
 				- else if ( privilegio == 2 )
 					.h_listcontainer
-						.block_container.bg_white
+						.block_container.rel_pos.top_hlist(style='box-shadow: none;')
 							.colhh1.rel_pos
 								.h_listline.bgaccent_color
 								.h_listtopcontainer
@@ -127,7 +128,7 @@ block content
 										.pd_16.rippleria-dark( data-rippleria ) Alumnos
 						.colhh1
 							.colhh1.h_listindex.first
-								.listcontainer
+								.listcontainer.courses_cl
 									.colhh1.block_container.bg_white.empty_blocktext.center_text
 										.pd_64
 											span.v_middle(style= 'background-image: url("images/close-box.png")')

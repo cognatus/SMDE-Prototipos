@@ -23,7 +23,7 @@ function showContactsAdministrators(){
         success: function(data) {
             for(var i in data){
                 var item = data[i];
-                stringDataAdmins += '<div class="colhh1 block_container bg_white"  data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Administrador">' 
+                stringDataAdmins += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Administrador">' 
                             +   '<div class="colhh1 listitem">'
                             +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
                             +       '<div class="listitem_info">'
@@ -64,7 +64,7 @@ function showContactsStudents(){
         success: function(data) {
             for(var i in data){
                 var item = data[i];
-                stringDataStudents += '<div class="colhh1 block_container bg_white"  data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Alumno">' 
+                stringDataStudents += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Alumno">' 
                             +   '<div class="colhh1 listitem">'
                             +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
                             +       '<div class="listitem_info">'
@@ -151,7 +151,7 @@ function showContactsTeachers(){
         success: function(data) {
             for(var i in data){
                 var item = data[i];
-                stringDataTeachers += '<div class="colhh1 block_container bg_white"  data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Profesor">' 
+                stringDataTeachers += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Profesor">' 
                             +   '<div class="colhh1 listitem">'
                             +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
                             +       '<div class="listitem_info">'
@@ -314,7 +314,8 @@ function showCoursesToAdd(){
                 + '</div>';
             }
 
-            jQuery('#new_subjects').html(stringDataCourses);
+            jQuery('#new_subjects #coursesToAdd').html(stringDataCourses);
+            addCoursesControl();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);

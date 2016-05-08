@@ -79,7 +79,7 @@ function showReminders(){
     jQuery.ajax({
         method: 'GET',
         url: 'getRemindersDatabase',
-        cache: false,
+        cache: true,
         success: function(data) {
             jQuery('#calendar_list').append(data);
         },
@@ -93,7 +93,7 @@ function showPublications(){
     jQuery.ajax({
         method: 'GET',
         url: 'getPublicationsDatabase',
-        cache: false,
+        cache: true,
         success: function(data) {
             jQuery('#calendar_list').append(data);
         },
@@ -107,7 +107,7 @@ function showSubjectsCourses(){
     jQuery.ajax({
         method: 'GET',
         url: 'getProfileSubjectsDatabase',
-        cache: false,
+        cache: true,
         success: function(data) {
             jQuery('#showSubjectsCourses').append(data);
         },

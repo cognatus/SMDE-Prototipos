@@ -1,10 +1,29 @@
-jQuery(document).on('ready', function(){
 
-    jQuery(document).ajaxComplete(function(){
+function addCoursesControl(){
 
-        /*-------------------------------------------------------------------------------------
+/*-------------------------------------------------------------------------------------
+        VERTICAL LIST CONTROL
+---------------------------------------------------------------------------------------*/ 
+
+        jQuery('.innerlistitem').hide();
+
+        jQuery('.slide_list .listitem').on('click', function(){
+
+            var slideD = jQuery(this).siblings('.innerlistitem');
+
+            if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
+                jQuery(this).siblings('.innerlistitem').slideUp();
+            }
+            else{
+                jQuery('.innerlistitem').slideUp();
+                slideD.slideDown();
+            }
+
+        });
+
+/*-------------------------------------------------------------------------------------
             SUBJECTS ADD - REMOVE CONTROL
-        ---------------------------------------------------------------------------------------*/
+---------------------------------------------------------------------------------------*/
 
         var listElements = jQuery('#new_subjects .slide_list');
         var list = jQuery('#subcourList');
@@ -153,6 +172,4 @@ jQuery(document).on('ready', function(){
 
         });
 
-    });
-
-});
+}

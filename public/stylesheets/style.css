@@ -1208,6 +1208,7 @@ span.title_rightoptionicon:hover{
 	font-size: 17px;
 	position: relative;
 	font-weight: normal;
+	overflow: hidden;
 	background-color: #f2f2f2;
 }
 
@@ -1297,15 +1298,11 @@ span.title_rightoptionicon:hover{
 }
 
 #msm_contactscontainer{
-	position: absolute;
-	width: calc(100% - 36px);
-	z-index: 9;
-	left: 18px;
-	display: none;
+	width: 100%
 }
 
 #msm_contactscontainer .inner_block{
-	max-height: 310px;
+	max-height: 200px;
 	overflow: auto;
 }
 
@@ -1682,13 +1679,14 @@ option{background-color: #fff;}
 	height: 52px;
 	background-color: transparent;
 	width: calc(100% - 36px);
-	max-width: calc(100% - 36px);
-	min-width: calc(100% - 36px);
 }
 
 .form_input2 textarea{
-	min-height: 240px;
-	max-height: 280px;
+	min-height: 20px;
+	max-height: 156px;
+	width: calc(100% - 104px);
+	max-width: calc(100% - 104px);
+	min-width: calc(100% - 104px);
 	padding: 18px;
 }
 
@@ -1950,6 +1948,15 @@ input:checked + .switch:active::before {
 	height: 52px;
 	display: block;
 	cursor: pointer;
+}
+
+.form_input2 span.submit{
+	width: 52px;
+	height: 52px;
+	margin: 4px 8px 0 8px;
+	display: inline-block;
+	cursor: pointer;
+	background-size: 24px;
 }
 
 .form_input span.submit input[type='submit']{

@@ -34,51 +34,50 @@ block content
 										//- 	img.sendtoimg.circle.v_middle(src='images/profilephoto.png')
 										//- 	.name.circle.bg_lightgray.opacity_color.v_middle Alejandro Villarroel
 										#msm_addperson.small_icon.circle.v_middle.bg_plusgray.hover.rippleria-dark(data-rippleria title='Añadir Persona')
-									#msm_contactscontainer.colhh1.bg_white.flat_shadow
-										.colhh1.sl_title.msm_contactstitle.bg_lightgray(style='border-bottom: 1px solid rgba(0,0,0,0.1);')
-											#showall_button.pd_12.autooverflow
-												.right_float Mostrar Todos
-										.inner_block
-											.colhh1.no_result
-											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
-												.pd_12.bg_lightgray Administradores
-											if profileContactsAdministrators != undefined
-												each item in profileContactsAdministrators
-													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Administrador')
-														.listitem_img
-															img(src='images/profilephoto.png')
-														.listitem_info
-															.listitem_title 
-																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-															.listitem_bottomdata #{item.userEmail}
-											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Alumno')
-												.pd_12.bg_lightgray Alumnos
-											if profileContactsStudents != undefined
-												each item in profileContactsStudents
-													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Alumno')
-														.listitem_img
-															img(src='images/profilephoto.png')
-														.listitem_info
-															.listitem_title 
-																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-															.listitem_bottomdata #{item.userEmail}
-											.colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Profesor')
-												.pd_12.bg_lightgray Profesores
-											if profileContactsTeachers != undefined
-												each item in profileContactsTeachers
-													.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Profesor')
-														.listitem_img
-															img(src='images/profilephoto.png')
-														.listitem_info
-															.listitem_title 
-																b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-															.listitem_bottomdata #{item.userEmail}
+								#msm_contactscontainer.colhh1.border_bottom.bg_lightgray
+									#profilecontacts_list.inner_block
+										.colhh1.no_result
+										.admins
+										.teachers
+										.students
+
+										//- .colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
+										//- 	.pd_12.bg_lightgray Administradores
+										//- if profileContactsAdministrators != undefined
+										//- 	each item in profileContactsAdministrators
+										//- 		.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Administrador')
+										//- 			.listitem_img
+										//- 				img(src='images/profilephoto.png')
+										//- 			.listitem_info
+										//- 				.listitem_title 
+										//- 					b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										//- 				.listitem_bottomdata #{item.userEmail}
+										//- .colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Alumno')
+										//- 	.pd_12.bg_lightgray Alumnos
+										//- if profileContactsStudents != undefined
+										//- 	each item in profileContactsStudents
+										//- 		.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Alumno')
+										//- 			.listitem_img
+										//- 				img(src='images/profilephoto.png')
+										//- 			.listitem_info
+										//- 				.listitem_title 
+										//- 					b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										//- 				.listitem_bottomdata #{item.userEmail}
+										//- .colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Profesor')
+										//- 	.pd_12.bg_lightgray Profesores
+										//- if profileContactsTeachers != undefined
+										//- 	each item in profileContactsTeachers
+										//- 		.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-email='#{item.userEmail}' data-type='Profesor')
+										//- 			.listitem_img
+										//- 				img(src='images/profilephoto.png')
+										//- 			.listitem_info
+										//- 				.listitem_title 
+										//- 					b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
+										//- 				.listitem_bottomdata #{item.userEmail}
 
 								.form_input2
-									textarea#msm_textarea(placeholder='Escribe Algo' name='insertNewLobbyMsm')
-								.pd_24
-									.form_input(style='height: 52px;')
-										span.bgaccent_color.circle.bg_send.submit.rippleria-dark(data-rippleria style='background-image: url("images/send.png");background-size: 42%;')
+									textarea#msm_textarea.v_top(placeholder='Escribe Algo' name='insertNewLobbyMsm')
+									span.bg_send.submit.v_top.rippleria-dark(data-rippleria style='display-inline')
 						.form_confirmblock
 							.inner_confirmblock.bg_gray.flat_shadow
 								.pd_24(style='padding-bottom: 16px;')
@@ -125,7 +124,7 @@ block content
 					.msmtopname.bg_white
 						span#backicon.backicon.rippleria-dark( data-rippleria )
 						img#msm_userimg.circle( src='images/profilephoto.png' )
-						label Nombre Completo
+						label
 						.minimenu_container( title='Opciones' )
 							.minimenu
 								span
@@ -174,14 +173,8 @@ block content
 						//- ESTE ES EL CHIDO MAIGO
 						form#addNewMsm.colhh1.msminput.bg_white
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
-							input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', required, autocomplete='off')
+							input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', autocomplete='off')
 							input#lobbyScope(type='hidden', name='lobbyField', value='')
 							input.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='', title = 'Enviar')
-
-						//- form#addNewMsm.colhh1.msminput.bg_white(action='insertNewMessage' method='POST')
-							//- span.bg_attachment.circle.hover(title='Adjuntar Archivo')
-							//- input#newmsm.bg_lightgray(type='text' , name='messageBody' , placeholder='Mensaje', required, autocomplete='off')
-							//- input#lobbyScope(type='hidden', name='lobbyBody', value='')
-							//- input.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='', title = 'Enviar')
 						
 

@@ -92,7 +92,6 @@ exports.insertNewMessage = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log(stringQuery);
 			res.redirect('/messages');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
