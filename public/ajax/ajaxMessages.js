@@ -1,4 +1,4 @@
-var socket = io('http://localhost:3000/chatsini');
+var socket = io('http://192.168.0.109:3000/chatsini');
 
 function selectLobby(lobby){
     //este metodo recibe el lobby  y conecta en server

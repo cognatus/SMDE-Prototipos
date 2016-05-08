@@ -182,16 +182,16 @@ block content
 											img.circle.msm_imgright(src='images/profilephoto.png' title='Yo')
 
 						//- ESTE ES EL CHIDO MAIGO
-						//- #addNewMsm.colhh1.msminput.bg_white
-						//- 	span.bg_attachment.circle.hover(title='Adjuntar Archivo')
-						//- 	input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', required, autocomplete='off')
-						//- 	input#lobbyScope(type='hidden', name='lobbyField', value='')
-						//- 	input.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()' title = 'Enviar')
-
-						form#addNewMsm.colhh1.msminput.bg_white(action='insertNewMessage' method='POST')
+						#addNewMsm.colhh1.msminput.bg_white
 							span.bg_attachment.circle.hover(title='Adjuntar Archivo')
-							input#newmsm.bg_lightgray(type='text' , name='messageBody' , placeholder='Mensaje', required, autocomplete='off')
-							input#lobbyScope(type='hidden', name='lobbyBody', value='')
-							input.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='', title = 'Enviar')
+							input#newmsm.bg_lightgray(type='text' , name='addNewMsmField' , placeholder='Mensaje', required, autocomplete='off')
+							input#lobbyScope(type='hidden', name='lobbyField', value='')
+							input.bg_send.rippleria-dark(data-rippleria type='button' , name='msmsend' , value='', onclick='enviarMsg()' title = 'Enviar')
+
+						//- form#addNewMsm.colhh1.msminput.bg_white(action='insertNewMessage' method='POST')
+							//- span.bg_attachment.circle.hover(title='Adjuntar Archivo')
+							//- input#newmsm.bg_lightgray(type='text' , name='messageBody' , placeholder='Mensaje', required, autocomplete='off')
+							//- input#lobbyScope(type='hidden', name='lobbyBody', value='')
+							//- input.bg_send.rippleria-dark(data-rippleria type='submit' , name='msmsend' , value='', title = 'Enviar')
 						
 

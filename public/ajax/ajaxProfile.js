@@ -117,6 +117,7 @@ function showContactsTeachers(){
 }
 
 function showProfileSubjects(){
+    stringCourses = '';
     jQuery.ajax({
         method: 'GET',
         url: 'getProfileSubjectsDatabase',
@@ -125,17 +126,17 @@ function showProfileSubjects(){
             console.log(data);
             for(var i in data){
                 var item = data[i];
-                stringCourses +=
-                + '<div class="colhh1 slide_list">'
+                stringCourses += '<div class="colhh1 block_container bg_white">' 
                 +   '<div class="colhh1 hover listitem rippleria-dark" data-name="' + item.subjectName + '" data-type="' + item.courseName +'">'
                 +       '<div class="listitem_img"><span></span></div>'
                 +       '<div class="listitem_info">'
                 +           '<div class="listitem_rightinfo">Promedio:<label class="subject_prom"></label></div>'
                 +           '<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
-                +           '<div class="listitem_bottomdata rank" title="Nivel ' + item.subjectLevel + '"></div>'
+                +           '<div class="listitem_bottomdata rank" title="Nivel ' + item.subjectLevel + '">'
+                +           '</div>'
                 +       '</div>'
                 +   '</div>'
-                +   '<div class="colhh1 innerlistitem border_bottom">'
+                +   '<div class="colhh1 innerlistitem">'
                 +       '<div class="list_borderleft">'
                 +           '<div class="pd_llist">'
                 +               '<div class="sl_title">Información</div>'

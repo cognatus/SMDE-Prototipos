@@ -595,9 +595,8 @@ jQuery(document).ready(function(){
 			}
 		});
 
-/*		jQuery('.innerlistitem_cal').hide();
 
-		jQuery('.listitem_cal').on('click', function(){
+		/*jQuery('.listitem_cal').on('click', function(){
 
 			var slideD = jQuery(this).siblings('.innerlistitem_cal');
 

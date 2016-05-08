@@ -125,8 +125,8 @@ block content
 
 			.grid_rightcontainer
 				- if ( privilegio == 1 )
-					.colhh1.block_container.bg_white
-						.colhh1.bg_lightgray
+					.colhh1
+						.colhh1.block_container.bg_lightgray
 							.pd_18.ll_title Mis asignaturas
 						.colhh1
 							#profilecourses_list.listcontainer.courses_cl
@@ -147,7 +147,7 @@ block content
 										.pd_16.rippleria-dark( data-rippleria ) Cursos
 									.h_listitem
 										.pd_16.rippleria-dark( data-rippleria ) Alumnos
-						.block_container.bg_white
+						.colhh1
 							.colhh1.h_listindex.first
 								#profilecourses_list.listcontainer
 									.colhh1.empty_blocktext.center_text
@@ -158,7 +158,7 @@ block content
 									//- Aqui se agrega la lista de asignaturas
 									
 							#contacts_list.colhh1.h_listindex
-								.colhh1.bg_lightgray
+								.colhh1.block_container.bg_lightgray
 									.search.rel_pos
 										span.searchicon
 										input#buscar_slide(type='text',name='buscar', placeholder='Buscar un alumno')
@@ -170,7 +170,7 @@ block content
 											.autocol.pd_12.mm_title No tienes alumnos.
 									if profileContactsStudents != undefined
 										each item in profileContactsStudents
-											.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
+											.colhh1.block_container.bg_white(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
 												.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria)
 													a(href='/messages')
 														.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Calificar')
@@ -180,26 +180,24 @@ block content
 														.listitem_title 
 															b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
 														.listitem_bottomdata Alumno
-												.colhh1.innerlistitem(data-id='#{item.userEmail}')
-													.colhh1.border_bottom
-														.list_borderleft
-															.colhh1
-																.pd_llist
-																	.sl_title Información
-																.pd_llist
-																	.colhh1.pd_l12.sl_title Correo: 
-																		span.margin_l.normal_txt #{item.userEmail}
-															.pd_8
-															.colhh1
-																.pd_llist
-																	.sl_title Cursos en común
-																.person_subjectslist
-																	//- .colhh1.hover
-																	//- 	.listitem_img
-																	//- 		span B
-																	//- 	.listitem_info
-																	//- 		.listitem_title 
-																	//- 			b #{item.subjectName}
-																	//- 		.listitem_bottomdata
-																	//- 			| Grupo: #{item.courseName}
-
+												.colhh1(data-id='#{item.userEmail}')
+													.list_borderleft
+														.colhh1
+															.pd_llist
+																.sl_title Información
+															.pd_llist
+																.colhh1.pd_l12.sl_title Correo: 
+																	span.margin_l.normal_txt #{item.userEmail}
+														.pd_8
+														.colhh1
+															.pd_llist
+																.sl_title Cursos en común
+															.person_subjectslist
+																//- .colhh1.hover
+																//- 	.listitem_img
+																//- 		span B
+																//- 	.listitem_info
+																//- 		.listitem_title 
+																//- 			b #{item.subjectName}
+																//- 		.listitem_bottomdata
+																//- 			| Grupo: #{item.courseName}
