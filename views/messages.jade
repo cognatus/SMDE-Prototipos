@@ -38,11 +38,8 @@ block content
 									#profilecontacts_list.inner_block
 										.colhh1.no_result
 										.admins
-										.teachers
 										.students
-										.colhh1.load_container#leftlist_showall
-											.load
-												.spinner
+										.teachers
 
 										//- .colhh1.opacity_color.sl_title.msm_contactstitle(data-type='Administrador')
 										//- 	.pd_12.bg_lightgray Administradores
@@ -114,14 +111,13 @@ block content
 								span#close_searchbar.close_icon(title='Cerrar buscador')
 								input#buscar(type='text' name='msm_chatsearch' placeholder='Buscar una conversación' autocomplete='off')
 					#listcontainer.autooverflow.left_listcontainer.listcontainer
-						.colhh1.empty_blocktext.center_text
-							.centerempty
-								.pd_64
-									span.v_middle(style= 'background-image: url("images/close-box.png")')
-									.autocol.mm_title.pd_12 No tienes ninguna Conversación.
-									.ll_title.normal_txt Presiona &nbsp; + &nbsp; para iniciar una conversación.
 						.colhh1.no_result
-						#lobbiesData
+						#lobbiesData.colhh1
+						.colhh1.empty_blocktext.center_text
+							.centerempty.load_container
+								.load
+									.spinner
+								
 						
 				.halfgrid.secondgrid
 					.msmtopname.bg_white

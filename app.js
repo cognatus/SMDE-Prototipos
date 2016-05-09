@@ -231,6 +231,9 @@ app.post('/insertLobby', messagesPost.insertLobby);
 app.post('/insertNewMessage', messagesPost.insertNewMessage);
 app.get('/getLobbiesDatabase', messagesPost.getLobbiesDatabase);
 app.get('/getSelectedLobbyMessages', messagesPost.getSelectedLobbyMessages);
+app.get('/getProfileContactsAdministratorsMsm', messagesPost.getProfileContactsAdministratorsMsm);
+app.get('/getProfileContactsStudentsMsm', messagesPost.getProfileContactsStudentsMsm);
+app.get('/getProfileContactsTeachersMsm', messagesPost.getProfileContactsTeachersMsm);
 
 http.listen(app.get('port'), function(){
 	var base = new databaseInstance();

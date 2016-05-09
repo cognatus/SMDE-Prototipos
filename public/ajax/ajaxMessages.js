@@ -173,41 +173,26 @@ socket.on('mostrar', function(data){
 
 //FUNCIONES AJAX PARA MOSTRAR AL CARGAR LA PAGINA
 function showLobbies(){
-    stringData = '';
     jQuery.ajax({
         method: 'GET',
         url: 'getLobbiesDatabase',
         cache: true,
         success: function(data) {
-            for(var i in data){
-                var item = data[i];
-                stringData += ''
-                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '\n' + item.participantsNames + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
-                +    '<div class="listitem_img">'
-                +        '<img src="images/profilephoto.png">'
-                +    '</div>'
-                +    '<div class="listitem_info border_bottom">'
-                +        '<div class="listitem_rightinfo">'
-                +            '<label class="lobby_date">' + item.lobbyDate + '</label>'
-                +            '&nbsp;<label class="lobby_time">' + item.lobbyHour + '</label>'
-                +        '</div>'
-                +        '<div class="listitem_title">'
-                +            '<b title="' + item.participantsEmails + '\n' + item.participantsNames + '">' + item.participantsNames + '</b>'
-                +        '</div>'
-                +        '<div class="listitem_bottomdata"><span class="b_text" data-lastuser="' + item.lastSenderEmail + '">'+ item.lastSenderName + ':</span>&nbsp;' + item.lastMsm +'</div>'
-                +    '</div>'
-                + '</div>';
+            if(data.length != 0){
+                jQuery('#lobbiesData').html(data);
             }
-
-            jQuery('#listcontainer #lobbiesData').html(stringData);
-
-            jQuery('#listcontainer #lobbiesData .listitem_bottomdata').each(function(){
-                var email = jQuery(this).find('span').attr('data-lastuser');
-                if( email == sessionUser ){
-                    jQuery(this).find('span').text('Yo:');
-                }
-
-            });
+            else{
+                jQuery('#listcontainer.left_listcontainer')
+                    .html('<div class="colhh1 empty_blocktext center_text">'
+                        +  '<div class="centerempty">'
+                        +    '<div class="pd_64">'
+                        +        '<span style="background-image: url(&quot;images/close-box.png&quot;)" class="v_middle"></span>'
+                        +        '<div class="autocol mm_title pd_12">No tienes ninguna Conversación.</div>'
+                        +        '<div class="ll_title normal_txt">Presiona &nbsp; + &nbsp; para iniciar una conversación.</div>'
+                        +    '</div>'
+                        +  '</div>'
+                        +'</div>');
+            }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -216,28 +201,13 @@ function showLobbies(){
     });
 }
 
-function showContactsAdministrators(){
-    stringDataAdmins = '';
+function showContactsAdministratorsMsm(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileContactsAdministrators',
+        url: 'getProfileContactsAdministratorsMsm',
         cache: true,
         success: function(data) {
-            for(var i in data){
-                var item = data[i];
-                stringDataAdmins += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
-                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
-                                +       '<div class="listitem_info">'
-                                +           '<div class="listitem_rightinfo">Admin</div>'
-                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
-                                +           '<div class="listitem_bottomdata">' + item.userEmail
-                                +           '</div>'
-                                +       '</div>'
-                                +   '</div>'
-            }
-
-            jQuery('#profilecontacts_list .admins').html(stringDataAdmins);
-
+            jQuery('#profilecontacts_list .admins').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -246,27 +216,13 @@ function showContactsAdministrators(){
     });
 }
 
-function showContactsStudents(){
-    stringDataStudents = '';
+function showContactsStudentsMsm(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getProfileContactsStudents',
+        url: 'getProfileContactsStudentsMsm',
         cache: true,
         success: function(data) {
-            for(var i in data){
-                var item = data[i];
-                stringDataStudents += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
-                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
-                                +       '<div class="listitem_info">'
-                                +           '<div class="listitem_rightinfo">Alumno</div>'
-                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
-                                +           '<div class="listitem_bottomdata">' + item.userEmail
-                                +           '</div>'
-                                +       '</div>'
-                                +   '</div>'
-            }
-
-            jQuery('#profilecontacts_list .students').html(stringDataStudents);
+            jQuery('#profilecontacts_list .students').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
@@ -275,27 +231,14 @@ function showContactsStudents(){
     });
 }
 
-function showContactsTeachers(){
+function showContactsTeachersMsm(){
     stringDataTeachers = '';
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileContactsTeachers',
+        url: 'getProfileContactsTeachersMsm',
         cache: true,
         success: function(data) {
-            for(var i in data){
-                var item = data[i];
-                stringDataTeachers += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
-                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
-                                +       '<div class="listitem_info">'
-                                +           '<div class="listitem_rightinfo">Profe</div>'
-                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
-                                +           '<div class="listitem_bottomdata">' + item.userEmail
-                                +           '</div>'
-                                +       '</div>'
-                                +   '</div>'
-            }
-
-            jQuery('#profilecontacts_list .teachers').html(stringDataTeachers);
+            jQuery('#profilecontacts_list .teachers').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -384,7 +327,7 @@ function enviarMsg(){
         }
     }
     else{
-        alert('¡El mensaje no puede estar vacio!');
+        alert('¡El mensaje no puede estar vacío!');
     }
 
     jQuery('.msm_innercontent').animate({
@@ -395,10 +338,13 @@ function enviarMsg(){
 
 jQuery(document).ready(function(){
     
-    showLobbies();
-    showContactsAdministrators();
-    showContactsStudents();
-    showContactsTeachers();
+    setTimeout(showLobbies, 1000);
+    
+    jQuery('#new_item').click(function(){
+        showContactsAdministratorsMsm();
+        showContactsStudentsMsm();
+        showContactsTeachersMsm();
+    });
 
     jQuery('form#addNewMsm').submit(function(event){
         event.preventDefault();

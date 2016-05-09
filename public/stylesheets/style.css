@@ -20,6 +20,19 @@ body {
 	color: #424242;
 	font-size: 14px;
 }
+body div::-webkit-scrollbar{width: 6px;}
+
+body div::-webkit-scrollbar:hover{width: 8px;}
+
+body div::-webkit-scrollbar-track{background-color: transparent;}
+
+body div::-webkit-scrollbar{background-color: transparent;}
+
+body div::-webkit-scrollbar-thumb{
+	background-color: rgba(127,127,127,0.3);
+	border-radius: 10px;
+	background-clip: padding-box;
+}
 
 .minimenu_hidden{color: #424242;}
 
@@ -1187,6 +1200,12 @@ span.title_rightoptionicon:hover{
 	height: 17px;
 }
 
+.listitem_bottomdata .msm_miniicon{
+	display: inline-block;width: 16px;height:16px;
+	background-size: 100%;vertical-align: top;position: relative;
+	margin-right: 2px;background-position: center;top: -0.7px;
+}
+
 .listitem_rightinfo{
 	opacity: 0.5;
 	position: absolute;
@@ -2087,14 +2106,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	color: #e0e0e0;
 	background-color: #303030;
 }
-
-.dark_theme::-webkit-scrollbar-track, .dark_theme div::-webkit-scrollbar-track{background-color: #303030;}
-
-.dark_theme::-webkit-scrollbar, .dark_theme div::-webkit-scrollbar{width: 16px;background-color: #525252;}
-
-.dark_theme::-webkit-scrollbar-thumb, .dark_theme div::-webkit-scrollbar-thumb{background-color: #616161;}
-
-.dark_theme::-webkit-scrollbar-button, .dark_theme div::-webkit-scrollbar-button{height: 18px;}
 
 .dark_theme .opacity_color{
 	color: rgba(255,255,255,0.5);

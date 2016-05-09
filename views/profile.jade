@@ -3,47 +3,8 @@ extends layout
 block content
 		script( type='text/javascript' src='/ajax/ajaxProfile.js' )
 
-		#new_item.float_buttoncontainer( title='Editar Perfil' )
+		.float_buttoncontainer( title='Editar Perfil' )
 			span.bg_edit.bgaccent_color
-
-		.hidden_blockcontainer
-			.hidden_blockback.bgaccent_color
-			.hidden_block.bg_white
-				span.close.bg_close.rippleria-dark( data-rippleria )
-				.colhh1.bgprimary_color
-					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.form_title.white_text Editar Perfil
-				.colhh1.hb_formcontainer
-					form( name='forum_new' )
-						.form_innercontainer
-							.form_titlepad.flat_shadow.bgprimary_color
-								.form_input.white_text.rel_pos
-									input.activeline.white_text(type='text' required)
-									label Nombres
-							.pd_24
-								.form_input
-									.b_text.left_title Apellidos
-									.double
-										input(type='text', placeholder='Paterno' name='updateProfileUserLastName')
-										input.second(type='text', placeholder='Materno' name='updateProfileUserSecondLastName')
-								.form_input
-									.b_text.left_title Sexo
-									select(name='updateProfileuserSex')
-										option H
-										option M
-								.form_input(style='height: 52px;')
-									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
-						.form_confirmblock
-							.inner_confirmblock.bg_gray.flat_shadow
-								.pd_24(style='padding-bottom: 16px;')
-									.colhh1.white_text
-										.pd_8.ll_title ¿Realizar esta acción?
-								.pd_12
-									.autooverflow
-										span.submit_cancel.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color.b_text(type='button' value='Cancelar')
-										span.raised_button.right_float.rippleria-dark(data-rippleria)
-											input.txtaccent_color2.b_text(type='submit' value='Aceptar')
 
 		.topspace
 		.page_container

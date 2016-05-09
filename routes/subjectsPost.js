@@ -53,8 +53,34 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			subjectscoursesData = result;
-			res.send(subjectscoursesData);
+			var stringDataCourses = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataCourses += '<div class="colhh1 slide_list" data-subjectfilter= "' + item.subjectName + '" data-coursefilter="' + item.courseName + '">' 
+                +   '<div class="colhh1 hover pd_lr8 listitem rel_pos" data-subject="' + item.idSubject + '" data-course="' + item.idCourse +'" data-name="' + item.subjectName + '">'
+                +       '<div class="listitem_righticon circle bg_plusgray rippleria-dark" title="Agregar"></div>'
+                +       '<div class="listitem_img"><span></span></div>'
+                +       '<div class="listitem_info">'
+                +           '<div class="listitem_alert txt_red"></div>'
+                +           '<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
+                +           '<div class="listitem_bottomdata">' + item.courseName + '</div>'
+                +       '</div>'
+                +   '</div>'
+                +   '<div class="colhh1 innerlistitem">'
+                +       '<div class="list_borderleft">'
+                +           '<div class="pd_llist">'
+                +               '<div class="sl_title">Información</div>'
+                +           '</div>'
+                +           '<div class="pd_llist">'
+                +               '<div class="colhh1 pd_l12 sl_title">Academia: <span class="margin_l normal_txt">' + item.departmentName + '</span></div>'
+                +               '<div class="pd_4"></div>'
+                +               '<div class="colhh1 pd_l12 sl_title">Nivel:<span class="margin_l normal_txt">' + item.subjectLevel + '</span></div>'
+                +           '</div>'
+                +       '</div>'
+                +   '</div>'
+                + '</div>';
+            }
+			res.send(stringDataCourses);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.render('error' , {

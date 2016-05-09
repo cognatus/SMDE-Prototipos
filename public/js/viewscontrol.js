@@ -59,12 +59,6 @@ jQuery(document).on('ready' ,function(){
 		jQuery('.notifications_hidden').fadeIn(200);
 	});
 
-	jQuery('.spinner').spinner({
-		strokeWidth: 5,
-		color: '#00BFA5',
-		radius: 30,
-	});
-
 	jQuery('html , body').click(function(event){
 		jQuery('.minimenu_hidden').fadeOut(200);
 		jQuery('.notifications_hidden').fadeOut(200);
@@ -122,7 +116,7 @@ jQuery(document).on('ready' ,function(){
 		FORM ANIMATION
 ---------------------------------------------------------------------------------------*/
 
-	jQuery('.float_buttoncontainer').click(function(){
+	jQuery('#new_item.float_buttoncontainer').click(function(){
 		var animate = jQuery('.hidden_blockcontainer');
 		var offset = jQuery(this).offset();
 		var widthsize = jQuery(this).width();
@@ -586,10 +580,16 @@ jQuery(document).on('ready' ,function(){
 
 jQuery(document).ready(function(){
 
+	jQuery('.spinner').spinner({
+		strokeWidth: 5,
+		color: '#00BFA5',
+		radius: 30,
+	});
+	jQuery('#listcontainer .load_container').show();
+
 	//Aqui se ejecutan las funciones al momento que inician las peticiones ajax
 	jQuery(document).ajaxStart(function(){
-		jQuery('#management_showall').show();
-		jQuery('#leftlist_showall').show();
+		
 	});
 
 	//Aqui se ejecutan las funciones inmediatamente al terminar con las peticiones ajax
@@ -612,7 +612,6 @@ jQuery(document).ready(function(){
 		});
 
 		jQuery('#management_showall').hide();
-		jQuery('#leftlist_showall').hide();
 
 		var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
 			'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',

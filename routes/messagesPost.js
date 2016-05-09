@@ -144,8 +144,33 @@ exports.getLobbiesDatabase = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			lobbyData = result;
-			res.send(lobbyData);
+			stringDataLobby = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataLobby += ''
+                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '\n' + item.participantsNames + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
+                +    '<div class="listitem_img">'
+                +        '<img src="images/profilephoto.png">'
+                +    '</div>'
+                +    '<div class="listitem_info border_bottom">'
+                +        '<div class="listitem_rightinfo">'
+                +            '<label class="lobby_date">' + item.lobbyDate + '</label>'
+                +            '&nbsp;<label class="lobby_time">' + item.lobbyHour + '</label>'
+                +        '</div>'
+                +        '<div class="listitem_title">'
+                +            '<b title="' + item.participantsEmails + '\n' + item.participantsNames + '">' + item.participantsNames + '</b>'
+                +        '</div>'
+                if(item.lastSenderEmail == req.session.datos[0].userEmail){
+                	stringDataLobby += '<div class="listitem_bottomdata"><span class="bg_reply msm_miniicon"></span>&nbsp;' + item.lastMsm +'</div>'
+                }
+                else{
+                	stringDataLobby +=  '<div class="listitem_bottomdata"><span class="b_text">'+ item.lastSenderName + ':</span>&nbsp;' + item.lastMsm +'</div>'
+                }
+                stringDataLobby +='</div>'
+                + '</div>';
+            }
+
+			res.send(stringDataLobby);
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.send('Error');
@@ -178,4 +203,199 @@ exports.getSelectedLobbyMessages = function(req, res){
 			res.send('Error');
 		}
 	});
+};
+
+// FUNCION PARA MOSTRAR CONTACTOS (ADMINITRADORES)
+exports.getProfileContactsAdministratorsMsm = function(req, res){
+	var database = new base();
+
+	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+				+ ' FROM User AS u'
+				+ ' INNER JOIN Administrator AS a ' 
+				+ ' ON u.userEmail = a.User_userEmail '
+				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '" '
+				+ ' AND u.userEmail != "' + req.session.datos[0].userEmail + '";' ;
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
+                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                                +       '<div class="listitem_info">'
+                                +           '<div class="listitem_rightinfo">Admin</div>'
+                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                                +           '<div class="listitem_bottomdata">' + item.userEmail
+                                +           '</div>'
+                                +       '</div>'
+                                +   '</div>'
+            }
+			res.send(stringData);
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+// FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)
+exports.getProfileContactsStudentsMsm = function(req, res){
+	var database = new base();
+
+	//SI EL USUARIO ES TIPO ALUMNO
+	if(	req.session.privilegio == 1	){
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+					+ ' FROM Student_has_Subject_has_Course a '
+					+ '	JOIN Student_has_Subject_has_Course b '
+					+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+					+ '		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+					+ '		AND a.Student_idStudent != b.Student_idStudent '
+					+ '	INNER JOIN Subject as sub '
+					+ '		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject '
+					+ '	INNER JOIN Course as c '
+					+ '		ON c.idCourse = a.Subject_has_Course_Course_idCourse '
+					+ '	INNER JOIN Student as s '
+					+ '		ON s.idStudent = b.Student_idStudent '
+					+ '	INNER JOIN User as u '
+					+ '		ON u.userEmail = s.User_userEmail '
+					+ '	WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+					+ '	AND b.Student_idStudent != "' + req.session.datos[0].idStudent + '" '
+					+ '	GROUP BY b.Student_idStudent;';
+	}
+
+	//SI EL USUARIO ES TIPO PROFESOR
+	else if( req.session.privilegio == 2 ){
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+					+ ' FROM Teacher_has_Subject_has_Course a '
+					+ '	JOIN Student_has_Subject_has_Course b '
+					+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+					+ '		AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+					+ '		AND a.Teacher_idTeacher != b.Student_idStudent '
+					+ '	INNER JOIN Subject as sub '
+					+ '		ON sub.idSubject = a.Subject_has_Course_Subject_idSubject '
+					+ '	INNER JOIN Course as c '
+					+ '		ON c.idCourse = a.Subject_has_Course_Course_idCourse '
+					+ '	INNER JOIN Student as s '
+					+ '		ON s.idStudent = b.Student_idStudent '
+					+ '	INNER JOIN User as u '
+					+ '		ON u.userEmail = s.User_userEmail '
+					+ '	WHERE a.Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
+					+ '	AND b.Student_idStudent != "' + req.session.datos[0].idTeacher + '" '
+					+ '	GROUP BY b.Student_idStudent;';
+	}
+
+	// SI EL USUARIO ES TIPO ADMIN
+	else if(req.session.privilegio == 3){
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+				+ ' FROM User AS u '
+				+ ' INNER JOIN Student AS s' 
+				+ ' ON u.userEmail = s.User_userEmail'
+				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' ORDER BY userName ASC;';
+	}
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
+                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                                +       '<div class="listitem_info">'
+                                +           '<div class="listitem_rightinfo">Alumno</div>'
+                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                                +           '<div class="listitem_bottomdata">' + item.userEmail
+                                +           '</div>'
+                                +       '</div>'
+                                +   '</div>'
+            }
+			res.send(stringData);
+
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+};
+
+// FUNCION PARA MOSTRAR CONTACTOS (PROFESORES)
+exports.getProfileContactsTeachersMsm = function(req, res){
+	var database = new base();
+
+	//SI EL USUARIO ES TIPO AlUMNO
+	if(req.session.privilegio == 1){
+		stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName '
+					+ ' FROM Student_has_Subject_has_Course a '
+					+ ' JOIN Teacher_has_Subject_has_Course b '
+					+ ' 	ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+					+ ' 	AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+					+ ' 	AND a.Student_idStudent != b.Teacher_idTeacher '
+					+ ' INNER JOIN Subject as sub '
+					+ ' 	ON sub.idSubject = b.Subject_has_Course_Subject_idSubject '
+					+ ' INNER JOIN Course as c '
+					+ ' 	ON c.idCourse = b.Subject_has_Course_Course_idCourse '
+					+ ' INNER JOIN Teacher as t '
+					+ ' 	ON t.idTeacher = b.Teacher_idTeacher '
+					+ ' INNER JOIN User as u '
+					+ ' 	ON u.userEmail = t.User_userEmail '
+					+ ' WHERE a.Student_idStudent = "' + req.session.datos[0].idStudent + '" '
+					+ '    AND b.Teacher_idTeacher != "'  + req.session.datos[0].idStudent +  '" ';
+					+ '	GROUP BY b.Teacher_idTeacher;';
+	}
+
+	//SI EL USUARIO ES TIPO PROFESOR
+	else if(req.session.privilegio == 2){
+		stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName '
+					+ ' FROM Teacher_has_Subject_has_Course a '
+					+ ' JOIN Teacher_has_Subject_has_Course b '
+					+ ' 	ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
+					+ ' 	AND a.Subject_has_Course_Course_idCourse = b.Subject_has_Course_Course_idCourse '
+					+ ' 	AND a.Teacher_idTeacher != b.Teacher_idTeacher '
+					+ ' INNER JOIN Subject as sub '
+					+ ' 	ON sub.idSubject = b.Subject_has_Course_Subject_idSubject '
+					+ ' INNER JOIN Course as c '
+					+ ' 	ON c.idCourse = b.Subject_has_Course_Course_idCourse '
+					+ ' INNER JOIN Teacher as t '
+					+ ' 	ON t.idTeacher = b.Teacher_idTeacher '
+					+ ' INNER JOIN User as u '
+					+ ' 	ON u.userEmail = t.User_userEmail '
+					+ ' WHERE a.Teacher_idTeacher = "' + req.session.datos[0].idTeacher + '" '
+					+ '    AND b.Teacher_idTeacher != "'  + req.session.datos[0].idTeacher +  '" ';
+					+ '	GROUP BY b.Teacher_idTeacher;';
+	}
+
+	// SI EL USUARIO ES TIPO ADMIN
+	else if(req.session.privilegio == 3){
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+				+ ' FROM User AS u '
+				+ ' INNER JOIN Teacher AS t' 
+				+ ' ON u.userEmail = t.User_userEmail'
+				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' ORDER BY userName ASC;';
+	}
+	
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
+                                +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                                +       '<div class="listitem_info">'
+                                +           '<div class="listitem_rightinfo">Profe</div>'
+                                +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                                +           '<div class="listitem_bottomdata">' + item.userEmail
+                                +           '</div>'
+                                +       '</div>'
+                                +   '</div>'
+            }
+			res.send(stringData);
+
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+
 };

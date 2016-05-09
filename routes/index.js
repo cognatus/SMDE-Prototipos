@@ -12,7 +12,7 @@ exports.login = function(req, res){
 };
 
 exports.main = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('main', { 
     title: 'SMDE - Inicio',
     datos:  req.session.datos,
@@ -20,7 +20,7 @@ exports.main = function(req, res){
 };
 
 exports.profile = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('profile', { 
     title: 'SMDE - Perfil',
     datos:  req.session.datos,
@@ -28,7 +28,7 @@ exports.profile = function(req, res){
 };
 
 exports.subjects = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('subjects', { 
     title: 'SMDE - Asignaturas',
     datos:  req.session.datos,
@@ -36,7 +36,7 @@ exports.subjects = function(req, res){
 };
 
 exports.contents = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('contents', { 
     title: 'SMDE - Contenidos',
     datos:  req.session.datos,
@@ -44,7 +44,7 @@ exports.contents = function(req, res){
 };
 
 exports.messages = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('messages', { 
     title: 'SMDE - Mensajes',
     datos:  req.session.datos,
@@ -52,7 +52,7 @@ exports.messages = function(req, res){
 };
 
 exports.foro = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('foro', { 
     title: 'SMDE - Foro',
     datos:  req.session.datos,
@@ -60,7 +60,7 @@ exports.foro = function(req, res){
 };
 
 exports.settings = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('settings', { 
     title: 'SMDE - Ajustes',
     datos:  req.session.datos,
@@ -68,7 +68,7 @@ exports.settings = function(req, res){
 };
 
 exports.calendar = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('calendar', { 
     title: 'SMDE - Agenda',
     datos:  req.session.datos,
@@ -76,7 +76,7 @@ exports.calendar = function(req, res){
 };
 
 exports.management = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('management', { 
     title: 'SMDE - Gestion',
     datos:  req.session.datos,
@@ -84,6 +84,6 @@ exports.management = function(req, res){
 };
 
 exports.error = function(req, res){
-  console.log(req.session.datos)
+  /*console.log(req.session.datos);*/
   res.render('error', { title: 'SMDE' });
 };

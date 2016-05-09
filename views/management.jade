@@ -206,7 +206,8 @@ block content
 		.block_container.bg_white.profile_bgcont(style='margin-bottom: 0;')
 			.colhh1.profile_img
 				.photo
-					img.circle( src='images/profilephoto.png' )
+					a(href='/profile')
+						img.circle( src='images/profilephoto.png' )
 			.pd_24
 				.colhh1
 					.name
@@ -427,6 +428,3 @@ block content
 													.pd_4
 													.pd_l12.sl_title Nivel:
 														span.margin_l.normal_txt #{item.courseLevel}
-					.colhh1.load_container#management_showall
-						.load
-							.spinner

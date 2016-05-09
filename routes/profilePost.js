@@ -99,8 +99,36 @@ exports.getProfileSubjectsDatabase = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			subjectsProfileData = result;
-			res.send(subjectsProfileData);
+			var stringDataProfileCourses = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataProfileCourses += '<div class="colhh1 block_container bg_white">' 
+                +   '<div class="colhh1 listitem rippleria-dark" data-name="' + item.subjectName + '" data-type="' + item.courseName +'">'
+                +       '<div class="listitem_img"><span></span></div>'
+                +       '<div class="listitem_info">'
+                +           '<div class="listitem_rightinfo subject_prom">Promedio:<label></label></div>'
+                +           '<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
+                +           '<div class="listitem_bottomdata rank" title="Nivel ' + item.subjectLevel + '" data-level="' + item.subjectLevel + '"></div>'
+                +       '</div>'
+                +   '</div>'
+                +   '<div class="colhh1">'
+                +       '<div class="list_borderleft">'
+                +           '<div class="pd_llist">'
+                +               '<div class="sl_title">Información</div>'
+                +           '</div>'
+                +           '<div class="pd_llist">'
+                +               '<div class="colhh1 pd_l12 sl_title">Grupo: <span class="margin_l normal_txt">' + item.courseName + '</span></div>'
+                +               '<div class="pd_4"></div>'
+                +               '<div class="colhh1 pd_l12 sl_title">Academia: <span class="margin_l normal_txt">' + item.departmentName + '</span></div>'
+                +               '<div class="pd_4"></div>'
+                +               '<div class="colhh1 pd_l12 sl_title">Nivel:<span class="margin_l normal_txt">' + item.subjectLevel + '</span></div>'
+                +           '</div>'
+                +       '</div>'
+                +   '</div>'
+                + '</div>';
+            }
+			res.send(stringDataProfileCourses);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -109,7 +137,7 @@ exports.getProfileSubjectsDatabase = function(req, res){
 
 };
 
-// FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)
+// FUNCION PARA MOSTRAR CONTACTOS (ADMINITRADORES)
 exports.getProfileContactsAdministrators = function(req, res){
 	var database = new base();
 
@@ -122,8 +150,34 @@ exports.getProfileContactsAdministrators = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			profileContactsAdministrators = result;
-			res.send(profileContactsAdministrators);
+			var stringDataAdmins = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataAdmins += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Administrador">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<a href="/messages">'
+                            +           '<div class="listitem_righticon circle hover bg_chat"></div>'
+                            +       '</a>'
+                            +       '<div class="listitem_info">'
+                            +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Administrador'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Correo: <span class="margin_l normal_txt">' + item.userEmail + '</span></div>'             
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringDataAdmins);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -189,8 +243,49 @@ exports.getProfileContactsStudents = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			profileContactsStudents = result;
-			res.send(profileContactsStudents);
+			var stringDataStudents = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataStudents += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Alumno">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<a href="/messages">'
+                            +           '<div class="listitem_righticon circle hover bg_chat"></div>'
+                            +       '</a>'
+                            +       '<div class="listitem_info">'
+                            +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Alumno'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Correo: <span class="margin_l normal_txt">' + item.userEmail + '</span></div>'             
+                            +           '</div>';
+
+                if(req.session.privilegio != 3){
+                    stringDataStudents +=       '<div class="pd_8"></div>'
+                                +       '<div class="colhh1">'
+                                +           '<div class="pd_llist">'
+                                +               '<div class="sl_title">Cursos en común</div>'
+                                +           '</div>'
+                                +           '<div class="pd_llist hidecontent_button"  data-id="' + item.userEmail + '">'
+                                +               '<span class="txtprimary_color sl_title">Mostrar Cursos</span>'
+                                +           '</div>'
+                                +           '<div class="person_subjectslist"></div>'
+                                +       '</div>';
+                }
+
+                stringDataStudents +=       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringDataStudents);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -256,8 +351,49 @@ exports.getProfileContactsTeachers = function(req, res){
 	
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			profileContactsTeachers = result;
-			res.send(profileContactsTeachers);
+			var stringDataTeachers = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataTeachers += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Profesor">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<a href="/messages">'
+                            +           '<div class="listitem_righticon circle hover bg_chat"></div>'
+                            +       '</a>'
+                            +       '<div class="listitem_info">'
+                            +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Profesor'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Correo: <span class="margin_l normal_txt">' + item.userEmail + '</span></div>'             
+                            +           '</div>';
+
+                if(req.session.privilegio != 3){
+                    stringDataTeachers +=       '<div class="pd_8"></div>'
+                                +       '<div class="colhh1">'
+                                +           '<div class="pd_llist">'
+                                +               '<div class="sl_title">Cursos en común</div>'
+                                +           '</div>'
+                                +           '<div class="pd_llist hidecontent_button"  data-id="' + item.userEmail + '">'
+                                +               '<span class="txtprimary_color sl_title">Mostrar Cursos</span>'
+                                +           '</div>'
+                                +           '<div class="person_subjectslist"></div>'
+                                +       '</div>';
+                }
+
+                stringDataTeachers +=       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringDataTeachers);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -315,8 +451,18 @@ exports.getStudentCoincidences = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			studentCoincidences = result;
-			res.send(studentCoincidences);
+			var	stringDataCoincidences = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataCoincidences += '<div class="colhh1 pd_l12 hover">'
+						                + 	'<div class="listitem_img"><span>B</span></div>'
+						                + 	'<div class="listitem_info">'
+						                + 		'<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
+						                + 		'<div class="listitem_bottomdata">Grupo: ' + item.courseName + '</div>'
+						                + 	'</div>'
+						                + '</div>';
+                }
+			res.send(stringDataCoincidences);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
@@ -374,8 +520,18 @@ exports.getTeacherCoincidences = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			teacherCoincidences = result;
-			res.send(teacherCoincidences);
+			var	stringDataCoincidences = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataCoincidences += '<div class="colhh1 pd_l12 hover">'
+						                + 	'<div class="listitem_img"><span>B</span></div>'
+						                + 	'<div class="listitem_info">'
+						                + 		'<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
+						                + 		'<div class="listitem_bottomdata">Grupo: ' + item.courseName + '</div>'
+						                + 	'</div>'
+						                + '</div>';
+                }
+			res.send(stringDataCoincidences);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.redirect('/error');
