@@ -15,7 +15,6 @@ var messagesPost = require('./routes/messagesPost');
 var path = require('path');
 var io = require('socket.io')(http);
 
-
 /*var session = require('client-sessions');*/
 var mysql = require('mysql');
 var htmlspecialchars = require('htmlspecialchars');
@@ -55,21 +54,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 		socket.leave(socket.room);//deja la sala actual
 		socket.room = data;//especificas la sala
 		socket.join(data);//te unes a la sala
- 		console.log('YAY!!! si cambio :D');
-		console.log('Sala: ' + socket.room);
+ 		/*console.log('YAY!!! si cambio :D');
+		console.log('Sala: ' + socket.room);*/
 	})
 
  	//Paso 2.
 	socket.on('mensaje', function(data){//recibe lo que quieras
 
-		console.log(' ');
+		/*console.log(' ');
 		console.log('---------------------------------------------------------------');
 		console.log('Sala: ' + socket.room);
 		console.log('Mensaje: ' + data.messageText);
 		console.log('Hora: ' + data.messageTime);
 		console.log('De: ' + data.userEmail);
 		console.log('---------------------------------------------------------------');
-		console.log(' ');
+		console.log(' ');*/
 
 		//esta linea dice que va a emitir un evento mostrar en la sala especifica
 		socket.to(socket.room).emit('mostrar', {
@@ -116,8 +115,8 @@ function databaseInstance(){
 		}else{
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error con la Sesión',
-					errorItem: ['-  Problemas con el Servidor'],
+					errorTitle: 'Inicia Sesión',
+					errorItem: ['-  No has iniciado sesión'],
 					backUrl: '/login'
 				}
 			});
@@ -133,37 +132,18 @@ function databaseInstance(){
 		}
 	 }
 
-	//solo alumno
+	//solo alumno y profesor
 	function loginS(req, res, next){
 		var aux = req.session.datos;
 		if( !aux ){
 			res.redirect('error');
-		}else if( req.session.privilegio == 1 ){
+		}else if( req.session.privilegio == 1 || req.session.privilegio == 2 ){
 			next();
 		}else{
 			res.render('error' , {
 				errorData: {
 					errorTitle: 'Error con la Sesión',
-					errorItem: ['-  Problemas con el Servidor',
-					'-  No has iniciado sesión'],
-					backUrl: '/login'
-				}
-			});
-		}
-	 }
-
-	//solo profesor
-	function loginP(req, res, next){
-		var aux = req.session.datos;
-		if( !aux ){
-			res.redirect('error');
-		}else if( req.session.privilegio == 2 ){
-			next();
-		}else{
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Error con la Sesión',
-					errorItem: ['-  Problemas con el Servidor',
+					errorItem: ['-  No tienes permiso para acceder a esta parte',
 					'-  No has iniciado sesión'],
 					backUrl: '/login'
 				}
@@ -181,8 +161,8 @@ function databaseInstance(){
 		}else{
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error con la Sesión',
-					errorItem: ['-  Problemas con el Servidor',
+					errorTitle: 'Error',
+					errorItem: ['-  No tienes permiso para acceder a esta parte',
 					'-  No has iniciado sesión'],
 					backUrl: '/login'
 				}
@@ -197,9 +177,9 @@ app.get('/login', loginN, routes.login);
 app.get('/main', login, routes.main);
 app.get('/profile', login, routes.profile);
 app.get('/messages', login, routes.messages);
-app.get('/contents', login, routes.contents);
-app.get('/subjects', login, routes.subjects);
-app.get('/foro', login, routes.foro);
+app.get('/contents', loginS, routes.contents);
+app.get('/subjects', loginS, routes.subjects);
+app.get('/foro', loginS, routes.foro);
 app.get('/settings', login, routes.settings);
 app.get('/calendar', login, routes.calendar);
 app.get('/management', loginA, routes.management);

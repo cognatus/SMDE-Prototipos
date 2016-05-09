@@ -24,8 +24,11 @@ function showContactsAdministrators(){
             for(var i in data){
                 var item = data[i];
                 stringDataAdmins += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Administrador">' 
-                            +   '<div class="colhh1 listitem">'
+                            +   '<div class="colhh1 listitem rel_pos">'
                             +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<a href="/messages">'
+                            +           '<div class="listitem_righticon circle hover bg_chat"></div>'
+                            +       '</a>'
                             +       '<div class="listitem_info">'
                             +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
                             +           '<div class="listitem_bottomdata">Administrador'
@@ -65,8 +68,11 @@ function showContactsStudents(){
             for(var i in data){
                 var item = data[i];
                 stringDataStudents += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Alumno">' 
-                            +   '<div class="colhh1 listitem">'
+                            +   '<div class="colhh1 listitem rel_pos">'
                             +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<a href="/messages">'
+                            +           '<div class="listitem_righticon circle hover bg_chat"></div>'
+                            +       '</a>'
                             +       '<div class="listitem_info">'
                             +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
                             +           '<div class="listitem_bottomdata">Alumno'
@@ -152,8 +158,11 @@ function showContactsTeachers(){
             for(var i in data){
                 var item = data[i];
                 stringDataTeachers += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Profesor">' 
-                            +   '<div class="colhh1 listitem">'
+                            +   '<div class="colhh1 listitem rel_pos">'
                             +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<a href="/messages">'
+                            +           '<div class="listitem_righticon circle hover bg_chat"></div>'
+                            +       '</a>'
                             +       '<div class="listitem_info">'
                             +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
                             +           '<div class="listitem_bottomdata">Profesor'

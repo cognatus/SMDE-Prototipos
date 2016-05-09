@@ -1,4 +1,4 @@
-var socket = io('http://192.168.0.109:3000/chatsini');
+var socket = io('http://192.168.1.67:3000/chatsini');
 
 function selectLobby(lobby){
     //este metodo recibe el lobby  y conecta en server
@@ -93,6 +93,14 @@ function selectLobby(lobby){
                     }
                 }
             }
+
+            jQuery('.msm_innercontent').scrollTop(jQuery('.msmscrollflag').height());
+            jQuery('#newmsm').click(function(){
+                jQuery('.msm_innercontent').animate({
+                    scrollTop: jQuery('.msmscrollflag').height()
+                });
+            });
+            /*alert('Altura: ' + jQuery('.msmscrollflag').height());*/
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -120,7 +128,7 @@ socket.on('mostrar', function(data){
             .append('<div class="colhh1 autooverflow">'
                     +   '<div class="leftmsm bg_blue white_text">'
                     +       '<div class="pd_12"> '
-                    +           data.messageText
+                    +           htmlspecialchars(data.messageText)
                     +           '<span class="msm_date">'
                     +               '<label class="lobby_time" title="Hace un momento"> ' + data.messageTime + '</label>'
                     +           '</span>'
@@ -138,7 +146,7 @@ socket.on('mostrar', function(data){
                         +           '<div class="leftmsm bg_blue white_text">'
                         +               '<i></i>'
                         +               '<div class="pd_12"> '
-                        +                   data.messageText
+                        +                   htmlspecialchars(data.messageText)
                         +                   '<span class="msm_date">'
                         +                       '<label class="lobby_time" title="Hace un momento"> ' + data.messageTime + '</label>'
                         +                   '</span>'
@@ -148,6 +156,18 @@ socket.on('mostrar', function(data){
                         +   '</div>'
                         + '</div>');
     }
+
+    jQuery('.msm_innercontent').animate({
+        scrollTop: jQuery('.msmscrollflag').height()
+    }, function(){
+        showLobbies();
+    });
+
+    jQuery('#newmsm').click(function(){
+        jQuery('.msm_innercontent').animate({
+            scrollTop: jQuery('.msmscrollflag').height()
+        });
+    });
 
 });
 
@@ -162,7 +182,7 @@ function showLobbies(){
             for(var i in data){
                 var item = data[i];
                 stringData += ''
-                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
+                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '\n' + item.participantsNames + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
                 +    '<div class="listitem_img">'
                 +        '<img src="images/profilephoto.png">'
                 +    '</div>'
@@ -174,11 +194,20 @@ function showLobbies(){
                 +        '<div class="listitem_title">'
                 +            '<b title="' + item.participantsEmails + '\n' + item.participantsNames + '">' + item.participantsNames + '</b>'
                 +        '</div>'
-                +        '<div class="listitem_bottomdata">Lorem ipsum dolor sit amet</div>'
+                +        '<div class="listitem_bottomdata"><span class="b_text" data-lastuser="' + item.lastSenderEmail + '">'+ item.lastSenderName + ':</span>&nbsp;' + item.lastMsm +'</div>'
                 +    '</div>'
                 + '</div>';
             }
+
             jQuery('#listcontainer #lobbiesData').html(stringData);
+
+            jQuery('#listcontainer #lobbiesData .listitem_bottomdata').each(function(){
+                var email = jQuery(this).find('span').attr('data-lastuser');
+                if( email == sessionUser ){
+                    jQuery(this).find('span').text('Yo:');
+                }
+
+            });
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
@@ -199,6 +228,7 @@ function showContactsAdministrators(){
                 stringDataAdmins += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
                                 +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
                                 +       '<div class="listitem_info">'
+                                +           '<div class="listitem_rightinfo">Admin</div>'
                                 +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
                                 +           '<div class="listitem_bottomdata">' + item.userEmail
                                 +           '</div>'
@@ -228,6 +258,7 @@ function showContactsStudents(){
                 stringDataStudents += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
                                 +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
                                 +       '<div class="listitem_info">'
+                                +           '<div class="listitem_rightinfo">Alumno</div>'
                                 +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
                                 +           '<div class="listitem_bottomdata">' + item.userEmail
                                 +           '</div>'
@@ -256,6 +287,7 @@ function showContactsTeachers(){
                 stringDataTeachers += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
                                 +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
                                 +       '<div class="listitem_info">'
+                                +           '<div class="listitem_rightinfo">Profe</div>'
                                 +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
                                 +           '<div class="listitem_bottomdata">' + item.userEmail
                                 +           '</div>'
@@ -284,7 +316,7 @@ function enviarMsg(){
     var lobbyScope = jQuery('#lobbyScope').val();
     var msmText = jQuery('#newmsm').val();
 
-    if(msmText != null && msmText != ''){
+    if(msmText != null && msmText.trim() != ''){
 
         socket.emit('mensaje', {
             
@@ -305,6 +337,7 @@ function enviarMsg(){
             },
             success: function(data) {
                 jQuery('#newmsm').focus().val('');
+                showLobbies();
             },
             error: function(request, status, error){
                 console.log(error);
@@ -321,7 +354,7 @@ function enviarMsg(){
                 .append('<div class="colhh1 autooverflow">'
                         +   '<div class="rightmsm bg_white">'
                         +       '<div class="pd_12"> '
-                        +           msmText
+                        +           htmlspecialchars(msmText)
                         +           '<span class="msm_date">'
                         +               '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
                         +           '</span>'
@@ -336,7 +369,7 @@ function enviarMsg(){
                             +           '<div class="rightmsm bg_white">'
                             +               '<i></i>'
                             +               '<div class="pd_12"> '
-                            +                   msmText
+                            +                   htmlspecialchars(msmText)
                             +                   '<span class="msm_date">'
                             +                       '<label class="lobby_time" title="Hace un momento"> ' + currentTime + '</label>'
                             +                   '</span>'
@@ -351,8 +384,12 @@ function enviarMsg(){
         }
     }
     else{
-        alert('El mensaje no puede estar vacio');
+        alert('¡El mensaje no puede estar vacio!');
     }
+
+    jQuery('.msm_innercontent').animate({
+        scrollTop: jQuery('.msmscrollflag').height()
+    });
 
 }
 
@@ -366,6 +403,12 @@ jQuery(document).ready(function(){
     jQuery('form#addNewMsm').submit(function(event){
         event.preventDefault();
         enviarMsg();
+    });
+
+    jQuery('#newmsm').click(function(){
+        jQuery('.msm_innercontent').animate({
+            scrollTop: jQuery('.msmscrollflag').height()
+        });
     });
 
     //OBTIENE LA ALTURA ORIGINAL DEL INPUT DONDE SE AGREGAN MAS USUARIOS

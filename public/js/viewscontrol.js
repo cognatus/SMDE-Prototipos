@@ -336,28 +336,6 @@ jQuery(document).on('ready' ,function(){
 		jQuery('.block_containersettings .listitem').first().trigger('click');
 	}
 
-	function changeLetterColor(){
-		jQuery('.msmtopname').each(function(){
-
-			var circleLetter = jQuery(this).find('label').text();
-			var div = jQuery(this).find('.letter');
-			var firstChar = circleLetter.charAt(0).toUpperCase();
-
-			div.text(firstChar);
-
-			for( var i = 0; i <= characters.length; i++ ){
-				if ( firstChar == characters[i] ){
-					for(var j = 0; j <= colorsArray.length; j++ ){
-						div.removeClass(colorsArray[j]);
-					}
-					div.addClass(colorsArray[i]);
-					break;
-				}
-			}
-
-		});
-	}
-
 /*-------------------------------------------------------------------------------------
 		SORT LISTS CONTROL
 ---------------------------------------------------------------------------------------*/
@@ -555,8 +533,55 @@ jQuery(document).on('ready' ,function(){
 		}
 	});
 
+	 jQuery('.innerlistitem').hide();
+
+        jQuery('.slide_list .listitem').on('click', function(){
+
+            var slideD = jQuery(this).siblings('.innerlistitem');
+
+            if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
+                jQuery(this).siblings('.innerlistitem').slideUp();
+            }
+            else{
+                jQuery('.innerlistitem').slideUp();
+                slideD.slideDown();
+            }
+
+        });
+
 
 });
+
+	function changeLetterColor(){
+		var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
+		'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
+		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
+		'bg_purple','bg_pink','bg_blue','bg_bluegray','bg_amber','bg_lime',
+		// Numbers colors
+		'bg_brown','bg_red','bg_lightgreen','bg_lightpink','bg_amber','bg_green','bg_darkgray','bg_purple','bg_lightblue'];
+
+		var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
+
+		jQuery('.msmtopname').each(function(){
+
+			var circleLetter = jQuery(this).find('label').text();
+			var div = jQuery(this).find('.letter');
+			var firstChar = circleLetter.charAt(0).toUpperCase();
+
+			div.text(firstChar);
+
+			for( var i = 0; i <= characters.length; i++ ){
+				if ( firstChar == characters[i] ){
+					for(var j = 0; j <= colorsArray.length; j++ ){
+						div.removeClass(colorsArray[j]);
+					}
+					div.addClass(colorsArray[i]);
+					break;
+				}
+			}
+
+		});
+	}
 
 
 jQuery(document).ready(function(){
@@ -564,6 +589,7 @@ jQuery(document).ready(function(){
 	//Aqui se ejecutan las funciones al momento que inician las peticiones ajax
 	jQuery(document).ajaxStart(function(){
 		jQuery('#management_showall').show();
+		jQuery('#leftlist_showall').show();
 	});
 
 	//Aqui se ejecutan las funciones inmediatamente al terminar con las peticiones ajax
@@ -586,6 +612,7 @@ jQuery(document).ready(function(){
 		});
 
 		jQuery('#management_showall').hide();
+		jQuery('#leftlist_showall').hide();
 
 		var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
 			'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
@@ -613,19 +640,23 @@ jQuery(document).ready(function(){
 
 		});
 
-		jQuery('.block_containermsm .listitem').on('click', function(){
-			var title = jQuery(this).attr('data-name');
-			var title2 = jQuery(this).attr('data-title');
-			var img = jQuery(this).find('img').attr('src');
-			if( jQuery(window).width() < 1120 ){
-				jQuery('.block_containermsm').animate({ scrollLeft: jQuery('.halfgrid').width() });
-				jQuery('#new_item').hide();
-			}
-			jQuery('.msmtopname label').text(title);
-			jQuery('.msmtopname label').attr('title', title2);
-			jQuery('img#msm_userimg').attr('src' , img );
-			changeLetterColor();
-		});
+		function changeTopTitle(){
+			jQuery('.block_containermsm .listitem').on('click', function(){
+				var title = jQuery(this).attr('data-name');
+				var title2 = jQuery(this).attr('data-title');
+				var img = jQuery(this).find('img').attr('src');
+				if( jQuery(window).width() < 1120 ){
+					jQuery('.block_containermsm').animate({ scrollLeft: jQuery('.halfgrid').width() });
+					jQuery('#new_item').hide();
+				}
+				jQuery('.msmtopname label').text(title);
+				jQuery('.msmtopname label').attr('title', title2);
+				jQuery('img#msm_userimg').attr('src' , img );
+				changeLetterColor();
+			});
+		}
+
+		changeTopTitle();
 
 	});
 

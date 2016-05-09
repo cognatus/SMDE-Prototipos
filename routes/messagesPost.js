@@ -1,6 +1,8 @@
 var base;
 var stringQuery = '';
 
+var htmlspecialchars = require('htmlspecialchars');
+
 exports.constructor = function (basee) {
 	base = basee;
 }
@@ -31,23 +33,27 @@ exports.insertLobby = function(req, res){
 
 	var uniqueId = 'l0b8Y' + Math.floor((Math.random() * 596501699) + 16985689) + '-' + time;
 
-	stringQuery = 'BEGIN;';
+	if( (lobbyUsers != null || lobbyUsers.trim() != '') && (message != null || message.trim() != '') ){
 
-	stringQuery += 'INSERT INTO Lobby (idLobby, lobbyLastUpdate) VALUES ("' + uniqueId + '", NOW());';
+		stringQuery = 'BEGIN;';
 
-	for ( var i = 0; i < usersArray.length; i++ ) {
-			stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
-						+ ' VALUES ("' + usersArray[i] + '", "' + uniqueId + '");';
+		stringQuery += 'INSERT INTO Lobby (idLobby, lobbyLastUpdate) VALUES ("' + uniqueId + '", NOW());';
+
+		for ( var i = 0; i < usersArray.length; i++ ) {
+				stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
+							+ ' VALUES ("' + usersArray[i] + '", "' + uniqueId + '");';
+		}
+
+		stringQuery += 'INSERT INTO Message'
+					+ ' (idMessage, messageText, messageDateTime, messageStatus, Lobby_idLobby, User_userEmail)'
+					+ ' VALUES (UUID(),'
+					+ ' "' + htmlspecialchars(message) + '",'
+					+ ' NOW(), 1, "' + uniqueId + '",'
+					+ ' "' + owner + '");';
+
+		stringQuery += 'COMMIT;';
+
 	}
-
-	stringQuery += 'INSERT INTO Message'
-				+ ' (idMessage, messageText, messageDateTime, messageStatus, Lobby_idLobby, User_userEmail)'
-				+ ' VALUES (UUID(),'
-				+ ' "' + message + '",'
-				+ ' NOW(), 1, "' + uniqueId + '",'
-				+ ' "' + owner + '");';
-
-	stringQuery += 'COMMIT;';+
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -75,20 +81,24 @@ exports.insertNewMessage = function(req, res){
 	var lobby = req.body.lobbyBody;
 	var msmText = req.body.messageBody;
 
-	stringQuery = 'BEGIN;'
+	if(msmText != null || msmText.trim() != ''){
 
-	stringQuery += 'INSERT INTO MESSAGE (idMessage, messageText, messageDateTime, Lobby_idLobby, User_userEmail)'
-				+ ' VALUES '
-				+ ' (UUID(),'
-				+ ' "' + msmText + '",'
-				+ ' NOW(),'
-				+ ' "' + lobby + '",'
-				+ ' "' + req.session.datos[0].userEmail + '");';
+		stringQuery = 'BEGIN;'
 
-	stringQuery += 'UPDATE Lobby SET lobbyLastUpdate = NOW()'
-				+ ' WHERE idLobby = "' + lobby + '";';
+		stringQuery += 'INSERT INTO MESSAGE (idMessage, messageText, messageDateTime, Lobby_idLobby, User_userEmail)'
+					+ ' VALUES '
+					+ ' (UUID(),'
+					+ ' "' + htmlspecialchars(msmText) + '",'
+					+ ' NOW(),'
+					+ ' "' + lobby + '",'
+					+ ' "' + req.session.datos[0].userEmail + '");';
 
-	stringQuery += 'COMMIT;'
+		stringQuery += 'UPDATE Lobby SET lobbyLastUpdate = NOW()'
+					+ ' WHERE idLobby = "' + lobby + '";';
+
+		stringQuery += 'COMMIT;'
+
+	}
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -105,23 +115,32 @@ exports.getLobbiesDatabase = function(req, res){
 	var database = new base();
 
 	stringQuery = 'SELECT idLobby, DATE_FORMAT(lobbyLastUpdate, "%d/%m/%Y") AS lobbyDate,'
-				+ ' DATE_FORMAT(lobbyLastUpdate, "%H:%i") AS lobbyHour,'
-				+ ' group_concat(User_userEmail separator ", ") AS participantsEmails,'
-				+ ' group_concat(userName, " ", userLastName separator ", ") AS participantsNames '
+				+ ' DATE_FORMAT(lobbyLastUpdate, "%H:%i") AS lobbyHour, m.messageText AS lastMsm, u2.userEmail AS lastSenderEmail, u2.userName AS lastSenderName,'
+				+ ' GROUP_CONCAT(uhl.User_userEmail separator ", ") AS participantsEmails,'
+				+ ' GROUP_CONCAT(u.userName, " ", u.userLastName separator ", ") AS participantsNames '
 				+ ' FROM user_has_lobby AS uhl '
 				+ ' INNER JOIN User AS u '
 				+ ' 	ON u.userEmail = uhl.User_userEmail '
 				+ ' INNER JOIN Lobby AS l '
 				+ ' 	ON l.idLobby = uhl.Lobby_idLobby '
-				+ ' WHERE Lobby_idLobby IN '
+				+ ' INNER JOIN Message AS m'
+				+ ' 	ON m.Lobby_idLobby = l.idLobby'
+				+ '		AND messageDateTime IN '
+				+ '		('
+				+ '			SELECT MAX(messageDateTime) FROM Message AS m2 '
+				+ '			WHERE m2.Lobby_idLobby = l.idLobby '
+				+ '		)'
+				+ ' INNER JOIN User AS u2 '
+				+ ' 	ON u2.userEmail = m.User_userEmail '
+				+ ' WHERE uhl.Lobby_idLobby IN '
 				+ ' 	( '
 				+ '			SELECT Lobby_idLobby  '
 				+ '       	FROM user_has_lobby '
 				+ '       	WHERE User_userEmail = "' + req.session.datos[0].userEmail + '" '
 				+ '   	) '
-				+ ' AND User_userEmail != "' + req.session.datos[0].userEmail + '"  '
-				+ ' GROUP BY Lobby_idLobby'
-				+ ' ORDER BY lobbyLastUpdate DESC;'
+				+ ' AND uhl.User_userEmail != "' + req.session.datos[0].userEmail + '"  '
+				+ ' GROUP BY uhl.Lobby_idLobby '
+				+ ' ORDER BY lobbyLastUpdate DESC; '
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {

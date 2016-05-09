@@ -1,6 +1,8 @@
 var base;
 var stringQuery = '';
 
+var fs = require('fs');
+
 exports.constructor = function (basee) {
 	base = basee;
 }
