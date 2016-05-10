@@ -54,10 +54,23 @@ exports.insertReminder = function(req, res){
 
 //FUNCION PARA INSERTAR UNA NUEVA PUBLICACIÓN
 exports.insertPublication = function(req, res){
+
+	var now = new Date();
+	var dd = now.getDate();
+	var mm = now.getMonth() + 1;
+	var yyyy = now.getFullYear();
+	var hh = now.getHours();
+	var min = now.getMinutes();
+	var sec = now.getSeconds();
+	var milsec = now.getMilliseconds();
+	var time = dd + '' + mm + '' + yyyy + '' + hh + '' + min + '' + sec + '' + milsec;
+
 	var database = new base();
 	
+	var pubId = 'pUb' + Math.floor((Math.random() * 596501699) + 16985689) + '' + time;
 	var publicationTitle = req.body.formCalendarTitle;
 	var publicationText  = req.body.formCalendarComment;
+	var attachedFile = req.body.attachedfilePost;
 
 	//OBTENERMOS EL CURSO AL QUE QUEREMOS PUBLICAR
 	var subCourseString = req.body.calendarCourseSelectField;
@@ -66,8 +79,9 @@ exports.insertPublication = function(req, res){
 	var year = req.body.formCalendarYear;
 	var hour = req.body.formCalendarHour;
 	var minutes = req.body.formCalendarMinute;
-	var subCourse = subCourseString.split('/');
+
 	//SEPARAMOS EL idSubject del idCourse POR QUE SE MANDAN EN UNA SOLA CADENA DE TEXTO
+	var subCourse = subCourseString.split('/');
 	
 	var publicationLimitDate = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':00' ;
 	var publicationOwner = req.session.datos[0].userEmail;
@@ -76,7 +90,7 @@ exports.insertPublication = function(req, res){
 	stringQuery += 'INSERT INTO Publication' 
 					+ ' (idPublication, pubTitle, pubText, pubDateTime, publicationLimitDate, Teacher_User_userEmail,'
 					+ ' Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
-					+ ' VALUES (UUID(),'
+					+ ' VALUES ("' + pubId + '",'
 					+ ' "' + htmlspecialchars(publicationTitle) + '",'
 					+ ' "' + htmlspecialchars(publicationText) + '",'
 					+ ' NOW(),'
@@ -84,6 +98,15 @@ exports.insertPublication = function(req, res){
 					+ ' "' + publicationOwner + '",'
 					//		 idSubject 		  	  idCourse
 					+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
+
+	if(attachedFile != null || attachedFile.trim() != ''){
+		stringQuery += 'INSERT INTO publicationAttachedFile' 
+					+ ' (idPublicationAttachedFile, publicationAttachedNameFile, Publication_idPublication)'
+					+ ' VALUES (UUID(),'
+					+ ' "' + attachedFile + '",'
+					+ ' "' + pubId + '");';
+	}
+
 	stringQuery += 'COMMIT;'
 
 	database.query(stringQuery, function(error, result, row){
@@ -187,8 +210,8 @@ exports.getRemindersDatabase = function(req, res){
                                     +    '</div>'
                                     +    '<div class="pd10_16 listitemactions bg_lightgray">'
                                     +      '<div class="autocol right_float">'
-                                    +        '<span title="Editar" class="circle bg_editgray hover"></span>'
-                                    +        '<span title="Eliminar" class="circle bg_delete hover"></span></div>'
+                                    +        '<span title="Editar" class="circle bg_editgray hover" onclick="editReminder(&quot;' + item.idReminder + '&quot;)"></span>'
+                                    +        '<span title="Eliminar" class="circle bg_delete hover" onclick="deleteReminder(&quot;' + item.idReminder + '&quot;)"></span></div>'
                                     +    '</div>'
                                     +  '</div>';
             }
@@ -207,7 +230,7 @@ exports.getPublicationsDatabase = function(req, res){
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
-		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
+		stringQuery = 'SELECT idPublication, pubTitle, pubText,'
 					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
 					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y") AS pubLimDate, DATE_FORMAT(publicationLimitDate, "%H:%i") AS pubLimTime,'
 					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
@@ -233,7 +256,7 @@ exports.getPublicationsDatabase = function(req, res){
 	}
 	//SI EL USUARIO ES TIPO PROFESOR
 	else if(req.session.privilegio == 2){
-		stringQuery = 'SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,'
+		stringQuery = 'SELECT idPublication, pubTitle, pubText,'
 					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
 					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y") AS pubLimDate, DATE_FORMAT(publicationLimitDate, "%H:%i") AS pubLimTime,'
 					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
@@ -291,35 +314,31 @@ exports.getPublicationsDatabase = function(req, res){
                                  +       '<div class="pd_llist">'
                                  +         '<div class="pd_4"></div>'
                                  +         '<div class="sl_title">Comentarios</div>'
-                                 +         '<div class="pd_16 justify_text breakword">' + item.pubText
+                                 +         '<div class="pd_16 justify_text breakword border_bottom">' + item.pubText
                                  +           '<div class="pd_4"></div>'
                                  +         '</div>'
                                  +       '</div>'
-                                 if(item.attached_filecontainer != null){
-                                     publicationsData += '<div class="pd_llist">'
-                                                    +     '<div class="pd_4"></div>'
-                                                    +     '<div class="sl_title">Archivos Adjuntos</div>'
-                                                    +     '<div class="pd_4"></div>'
-                                                    + '</div>'
-                                                    + '<div style="margin-bottom: 18px;" class="attached_filecontainer autooverflow pd_lr8">'
-                                                    +     '<span class="v_middle bg_file bg_blue borad"></span>'
-                                                    +     '<div class="v_middle sl_title opacity_color">' + item.publicationAttachedNameFile + '</div>'
-                                                    +     '<span title="Descargar" class="right_float bg_download hover"></span>'
-                                                    + '</div>'
-                                    }
-                publicationsData += '</div>'   
-                                 +  '<div class="pd10_16 listitemactions bg_lightgray">'
+                                 + 		 '<div class="pd_llist">'
+	                             +     		'<div class="pd_4"></div>'
+	                             +     		'<div class="sl_title">Archivos Adjuntos</div>'
+	                             + 		 '</div>'
+	                             +       '<div class="pd_llist hidecontent_button" data-id="' + item.idPublication + '">'
+                                 +           '<span class="txtprimary_color sl_title">Mostrar Archivos</span>'
+                                 +       '</div>'
+	                             + 		 '<div style="margin-bottom: 18px;" class="attached_filecontainer pd_lr8"></div>'
+                				 + '</div>'   
+                                 + '<div class="pd10_16 listitemactions bg_lightgray">'
                                     if(req.session.privilegio == 1){
                                         publicationsData += '<div class="autocol right_float">'
-                                                         +    '<span title="Responder" class="circle bg_reply hover"></span>'
+                                                         +    '<span title="Responder" class="circle bg_reply hover" onclick="sendFeedback(&quot;' + item.idPublication + '&quot;)"></span>'
                                     }
                                     if(req.session.privilegio == 2){
-                                        publicationsData += '<div style="margin-top: 11px;" class="autocol txtprimary_color sl_title underline">Mostrar Respuestas</div>'
+                                        publicationsData += '<div style="margin-top: 11px;" class="autocol txtprimary_color sl_title underline" onclick="showFeedbacks(&quot;' + item.idPublication + '&quot;)">Mostrar Respuestas</div>'
                                                          +    '<div class="autocol right_float">'
 
                                         if(req.session.datos[0].userEmail == item.userEmail){
-                                            publicationsData += '<span title="Editar" class="circle bg_editgray hover"></span>'
-                                                             +  '<span title="Eliminar" class="circle bg_delete hover"></span>'
+                                            publicationsData += '<span title="Editar" class="circle bg_editgray hover" onclick="editPublication(&quot;' + item.idPublication + '&quot;)"></span>'
+                                                             +  '<span title="Eliminar" class="circle bg_delete hover" onclick="deletePublication(&quot;' + item.idPublication + '&quot;)"></span>'
                                         }
                                     }
 
@@ -329,6 +348,40 @@ exports.getPublicationsDatabase = function(req, res){
             }
 
             res.send(publicationsData);
+
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.send('Error');
+		}
+	});
+};
+
+// FUNCION PARA MOSTRAR PUBLICACIONES QUE HACE EL PROFESOR
+exports.getPublicationAttachedFiles = function(req, res){
+	var database = new base();
+
+	var idPublication = req.query.idPublication;
+
+	stringQuery = 'SELECT * '
+				+ '	FROM publicationAttachedFile '
+				+ '	WHERE Publication_idPublication = "' + idPublication + '";';
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			var stringData = '';
+                 
+            if(result.length != 0){
+				for(var i in result){
+	                var item = result[i];
+	                stringData += '<div class="attached_fileinner">'
+	               				+ 	'<span class="v_middle bg_file bg_blue borad"></span>'
+				                + 	'<div class="v_middle sl_title opacity_color">' + item.publicationAttachedNameFile + '</div>'
+				                + 	'<span title="Descargar" class="right_float bg_download hover" onclick="downloadAttachment(&quot;' + item.publicationAttachedNameFile + '&quot;)"></span>'
+				                + '</div>';
+	            }
+	        }
+
+            res.send(stringData);
 
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);

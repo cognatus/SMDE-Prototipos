@@ -102,6 +102,35 @@ function showPublications(){
         cache: true,
         success: function(data) {
             jQuery('#publiclist_container').html(data);
+
+            //FUNCION PARA OBTENER MATERIAS DE CADA UNO
+            jQuery('.block_container.cal_post .hidecontent_button').one('click' ,function(){
+
+                var button = jQuery(this);
+                var container = jQuery(this).siblings('.attached_filecontainer');
+                var idPub = button.attr('data-id');
+                jQuery.ajax({
+                    type: 'GET',
+                    url: 'getPublicationAttachedFiles',
+                    cache: true,
+                    data: {
+                        idPublication: idPub
+                    },
+                    success: function(data2) {
+                        button.hide();
+                        if(data2.length != 0){
+                            container.append(data2);
+                        }
+                        else{
+                            container.append('<div class="pd_lr18 opacity_color b_text"><div class="pd_4"></div>Sin archivos adjuntos<div class="pd_4"></div></div>');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error: ' + textStatus + " " + errorThrown);
+                    }  
+                });
+
+            });
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);

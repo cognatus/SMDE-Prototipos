@@ -1898,7 +1898,7 @@ input:checked + .switch:active::before {
 	margin-right: 18px;
 }
 
-.attached_filecontainer div{
+.attached_filecontainer div.sl_title{
 	display: inline-block;
 	width: calc(100% - 116px);
 	overflow: hidden;
@@ -2086,7 +2086,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .no_result{word-wrap: break-word;}
 
-.hidecontent_button{cursor: pointer;}
+.hidecontent_button{cursor: pointer;margin-left: 8px;}
 
 .hidecontent_button span:hover{text-decoration: underline;}
 

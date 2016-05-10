@@ -222,6 +222,7 @@ app.post('/insertReminder', calendarPost.insertReminder);
 app.get('/getProfileSubjectsDatabaseCalendar', calendarPost.getProfileSubjectsDatabaseCalendar);
 app.get('/getRemindersDatabase', calendarPost.getRemindersDatabase);
 app.get('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
+app.get('/getPublicationAttachedFiles', calendarPost.getPublicationAttachedFiles);
 
 //Todo referente a la vista de Asignaturas
 app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);

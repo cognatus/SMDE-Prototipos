@@ -82,7 +82,6 @@ exports.logout = function(req,res){
 //AGREGAR UN NUEVO ALUMNO
 exports.insertStudent = function(req, res){
 	var database = new base();
-	var userIdKey = req.body.insertStudentIdKey ;
 	var userEmail = req.body.insertStudentEmail ;
 	var userName = req.body.insertStudentName ;
 	var userLastName = req.body.insertStudentLastName ;
@@ -92,19 +91,20 @@ exports.insertStudent = function(req, res){
 	var userInstitute = req.session.datos[0].Institute_idInstitute ;
 
 	stringQuery = 'BEGIN;';
-	stringQuery += 'INSERT INTO User';
-	stringQuery += ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES (';
-	stringQuery += '"' + userEmail + '", ';
-	stringQuery += '"' + userName + '", ';
-	stringQuery += '"' + userLastName + '", ';
-	stringQuery += '"' + userSecondLastName + '", ';
-	stringQuery += '"' + userSex + '", ';
-	stringQuery += '"' + userPassword + '", ';
-	stringQuery += '"' + userInstitute + '");';
 
-	stringQuery += 'INSERT INTO Student (idStudent, User_userEmail) VALUES (';
-	stringQuery += '"' + userIdKey + '", ';
-	stringQuery += '"' + userEmail + '");';
+	stringQuery += 'INSERT INTO User';
+				+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES ('
+				+ '"' + userEmail + '", '
+				+ '"' + userName + '", '
+				+ '"' + userLastName + '", '
+				+ '"' + userSecondLastName + '", '
+				+ '"' + userSex + '", '
+				+ '"' + userPassword + '", '
+				+ '"' + userInstitute + '");';
+
+	stringQuery += 'INSERT INTO Student (idStudent, User_userEmail) VALUES ('
+				+ 'UUID(), '
+				+ '"' + userEmail + '");';
 
 	stringQuery += 'COMMIT;';
 
@@ -116,8 +116,8 @@ exports.insertStudent = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al insertar Alumno',
-					errorItem: ['-  Es posible que la clave ya exista',
+					errorTitle: 'Error al crear Alumno',
+					errorItem: ['-  Es posible que ya exista un alumno con el correo ingresado',
 					'-  Problemas con el Servidor'],
 					backUrl: '/management'
 				}
@@ -129,7 +129,6 @@ exports.insertStudent = function(req, res){
 //AGREGAR UN NUEVO PROFESOR
 exports.insertTeacher = function(req, res){
 	var database = new base();
-	var userIdKey = req.body.insertTeacherIdKey ;
 	var userEmail = req.body.insertTeacherEmail ;
 	var userName = req.body.insertTeacherName ;
 	var userLastName = req.body.insertTeacherLastName ;
@@ -139,19 +138,20 @@ exports.insertTeacher = function(req, res){
 	var userInstitute = req.session.datos[0].Institute_idInstitute ;
 
 	stringQuery = 'BEGIN;';
-	stringQuery += 'INSERT INTO User';
-	stringQuery += ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES (';
-	stringQuery += '"' + userEmail + '", ';
-	stringQuery += '"' + userName + '", ';
-	stringQuery += '"' + userLastName + '", ';
-	stringQuery += '"' + userSecondLastName + '", ';
-	stringQuery += '"' + userSex + '", ';
-	stringQuery += '"' + userPassword + '", ';
-	stringQuery += '"' + userInstitute + '");';
 
-	stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail) VALUES (';
-	stringQuery += '"' + userIdKey + '", ';
-	stringQuery += '"' + userEmail + '");';
+	stringQuery += 'INSERT INTO User';
+	 			+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES ('
+	 			+ '"' + userEmail + '", '
+	 			+ '"' + userName + '", '
+	 			+ '"' + userLastName + '", '
+	 			+ '"' + userSecondLastName + '", '
+	 			+ '"' + userSex + '", '
+	 			+ '"' + userPassword + '", '
+	 			+ '"' + userInstitute + '");';
+
+	stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail) VALUES ('
+				+ 'UUID(), '
+				+ '"' + userEmail + '");';
 
 	stringQuery += 'COMMIT;';
 
@@ -163,8 +163,8 @@ exports.insertTeacher = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al insertar Profesor',
-					errorItem: ['-  Es posible que la clave ya exista',
+					errorTitle: 'Error al crear Profesor',
+					errorItem: ['-  Es posible que ya exista un profesor con el correo ingresado',
 					'-  Problemas con el Servidor'],
 					backUrl: '/management'
 				}
@@ -182,7 +182,7 @@ exports.insertDept = function(req, res){
 
 	stringQuery = 'INSERT INTO Department' 
 					+ ' (idDepartment, departmentName, Institute_idInstitute)'
-					+ ' VALUES ("' + deptIdKey + '",'
+					+ ' VALUES (UUID(),'
 					+ ' "' + deptName + '",'
 					+ ' "' + deptInstitute + '");';
 
@@ -194,8 +194,8 @@ exports.insertDept = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al insertar Academia',
-					errorItem: ['-  Es posible que la clave ya exista',
+					errorTitle: 'Error al crear Academia',
+					errorItem: ['-  Es posible que ya exista una academia con el mismo nombre',
 					'-  Problemas con el Servidor'],
 					backUrl: '/management'
 				}
@@ -206,7 +206,6 @@ exports.insertDept = function(req, res){
 
 exports.insertSubject = function(req, res){
 	var database = new base();
-	var subjectIdKey = req.body.insertSubjectIdKey ;
 	var subjectName  = req.body.insertSubjectName ;
 	var subjectLevel  = req.body.insertSubjectLevel ;
 	var subjectInstitute = req.session.datos[0].Institute_idInstitute ;
@@ -214,7 +213,7 @@ exports.insertSubject = function(req, res){
 
 	stringQuery = 'INSERT INTO Subject' 
 					+ ' (idSubject, subjectName, subjectLevel, Department_Institute_idInstitute, Department_idDepartment)'
-					+ ' VALUES ("' + subjectIdKey + '",'
+					+ ' VALUES (UUID(),'
 					+ ' "' + subjectName + '",'
 					+ ' "' + subjectLevel + '",'
 					+ ' "' + subjectInstitute + '",'
@@ -228,8 +227,8 @@ exports.insertSubject = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al insertar Asignatura',
-					errorItem: ['-  Es posible que la clave ya exista',
+					errorTitle: 'Error al crear Asignatura',
+					errorItem: ['-  Es posible que ya exista una asignatura con el mismo nombre',
 					'-  Problemas con el Servidor'],
 					backUrl: '/management'
 				}
@@ -240,14 +239,13 @@ exports.insertSubject = function(req, res){
 
 exports.insertCourse = function(req, res){
 	var database = new base();
-	var courseIdKey = req.body.insertCourseIdKey ;
 	var courseName  = req.body.insertCourseName ;
 	var courseLevel = req.body.insertCourseLevel ;
 	var courseInstitute = req.session.datos[0].Institute_idInstitute;
 
 	stringQuery = 'INSERT INTO Course' 
 					+ ' (idCourse, courseName, courseLevel, Institute_idInstitute)'
-					+ ' VALUES ("' + courseIdKey + '",'
+					+ ' VALUES (UUID(),'
 					+ ' "' + courseName + '",'
 					+ ' "' + courseLevel + '",'
 					+ ' "' + courseInstitute + '");';
@@ -260,8 +258,8 @@ exports.insertCourse = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al insertar Grupo',
-					errorItem: ['-  Es posible que la clave ya exista',
+					errorTitle: 'Error al crear Grupo',
+					errorItem: ['-  Es posible que ya exista un grupo con ese nombre',
 					'-  Problemas con el Servidor'],
 					backUrl: '/management'
 				}
@@ -288,7 +286,7 @@ exports.insertSubjectCourse = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al insertar Curso',
+					errorTitle: 'Error al crear Curso',
 					errorItem: ['-  El curso ya existe'],
 					backUrl: '/management'
 				}
@@ -354,10 +352,12 @@ exports.getAdministratorsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE ALUMNOS DE LA BASE DE DATOS
 exports.getStudentsDatabase = function(req, res){
 	var database = new base();
+
 	stringQuery = 'SELECT User.*, idStudent FROM User INNER JOIN Student' 
 				+ ' ON User.userEmail = Student.User_userEmail'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
 				+ ' ORDER BY userName ASC;';
+
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
@@ -449,6 +449,7 @@ exports.getStudentsSubjectsDatabase = function(req, res){
                             	+ '</div>';
                         }
 			res.send(stringData);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -460,10 +461,12 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE PROFESORES DE LA BASE DE DATOS
 exports.getTeachersDatabase = function(req, res){
 	var database = new base();
-	stringQuery = 'SELECT User.*, idTeacher FROM User INNER JOIN Teacher' 
+
+	stringQuery = 'SELECT User.*, idTeacher FROM User INNER JOIN Teacher'
 				+ ' ON User.userEmail = Teacher.User_userEmail'
-				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"' 
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"'
 				+ ' ORDER BY userName ASC;';
+
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
@@ -555,6 +558,7 @@ exports.getTeachersSubjectsDatabase = function(req, res){
                             	+ '</div>';
                         }
 			res.send(stringData);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -566,8 +570,10 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE DEPARTAMENTOS DE LA BASE DE DATOS
 exports.getDepartmentsDatabase = function(req, res){
 	var database = new base();
+
 	stringQuery = 'SELECT * FROM Department'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
@@ -602,6 +608,7 @@ exports.getDepartmentsDatabase = function(req, res){
                             + '</div>';
             }
 			res.send(stringData);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -612,8 +619,10 @@ exports.getDepartmentsDatabase = function(req, res){
 // FUNCION PARA MOSTRAR DATOS DE ASIGNATURAS DE LA BASE DE DATOS
 exports.getSubjectsDatabase = function(req, res){
 	var database = new base();
+
 	stringQuery = 'SELECT * FROM Subject'
 				+ ' WHERE Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
@@ -698,6 +707,7 @@ exports.getCoursesDatabase = function(req, res){
                             + '</div>';
             }
 			res.send(stringData);
+			
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
