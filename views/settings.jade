@@ -17,6 +17,9 @@ block content
 								.colhh1.hover.listitem.settingsitem.rippleria-dark(data-rippleria data-name='Contraseña')
 									.pd_18
 										| Contraseña
+								.colhh1.hover.listitem.settingsitem.rippleria-dark(data-rippleria data-name='Nombre')
+									.pd_18
+										| Nombre
 						.colhh1.block_container.bg_white
 							.colhh1.bg_lightgray
 								.pd_18.ll_title Seguridad
@@ -63,6 +66,7 @@ block content
 									.pd_32
 										.colhh1 
 											.b_text Actual: 
+												.pd_4
 												.opacity_color #{datos[0].userEmail}
 											.pd_12
 										.form_input
@@ -92,6 +96,30 @@ block content
 										.form_input
 											.b_text.left_title Contraseña Anterior
 											input(type='password', placeholder='Contraseña' name='userUpdatePassword' autocomplete='off')
+										.form_input(style='height: 52px;')
+											span.bgaccent_color.bg_check.submit.circle.rippleria-dark(data-rippleria title='Confirmar')
+												input(type='submit' value='')
+							.colhh1.settings_inneritem
+								form(name='settingsform_updateEmail') 
+									.pd_32
+										.colhh1 
+											.b_text Actual: 
+												.pd_4
+												.opacity_color #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
+											.pd_12
+										.form_input
+											.b_text.left_title Nombre
+											input(type='text', placeholder='Nuevo Nombre' name='userUpdateName' autocomplete='off')
+										.form_input
+											.b_text.left_title Apellidos
+											.double
+												input(type='text', placeholder='Paterno' name='userUpdateLastName' autocomplete='off')
+												input.second(type='text', placeholder='Materno' name='userUpdateSecondLastName' autocomplete='off')
+										.pd_16
+											.pd_lr24.opacity_color 
+												span.b_text Nota:
+												|  Asegurate de poner tu nombre correctamente para que los demas puedan reconocerte. Ten cuidado con la capitalización.
+										.pd_16
 										.form_input(style='height: 52px;')
 											span.bgaccent_color.bg_check.submit.circle.rippleria-dark(data-rippleria title='Confirmar')
 												input(type='submit' value='')

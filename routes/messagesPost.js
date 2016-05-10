@@ -17,7 +17,7 @@ exports.insertLobby = function(req, res){
 	var min = now.getMinutes();
 	var sec = now.getSeconds();
 	var milsec = now.getMilliseconds();
-	var time = dd + '' + mm + '' + yyyy + '_' + hh + '' + min + '' + sec + '' + milsec;
+	var time = dd + '' + mm + '' + yyyy + '' + hh + '' + min + '' + sec + '' + milsec;
 
 	var database = new base();
 	var stringQuery2 = '';
@@ -31,13 +31,13 @@ exports.insertLobby = function(req, res){
 	usersArray.pop();
 	usersArray.push(owner);
 
-	var uniqueId = 'l0b8Y' + Math.floor((Math.random() * 596501699) + 16985689) + '-' + time;
+	var uniqueId = 'l0b8Y' + Math.floor((Math.random() * 596501699) + 16985689) + '' + time;
 
 	if( (lobbyUsers != null || lobbyUsers.trim() != '') && (message != null || message.trim() != '') ){
 
 		stringQuery = 'BEGIN;';
 
-		stringQuery += 'INSERT INTO Lobby (idLobby, lobbyLastUpdate) VALUES ("' + uniqueId + '", NOW());';
+		stringQuery += 'INSERT INTO Lobby (idLobby) VALUES ("' + uniqueId + '");';
 
 		for ( var i = 0; i < usersArray.length; i++ ) {
 				stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
@@ -83,8 +83,6 @@ exports.insertNewMessage = function(req, res){
 
 	if(msmText != null || msmText.trim() != ''){
 
-		stringQuery = 'BEGIN;'
-
 		stringQuery += 'INSERT INTO MESSAGE (idMessage, messageText, messageDateTime, Lobby_idLobby, User_userEmail)'
 					+ ' VALUES '
 					+ ' (UUID(),'
@@ -92,12 +90,6 @@ exports.insertNewMessage = function(req, res){
 					+ ' NOW(),'
 					+ ' "' + lobby + '",'
 					+ ' "' + req.session.datos[0].userEmail + '");';
-
-		stringQuery += 'UPDATE Lobby SET lobbyLastUpdate = NOW()'
-					+ ' WHERE idLobby = "' + lobby + '";';
-
-		stringQuery += 'COMMIT;'
-
 	}
 
 	database.query(stringQuery, function(error, result, row){
@@ -114,8 +106,8 @@ exports.insertNewMessage = function(req, res){
 exports.getLobbiesDatabase = function(req, res){
 	var database = new base();
 
-	stringQuery = 'SELECT idLobby, DATE_FORMAT(lobbyLastUpdate, "%d/%m/%Y") AS lobbyDate,'
-				+ ' DATE_FORMAT(lobbyLastUpdate, "%H:%i") AS lobbyHour, m.messageText AS lastMsm, u2.userEmail AS lastSenderEmail, u2.userName AS lastSenderName,'
+	stringQuery = 'SELECT idLobby, DATE_FORMAT(m.messageDateTime, "%d/%m/%Y") AS lobbyDate,'
+				+ ' DATE_FORMAT(m.messageDateTime, "%H:%i") AS lobbyHour, m.messageText AS lastMsm, u2.userEmail AS lastSenderEmail, u2.userName AS lastSenderName,'
 				+ ' GROUP_CONCAT(uhl.User_userEmail separator ", ") AS participantsEmails,'
 				+ ' GROUP_CONCAT(u.userName, " ", u.userLastName separator ", ") AS participantsNames '
 				+ ' FROM user_has_lobby AS uhl '
@@ -134,13 +126,13 @@ exports.getLobbiesDatabase = function(req, res){
 				+ ' 	ON u2.userEmail = m.User_userEmail '
 				+ ' WHERE uhl.Lobby_idLobby IN '
 				+ ' 	( '
-				+ '			SELECT Lobby_idLobby  '
+				+ '			SELECT Lobby_idLobby '
 				+ '       	FROM user_has_lobby '
 				+ '       	WHERE User_userEmail = "' + req.session.datos[0].userEmail + '" '
 				+ '   	) '
 				+ ' AND uhl.User_userEmail != "' + req.session.datos[0].userEmail + '"  '
 				+ ' GROUP BY uhl.Lobby_idLobby '
-				+ ' ORDER BY lobbyLastUpdate DESC; '
+				+ ' ORDER BY m.messageDateTime DESC; '
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -153,7 +145,7 @@ exports.getLobbiesDatabase = function(req, res){
                 +        '<img src="images/profilephoto.png">'
                 +    '</div>'
                 +    '<div class="listitem_info border_bottom">'
-                +        '<div class="listitem_rightinfo">'
+                +        '<div class="listitem_rightinfo" title="' + item.lobbyDate + ' a las ' + item.lobbyHour + '">'
                 +            '<label class="lobby_date">' + item.lobbyDate + '</label>'
                 +            '&nbsp;<label class="lobby_time">' + item.lobbyHour + '</label>'
                 +        '</div>'

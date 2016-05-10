@@ -28,21 +28,11 @@ block content
 										select#selectCalendarPostType
 											option(value='reminder') Recordatorio
 											option(value='publication') Publicación
-								//- Si es profesor
-								- if (privilegio == 2)
 									.form_input#showCourseToPost
 										.b_text.left_title Curso
-										.double
-											select#showSubjectsPost(name='calendarSubjectSelectField')
-												option(disabled selected) Asignatura
-												if subjectsProfileData != undefined
-													each item in subjectsProfileData
-														option(value='#{item.idSubject}') #{item.subjectName}
-											select.second#showCoursesPost(name='calendarCourseSelectField')
-												option(disabled selected) Grupo
-												if subjectsProfileData != undefined
-													each item in subjectsProfileData
-														option(value='#{item.idCourse}') #{item.courseName}
+										select#showCoursesPost(name='calendarCourseSelectField')
+											//- Aqui se agregan los cursos que tiene el usuario
+											
 								.form_input
 									.b_text.left_title Fecha Limite
 									.triple

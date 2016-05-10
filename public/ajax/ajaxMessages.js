@@ -339,7 +339,7 @@ function enviarMsg(){
 jQuery(document).ready(function(){
     
     setTimeout(showLobbies, 1000);
-    
+
     jQuery('#new_item').click(function(){
         showContactsAdministratorsMsm();
         showContactsStudentsMsm();
@@ -475,7 +475,7 @@ function addUsersToLobby(){
                     + '<div class="msm_sendtoremove">'
                     + '<div class="bg_opacity bg_cross circle"></div>'
                     + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle"/>'
-                    + '<div class="name circle bg_lightgray opacity_color v_middle">' + name + '</div>'
+                    + '<div class="name bgprimary_colorDarker white_text v_middle">' + name + '</div>'
                     + '</div>';
 
         if( jQuery('.msm_sendtocontainer').find('.msm_sendtocontact[data-email="' + email + '"]').length == 0 ){

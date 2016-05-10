@@ -22,30 +22,34 @@ block content
 									#profile_back.pd_16.hover.rippleria-dark(data-rippleria) Portada
 						.photo
 							img.circle( src='images/profilephoto.png' )
-					.pd_24
+					.pd16_24
 						.colhh1
 							.name
 								div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
 								span #{datos[0].userEmail}
-					.colhh1.center_text.rel_pos(style='padding-bottom: 24px;')
-						if privilegio != 3
-							.colhh2
-								.pd_4.sl_title
-									| Contactos
-								.pd_4.lighttext#countContacts(style='font-size: 21px;')
-									| 9
-							.divider
-							.colhh2
-								.pd_4.sl_title
-									| Cursos
-								.pd_4.lighttext#countCourses(style='font-size: 21px;')
-									| 4
-						if privilegio == 3
-							.colhh1
-								.pd_4.sl_title
-									| Contactos
-								.pd_4.lighttext#countContacts(style='font-size: 21px;')
-									| 9
+					.pd_lr24
+						.border_bottom
+
+					.pd_16.center_text
+						.rel_pos
+							if privilegio != 3
+								.colhh2
+									.pd_4.sl_title
+										| Contactos
+									.pd_4.lighttext#countContacts(style='font-size: 21px;')
+										| 9
+								.divider
+								.colhh2
+									.pd_4.sl_title
+										| Cursos
+									.pd_4.lighttext#countCourses(style='font-size: 21px;')
+										| 4
+							if privilegio == 3
+								.colhh1
+									.pd_4.sl_title
+										| Contactos
+									.pd_4.lighttext#countContacts(style='font-size: 21px;')
+										| 9
 				.form_profilephoto.block_container.bg_white.profile_hideitem
 					.colhh1
 						.pd_18.ll_title.rel_pos Foto de Perfil
@@ -78,21 +82,23 @@ block content
 							.form_input(style='height: 52px;')
 								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 									input(type='submit' value='')
-				.block_container.bg_white.progress_profile
-					.pd_18.ll_title.bg_lightgray
-						| Rendimiento
-					.pd_18
-						.progress_emoticon.center_text
-							#indicator.circle.bg_indigo
-							span( style='background-image: url("/images/emoticon-sad.png")' )
-							span( style='background-image: url("/images/emoticon-neutral.png")' )
-							span( style='background-image: url("/images/emoticon-happy.png")' )
-							span
-					.pd_18
-						.ll_title Promedio General
-							span#signaturegralprom.right_float.ll_title 8.21
-						.colhh1.bg_lightgray.inbox_shadow.borad
-							#signatureprogress.progress_bar.bgaccent_color2.borad.flat_shadow
+
+				if privilegio != 3
+					.block_container.bg_white.progress_profile
+						.pd_18.ll_title.bg_lightgray
+							| Rendimiento
+						.pd_18
+							.progress_emoticon.center_text
+								#indicator.circle.bg_indigo
+								span( style='background-image: url("/images/emoticon-sad.png")' )
+								span( style='background-image: url("/images/emoticon-neutral.png")' )
+								span( style='background-image: url("/images/emoticon-happy.png")' )
+								span
+						.pd_18
+							.ll_title Promedio General
+								span#signaturegralprom.right_float.ll_title 8.21
+							.colhh1.bg_lightgray.inbox_shadow.borad
+								#signatureprogress.progress_bar.bgaccent_color2.borad.flat_shadow
 
 			.grid_rightcontainer
 				.colhh1.h_listcontainer

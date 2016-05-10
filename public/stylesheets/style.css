@@ -20,21 +20,27 @@ body {
 	color: #424242;
 	font-size: 14px;
 }
-body div::-webkit-scrollbar{width: 6px;}
+body div:not(.hidden_blockcontainer)::-webkit-scrollbar{width: 6px;}
 
-body div::-webkit-scrollbar:hover{width: 8px;}
+body div:not(.hidden_blockcontainer)::-webkit-scrollbar:hover{width: 7px;}
 
-body div::-webkit-scrollbar-track{background-color: transparent;}
+body div:not(.hidden_blockcontainer)::-webkit-scrollbar-track{background-color: transparent;}
 
-body div::-webkit-scrollbar{background-color: transparent;}
+body div:not(.hidden_blockcontainer)::-webkit-scrollbar{background-color: transparent;}
 
-body div::-webkit-scrollbar-thumb{
+body div:not(.hidden_blockcontainer)::-webkit-scrollbar-thumb{
 	background-color: rgba(127,127,127,0.3);
 	border-radius: 10px;
 	background-clip: padding-box;
 }
 
+body div:not(.hidden_blockcontainer)::-webkit-scrollbar-thumb:hover{
+	background-color: rgba(127,127,127,0.5);
+}
+
 .minimenu_hidden{color: #424242;}
+
+.minimenu_hidden a{color: inherit;}
 
 .body_container{width: inherit;height: inherit;}
 
@@ -885,23 +891,6 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .settings_inneritem{display: none;}
 
-.block_container:last-child{
-	margin-bottom: 80px;
-}
-
-.admins .block_container:last-child, .students .block_container:last-child{
-	margin-bottom: 16px;
-}
-
-.colhh2 .block_container:last-child{
-	margin-bottom: 12px;
-	margin-top: 0;
-}
-
-.colhh7 .block_container:last-child, .colhh6 .block_container:last-child{
-	margin-bottom: 0;
-}
-
 .mainoptions_container .colhh3{width: 50%;}
 
 .mainoptions span{
@@ -959,8 +948,9 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 
 .profile_bgcont .name{
 	font-size: 16px;
-	font-weight: 500;
-	margin-top: 32px;
+	font-weight: 400;
+	padding-left: 110px;
+	text-align: right;
 }
 
 .profile_bgcont .name span{
@@ -1003,7 +993,7 @@ select::-ms-expand, option::-ms-expand { /* for IE 11 */
 	height: 4px;
 	margin: 2px;
 	border-radius: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;
-	background-color: #fff; 
+	background-color: #7f7f7f; 
 }
 
 .minimenu_hidden{
@@ -1125,6 +1115,10 @@ span.title_rightoptionicon:hover{
 	vertical-align: top;
 	width: calc(100% - 90px);
 	position: relative;
+}
+
+.listitem_info .minimenu_container{
+	left: -2px;
 }
 
 .listitem_info .listitem_alert{
@@ -1267,10 +1261,6 @@ span.title_rightoptionicon:hover{
 	top: 1px;
 }
 
-.msmtopname .minimenu span{
-	background-color: #616161;
-}
-
 .msm_sendtocontainer{
 	position: relative;
 	width: auto;
@@ -1321,6 +1311,7 @@ span.title_rightoptionicon:hover{
 	padding: 8px 12px 8px 28px;
 	left: -24px;
 	font-weight: 500;
+	border-radius: 0px 20px 20px 0px;
 }
 
 #msm_contactscontainer{
@@ -1708,11 +1699,12 @@ option{background-color: #fff;}
 }
 
 .form_input2 textarea{
+	height: 20px;
 	min-height: 20px;
 	max-height: 156px;
-	width: calc(100% - 104px);
-	max-width: calc(100% - 104px);
-	min-width: calc(100% - 104px);
+	width: calc(100% - 36px);
+	max-width: calc(100% - 36px);
+	min-width: calc(100% - 36px);
 	padding: 18px;
 }
 
@@ -1979,10 +1971,11 @@ input:checked + .switch:active::before {
 .form_input2 span.submit{
 	width: 52px;
 	height: 52px;
-	margin: 4px 8px 0 8px;
+	margin: 0 8px 0 8px;
 	display: inline-block;
 	cursor: pointer;
 	background-size: 24px;
+	float: right;
 }
 
 .form_input span.submit input[type='submit']{
@@ -2075,6 +2068,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .float_buttoncontainer{box-shadow: 0px 6px 10px rgba(0,0,0,0.3);}
 
 .profile_img .minimenu span{
+	background-color: #fff;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.14);
 }
 
@@ -2123,10 +2117,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme .h_listtopcontainer{
 	color: rgba(255,255,255,0.7);
-}
-
-.dark_theme .msmtopname .minimenu span{
-	background-color: #e0e0e0;
 }
 
 .dark_theme .rightmsm .msm_date{
@@ -2206,6 +2196,11 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	border-bottom: 2px solid #FFFF00;
 	padding-bottom: 7px;
 }
+
+.form_input2 input.white_text::-webkit-input-placeholder{color: rgba(255,255,255,0.3);}
+.form_input2 input.white_text:-moz-placeholder{color: rgba(255,255,255,0.3);}
+.form_input2 input.white_text::-moz-placeholder{color: rgba(255,255,255,0.3);}
+.form_input2 input.white_text:-ms-input-placeholder{color: rgba(255,255,255,0.3);}
 
 /*.search.s_type2 input[type='text']{
 	color: #fff;

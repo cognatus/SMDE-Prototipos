@@ -219,6 +219,7 @@ app.get('/getTeacherCoincidences', profilePost.getTeacherCoincidences);
 //Todo referente a la agenda
 app.post('/insertPublication', calendarPost.insertPublication);
 app.post('/insertReminder', calendarPost.insertReminder);
+app.get('/getProfileSubjectsDatabaseCalendar', calendarPost.getProfileSubjectsDatabaseCalendar);
 app.get('/getRemindersDatabase', calendarPost.getRemindersDatabase);
 app.get('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 

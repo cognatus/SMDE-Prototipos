@@ -1,6 +1,8 @@
 var base;
 var stringQuery = '';
 
+var htmlspecialchars = require('htmlspecialchars');
+
 exports.constructor = function (basee) {
 	base = basee;
 }
@@ -25,8 +27,8 @@ exports.insertReminder = function(req, res){
 	stringQuery += 'INSERT INTO Reminder' 
 					+ ' (idReminder, reminderTitle, reminderText, reminderDateTime, reminderLimitDate, User_userEmail)'
 					+ ' VALUES (UUID(),'
-					+ ' "' + reminderTitle + '",'
-					+ ' "' + reminderText + '",'
+					+ ' "' + htmlspecialchars(reminderTitle) + '",'
+					+ ' "' + htmlspecialchars(reminderText) + '",'
 					+ ' NOW(),'
 					+ ' "' + reminderLimitDate + '",'
 					+ ' "' + reminderOwner + '");';
@@ -56,14 +58,15 @@ exports.insertPublication = function(req, res){
 	
 	var publicationTitle = req.body.formCalendarTitle;
 	var publicationText  = req.body.formCalendarComment;
+
 	//OBTENERMOS EL CURSO AL QUE QUEREMOS PUBLICAR
-	var subjectId = req.body.calendarSubjectSelectField;
-	var courseId = req.body.calendarCourseSelectField;
+	var subCourseString = req.body.calendarCourseSelectField;
 	var day = req.body.formCalendarDay;
 	var month = req.body.formCalendarMonth;
 	var year = req.body.formCalendarYear;
 	var hour = req.body.formCalendarHour;
 	var minutes = req.body.formCalendarMinute;
+	var subCourse = subCourseString.split('/');
 	//SEPARAMOS EL idSubject del idCourse POR QUE SE MANDAN EN UNA SOLA CADENA DE TEXTO
 	
 	var publicationLimitDate = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':00' ;
@@ -74,13 +77,13 @@ exports.insertPublication = function(req, res){
 					+ ' (idPublication, pubTitle, pubText, pubDateTime, publicationLimitDate, Teacher_User_userEmail,'
 					+ ' Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
 					+ ' VALUES (UUID(),'
-					+ ' "' + publicationTitle + '",'
-					+ ' "' + publicationText + '",'
+					+ ' "' + htmlspecialchars(publicationTitle) + '",'
+					+ ' "' + htmlspecialchars(publicationText) + '",'
 					+ ' NOW(),'
 					+ ' "' + publicationLimitDate + '",'
 					+ ' "' + publicationOwner + '",'
 					//		 idSubject 		  	  idCourse
-					+ ' "' + subjectId + '", "' + courseId + '");';
+					+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
 	stringQuery += 'COMMIT;'
 
 	database.query(stringQuery, function(error, result, row){
@@ -99,6 +102,48 @@ exports.insertPublication = function(req, res){
 			});
 		}
 	});
+};
+
+// FUNCION PARA MOSTRAR MATERIAS DE PERFIL DE LA BASE DE DATOS
+exports.getProfileSubjectsDatabaseCalendar = function(req, res){
+	var database = new base();
+
+	//SI EL USUARIO ES TIPO PROFESOR
+	if(req.session.privilegio == 2){
+		stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName'
+					+ ' FROM User AS u'
+					+ ' INNER JOIN Teacher AS s'
+					+ '     ON u.userEmail = s.User_userEmail'
+					+ ' INNER JOIN Teacher_has_Subject_has_Course AS ss'
+					+ '     ON s.idTeacher = ss.Teacher_idTeacher'
+					+ ' INNER JOIN Subject_has_Course AS sc'
+					+ '     ON ss.Subject_has_Course_Subject_idSubject = sc.Subject_idSubject'
+					+ ' 	AND ss.Subject_has_Course_Course_idCourse = sc.Course_idCourse'
+					+ ' INNER JOIN Subject AS su'
+					+ '     ON sc.Subject_idSubject = su.idSubject'
+					+ ' INNER JOIN Course AS c'
+					+ '     ON sc.Course_idCourse = c.idCourse'
+					+ ' INNER JOIN Department AS d'
+					+ '     ON d.idDepartment = su.Department_idDepartment'
+					+ ' WHERE u.userEmail  = "' + req.session.datos[0].userEmail + '"'
+					+ ' ORDER BY su.subjectName ASC;'
+	}
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			var stringDataProfileCoursesCalendar = '';
+			for(var i in result){
+                var item = result[i];
+                stringDataProfileCoursesCalendar += '<option value="' + item.idSubject + '/' + item.idCourse + '">' + item.subjectName + ' ' + item.courseName + '</option>' 
+            }
+			res.send(stringDataProfileCoursesCalendar);
+
+		}else{
+			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
+			res.redirect('/error');
+		}
+	});
+
 };
 
 // FUNCION PARA MOSTRAR RECORDATORIOS DEL USUARIO

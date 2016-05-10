@@ -1,14 +1,20 @@
 
 jQuery(document).on('ready', function(){
+    jQuery('.mgm_listcontainer .load_container').show();
 
+    setTimeout(displayData, 1000);
+
+});
+
+function displayData(){
     showAdmins();
     showStudents();
     showTeachers();
     showSubjects();
     showDepartments();
     showCourses();
-
-});
+    jQuery('.mgm_listcontainer .load_container').hide();
+}
 
 function showAdmins(){
 	jQuery.ajax({
@@ -16,7 +22,7 @@ function showAdmins(){
         url: 'getAdministratorsDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.mgm_adminslist').append(data);
+            jQuery('#managementData .admins').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
@@ -31,37 +37,34 @@ function showStudents(){
         url: 'getStudentsDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.mgm_studentslist').append(data);
+            jQuery('#managementData .students').html(data);
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
-            jQuery('.item_student').one('click', function(){
-                var selectorCont = jQuery(this);
-                var container = jQuery(this).siblings('.innerlistitem');
-                var stuId = selectorCont.siblings('.innerlistitem').attr('data-id');
+            jQuery('.students .block_container .hidecontent_button').one('click', function(){
+                var button = jQuery(this);
+                var container = jQuery(this).siblings('.person_subjectslist');
+                var stuId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
                     url: 'getStudentsSubjectsDatabase',
-                    cache: false,
+                    cache: true,
                     data: {
                         studentEmail: stuId
                     },
                     success: function(data2) {
-                        for(var i in data2){
-                            var subject = data2[i];
-                            container.find('.studentsubjects_list').append('<div class="colhh1 pd_l12 hover">'
-                            + '<div class="listitem_img"><span>B</span></div>'
-                            + '<div class="listitem_info">'
-                            + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
-                            + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
-                            + '<div class="listitem_bottomdata">Grupo: ' + subject.courseName + '</div>'
-                            + '</div>'
-                            + '</div>');
+                        if(data2.length != 0){
+                            button.hide();
+                            container.append(data2);
+                        }
+                        else{
+                            container.append('<div class="pd_l24"><div class="pd_16 opacity_color b_text">Sin Cursos Inscritos</div></div>');
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
-                    }
-     ,                });
+                    }  
+                });
+
             });
 
         },
@@ -78,54 +81,36 @@ function showTeachers(){
         url: 'getTeachersDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.mgm_teacherslist').append(data);
+            jQuery('#managementData .teachers').html(data);
 
             //FUNCION PARA OBTENER MATERIAS DE CADA UNO
-            jQuery('.item_teacher').one('click', function(){
-                var selectorCont = jQuery(this);
-                var container = jQuery(this).siblings('.innerlistitem');
-                var teaId = selectorCont.siblings('.innerlistitem').attr('data-id');
+            jQuery('.teachers .block_container .hidecontent_button').one('click', function(){
+                var button = jQuery(this);
+                var container = jQuery(this).siblings('.person_subjectslist');
+                var teaId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
                     url: 'getTeachersSubjectsDatabase',
-                    cache: false,
+                    cache: true,
                     data: {
                         teacherEmail: teaId
                     },
                     success: function(data2) {
-                        for(var i in data2){
-                            var subject = data2[i];
-                            container.find('.teachersubjects_list').append('<div class="colhh1 pd_l12 hover">'
-                            + '<div class="listitem_img"><span>B</span></div>'
-                            + '<div class="listitem_info">'
-                            + '<div class="listitem_rightinfo">' + subject.idSubject + '</div>'
-                            + '<div class="listitem_title"><b>' + subject.subjectName + '</b></div>'
-                            + '<div class="listitem_bottomdata">Grupo: ' + subject.courseName + '</div>'
-                            + '</div>'
-                            + '</div>');
+                        if(data2.length != 0){
+                            button.hide();
+                            container.append(data2);
+                        }
+                        else{
+                            container.append('<div class="pd_l24"><div class="pd_16 opacity_color b_text">Sin Cursos Inscritos</div></div>');
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + textStatus + " " + errorThrown);
-                    }
-     ,                });
+                    }  
+                });
+
             });
 
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
-        }
-        
-    });
-}
-
-function showSubjects(){
-    jQuery.ajax({
-        type: 'GET',
-        url: 'getSubjectsDatabase',
-        cache: false,
-        success: function(data) {
-            jQuery('.mgm_subjectslist').append(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
@@ -140,7 +125,22 @@ function showDepartments(){
         url: 'getDepartmentsDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.mgm_departmentslist').append(data);
+            jQuery('#managementData .departments').html(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log('Error: ' + textStatus + " " + errorThrown);
+        }
+        
+    });
+}
+
+function showSubjects(){
+    jQuery.ajax({
+        type: 'GET',
+        url: 'getSubjectsDatabase',
+        cache: false,
+        success: function(data) {
+            jQuery('#managementData .subjects').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);
@@ -155,7 +155,7 @@ function showCourses(){
         url: 'getCoursesDatabase',
         cache: false,
         success: function(data) {
-            jQuery('.mgm_courseslist').append(data);
+            jQuery('#managementData .groups').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);

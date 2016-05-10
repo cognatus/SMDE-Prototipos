@@ -18,22 +18,22 @@ block content
 				span.close.bg_close.rippleria-dark( data-rippleria )
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.form_title.white_text.flat_shadow Nuevo
+					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
 					form(name='new_messageform' action='insertLobby' method='POST')
 						#newmsm_form.form_innercontainer
-							.colhh1(style='margin-top:2px;')
+							.colhh1
 								.form_input2
 									input#hidden_inputsendto(type='hidden' value='' name='insetUsersLobby')
-								.form_input2.border_bottom.rel_pos
-									input#search_newmsmcontacts(type='text' placeholder='Para' autocomplete='off')
+								.form_input2.border_bottom.rel_pos.white_text.flat_shadow.bgprimary_color
+									input#search_newmsmcontacts.white_text(type='text' placeholder='Para' autocomplete='off')
 									#contacts_to_send.msm_sendtocontainer
 										//- .msm_sendtocontact.rel_pos(data-email='')
 										//- 	.msm_sendtoremove
 										//- 		.bg_opacity.bg_cross.circle
 										//- 	img.sendtoimg.circle.v_middle(src='images/profilephoto.png')
 										//- 	.name.circle.bg_lightgray.opacity_color.v_middle Alejandro Villarroel
-										#msm_addperson.small_icon.circle.v_middle.bg_plusgray.hover.rippleria-dark(data-rippleria title='Añadir Persona')
+										#msm_addperson.small_icon.circle.v_middle.bg_plus.hover.rippleria-dark(data-rippleria title='Añadir Persona')
 								#msm_contactscontainer.colhh1.border_bottom.bg_lightgray
 									#profilecontacts_list.inner_block
 										.colhh1.no_result
@@ -77,7 +77,8 @@ block content
 
 								.form_input2
 									textarea#msm_textarea.v_top(placeholder='Escribe Algo' name='insertNewLobbyMsm')
-									span.bg_send.submit.v_top.rippleria-dark(data-rippleria style='display-inline')
+									.colhh1.autooverflow
+										span.bg_send.submit.v_top.rippleria-dark(data-rippleria style='display-inline')
 						.form_confirmblock
 							.inner_confirmblock.bg_gray.flat_shadow
 								.pd_24(style='padding-bottom: 16px;')

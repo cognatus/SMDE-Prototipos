@@ -19,6 +19,8 @@
 	.page_container{
 		width: calc(100% - 180px);
 		margin: 0 auto;
+		position: relative;
+		z-index: 49;
 	}
 
 	.notifications_hidden{
@@ -36,7 +38,6 @@
 
 	.block_container{
 		position: relative;
-		z-index: 49;
 		border-radius: 1px;
 	}
 
@@ -241,7 +242,7 @@
 
 	.calendar_allr{width: calc(100% - 498px);margin-left: 18px;display: inline-block;}
 
-	.mgmlisthor{display: inline-block;width: 280px;}
+	.mgmlisthor{display: inline-block;width: 280px;position: absolute;}
 
 	.mgmlisthor .h_listline{height: 49px;width: 3px;top: 0;}
 
@@ -260,6 +261,6 @@
 
 	.mgmlisthor .h_listitem .pd_16{padding: 13px 18px 13px 21px;}
 
-	.mgm_listcontainer{display: inline-block;width: calc(100% - 296px);margin-left: 16px;}
+	.mgm_listcontainer{display: inline-block;width: calc(100% - 296px);margin-left: 296px;}
 
 }

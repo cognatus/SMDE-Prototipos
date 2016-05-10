@@ -73,18 +73,22 @@ block content
 						.photo
 							a(href='/profile')
 								img.circle( src='images/profilephoto.png' )
-					.pd_24
+					.pd16_24
 						.colhh1
 							.name
 								div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
 								span #{datos[0].userEmail}
-					.colhh1.center_text.rel_pos(style='padding-bottom: 24px;')
-						if privilegio != 3
-							.colhh1
-								.pd_4.sl_title
-									| Cursos
-								.pd_4.lighttext#countCourses(style='font-size: 21px;')
-									| 4
+					.pd_lr24
+						.border_bottom
+
+					.pd_16.center_text
+						.rel_pos
+							if privilegio != 3
+								.colhh1
+									.pd_4.sl_title
+										| Cursos
+									.pd_4.lighttext#countCourses(style='font-size: 21px;')
+										| 4
 				
 				.block_container.bg_white.progress_profile
 					.pd_18.ll_title.bg_lightgray

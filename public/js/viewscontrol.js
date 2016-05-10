@@ -595,8 +595,20 @@ jQuery(document).ready(function(){
 	//Aqui se ejecutan las funciones inmediatamente al terminar con las peticiones ajax
 	jQuery(document).ajaxComplete(function(){
 
-			jQuery('#countContacts').text( jQuery('.contacts_cl .listitem').length );
-			jQuery('#countCourses').text( jQuery('.courses_cl .listitem').length );
+		jQuery('.minimenu').click(function(){
+			jQuery(this).siblings('.minimenu_hidden').fadeIn(200);
+		});
+
+		jQuery('html , body').click(function(){
+			jQuery('.minimenu_hidden').fadeOut(200);
+		});
+
+		jQuery('.minimenu_hidden , .minimenu').click(function(event){
+			event.stopPropagation();
+		});
+
+		jQuery('#countContacts').text( jQuery('.contacts_cl .listitem').length );
+		jQuery('#countCourses').text( jQuery('.courses_cl .listitem').length );
 
 		/*if( jQuery(window).width() >= 1120 ){
 			jQuery('#listcontainer.left_listcontainer .listitem').first().trigger('click');

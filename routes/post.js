@@ -307,8 +307,43 @@ exports.getAdministratorsDatabase = function(req, res){
 				
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			adminsData = result;
-			res.send(adminsData);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_info">'
+                            +			'<div title="Opciones" class="minimenu_container">'
+							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
+							+				'<div class="minimenu_hidden">'
+							+					'<div class="pd_16 hover">Editar</div>'
+							+					'<div class="pd_16 hover" onclick="deleteUser(&quot;' + item.userEmail + '&quot;)">Eliminar</div>'
+							+				'</div>'
+							+			'</div>'
+                            +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Administrator'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Correo: <span class="margin_l normal_txt">' + item.userEmail + '</span></div>'
+                            +               '<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idAdministrator + '</span></div>'
+                            +               '<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Sexo: <span class="margin_l normal_txt">' + item.userSex + '</span></div>'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringData);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -325,8 +360,53 @@ exports.getStudentsDatabase = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			studentsData = result
-			res.send(studentsData);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_info">'
+                            +			'<div title="Opciones" class="minimenu_container">'
+							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
+							+				'<div class="minimenu_hidden">'
+							+					'<div class="pd_16 hover">Editar</div>'
+							+					'<div class="pd_16 hover" onclick="deleteUser(&quot;' + item.userEmail + '&quot;)">Eliminar</div>'
+							+				'</div>'
+							+			'</div>'
+                            +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Alumno'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Correo: <span class="margin_l normal_txt">' + item.userEmail + '</span></div>'
+                            +               '<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idStudent + '</span></div>'
+                            +               '<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Sexo: <span class="margin_l normal_txt">' + item.userSex + '</span></div>'
+                            +           '</div>'
+                    		+       	'<div class="pd_8"></div>'
+                            +       	'<div class="colhh1">'
+                            +           	'<div class="pd_llist">'
+                            +               	'<div class="sl_title">Cursos Inscritos</div>'
+                            +           	'</div>'
+                            +           	'<div class="pd_llist hidecontent_button"  data-id="' + item.userEmail + '">'
+                            +               	'<span class="txtprimary_color sl_title">Mostrar Cursos</span>'
+                            +           	'</div>'
+                            +           	'<div class="person_subjectslist"></div>'
+                            +       	'</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringData);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -357,8 +437,18 @@ exports.getStudentsSubjectsDatabase = function(req, res){
 				
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			studentSubjects = result;
-			res.send(studentSubjects);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                    stringData += '<div class="colhh1 pd_l12 hover">'
+                            	+ 	'<div class="listitem_img"><span>B</span></div>'
+                            	+ 	'<div class="listitem_info">'
+                            	+ 		'<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
+                            	+ 		'<div class="listitem_bottomdata">Grupo: ' + item.courseName + '</div>'
+                            	+ 	'</div>'
+                            	+ '</div>';
+                        }
+			res.send(stringData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -376,8 +466,53 @@ exports.getTeachersDatabase = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			teachersData = result;
-			res.send(teachersData);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_info">'
+                            +			'<div title="Opciones" class="minimenu_container">'
+							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
+							+				'<div class="minimenu_hidden">'
+							+					'<div class="pd_16 hover">Editar</div>'
+							+					'<div class="pd_16 hover" onclick="deleteUser(&quot;' + item.userEmail + '&quot;)">Eliminar</div>'
+							+				'</div>'
+							+			'</div>'
+                            +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Profesor'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Correo: <span class="margin_l normal_txt">' + item.userEmail + '</span></div>'
+                            +               '<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idTeacher + '</span></div>'
+                            +               '<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Sexo: <span class="margin_l normal_txt">' + item.userSex + '</span></div>'
+                            +           '</div>'
+                    		+       	'<div class="pd_8"></div>'
+                            +       	'<div class="colhh1">'
+                            +           	'<div class="pd_llist">'
+                            +               	'<div class="sl_title">Cursos Inscritos</div>'
+                            +           	'</div>'
+                            +           	'<div class="pd_llist hidecontent_button"  data-id="' + item.userEmail + '">'
+                            +               	'<span class="txtprimary_color sl_title">Mostrar Cursos</span>'
+                            +           	'</div>'
+                            +           	'<div class="person_subjectslist"></div>'
+                            +       	'</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringData);
+
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -408,8 +543,18 @@ exports.getTeachersSubjectsDatabase = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			teacherSubjects = result;
-			res.send(teacherSubjects);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                    stringData += '<div class="colhh1 pd_l12 hover">'
+                            	+ 	'<div class="listitem_img"><span>B</span></div>'
+                            	+ 	'<div class="listitem_info">'
+                            	+ 		'<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
+                            	+ 		'<div class="listitem_bottomdata">Grupo: ' + item.courseName + '</div>'
+                            	+ 	'</div>'
+                            	+ '</div>';
+                        }
+			res.send(stringData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -425,8 +570,38 @@ exports.getDepartmentsDatabase = function(req, res){
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			departmentsData = result;
-			res.send(departmentsData);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 block_container bg_white" data-name="' +item.departmentName + '">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><span></span></div>'
+                            +       '<div class="listitem_info">'
+                            +			'<div title="Opciones" class="minimenu_container">'
+							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
+							+				'<div class="minimenu_hidden">'
+							+					'<div class="pd_16 hover">Editar</div>'
+							+					'<div class="pd_16 hover" onclick="deleteItem(&quot;' + item.idDepartment + '&quot;)">Eliminar</div>'
+							+				'</div>'
+							+			'</div>'
+                            +           '<div class="listitem_title"><b>' + item.departmentName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Academia'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idDepartment + '</span></div>'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -441,8 +616,40 @@ exports.getSubjectsDatabase = function(req, res){
 				+ ' WHERE Department_Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			subjectsData = result;
-			res.send(subjectsData);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 block_container bg_white" data-name="' +item.subjectName + '">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><span></span></div>'
+                            +       '<div class="listitem_info">'
+                            +			'<div title="Opciones" class="minimenu_container">'
+							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
+							+				'<div class="minimenu_hidden">'
+							+					'<div class="pd_16 hover">Editar</div>'
+							+					'<div class="pd_16 hover" onclick="deleteItem(&quot;' + item.idSubject + '&quot;)">Eliminar</div>'
+							+				'</div>'
+							+			'</div>'
+                            +           '<div class="listitem_title"><b>' + item.subjectName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Asignatura'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idSubject + '</span></div>'
+                            +				'<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Nivel: <span class="margin_l normal_txt">' + item.subjectLevel + '</span></div>'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');
@@ -457,8 +664,40 @@ exports.getCoursesDatabase = function(req, res){
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			coursesData = result;
-			res.send(coursesData);
+			var stringData = '';
+			for(var i in result){
+                var item = result[i];
+                stringData += '<div class="colhh1 block_container bg_white" data-name="' +item.courseName + '">' 
+                            +   '<div class="colhh1 listitem rel_pos">'
+                            +       '<div class="listitem_img"><span></span></div>'
+                            +       '<div class="listitem_info">'
+                            +			'<div title="Opciones" class="minimenu_container">'
+							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
+							+				'<div class="minimenu_hidden">'
+							+					'<div class="pd_16 hover">Editar</div>'
+							+					'<div class="pd_16 hover" onclick="deleteItem(&quot;' + item.idCourse + '&quot;)">Eliminar</div>'
+							+				'</div>'
+							+			'</div>'
+                            +           '<div class="listitem_title"><b>' + item.courseName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Grupo'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   '<div class="colhh1">'
+                            +       '<div class="list_borderleft">'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="sl_title">Información</div>'
+                            +           '</div>'
+                            +           '<div class="pd_llist">'
+                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idCourse + '</span></div>'
+                            +				'<div class="pd_4"></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Nivel: <span class="margin_l normal_txt">' + item.courseLevel + '</span></div>'
+                            +           '</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            + '</div>';
+            }
+			res.send(stringData);
 		}else{
 			console.log('Error en esta consulta: ' + stringQuery + ' Error: ' + error);
 			res.send('error');

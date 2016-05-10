@@ -3,7 +3,9 @@ jQuery(document).ready(function(){
         
     showReminders();
     showPublications();
-    showSubjectsCourses();
+    if(sessionUserType == 2){
+        showSubjectsCourses();
+    }
 
     jQuery(document).ajaxComplete(function(){
         //OBTENER EL DIA ACTUAL PARA CAMBIAR LOS TEXTOS EN lA PARTE DERECHA DE LOS MENSAJES
@@ -110,10 +112,10 @@ function showPublications(){
 function showSubjectsCourses(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileSubjectsDatabase',
+        url: 'getProfileSubjectsDatabaseCalendar',
         cache: true,
         success: function(data) {
-            jQuery('#showSubjectsCourses').append(data);
+            jQuery('#showCoursesPost').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('error ' + textStatus + " " + errorThrown);
