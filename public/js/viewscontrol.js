@@ -80,13 +80,19 @@ jQuery(document).on('ready' ,function(){
 		});
 	});
 
-	jQuery('.close , .hidden_blockback').click(function(){
+	jQuery('.close , .hidden_blockback, #close_hbl').click(function(){
 		jQuery(this).parents('.hidden_blockcontainer').fadeOut(300,function(){
 			location.reload();
 		});
 	});
 
-	jQuery('#profile_photo').click(function(){
+	jQuery('#selectPhoto').hover(function(){
+		jQuery(this).find('.photo_hiddenbutton').fadeIn();
+	},function(){
+		jQuery(this).find('.photo_hiddenbutton').fadeOut();
+	});
+
+	/*jQuery('#profile_photo').click(function(){
 		jQuery('.form_profilephoto').show();
 		jQuery('.form_profileback').hide();
 	});
@@ -94,7 +100,7 @@ jQuery(document).on('ready' ,function(){
 	jQuery('#profile_back').click(function(){
 		jQuery('.form_profilephoto').hide();
 		jQuery('.form_profileback').show();
-	});
+	});*/
 
 	jQuery('span.close_pimg').click(function(){
 		jQuery(this).parents('.profile_hideitem').hide();
@@ -404,7 +410,7 @@ jQuery(document).on('ready' ,function(){
 		INPUT FILE
 ---------------------------------------------------------------------------------------*/
 
-	jQuery('.f_select span.trigger').click(function(){
+	jQuery('.f_select .trigger').click(function(){
 		jQuery(this).parents('.f_select').find('input[type="file"]').trigger('click');
 	});
 
@@ -555,7 +561,7 @@ jQuery(document).on('ready' ,function(){
 
 });
 
-	function changeLetterColor(){
+function changeLetterColor(){
 		var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
 		'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
 		'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
@@ -584,10 +590,56 @@ jQuery(document).on('ready' ,function(){
 			}
 
 		});
-	}
+}
 
+function changeTopTitle(){
+	jQuery('.block_containermsm .listitem').on('click', function(){
+		var title = jQuery(this).attr('data-name');
+		var title2 = jQuery(this).attr('data-title');
+		var img = jQuery(this).find('img').attr('src');
+		if( jQuery(window).width() < 1120 ){
+			jQuery('.block_containermsm').animate({ scrollLeft: jQuery('.halfgrid').width() });
+			jQuery('#new_item').hide();
+		}
+		jQuery('.msmtopname label').text(title);
+		jQuery('.msmtopname label').attr('title', title2);
+		jQuery('img#msm_userimg').attr('src' , img );
+		changeLetterColor();
+	});
+}
+
+function previewProfilePhoto(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+            
+        reader.onload = function (e) {
+            jQuery('img#p_img').attr('src', e.target.result);
+        }
+            
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function previewProfileBack(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            jQuery('#p_back').css('background-image', 'url("' + e.target.result + '")');
+        }
+            
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 jQuery(document).ready(function(){
+
+	jQuery("#input_pPhoto").change(function(){
+        previewProfilePhoto(this);
+    });
+    jQuery("#input_pBack").change(function(){
+        previewProfileBack(this);
+    });
 
 	jQuery('.spinner').spinner({
 		strokeWidth: 5,
@@ -659,22 +711,6 @@ jQuery(document).ready(function(){
 			}
 
 		});
-
-		function changeTopTitle(){
-			jQuery('.block_containermsm .listitem').on('click', function(){
-				var title = jQuery(this).attr('data-name');
-				var title2 = jQuery(this).attr('data-title');
-				var img = jQuery(this).find('img').attr('src');
-				if( jQuery(window).width() < 1120 ){
-					jQuery('.block_containermsm').animate({ scrollLeft: jQuery('.halfgrid').width() });
-					jQuery('#new_item').hide();
-				}
-				jQuery('.msmtopname label').text(title);
-				jQuery('.msmtopname label').attr('title', title2);
-				jQuery('img#msm_userimg').attr('src' , img );
-				changeLetterColor();
-			});
-		}
 
 		changeTopTitle();
 

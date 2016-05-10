@@ -3,26 +3,53 @@ extends layout
 block content
 		script( type='text/javascript' src='/ajax/ajaxProfile.js' )
 
-		.float_buttoncontainer( title='Editar Perfil' )
+		#new_item.float_buttoncontainer( title='Editar Perfil' )
 			span.bg_edit.bgaccent_color
+
+		.hidden_blockcontainer
+			.hidden_blockback.bgaccent_color
+			.hidden_block.bg_white
+				span.close.bg_close.rippleria-dark( data-rippleria )
+				.colhh1.bgprimary_color
+					.colhh1.pd_8.bgprimary_colorDarker
+					.pd_18.form_title.white_text Editar Perfil
+				form.colhh1.hb_formcontainer(action='/updateProfilePhotoBack' method='POST')
+					#new_profileback.colhh1.profile_bgcont
+						#p_back.colhh1.profile_img.inbox_shadow
+							.f_select.pd_18.autooverflow
+								.input_filecontainer
+									input#input_pBack(type='file' name='updateProfileBack' accept='image/*')
+								#selectBack.autocol.hover.trigger.borad.white_text
+									span.small_icon.bg_camera.v_middle
+									.autocol.v_middle.b_text(style='margin-left: -5px;')
+										.pd_8 Actualizar portada
+											span.pd_4
+							.f_select
+								.input_filecontainer
+									input#input_pPhoto(type='file' name='updateProfilePhoto' accept='image/*')
+								#selectPhoto.photo.rel_pos
+									img#p_img.circle(src='images/profilephoto.png')
+									.photo_hiddenbutton.trigger.circle.bg_camera(title='Seleccionar imagen')
+						.pd_24
+							.colhh1
+								.name
+									div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
+									span #{datos[0].userEmail}
+						.pd_12
+							.autooverflow
+								span.raised_button.right_float.rippleria-dark#close_hbl(data-rippleria)
+									input.txt_red.b_text(type='button' value='Cancelar')
+								span.raised_button.right_float.rippleria-dark(data-rippleria)
+									input.txtprimary_color.b_text(type='submit' value='Guardar cambios')
 
 		.topspace
 		.page_container
 			.grid_profilebackgroundcontainer
-				.block_container.bg_white.profile_bgcont
+				.block_container.bg_white.profile_bgcont.rel_pos
 					.colhh1.profile_img
-						.pd_18(style='height:20px;')
-							.minimenu_container( title='Opciones' )
-								.minimenu
-									span
-									span
-									span
-								.minimenu_hidden.left
-									#profile_photo.pd_16.hover.rippleria-dark(data-rippleria) Foto de Perfil
-									#profile_back.pd_16.hover.rippleria-dark(data-rippleria) Portada
 						.photo
 							img.circle( src='images/profilephoto.png' )
-					.pd16_24
+					.pd_24
 						.colhh1
 							.name
 								div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
@@ -50,39 +77,7 @@ block content
 										| Contactos
 									.pd_4.lighttext#countContacts(style='font-size: 21px;')
 										| 9
-				.form_profilephoto.block_container.bg_white.profile_hideitem
-					.colhh1
-						.pd_18.ll_title.rel_pos Foto de Perfil
-							span.hover.circle.close_pimg.right_float.small_icon.bg_cross(tile='Cerrar')
-					.colhh1
-						.pd_24
-							.form_input.f_select
-								.input_filecontainer
-									input(type='file' name='attachedfilepPhoto' id='attachedfilepPhoto')
-								.file_buttoncontainer
-									span.trigger.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
-									.right_float
-										.f_value.ll_title.opacity_color.border_t Seleccionar Archivo
-							.form_input(style='height: 52px;')
-								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
-									input(type='submit' value='')
-				.form_profileback.block_container.bg_white.profile_hideitem
-					.colhh1
-						.pd_18.ll_title.rel_pos Portada
-							span.hover.circle.close_pimg.right_float.small_icon.bg_cross(tile='Cerrar')
-					.colhh1
-						.pd_24
-							.form_input.f_select
-								.input_filecontainer
-									input(type='file' name='attachedfileBImg' id='attachedfilebImg')
-								.file_buttoncontainer
-									span.trigger.bg_attachment_white.circle.bgaccent_color3.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
-									.right_float
-										.f_value.ll_title.opacity_color.border_t Seleccionar Archivo
-							.form_input(style='height: 52px;')
-								span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
-									input(type='submit' value='')
-
+										
 				if privilegio != 3
 					.block_container.bg_white.progress_profile
 						.pd_18.ll_title.bg_lightgray

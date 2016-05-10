@@ -126,7 +126,7 @@ socket.on('mostrar', function(data){
     if(lastLeftMsm > 0){
         container.find('.msm_block:last-child').find('.msm_text')
             .append('<div class="colhh1 autooverflow">'
-                    +   '<div class="leftmsm bg_blue white_text">'
+                    +   '<div class="leftmsm bg_blue white_text" data-user="' + data.userEmail + '">'
                     +       '<div class="pd_12"> '
                     +           htmlspecialchars(data.messageText)
                     +           '<span class="msm_date">'
@@ -143,7 +143,7 @@ socket.on('mostrar', function(data){
                         +   '</div>'
                         +   '<div class="msm_text">'
                         +       '<div class="colhh1 autooverflow">'
-                        +           '<div class="leftmsm bg_blue white_text">'
+                        +           '<div class="leftmsm bg_blue white_text" data-user="' + data.userEmail + '">'
                         +               '<i></i>'
                         +               '<div class="pd_12"> '
                         +                   htmlspecialchars(data.messageText)

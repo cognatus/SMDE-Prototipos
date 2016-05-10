@@ -337,9 +337,16 @@ exports.getPublicationsDatabase = function(req, res){
                                  +       '<div class="pd_llist">'
                                  +         '<div class="pd_4"></div>'
                                  +         '<div class="sl_title">Comentarios</div>'
-                                 +         '<div class="pd_16 justify_text breakword border_bottom">' + item.pubText
-                                 +           '<div class="pd_4"></div>'
-                                 +         '</div>'
+                                if(item.pubText != null || item.pubText != ''){
+                                	publicationsData += '<div class="pd_16 justify_text breakword border_bottom">' + item.pubText
+                                 					 +		'<div class="pd_4"></div>'
+                                 					 +	'</div>'
+                                }
+                                else{
+                                	publicationsData += '<div class="pd_16 opacity_color b_text border_bottom">'
+                                					 +	'Sin Comentarios<div class="pd_4"></div>'
+                                					 + 	'</div>'
+                                }
                                  +       '</div>'
                                  + 		 '<div class="pd_llist">'
 	                             +     		'<div class="pd_4"></div>'
