@@ -13,17 +13,14 @@ jQuery(document).ready(function(){
         var dd = today.getDate();
         var mm = today.getMonth()+1;//ENERO ES EL 0
         var yyyy = today.getFullYear();
-
         if( dd < 10 ){ dd = '0' + dd; }
         if( mm < 10 ){ mm = '0' + mm; }
 
         var yesterday = new Date(today);
         yesterday.setDate(today.getDate() - 1);
-
         var ddYest = yesterday.getDate();
         var mmYest = yesterday.getMonth()+1;//ENERO ES EL 0
         var yyyyYest = yesterday.getFullYear();
-
         if( ddYest < 10 ){ ddYest = '0' + ddYest; }
         if( mmYest < 10 ){ mmYest = '0' + mmYest; }
 
@@ -118,7 +115,7 @@ function showPublications(){
                     },
                     success: function(data2) {
                         button.hide();
-                        if(data2.length != 0){
+                        if(data2.length > 0){
                             container.append(data2);
                         }
                         else{
@@ -151,3 +148,10 @@ function showSubjectsCourses(){
         }
     });
 }
+
+/*function fileChange(){
+    var files = document.getElementById("attachedfile").files;
+    for (var i = 0; i < files.length; i++){
+        alert(files[i].name);
+    }
+}*/

@@ -59,8 +59,8 @@ block content
 									textarea(placeholder='Añade un Comentario' name='formCalendarComment')
 								- if (privilegio == 2)
 									.form_input.f_select
-										.input_filecontainer
-											input(type='file' name='attachedfilePost' id='attachedfile' value='')
+										.input_filecontainer(style='display: block;')
+											input(type='file' name='publicationAttachedFiles' multiple='multiple')
 										.file_buttoncontainer
 											span.trigger.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 											.right_float

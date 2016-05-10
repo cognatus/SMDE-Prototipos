@@ -178,7 +178,7 @@ function showLobbies(){
         url: 'getLobbiesDatabase',
         cache: true,
         success: function(data) {
-            if(data.length != 0){
+            if(data.length > 0){
                 jQuery('#lobbiesData').html(data);
             }
             else{

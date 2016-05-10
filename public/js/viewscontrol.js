@@ -411,7 +411,16 @@ jQuery(document).on('ready' ,function(){
 	var origText = jQuery('.f_value').text();
 	
 	jQuery('.f_select input[type="file"]').on('change' , function(){
-		var fileValue = jQuery(this).val();
+		var fileValue = '';
+		var files = jQuery(this)[0].files;
+		for (var i = 0; i < files.length; i++){
+			if(i < files.length - 1){
+		    	fileValue += files[i].name + ', ';
+			}
+			else{
+				fileValue += files[i].name;
+			}
+		}
 		jQuery(this).parents('.f_select').find('.f_value').text( fileValue );
 		if( fileValue != ''){
 			jQuery(this).parents('.f_select').find('.f_value').addClass('border_accentcolor');

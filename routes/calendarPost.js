@@ -2,6 +2,7 @@ var base;
 var stringQuery = '';
 
 var htmlspecialchars = require('htmlspecialchars');
+var fs = require('fs');
 
 exports.constructor = function (basee) {
 	base = basee;
@@ -70,7 +71,7 @@ exports.insertPublication = function(req, res){
 	var pubId = 'pUb' + Math.floor((Math.random() * 596501699) + 16985689) + '' + time;
 	var publicationTitle = req.body.formCalendarTitle;
 	var publicationText  = req.body.formCalendarComment;
-	var attachedFile = req.body.attachedfilePost;
+	var attachedFile = req.files.publicationAttachedFiles;
 
 	//OBTENERMOS EL CURSO AL QUE QUEREMOS PUBLICAR
 	var subCourseString = req.body.calendarCourseSelectField;
@@ -99,13 +100,35 @@ exports.insertPublication = function(req, res){
 					//		 idSubject 		  	  idCourse
 					+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
 
-	if(attachedFile != null || attachedFile.trim() != ''){
+
+	// AGREGAR LOS ARCHIVOS AL SERVIDOR Y SUS NOMBRES A LA BASE DE DATOS
+	if(attachedFile.length > 0){
+		req.files.publicationAttachedFiles.forEach(function (element, index, array) {
+	    	fs.readFile(element.path, function (err, data) {
+	    		var newPath = __dirname + '/public/publications/' + req.session.datos[0].idTeacher + '/' + element.name;
+	   			fs.writeFile(newPath, data, function (err) {
+	         		if(err) {
+	        			console.log(err);
+	       			}
+	       			else{
+	       				stringQuery += 'INSERT INTO publicationAttachedFile' 
+									+ ' (idPublicationAttachedFile, publicationAttachedNameFile, Publication_idPublication)'
+									+ ' VALUES (UUID(),'
+									+ ' "' + element.name + '",'
+									+ ' "' + pubId + '");';
+	       			}
+	    		});
+	    	});
+	    });
+	}
+
+	/*if(attachedFile != null || attachedFile.trim() != ''){
 		stringQuery += 'INSERT INTO publicationAttachedFile' 
 					+ ' (idPublicationAttachedFile, publicationAttachedNameFile, Publication_idPublication)'
 					+ ' VALUES (UUID(),'
 					+ ' "' + attachedFile + '",'
 					+ ' "' + pubId + '");';
-	}
+	}*/
 
 	stringQuery += 'COMMIT;'
 
