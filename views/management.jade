@@ -192,7 +192,7 @@ block content
 				.colhh1.profile_img
 					.photo
 						a(href='/profile')
-							img.circle( src='images/profilephoto.png' )
+							img.circle.flat_shadow( src='images/profilephoto.png' )
 				.pd_24
 					.colhh1
 						.name
@@ -204,17 +204,17 @@ block content
 					.colhh1.rel_pos
 						.h_listline.bgaccent_color
 						#mgm_filter.h_listtopcontainer
-							.h_listitem.first(data-filter='Administrador')
+							.autocol.h_listitem.first(data-filter='Administrador')
 								.pd_16.rippleria-dark( data-rippleria ) Administradores
-							.h_listitem(data-filter='Alumno')
+							.autocol.h_listitem(data-filter='Alumno')
 								.pd_16.rippleria-dark( data-rippleria ) Alumnos
-							.h_listitem(data-filter='Profesor')
+							.autocol.h_listitem(data-filter='Profesor')
 								.pd_16.rippleria-dark( data-rippleria ) Profesores
-							.h_listitem(data-filter='Academia')
+							.autocol.h_listitem(data-filter='Academia')
 								.pd_16.rippleria-dark( data-rippleria ) Academias
-							.h_listitem(data-filter='Asignatura')
+							.autocol.h_listitem(data-filter='Asignatura')
 								.pd_16.rippleria-dark( data-rippleria ) Asignaturas
-							.h_listitem(data-filter='Grupo')
+							.autocol.h_listitem(data-filter='Grupo')
 								.pd_16.rippleria-dark( data-rippleria ) Grupos
 
 				.mgm_listcontainer
@@ -277,3 +277,9 @@ block content
 							.load_container
 								.load
 									.spinner
+									
+			.colhh1(style='height: 128px;')
+			footer.colhh1.bg_white.flat_shadow
+				.pd_18.ll_title.opacity_color.b_text
+					span.small_icon.bg_logo.v_middle
+					.autocol.v_middle SMDE - 2016

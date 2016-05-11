@@ -202,7 +202,6 @@ jQuery(document).on('ready' ,function(){
 	jQuery('.h_listindex.first').show();	
 
 	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').width() );
-	jQuery('.h_listitem.first').trigger('click');
 
 	if(jQuery(window).width() >= 1120){
 		jQuery('.mgmlisthor .h_listline').css('height' , jQuery('.mgmlisthor .h_listitem.first').outerHeight() );

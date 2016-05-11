@@ -72,7 +72,7 @@ block content
 					.colhh1.profile_img
 						.photo
 							a(href='/profile')
-								img.circle( src='images/profilephoto.png' )
+								img.circle.flat_shadow( src='images/profilephoto.png' )
 					.pd_24
 						.colhh1
 							.name
@@ -123,13 +123,13 @@ block content
 
 				- else if ( privilegio == 2 )
 					.h_listcontainer
-						.block_container.rel_pos.top_hlist(style='box-shadow: none;')
+						.block_container.rel_pos.top_hlist.bg_lightgray(style='box-shadow: none;')
 							.colhh1.rel_pos
 								.h_listline.bgaccent_color
 								.h_listtopcontainer
-									.h_listitem.first
+									.autocol.h_listitem.first
 										.pd_16.rippleria-dark( data-rippleria ) Cursos
-									.h_listitem
+									.autocol.h_listitem
 										.pd_16.rippleria-dark( data-rippleria ) Alumnos
 						.colhh1
 							.colhh1.h_listindex.first
@@ -149,42 +149,17 @@ block content
 										input#search_block(type='text',name='buscar', placeholder='Buscar un alumno')
 								#listcontainer.listcontainer
 									.colhh1.no_result.bg_white
-									.colhh1.empty_blocktext.center_text
-										.pd_64
-											span.v_middle(style= 'background-image: url("images/account-remove.png")')
-											.autocol.pd_12.mm_title No tienes alumnos.
+									.block_container.bg_white
+										.colhh1.empty_blocktext.center_text
+											.pd_64
+												span.v_middle(style= 'background-image: url("images/account-remove.png")')
+												.autocol.pd_12.mm_title No tienes alumnos.
 									#profilecontacts_list
 										.students
-									//- if profileContactsStudents != undefined
-									//- 	each item in profileContactsStudents
-									//- 		.colhh1.block_container.bg_white(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
-									//- 			.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria)
-									//- 				a(href='/messages')
-									//- 					.listitem_righticon.circle.bg_editgray.rippleria-dark(data-rippleria title='Calificar')
-									//- 				.listitem_img
-									//- 					img(src='images/profilephoto.png')
-									//- 				.listitem_info
-									//- 					.listitem_title 
-									//- 						b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-									//- 					.listitem_bottomdata Alumno
-									//- 			.colhh1(data-id='#{item.userEmail}')
-									//- 				.list_borderleft
-									//- 					.colhh1
-									//- 						.pd_llist
-									//- 							.sl_title Información
-									//- 						.pd_llist
-									//- 							.colhh1.pd_l12.sl_title Correo: 
-									//- 								span.margin_l.normal_txt #{item.userEmail}
-									//- 					.pd_8
-									//- 					.colhh1
-									//- 						.pd_llist
-									//- 							.sl_title Cursos en común
-									//- 						.person_subjectslist
-									//- 							//- .colhh1.hover
-									//- 							//- 	.listitem_img
-									//- 							//- 		span B
-									//- 							//- 	.listitem_info
-									//- 							//- 		.listitem_title 
-									//- 							//- 			b #{item.subjectName}
-									//- 							//- 		.listitem_bottomdata
-									//- 							//- 			| Grupo: #{item.courseName}
+											//-Aqui se agregan los alumnos que coinciden con el profesor
+
+			.colhh1(style='height: 128px;')
+			footer.colhh1.bg_white.flat_shadow
+				.pd_18.ll_title.opacity_color.b_text
+					span.small_icon.bg_logo.v_middle
+					.autocol.v_middle SMDE - 2016

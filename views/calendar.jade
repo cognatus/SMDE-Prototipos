@@ -148,20 +148,20 @@ block content
 					//- 			.ll_title#calendar_bgtitle
 
 				.calendar_allr.v_top
-					.colhh1
+					.colhh1.h_listcontainer
 						- if ( privilegio == 1 || privilegio == 2)
 							.colhh1.block_container.subl_top(style='box-shadow: none;')
 								.colhh1.b_text.opacity_color.center_text.uppercase
-									.colhh2.hover.cal_showtype(data-show='Publicación')
-										.pd_16.bg_opc
+									.autocol.hover.h_listitem.cal_showtype.first
+										.pd16_24.bg_opc
 											| Publicaciones
-									.colhh2.hover.cal_showtype(data-show='Recordatorio')
-										.pd_16
+									.autocol.hover.h_listitem.cal_showtype
+										.pd16_24
 											| Recordatorios
 						.colhh1
 							#calendar_list
 								- if(privilegio != 3)
-									.listcontainer.calendar_postcontainer(data-type='Publicación')
+									.listcontainer.h_listindex.first
 										.block_container.empty_blocktext.center_text.bg_white
 											.pd_64
 												span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
@@ -172,99 +172,37 @@ block content
 													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
 										#publiclist_container.colhh1
 											//- Aqui se añaden las publicaciones
-					
-										//- if publicationsData != undefined
-										//- 	each item in publicationsData
-										//- 		.colhh1.block_container.bg_white.cal_post(data-name='#{item.pubTitle}' data-date='#{item.pubLimDate}' data-datepost='#{item.pubDate}')
-										//- 			.colhh1.list_leftitem(style='padding-top: 2px;margin-bottom: 16px;')
-										//- 				.listitem_img
-										//- 					img(src='images/profilephoto.png' title='#{item.userEmail}')
-										//- 				.listitem_info
-										//- 					.listitem_rightinfo(title=' Publicado el #{item.pubDate} a las #{item.pubTime}')
-										//- 						label.item_date #{item.pubDate}
-										//- 						label.item_time #{item.pubTime}
-										//- 					.listitem_title(title='#{item.userEmail}')  
-										//- 						b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-										//- 					.listitem_bottomdata #{item.pubTitle}
-										//- 			.pd_lr8
-										//- 				.pd_llist
-										//- 					.sl_title Asunto: 
-										//- 						span.margin_l.normal_txt #{item.pubTitle}
-										//- 					.pd_4
-										//- 					.sl_title Asignatura: 
-										//- 						span.margin_l.normal_txt #{item.subjectName}
-										//- 					.pd_4
-										//- 					.sl_title Grupo: 
-										//- 						span.margin_l.normal_txt #{item.courseName}
-										//- 					.pd_4
-										//- 					.sl_title Entrega: 
-										//- 						span.margin_l.normal_txt #{item.pubLimDate} a las #{item.pubLimTime}
-										//- 					.pd_12.border_bottom
-										//- 				.pd_llist
-										//- 					.pd_4
-										//- 					.sl_title Comentarios
-										//- 					.pd_16.justify_text.breakword.border_bottom
-										//- 						| #{item.pubText}
-										//- 						.pd_4
-										//- 				.pd_llist
-										//- 					.pd_4
-										//- 					.sl_title Archivos Adjuntos
-										//- 					.pd_4
-										//- 				.attached_filecontainer.autooverflow.pd_lr8(style='margin-bottom: 18px;')
-										//- 					span.v_middle.bg_file.bg_blue.borad
-										//- 					div.v_middle.sl_title.opacity_color #{item.publicationAttachedNameFile}
-										//- 					span.right_float.bg_download.hover.rippleria-dark(data-rippleria title='Descargar')
-										//- 			.pd10_16.listitemactions.bg_lightgray
-										//- 				- if ( privilegio == 2 )
-										//- 					.autocol.txtprimary_color.sl_title.underline(style='margin-top: 11px;') Mostrar Respuestas
-										//- 				.autocol.right_float
-										//- 					- if ( privilegio == 1 )
-										//- 						span.circle.bg_reply.hover(title='Responder')
-										//- 					- if ( privilegio == 2 )
-										//- 						span.circle.bg_editgray.hover(title='Editar')
-										//- 					span.circle.bg_archive.hover(title='Archivar')
-										//- 					- if ( privilegio == 2 )
-										//- 						span.circle.bg_delete.hover(title='Eliminar')
-								.listcontainer.calendar_postcontainer(data-type='Recordatorio')
-									.block_container.empty_blocktext.center_text.bg_white
-										.pd_64
-											span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
-											.autocol.mm_title.pd_12.dayempty No hay Recordatorios
-											- if (privilegio == 1 || privilegio == 3) 
-												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
-											- if (privilegio == 2)
-												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
-									#remindlist_container.colhh1
-										//- Aqui se añaden los recordatorios
+
+									.listcontainer.h_listindex
+										.block_container.empty_blocktext.center_text.bg_white
+											.pd_64
+												span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
+												.autocol.mm_title.pd_12.dayempty No hay Recordatorios
+												- if (privilegio == 1 || privilegio == 3) 
+													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
+												- if (privilegio == 2)
+													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
+										#remindlist_container.colhh1
+											//- Aqui se añaden los recordatorios
+
+								- if(privilegio == 3)
+									.listcontainer.h_listindex.first
+										.block_container.empty_blocktext.center_text.bg_white
+											.pd_64
+												span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
+												.autocol.mm_title.pd_12.dayempty No hay Recordatorios
+												- if (privilegio == 1 || privilegio == 3) 
+													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
+												- if (privilegio == 2)
+													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
+										#remindlist_container.colhh1
+											//- Aqui se añaden los recordatorios
 										
-									//- if remindersData != undefined
-									//- 	each item in remindersData
-									//- 		.colhh1.block_container.bg_white.cal_post(data-name='#{item.reminderTitle}'  data-date='#{item.reminderLimDate}' data-datepost='#{item.reminderDate}')
-									//- 			.colhh1.list_leftitem(style='padding-top: 2px;margin-bottom: 16px;')
-									//- 				.listitem_img
-									//- 					span A
-									//- 				.listitem_info
-									//- 					.listitem_rightinfo(title=' Publicado el #{item.reminderDate} a las #{item.reminderTime}')
-									//- 						label.item_date #{item.reminderDate}
-									//- 						label.item_time #{item.reminderTime}
-									//- 					.listitem_title 
-									//- 						b #{item.reminderTitle}
-									//- 					.listitem_bottomdata Recordatorio
-									//- 			.pd_lr8
-									//- 				.pd_llist
-									//- 					.sl_title Fecha Límite: 
-									//- 						span.margin_l.normal_txt #{item.reminderLimDate} a las #{item.reminderLimTime}
-									//- 					.pd_8.border_bottom
-									//- 				.pd_llist
-									//- 					.pd_4
-									//- 					.sl_title Comentarios
-									//- 					.pd_16.justify_text.breakword
-									//- 						| #{item.reminderText}
-									//- 			.pd10_16.listitemactions.bg_lightgray
-									//- 				.autocol.right_float
-									//- 					span.circle.bg_editgray.hover(title='Editar')
-									//- 					span.circle.bg_archive.hover(title='Archivar') 
-									//- 					span.circle.bg_delete.hover(title='Eliminar')
 								.colhh1.load_container#calendar_showall
 									.load
 										.spinner
+			.colhh1(style='height: 128px;')
+			footer.colhh1.bg_white.flat_shadow
+				.pd_18.ll_title.opacity_color.b_text
+					span.small_icon.bg_logo.v_middle
+					.autocol.v_middle SMDE - 2016

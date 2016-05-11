@@ -1,5 +1,7 @@
 @media screen and (min-width: 640px){
 
+	footer{position: absolute;bottom: 0;margin: 0;}
+
 	.index_container .colhh3{width: 50%;display: inline-block;}
 
 	.colhh4{width: 50%;display: inline-block;}
@@ -137,13 +139,17 @@
 		display: inline-block;
 	}
 
+	.minimenu_hidden{
+		padding: 8px 0 8px 0;
+		font-size: 15px;
+		min-width: 170px;
+	}
+
+	.minimenu_hidden .pd_16.hover{padding: 11px 32px 11px 21px;}
+
 	.empty_blocktext .pd_64{
 		padding-left: 64px;
 		padding-right: 64px;
-	}
-
-	.block_container.progress_profile{
-		margin-bottom: 80px;
 	}
 
 	.grid_profilebackgroundcontainer{
@@ -211,7 +217,7 @@
 		display: none;
 	}
 
-	.top_hlist{margin-bottom: -4px;}
+	.top_hlist{margin-bottom: -4px;background-color: transparent;}
 
 	.top_hlist .h_listtopcontainer, .subl_top .opacity_color{color: #fff;}
 
@@ -242,7 +248,7 @@
 
 	.calendar_allr{width: calc(100% - 498px);margin-left: 18px;display: inline-block;}
 
-	.mgmlisthor{display: inline-block;width: 280px;position: absolute;}
+	.mgmlisthor{display: inline-block;width: 280px;}
 
 	.mgmlisthor .h_listline{height: 49px;width: 3px;top: 0;}
 
@@ -261,6 +267,6 @@
 
 	.mgmlisthor .h_listitem .pd_16{padding: 13px 18px 13px 21px;}
 
-	.mgm_listcontainer{display: inline-block;width: calc(100% - 296px);margin-left: 296px;}
+	.mgm_listcontainer{display: inline-block;width: calc(100% - 296px);margin-left: 16px;}
 
 }

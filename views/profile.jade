@@ -28,7 +28,7 @@ block content
 								.input_filecontainer
 									input#input_pPhoto(type='file' name='updateProfilePhoto' accept='image/*')
 								#selectPhoto.photo.rel_pos
-									img#p_img.circle(src='images/profilephoto.png')
+									img#p_img.circle.flat_shadow(src='images/profilephoto.png')
 									.photo_hiddenbutton.trigger.circle.bg_camera(title='Seleccionar imagen')
 						.pd_24
 							.colhh1
@@ -48,7 +48,7 @@ block content
 				.block_container.bg_white.profile_bgcont.rel_pos
 					.colhh1.profile_img
 						.photo
-							img.circle( src='images/profilephoto.png' )
+							img.circle.flat_shadow( src='images/profilephoto.png' )
 					.pd_24
 						.colhh1
 							.name
@@ -97,15 +97,15 @@ block content
 
 			.grid_rightcontainer
 				.colhh1.h_listcontainer
-					.rel_pos.block_container.top_hlist(style='box-shadow: none;')
+					.rel_pos.block_container.top_hlist.bg_lightgray(style='box-shadow: none;')
 						.h_listline.bgaccent_color
 						.h_listtopcontainer
-							.h_listitem.first
+							.autocol.h_listitem.first
 								.pd_16.rippleria-dark( data-rippleria ) Información
-							.h_listitem
+							.autocol.h_listitem
 								.pd_16.rippleria-dark( data-rippleria ) Contactos
 							- if(privilegio == 1 || privilegio== 2)
-								.h_listitem
+								.autocol.h_listitem
 									.pd_16.rippleria-dark( data-rippleria ) Cursos
 
 					.colhh1.h_listindex.first
@@ -158,99 +158,8 @@ block content
 									.students
 										//- Aqui se agregan los alumnos con el front
 									.teachers
-										//- Aqui se agregan los profes con el front
-										
-								//- if profileContactsAdministrators != undefined
-								//- 	each item in profileContactsAdministrators
-								//- 		.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Administrador')
-								//- 			.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria)
-								//- 				a(href='/messages')
-								//- 					.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje a #{item.userName}')
-								//- 				.listitem_img
-								//- 					img(src='images/profilephoto.png')
-								//- 				.listitem_info
-								//- 					.listitem_title 
-								//- 						b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-								//- 					.listitem_bottomdata Administrador
-								//- 			.colhh1.innerlistitem(data-id='#{item.userEmail}')
-								//- 				.colhh1.border_bottom
-								//- 					.list_borderleft
-								//- 						.colhh1
-								//- 							.pd_llist
-								//- 								.sl_title Información
-								//- 							.pd_llist
-								//- 								.colhh1.pd_l12.sl_title Correo: 
-								//- 									span.margin_l.normal_txt #{item.userEmail}
-								//- if profileContactsStudents != undefined
-								//- 	each item in profileContactsStudents
-								//- 		.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Alumno')
-								//- 			.colhh1.hover.listitem.rel_pos.rippleria-dark.item_student(data-rippleria)
-								//- 				a(href='/messages')
-								//- 					.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
-								//- 				.listitem_img
-								//- 					img(src='images/profilephoto.png')
-								//- 				.listitem_info
-								//- 					.listitem_title 
-								//- 						b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-								//- 					.listitem_bottomdata Alumno
-								//- 			.colhh1.innerlistitem(data-id='#{item.userEmail}')
-								//- 				.colhh1.border_bottom
-								//- 					.list_borderleft
-								//- 						.colhh1
-								//- 							.pd_llist
-								//- 								.sl_title Información
-								//- 							.pd_llist
-								//- 								.colhh1.pd_l12.sl_title Correo: 
-								//- 									span.margin_l.normal_txt #{item.userEmail}
-								//- 						- if (privilegio == 1 || privilegio == 2)
-								//- 							.pd_8
-								//- 							.colhh1
-								//- 								.pd_llist
-								//- 									.sl_title Cursos en común
-								//- 								.person_subjectslist
-								//- 									.colhh1.hover
-								//- 										.listitem_img
-								//- 											span B
-								//- 										.listitem_info
-								//- 											.listitem_title 
-								//- 												b #{item.subjectName}
-								//- 											.listitem_bottomdata
-								//- 												| Grupo: #{item.courseName}
-								//- if profileContactsTeachers != undefined
-								//- 	each item in profileContactsTeachers
-								//- 		.colhh1.slide_list(data-name='#{item.userName} #{item.userLastName} #{item.userSecondLastName}' data-type='Profesor')
-								//- 			.colhh1.hover.listitem.rel_pos.rippleria-dark.item_teacher(data-rippleria)
-								//- 				a(href='/messages')
-								//- 					.listitem_righticon.circle.bg_chat.rippleria-dark(data-rippleria title='Enviar Mensaje')
-								//- 				.listitem_img
-								//- 					img(src='images/profilephoto.png')
-								//- 				.listitem_info
-								//- 					.listitem_title 
-								//- 						b #{item.userName} #{item.userLastName} #{item.userSecondLastName}
-								//- 					.listitem_bottomdata Profesor
-								//- 			.colhh1.innerlistitem(data-id='#{item.userEmail}')
-								//- 				.colhh1.border_bottom
-								//- 					.list_borderleft
-								//- 						.colhh1
-								//- 							.pd_llist
-								//- 								.sl_title Información
-								//- 							.pd_llist
-								//- 								.colhh1.pd_l12.sl_title Correo: 
-								//- 									span.margin_l.normal_txt #{item.userEmail}
-								//- 						- if (privilegio == 1 || privilegio == 2)
-								//- 							.pd_8
-								//- 							.colhh1
-								//- 								.pd_llist
-								//- 									.sl_title Cursos en común
-								//- 								.person_subjectslist
-								//- 									.colhh1.hover
-								//- 										.listitem_img
-								//- 											span B
-								//- 										.listitem_info
-								//- 											.listitem_title 
-								//- 												b #{item.subjectName}
-								//- 											.listitem_bottomdata
-								//- 												| Grupo: #{item.courseName}
+										//- Aqui se agregan los profes con el front		
+								
 					- if (privilegio == 1 || privilegio == 2)
 						.colhh1.h_listindex.courses_cl
 							.colhh1
@@ -261,3 +170,9 @@ block content
 											.autocol.pd_12.mm_title No tienes ninguna asignatura.
 									#profilecourses_list
 									//- Aqui se agrega la lista de asignaturas
+									
+			.colhh1(style='height: 128px;')
+			footer.colhh1.bg_white.flat_shadow
+				.pd_18.ll_title.opacity_color.b_text
+					span.small_icon.bg_logo.v_middle
+					.autocol.v_middle SMDE - 2016

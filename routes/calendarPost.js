@@ -347,7 +347,7 @@ exports.getPublicationsDatabase = function(req, res){
                                 					 +	'Sin Comentarios<div class="pd_4"></div>'
                                 					 + 	'</div>'
                                 }
-                                 +       '</div>'
+                publicationsData +=       '</div>'
                                  + 		 '<div class="pd_llist">'
 	                             +     		'<div class="pd_4"></div>'
 	                             +     		'<div class="sl_title">Archivos Adjuntos</div>'
