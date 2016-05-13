@@ -94,14 +94,15 @@ exports.insertStudent = function(req, res){
 	stringQuery = 'BEGIN;';
 
 	stringQuery += 'INSERT INTO User'
-				+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES ('
+				+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute, photoName) VALUES ('
 				+ '"' + userEmail + '", '
 				+ '"' + userName + '", '
 				+ '"' + userLastName + '", '
 				+ '"' + userSecondLastName + '", '
 				+ '"' + userSex + '", '
 				+ '"' + userPassword + '", '
-				+ '"' + userInstitute + '");';
+				+ '"' + userInstitute + '", '
+				+ 'UUID());';
 
 	stringQuery += 'INSERT INTO Student (idStudent, User_userEmail)'
 				+' VALUES (UUID(), '
@@ -141,14 +142,15 @@ exports.insertTeacher = function(req, res){
 	stringQuery = 'BEGIN;';
 
 	stringQuery += 'INSERT INTO User'
-	 			+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES ('
+	 			+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute, photoName) VALUES ('
 	 			+ '"' + userEmail + '", '
 	 			+ '"' + userName + '", '
 	 			+ '"' + userLastName + '", '
 	 			+ '"' + userSecondLastName + '", '
 	 			+ '"' + userSex + '", '
 	 			+ '"' + userPassword + '", '
-	 			+ '"' + userInstitute + '");';
+	 			+ '"' + userInstitute + '", '
+	 			+ 'UUID());';
 
 	stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail)'
 				+ ' VALUES (UUID(), '

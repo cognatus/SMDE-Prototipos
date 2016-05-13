@@ -3,11 +3,10 @@ var stringQuery = '';
 
 var htmlspecialchars = require('htmlspecialchars');
 var forEach = require('async-foreach').forEach;
-
-var sys = require('sys'),
-    fs = require('fs'),
-    path = require('path'),
-    bytes = require('bytes');
+var sys = require('sys');
+var fs = require('fs');
+var path = require('path');
+var bytes = require('bytes');
 
 exports.constructor = function (basee) {
 	base = basee;
@@ -102,6 +101,8 @@ exports.insertPublication = function(req, res){
 				+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
 
 	console.log(req.files);
+
+	path.join(__dirname, 'public/publications/' + req.session.datos[0].idTeacher.toString())
 
 	if(req.files && req.files.publicationAttachedFiles) {
 	    req.files.publicationAttachedFiles.forEach(function (element, index, array) {
@@ -335,7 +336,7 @@ exports.getPublicationsDatabase = function(req, res){
                                  					 +		'<div class="pd_4"></div>'
                                  					 +	'</div>'
                                 }
-                                else{
+                                else if(item.pubText == null || item.pubText.trim() == ''){
                                 	publicationsData += '<div class="pd_16 opacity_color b_text border_bottom">'
                                 					 +	'Sin Comentarios<div class="pd_4"></div>'
                                 					 + 	'</div>'
@@ -398,9 +399,12 @@ exports.getPublicationAttachedFiles = function(req, res){
 	                var item = result[i];
 	                stringData += '<div class="attached_fileinner">'
 	               				+ 	'<span class="v_middle bg_file bg_blue borad"></span>'
-				                + 	'<div class="v_middle sl_title opacity_color">' + item.publicationAttachedNameFile + '</div>'
+				                + 	'<div class="v_middle sl_title opacity_color" title="' + item.publicationAttachedNameFile + '">' + item.publicationAttachedNameFile + '</div>'
 				                + 	'<span title="Descargar" class="right_float bg_download hover" onclick="downloadAttachment(&quot;' + item.publicationAttachedNameFile + '&quot;)"></span>'
 				                + '</div>';
+				    if(i < result.length - 1){
+	                	stringData += '<div class="pd_4"></div>'
+	                }
 	            }
 	        }
 
