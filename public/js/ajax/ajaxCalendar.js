@@ -44,20 +44,23 @@ jQuery(document).ready(function(){
 
     });
 
-    jQuery('#showCourseToPost').hide();
+    jQuery('#showCourseToPost, #showAttFiles').hide();
 
     jQuery('#selectCalendarPostType').on('change', function(){
         var thisVal = jQuery(this).val();
         if (thisVal == 'reminder'){
             jQuery('form#calendarAddNew').attr('action', 'insertReminder');
-            jQuery('#showCourseToPost').hide();
+            jQuery('#showCourseToPost, #showAttFiles').hide();
         }
         if (thisVal == 'publication'){
             jQuery('form#calendarAddNew').attr('action', 'insertPublication');
-            jQuery('#showCourseToPost').fadeIn();
+            jQuery('#showCourseToPost, #showAttFiles').fadeIn();
         }
-
     });
+
+/*    jQuery('#showCoursesPost').on('change', function(){
+        alert(jQuery(this).val());
+    });*/
 
     jQuery('.cal_showtype').click(function(){
         //Cambiar el estilo para saber cual esta mostrando

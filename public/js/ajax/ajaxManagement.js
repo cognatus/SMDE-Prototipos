@@ -52,12 +52,12 @@ function showStudents(){
                         studentEmail: stuId
                     },
                     success: function(data2) {
-                        if(data2.length != 0){
-                            button.hide();
+                        button.hide();
+                        if(data2.length > 0){
                             container.append(data2);
                         }
                         else{
-                            container.append('<div class="pd_l24"><div class="pd_16 opacity_color b_text">Sin Cursos Inscritos</div></div>');
+                            container.append('<div class="pd_l8"><div class="pd_llist opacity_color b_text">Sin Cursos Inscritos</div></div>');
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -96,12 +96,12 @@ function showTeachers(){
                         teacherEmail: teaId
                     },
                     success: function(data2) {
-                        if(data2.length != 0){
-                            button.hide();
+                        button.hide();
+                        if(data2.length > 0){
                             container.append(data2);
                         }
                         else{
-                            container.append('<div class="pd_l24"><div class="pd_16 opacity_color b_text">Sin Cursos Inscritos</div></div>');
+                            container.append('<div class="pd_l8"><div class="pd_llist opacity_color b_text">Sin Cursos Inscritos</div></div>');
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {

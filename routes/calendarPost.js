@@ -2,7 +2,12 @@ var base;
 var stringQuery = '';
 
 var htmlspecialchars = require('htmlspecialchars');
-var fs = require('fs');
+var forEach = require('async-foreach').forEach;
+
+var sys = require('sys'),
+    fs = require('fs'),
+    path = require('path'),
+    bytes = require('bytes');
 
 exports.constructor = function (basee) {
 	base = basee;
@@ -55,6 +60,7 @@ exports.insertReminder = function(req, res){
 
 //FUNCION PARA INSERTAR UNA NUEVA PUBLICACIÓN
 exports.insertPublication = function(req, res){
+	var database = new base();
 
 	var now = new Date();
 	var dd = now.getDate();
@@ -65,70 +71,57 @@ exports.insertPublication = function(req, res){
 	var sec = now.getSeconds();
 	var milsec = now.getMilliseconds();
 	var time = dd + '' + mm + '' + yyyy + '' + hh + '' + min + '' + sec + '' + milsec;
-
-	var database = new base();
 	
 	var pubId = 'pUb' + Math.floor((Math.random() * 596501699) + 16985689) + '' + time;
 	var publicationTitle = req.body.formCalendarTitle;
 	var publicationText  = req.body.formCalendarComment;
-	var attachedFile = req.files.publicationAttachedFiles;
-
-	//OBTENERMOS EL CURSO AL QUE QUEREMOS PUBLICAR
-	var subCourseString = req.body.calendarCourseSelectField;
 	var day = req.body.formCalendarDay;
 	var month = req.body.formCalendarMonth;
 	var year = req.body.formCalendarYear;
 	var hour = req.body.formCalendarHour;
 	var minutes = req.body.formCalendarMinute;
-
-	//SEPARAMOS EL idSubject del idCourse POR QUE SE MANDAN EN UNA SOLA CADENA DE TEXTO
-	var subCourse = subCourseString.split('/');
-	
 	var publicationLimitDate = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':00' ;
 	var publicationOwner = req.session.datos[0].userEmail;
+	//OBTENERMOS EL CURSO AL QUE QUEREMOS PUBLICAR
+	var subCourseString = req.body.calendarCourseSelectField;
+	//SEPARAMOS EL idSubject del idCourse POR QUE SE MANDAN EN UNA SOLA CADENA DE TEXTO
+	var subCourse = subCourseString.split('/');
 
 	stringQuery = 'BEGIN;'
+
 	stringQuery += 'INSERT INTO Publication' 
-					+ ' (idPublication, pubTitle, pubText, pubDateTime, publicationLimitDate, Teacher_User_userEmail,'
-					+ ' Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
-					+ ' VALUES ("' + pubId + '",'
-					+ ' "' + htmlspecialchars(publicationTitle) + '",'
-					+ ' "' + htmlspecialchars(publicationText) + '",'
-					+ ' NOW(),'
-					+ ' "' + publicationLimitDate + '",'
-					+ ' "' + publicationOwner + '",'
-					//		 idSubject 		  	  idCourse
-					+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
+				+ ' (idPublication, pubTitle, pubText, pubDateTime, publicationLimitDate, Teacher_User_userEmail,'
+				+ ' Subject_has_Course_Subject_idSubject, Subject_has_Course_Course_idCourse)'
+				+ ' VALUES ("' + pubId + '",'
+				+ ' "' + htmlspecialchars(publicationTitle) + '",'
+				+ ' "' + htmlspecialchars(publicationText) + '",'
+				+ ' NOW(),'
+				+ ' "' + publicationLimitDate + '",'
+				+ ' "' + publicationOwner + '",'
+				//		 idSubject 		  	  idCourse
+				+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
 
+	console.log(req.files);
 
-	// AGREGAR LOS ARCHIVOS AL SERVIDOR Y SUS NOMBRES A LA BASE DE DATOS
-	if(attachedFile.length > 0){
-		req.files.publicationAttachedFiles.forEach(function (element, index, array) {
+	if(req.files && req.files.publicationAttachedFiles) {
+	    req.files.publicationAttachedFiles.forEach(function (element, index, array) {
+
+	    	stringQuery += 'INSERT INTO publicationAttachedFile'
+						+ ' (idPublicationAttachedFile, publicationAttachedNameFile, Publication_idPublication)'
+						+ ' VALUES (UUID(),'
+						+ ' "' + element.name + '",'
+						+ ' "' + pubId + '");';
+
 	    	fs.readFile(element.path, function (err, data) {
-	    		var newPath = __dirname + '/public/publications/' + req.session.datos[0].idTeacher + '/' + element.name;
-	   			fs.writeFile(newPath, data, function (err) {
-	         		if(err) {
+	    		var newPath = __dirname + '/public/publications/' + req.session.datos[0].idTeacher.toString() + '/' + element.name;
+	    		fs.writeFile(newPath, data, function (err) {
+	        		if(err) {
 	        			console.log(err);
-	       			}
-	       			else{
-	       				stringQuery += 'INSERT INTO publicationAttachedFile' 
-									+ ' (idPublicationAttachedFile, publicationAttachedNameFile, Publication_idPublication)'
-									+ ' VALUES (UUID(),'
-									+ ' "' + element.name + '",'
-									+ ' "' + pubId + '");';
-	       			}
+	        		}
 	    		});
 	    	});
 	    });
 	}
-
-	/*if(attachedFile != null || attachedFile.trim() != ''){
-		stringQuery += 'INSERT INTO publicationAttachedFile' 
-					+ ' (idPublicationAttachedFile, publicationAttachedNameFile, Publication_idPublication)'
-					+ ' VALUES (UUID(),'
-					+ ' "' + attachedFile + '",'
-					+ ' "' + pubId + '");';
-	}*/
 
 	stringQuery += 'COMMIT;'
 
@@ -141,7 +134,7 @@ exports.insertPublication = function(req, res){
 			res.render('error' , {
 				errorData: {
 					errorTitle: 'Error al insertar Publicación',
-					errorItem: ['-  Fecha Incorrecta',
+					errorItem: ['-  Fecha Incorrecta', 'No se pudieron subir los Archivos Adjuntos',
 					'-  Problemas con el Servidor'],
 					backUrl: '/calendar'
 				}
@@ -337,7 +330,7 @@ exports.getPublicationsDatabase = function(req, res){
                                  +       '<div class="pd_llist">'
                                  +         '<div class="pd_4"></div>'
                                  +         '<div class="sl_title">Comentarios</div>'
-                                if(item.pubText != null || item.pubText != ''){
+                                if(item.pubText != null || item.pubText.trim() != ''){
                                 	publicationsData += '<div class="pd_16 justify_text breakword border_bottom">' + item.pubText
                                  					 +		'<div class="pd_4"></div>'
                                  					 +	'</div>'

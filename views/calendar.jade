@@ -2,7 +2,7 @@ extends layout
 
 block content
 		script( type='text/javascript' src='/js/calendarGenerator.js' )
-		script( type='text/javascript' src='/ajax/ajaxCalendar.js' )
+		script( type='text/javascript' src='/js/ajax/ajaxCalendar.js' )
 
 		#new_item.float_buttoncontainer( title='Nuevo' )
 			span.bg_plus.bgaccent_color
@@ -13,9 +13,12 @@ block content
 				span.close.bg_close.rippleria-dark( data-rippleria )
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
-					.pd_18.form_title.white_text Nuevo
+					if privilegio != 2
+						.pd_18.form_title.white_text Nuevo Recordatorio
+					else
+						.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
-					form#calendarAddNew(name='calendarNewEvent' action='insertReminder' method='POST')
+					form#calendarAddNew(name='calendarNewEvent' action='insertReminder' method='POST' enctype='multipart/form-data')
 						.form_innercontainer
 							.form_titlepad.bgprimary_color.flat_shadow
 								.form_input.white_text.rel_pos
@@ -58,9 +61,9 @@ block content
 									.b_text Comentarios
 									textarea(placeholder='Añade un Comentario' name='formCalendarComment')
 								- if (privilegio == 2)
-									.form_input.f_select
-										.input_filecontainer(style='display: block;')
-											input(type='file' name='publicationAttachedFiles' multiple='multiple')
+									#showAttFiles.form_input.f_select
+										.input_filecontainer
+											input(type='file' multiple='multiple' name='publicationAttachedFiles')
 										.file_buttoncontainer
 											span.trigger.bg_attachment_white.circle.bgaccent_color2.flat_shadow.rippleria-dark( data-rippleria title='Adjuntar Archivo' )
 											.right_float

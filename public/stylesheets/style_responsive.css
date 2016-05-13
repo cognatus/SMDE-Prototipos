@@ -221,6 +221,8 @@
 
 	.top_hlist .h_listtopcontainer, .subl_top .opacity_color{color: #fff;}
 
+	.top_hlist .h_listline{background-color: #fff;}
+
 	.float_buttoncontainer.leftlist_floatbutton{
 		top: auto;
 		left: 378px;

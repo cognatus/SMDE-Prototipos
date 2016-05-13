@@ -201,11 +201,11 @@ jQuery(document).on('ready' ,function(){
 	jQuery('.h_listindex').hide();
 	jQuery('.h_listindex.first').show();	
 
-	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').width() );
+	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').width());
 
 	if(jQuery(window).width() >= 1120){
 		jQuery('.mgmlisthor .h_listline').css('height' , jQuery('.mgmlisthor .h_listitem.first').outerHeight() );
-		jQuery('.mgmlisthor .h_listline').css('width' , '2px');
+		jQuery('.mgmlisthor .h_listline').css('width' , '3px');
 	}
 
 	jQuery('.h_listcontainer .h_listitem').click(function(){
@@ -223,7 +223,7 @@ jQuery(document).on('ready' ,function(){
 			jQuery('.h_listitem').removeClass('vlist_bg b_text');
 			elem.addClass('vlist_bg b_text');
 			jQuery('.h_listline').animate({
-				width: '2px',
+				width: '3px',
 				left : offset.left,
 				top : oftop
 			},0);

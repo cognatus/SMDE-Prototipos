@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-		script( type='text/javascript' src='/ajax/ajaxManagement.js' )
+		script( type='text/javascript' src='/js/ajax/ajaxManagement.js' )
 			
 		#new_item.float_buttoncontainer( title='Agregar Usuario' )
 			span.bg_plus.bgaccent_color
@@ -38,8 +38,8 @@ block content
 								.form_input
 									.b_text.left_title Sexo
 									select(name='insertStudentSex')
-										option(value='H') H
-										option(value='M') M
+										option(value='H') Hombre
+										option(value='M') Mujer
 								.form_input
 									.b_text.left_title Email
 									input(type='email', placeholder='email@email.com' name='insertStudentEmail')
@@ -72,8 +72,8 @@ block content
 								.form_input
 									.b_text.left_title Sexo
 									select(name='insertTeacherSex')
-										option(value='H') H
-										option(value='M') M
+										option(value='H') Hombre
+										option(value='M') Mujer
 								.form_input
 									.b_text.left_title Email
 									input(type='email', placeholder='email@email.com' name='insertTeacherEmail')
@@ -204,7 +204,7 @@ block content
 					.colhh1.rel_pos
 						.h_listline.bgaccent_color
 						#mgm_filter.h_listtopcontainer
-							.autocol.h_listitem.first(data-filter='Administrador')
+							.autocol.h_listitem.first.vlist_bg.b_text(data-filter='Administrador')
 								.pd_16.rippleria-dark( data-rippleria ) Administradores
 							.autocol.h_listitem(data-filter='Alumno')
 								.pd_16.rippleria-dark( data-rippleria ) Alumnos

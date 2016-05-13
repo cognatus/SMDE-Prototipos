@@ -1,7 +1,7 @@
 extends layout
 
 block content
-		script( type='text/javascript' src='/ajax/ajaxProfile.js' )
+		script( type='text/javascript' src='/js/ajax/ajaxProfile.js' )
 		script( type='text/javascript' src='/js/subjectsControl.js' )
 
 		#new_item.float_buttoncontainer( title='Nueva' )
@@ -83,8 +83,26 @@ block content
 
 					.pd_16.center_text
 						.rel_pos
-							if privilegio != 3
-								.colhh1
+							if privilegio == 1
+								.colhh2
+									.pd_4.sl_title
+										| Profesores
+									.pd_4.lighttext#countContacts(style='font-size: 21px;')
+										| 9
+								.divider
+								.colhh2
+									.pd_4.sl_title
+										| Cursos
+									.pd_4.lighttext#countCourses(style='font-size: 21px;')
+										| 4
+							if privilegio == 2
+								.colhh2
+									.pd_4.sl_title
+										| Alumnos
+									.pd_4.lighttext#countContacts(style='font-size: 21px;')
+										| 9
+								.divider
+								.colhh2
 									.pd_4.sl_title
 										| Cursos
 									.pd_4.lighttext#countCourses(style='font-size: 21px;')
@@ -142,21 +160,21 @@ block content
 									#profilecourses_list
 										//- Aqui se agrega la lista de asignaturas
 									
-							#contacts_list.colhh1.h_listindex
-								.colhh1.block_container.bg_lightgray
-									.search.rel_pos
-										span.searchicon
-										input#search_block(type='text',name='buscar', placeholder='Buscar un alumno')
-								#listcontainer.listcontainer
-									.colhh1.no_result.bg_white
-									.block_container.bg_white
+							.colhh1.h_listindex.contacts_cl
+								.colhh1
+									.colhh1.block_container.bg_lightgray
+										.search.rel_pos
+											span.searchicon
+											input#search_block(type='text',name='buscar', placeholder='Buscar un alumno')
+									#listcontainer.listcontainer
 										.colhh1.empty_blocktext.center_text
 											.pd_64
 												span.v_middle(style= 'background-image: url("images/account-remove.png")')
-												.autocol.pd_12.mm_title No tienes alumnos.
-									#profilecontacts_list
-										.students
-											//-Aqui se agregan los alumnos que coinciden con el profesor
+												.autocol.pd_12.mm_title No tienes contactos.
+										.colhh1.no_result.bg_white
+										#profilecontacts_list
+											.students
+												//- Aqui se agregan los alumnos con el front
 
 			.colhh1(style='height: 128px;')
 			footer.colhh1.bg_white.flat_shadow

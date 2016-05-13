@@ -33,26 +33,36 @@ exports.insertLobby = function(req, res){
 
 	var uniqueId = 'l0b8Y' + Math.floor((Math.random() * 596501699) + 16985689) + '' + time;
 
-	if( (lobbyUsers != null || lobbyUsers.trim() != '') && (message != null || message.trim() != '') ){
+	if( lobbyUsers != null || lobbyUsers.trim() != '' ){
+		if( message != null || message.trim() != '' ){
+			stringQuery = 'BEGIN;';
 
-		stringQuery = 'BEGIN;';
+			stringQuery += 'INSERT INTO Lobby (idLobby) VALUES ("' + uniqueId + '");';
 
-		stringQuery += 'INSERT INTO Lobby (idLobby) VALUES ("' + uniqueId + '");';
+			for ( var i = 0; i < usersArray.length; i++ ) {
+					stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
+								+ ' VALUES ("' + usersArray[i] + '", "' + uniqueId + '");';
+			}
 
-		for ( var i = 0; i < usersArray.length; i++ ) {
-				stringQuery += 'INSERT INTO User_has_Lobby (User_userEmail, Lobby_idLobby)'
-							+ ' VALUES ("' + usersArray[i] + '", "' + uniqueId + '");';
-		}
+			stringQuery += 'INSERT INTO Message'
+						+ ' (idMessage, messageText, messageDateTime, messageStatus, Lobby_idLobby, User_userEmail)'
+						+ ' VALUES (UUID(),'
+						+ ' "' + htmlspecialchars(message) + '",'
+						+ ' NOW(), 1, "' + uniqueId + '",'
+						+ ' "' + owner + '");';
 
-		stringQuery += 'INSERT INTO Message'
-					+ ' (idMessage, messageText, messageDateTime, messageStatus, Lobby_idLobby, User_userEmail)'
-					+ ' VALUES (UUID(),'
-					+ ' "' + htmlspecialchars(message) + '",'
-					+ ' NOW(), 1, "' + uniqueId + '",'
-					+ ' "' + owner + '");';
-
-		stringQuery += 'COMMIT;';
-
+			stringQuery += 'COMMIT;';
+		}	
+	}
+	else{
+		res.render('error' , {
+				errorData: {
+				errorTitle: 'Error al crear Conversación',
+				errorItem: ['-  No puede crearse la sala haber agregado algun usuario',
+				'-  El mensaje no puede estar vacio'],
+				backUrl: '/messages'
+			}
+		});
 	}
 
 	database.query(stringQuery, function(error, result, row){
@@ -64,10 +74,9 @@ exports.insertLobby = function(req, res){
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
-					errorTitle: 'Error al inscribir Curso',
-					errorItem: ['-  Problemas con el servidor',
-					'-  Posiblemente algun dato enviado es nulo o incorrecto'],
-					backUrl: '/subjects'
+					errorTitle: 'Error al mandar su mensaje',
+					errorItem: ['-  Problemas con el servidor'],
+					backUrl: '/messages'
 				}
 			});
 		}

@@ -1,5 +1,6 @@
 var base;
 var stringQuery = '';
+var fs = require('fs');
 
 exports.constructor = function (basee) {
 	base = basee;
@@ -92,7 +93,7 @@ exports.insertStudent = function(req, res){
 
 	stringQuery = 'BEGIN;';
 
-	stringQuery += 'INSERT INTO User';
+	stringQuery += 'INSERT INTO User'
 				+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES ('
 				+ '"' + userEmail + '", '
 				+ '"' + userName + '", '
@@ -102,8 +103,8 @@ exports.insertStudent = function(req, res){
 				+ '"' + userPassword + '", '
 				+ '"' + userInstitute + '");';
 
-	stringQuery += 'INSERT INTO Student (idStudent, User_userEmail) VALUES ('
-				+ 'UUID(), '
+	stringQuery += 'INSERT INTO Student (idStudent, User_userEmail)'
+				+' VALUES (UUID(), '
 				+ '"' + userEmail + '");';
 
 	stringQuery += 'COMMIT;';
@@ -139,7 +140,7 @@ exports.insertTeacher = function(req, res){
 
 	stringQuery = 'BEGIN;';
 
-	stringQuery += 'INSERT INTO User';
+	stringQuery += 'INSERT INTO User'
 	 			+ ' (userEmail, userName, userLastName, userSecondLastName, userSex, userPassword, Institute_idInstitute) VALUES ('
 	 			+ '"' + userEmail + '", '
 	 			+ '"' + userName + '", '
@@ -149,16 +150,38 @@ exports.insertTeacher = function(req, res){
 	 			+ '"' + userPassword + '", '
 	 			+ '"' + userInstitute + '");';
 
-	stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail) VALUES ('
-				+ 'UUID(), '
+	stringQuery += 'INSERT INTO Teacher (idTeacher, User_userEmail)'
+				+ ' VALUES (UUID(), '
 				+ '"' + userEmail + '");';
 
 	stringQuery += 'COMMIT;';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log('Insert Correcto');
-			res.redirect('/management');
+
+			var stringQuery2 = 'SELECT idTeacher FROM Teacher WHERE User_userEmail = "' + userEmail + '";';
+
+			database.query(stringQuery2, function(error, result, row){
+				if(!error) {
+					//CREAR UN NUEVO DIRECTORIO EN EL SERVIDOR PARA GUARDAR LOS ARCHIVOS QUE SUBAN LOS PROFESORES
+					var dir = './public/publications/' + result[0].idTeacher;
+
+					if (!fs.existsSync(dir)){
+					    fs.mkdirSync(dir);
+					}
+
+					res.redirect('/management');
+				}else{
+					console.log('Error aqui: ' + stringQuery2 + ' Error: ' + error )
+					res.render('error' , {
+						errorData: {
+							errorTitle: 'Error al crear directorio para Profesor en el Servidor',
+							backUrl: '/management'
+						}
+					});
+				}
+			});
+			
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
@@ -301,7 +324,8 @@ exports.getAdministratorsDatabase = function(req, res){
 
 	stringQuery = 'SELECT User.*, idAdministrator FROM User INNER JOIN Administrator' 
 				+ ' ON User.userEmail = Administrator.User_userEmail'
-				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '"'
+				+ ' ORDER BY userName ASC;' ;
 				
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {

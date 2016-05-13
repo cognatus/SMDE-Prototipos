@@ -1156,10 +1156,6 @@ span.title_rightoptionicon:hover{
 	position: relative;
 }
 
-.listitem_info .minimenu_container{
-	left: -2px;
-}
-
 .listitem_info .listitem_alert{
 	position: absolute;
 	right: 80px;
@@ -1978,15 +1974,16 @@ input:checked + .switch:active::before {
 .raised_button{
 	width: auto;
 	display: inline-block;
-	height: 48px;
-	margin-left: 12px;
+	height: 36px;
+	margin-left: 18px;
 	text-transform: uppercase;
+	font-size: 14px;
 }
 
 .raised_button input{
 	height: 100%;
 	width: 100%;
-	padding: 0 16px 0 16px;
+	padding: 0 12px 0 12px;
 	border: none;
 	outline: none;
 	text-transform: uppercase;
@@ -2088,7 +2085,11 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	box-shadow: 0px 1px 4px rgba(0,0,0,0.14);}
 
 .minimenu_hidden{
-	box-shadow: 0px 1px 5px rgba(0,0,0,0.3);	
+	box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+}
+
+.button_shadow{
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.36);
 }
 
 .form_input span.submit{
@@ -2237,20 +2238,6 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .form_input2 input.white_text:-moz-placeholder{color: rgba(255,255,255,0.3);}
 .form_input2 input.white_text::-moz-placeholder{color: rgba(255,255,255,0.3);}
 .form_input2 input.white_text:-ms-input-placeholder{color: rgba(255,255,255,0.3);}
-
-/*.search.s_type2 input[type='text']{
-	color: #fff;
-	background-color: rgba(0,0,0,0.08);
-}
-
-.search.s_type2 input[type='text']::-webkit-input-placeholder{color: rgba(255,255,255,0.6);}
-.search.s_type2 input[type='text']::-moz-placeholder{color: rgba(255,255,255,0.6);}
-.search.s_type2 input[type='text']::-ms-input-placeholder{color: rgba(255,255,255,0.6);}
-.search.s_type2 input[type='text']:-moz-placeholder{color: rgba(255,255,255,0.6);}
-
-.search.s_type2 span.searchicon{
-	background-image: url("/images/magnify_white.png");
-}*/
 
 .form_input .activeline ~ label{
 	color: rgba(255,255,255,0.4); 
