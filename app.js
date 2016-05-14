@@ -97,9 +97,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0',
+		password: 'n0m3l0s3',
 		user: 'root',
-		database: 'smdedbv1'
+		database: 'smdedbv1',
+		port: 8080
 	});
 	return connection;
 };
@@ -223,6 +224,7 @@ app.get('/getProfileSubjectsDatabaseCalendar', calendarPost.getProfileSubjectsDa
 app.get('/getRemindersDatabase', calendarPost.getRemindersDatabase);
 app.get('/getPublicationsDatabase', calendarPost.getPublicationsDatabase);
 app.get('/getPublicationAttachedFiles', calendarPost.getPublicationAttachedFiles);
+app.get('/downloadAttachment', calendarPost.downloadAttachment);
 
 //Todo referente a la vista de Asignaturas
 app.get('/getSubjectsCoursesDatabase', subjectsPost.getSubjectsCoursesDatabase);

@@ -2,11 +2,9 @@ var base;
 var stringQuery = '';
 
 var htmlspecialchars = require('htmlspecialchars');
-var forEach = require('async-foreach').forEach;
-var sys = require('sys');
 var fs = require('fs');
 var path = require('path');
-var bytes = require('bytes');
+var mime = require('mime');
 
 exports.constructor = function (basee) {
 	base = basee;
@@ -100,10 +98,7 @@ exports.insertPublication = function(req, res){
 				//		 idSubject 		  	  idCourse
 				+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
 
-	console.log(req.files);
-
-	//path.join(__dirname, 'public/publications/' + req.session.datos[0].idTeacher.toString())
-
+	//Eror al mandar un archivo o ninguno
 	if(req.files && req.files.publicationAttachedFiles) {
 	    req.files.publicationAttachedFiles.forEach(function (element, index, array) {
 
@@ -113,22 +108,23 @@ exports.insertPublication = function(req, res){
 						+ ' "' + element.name + '",'
 						+ ' "' + pubId + '");';
 
-			/*Este metodo no lo guarda en la carpeta especifica
+			//Este metodo es el metodo 1
 			var readableStream = fs.createReadStream(element.path);
-			var writableStream = fs.createWriteStream(__dirname + '/public/publications/' + req.session.datos[0].idTeacher.toString() + '/' + element.name);
+			//Aqui hay que poner la ruta completa ya que _dirname es relativo al script donde esta escrito
+			var writableStream = fs.createWriteStream('C:/Users/Alex/Desktop/SMDE-Prototipos/public/publications/' + req.session.datos[0].idTeacher + '/' + element.name);
 
-			readableStream.pipe(writableStream, {end: false});*/
+			readableStream.pipe(writableStream, {end: false});
 
-			//este metodo sí lo guarda en la carpeta especifica
-	    	fs.readFile(element.path, function (err, data) {
+			//Este es el metodo 2
+	    	/*fs.readFile(element.path, function (err, data) {
 
-	    		var newPath = __dirname + '/public/publications/' + req.session.datos[0].idTeacher.toString() + '/' + element.name;
+	    		var newPath = 'C:/Users/Alex/Desktop/SMDE-Prototipos/public/publications/' + req.session.datos[0].idTeacher + '/' + element.name;
 	    		fs.writeFile(newPath, data, function (err) {
 	        		if(err) {
 	        			console.log(err);
 	        		}
 	    		});
-	    	});
+	    	});*/
 	    });
 	}
 
@@ -345,8 +341,8 @@ exports.getPublicationsDatabase = function(req, res){
                                  					 +	'</div>'
                                 }
                                 else if(item.pubText == null || item.pubText.trim() == ''){
-                                	publicationsData += '<div class="pd_16 opacity_color b_text border_bottom">'
-                                					 +	'Sin Comentarios<div class="pd_4"></div>'
+                                	publicationsData += '<div class="pd_16 opacity_color b_text border_bottom">Sin Comentarios'
+                                					 +	'<div class="pd_4"></div>'
                                 					 + 	'</div>'
                                 }
                 publicationsData +=       '</div>'
@@ -394,9 +390,13 @@ exports.getPublicationAttachedFiles = function(req, res){
 
 	var idPublication = req.query.idPublication;
 
-	stringQuery = 'SELECT * '
-				+ '	FROM publicationAttachedFile '
-				+ '	WHERE Publication_idPublication = "' + idPublication + '";';
+	stringQuery = 'SELECT pa.*, t.idTeacher '
+				+ '	FROM publicationAttachedFile AS pa '
+				+ ' INNER JOIN Publication as p '
+				+ ' 	ON p.idPublication = pa.Publication_idPublication '
+				+ ' INNER JOIN Teacher as t '
+				+ ' 	ON t.User_userEmail = p.Teacher_User_userEmail '
+				+ '	WHERE idPublication = "' + idPublication + '";';
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
@@ -408,7 +408,9 @@ exports.getPublicationAttachedFiles = function(req, res){
 	                stringData += '<div class="attached_fileinner">'
 	               				+ 	'<span class="v_middle bg_file bg_blue borad"></span>'
 				                + 	'<div class="v_middle sl_title opacity_color" title="' + item.publicationAttachedNameFile + '">' + item.publicationAttachedNameFile + '</div>'
-				                + 	'<span title="Descargar" class="right_float bg_download hover" onclick="downloadAttachment(&quot;' + item.publicationAttachedNameFile + '&quot;)"></span>'
+				                /*+ 	'<a href="publications/' + item.idTeacher + '/' + item.publicationAttachedNameFile + '">'*/
+				                + 	'<span title="Descargar" class="right_float bg_download hover" onclick="downloadAttachment(&quot;' + item.idTeacher + '/' + item.publicationAttachedNameFile + '&quot;)"></span>'
+				                /*+	'</a>'*/
 				                + '</div>';
 				    if(i < result.length - 1){
 	                	stringData += '<div class="pd_4"></div>'
@@ -423,4 +425,23 @@ exports.getPublicationAttachedFiles = function(req, res){
 			res.send('Error');
 		}
 	});
+};
+
+// FUNCION PARA DESCARGAR ARCHIVOS
+exports.downloadAttachment = function(req, res){
+
+	var directory = req.query.file;
+	console.log(directory);
+
+	var file = 'C:/Users/Alex/Desktop/SMDE-Prototipos/public/publications/' + directory;
+
+	var filename = path.basename(file);
+	var mimetype = mime.lookup(file);
+
+	res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+	res.setHeader('Content-type', mimetype);
+
+	var filestream = fs.createReadStream(file);
+	filestream.pipe(res);
+
 };

@@ -143,9 +143,24 @@ function showSubjectsCourses(){
     });
 }
 
-/*function fileChange(){
-    var files = document.getElementById("attachedfile").files;
-    for (var i = 0; i < files.length; i++){
-        alert(files[i].name);
-    }
-}*/
+function changeFilesColor(){
+
+}
+
+function downloadAttachment(file){
+    /*alert('Archivo: ' + file);
+    jQuery.ajax({
+        method: 'GET',
+        url: 'downloadAttachment',
+        cache: false,
+        data: {
+            file: file
+        },
+        success: function(data) {
+            console.log('Success');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });*/
+}
