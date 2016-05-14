@@ -102,7 +102,7 @@ exports.insertPublication = function(req, res){
 
 	console.log(req.files);
 
-	path.join(__dirname, 'public/publications/' + req.session.datos[0].idTeacher.toString())
+	//path.join(__dirname, 'public/publications/' + req.session.datos[0].idTeacher.toString())
 
 	if(req.files && req.files.publicationAttachedFiles) {
 	    req.files.publicationAttachedFiles.forEach(function (element, index, array) {
@@ -113,7 +113,15 @@ exports.insertPublication = function(req, res){
 						+ ' "' + element.name + '",'
 						+ ' "' + pubId + '");';
 
+			/*Este metodo no lo guarda en la carpeta especifica
+			var readableStream = fs.createReadStream(element.path);
+			var writableStream = fs.createWriteStream(__dirname + '/public/publications/' + req.session.datos[0].idTeacher.toString() + '/' + element.name);
+
+			readableStream.pipe(writableStream, {end: false});*/
+
+			//este metodo sí lo guarda en la carpeta especifica
 	    	fs.readFile(element.path, function (err, data) {
+
 	    		var newPath = __dirname + '/public/publications/' + req.session.datos[0].idTeacher.toString() + '/' + element.name;
 	    		fs.writeFile(newPath, data, function (err) {
 	        		if(err) {
