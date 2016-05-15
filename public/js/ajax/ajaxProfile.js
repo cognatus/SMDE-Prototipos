@@ -115,7 +115,7 @@ function showProfileSubjects(){
             jQuery('.listitem_bottomdata.rank').each(function(){
                 var level = jQuery(this).attr('data-level');
                 for(var i = 0; i < level; i++){
-                    jQuery(this).append('<span class="bg_lime"></span>');
+                    jQuery(this).append('<span class="bgaccent_color3"></span>');
                 }
             });
         },

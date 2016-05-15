@@ -35,12 +35,12 @@ block content
 								.name
 									div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
 									span #{datos[0].userEmail}
-						.pd_12
-							.autooverflow
-								span.raised_button.right_float.rippleria-dark#close_hbl(data-rippleria)
-									input.txt_red.b_text(type='button' value='Cancelar')
-								span.raised_button.right_float.rippleria-dark(data-rippleria)
-									input.txtprimary_color.b_text(type='submit' value='Guardar cambios')
+						.pd_12.autooverflow
+							.autocol.right_float
+								span.raised_button.rippleria-dark#close_hbl(data-rippleria)
+									input(type='button' value='Cancelar')
+								span.raised_button.bg_lightgray.rippleria-dark(data-rippleria)
+									input.opacity_color(type='submit' value='Guardar cambios' disabled)
 
 		.topspace
 		.page_container
@@ -64,19 +64,16 @@ block content
 									.pd_4.sl_title
 										| Contactos
 									.pd_4.lighttext#countContacts(style='font-size: 21px;')
-										| 9
 								.divider
 								.colhh2
 									.pd_4.sl_title
 										| Cursos
 									.pd_4.lighttext#countCourses(style='font-size: 21px;')
-										| 4
 							if privilegio == 3
 								.colhh1
 									.pd_4.sl_title
 										| Contactos
 									.pd_4.lighttext#countContacts(style='font-size: 21px;')
-										| 9
 										
 				if privilegio != 3
 					.block_container.bg_white.progress_profile
@@ -135,9 +132,6 @@ block content
 								.colhh1
 									.pd_l8.sl_title  Institución: 
 										span.margin_l.normal_txt #{datos[0].instituteName}
-									.pd_8
-									.pd_l8.sl_title  Asignaturas Inscritas: 
-										span.margin_l.normal_txt 6
 								.pd_4
 
 					.colhh1.h_listindex.contacts_cl
@@ -147,7 +141,7 @@ block content
 									span.searchicon
 									input#search_block(type='text',name='buscar', placeholder='Buscar un contacto')
 							#listcontainer.listcontainer
-								.colhh1.empty_blocktext.center_text
+								.colhh1.flat_shadow.bg_white.empty_blocktext.center_text
 									.pd_64
 										span.v_middle(style= 'background-image: url("images/account-remove.png")')
 										.autocol.pd_12.mm_title No tienes contactos.
@@ -164,7 +158,7 @@ block content
 						.colhh1.h_listindex.courses_cl
 							.colhh1
 								.listcontainer
-									.colhh1.empty_blocktext.center_text
+									.colhh1.flat_shadow.bg_white.empty_blocktext.center_text
 										.pd_64
 											span.v_middle(style= 'background-image: url("images/close-box.png")')
 											.autocol.pd_12.mm_title No tienes ninguna asignatura.

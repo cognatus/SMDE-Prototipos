@@ -144,6 +144,8 @@ function showSubjectsCourses(){
 }
 
 function changeFilesColor(){
+    var fileName = '';
+    var fileIcon = '';
 
 }
 

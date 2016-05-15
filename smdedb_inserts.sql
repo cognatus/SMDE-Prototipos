@@ -5,7 +5,7 @@ BEGIN;
 -- Admin Villa
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
   `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('alejandrodnl.cv@hotmail.com', 'Alejandro', 'Villarroel', 'Calderon', 'H', 'holaMundo123', 'PoliV9');
+VALUES ('alejandrodnl.cv@hotmail.com', 'Alejandro', 'Villarroel', 'Calderon', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Administrator` (`User_userEmail`,`idAdministrator`) 
 VALUES ('alejandrodnl.cv@hotmail.com' , 'VICA970109HMCLLL03');
@@ -16,7 +16,7 @@ BEGIN;
 -- Admin Diego
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
   `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('hola@hola.com', 'Diego', 'Martinez', 'Moran', 'H', 'holaMundo123', 'PoliV9');
+VALUES ('hola@hola.com', 'Diego', 'Martinez', 'Moran', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Administrator` (`User_userEmail`,`idAdministrator`)  
 VALUES ('hola@hola.com', 'MAMD970317HDFRRG07');
@@ -24,14 +24,14 @@ VALUES ('hola@hola.com', 'MAMD970317HDFRRG07');
 -- ESTUDIANTE CUALQUIERA
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
   `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('vato@vato.com', 'Vato', 'Vato', 'Vato', 'H', 'holaMundo123', 'PoliV9');
+VALUES ('vato@vato.com', 'Vato', 'Vato', 'Vato', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Student` (`User_userEmail`,`idStudent`)  
 VALUES ('vato@vato.com', 'VATOASDSAD46844');
 
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
   `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('vato2@vato.com', 'Angel', 'Montero', 'Cortes', 'H', 'holaMundo123', 'PoliV9');
+VALUES ('vato2@vato.com', 'Angel', 'Montero', 'Cortes', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Student` (`User_userEmail`,`idStudent`)  
 VALUES ('vato2@vato.com', 'VATO464568');
@@ -39,14 +39,14 @@ VALUES ('vato2@vato.com', 'VATO464568');
 -- Profe cualquiera
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
   `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('profe@profe.com', 'Profe', 'Profe', 'Profe', 'H', 'holaMundo123', 'PoliV9');
+VALUES ('profe@profe.com', 'Profe', 'Profe', 'Profe', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Teacher` (`User_userEmail`,`idTeacher`)  
 VALUES ('profe@profe.com', 'PROFASDSAD46844');
 
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
   `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('profe2@profe.com', 'Luis', 'Profe', 'Martinez', 'H', 'holaMundo123', 'PoliV9');
+VALUES ('profe2@profe.com', 'Luis', 'Profe', 'Martinez', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Teacher` (`User_userEmail`,`idTeacher`)  
 VALUES ('profe2@profe.com', 'P20160410');
@@ -56,33 +56,33 @@ COMMIT;
 BEGIN;
 -- Departamento cualquiera
 INSERT INTO `smdedbv1`.`Department` (`idDepartment`, `departmentName`, `Institute_idInstitute`)  
-VALUES ('HASD45465', 'Humanisticas', 'PoliV9');
+VALUES ('HASD45465', 'Humanisticas', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Department` (`idDepartment`, `departmentName`, `Institute_idInstitute`)  
-VALUES ('HAK85S5D65', 'Matemáticas', 'PoliV9');
+VALUES ('HAK85S5D65', 'Matemáticas', 'IPNCECyt9JDDB');
 
 -- materias cualquiera
 INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `Department_idDepartment`, `Department_Institute_idInstitute`) 
-VALUES ('SDF46DF4884', 'Civismo', 1, 'HASD45465', 'PoliV9');
+VALUES ('SDF46DF4884', 'Civismo', 1, 'HASD45465', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `Department_idDepartment`, `Department_Institute_idInstitute`) 
-VALUES ('SDF46DF6996', 'Literatura', 2, 'HASD45465', 'PoliV9');
+VALUES ('SDF46DF6996', 'Literatura', 2, 'HASD45465', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `Department_idDepartment`, `Department_Institute_idInstitute`) 
-VALUES ('SDF46DF2332', 'Comunicacion', 1, 'HASD45465', 'PoliV9');
+VALUES ('SDF46DF2332', 'Comunicacion', 1, 'HASD45465', 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Subject` (`idSubject`, `subjectName`, `subjectLevel`, `Department_idDepartment`, `Department_Institute_idInstitute`) 
-VALUES ('SDF46JKSD86', 'Geometria', 3, 'HAK85S5D65', 'PoliV9');
+VALUES ('SDF46JKSD86', 'Geometria', 3, 'HAK85S5D65', 'IPNCECyt9JDDB');
 
 -- grupos cualquiera
 INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`, `Institute_idInstitute`) 
-VALUES ('DFG8765SDF6', '1IV8', 1, 'PoliV9');
+VALUES ('DFG8765SDF6', '1IV8', 1, 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`, `Institute_idInstitute`) 
-VALUES ('DFG87002356', '2IV4', 2, 'PoliV9');
+VALUES ('DFG87002356', '2IV4', 2, 'IPNCECyt9JDDB');
 
 INSERT INTO `smdedbv1`.`Course` (`idCourse`, `courseName`, `courseLevel`, `Institute_idInstitute`) 
-VALUES ('DFG8765QWE7', '1IV5', 1, 'PoliV9');
+VALUES ('DFG8765QWE7', '1IV5', 1, 'IPNCECyt9JDDB');
 
 -- Relacion grupo materia
 INSERT INTO `smdedbv1`.`Subject_has_Course` (`Course_idCourse`, `Subject_idSubject`) 

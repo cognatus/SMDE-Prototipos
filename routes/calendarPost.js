@@ -99,13 +99,14 @@ exports.insertPublication = function(req, res){
 				+ ' "' + subCourse[0] + '", "' + subCourse[1] + '");';
 
 	//Eror al mandar un archivo o ninguno
-	if(req.files && req.files.publicationAttachedFiles) {
+	if(req.files.publicationAttachedFiles.length > 0) {
 	    req.files.publicationAttachedFiles.forEach(function (element, index, array) {
 
 	    	stringQuery += 'INSERT INTO publicationAttachedFile'
-						+ ' (idPublicationAttachedFile, publicationAttachedNameFile, Publication_idPublication)'
+						+ ' (idPublicationAttachedFile, publicationAttachedNameFile, fileSize, Publication_idPublication)'
 						+ ' VALUES (UUID(),'
 						+ ' "' + element.name + '",'
+						+ ' "' + element.fileSize + '",'
 						+ ' "' + pubId + '");';
 
 			//Este metodo es el metodo 1
@@ -340,7 +341,7 @@ exports.getPublicationsDatabase = function(req, res){
                                  					 +		'<div class="pd_4"></div>'
                                  					 +	'</div>'
                                 }
-                                else if(item.pubText == null || item.pubText.trim() == ''){
+                                else{
                                 	publicationsData += '<div class="pd_16 opacity_color b_text border_bottom">Sin Comentarios'
                                 					 +	'<div class="pd_4"></div>'
                                 					 + 	'</div>'

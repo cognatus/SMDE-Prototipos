@@ -197,7 +197,9 @@ block content
 					.colhh1
 						.name
 							div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
-							span Institución: #{datos[0].instituteName}
+							span 
+								.b_text.autocol Institución: 
+								| &nbsp; #{datos[0].instituteName}
 			
 			.h_listcontainer#managementData
 				.block_container.bg_white.mgmlisthor.v_top
@@ -220,57 +222,21 @@ block content
 				.mgm_listcontainer
 
 					.colhh1.h_listindex.first.search_inMngm
-						.block_container.bg_white
-							.colhh1.bg_lightgray
-								.search.rel_pos
-									span.searchicon
-									input.search_input(type='text', placeholder='Buscar Administradores')
-								.colhh1.bg_white.no_result
 						.listcontainer.admins
 
 					.colhh1.h_listindex.search_inMngm
-						.block_container.bg_white
-							.colhh1.bg_lightgray
-								.search.rel_pos
-									span.searchicon
-									input.search_input(type='text', placeholder='Buscar Alumnos')
-								.colhh1.bg_white.no_result
 						.listcontainer.students
 
 					.colhh1.h_listindex.search_inMngm
-						.block_container.bg_white
-							.colhh1.bg_lightgray
-								.search.rel_pos
-									span.searchicon
-									input.search_input(type='text', placeholder='Buscar Profesores')
-								.colhh1.bg_white.no_result
 						.listcontainer.teachers
 
 					.colhh1.h_listindex.search_inMngm
-						.block_container.bg_white
-							.colhh1.bg_lightgray
-								.search.rel_pos
-									span.searchicon
-									input.search_input(type='text', placeholder='Buscar Academias')
-								.colhh1.bg_white.no_result
 						.listcontainer.departments
 
 					.colhh1.h_listindex.search_inMngm
-						.block_container.bg_white
-							.colhh1.bg_lightgray
-								.search.rel_pos
-									span.searchicon
-									input.search_input(type='text', placeholder='Buscar Asignatura')
-								.colhh1.bg_white.no_result
 						.listcontainer.subjects
 
 					.colhh1.h_listindex.search_inMngm
-						.block_container.bg_white
-							.colhh1.bg_lightgray
-								.search.rel_pos
-									span.searchicon
-									input.search_input(type='text', placeholder='Buscar Grupos')
-								.colhh1.bg_white.no_result
 						.listcontainer.groups
 
 					.colhh1.empty_blocktext.center_text

@@ -1,15 +1,6 @@
 $.noConflict();
 jQuery(document).on('ready' ,function(){
 
-/*	jQuery('#changeTheme').click(function(){
-		if( jQuery(this).is(':checked') ){
-			jQuery('body').addClass('dark_theme');
-		}
-		else{
-			jQuery('body').removeClass('dark_theme');
-		}
-	});*/
-
 	jQuery('.sign_field input.textfield').focus(function(){
 		var firstImg = jQuery(this).siblings('img').attr('src');
 		var newImage = firstImg.slice(0 , -4);
@@ -64,12 +55,12 @@ jQuery(document).on('ready' ,function(){
 		jQuery('.notifications_hidden').fadeOut(200);
 	});
 
-	jQuery('.notifications_hidden , .notifications_container').click(function(){
-		return false;
+	jQuery('.notifications_hidden , .notifications_container').click(function(event){
+		event.stopPropagation();
 	});
 
-	jQuery('.minimenu_hidden , .minimenu , span.title_rightoptionicon').click(function(){
-		return false;
+	jQuery('.minimenu_hidden , .minimenu , span.title_rightoptionicon').click(function(event){
+		event.stopPropagation();
 	});
 
 	jQuery('#backicon').click(function(){
@@ -91,16 +82,6 @@ jQuery(document).on('ready' ,function(){
 	},function(){
 		jQuery(this).find('.photo_hiddenbutton').fadeOut();
 	});
-
-	/*jQuery('#profile_photo').click(function(){
-		jQuery('.form_profilephoto').show();
-		jQuery('.form_profileback').hide();
-	});
-
-	jQuery('#profile_back').click(function(){
-		jQuery('.form_profilephoto').hide();
-		jQuery('.form_profileback').show();
-	});*/
 
 	jQuery('span.close_pimg').click(function(){
 		jQuery(this).parents('.profile_hideitem').hide();
@@ -273,16 +254,6 @@ jQuery(document).on('ready' ,function(){
 		jQuery(this).siblings('span').removeClass('bg_check');
 		jQuery('#msmValueColor').val(color);
 	});
-
-	function rgb2hex(rgb) {
-	    if (/^#[0-9A-F]{6}$/i.test(rgb)) return rgb;
-
-	    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-	    function hex(x) {
-	        return ("0" + parseInt(x).toString(16)).slice(-2);
-	    }
-	    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-	}
 
 /*-------------------------------------------------------------------------------------
 		LIST ITEM CIRCLE CONTROL
@@ -645,6 +616,7 @@ jQuery(document).ready(function(){
 		color: '#00BFA5',
 		radius: 30,
 	});
+	
 	jQuery('#listcontainer .load_container').show();
 
 	//Aqui se ejecutan las funciones al momento que inician las peticiones ajax

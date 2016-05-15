@@ -10,15 +10,17 @@ html
 		link( rel='stylesheet', href='/stylesheets/style.css')
 		link( rel='stylesheet', href='/stylesheets/style_responsive.css')
 		script( type='text/javascript' src='/js/jquery.js' )
-		script( type='text/javascript' src="/material_spinner/dist/js/material.spinner.min.js" )
+		script( type='text/javascript' src="/js/material_spinner/dist/js/material.spinner.min.js" )
 		script( type='text/javascript' src='/js/viewscontrol.js')
-	body.bg_img2
+	body
+		.colhh1.bgprimary_color.flat_shadow(style="height: 280px;position: absolute;overflow: hidden;")
+			.bg_detail
 		.op_bg
 			.colhh1.center_text.white_text
 				.login_title
 					img.v_middle(src='images/laptop-chromebook_white.png') 
 					| SMDE
-			.login_container.bg_lightgray.borad
+			.login_container.bg_white.borad
 				.pd_32
 					.colhh1.center_text.txtprimary_color
 						.ml_title.normal_txt Inicia Sesión
@@ -27,9 +29,10 @@ html
 					form.colhh1(action='login', method='post')
 						.sign_field.pd_tb_10.rel_pos
 							img( src='images/account.png' )
-							input.textfield.txtprimary_color.borad( type='email' , name='sign_user' , placeholder='Usuario' , required)
+							input.textfield.txtprimary_color.borad( type='email' , name='sign_user' , placeholder='Usuario' , required autocomplete='off')
 						.sign_field.pd_tb_10.rel_pos
 							img( src='images/lock.png' )
-							input.textfield.txtprimary_color.borad( type='password' , name='sign_key' , placeholder='Contraseña' , required)
+							input.textfield.txtprimary_color.borad( type='password' , name='sign_key' , placeholder='Contraseña' , required autocomplete='off')
 						.sign_field(style='margin-top: 12px;height: 50px;')
-							input.signbutton.bgprimary_color.flat_shadow(type='submit' , name='sign_submit' , value='Iniciar')
+							input.signbutton.bgaccent_color.button_shadow.b_text.white_text.borad(type='submit' , name='sign_submit' , value='Iniciar')
+							//- input.signbutton.bg_white.borad(type='submit' , name='sign_submit' , value='Iniciar')
