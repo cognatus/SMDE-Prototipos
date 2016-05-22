@@ -13,7 +13,7 @@ block content
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Editar Perfil
-				form.colhh1.hb_formcontainer(action='/updateProfilePhotoBack' method='POST')
+				form.colhh1.hb_formcontainer(action='updateProfilePhotos', method='POST', , enctype="multipart/form-data")
 					#new_profileback.colhh1.profile_bgcont
 						#p_back.colhh1.profile_img.inbox_shadow
 							.f_select.pd_18.autooverflow
@@ -40,7 +40,7 @@ block content
 								span.raised_button.rippleria-dark#close_hbl(data-rippleria)
 									input(type='button' value='Cancelar')
 								span.raised_button.bg_lightgray.rippleria-dark(data-rippleria)
-									input.opacity_color(type='submit' value='Guardar cambios' disabled)
+									input.opacity_color(type='submit' value='Guardar cambios')
 
 		.topspace
 		.page_container

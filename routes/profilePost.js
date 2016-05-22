@@ -574,3 +574,30 @@ exports.getTeacherCoincidences = function(req, res){
 		}
 	});
 };
+
+exports.updateProfilePhotos = function(req, res){
+
+	var backImage = req.files.updateProfileBack;
+	var profileImage = req.files.updateProfilePhoto;
+	var nameImage = req.session.datos[0].userEmail;
+	
+	if( backImage.originalFilename != '' ){
+
+		var readableStream = fs.createReadStream(backImage.path);
+		var writableStream = fs.createWriteStream("C:/Users/Diego/Documents/SMDE-Prototipos/public/profile_backgrounds/" + nameImage + ".png");
+
+		readableStream.pipe(writableStream, {end: false});
+
+		res.redirect('/profile');
+	}
+
+	if( profileImage.originalFilename != '' ){
+
+		var readableStream = fs.createReadStream(profileImage.path);
+		var writableStream = fs.createWriteStream("C:/Users/Diego/Documents/SMDE-Prototipos/public/profile_photos/" + nameImage + ".png");
+
+		readableStream.pipe(writableStream, {end: false});
+
+		res.redirect('/profile');
+	}
+ };

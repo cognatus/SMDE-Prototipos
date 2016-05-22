@@ -97,10 +97,9 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0s3',
+		password: 'n0m3l0',
 		user: 'root',
-		database: 'smdedbv1',
-		port: 8080
+		database: 'smdedbv1'
 	});
 	return connection;
 };
@@ -216,6 +215,7 @@ app.get('/getProfileContactsStudents', profilePost.getProfileContactsStudents);
 app.get('/getProfileContactsTeachers', profilePost.getProfileContactsTeachers);
 app.get('/getStudentCoincidences', profilePost.getStudentCoincidences);
 app.get('/getTeacherCoincidences', profilePost.getTeacherCoincidences);
+app.post('/updateProfilePhotos', profilePost.updateProfilePhotos);
 
 //Todo referente a la agenda
 app.post('/insertPublication', calendarPost.insertPublication);
@@ -238,6 +238,7 @@ app.get('/getSelectedLobbyMessages', messagesPost.getSelectedLobbyMessages);
 app.get('/getProfileContactsAdministratorsMsm', messagesPost.getProfileContactsAdministratorsMsm);
 app.get('/getProfileContactsStudentsMsm', messagesPost.getProfileContactsStudentsMsm);
 app.get('/getProfileContactsTeachersMsm', messagesPost.getProfileContactsTeachersMsm);
+
 
 http.listen(app.get('port'), function(){
 	var base = new databaseInstance();
