@@ -34,6 +34,9 @@ app.use(express.urlencoded());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+//variable global para jalar directorios
+global.__base = __dirname;
+
 /*app.use(session({
 }));*/
 

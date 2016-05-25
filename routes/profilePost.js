@@ -580,11 +580,12 @@ exports.updateProfilePhotos = function(req, res){
 	var backImage = req.files.updateProfileBack;
 	var profileImage = req.files.updateProfilePhoto;
 	var nameImage = req.session.datos[0].userEmail;
-	
+
+	console.log(__base + "/public/profile_back/" + nameImage + ".jpg");	
 	if( backImage.originalFilename != '' ){
 
 		var readableStream = fs.createReadStream(backImage.path);
-		var writableStream = fs.createWriteStream("C:/Users/Diego/Documents/SMDE-Prototipos/public/profile_backgrounds/" + nameImage + ".png");
+		var writableStream = fs.createWriteStream(__base + "/public/profile_back/" + nameImage + ".png");
 
 		readableStream.pipe(writableStream, {end: false});
 
@@ -594,7 +595,7 @@ exports.updateProfilePhotos = function(req, res){
 	if( profileImage.originalFilename != '' ){
 
 		var readableStream = fs.createReadStream(profileImage.path);
-		var writableStream = fs.createWriteStream("C:/Users/Diego/Documents/SMDE-Prototipos/public/profile_photos/" + nameImage + ".png");
+		var writableStream = fs.createWriteStream(__base + "/public/profile_photos/" + nameImage + ".png");
 
 		readableStream.pipe(writableStream, {end: false});
 
