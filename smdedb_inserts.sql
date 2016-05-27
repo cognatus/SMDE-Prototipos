@@ -4,8 +4,8 @@
 BEGIN;
 -- Admin Villa
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
-  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('alejandrodnl.cv@hotmail.com', 'Alejandro', 'Villarroel', 'Calderon', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
+  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`,`photoName`) 
+VALUES ('alejandrodnl.cv@hotmail.com', 'Alejandro', 'Villarroel', 'Calderon', 'H', 'holaMundo123', 'IPNCECyt9JDDB',UUID());
 
 INSERT INTO `smdedbv1`.`Administrator` (`User_userEmail`,`idAdministrator`) 
 VALUES ('alejandrodnl.cv@hotmail.com' , 'VICA970109HMCLLL03');
@@ -15,38 +15,38 @@ COMMIT;
 BEGIN;
 -- Admin Diego
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
-  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('hola@hola.com', 'Diego', 'Martinez', 'Moran', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
+  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`,`photoName`) 
+VALUES ('hola@hola.com', 'Diego', 'Martinez', 'Moran', 'H', 'holaMundo123', 'IPNCECyt9JDDB',UUID());
 
 INSERT INTO `smdedbv1`.`Administrator` (`User_userEmail`,`idAdministrator`)  
 VALUES ('hola@hola.com', 'MAMD970317HDFRRG07');
 
 -- ESTUDIANTE CUALQUIERA
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
-  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('vato@vato.com', 'Vato', 'Vato', 'Vato', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
+  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`,`photoName`) 
+VALUES ('vato@vato.com', 'Vato', 'Vato', 'Vato', 'H', 'holaMundo123', 'IPNCECyt9JDDB',UUID());
 
 INSERT INTO `smdedbv1`.`Student` (`User_userEmail`,`idStudent`)  
 VALUES ('vato@vato.com', 'VATOASDSAD46844');
 
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
-  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('vato2@vato.com', 'Angel', 'Montero', 'Cortes', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
+  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`,`photoName`) 
+VALUES ('vato2@vato.com', 'Angel', 'Montero', 'Cortes', 'H', 'holaMundo123', 'IPNCECyt9JDDB',UUID());
 
 INSERT INTO `smdedbv1`.`Student` (`User_userEmail`,`idStudent`)  
 VALUES ('vato2@vato.com', 'VATO464568');
 
 -- Profe cualquiera
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
-  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('profe@profe.com', 'Profe', 'Profe', 'Profe', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
+  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`,`photoName`) 
+VALUES ('profe@profe.com', 'Profe', 'Profe', 'Profe', 'H', 'holaMundo123', 'IPNCECyt9JDDB',UUID());
 
 INSERT INTO `smdedbv1`.`Teacher` (`User_userEmail`,`idTeacher`)  
 VALUES ('profe@profe.com', 'PROFASDSAD46844');
 
 INSERT INTO `smdedbv1`.`User` (`userEmail` , `userName` , `userLastName`, 
-  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`) 
-VALUES ('profe2@profe.com', 'Luis', 'Profe', 'Martinez', 'H', 'holaMundo123', 'IPNCECyt9JDDB');
+  `userSecondLastName`, `userSex`, `userPassword`, `Institute_idInstitute`,`photoName`) 
+VALUES ('profe2@profe.com', 'Luis', 'Profe', 'Martinez', 'H', 'holaMundo123', 'IPNCECyt9JDDB',UUID());
 
 INSERT INTO `smdedbv1`.`Teacher` (`User_userEmail`,`idTeacher`)  
 VALUES ('profe2@profe.com', 'P20160410');

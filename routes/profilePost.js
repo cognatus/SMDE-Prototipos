@@ -159,7 +159,7 @@ exports.getProfileSubjectsDatabase = function(req, res){
 exports.getProfileContactsAdministrators = function(req, res){
 	var database = new base();
 
-	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, photoName '
 				+ ' FROM User AS u'
 				+ ' INNER JOIN Administrator AS a ' 
 				+ ' ON u.userEmail = a.User_userEmail '
@@ -173,7 +173,7 @@ exports.getProfileContactsAdministrators = function(req, res){
                 var item = result[i];
                 stringDataAdmins += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Administrador">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -214,7 +214,7 @@ exports.getProfileContactsStudents = function(req, res){
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(	req.session.privilegio == 1	){
-		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, photoName '
 					+ ' FROM Student_has_Subject_has_Course a '
 					+ '	JOIN Student_has_Subject_has_Course b '
 					+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
@@ -235,7 +235,7 @@ exports.getProfileContactsStudents = function(req, res){
 
 	//SI EL USUARIO ES TIPO PROFESOR
 	else if( req.session.privilegio == 2 ){
-		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, photoName '
 					+ ' FROM Teacher_has_Subject_has_Course a '
 					+ '	JOIN Student_has_Subject_has_Course b '
 					+ '		ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
@@ -256,7 +256,7 @@ exports.getProfileContactsStudents = function(req, res){
 
 	// SI EL USUARIO ES TIPO ADMIN
 	else if(req.session.privilegio == 3){
-		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, photoName '
 				+ ' FROM User AS u '
 				+ ' INNER JOIN Student AS s' 
 				+ ' ON u.userEmail = s.User_userEmail'
@@ -271,18 +271,18 @@ exports.getProfileContactsStudents = function(req, res){
                 var item = result[i];
          stringDataStudents += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Alumno">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
 							+				'<div class="minimenu_hidden">'
 							+       			'<a href="/messages">'
 							+						'<div class="pd_16 hover">Enviar Mensaje</div>'
+							+					'</a>'
 							if(req.session.privilegio == 2){
 								stringDataStudents += '<div class="pd_16 hover">Calificar</div>'
 							}
-		 stringDataStudents +=       			'</a>'
-							+				'</div>'
+		 stringDataStudents +=       		'</div>'
 							+			'</div>'
                             +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
                             +           '<div class="listitem_bottomdata">Alumno'
@@ -330,7 +330,7 @@ exports.getProfileContactsTeachers = function(req, res){
 
 	//SI EL USUARIO ES TIPO AlUMNO
 	if(req.session.privilegio == 1){
-		stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName '
+		stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName, photoName '
 					+ ' FROM Student_has_Subject_has_Course a '
 					+ ' JOIN Teacher_has_Subject_has_Course b '
 					+ ' 	ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
@@ -351,7 +351,7 @@ exports.getProfileContactsTeachers = function(req, res){
 
 	//SI EL USUARIO ES TIPO PROFESOR
 	else if(req.session.privilegio == 2){
-		stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName '
+		stringQuery = 'SELECT userEmail, userName, userLastName, userSecondLastName, photoName '
 					+ ' FROM Teacher_has_Subject_has_Course a '
 					+ ' JOIN Teacher_has_Subject_has_Course b '
 					+ ' 	ON a.Subject_has_Course_Subject_idSubject = b.Subject_has_Course_Subject_idSubject '
@@ -372,7 +372,7 @@ exports.getProfileContactsTeachers = function(req, res){
 
 	// SI EL USUARIO ES TIPO ADMIN
 	else if(req.session.privilegio == 3){
-		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail '
+		stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, photoName '
 				+ ' FROM User AS u '
 				+ ' INNER JOIN Teacher AS t' 
 				+ ' ON u.userEmail = t.User_userEmail'
@@ -387,7 +387,7 @@ exports.getProfileContactsTeachers = function(req, res){
                 var item = result[i];
                 stringDataTeachers += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Profesor">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -579,13 +579,13 @@ exports.updateProfilePhotos = function(req, res){
 
 	var backImage = req.files.updateProfileBack;
 	var profileImage = req.files.updateProfilePhoto;
-	var nameImage = req.session.datos[0].userEmail;
+	var nameImage = req.session.datos[0].photoName;
 
 	console.log(__base + "/public/profile_back/" + nameImage + ".jpg");	
 	if( backImage.originalFilename != '' ){
 
 		var readableStream = fs.createReadStream(backImage.path);
-		var writableStream = fs.createWriteStream(__base + "/public/profile_back/" + nameImage + ".png");
+		var writableStream = fs.createWriteStream(__base + "/public/profile_backgrounds/" + nameImage + ".png");
 
 		readableStream.pipe(writableStream, {end: false});
 

@@ -18,7 +18,7 @@ block content
 						#p_back.colhh1.profile_img.inbox_shadow
 							.f_select.pd_18.autooverflow
 								.input_filecontainer
-									input#input_pBack(type='file' name='updateProfileBack' accept='image/*')
+									input#input_pBack.changep_input(type='file' name='updateProfileBack' accept='image/*')
 								#selectBack.autocol.hover.trigger.borad.white_text
 									span.small_icon.bg_camera.v_middle
 									.autocol.v_middle.b_text(style='margin-left: -5px;')
@@ -26,9 +26,9 @@ block content
 											span.pd_4
 							.f_select
 								.input_filecontainer
-									input#input_pPhoto(type='file' name='updateProfilePhoto' accept='image/*')
+									input#input_pPhoto.changep_input(type='file' name='updateProfilePhoto' accept='image/*')
 								#selectPhoto.photo.rel_pos
-									img#p_img.circle.flat_shadow(src='images/profilephoto.png')
+									img#p_img.circle.flat_shadow(src='profile_photos/' + datos[0].photoName + '.png')
 									.photo_hiddenbutton.trigger.circle.bg_camera(title='Seleccionar imagen')
 						.pd_24
 							.colhh1
@@ -39,8 +39,8 @@ block content
 							.autocol.right_float
 								span.raised_button.rippleria-dark#close_hbl(data-rippleria)
 									input(type='button' value='Cancelar')
-								span.raised_button.bg_lightgray.rippleria-dark(data-rippleria)
-									input.opacity_color(type='submit' value='Guardar cambios')
+								span.raised_button.bg_lightgray.rippleria-dark#pSubmitButton(data-rippleria)
+									input.opacity_color(type='submit' value='Guardar cambios' disabled)
 
 		.topspace
 		.page_container
@@ -48,7 +48,7 @@ block content
 				.block_container.bg_white.profile_bgcont.rel_pos
 					.colhh1.profile_img
 						.photo
-							img.circle.flat_shadow( src='images/profilephoto.png' )
+							img.circle.flat_shadow(src='profile_photos/'+ datos[0].photoName +'.png')
 					.pd_24
 						.colhh1
 							.name
@@ -158,7 +158,7 @@ block content
 						.colhh1.h_listindex.courses_cl
 							.colhh1
 								.listcontainer
-									.colhh1.flat_shadow.bg_white.empty_blocktext.center_text
+									.block_container.bg_white.empty_blocktext.center_text
 										.pd_64
 											span.v_middle(style= 'background-image: url("images/close-box.png")')
 											.autocol.pd_12.mm_title No tienes ninguna asignatura.

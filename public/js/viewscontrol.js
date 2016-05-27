@@ -429,9 +429,12 @@ jQuery(document).on('ready' ,function(){
 	});
 
 	jQuery('.search input#search_block').blur(function(){
-		jQuery('#listcontainer .slide_list, #listcontainer .block_container').show();
 		jQuery('#listcontainer .no_result').html('');
 		jQuery(this).val('');
+	});
+
+	jQuery('.search input#search_block').focus(function(){
+		jQuery('#listcontainer .slide_list, #listcontainer .block_container').show();
 	});
 
 	jQuery('#buscar').keyup(function(){
@@ -578,38 +581,73 @@ function changeTopTitle(){
 	});
 }
 
-function previewProfilePhoto(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-            
-        reader.onload = function (e) {
-            jQuery('img#p_img').attr('src', e.target.result);
-        }
-            
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function previewProfileBack(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            jQuery('#p_back').css('background-image', 'url("' + e.target.result + '")');
-        }
-            
-        reader.readAsDataURL(input.files[0]);
-    }
-}
 
 jQuery(document).ready(function(){
 
-	jQuery("#input_pPhoto").change(function(){
-        previewProfilePhoto(this);
+	var firstPhoto = jQuery('img#p_img').attr('src');
+	var firstBackground = jQuery('#p_back').css('background-image');
+
+	function previewProfilePhoto(input) {
+	    if (input.files.length > 0) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            jQuery('img#p_img').attr('src', e.target.result);
+	        }  
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	function previewProfileBack(input) {
+	    if (input.files.length > 0) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            jQuery('#p_back').css('background-image', 'url("' + e.target.result + '")');
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	jQuery('#input_pBack').change(function(){
+    	if (jQuery(this).val() != '' && jQuery(this).val() != null) {
+    		previewProfileBack(this);
+	    }
+	    else{
+	    	jQuery('#p_back').css('background-image', firstBackground);	
+    	}
     });
-    jQuery("#input_pBack").change(function(){
-        previewProfileBack(this);
+
+	jQuery('#input_pPhoto').change(function(){
+		if (jQuery(this).val() != '' && jQuery(this).val() != null) {
+        	previewProfilePhoto(this);
+		}
+		else{
+        	jQuery('img#p_img').attr('src', firstPhoto);
+		}
     });
+
+	jQuery('.changep_input').change(function(){
+		var $this = jQuery(this);
+
+		if((jQuery('#input_pPhoto').val() == '' || jQuery('#input_pPhoto').val() == null) && (jQuery('#input_pBack').val() == '' || jQuery('#input_pBack').val() == null)){
+			jQuery('#pSubmitButton').removeClass('bg_blue button_shadow');
+			jQuery('#pSubmitButton').addClass('bg_lightgray');
+			jQuery('#pSubmitButton input[type="submit"]').removeClass('white_text b_text');
+			jQuery('#pSubmitButton input[type="submit"]').addClass('opacity_color');
+			jQuery('#pSubmitButton input[type="submit"]').attr('disabled', 'disabled');	
+		}
+		jQuery(this).each(function(){
+			if($this.val() != '' && $this.val() != null){
+				jQuery('#pSubmitButton').removeClass('bg_lightgray');
+				jQuery('#pSubmitButton').addClass('bg_blue button_shadow');
+				jQuery('#pSubmitButton input[type="submit"]').removeClass('opacity_color');
+				jQuery('#pSubmitButton input[type="submit"]').addClass('white_text b_text');
+				jQuery('#pSubmitButton input[type="submit"]').removeAttr('disabled');
+			}
+		});
+	});
+    
 
 	jQuery('.spinner').spinner({
 		strokeWidth: 5,

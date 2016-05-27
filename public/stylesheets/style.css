@@ -310,7 +310,7 @@ footer span.small_icon{
 }
 
 .bg_img2{
-	background-image: url('/images/img1.jpg');
+	background-image: url('/images/profilebackground.jpg');
 	background-size: cover;background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;	
@@ -668,7 +668,8 @@ footer span.small_icon{
 
 .menu_userbg{
 	height: 150px;
-	background: url('/images/material_bg.jpg') no-repeat;
+	background-image: url('/images/material_bg.jpg');
+	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
 }
@@ -930,7 +931,9 @@ footer span.small_icon{
 
 .profile_img{
 	height: 210px;
-	background: url('/images/material_bg.jpg') no-repeat center;
+	background-image: url('/images/material_bg.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
 	background-size: cover;
 	position: relative;
 }
@@ -1344,7 +1347,7 @@ span.title_rightoptionicon:hover{
 	display: inline;
 	position: relative;
 	font-size: 15px;
-	padding: 8px 12px 8px 28px;
+	padding: 8px 12px 8px 32px;
 	left: -24px;
 	font-weight: 500;
 	border-radius: 0px 20px 20px 0px;

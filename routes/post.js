@@ -112,8 +112,42 @@ exports.insertStudent = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			console.log('Insert Correcto');
-			res.redirect('/management');
+			var stringQuery2 = 'SELECT s.idStudent, u.photoName ' 
+							+ ' FROM Student AS s '
+							+ ' INNER JOIN User AS u '
+							+ ' 	ON u.userEmail = s.User_userEmail '
+							+ ' WHERE u.userEmail = "' + userEmail + '";';
+
+			database.query(stringQuery2, function(error, result, row){
+				if(!error) {
+					//CREAR UN NUEVO DIRECTORIO EN EL SERVIDOR PARA GUARDAR LOS ARCHIVOS QUE SUBAN LOS ALUMNOS
+					/*var dir = './public/publications/' + result[0].idStudent;
+
+					if (!fs.existsSync(dir)){
+					    fs.mkdirSync(dir);
+					}*/
+
+					var readableStream = fs.createReadStream(_base + '/public/images/profilephoto.png');
+					var writableStream = fs.createWriteStream(_base + '/public/profile_photos/' + result[0].photoName + '.png');
+
+					readableStream.pipe(writableStream, {end: false});
+
+					var readableStream2 = fs.createReadStream(_base + '/public/images/profilebackground.jpg');
+					var writableStream2 = fs.createWriteStream(_base + '/public/profile_backgrounds/' + result[0].photoName + '.png');
+
+					readableStream2.pipe(writableStream, {end: false});
+
+					res.redirect('/management');
+				}else{
+					console.log('Error aqui: ' + stringQuery2 + ' Error: ' + error )
+					res.render('error' , {
+						errorData: {
+							errorTitle: 'Error al crear directorio para Profesor en el Servidor',
+							backUrl: '/management'
+						}
+					});
+				}
+			});
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
@@ -161,7 +195,11 @@ exports.insertTeacher = function(req, res){
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 
-			var stringQuery2 = 'SELECT idTeacher FROM Teacher WHERE User_userEmail = "' + userEmail + '";';
+			var stringQuery2 = 'SELECT t.idTeacher, u.photoName ' 
+							+ ' FROM Teacher AS t '
+							+ ' INNER JOIN User AS u '
+							+ ' 	ON u.userEmail = t.User_userEmail '
+							+ ' WHERE u.userEmail = "' + userEmail + '";';
 
 			database.query(stringQuery2, function(error, result, row){
 				if(!error) {
@@ -171,6 +209,16 @@ exports.insertTeacher = function(req, res){
 					if (!fs.existsSync(dir)){
 					    fs.mkdirSync(dir);
 					}
+
+					var readableStream = fs.createReadStream(_base + '/public/images/profilephoto.png');
+					var writableStream = fs.createWriteStream(_base + '/public/profile_photos/' + result[0].photoName + '.png');
+
+					readableStream.pipe(writableStream, {end: false});
+
+					var readableStream2 = fs.createReadStream(_base + '/public/images/profilebackground.jpg');
+					var writableStream2 = fs.createWriteStream(_base + '/public/profile_backgrounds/' + result[0].photoName + '.png');
+
+					readableStream2.pipe(writableStream, {end: false});
 
 					res.redirect('/management');
 				}else{
@@ -336,7 +384,7 @@ exports.getAdministratorsDatabase = function(req, res){
                 var item = result[i];
                 stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -391,7 +439,7 @@ exports.getStudentsDatabase = function(req, res){
                 var item = result[i];
                 stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -500,7 +548,7 @@ exports.getTeachersDatabase = function(req, res){
                 var item = result[i];
                 stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="images/profilephoto.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'

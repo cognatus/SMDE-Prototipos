@@ -28,13 +28,21 @@ html
 		- bodyClass = 'dark_theme'
 	else
 		- bodyClass = ''
+
+	if datos[0].photoName != null || datos[0].photoName != ''
+		- var background = datos[0].photoName 
+		style.
+			.profile_img, .menu_userbg{
+				background-image: url('profile_backgrounds/#{background}.png');
+			}
+
 	body(class=bodyClass)
 		#menu.menu_grid.bg_white
 			.colhh1.menu_userbg.center_text
 				.bg_opacity
 					.menu_userimg
 						a( href='/profile' )
-							img.circle.flat_shadow( src='images/profilephoto.png' )
+							img.circle.flat_shadow(src='profile_photos/'+ datos[0].photoName +'.png')
 					.colhh1.menu_username
 						a( href='/profile' )
 							.pd_16
