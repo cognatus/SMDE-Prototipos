@@ -5,108 +5,6 @@
 		<meta charset="UTF-8"></meta>
 		<link rel="stylesheet" type="text/css" href="styltabla.css" />
 		<link rel='shortcut icon', type='image/png', href='../images/smdelogo.png' />
-		<script type="text/javascript" src="../js/jquery.js"></script>
-		<script type='text/javascript' src="../js/material_spinner/dist/js/material.spinner.min.js"></script>
-		<script type="text/javascript">
-			var t = 0;
-
-			function showAnimation(period, number) {
-
-				for(var i = 0; i < period; i++){
-					jQuery('.animation_container .circle').append('');	
-				}
-			    t += 0.03;
-
-			    var r = 100;         // radius
-			    var xcenter = 92;   // center X position
-			    var ycenter = 92;   // center Y position
-
-			    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
-			    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
-
-			    jQuery('.movingdiv').animate({
-			        top: newTop,
-			        left: newLeft,
-			    }, 1, function() {
-			        showAnimation();
-			    });
-			}
-
-			jQuery(document).ready(function(){
-
-				jQuery('.spinner').spinner({
-					strokeWidth: 5,
-					color: '#00BFA5',
-					radius: 30,
-				});
-
-				jQuery('#selectedElement .block').hide();
-
-				jQuery('.element_container').click(function(){
-					var elem_page = jQuery(this).attr('data-load');
-					var elem_num = jQuery(this).find('.num').text();
-					var elem_simbol = jQuery(this).find('.simbolo').text();
-					var elem_name = jQuery(this).find('.nombre').text();
-					var bg_color = jQuery(this).attr('class');
-
-					var period = jQuery(this).parents('tr').find('.ptable_rownumber').text();
-					showAnimation(period, elem_num);
-
-					jQuery('body, html').css('overflow' , 'hidden');
-					jQuery('#selectedElement').fadeIn();
-					jQuery('#spinner').show();
-					jQuery('#element_loaderinfo').hide();
-
-					jQuery('#selectedElement .block').show(function(){
-						jQuery('#element_titlebg').removeClass();
-						jQuery('#element_titlebg').addClass(bg_color);
-						jQuery('#element_titlebg').removeClass('element_container');
-						jQuery('#hidelem_num').text(elem_num);
-						jQuery('#hidelem_simbol').text(elem_simbol);
-						jQuery('#hidelem_name').text(elem_name);
-						jQuery('#element_loaderinfo').delay(400).show(function(){
-							jQuery('#spinner').hide();
-							jQuery('#element_loaderinfo').load(elem_page);
-						});
-					});
-
-				});
-
-				jQuery('#selectedElement .back').click(function(event){
-					jQuery('#selectedElement').fadeOut();
-					jQuery('body, html').css('overflow-Y' , 'auto');
-				});
-
-				var origHtml = jQuery('.element_container2#previw').html();
-
-				jQuery('.element_container').hover(function(){
-					var elem_num = jQuery(this).find('.num').text();
-					var elem_simbol = jQuery(this).find('.simbolo').text();
-					var elem_name = jQuery(this).find('.nombre').text();
-					var bg_color = jQuery(this).css('background-color');
-
-					jQuery('#hovered_element .element_container2#preview').css('background-color' , bg_color);
-					jQuery('#hovered_element .num').text(elem_num);
-					jQuery('#hovered_element .simbolo').text(elem_simbol);
-					jQuery('#hovered_element .nombre').text(elem_name);
-
-				},function(){
-					jQuery('.element_container2#previw').html(origHtml);					
-				});
-
-				jQuery('.elem_indicator').click(function(){
-					var bg_color = jQuery(this).attr('class');
-					bg_color = bg_color.replace('elem_indicator ' , '');
-
-					jQuery(window).scrollTop(0);
-					jQuery('.element_container').css('visibility' , 'hidden');
-					jQuery('.element_container.' + bg_color).css('visibility' , 'visible');
-					jQuery('.elem_indicator#showAllElements').click(function(){
-						jQuery('.element_container').css('visibility' , 'visible');	
-					});	
-				});
-			});
-		</script>
 	</head>	
 	<body>
 		<div id="selectedElement" class="hidden_eleminfo">
@@ -123,10 +21,10 @@
 					</div>
 					<div class="animation_container">
 						<div class="animation_inner">
-							<div class="circle">
+							<div class="nucleo"></div>
+							<!-- <div class="circle _1">
 								<div class="movingdiv"></div>
-								<div class="circle circle2"></div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1143,5 +1041,166 @@
 			</table>
 		</div>
 		<div style="height: 24px;"></div>
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type='text/javascript' src="../js/material_spinner/dist/js/material.spinner.min.js"></script>
+		<script type="text/javascript">
+			var t = 0;
+
+			function addLines(period, number){
+				var incrementSize = 0;
+				var max_e = 0;
+				var electron = 1;
+				jQuery('.animation_container .animation_inner .circle').remove();
+				// Bucle para los Periodos
+				for(var i = 1; i <= period; i++){
+					var orgSize = 80;
+					var radius = (orgSize + incrementSize)/2;
+					var center = (orgSize - 12)/2;
+					jQuery('.animation_container .animation_inner').append('<div class="circle _' + i + '"></div>');
+					jQuery('.circle._' + i).css({
+						'width' : orgSize + incrementSize,
+						'height' : orgSize + incrementSize,
+						'margin-top' : -((orgSize + incrementSize)/2 + 4),
+						'margin-left' : -((orgSize + incrementSize)/2 + 4)
+					});
+					period = parseInt(period);
+					incrementSize += 40;
+					//Asignar el numero maximo de electrones que tiene cada periodo
+			    	if(i == 1){
+						max_e = 2
+					}
+					else if(i == 2 || i == 7){
+						max_e = 8
+					}
+					else if(i == 3 || i == 6){
+						max_e = 18
+					}
+					else if(i == 4 || i == 5){
+						max_e = 32
+					}
+			    	// Electrones por periodo
+			    	for ( var j = 1; j <= max_e; j++ ) {
+			    		if( electron <= number ){
+			    			jQuery('.circle').eq(i - 1).append(
+			    				'<div class="movingdiv" data-elect="' + electron + '"></div>'
+			    			);
+			    			electron++;
+			    		}
+			    	}
+			    	/*orderElect(totalElect);
+			    	console.log(jQuery('.circle').eq(i - 1).find('.movingdiv').length);*/
+				    if( electron > number ){
+						break;
+					}
+					
+				}
+				/*jQuery('.circle .movingdiv').each(function(){
+					var r = radius;         // radius
+				    var xcenter = center;   // center X position
+				    var ycenter = center;   // center Y position
+				    console.log(radius + '' + center);
+				    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
+				    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
+
+				    jQuery('.movingdiv').animate({
+				        top: newTop,
+				        left: newLeft,
+				    }, 0);
+				});*/
+			}
+
+			/*function showAnimation(radius,center) {
+			    t += 0.05;
+
+			    var r = radius;         // radius
+			    var xcenter = center;   // center X position
+			    var ycenter = center;   // center Y position
+
+			    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
+			    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
+
+			    jQuery('.movingdiv').animate({
+			        top: newTop,
+			        left: newLeft,
+			    }, 1, function() {
+			        showAnimation();
+			    });
+			}*/
+
+			jQuery(document).ready(function(){
+
+				jQuery('.spinner').spinner({
+					strokeWidth: 5,
+					color: '#00BFA5',
+					radius: 30,
+				});
+
+				jQuery('#selectedElement .block').hide();
+
+				jQuery('.element_container').click(function(){
+					var elem_page = jQuery(this).attr('data-load');
+					var elem_num = jQuery(this).find('.num').text();
+					var elem_simbol = jQuery(this).find('.simbolo').text();
+					var elem_name = jQuery(this).find('.nombre').text();
+					var bg_color = jQuery(this).attr('class');
+
+					var period = jQuery(this).parents('tr').find('.ptable_rownumber').text();
+					addLines(period, elem_num);
+
+					jQuery('body, html').css('overflow' , 'hidden');
+					jQuery('#selectedElement').fadeIn();
+					jQuery('#spinner').show();
+					jQuery('#element_loaderinfo').hide();
+
+					jQuery('#selectedElement .block').show(function(){
+						jQuery('#element_titlebg').removeClass();
+						jQuery('#element_titlebg').addClass(bg_color);
+						jQuery('#element_titlebg').removeClass('element_container');
+						jQuery('#hidelem_num').text(elem_num);
+						jQuery('#hidelem_simbol').text(elem_simbol);
+						jQuery('#hidelem_name').text(elem_name);
+						jQuery('#element_loaderinfo').delay(400).show(function(){
+							jQuery('#spinner').hide();
+							jQuery('#element_loaderinfo').load(elem_page);
+						});
+					});
+
+				});
+
+				jQuery('#selectedElement .back').click(function(event){
+					jQuery('#selectedElement').fadeOut();
+					jQuery('body, html').css('overflow-Y' , 'auto');
+				});
+
+				var origHtml = jQuery('.element_container2#previw').html();
+
+				jQuery('.element_container').hover(function(){
+					var elem_num = jQuery(this).find('.num').text();
+					var elem_simbol = jQuery(this).find('.simbolo').text();
+					var elem_name = jQuery(this).find('.nombre').text();
+					var bg_color = jQuery(this).css('background-color');
+
+					jQuery('#hovered_element .element_container2#preview').css('background-color' , bg_color);
+					jQuery('#hovered_element .num').text(elem_num);
+					jQuery('#hovered_element .simbolo').text(elem_simbol);
+					jQuery('#hovered_element .nombre').text(elem_name);
+
+				},function(){
+					jQuery('.element_container2#previw').html(origHtml);					
+				});
+
+				jQuery('.elem_indicator').click(function(){
+					var bg_color = jQuery(this).attr('class');
+					bg_color = bg_color.replace('elem_indicator ' , '');
+
+					jQuery(window).scrollTop(0);
+					jQuery('.element_container').css('visibility' , 'hidden');
+					jQuery('.element_container.' + bg_color).css('visibility' , 'visible');
+					jQuery('.elem_indicator#showAllElements').click(function(){
+						jQuery('.element_container').css('visibility' , 'visible');	
+					});	
+				});
+			});
+		</script>
 	</body>
 </html>
