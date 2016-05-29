@@ -1,0 +1,230 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
+
+*{margin: 0;padding: 0;font-family: 'Roboto', 'Helvetica', sans-serif;}
+
+html{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	font-family: 'Roboto', 'Helvetica', sans-serif;
+	width: 100%;height: 100%;
+	font-size: 18px;
+	padding: 0;margin: 0;
+	color: #616161;
+	font-weight: bold;
+	background-color: #eeeeee;
+}
+
+body::-webkit-scrollbar{width: 12px;}
+
+body::-webkit-scrollbar-track{background-color: transparent;}
+
+body::-webkit-scrollbar{background-color: transparent;}
+
+body::-webkit-scrollbar-thumb{
+	background-color: rgba(127,127,127,0.3);
+	background-clip: padding-box;
+}
+
+body::-webkit-scrollbar-thumb:hover{
+	background-color: rgba(127,127,127,0.5);
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.rowscols_table{
+	position: fixed;
+	width: 100%;
+}
+
+.pertable_title{
+	color: #fff;
+	background-color: #424242;
+}
+
+.white_color{color: #fff;}
+
+.minpdbot{padding-bottom: 8px;padding-top: 8px;}
+
+.bg_white{background-color: #fff;}
+.bg_darkblue{background-color: #0D47A1;}
+.bg_blue{background-color: #2196F3;}
+.bg_lightblue{background-color: #03A9F4;}
+.bg_cyan{background-color: #00BCD4;}
+.bg_indigo{background-color: #3F51B5;}
+.bg_teal{background-color: #009688;}
+.bg_green{background-color: #4CAF50;}
+.bg_lightgreen{background-color: #8BC34A;}
+.bg_lime{background-color: #CDDC39;}
+.bg_orange{background-color: #FF9800;}
+.bg_darkorange{background-color: #FF5722;}
+.bg_red{background-color: #F44336;}
+.bg_purple{background-color: #9C27B0;}
+.bg_darkpurple{background-color: #673AB7;}
+.bg_pink{background-color: #E91E63;}
+.bg_lightpink{background-color: #FF4081;}
+.bg_yellow{background-color: #FFEB3B;}
+.bg_amber{background-color: #FFC107;}
+.bg_brown{background-color: #795548;}
+.bg_bluegray{background-color: #607D8B;}
+.bg_lightgray{background-color: #f6f6f6;}
+.bg_gray{background-color: #616161;}
+.bg_darkgray{background-color: #212121;}
+
+.bg_darken{
+	background-color: rgba(0,0,0,0.2);
+}
+
+.pd_8{padding: 8px;width: auto;}
+
+#periodic_table{
+	width: 100%;
+	min-width: 1200px;
+	text-align: center;
+}
+
+.element_container{
+	cursor: pointer;
+	padding: 8px;
+	min-width: 54px;
+	text-align: center;
+	color: #fff;
+	font-weight: normal;
+	margin: 0.5px;
+	transition: all ease-in-out 0.2s;
+}
+
+.elem_indicator{
+	cursor: pointer;
+	padding: 16px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: normal;
+	margin: 0.5px;
+}
+
+.element_container:hover, .elem_indicator:hover{
+	background-color: #fff;
+	color: #616161;
+}
+
+.ptable_rownumber{
+	font-weight: bold;
+	font-size: 18px;
+	padding: 0 8px 0 8px;
+}
+
+.color_dark{
+	color: #616161;
+}
+
+.lyatitle{
+	text-align: center;
+	font-weight: bold;
+	font-size: 10px;
+	height: 34px;
+}
+
+.senal{
+   	font-size: 20px;
+	text-align: center;
+}
+
+.num{
+	font-size: 12px;
+	height: 14px;
+}
+
+.simbolo{
+	font-size: 25px;
+	width: 100%;
+	height: 27px;
+	margin: 5px 0 5px 0;
+}
+
+.nombre{
+	font-size: 10px;
+	width: 100%;
+	height:15px;
+}
+
+.hidden_eleminfo{
+	display: none;
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	z-index: 49;
+}
+
+.hidden_eleminfo .back{
+	position: absolute;
+	width: 100%;height: 100%;
+}
+
+.hidden_eleminfo .block{
+	width: calc(100% - 24px);
+	margin: 24px auto;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.14);
+	position: relative;
+	z-index: 4;
+}
+
+.hidden_eleminfo .element_title{
+	padding: 32px 0 32px 0;
+	width: auto;
+	text-align: center;
+	color: #fff;
+	font-weight: normal;
+}
+
+.hidden_eleminfo .element_title .num{
+	font-size: 28px;
+	width: 100%;
+	height: auto;
+}
+
+.hidden_eleminfo .element_title .simbolo{
+	font-size: 64px;
+	width: 100%;
+	height: auto;
+	margin: 10px 0 10px 0;
+	font-weight: lighter;
+}
+
+.hidden_eleminfo .element_title .nombre{
+	font-size: 24px;
+	width: 100%;
+	height: auto;
+}
+
+.elemattributename, .elementattributevalue {
+	font-size: 15px;
+	vertical-align: middle;
+	font-weight: 500;
+	width: calc(50% - 48px);
+	display: inline-block;
+	padding: 18px 24px 18px 24px;
+	margin-left: -3px;
+}
+
+.elementattributevalue{
+	text-align: right;
+	font-weight: normal;
+}
+
+.elementattrcontainer:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+@media screen and (min-width: 544px){
+	.hidden_eleminfo .block{
+		width: 520px;
+	}
+}

@@ -302,7 +302,6 @@ jQuery(document).on('ready' ,function(){
 	});
 
 	if( jQuery(window).width() >= 1120 ){
-		jQuery('#listcontainer.left_listcontainer .listitem').first().trigger('click');
 		jQuery('.block_containersettings .listitem').first().trigger('click');
 	}
 

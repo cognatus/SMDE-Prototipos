@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tabla Periódica</title>
+		<meta charset="UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="styltabla.css" />
+		<link rel='shortcut icon', type='image/png', href='../images/smdelogo.png' />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				jQuery('.element_container').click(function(){
+					var elem_page = jQuery(this).attr('data-load');
+					var elem_num = jQuery(this).find('.num').text();
+					var elem_simbol = jQuery(this).find('.simbolo').text();
+					var elem_name = jQuery(this).find('.nombre').text();
+					var bg_color = jQuery(this).attr('class');
+
+					jQuery('body, html').css('overflow' , 'hidden');
+					jQuery('#selectedElement .block div').css('opacity' , '0');
+
+					jQuery('#selectedElement').fadeIn(function(event){
+						jQuery('#element_titlebg').removeClass();
+						jQuery('#element_titlebg').addClass(bg_color);
+						jQuery('#element_titlebg').removeClass('element_container');
+						jQuery('#hidelem_num').text(elem_num);
+						jQuery('#hidelem_simbol').text(elem_simbol);
+						jQuery('#hidelem_name').text(elem_name);
+						jQuery('#element_loaderinfo').load(elem_page);
+						jQuery('#selectedElement .block div').css('opacity' , '1');
+					});
+
+				});
+
+				jQuery('#selectedElement .back').click(function(event){
+					jQuery('#selectedElement').fadeOut();
+					jQuery('body, html').css('overflow-Y' , 'auto');
+				});
+				
+			});
+		</script>
+	</head>	
+	<body>
+		<div id="selectedElement" class="hidden_eleminfo">
+			<div class="back"></div>
+			<div class="block bg_white">
+				<div id="element_titlebg">
+					<div class="pd_8 bg_darken"></div>
+					<div class="h_elemtitle">
+						<div class="element_title">
+							<div class="num" id="hidelem_num">1</div>
+							<div class="simbolo" id="hidelem_simbol">H</div>
+							<div class="nombre" id="hidelem_name">Hidrógeno</div>
+						</div>
+					</div>
+				</div>
+				<div id="element_loaderinfo" class="bg_white">
+					
+				</div>
+			</div>
+		</div>
+	
+		<div id="pertable_container">
+			<table id="periodic_table">
+				<tr class="pertable_title">
+					<td></td>
+					<td class="minpdbot">IA</td>
+					<td valign="bottom" class="minpdbot">IIA</td>
+					<td valign="bottom" class="minpdbot">IIIB</td>
+					<td valign="bottom" class="minpdbot">IVB</td>
+					<td valign="bottom" class="minpdbot">VB</td>
+					<td valign="bottom" class="minpdbot">VIB</td>
+					<td valign="bottom" class="minpdbot">VIIB</td>
+					<td valign="bottom" colspan="3" class="minpdbot">VIIIB</td>
+					<td valign="bottom" class="minpdbot">IB</td>
+					<td valign="bottom" class="minpdbot">IIB</td>
+					<td valign="bottom" class="minpdbot">IIIA</td>
+					<td valign="bottom" class="minpdbot">IVA</td>
+					<td valign="bottom" class="minpdbot">VA</td>
+					<td valign="bottom" class="minpdbot">VIA</td>
+					<td valign="bottom" class="minpdbot">VIIA</td>
+					<td class="minpdbot">VIIIA</td>
+				</tr>
+				<tr>
+					<td class="pertable_title">
+						<div class="ptable_rownumber">1</div>
+					</td>
+					<td>
+						<div data-load="elementos/hidrogeno.html" class="element_container bg_bluegray">
+							<div class="num">1</div>
+							<div class="simbolo">H</div>
+							<div class="nombre">Hidrógeno</div>
+						</div>
+					</td>
+					<td>
+					<td colspan="10" rowspan="3" valign="middle"></td>
+					<td colspan="5"></td>
+					<td>
+						<div data-load="elementos/helio.html" class="element_container bg_amber">
+							<div class="num">2</div>
+							<div class="simbolo">He</div>
+							<div class="nombre">Helio</div>
+						</div>
+					</td>
+				</tr>	
+				<tr>
+					<td class="pertable_title">
+						<div class="ptable_rownumber">2</div>
+					</td>
+					<td>
+						<div data-load="elementos/litio.html" class="element_container bg_lightblue">
+							<div class="num">3</div>
+							<div class="simbolo">Li</div>
+							<div class="nombre">Litio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/berilio.html" class="element_container bg_purple">
+							<div class="num">4</div>
+							<div class="simbolo">Be</div>
+							<div class="nombre">Berilio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/boro.html" class="element_container bg_teal">
+							<div class="num">5</div>
+							<div class="simbolo">B</div>
+							<div class="nombre">Boro</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/carbono.html" class="element_container bg_bluegray">
+							<div class="num">6</div>
+							<div class="simbolo">C</div>
+							<div class="nombre">Carbono</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/nitrogeno.html" class="element_container bg_bluegray">
+							<div class="num">7</div>
+							<div class="simbolo">N</div>
+							<div class="nombre">Nitrógeno</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/oxigeno.html" class="element_container bg_bluegray">
+							<div class="num">8</div>
+							<div class="simbolo">O</div>
+							<div class="nombre">Oxígeno</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/fluor.html" class="element_container bg_indigo">
+							<div class="num">9</div>
+							<div class="simbolo">F</div>
+							<div class="nombre">Fluor</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/neon.html" class="element_container bg_amber">
+							<div class="num">10</div>
+							<div class="simbolo">Ne</div>
+							<div class="nombre">Neón</div>
+						</div>
+					</td>	
+				</tr>
+				<tr>
+					<td class="pertable_title">
+						<div class="ptable_rownumber">3</div>
+					</td>
+					<td>
+						<div data-load="elementos/sodio.html" class="element_container bg_lightblue">
+							<div class="num">11</div>
+							<div class="simbolo">Na</div>
+							<div class="nombre">Sodio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/magnesio.html" class="element_container bg_purple">
+							<div class="num">12</div>
+							<div class="simbolo">Mg</div>
+							<div class="nombre">Magnesio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/aluminio.html" class="element_container bg_lightpink">
+							<div class="num">13</div>
+							<div class="simbolo">Al</div>
+							<div class="nombre">Aluminio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/silicio.html" class="element_container bg_teal">
+							<div class="num">14</div>
+							<div class="simbolo">Si</div>
+							<div class="nombre">Silicio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/fosforo.html" class="element_container bg_bluegray">
+							<div class="num">15</div>
+							<div class="simbolo">P</div>
+							<div class="nombre">Fósforo</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/azufre.html" class="element_container bg_bluegray">
+							<div class="num">16</div>
+							<div class="simbolo">S</div>
+							<div class="nombre">Azufre</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/cloro.html" class="element_container bg_indigo">
+							<div class="num">17</div>
+							<div class="simbolo">Cl</div>
+							<div class="nombre">Cloro</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/argon.html" class="element_container bg_amber">
+							<div class="num">18</div>
+							<div class="simbolo">Ar</div>
+							<div class="nombre">Argón</div>
+						</div>
+					</td>	
+				</tr>
+				<tr>	
+					<td class="pertable_title">
+						<div class="ptable_rownumber">4</div>
+					</td>
+					<td>
+						<div data-load="elementos/potasio.html" class="element_container bg_lightblue">
+							<div class="num">19</div>
+							<div class="simbolo">K</div>
+							<div class="nombre">Potasio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/calcio.html" class="element_container bg_purple">
+							<div class="num">20</div>
+							<div class="simbolo">Ca</div>
+							<div class="nombre">Calcio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/escandio.html" class="element_container bg_green">
+							<div class="num">21</div>
+							<div class="simbolo">Sc</div>
+							<div class="nombre">Escandio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/titanio.html" class="element_container bg_green">
+							<div class="num">22</div>
+							<div class="simbolo">Ti</div>
+							<div class="nombre">Titanio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/vanadio.html" class="element_container bg_green">
+							<div class="num">23</div>
+							<div class="simbolo">V</div>
+							<div class="nombre">Vanadio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/cromo.html" class="element_container bg_green">
+							<div class="num">24</div>
+							<div class="simbolo">Cr</div>
+							<div class="nombre">Cromo</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/manganeso.html" class="element_container bg_green">
+							<div class="num">25</div>
+							<div class="simbolo">Mn</div>
+							<div class="nombre">Manganeso</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/hierro.html" class="element_container bg_green">
+							<div class="num">26</div>
+							<div class="simbolo">Fe</div>
+							<div class="nombre">Hierro</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/cobalto.html" class="element_container bg_green">
+							<div class="num">27</div>
+							<div class="simbolo">Co</div>
+							<div class="nombre">Cobalto</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/niquel.html" class="element_container bg_green">
+							<div class="num">28</div>
+							<div class="simbolo">Ni</div>
+							<div class="nombre">Niquel</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/cobre.html" class="element_container bg_green">
+							<div class="num">29</div>
+							<div class="simbolo">Cu</div>
+							<div class="nombre">Cobre</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/zinc.html" class="element_container bg_green">
+							<div class="num">30</div>
+							<div class="simbolo">Zn</div>
+							<div class="nombre">Zinc</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/galio.html" class="element_container bg_lightpink">
+							<div class="num">31</div>
+							<div class="simbolo">Ga</div>
+							<div class="nombre">Galio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/germanio.html" class="element_container bg_teal">
+							<div class="num">32</div>
+							<div class="simbolo">Ge</div>
+							<div class="nombre">Germanio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/arsenico.html" class="element_container bg_teal">
+							<div class="num">33</div>
+							<div class="simbolo">As</div>
+							<div class="nombre">Arsénico</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/selenio.html" class="element_container bg_bluegray">
+							<div class="num">34</div>
+							<div class="simbolo">Se</div>
+							<div class="nombre">Selenio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/bromo.html" class="element_container bg_indigo">
+							<div class="num">35</div>
+							<div class="simbolo">Br</div>
+							<div class="nombre">Bromo</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/cripton.html" class="element_container bg_amber">
+							<div class="num">36</div>
+							<div class="simbolo">Kr</div>
+							<div class="nombre">Cripton</div>
+						</div>
+					</td>
+				</tr>
+				<tr>	
+					<td class="pertable_title">
+						<div class="ptable_rownumber">5</div>
+					</td>
+					<td>
+						<div data-load="elementos/rubidio.html" class="element_container bg_lightblue">
+							<div class="num">37</div>
+							<div class="simbolo">Rb</div>
+							<div class="nombre">Rubidio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/estroncio.html" class="element_container bg_purple">
+							<div class="num">38</div>
+							<div class="simbolo">Sr</div>
+							<div class="nombre">Estroncio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/itrio.html" class="element_container bg_green">
+							<div class="num">39</div>
+							<div class="simbolo">Y</div>
+							<div class="nombre">Itrio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/circonio.html" class="element_container bg_green">
+							<div class="num">40</div>
+							<div class="simbolo">Zr</div>
+							<div class="nombre">Circonio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/niobio.html" class="element_container bg_green">
+							<div class="num">41</div>
+							<div class="simbolo">Nb</div>
+							<div class="nombre">Niobio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/molibdeno.html" class="element_container bg_green">
+							<div class="num">42</div>
+							<div class="simbolo">Mo</div>
+							<div class="nombre">Molibdeno</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/tecnecio.html" class="element_container bg_green">
+							<div class="num">43</div>
+							<div class="simbolo">Tc</div>
+							<div class="nombre">Tecnecio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/rutenio.html" class="element_container bg_green">
+							<div class="num">44</div>
+							<div class="simbolo">Ru</div>
+							<div class="nombre">Rutenio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/rodio.html" class="element_container bg_green">
+							<div class="num">45</div>
+							<div class="simbolo">Rh</div>
+							<div class="nombre">Rodio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/paladio.html" class="element_container bg_green">
+							<div class="num">46</div>
+							<div class="simbolo">Pd</div>
+							<div class="nombre">Paladio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/plata.html" class="element_container bg_green">
+							<div class="num">47</div>
+							<div class="simbolo">Ag</div>
+							<div class="nombre">Plata</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/cadmio.html" class="element_container bg_green">
+							<div class="num">48</div>
+							<div class="simbolo">Cd</div>
+							<div class="nombre">Cadmio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/indio.html" class="element_container bg_lightpink">
+							<div class="num">49</div>
+							<div class="simbolo">In</div>
+							<div class="nombre">Indio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/estaño.html" class="element_container bg_lightpink">
+							<div class="num">50</div>
+							<div class="simbolo">Sn</div>
+							<div class="nombre">Estaño</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/antimonio.html" class="element_container bg_teal">
+							<div class="num">51</div>
+							<div class="simbolo">Sb</div>
+							<div class="nombre">Antimonio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/teluro.html" class="element_container bg_teal">
+							<div class="num">52</div>
+							<div class="simbolo">Te</div>
+							<div class="nombre">Teluro</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/yodo.html" class="element_container bg_indigo">
+							<div class="num">53</div>
+							<div class="simbolo">I</div>
+							<div class="nombre">Yodo</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/xenon.html" class="element_container bg_amber">
+							<div class="num">54</div>
+							<div class="simbolo">Xe</div>
+							<div class="nombre">Xenon</div>
+						</div>	
+					</td>
+				</tr>
+				<tr>	
+					<td class="pertable_title">
+						<div class="ptable_rownumber">6</div>
+					</td>
+					<td>
+						<div data-load="elementos/cesio.html" class="element_container bg_lightblue">
+							<div class="num">55</div>
+							<div class="simbolo">Cs</div>
+							<div class="nombre">Cesio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/bario.html" class="element_container bg_purple">
+							<div class="num">56</div>
+							<div class="simbolo">Ba</div>
+							<div class="nombre">Bario</div>
+						</div>	
+					</td>
+					<td>
+						<div class="lyatitle">
+							Lantánidos
+							<br /><br />
+							57-71
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/hafnio.html" class="element_container bg_green">
+							<div class="num">72</div>
+							<div class="simbolo">Hf</div>
+							<div class="nombre">Hafnio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/tantalo.html" class="element_container bg_green">
+							<div class="num">73</div>
+							<div class="simbolo">Ta</div>
+							<div class="nombre">Tantalo</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/volframio.html" class="element_container bg_green">
+							<div class="num">74</div>
+							<div class="simbolo">W</div>
+							<div class="nombre">Volframio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/renio.html" class="element_container bg_green">
+							<div class="num">75</div>
+							<div class="simbolo">Re</div>
+							<div class="nombre">Renio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/osmio.html" class="element_container bg_green">
+							<div class="num">76</div>
+							<div class="simbolo">Os</div>
+							<div class="nombre">Osmio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/iridio.html" class="element_container bg_green">
+							<div class="num">77</div>
+							<div class="simbolo">Ir</div>
+							<div class="nombre">Iridio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/platino.html" class="element_container bg_green">
+							<div class="num">78</div>
+							<div class="simbolo">Pt</div>
+							<div class="nombre">Platino</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/oro.html" class="element_container bg_green">
+							<div class="num">79</div>
+							<div class="simbolo">Au</div>
+							<div class="nombre">Oro</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/mercurio.html" class="element_container bg_green">
+							<div class="num">80</div>
+							<div class="simbolo">Hg</div>
+							<div class="nombre">Mercurio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/talio.html" class="element_container bg_lightpink">
+							<div class="num">81</div>
+							<div class="simbolo">Tl</div>
+							<div class="nombre">Talio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/plomo.html" class="element_container bg_lightpink">
+							<div class="num">82</div>
+							<div class="simbolo">Pb</div>
+							<div class="nombre">Plomo</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/bismuto.html" class="element_container bg_lightpink">
+							<div class="num">83</div>
+							<div class="simbolo">Bi</div>
+							<div class="nombre">Bismuto</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/polonio.html" class="element_container bg_teal">
+							<div class="num">84</div>
+							<div class="simbolo">Po</div>
+							<div class="nombre">Polonio</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/astato.html" class="element_container bg_indigo">
+							<div class="num">85</div>
+							<div class="simbolo">At</div>
+							<div class="nombre">Astato</div>
+						</div>	
+					</td>
+					<td>
+						<div data-load="elementos/radon.html" class="element_container bg_amber">
+							<div class="num">86</div>
+							<div class="simbolo">Rn</div>
+							<div class="nombre">Radón</div>
+						</div>	
+					</td>
+				</tr>
+				<tr>	
+					<td class="pertable_title">
+						<div class="ptable_rownumber">7</div>
+					</td>
+					<td>
+						<div data-load="elementos/francio.html" class="element_container bg_lightblue">
+							<div class="num">87</div>
+							<div class="simbolo">Fr</div>
+							<div class="nombre">Francio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/radio.html" class="element_container bg_purple">
+							<div class="num">88</div>
+							<div class="simbolo">Ra</div>
+							<div class="nombre">Radio</div>
+						</div>	
+					</td>
+					<td>
+						<div class="lyatitle">
+							Actínidos
+							<br /><br />
+							89-103
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/rutherfordio.html" class="element_container bg_green">
+							<div class="num">104</div>
+							<div class="simbolo">Rf</div>
+							<div class="nombre">Rutherfordio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/dubnio.html" class="element_container bg_green">
+							<div class="num">105</div>
+							<div class="simbolo">Db</div>
+							<div class="nombre">Dubnio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/seaborgio.html" class="element_container bg_green">
+							<div class="num">106</div>
+							<div class="simbolo">Sg</div>
+							<div class="nombre">Seaborgio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/bohrio.html" class="element_container bg_green">
+							<div class="num">107</div>
+							<div class="simbolo">Bh</div>
+							<div class="nombre">Bohrio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/hassio.html" class="element_container bg_green">
+							<div class="num">108</div>
+							<div class="simbolo">Hs</div>
+							<div class="nombre">Hassio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/meitnerio.html" class="element_container bg_green">
+							<div class="num">109</div>
+							<div class="simbolo">Mt</div>
+							<div class="nombre">Meitnerio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/darmstadtio.html" class="element_container bg_green">
+							<div class="num">110</div>
+							<div class="simbolo">Ds</div>
+							<div class="nombre">Darmstadtio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/roentgenio.html" class="element_container bg_green">
+							<div class="num">111</div>
+							<div class="simbolo">Rg</div>
+							<div class="nombre">Roentgenio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/ununbio.html" class="element_container bg_green">
+							<div class="num">112</div>
+							<div class="simbolo">Uub</div>
+							<div class="nombre">Ununbio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/unutrio.html" class="element_container bg_lightpink">
+							<div class="num">113</div>
+							<div class="simbolo">Uut</div>
+							<div class="nombre">Ununtrio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/ununquadio.html" class="element_container bg_lightpink">
+							<div class="num">114</div>
+							<div class="simbolo">Uuq</div>
+							<div class="nombre">Ununquadio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/ununpentio.html" class="element_container bg_lightpink">
+							<div class="num">115</div>
+							<div class="simbolo">Uup</div>
+							<div class="nombre">Ununpentio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/ununhexio.html" class="element_container bg_lightpink">
+							<div class="num">116</div>
+							<div class="simbolo">Uuh</div>
+							<div class="nombre">Ununhexio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/ununseptio.html" class="element_container bg_brown">
+							<div class="num">117</div>
+							<div class="simbolo">Uus</div>
+							<div class="nombre">Ununseptio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/ununoctio.html" class="element_container bg_brown">
+							<div class="num">118</div>
+							<div class="simbolo">Uuo</div>
+							<div class="nombre">Ununoctio</div>
+						</div>
+					</td>
+				</tr>
+				<tr>	
+					<td colspan="19" height="24"></td>
+				</tr>
+				<tr>	
+					<td class="pertable_title">
+						<div class="ptable_rownumber">6</div>
+					</td>
+					<td colspan="3">
+						<div class="senal">
+							Lantánidos
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/lantano.html" class="element_container bg_green">
+							<div class="num">57</div>
+							<div class="simbolo">La</div>
+							<div class="nombre">Lantano</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/cerio.html" class="element_container bg_red">
+							<div class="num">58</div>
+							<div class="simbolo">Ce</div>
+							<div class="nombre">Cerio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/praseodomio.html" class="element_container bg_red">
+							<div class="num">59</div>
+							<div class="simbolo">Pr</div>
+							<div class="nombre">Praseodimio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/neodimio.html" class="element_container bg_red">
+							<div class="num">60</div>
+							<div class="simbolo">Nd</div>
+							<div class="nombre">Neodimio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/prometio.html" class="element_container bg_red">
+							<div class="num">61</div>
+							<div class="simbolo">Pm</div>
+							<div class="nombre">Prometio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/samario.html" class="element_container bg_red">
+							<div class="num">62</div>
+							<div class="simbolo">Sm</div>
+							<div class="nombre">Samario</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/europio.html" class="element_container bg_red">
+							<div class="num">63</div>
+							<div class="simbolo">Eu</div>
+							<div class="nombre">Europio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/gadolinio.html" class="element_container bg_red">
+							<div class="num">64</div>
+							<div class="simbolo">Gd</div>
+							<div class="nombre">Gadolinio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/terbio.html" class="element_container bg_red">
+							<div class="num">65</div>
+							<div class="simbolo">Tb</div>
+							<div class="nombre">Terbio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/disprosio.html" class="element_container bg_red">
+							<div class="num">66</div>
+							<div class="simbolo">Dy</div>
+							<div class="nombre">Disprosio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/holmio.html" class="element_container bg_red">
+							<div class="num">67</div>
+							<div class="simbolo">Ho</div>
+							<div class="nombre">Holmio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/erbio.html" class="element_container bg_red">
+							<div class="num">68</div>
+							<div class="simbolo">Er</div>
+							<div class="nombre">Erbio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/tulio.html" class="element_container bg_red">
+							<div class="num">69</div>
+							<div class="simbolo">Tm</div>
+							<div class="nombre">Tulio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/iterbio.html" class="element_container bg_red">
+							<div class="num">70</div>
+							<div class="simbolo">Yb</div>
+							<div class="nombre">Iterbio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/lutecio.html" class="element_container bg_red">
+							<div class="num">71</div>
+							<div class="simbolo">Lu</div>
+							<div class="nombre">Lutecio</div>
+						</div>
+					</td>
+				</tr>	
+				<tr>	
+					<td class="pertable_title">
+						<div class="ptable_rownumber">7</div>
+					</td>
+					<td colspan="3">
+						<div class="senal">
+						Actínidos
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/actinio.html" class="element_container bg_green">
+							<div class="num">89</div>
+							<div class="simbolo">Ac</div>
+							<div class="nombre">Actinio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/torio.html" class="element_container bg_darkgray">
+							<div class="num">90</div>
+							<div class="simbolo">Th</div>
+							<div class="nombre">Torio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/proactinio.html" class="element_container bg_darkgray">
+							<div class="num">91</div>
+							<div class="simbolo">Pa</div>
+							<div class="nombre">Protactinio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/uranio.html" class="element_container bg_darkgray">
+							<div class="num">92</div>
+							<div class="simbolo">U</div>
+							<div class="nombre">Uranio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/neptunio.html" class="element_container bg_darkgray">
+							<div class="num">93</div>
+							<div class="simbolo">Np</div>
+							<div class="nombre">Neptunio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/plutonio.html" class="element_container bg_darkgray">
+							<div class="num">94</div>
+							<div class="simbolo">Pu</div>
+							<div class="nombre">Plutonio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/amercio.html" class="element_container bg_darkgray">
+							<div class="num">95</div>
+							<div class="simbolo">Am</div>
+							<div class="nombre">Americio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/curio.html" class="element_container bg_darkgray">
+							<div class="num">96</div>
+							<div class="simbolo">Cm</div>
+							<div class="nombre">Curio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/berkelio.html" class="element_container bg_darkgray">
+							<div class="num">97</div>
+							<div class="simbolo">Bk</div>
+							<div class="nombre">Berkelio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/californio.html" class="element_container bg_darkgray">
+							<div class="num">98</div>
+							<div class="simbolo">Cf</div>
+							<div class="nombre">Californio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/einstenio.html" class="element_container bg_darkgray">
+							<div class="num">99</div>
+							<div class="simbolo">Es</div>
+							<div class="nombre">Einstenio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/fermio.html" class="element_container bg_darkgray">
+							<div class="num">100</div>
+							<div class="simbolo">Fm</div>
+							<div class="nombre">Fermio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/mendelevio.html" class="element_container bg_darkgray">
+								<div class="num">101</div>
+								<div class="simbolo">Md</div>
+								<div class="nombre">Mendelevio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/nobelio.html" class="element_container bg_darkgray">
+							<div class="num">102</div>
+							<div class="simbolo">No</div>
+							<div class="nombre">Nobelio</div>
+						</div>
+					</td>
+					<td>
+						<div data-load="elementos/lawrencio.html" class="element_container bg_darkgray">
+							<div class="num">103</div>
+							<div class="simbolo">Lr</div>
+							<div class="nombre">Lawrencio</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="19" height="32"></td>
+				</tr>	
+				<tr>
+					<td colspan="4"></td>
+					<td colspan="5">
+						<div class="elem_indicator bg_bluegray">
+							No Metales
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_amber">
+							Gases Nobles
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_lightblue">
+							Metales Alcalinos
+						</div>
+					</td>
+				</tr>
+					<td colspan="4"></td>
+					<td colspan="5">
+						<div class="elem_indicator bg_purple">
+							Metales Alcalinotérreos
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_lightpink">
+							Otros Metales
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_teal">
+							Metaloide
+						</div>
+					</td>
+				<tr>
+					<td colspan="4"></td>
+					<td colspan="5">
+						<div class="elem_indicator bg_green">
+							Metales de Transición
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_red">
+							Lantánidos
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_darkgray">
+							Actínidos
+						</div>
+					</td>
+				</tr>	
+				<tr>
+					<td colspan="9"></td>
+					<td colspan="5">
+						<div class="elem_indicator bg_indigo">
+							Halógenos
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_brown">
+							Sintéticos
+						</div>
+					</td>
+				</tr>	
+			</table>
+		</div>
+		<div style="height: 24px;"></div>
+	</body>
+</html>
