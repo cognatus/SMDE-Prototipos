@@ -6,8 +6,42 @@
 		<link rel="stylesheet" type="text/css" href="styltabla.css" />
 		<link rel='shortcut icon', type='image/png', href='../images/smdelogo.png' />
 		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type='text/javascript' src="../js/material_spinner/dist/js/material.spinner.min.js"></script>
 		<script type="text/javascript">
+			var t = 0;
+
+			function showAnimation(period, number) {
+
+				for(var i = 0; i < period; i++){
+					jQuery('.animation_container .circle').append('');	
+				}
+			    t += 0.03;
+
+			    var r = 100;         // radius
+			    var xcenter = 92;   // center X position
+			    var ycenter = 92;   // center Y position
+
+			    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
+			    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
+
+			    jQuery('.movingdiv').animate({
+			        top: newTop,
+			        left: newLeft,
+			    }, 1, function() {
+			        showAnimation();
+			    });
+			}
+
 			jQuery(document).ready(function(){
+
+				jQuery('.spinner').spinner({
+					strokeWidth: 5,
+					color: '#00BFA5',
+					radius: 30,
+				});
+
+				jQuery('#selectedElement .block').hide();
+
 				jQuery('.element_container').click(function(){
 					var elem_page = jQuery(this).attr('data-load');
 					var elem_num = jQuery(this).find('.num').text();
@@ -15,18 +49,25 @@
 					var elem_name = jQuery(this).find('.nombre').text();
 					var bg_color = jQuery(this).attr('class');
 
-					jQuery('body, html').css('overflow' , 'hidden');
-					jQuery('#selectedElement .block div').css('opacity' , '0');
+					var period = jQuery(this).parents('tr').find('.ptable_rownumber').text();
+					showAnimation(period, elem_num);
 
-					jQuery('#selectedElement').fadeIn(function(event){
+					jQuery('body, html').css('overflow' , 'hidden');
+					jQuery('#selectedElement').fadeIn();
+					jQuery('#spinner').show();
+					jQuery('#element_loaderinfo').hide();
+
+					jQuery('#selectedElement .block').show(function(){
 						jQuery('#element_titlebg').removeClass();
 						jQuery('#element_titlebg').addClass(bg_color);
 						jQuery('#element_titlebg').removeClass('element_container');
 						jQuery('#hidelem_num').text(elem_num);
 						jQuery('#hidelem_simbol').text(elem_simbol);
 						jQuery('#hidelem_name').text(elem_name);
-						jQuery('#element_loaderinfo').load(elem_page);
-						jQuery('#selectedElement .block div').css('opacity' , '1');
+						jQuery('#element_loaderinfo').delay(400).show(function(){
+							jQuery('#spinner').hide();
+							jQuery('#element_loaderinfo').load(elem_page);
+						});
 					});
 
 				});
@@ -35,7 +76,35 @@
 					jQuery('#selectedElement').fadeOut();
 					jQuery('body, html').css('overflow-Y' , 'auto');
 				});
-				
+
+				var origHtml = jQuery('.element_container2#previw').html();
+
+				jQuery('.element_container').hover(function(){
+					var elem_num = jQuery(this).find('.num').text();
+					var elem_simbol = jQuery(this).find('.simbolo').text();
+					var elem_name = jQuery(this).find('.nombre').text();
+					var bg_color = jQuery(this).css('background-color');
+
+					jQuery('#hovered_element .element_container2#preview').css('background-color' , bg_color);
+					jQuery('#hovered_element .num').text(elem_num);
+					jQuery('#hovered_element .simbolo').text(elem_simbol);
+					jQuery('#hovered_element .nombre').text(elem_name);
+
+				},function(){
+					jQuery('.element_container2#previw').html(origHtml);					
+				});
+
+				jQuery('.elem_indicator').click(function(){
+					var bg_color = jQuery(this).attr('class');
+					bg_color = bg_color.replace('elem_indicator ' , '');
+
+					jQuery(window).scrollTop(0);
+					jQuery('.element_container').css('visibility' , 'hidden');
+					jQuery('.element_container.' + bg_color).css('visibility' , 'visible');
+					jQuery('.elem_indicator#showAllElements').click(function(){
+						jQuery('.element_container').css('visibility' , 'visible');	
+					});	
+				});
 			});
 		</script>
 	</head>	
@@ -52,10 +121,19 @@
 							<div class="nombre" id="hidelem_name">Hidrógeno</div>
 						</div>
 					</div>
+					<div class="animation_container">
+						<div class="animation_inner">
+							<div class="circle">
+								<div class="movingdiv"></div>
+								<div class="circle circle2"></div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div id="element_loaderinfo" class="bg_white">
-					
+				<div class="spinner_container bg_white" id="spinner">
+					<div class="spinner"></div>
 				</div>
+				<div id="element_loaderinfo" class="bg_white"></div>
 			</div>
 		</div>
 	
@@ -92,7 +170,15 @@
 						</div>
 					</td>
 					<td>
-					<td colspan="10" rowspan="3" valign="middle"></td>
+					<td colspan="10" rowspan="3" valign="middle">
+						<div class="hovered_element" id="hovered_element">
+							<div class="element_container2 bg_bluegray" id="preview">
+								<div class="num">1</div>
+								<div class="simbolo">H</div>
+								<div class="nombre">Hidrógeno</div>
+							</div>
+						</div>
+					</td>
 					<td colspan="5"></td>
 					<td>
 						<div data-load="elementos/helio.html" class="element_container bg_amber">
@@ -504,7 +590,7 @@
 							<div class="nombre">Bario</div>
 						</div>	
 					</td>
-					<td>
+					<td class="bg_darken">
 						<div class="lyatitle">
 							Lantánidos
 							<br /><br />
@@ -635,7 +721,7 @@
 							<div class="nombre">Radio</div>
 						</div>	
 					</td>
-					<td>
+					<td class="bg_darken">
 						<div class="lyatitle">
 							Actínidos
 							<br /><br />
@@ -749,13 +835,13 @@
 					</td>
 				</tr>
 				<tr>	
-					<td colspan="19" height="24"></td>
+					<td colspan="19" height="12"></td>
 				</tr>
 				<tr>	
 					<td class="pertable_title">
 						<div class="ptable_rownumber">6</div>
 					</td>
-					<td colspan="3">
+					<td colspan="3" class="bg_darken">
 						<div class="senal">
 							Lantánidos
 						</div>
@@ -870,7 +956,7 @@
 					<td class="pertable_title">
 						<div class="ptable_rownumber">7</div>
 					</td>
-					<td colspan="3">
+					<td colspan="3" class="bg_darken">
 						<div class="senal">
 						Actínidos
 						</div>
@@ -1037,7 +1123,7 @@
 					</td>
 				</tr>	
 				<tr>
-					<td colspan="9"></td>
+					<td colspan="4"></td>
 					<td colspan="5">
 						<div class="elem_indicator bg_indigo">
 							Halógenos
@@ -1046,6 +1132,11 @@
 					<td colspan="5">
 						<div class="elem_indicator bg_brown">
 							Sintéticos
+						</div>
+					</td>
+					<td colspan="5">
+						<div class="elem_indicator bg_white color_dark" id="showAllElements">
+							Mostrar Todos
 						</div>
 					</td>
 				</tr>	
