@@ -10,28 +10,28 @@
 		<div id="selectedElement" class="hidden_eleminfo">
 			<div class="back"></div>
 			<div class="block bg_white">
-				<div id="element_titlebg">
-					<div class="pd_8 bg_darken"></div>
-					<div class="h_elemtitle">
-						<div class="element_title">
-							<div class="num" id="hidelem_num">1</div>
-							<div class="simbolo" id="hidelem_simbol">H</div>
-							<div class="nombre" id="hidelem_name">Hidrógeno</div>
-						</div>
-					</div>
-					<div class="animation_container">
-						<div class="animation_inner">
-							<div class="nucleo"></div>
-							<!-- <div class="circle _1">
-								<div class="movingdiv"></div>
-							</div> -->
-						</div>
-					</div>
-				</div>
-				<div class="spinner_container bg_white" id="spinner">
+				<div class="spinner_container" id="spinner">
 					<div class="spinner"></div>
 				</div>
-				<div id="element_loaderinfo" class="bg_white"></div>
+				<div id="elem_hidcontainer">
+					<div id="element_titlebg">
+						<div class="pd_8 bg_darken"></div>
+						<div class="h_elemtitle">
+							<div class="element_title">
+								<div class="num" id="hidelem_num">1</div>
+									<div class="animation_container">
+										<div class="animation_inner">
+											<div class="nucleo" title="Nucleo">
+												<div class="inner_simbol" id="hidelem_simbol"></div>
+											</div>
+										</div>
+									</div>
+								<div class="nombre" id="hidelem_name">Hidrógeno</div>
+							</div>
+						</div>
+					</div>
+					<div id="element_loaderinfo" class="bg_white"></div>
+				</div>
 			</div>
 		</div>
 	
@@ -1044,88 +1044,100 @@
 		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script type='text/javascript' src="../js/material_spinner/dist/js/material.spinner.min.js"></script>
 		<script type="text/javascript">
-			var t = 0;
 
-			function addLines(period, number){
+			function addLines(periode, number){
 				var incrementSize = 0;
 				var max_e = 0;
 				var electron = 1;
+				var divSize = 10; // tamaño en px
 				jQuery('.animation_container .animation_inner .circle').remove();
 				// Bucle para los Periodos
-				for(var i = 1; i <= period; i++){
-					var orgSize = 80;
-					var radius = (orgSize + incrementSize)/2;
-					var center = (orgSize - 12)/2;
-					jQuery('.animation_container .animation_inner').append('<div class="circle _' + i + '"></div>');
+				for( var i = 1; i <= periode; i++ ){
+					var electronCapacity = 2*(Math.pow(i, 2));
+			    	
+					var size = 80;
+					var radius = (size + incrementSize)/2;
+					var diameter = size + incrementSize;
+					var degrees = 0;
+					var radians = 0;
+
+					jQuery('.animation_container .animation_inner').append('<div class="circle _' + i + '"><div class="circle_inner"></div></div>');
+
 					jQuery('.circle._' + i).css({
-						'width' : orgSize + incrementSize,
-						'height' : orgSize + incrementSize,
-						'margin-top' : -((orgSize + incrementSize)/2 + 4),
-						'margin-left' : -((orgSize + incrementSize)/2 + 4)
+						'width' : size + incrementSize,
+						'height' : size + incrementSize,
+						'margin-top' : -((size + incrementSize)/2 + 4),
+						'margin-left' : -((size + incrementSize)/2 + 4)
 					});
-					period = parseInt(period);
-					incrementSize += 40;
-					//Asignar el numero maximo de electrones que tiene cada periodo
+
+					var newRadians = 0;
+					var xPos = 0;
+					var yPos = 0;
+					var newElectron = jQuery('.movingdiv').length;
+
+			    	//Asignar el numero maximo de electrones que tiene cada periodo
 			    	if(i == 1){
-						max_e = 2
+						max_e = 2;
 					}
 					else if(i == 2 || i == 7){
-						max_e = 8
+						max_e = 8;
 					}
 					else if(i == 3 || i == 6){
-						max_e = 18
+						max_e = 18;
 					}
 					else if(i == 4 || i == 5){
-						max_e = 32
+						max_e = 32;
 					}
+
 			    	// Electrones por periodo
 			    	for ( var j = 1; j <= max_e; j++ ) {
 			    		if( electron <= number ){
-			    			jQuery('.circle').eq(i - 1).append(
-			    				'<div class="movingdiv" data-elect="' + electron + '"></div>'
-			    			);
+			    			var degrees = 360/max_e;
+			    			/*//Verificar si esta en el ultimo periodo
+			    			if(i == periode && i > 1){
+			    				degrees = 360/(number);
+			    			}*/
+			    			var radians = (degrees * Math.PI)/180;
+			    			var center = (diameter - divSize)/2;
+			    			newRadians = newRadians + radians;
+			    			
+				    		yPos = center + (radius * Math.sin(newRadians));
+							xPos = center + (radius * Math.cos(newRadians));
+							
+							/*console.log('Grados: ' + degrees + ' Radianes: ' + radians + ' Radio: ' + radius + ' Tamaño: ' + diameter + ' Centro: ' + center + ' top: ' + xPos + ' left: ' + yPos + ' Periodo: ' + i);*/
+						
+							jQuery('.circle').eq(i - 1).find('.circle_inner').append(
+			    				'<div class="movingdiv" title="Electrón" data-elect="' + electron + '" style="top: ' + yPos + 'px;left: ' + xPos + 'px;width: ' + divSize + 'px;height: ' + divSize + 'px;"></div>');	
 			    			electron++;
 			    		}
 			    	}
-			    	/*orderElect(totalElect);
-			    	console.log(jQuery('.circle').eq(i - 1).find('.movingdiv').length);*/
+			    	incrementSize += 40;
 				    if( electron > number ){
 						break;
 					}
-					
 				}
-				/*jQuery('.circle .movingdiv').each(function(){
-					var r = radius;         // radius
-				    var xcenter = center;   // center X position
-				    var ycenter = center;   // center Y position
-				    console.log(radius + '' + center);
-				    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
-				    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
-
-				    jQuery('.movingdiv').animate({
-				        top: newTop,
-				        left: newLeft,
-				    }, 0);
-				});*/
+				
 			}
 
-			/*function showAnimation(radius,center) {
-			    t += 0.05;
+			var twist = 0;
+			var timer;
 
-			    var r = radius;         // radius
-			    var xcenter = center;   // center X position
-			    var ycenter = center;   // center Y position
+			function showAnimation(){
+				timer = setTimeout(function(){
+					var max = jQuery('.circle').length;
+					for(var i = 1; i <= max; i++){
+						var angle = twist/i;
+						jQuery('.circle').eq(i-1)
+							.queue(function(next){
+								jQuery(this).css('transform', 'rotate(' + angle + 'deg)');
+								next();
+					    	});
+				    }
+					twist++;
+					showAnimation();
+				}, 5);
+			}
 
-			    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
-			    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
-
-			    jQuery('.movingdiv').animate({
-			        top: newTop,
-			        left: newLeft,
-			    }, 1, function() {
-			        showAnimation();
-			    });
-			}*/
 
 			jQuery(document).ready(function(){
 
@@ -1135,9 +1147,9 @@
 					radius: 30,
 				});
 
-				jQuery('#selectedElement .block').hide();
-
 				jQuery('.element_container').click(function(){
+					showAnimation();
+
 					var elem_page = jQuery(this).attr('data-load');
 					var elem_num = jQuery(this).find('.num').text();
 					var elem_simbol = jQuery(this).find('.simbolo').text();
@@ -1148,29 +1160,30 @@
 					addLines(period, elem_num);
 
 					jQuery('body, html').css('overflow' , 'hidden');
-					jQuery('#selectedElement').fadeIn();
 					jQuery('#spinner').show();
-					jQuery('#element_loaderinfo').hide();
+					jQuery('#elem_hidcontainer').hide();
 
-					jQuery('#selectedElement .block').show(function(){
+					jQuery('#selectedElement').fadeIn(function(){
 						jQuery('#element_titlebg').removeClass();
 						jQuery('#element_titlebg').addClass(bg_color);
 						jQuery('#element_titlebg').removeClass('element_container');
 						jQuery('#hidelem_num').text(elem_num);
 						jQuery('#hidelem_simbol').text(elem_simbol);
 						jQuery('#hidelem_name').text(elem_name);
-						jQuery('#element_loaderinfo').delay(400).show(function(){
-							jQuery('#spinner').hide();
+						jQuery('#spinner').delay(600).hide(function(){
 							jQuery('#element_loaderinfo').load(elem_page);
+							jQuery('#elem_hidcontainer').show();
 						});
 					});
-
+					
 				});
 
-				jQuery('#selectedElement .back').click(function(event){
+				jQuery('#selectedElement .back').click(function(){
+					clearTimeout(timer);
 					jQuery('#selectedElement').fadeOut();
-					jQuery('body, html').css('overflow-Y' , 'auto');
+					jQuery('body, html').css('overflow' , 'auto');
 				});
+				
 
 				var origHtml = jQuery('.element_container2#previw').html();
 
