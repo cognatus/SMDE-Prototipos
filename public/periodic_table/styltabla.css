@@ -187,13 +187,13 @@ table {
 }
 
 .hidden_eleminfo .block{
-	overflow: hidden;
-	border-radius: 3px;
 	width: calc(100% - 24px);
 	margin: 24px auto;
 	box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
 	position: relative;
 	z-index: 4;
+	border-radius: 2px;
+	overflow: hidden;
 }
 
 .hidden_eleminfo .element_title{
@@ -270,7 +270,11 @@ table {
 	border-radius: 60px;
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.14);
 	z-index: 49;
-} 
+}
+
+.elementattrcontainer:nth-child(odd){
+	
+}
 
 .elemattributename, .elementattributevalue {
 	font-size: 15px;
@@ -280,7 +284,6 @@ table {
 	display: inline-block;
 	padding: 18px 24px 18px 24px;
 	margin-left: -3px;
-	border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .elementattributevalue{
@@ -293,4 +296,26 @@ table {
 	.hidden_eleminfo .block{
 		width: 520px;
 	}
+
+}
+
+@media screen and (min-width: 1120px){
+	.hidden_eleminfo .block{
+		margin: 0 auto;
+		width: 1080px;
+		box-shadow: none;
+		top: 50%;
+		margin-top: -275px;
+	}
+
+	.hidden_eleminfo .block #element_titlebg, .hidden_eleminfo .block #element_loaderinfo{
+		display: inline-block;
+		width: calc(50% - 24px);
+		margin: 0 12px 0 12px;
+		vertical-align: middle;
+		box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+		height: inherit;
+		border-radius: 2px;
+	}
+
 }

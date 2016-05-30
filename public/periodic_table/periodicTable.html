@@ -9,8 +9,8 @@
 	<body>
 		<div id="selectedElement" class="hidden_eleminfo">
 			<div class="back"></div>
-			<div class="block bg_white">
-				<div class="spinner_container" id="spinner">
+			<div class="block">
+				<div class="spinner_container bg_white" id="spinner">
 					<div class="spinner"></div>
 				</div>
 				<div id="elem_hidcontainer">
@@ -29,8 +29,7 @@
 								<div class="nombre" id="hidelem_name">Hidrógeno</div>
 							</div>
 						</div>
-					</div>
-					<div id="element_loaderinfo" class="bg_white"></div>
+					</div><div id="element_loaderinfo" class="bg_white"></div>
 				</div>
 			</div>
 		</div>
@@ -1170,7 +1169,7 @@
 						jQuery('#hidelem_num').text(elem_num);
 						jQuery('#hidelem_simbol').text(elem_simbol);
 						jQuery('#hidelem_name').text(elem_name);
-						jQuery('#spinner').delay(600).hide(function(){
+						jQuery('#spinner').delay(400).hide(function(){
 							jQuery('#element_loaderinfo').load(elem_page);
 							jQuery('#elem_hidcontainer').show();
 						});
