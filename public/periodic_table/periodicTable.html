@@ -1100,7 +1100,7 @@
 			}
 
 			function drawMagic(){
-				var n = atomo[0];
+				var n = atomo;
 				var size = 80;
 				var incrementSize = 0;
 				var divSize = 10; // tamaño en px
@@ -1114,9 +1114,9 @@
 						var radius = (size + incrementSize)/2;
 						var diameter = size + incrementSize;
 
-						jQuery('.animation_container .animation_inner').append('<div class="circle _' + i + '"><div class="circle_inner"></div></div>');
+						jQuery('.animation_container .animation_inner').append('<div class="circle _' + (i+1) + '"><div class="circle_inner"></div></div>');
 
-						jQuery('.circle._' + i).css({
+						jQuery('.circle._' + (i + 1)).css({
 							'width' : size + incrementSize,
 							'height' : size + incrementSize,
 							'margin-top' : -((size + incrementSize)/2 + 4),
@@ -1139,8 +1139,8 @@
 							
 							/*console.log('Grados: ' + degrees + ' Radianes: ' + radians + ' Radio: ' + radius + ' Tamaño: ' + diameter + ' Centro: ' + center + ' top: ' + xPos + ' left: ' + yPos + ' Periodo: ' + i);*/
 						
-							jQuery('.circle').eq(i - 1).find('.circle_inner').append(
-			    				'<div class="movingdiv" title="Electrón" data-elect="' + electron + '" style="top: ' + yPos + 'px;left: ' + xPos + 'px;width: ' + divSize + 'px;height: ' + divSize + 'px;"></div>');	
+							jQuery('.circle').eq(i).find('.circle_inner').append(
+			    				'<div class="movingdiv" title="Electrón" style="top: ' + yPos + 'px;left: ' + xPos + 'px;width: ' + divSize + 'px;height: ' + divSize + 'px;"></div>');	
 			    			
 						}
 				
