@@ -8,6 +8,7 @@
 	</head>	
 	<body>
 		<div id="selectedElement" class="hidden_eleminfo">
+			<div class="close_block">X</div>
 			<div class="back"></div>
 			<div class="block">
 				<div class="spinner_container bg_white" id="spinner">
@@ -1177,7 +1178,7 @@
 					
 				});
 
-				jQuery('#selectedElement .back').click(function(){
+				jQuery('#selectedElement .back, .close_block').click(function(){
 					clearTimeout(timer);
 					jQuery('#selectedElement').fadeOut();
 					jQuery('body, html').css('overflow' , 'auto');
