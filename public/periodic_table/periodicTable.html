@@ -1090,12 +1090,12 @@
 						}
 					}
 				}
-				for (var i = 0; i < atomo.length; i++) {
+				/*for (var i = 0; i < atomo.length; i++) {
 					if(atomo[i] == 0){
 						break;
 					}
 					alert("Orbita " + (i+1) + " tiene " + atomo[i] + " electrones");
-				}
+				}*/
 				drawMagic();
 			}
 
@@ -1127,9 +1127,9 @@
 						var xPos = 0;
 						var yPos = 0;
 
-						for (var j = 0; j <= n.length[i]; j++){
+						for (var j = 0; j <= n[i]; j++){
 
-							var degrees = 360/n.length[i];
+							var degrees = 360/n[i];
 			    			var radians = (degrees * Math.PI)/180;
 			    			var center = (diameter - divSize)/2;
 			    			newRadians = newRadians + radians;
