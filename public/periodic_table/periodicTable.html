@@ -1048,7 +1048,7 @@
 			var confgElec = ['s1','s2','p2','s3','p3','s4','d3','p4','s5','d4','p5','s6','f4','d5','p6','s7','f5','d6','p7']
 			var atomo = [0,0,0,0,0,0,0];
 
-			function elefante(electrons){
+			function electronicConfig(electrons){
 				var n = electrons;
 				for (var i = 0; i < confgElec.length; i++) {
 					var subLevel = confgElec[i].charAt(0);
@@ -1080,7 +1080,7 @@
 								}
 								break;
 							case 'f':
-								for (var j = 0; j < 32; j++) {
+								for (var j = 0; j < 14; j++) {
 									if(n > 0){
 										n--;
 										atomo[maxE]++;
@@ -1104,6 +1104,9 @@
 				var size = 80;
 				var incrementSize = 0;
 				var divSize = 10; // tamaño en px
+				var newRadians = 0;
+				var xPos = 0;
+				var yPos = 0;
 
 				// Bucle para los Periodos
 				for(var i = 0; i < n.length; i++){
@@ -1122,10 +1125,6 @@
 							'margin-top' : -((size + incrementSize)/2 + 4),
 							'margin-left' : -((size + incrementSize)/2 + 4)
 						});
-
-						var newRadians = 0;
-						var xPos = 0;
-						var yPos = 0;
 
 						for (var j = 0; j <= n[i]; j++){
 
@@ -1189,7 +1188,7 @@
 					var bg_color = jQuery(this).attr('class');
 
 					var period = jQuery(this).parents('tr').find('.ptable_rownumber').text();
-					elefante(elem_num);
+					electronicConfig(elem_num);
 
 					jQuery('body, html').css('overflow' , 'hidden');
 					jQuery('#spinner').show();
