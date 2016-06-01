@@ -127,13 +127,13 @@ exports.insertStudent = function(req, res){
 					    fs.mkdirSync(dir);
 					}*/
 
-					var readableStream = fs.createReadStream(_base + '/public/images/profilephoto.png');
-					var writableStream = fs.createWriteStream(_base + '/public/profile_photos/' + result[0].photoName + '.png');
+					var readableStream = fs.createReadStream(__base + '/public/images/profilephoto.png');
+					var writableStream = fs.createWriteStream(__base + '/public/profile_photos/' + result[0].photoName + '.png');
 
 					readableStream.pipe(writableStream, {end: false});
 
-					var readableStream2 = fs.createReadStream(_base + '/public/images/profilebackground.jpg');
-					var writableStream2 = fs.createWriteStream(_base + '/public/profile_backgrounds/' + result[0].photoName + '.png');
+					var readableStream2 = fs.createReadStream(__base + '/public/images/profilebackground.jpg');
+					var writableStream2 = fs.createWriteStream(__base + '/public/profile_backgrounds/' + result[0].photoName + '.png');
 
 					readableStream2.pipe(writableStream, {end: false});
 
@@ -210,13 +210,13 @@ exports.insertTeacher = function(req, res){
 					    fs.mkdirSync(dir);
 					}
 
-					var readableStream = fs.createReadStream(_base + '/public/images/profilephoto.png');
-					var writableStream = fs.createWriteStream(_base + '/public/profile_photos/' + result[0].photoName + '.png');
+					var readableStream = fs.createReadStream(__base + '/public/images/profilephoto.png');
+					var writableStream = fs.createWriteStream(__base + '/public/profile_photos/' + result[0].photoName + '.png');
 
 					readableStream.pipe(writableStream, {end: false});
 
-					var readableStream2 = fs.createReadStream(_base + '/public/images/profilebackground.jpg');
-					var writableStream2 = fs.createWriteStream(_base + '/public/profile_backgrounds/' + result[0].photoName + '.png');
+					var readableStream2 = fs.createReadStream(__base + '/public/images/profilebackground.jpg');
+					var writableStream2 = fs.createWriteStream(__base + '/public/profile_backgrounds/' + result[0].photoName + '.png');
 
 					readableStream2.pipe(writableStream, {end: false});
 
