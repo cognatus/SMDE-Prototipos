@@ -37,12 +37,11 @@ body div:not(.hidden_blockcontainer)::-webkit-scrollbar-thumb:hover{
 
 .minimenu_hidden{color: #424242;}
 
-.minimenu_hidden a{color: inherit;}
-
 .body_container{width: inherit;height: inherit;}
 
 a{
 	text-decoration: none;
+	color: inherit;
 }
 
 input, select, textarea, option{font-size: 15px;color: #424242;}
@@ -113,11 +112,11 @@ footer span.small_icon{
 	display: inline-block;
 }
 .colhh3{
-	width: 33.33333%;
-	display: inline-block;
+	width: 100%;
 }
 
 .index_container .colhh3{width: 100%;}
+
 .colhh4{width: 100%;}
 
 .autocol{
@@ -328,12 +327,16 @@ footer span.small_icon{
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
-.bg_reply, .bg_cross, .bg_magnify, .bg_camera{
+.bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike{
 	background-size: 42%;background-repeat: no-repeat;
 	background-position: center;
 }
 
 .bg_magnify{background-image: url('/images/magnify.png');}
+
+.bg_like{background-image: url('/images/thumb-up.png');}
+
+.bg_dislike{background-image: url('/images/thumb-down.png');}
 
 .bg_camera{background-image: url('/images/camera.png');}
 
@@ -357,7 +360,7 @@ footer span.small_icon{
 
 .bg_edit{background-image: url('/images/whitepencil.png');}
 
-.bg_send{background-image: url('/images/sendgray.png');background-size: 60%;}
+.bg_send{background-image: url('/images/sendgray.png');background-size: 50%;}
 
 .bg_plus{background-image: url('/images/plus.png');background-size: 50%;}
 
@@ -390,7 +393,7 @@ footer span.small_icon{
 
 .hover{cursor: pointer;}
 
-.hover:hover{background-color: rgba(0,0,0,0.035);}
+.hover:hover{background-color: rgba(0,0,0,0.05);}
 
 .white_text{color: #fff;}
 
@@ -588,12 +591,6 @@ footer span.small_icon{
 	margin: 0;
 }
 
-.login_container a{
-	cursor: pointer;
-	text-decoration: none;
-	color: #fff;
-}
-
 .login_container .bm_title{
 	font-weight: lighter;
 	font-size: 30px;
@@ -742,25 +739,35 @@ footer span.small_icon{
 
 .top_pallete{
 	position: fixed;
-	height: 63px;
+	height: 62px;
 	color: #fff;
 	z-index: 50;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
 }
 
 .top_pallete .top_title{
-	position: relative;
 	font-size: 18px;
 	width: auto;
+	height: 100%;
+	line-height: 62px;
 	padding-left: 64px;
 	font-weight: normal;
-	top: 23px;
 }
 
 .top_pallete_inner{
 	width: 100%;
 	position: fixed;
-	z-index: 6;
-	height: 64px;
+	z-index: -10;
+}
+
+.top_pallete_inner .inner{
+	width: inherit;
+	height: 100%;
+	background-image: url('/images/material_bg.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .menu_button{
@@ -771,7 +778,7 @@ footer span.small_icon{
 	padding: 12px;
 	z-index: 99;
 	left: 6px;
-	top: 12px;
+	top: 10px;
 }
 
 .menu_button span{
@@ -1060,7 +1067,7 @@ footer span.small_icon{
 	display: inline-block;
 	width: auto;
 	position: fixed;
-	top: 15px;
+	top: 13.48px;
 	right: 15px;
 	z-index: 99;
 }
@@ -1140,7 +1147,6 @@ span.title_rightoptionicon:hover{
 }
 
 .listitem_img span{
-	opacity: 0.8;
 	display: block;
 	width: 100%;height: 100%;
 	font-size: 26px;
@@ -1247,6 +1253,21 @@ span.title_rightoptionicon:hover{
 
 .listitem_rightinfo label{
 	font-size: 12px;
+}
+
+.block_list .b_img{
+	width: auto;
+	height: 200px;
+	position: relative;
+	background-image: url('/images/wallpaper1.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.block_list .b_img .minimenu span{
+	background-color: #fff;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.14);
 }
 
 /*---------------------------------------------------------------------------------------
@@ -1413,6 +1434,11 @@ span.title_rightoptionicon:hover{
 	height: 62px;
 }
 
+.flat_input{
+	display: block;
+	height: 62px;
+}
+
 .msminput span{
 	display: inline-block;
 	width: 48px;
@@ -1423,28 +1449,29 @@ span.title_rightoptionicon:hover{
 	cursor: pointer;
 }
 
-.msminput input[type='text']{
+.msminput input[type='text'], .flat_input input[type='text']{
 	vertical-align: middle;
-	width: calc(100% - 156px);
-	height: 50px;
-	padding: 0 16px 0 8px;
-	margin: 6px;
-	border: none;
-	outline: none;
+	width: calc(100% - 86px);
+	height: inherit;
+	padding: 0 6px 0 18px;
+	border: none;outline: none;
 	background-color: transparent;
 }
 
-.msminput input[type='submit'], .msminput input[type='button']{
-	width: 42px;
-	height: 42px;
-	float: right;
-	margin: 10px;
-	margin-right: 12px;
-	margin-left: 0;
-	border: none;
-	outline: none;
+.msminput input[type='text']{
+	width: calc(100% - 138px);
+	padding: 0 8px 0 8px;
+}
+
+.msminput input[type='submit'], .flat_input input[type='submit']{
+	vertical-align: middle;
+	width: 42px;height: 42px;
+	float: right;margin: 10px;
+	border: none;outline: none;
 	background-color: transparent;
 }
+
+.msminput input[type='submit']{background-size: 24px;}
 
 .msm_pd{padding: 24px 18px 24px 18px;}
 
@@ -1694,10 +1721,8 @@ span.title_rightoptionicon:hover{
 }
 
 .form_input textarea{
+	resize: none;
 	height: 128px;
-	max-height: 200px;
-	max-width: 100%;
-	min-width: 100%;
 	border: none;
 	margin-top: 8px;
 }
@@ -1732,11 +1757,9 @@ option{background-color: #fff;}
 }
 
 .form_input2 textarea{
-	min-height: 104px;
-	max-height: 156px;
+	height: 104px;
 	width: calc(100% - 36px);
-	max-width: calc(100% - 36px);
-	min-width: calc(100% - 36px);
+	resize: none;
 	padding: 18px;
 }
 
@@ -1830,9 +1853,6 @@ input:checked + .switch:active::before {
 }
 
 .calendar{width: 100%;height: 100%;}
-
-.calendar_right{width: 100%;height: auto;position: absolute;height: 100%;
-	z-index: 5;display: none;top: 0;left: 0;overflow: hidden;}
 
 #calendar_dayeventscont{
 	height: calc(100% - 54px);
@@ -1950,7 +1970,7 @@ input:checked + .switch:active::before {
 	width: 40px;
 	height: 40px;
 	display: inline-block;
-	margin-left: 8px;
+	margin-left: 6px;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -2006,7 +2026,7 @@ input:checked + .switch:active::before {
 .form_input2 span.submit{
 	width: 52px;
 	height: 52px;
-	margin: 0 8px 0 8px;
+	margin: 6px;
 	display: inline-block;
 	cursor: pointer;
 	background-size: 24px;
@@ -2108,7 +2128,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
 }
 
-.float_buttoncontainer{box-shadow: 0px 6px 10px rgba(0,0,0,0.3);}
+.float_buttoncontainer{box-shadow: 0px 6px 10px rgba(0,0,0,0.24);}
 
 .profile_img .minimenu span{
 	background-color: #fff;

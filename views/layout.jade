@@ -32,7 +32,7 @@ html
 	if datos[0].photoName != null || datos[0].photoName != ''
 		- var background = datos[0].photoName 
 		style.
-			.profile_img, .menu_userbg{
+			.profile_img, .menu_userbg, .top_pallete_inner .inner{
 				background-image: url('profile_backgrounds/#{background}.png');
 			}
 
@@ -99,7 +99,8 @@ html
 							label Cerrar sesión		
 		.back_menu
 		.body_container
-			.top_pallete_inner.flat_shadow.bgprimary_color
+			.top_pallete_inner
+				.inner
 			.top_pallete.colhh1.bgprimary_color
 				#menubutton.menu_button( title='Menu' )
 					span

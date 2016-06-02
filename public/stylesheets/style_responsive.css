@@ -4,18 +4,18 @@
 
 	.index_container .colhh3{width: 50%;display: inline-block;}
 
+	.colhh3{width: 50%;display: inline-block;}
+
 	.colhh4{width: 50%;display: inline-block;}
 
 	.top_pallete .top_title{
-		font-size: 22px;
-		top: 20px;
 		text-align: center;
 		padding: 0;
+		font-size: 20px;
 	}
 
 	.top_pallete_inner{
-	 	padding-bottom: 128px;
-	 	z-index: -10;
+	 	height: 50%;
 	}
 
 	.page_container{
@@ -49,7 +49,7 @@
 		margin: 16px auto;
 		border-radius: 1px;
 		margin-bottom: 24px;
-		width: calc(100% - 128px);	
+		width: calc(100% - 80px);	
 		height: calc(100% - 106px);
 		box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	}
@@ -221,11 +221,11 @@
 
 	.top_hlist .h_listtopcontainer, .subl_top .opacity_color{color: #fff;}
 
-	.top_hlist .h_listline{background-color: #fff;}
+	.top_hlist .h_listitem{text-shadow: 0px 1px 1px #000;}
 
 	.float_buttoncontainer.leftlist_floatbutton{
 		top: auto;
-		left: 378px;
+		left: 358px;
 		bottom: 48px;
 	}
 

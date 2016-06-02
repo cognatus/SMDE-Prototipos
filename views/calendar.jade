@@ -85,8 +85,8 @@ block content
 		.page_container
 			.colhh1
 				.calendar_container.v_top
-					.calendar.bg_white.block_container
-						.colhh1.white_text.center_text.bg_calendar.flat_shadow
+					.colhh1.calendar
+						.block_container.white_text.center_text.bg_calendar
 							.bg_opacity
 								.colhh1
 									.colhh1.bg_opacity
@@ -96,7 +96,7 @@ block content
 									.month_title.uppercase Mes
 									.day_title Dia
 									.year_title Año
-						.colhh1.opacity_color.calendar_monthcontainer
+						.block_container.bg_white.opacity_color.calendar_monthcontainer
 							.pd_16.center_text
 								#left.v_middle.button.circle.rippleria-dark( data-rippleria onclick='prevMonth()' )
 								#right.v_middle.button.circle.rippleria-dark( data-rippleria onclick='nextMonth()' )
@@ -131,19 +131,6 @@ block content
 										//- 			span
 										//- 			span
 										//- 			span
-						.calendar_right.v_top.bg_white
-							.calendar_rightinner
-								.colhh1
-									#calendar_dayevents_title.pd_18.ll_title.border_bottom
-										span#backcalendar.backicon.rippleria-dark( data-rippleria )
-										#selectedDate.right_float Hoy
-								#calendar_dayeventscont.colhh1.autooverflow.listcontainer
-									.colhh1.empty_blocktext.center_text
-										.centerempty
-											.pd_64
-												span.v_middle(style= 'background-image: url("images/calendar-circle.png")')
-												.autocol.mm_title.pd_12 Se muestran solo los eventos publicados o con fecha limite para este día.
-												.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo evento en este día.
 
 					//- .block_container.bg_calendar.calendar_imgcontainer
 					//- 	.colhh1.white_text
@@ -153,14 +140,19 @@ block content
 				.calendar_allr.v_top
 					.colhh1.h_listcontainer
 						- if ( privilegio == 1 || privilegio == 2)
-							.colhh1.block_container.subl_top(style='box-shadow: none;')
-								.colhh1.b_text.opacity_color.center_text.uppercase
+							.colhh1.block_container.subl_top.center_text.uppercase(style="box-shadow: none;")
+								.autocol.b_text.bg_white.flat_shadow
 									.autocol.hover.h_listitem.cal_showtype.first
-										.pd16_24.bg_opc
+										.pd16_24.bgaccent_color.white_text
 											| Publicaciones
 									.autocol.hover.h_listitem.cal_showtype
 										.pd16_24
 											| Recordatorios
+						#block_selectedDate.v_top.bg_white.block_container
+							.colhh1
+								#calendar_dayevents_title.pd_18.ll_title
+									span#backcalendar.backicon.rippleria-dark( data-rippleria )
+									#selectedDate.right_float Hoy
 						.colhh1
 							#calendar_list
 								- if(privilegio != 3)

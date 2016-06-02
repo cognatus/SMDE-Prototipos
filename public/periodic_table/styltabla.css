@@ -14,7 +14,7 @@ body{
 	padding: 0;margin: 0;
 	color: #616161;
 	font-weight: bold;
-	background-color: #212121;
+	background-color: #353535;
 	/*background: #eeeeee url('../images/wallpaper1.jpg') center/cover no-repeat fixed;*/
 }
 
@@ -42,8 +42,8 @@ table {
 }
 
 .pertable_title{
-	color: #fff;
-	background-color: rgba(255,255,255,0.1);
+	background-color: rgba(0,0,0,0.1);
+	color: rgba(255,255,255,0.4);
 }
 
 .spinner_container{
@@ -61,50 +61,49 @@ table {
 .minpdbot{padding-bottom: 8px;padding-top: 8px;}
 
 .bg_white{background-color: #fff;}
-.bg_darkblue{background-color: #0D47A1;}
-.bg_blue{background-color: #2196F3;}
-.bg_lightblue{background-color: #03A9F4;}
-.bg_cyan{background-color: #00BCD4;}
-.bg_indigo{background-color: #3F51B5;}
-.bg_teal{background-color: #009688;}
-.bg_green{background-color: #4CAF50;}
-.bg_lightgreen{background-color: #8BC34A;}
-.bg_lime{background-color: #CDDC39;}
-.bg_orange{background-color: #FF9800;}
-.bg_darkorange{background-color: #FF5722;}
-.bg_red{background-color: #F44336;}
-.bg_purple{background-color: #9C27B0;}
-.bg_darkpurple{background-color: #673AB7;}
-.bg_pink{background-color: #E91E63;}
-.bg_lightpink{background-color: #FF4081;}
-.bg_yellow{background-color: #FFEB3B;}
-.bg_amber{background-color: #FFC107;}
-.bg_brown{background-color: #795548;}
-.bg_bluegray{background-color: #607D8B;}
-.bg_lightgray{background-color: #f6f6f6;}
-.bg_gray{background-color: #616161;}
-.bg_darkgray{background-color: #212121;}
+.border_white{border-color: #fff;}
+.bg_darkblue{border-color: #0D47A1;}
+.bg_blue{border-color: #2196F3;}
+.bg_lightblue{border-color: #03A9F4;}
+.bg_cyan{border-color: #00BCD4;}
+.bg_indigo{border-color: #3F51B5;}
+.bg_teal{border-color: #009688;}
+.bg_green{border-color: #4CAF50;}
+.bg_lightgreen{border-color: #8BC34A;}
+.bg_lime{border-color: #CDDC39;}
+.bg_orange{border-color: #FF9800;}
+.bg_darkorange{border-color: #FF5722;}
+.bg_red{border-color: #F44336;}
+.bg_purple{border-color: #9C27B0;}
+.bg_darkpurple{border-color: #673AB7;}
+.bg_pink{border-color: #E91E63;}
+.bg_lightpink{border-color: #FF4081;}
+.bg_yellow{border-color: #FFEB3B;}
+.bg_amber{border-color: #FFC107;}
+.bg_brown{border-color: #795548;}
+.bg_bluegray{border-color: #607D8B;}
+.bg_lightgray{border-color: #f6f6f6;}
+.bg_gray{border-color: #616161;}
+.bg_darkgray{border-color: #212121;}
 
-.bg_darken{
-	background-color: rgba(0,0,0,0.1);
-}
-
-.pd_8{padding: 8px;width: auto;}
+.pd_8{padding: 8px;width: auto;background-color: rgba(0,0,0,0.2);}
 
 #periodic_table{
 	width: 100%;
-	min-width: 1200px;
 	text-align: center;
 }
 
 .element_container, .element_container2{
 	cursor: pointer;
 	padding: 8px;
-	min-width: 54px;
+	min-width: 50px;
 	text-align: center;
 	color: #fff;
 	font-weight: normal;
 	transition: all ease-in-out 0.2s;
+	border-top-width: 4px;
+	border-top-style: solid;
+	margin: 3px 3px 0 3px;
 }
 
 .elem_indicator{
@@ -112,11 +111,9 @@ table {
 	padding: 16px;
 	color: #fff;
 	font-weight: normal;
-}
-
-.element_container:hover, .elem_indicator:hover{
-	background-color: #fff;
-	color: #616161;
+	border-top-width: 4px;
+	border-top-style: solid;
+	margin: 3px 3px 0 3px;
 }
 
 .ptable_rownumber{
@@ -130,6 +127,7 @@ table {
 	width: auto;
 	display: inline-block;
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.14);
+	border-color: rgba(0,0,0,0.2);
 }
 
 .color_dark{

@@ -112,38 +112,15 @@ function writeCalendar(month, year){
             jQuery(window).scrollTop(jQuery('.calendar').outerHeight());
         }
         var origh = jQuery('.calendar').height();
-        jQuery('.calendar_rightinner').css({
-            width: origw,
-            height: origh          
-        });
         
         var pos = jQuery(this).position();
 
-        jQuery('.calendar_rightinner').hide();
         jQuery('.day_pos').show();
         jQuery('.day_pos').animate({ 
             left : pos.left + ( jQuery('.day').width()/2 - jQuery('.day_pos').width()/2 ) ,
             top : pos.top
         }, function(){
-            var anim = jQuery('.calendar_right');
-            anim.css({
-                left: left,
-                width: 0,
-                height: 0,
-                borderBottomRightRadius: 250        
-            });
-            anim.show();
-            anim.animate({
-                width: 250,
-                height: 250
-            }, 200, function(){
-                jQuery('.calendar_rightinner').fadeIn(500);
-            });
-            anim.animate({
-                width: origw,
-                height: origh,
-                borderBottomRightRadius: 0,
-            }, 80);
+            jQuery('#block_selectedDate').show();
         });
     });
 
@@ -159,20 +136,10 @@ jQuery(document).ready(function(){
     jQuery('.today_title .year_title').text(current_date.getFullYear());
     jQuery('.calendar_month_content').append(writeCalendar());
 
+    jQuery('#block_selectedDate').hide();
+
     jQuery('#backcalendar').click(function(){
-        var anim_hide = jQuery('.calendar_right');
-        jQuery('.calendar_rightinner').hide();
-        anim_hide.animate({
-            width: 250,
-            height: 250,
-            borderBottomRightRadius: 250
-        }, 200);
-        anim_hide.animate({
-            width: 0,
-            height: 0
-        }, 80,function(){
-             anim_hide.hide();
-        });
+        jQuery('#block_selectedDate').hide();
     });
 
 });
@@ -186,17 +153,17 @@ function loadDay(calendarDay){
     var writemonth = realm.toString();
     writemonth = writemonth.length < 2 ? '0' + writemonth : writemonth;
 
-    console.log('Día Form: ' + writeday );
-    console.log('Mes Form: ' + writemonth );
+    /*console.log('Día Form: ' + writeday );
+    console.log('Mes Form: ' + writemonth );*/
 
     document.calendarNewEvent.formCalendarDay.value = writeday;
     document.calendarNewEvent.formCalendarMonth.value = writemonth;
     document.calendarNewEvent.formCalendarYear.value = anio;
     document.getElementById("selectedDate").innerHTML = calendarDay + ' ' + super_months_labels[mes] + ' ' + anio;
 
-    console.log('Día: ' + writeday);
+    /*console.log('Día: ' + writeday);
     console.log('Mes: ' + months_labels[mes]);
-    console.log('Año: ' + anio);
+    console.log('Año: ' + anio);*/
 
     var stringDate = writeday + '/' + writemonth + '/' + anio;
 
