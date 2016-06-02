@@ -182,12 +182,14 @@ footer span.small_icon{
 .pd_lr18{padding-left: 18px;padding-right: 18px;width: auto;}
 .pd_l24{padding-left: 24px;width: auto;}
 .pd_lr24{padding-left: 24px;padding-right: 24px;width: auto;}
+.pd_l32{padding-left: 32px;width: auto;}
 .pd_tb_8{padding: 8px 0 8px 0;width: auto;}
 .pd_tb_10{padding: 10px 0 10px 0;width: auto;}
 .pd_tb_12{padding: 12px 0 12px 0;width: auto;}
 .pd_tb_16{padding: 16px 0 16px 0;width: auto;}
 .pd_tb_24{padding: 24px 0 24px 0;width: auto;}
 .pd_bot0{padding-bottom: 0;}
+.pd_l0{padding-left: 0;}
 .mr_4{margin: 4px;}
 .mr_8, .ml_8{margin: 0;}
 .mr_8l4r{

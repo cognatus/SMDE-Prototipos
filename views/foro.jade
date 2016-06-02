@@ -72,7 +72,7 @@ block content
 				.grid_profilebackgroundcontainer
 					.colhh1.block_list#selectedForumTopic
 						.block_container.bg_white
-							.b_img.flat_shadow
+							.b_img
 								.pd_16(style='padding-right: 13px;')
 									.minimenu_container
 										.minimenu
@@ -92,7 +92,9 @@ block content
 							.pd_18
 								.colhh1
 									.colhh1.b_text Creado Por
-									.pd_4 Correo
+									.pd_4 
+										.autocol Nombre aisj asjd ijasd
+										.autocol.right_float.opacity_color correo@email.com
 								.pd_8
 								.colhh1
 									.colhh1.b_text Descripción
@@ -107,33 +109,34 @@ block content
 
 					.colhh1
 						.block_container.bg_white.forum_commentcontainer.rel_pos
-							.pd_18
-								.listitem_rightinfo Fecha
-								.colhh1.forum_commentimg.v_top
-									img.circle(src='images/profilephoto.png')
-								.colhh1.forum_alldata.v_top
-									.pd_l18
-										.listitem_title 
-											b Nombre Completo
-										.pd_6
-										.colhh1
-											| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
-							.pd10_16.listitemactions.border_bottom
-								.autocol.left_float.pd_4.b_text.opacity_color
-									.autocol.pd_8.underline(style='padding-left: 0;') 10 Me gusta
-									.autocol.pd_8.underline(title='Mostrar respuestas') 3 Respuestas
-								.autocol.right_float
-									span.circle.bg_like.hover(title="Me gusta este comentario")
-									span.circle.bg_dislike.hover(title="No me gusta este comentario")
-									span.circle.bg_editgray.hover(title='Editar')
-									span.circle.bg_reply.hover(title="Responder")
+							.colhh1
+								.pd_18
+									.listitem_rightinfo Fecha
+									.colhh1.forum_commentimg.v_top
+										img.circle(src='images/profilephoto.png')
+									.colhh1.forum_alldata.v_top
+										.pd_l18
+											.listitem_title 
+												b Nombre Completo
+											.pd_6
+											.colhh1
+												| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
+								.pd10_16.listitemactions
+									.autocol.left_float.pd_4.b_text.opacity_color
+										.autocol.pd_8.underline.pd_l0 10 Me gusta
+										.autocol.pd_8.underline(title='Mostrar respuestas') 3 Respuestas
+									.autocol.right_float
+										span.circle.bg_like.hover(title="Me gusta este comentario")
+										span.circle.bg_dislike.hover(title="No me gusta este comentario")
+										span.circle.bg_editgray.hover(title='Editar')
+										span.circle.bg_reply.hover(title="Responder")
 							.colhh1.bg_lightgray
 								.pd_18.txtprimary_color.ll_title(style='padding-bottom: 12px;') Respuestas
 								.colhh1.hiddenreplyblock
-									.forum_repliescontainer.pd_l18
+									.forum_repliescontainer.pd_l32
 										-for(var i = 0; i <= 10; i++)
 											.forum_reply.border_bottom.rel_pos
-												.pd_18
+												.pd_18.pd_l4
 													.listitem_rightinfo Fecha
 													.colhh1.forum_commentimg.v_top
 														img.circle(src='images/profilephoto.png')
