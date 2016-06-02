@@ -20,9 +20,7 @@ body {
 	color: #424242;
 	font-size: 14px;
 }
-body div:not(.hidden_blockcontainer)::-webkit-scrollbar{width: 6px;}
-
-body div:not(.hidden_blockcontainer)::-webkit-scrollbar:hover{width: 7px;}
+body div:not(.hidden_blockcontainer)::-webkit-scrollbar{width: 7px;}
 
 body div:not(.hidden_blockcontainer)::-webkit-scrollbar-track{background-color: transparent;}
 
@@ -1432,11 +1430,13 @@ span.title_rightoptionicon:hover{
 	z-index: 99;
 	display: block;
 	height: 62px;
+	vertical-align: middle;
 }
 
 .flat_input{
 	display: block;
-	height: 62px;
+	height: 58px;
+	vertical-align: middle;
 }
 
 .msminput span{
@@ -1450,12 +1450,12 @@ span.title_rightoptionicon:hover{
 }
 
 .msminput input[type='text'], .flat_input input[type='text']{
-	vertical-align: middle;
 	width: calc(100% - 86px);
 	height: inherit;
 	padding: 0 6px 0 18px;
 	border: none;outline: none;
 	background-color: transparent;
+	vertical-align: middle;
 }
 
 .msminput input[type='text']{
@@ -1463,12 +1463,16 @@ span.title_rightoptionicon:hover{
 	padding: 0 8px 0 8px;
 }
 
+.flat_input.intype2{
+	height: 56px;
+}
+
 .msminput input[type='submit'], .flat_input input[type='submit']{
-	vertical-align: middle;
-	width: 42px;height: 42px;
-	float: right;margin: 10px;
+	width: 42px;height: inherit;
+	float: right;margin: 0 10px 0 10px;
 	border: none;outline: none;
 	background-color: transparent;
+	vertical-align: middle;
 }
 
 .msminput input[type='submit']{background-size: 24px;}
@@ -1560,6 +1564,15 @@ span.title_rightoptionicon:hover{
 	height: 40px;
 	vertical-align: middle;
 	margin-right: 12px;
+}
+
+.forum_repliescontainer{
+	overflow: auto;
+	max-height: 400px;
+}
+
+.forum_repliescontainer .forum_reply:last-child{
+	border: none;
 }
 
 .rank span{
@@ -2107,6 +2120,10 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .flat_shadow, .block_container, .hidden_block, .login_container, .msmtopname img, .msmtopname .letter{
 	box-shadow: 0px 1px 4px rgba(0,0,0,0.14);}
+
+.flat_rshadow{
+	box-shadow: 0px -1px 4px rgba(0,0,0,0.14);
+}
 
 .minimenu_hidden{
 	box-shadow: 0px 1px 5px rgba(0,0,0,0.3);

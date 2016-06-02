@@ -83,25 +83,32 @@ block content
 											.pd_16.hover Guardar
 							.colhh1.listitem
 								.listitem_img
-									span.flat_shadow A
+									span A
 								.listitem_info
 									.listitem_rightinfo Fecha
 									.listitem_title 
 										b Algun tema
 									.listitem_bottomdata Asignatura
-							.colhh1
-								.pd_18 Descripción del contenido
+							.pd_18
+								.colhh1
+									.colhh1.b_text Creado Por
+									.pd_4 Correo
+								.pd_8
+								.colhh1
+									.colhh1.b_text Descripción
+									.pd_4 Lorem ipsum dolor sit amet
 
 				.grid_rightcontainer
-					.block_container.bg_lightgray
-						.pd_18.ll_title Comentarios
 					.block_container.bg_white
-						form.colhh1.flat_input.border_bottom(name='addNewForumComment')
-							input.bg_lightgray(type='text' , name='forumComment' , placeholder='Escribe un Comentario')
+						form.colhh1.flat_input(name='addNewForumComment')
+							input.bg_lightgray(type='text' , name='forumCommentText' , placeholder='Escribe un Comentario')
+							input#forumTopicScope(type='hidden', name='forumTopicId', value='')
 							input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='forumCommentSubmit' , value='' )
-						.forum_commentcontainer.rel_pos
+
+					.colhh1
+						.block_container.bg_white.forum_commentcontainer.rel_pos
 							.pd_18
-								.listitem_rightinfo(style='top: 18px') Jul 28
+								.listitem_rightinfo Fecha
 								.colhh1.forum_commentimg.v_top
 									img.circle(src='images/profilephoto.png')
 								.colhh1.forum_alldata.v_top
@@ -111,15 +118,42 @@ block content
 										.pd_6
 										.colhh1
 											| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
-							.pd10_16.listitemactions
+							.pd10_16.listitemactions.border_bottom
 								.autocol.left_float.pd_4.b_text.opacity_color
 									.autocol.pd_8.underline(style='padding-left: 0;') 10 Me gusta
-									.autocol.pd_8.underline 3 Respuestas
+									.autocol.pd_8.underline(title='Mostrar respuestas') 3 Respuestas
 								.autocol.right_float
 									span.circle.bg_like.hover(title="Me gusta este comentario")
 									span.circle.bg_dislike.hover(title="No me gusta este comentario")
 									span.circle.bg_editgray.hover(title='Editar')
 									span.circle.bg_reply.hover(title="Responder")
+							.colhh1.bg_lightgray
+								.pd_18.txtprimary_color.ll_title(style='padding-bottom: 12px;') Respuestas
+								.colhh1.hiddenreplyblock
+									.forum_repliescontainer.pd_l18
+										-for(var i = 0; i <= 10; i++)
+											.forum_reply.border_bottom.rel_pos
+												.pd_18
+													.listitem_rightinfo Fecha
+													.colhh1.forum_commentimg.v_top
+														img.circle(src='images/profilephoto.png')
+													.colhh1.forum_alldata.v_top
+														.pd_l18
+															.listitem_title 
+																b Nombre Completo
+															.pd_6
+															.colhh1
+																| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna
+												.pd10_16.listitemactions
+													.autocol.right_float
+														span.circle.bg_like.hover(title="Me gusta este comentario")
+														span.circle.bg_dislike.hover(title="No me gusta este comentario")
+														span.circle.bg_editgray.hover(title='Editar')
+									form.colhh1.flat_input.intype2.bg_white.flat_rshadow(name='')
+										input.bg_lightgray(type='text' , name='' , placeholder='Escribe una Respuesta')
+										input#forumTopicScope(type='hidden', name='', value='')
+										input.bgaccent_color.circle.bg_send.rippleria-dark( data-rippleria type='submit' , name='' , value='' )
+
 
 			.colhh1(style='height: 128px;')
 			footer.colhh1.bg_white.flat_shadow

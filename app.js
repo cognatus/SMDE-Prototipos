@@ -12,6 +12,7 @@ var calendarPost = require('./routes/calendarPost');
 var profilePost = require('./routes/profilePost');
 var subjectsPost = require('./routes/subjectsPost');
 var messagesPost = require('./routes/messagesPost');
+var forumPost = require('./routes/forumPost');
 var path = require('path');
 var io = require('socket.io')(http);
 
@@ -103,7 +104,7 @@ function databaseInstance(){
 		password: 'n0m3l0s3',
 		user: 'root',
 		database: 'smdedbv1',
-		port: 8080
+		port: 3306
 	});
 	return connection;
 };
@@ -243,6 +244,12 @@ app.get('/getProfileContactsAdministratorsMsm', messagesPost.getProfileContactsA
 app.get('/getProfileContactsStudentsMsm', messagesPost.getProfileContactsStudentsMsm);
 app.get('/getProfileContactsTeachersMsm', messagesPost.getProfileContactsTeachersMsm);
 
+//Todo lo referente al foro
+app.post('/insertForumTopic', forumPost.insertForumTopic);
+app.post('/insertForumTopicComment', forumPost.insertForumTopicComment);
+app.get('/getForumTopics', forumPost.getForumTopics);
+app.get('/getForumTopicComments', forumPost.getForumTopicComments);
+
 
 http.listen(app.get('port'), function(){
 	var base = new databaseInstance();
@@ -258,5 +265,6 @@ http.listen(app.get('port'), function(){
 	calendarPost.constructor(databaseInstance);
 	subjectsPost.constructor(databaseInstance);
 	messagesPost.constructor(databaseInstance);
+	forumPost.constructor(databaseInstance);
 	console.log('SMDE server listening on port ' + app.get('port'));
 });
