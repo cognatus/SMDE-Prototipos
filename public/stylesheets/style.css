@@ -168,6 +168,7 @@ footer span.small_icon{
 .pd_48{padding: 48px;width: auto;}
 .pd_64{padding: 64px;width: auto;}
 .pd10_16{padding: 10px 16px 10px 16px;width: auto;}
+.pd12_16{padding: 12px 16px 12px 16px;width: auto;}
 .pd12_24{padding: 12px 24px 12px 24px;width: auto;}
 .pd16_24{padding: 16px 24px 16px 24px;width: auto;}
 .pd12_14{padding: 12px 14px 12px 14px;width: auto;}
@@ -178,6 +179,7 @@ footer span.small_icon{
 .pd_l8{padding-left: 8px;width: auto;}
 .pd_lr8{padding-left: 8px;padding-right: 8px;width: auto;}
 .pd_l12{padding-left: 12px;width: auto;}
+.pd_l16{padding-left: 16px;width: auto;}
 .pd_l18{padding-left: 18px;width: auto;}
 .pd_lr18{padding-left: 18px;padding-right: 18px;width: auto;}
 .pd_l24{padding-left: 24px;width: auto;}
@@ -189,7 +191,9 @@ footer span.small_icon{
 .pd_tb_16{padding: 16px 0 16px 0;width: auto;}
 .pd_tb_24{padding: 24px 0 24px 0;width: auto;}
 .pd_bot0{padding-bottom: 0;}
+.pd_top0{padding-top: 0;}
 .pd_l0{padding-left: 0;}
+.mr_bot4{margin-bottom: 4px;}
 .mr_4{margin: 4px;}
 .mr_8, .ml_8{margin: 0;}
 .mr_8l4r{
@@ -460,7 +464,7 @@ footer span.small_icon{
 	background-color: rgba(0,0,0,0.2);
 }
 
-.opacity_color{color: rgba(0,0,0,0.46);}
+.opacity_color{color: rgba(0,0,0,0.4);}
 
 .text_shadow{text-shadow: 0px 1px 1px rgba(0,0,0,0.5);}
 
@@ -1435,12 +1439,6 @@ span.title_rightoptionicon:hover{
 	vertical-align: middle;
 }
 
-.flat_input{
-	display: block;
-	height: 58px;
-	vertical-align: middle;
-}
-
 .msminput span{
 	display: inline-block;
 	width: 48px;
@@ -1451,30 +1449,47 @@ span.title_rightoptionicon:hover{
 	cursor: pointer;
 }
 
-.msminput input[type='text'], .flat_input input[type='text']{
-	width: calc(100% - 86px);
+.msminput input[type='text']{
+	width: calc(100% - 130px);
+	padding-left: 8px;
 	height: inherit;
-	padding: 0 6px 0 18px;
 	border: none;outline: none;
 	background-color: transparent;
-	vertical-align: middle;
 }
 
-.msminput input[type='text']{
-	width: calc(100% - 138px);
-	padding: 0 8px 0 8px;
-}
-
-.flat_input.intype2{
-	height: 56px;
-}
-
-.msminput input[type='submit'], .flat_input input[type='submit']{
+.msminput input[type='submit']{
 	width: 42px;height: inherit;
 	float: right;margin: 0 10px 0 10px;
 	border: none;outline: none;
 	background-color: transparent;
-	vertical-align: middle;
+}
+
+.flat_input{
+	display: block;
+	padding-top: 21px;
+	padding-bottom: 19px;
+}
+
+.flat_input textarea{
+	width: calc(100% - 118px);
+	height: 16px;
+	padding-left: 18px;
+	border: none;outline: none;
+	background-color: transparent;
+	resize: none;
+	overflow: hidden;
+}
+
+.flat_input input[type='submit']{
+	width: 80px;font-size: 14px;
+	float: right;margin: 0 10px 0 10px;
+	border: none;outline: none;
+	background-color: transparent;
+	vertical-align: top;
+}
+
+.flat_input input[type='submit']:disabled{
+	cursor: text;
 }
 
 .msminput input[type='submit']{background-size: 24px;}
@@ -2184,7 +2199,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 }
 
 .dark_theme .opacity_color{
-	color: rgba(255,255,255,0.5);
+	color: rgba(255,255,255,0.4);
 }
 
 .dark_theme .bg_white{

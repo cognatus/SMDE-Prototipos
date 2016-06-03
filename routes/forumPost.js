@@ -17,7 +17,7 @@ exports.insertForumTopic = function(req, res){
 
 	if( topicTitle != null || topicTitle.trim() != '' || topicDescription != null || topicDescription.trim() != '' ){
 
-		stringQuery = 'INSERT INTO ForumTopic (idForumTopic, topicTitle, topicSubject, forumTopicDateTime, User_userEmail, topicDescription)'
+		stringQuery = 'INSERT INTO ForumTopic (idForumTopic, topicTitle, topicSubject, topicDateTime, User_userEmail, topicDescription)'
 					+ ' VALUES (UUID(),'
 					+ ' "' + htmlspecialchars(topicTitle) + '",'
 					+ ' "' + topicSubject + '",'
