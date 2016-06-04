@@ -248,7 +248,8 @@ app.get('/getProfileContactsTeachersMsm', messagesPost.getProfileContactsTeacher
 app.post('/insertForumTopic', forumPost.insertForumTopic);
 app.post('/insertForumTopicComment', forumPost.insertForumTopicComment);
 app.get('/getForumTopics', forumPost.getForumTopics);
-app.get('/getForumTopicComments', forumPost.getForumTopicComments);
+app.get('/getForumTopicCommentsCron', forumPost.getForumTopicCommentsCron);
+app.get('/getForumTopicCommentReplies', forumPost.getForumTopicCommentReplies);
 
 
 http.listen(app.get('port'), function(){

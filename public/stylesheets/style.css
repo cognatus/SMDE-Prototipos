@@ -40,6 +40,7 @@ body div:not(.hidden_blockcontainer)::-webkit-scrollbar-thumb:hover{
 a{
 	text-decoration: none;
 	color: inherit;
+	font-weight: inherit;
 }
 
 input, select, textarea, option{font-size: 15px;color: #424242;}
@@ -109,6 +110,7 @@ footer span.small_icon{
 	width: 50%;
 	display: inline-block;
 }
+
 .colhh3{
 	width: 100%;
 }
@@ -193,7 +195,9 @@ footer span.small_icon{
 .pd_bot0{padding-bottom: 0;}
 .pd_top0{padding-top: 0;}
 .pd_l0{padding-left: 0;}
+.pd_r0{padding-right: 0;}
 .mr_bot4{margin-bottom: 4px;}
+.mr_top4{margin-top: 4px;}
 .mr_4{margin: 4px;}
 .mr_8, .ml_8{margin: 0;}
 .mr_8l4r{
@@ -331,12 +335,14 @@ footer span.small_icon{
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
-.bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike{
-	background-size: 42%;background-repeat: no-repeat;
+.bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike, .bg_arrowdrop{
+	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .bg_magnify{background-image: url('/images/magnify.png');}
+
+.bg_arrowdrop{background-image: url('/images/arrow-down-drop-circle.png');}
 
 .bg_like{background-image: url('/images/thumb-up.png');}
 
@@ -344,35 +350,35 @@ footer span.small_icon{
 
 .bg_camera{background-image: url('/images/camera.png');}
 
-.bg_cross{background-image: url('/images/close.png');background-size: 50%;}
+.bg_cross{background-image: url('/images/close.png');}
 
 .bg_archive{background-image: url('/images/archive.png');}
 
-.bg_reply{background-image: url('/images/reply.png');background-size: 46%;}
+.bg_reply{background-image: url('/images/reply.png');}
 
 .bg_pencilbox{background-image: url('/images/pencil-box.png');}
 
 .bg_delete{background-image: url('/images/delete.png');}
 
-.bg_attachment{background-image: url('/images/attachment.png');background-size: 52%;}
+.bg_attachment{background-image: url('/images/attachment.png');}
 
-.bg_attachment_white{background-image: url('/images/attachment_white.png');background-size: 52%;}
+.bg_attachment_white{background-image: url('/images/attachment_white.png');}
 
 .bg_file{background-image: url('/images/file.png');}
 
-.bg_download{background-image: url('/images/download.png');background-size: 56%;}
+.bg_download{background-image: url('/images/download.png');}
 
 .bg_edit{background-image: url('/images/whitepencil.png');}
 
-.bg_send{background-image: url('/images/sendgray.png');background-size: 50%;}
+.bg_send{background-image: url('/images/sendgray.png');}
 
-.bg_plus{background-image: url('/images/plus.png');background-size: 50%;}
+.bg_plus{background-image: url('/images/plus.png');}
 
-.bg_plusgray{background-image: url('/images/plus_gray.png');background-size: 24px;}
+.bg_plusgray{background-image: url('/images/plus_gray.png');}
 
 .bg_close{background-image: url('/images/arrow-leftwhite.png');}
 
-.bg_closegray{background-image: url('/images/close_gray.png');background-size: 20px;}
+.bg_closegray{background-image: url('/images/close_gray.png');}
 
 .bg_check{background-image: url('/images/check.png');}
 
@@ -668,6 +674,7 @@ footer span.small_icon{
 .menu_userbg{
 	height: 150px;
 	background-image: url('/images/material_bg.jpg');
+	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
@@ -708,7 +715,9 @@ footer span.small_icon{
 
 .menu_opccontainer{
 	overflow: auto;
-	height: calc(100% - 150px)
+	height: calc(100% - 150px);
+	color: #8c8c8c;
+	font-weight: 500;
 }
 
 .menu_opccontainer .opc{
@@ -733,12 +742,6 @@ footer span.small_icon{
 
 .menu_opccontainer .opc label{
 	display: inline-block;
-}
-
-.menu_opccontainer a{
-	text-decoration: none;
-	color: #8c8c8c;
-	font-weight: 500;
 }
 
 .top_pallete{
@@ -906,8 +909,8 @@ footer span.small_icon{
 .block_container{
 	width: 100%;
 	margin: 16px 0 16px 0;
-	overflow: hidden;
 	height: auto;
+	overflow: hidden;
 }
 
 .block_containermsm{
@@ -918,11 +921,12 @@ footer span.small_icon{
 .block_containersettings{
 	overflow: hidden;
 	height: auto;
+	margin-top: 12px;
 }
 
 .settings_inneritem{display: none;}
 
-.mainoptions_container .colhh3{width: 50%;}
+.mainoptions_container .colhh3{width: 50%;display: inline-block;}
 
 .mainoptions span{
 	width: 40px;
@@ -1261,17 +1265,17 @@ span.title_rightoptionicon:hover{
 
 .block_list .b_img{
 	width: auto;
-	height: 200px;
+	height: 240px;
 	position: relative;
-	background-image: url('/images/wallpaper1.jpg');
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
 }
 
 .block_list .b_img .minimenu span{
 	background-color: #fff;
-	box-shadow: 0px 2px 4px rgba(0,0,0,0.14);
+}
+
+.block_list .b_img .listitem{
+	position: absolute;
+	bottom: 0;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -1343,6 +1347,7 @@ span.title_rightoptionicon:hover{
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
+	background-size: 21px;
 }
 
 .msm_sendtocontact .sendtoimg{
@@ -1583,6 +1588,11 @@ span.title_rightoptionicon:hover{
 	margin-right: 12px;
 }
 
+.fc_zindex{
+	position: relative;
+	z-index: 1;
+}
+
 .forum_repliescontainer{
 	overflow: auto;
 	max-height: 400px;
@@ -1591,6 +1601,8 @@ span.title_rightoptionicon:hover{
 .forum_repliescontainer .forum_reply:last-child{
 	border: none;
 }
+
+
 
 .rank span{
 	width: 10px;
@@ -1988,12 +2000,16 @@ input:checked + .switch:active::before {
 }
 
 .attached_filecontainer span.bg_download{
-	margin-right: 0;
-	margin-left: 18px;
+	margin-left: 18px;	margin-right: 0;
+
 }
 
 .listitemactions{
-	min-height: 40px;
+	min-height: 43px;
+	padding-bottom: 6px;
+}
+.listitemactions .mr_top4{
+	margin-top: 5px;
 }
 
 .listitemactions span{
@@ -2001,6 +2017,7 @@ input:checked + .switch:active::before {
 	height: 40px;
 	display: inline-block;
 	margin-left: 6px;
+	background-size: 16px;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -2051,6 +2068,7 @@ input:checked + .switch:active::before {
 	height: 52px;
 	display: block;
 	cursor: pointer;
+	background-size: 24px;
 }
 
 .form_input2 span.submit{
@@ -2127,6 +2145,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	width: inherit;
 	height: inherit;
 	cursor: pointer;
+	background-size: 22px;
 }
 
 /*---------------------------------------------------------------------------------------
@@ -2206,6 +2225,10 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	background-color: #424242;
 }
 
+.dark_theme .opc{
+	color: #bdbdbd;
+}
+
 .dark_theme .bg_lightgray{
 	background-color: #383838;
 }
@@ -2226,7 +2249,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 
 .dark_theme .form_input input[type='text'], .dark_theme .form_input input[type='email'],
 .dark_theme .form_input input[type='password'], .dark_theme .form_input input[type='text'], 
-.dark_theme .form_input select, .dark_theme .form_input textarea{
+.dark_theme .form_input select, .dark_theme .form_input textarea, .dark_theme .flat_input textarea{
 	color: #e0e0e0;
 	border-color: rgba(255,255,255,0.1);
 }

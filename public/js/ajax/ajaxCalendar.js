@@ -65,7 +65,7 @@ jQuery(document).ready(function(){
     jQuery('.cal_showtype').click(function(){
         //Cambiar el estilo para saber cual esta mostrando
         jQuery('.cal_showtype').find('.pd16_24').removeClass('bgaccent_color white_text');
-        jQuery(this).find('.pd16_24').addClass('bgaccent_color white_text');
+        jQuery(this).find('.pd16_24').addClass('bgaccent_color');
         
     });
 

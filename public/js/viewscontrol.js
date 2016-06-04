@@ -73,6 +73,7 @@ jQuery(document).on('ready' ,function(){
 
 	jQuery('.close , .hidden_blockback, #close_hbl').click(function(){
 		jQuery(this).parents('.hidden_blockcontainer').fadeOut(300,function(){
+			jQuery('html, body').css('overflow' , 'auto');
 			location.reload();
 		});
 	});

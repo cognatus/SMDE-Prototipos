@@ -230,7 +230,7 @@ exports.getRemindersDatabase = function(req, res){
                                     +        '<div class="pd_16 justify_text breakword">' + item.reminderText + '</div>'
                                     +      '</div>'
                                     +    '</div>'
-                                    +    '<div class="pd10_16 listitemactions bg_lightgray">'
+                                    +    '<div class="pd10_16 listitemactions bg_lightgray autooverflow">'
                                     +      '<div class="autocol right_float">'
                                     +        '<span title="Editar" class="circle bg_editgray hover" onclick="editReminder(&quot;' + item.idReminder + '&quot;)"></span>'
                                     +        '<span title="Eliminar" class="circle bg_delete hover" onclick="deleteReminder(&quot;' + item.idReminder + '&quot;)"></span></div>'
@@ -356,7 +356,7 @@ exports.getPublicationsDatabase = function(req, res){
                                  +       '</div>'
 	                             + 		 '<div style="margin-bottom: 18px;" class="attached_filecontainer pd_lr8"></div>'
                 				 + '</div>'   
-                                 + '<div class="pd10_16 listitemactions bg_lightgray">'
+                                 + '<div class="pd10_16 listitemactions bg_lightgray autooverflow">'
                                     if(req.session.privilegio == 1){
                                         publicationsData += '<div class="autocol right_float">'
                                                          +    '<span title="Responder" class="circle bg_reply hover" onclick="sendFeedback(&quot;' + item.idPublication + '&quot;)"></span>'

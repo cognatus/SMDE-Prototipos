@@ -579,7 +579,7 @@ exports.getTeachersDatabase = function(req, res){
                             +           	'<div class="pd_llist">'
                             +               	'<div class="sl_title">Cursos Inscritos</div>'
                             +           	'</div>'
-                            +           	'<div class="pd_llist hidecontent_button"  data-id="' + item.userEmail + '">'
+                            +           	'<div class="pd_llist hidecontent_button" data-id="' + item.userEmail + '">'
                             +               	'<span class="txtprimary_color sl_title">Mostrar Cursos</span>'
                             +           	'</div>'
                             +           	'<div class="person_subjectslist"></div>'
