@@ -246,3 +246,32 @@ SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,
             WHERE Student_idStudent = 'VATOASDSAD46844'
     )
 GROUP BY idPublication;
+
+-- WEAS DEL FORO
+
+SELECT fc.idForumComment, fc.forumCommentText, 
+	CONCAT(userName, " ", userLastName, " ", userSecondLastName) AS userFullName,
+	DATE_FORMAT(forumCommentDateTime, "%d/%m/%Y") AS forumCommentDate, userEmail, photoName,
+	DATE_FORMAT(forumCommentDateTime, "%H:%i") AS forumCommentTime,
+	(SELECT
+		COUNT(ulc.User_userEmail)
+		FROM User_like_ForumComment AS ulc
+			WHERE ulc.ForumComment_idForumComment = fc.idForumComment
+			AND ulc.likeStatus = 1
+	) AS likes, 
+	(SELECT
+		COUNT(ulc.User_userEmail)
+		FROM User_like_ForumComment AS ulc
+			WHERE ulc.ForumComment_idForumComment = fc.idForumComment
+			AND ulc.likeStatus = 0
+	) AS dislikes,
+	(SELECT
+		COUNT(fcr.idForumCommentReply) 
+		FROM ForumCommentReply AS fcr
+			WHERE ForumComment_idForumComment = fc.idForumComment
+	) AS replies
+FROM ForumComment AS fc 
+INNER JOIN User AS u 
+	ON u.userEmail = fc.User_userEmail 
+WHERE fc.ForumTopic_idForumTopic = "7cad191a-2a9c-11e6-99e7-008cfa4447a9" 
+ORDER BY forumCommentDateTime DESC;

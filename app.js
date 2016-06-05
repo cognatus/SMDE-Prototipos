@@ -247,6 +247,7 @@ app.get('/getProfileContactsTeachersMsm', messagesPost.getProfileContactsTeacher
 //Todo lo referente al foro
 app.post('/insertForumTopic', forumPost.insertForumTopic);
 app.post('/insertForumTopicComment', forumPost.insertForumTopicComment);
+app.post('/insertForumTopicCommentReply', forumPost.insertForumTopicCommentReply);
 app.get('/getForumTopics', forumPost.getForumTopics);
 app.get('/getForumTopicCommentsCron', forumPost.getForumTopicCommentsCron);
 app.get('/getForumTopicCommentReplies', forumPost.getForumTopicCommentReplies);

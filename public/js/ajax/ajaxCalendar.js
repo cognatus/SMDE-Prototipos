@@ -34,8 +34,7 @@ jQuery(document).ready(function(){
                 jQuery(this).find('label.item_date').hide();
             }
             else if( itemDate == stringDateYest ){
-                jQuery(this).find('label.item_date').text('Ayer');
-                jQuery(this).find('label.item_time').hide();   
+                jQuery(this).find('label.item_date').text('Ayer');  
             }
             else{
                 jQuery(this).find('label.item_time').hide();   

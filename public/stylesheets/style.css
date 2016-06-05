@@ -395,6 +395,7 @@ footer span.small_icon{
 .border_right{border-right: 1px solid rgba(0,0,0,0.07);}
 .border_thick{border: 2px solid rgba(0,0,0,0.07);}
 
+.border_primarycolor{border-color: #03A9F4;}
 .border_accentcolor{border-color: #FFC400;}
 
 .inbox_shadow{box-shadow: inset 0px 1px 4px rgba(0,0,0,0.14);}
@@ -1201,7 +1202,7 @@ span.title_rightoptionicon:hover{
 
 .listitem_title{
 	overflow: hidden;
-	width: calc(100% - 60px);
+	width: calc(100% - 90px);
 	height: 18px;
 	font-size: 15px;
 }
@@ -1267,6 +1268,9 @@ span.title_rightoptionicon:hover{
 	width: auto;
 	height: 240px;
 	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .block_list .b_img .minimenu span{
@@ -1470,14 +1474,16 @@ span.title_rightoptionicon:hover{
 }
 
 .flat_input{
+	width: auto;
 	display: block;
 	padding-top: 21px;
-	padding-bottom: 19px;
+	padding-bottom: 18px;
 }
 
 .flat_input textarea{
 	width: calc(100% - 118px);
-	height: 16px;
+	height: 17px;
+	max-height: 200px;
 	padding-left: 18px;
 	border: none;outline: none;
 	background-color: transparent;
@@ -1494,7 +1500,7 @@ span.title_rightoptionicon:hover{
 }
 
 .flat_input input[type='submit']:disabled{
-	cursor: text;
+	cursor: default;
 }
 
 .msminput input[type='submit']{background-size: 24px;}
@@ -1602,6 +1608,25 @@ span.title_rightoptionicon:hover{
 	border: none;
 }
 
+#forumtopics_container .block_container{
+	cursor: pointer;
+}
+
+#forumtopics_container .forumtopic_title:hover > .ll_title{
+	text-decoration: underline;
+}
+
+#forumtopics_container .block_container:hover{
+	box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+}
+
+#forumtopics_container .f_li .listitem_info, #selectedForumTopic .f_li .listitem_info {
+	width: calc(100% - 75px);
+}
+
+#forumtopics_container .f_li .listitem_img, #selectedForumTopic .f_li .listitem_img{
+	padding-right: 0;
+}
 
 
 .rank span{
@@ -1901,7 +1926,7 @@ input:checked + .switch:active::before {
 }
 
 #calendar_dayevents_title{
-	padding-left: 46px;
+	padding-left: 50px;
 	position: relative;
 	height: 18px;
 }
@@ -2192,7 +2217,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	LOAD - SPINNER
 -----------------------------------------------------------------------------------------*/
 
-.load_container{display: none;}
+.load_container{display: block;}
 
 .load{
 	text-align: center;
