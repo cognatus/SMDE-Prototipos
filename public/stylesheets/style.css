@@ -335,7 +335,8 @@ footer span.small_icon{
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
-.bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike, .bg_likeactive, .bg_dislikeactive, .bg_arrowdrop{
+.bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike, .bg_likeactive, .bg_dislikeactive, .bg_arrowdrop,
+.bg_bookplus{
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -391,6 +392,8 @@ footer span.small_icon{
 .bg_chatwhite{background-image: url('/images/message.png');}
 
 .bg_editgray{background-image: url('/images/pencil.png');}
+
+.bg_bookplus{background-image: url('/images/book-plus.png');}
 
 .border_t{border: 1px solid rgba(0,0,0,0.07);}
 .border_bottom{border-bottom: 1px solid rgba(0,0,0,0.07);}
@@ -767,17 +770,22 @@ footer span.small_icon{
 
 .top_pallete_inner{
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	z-index: -10;
+	overflow: hidden;
 }
 
 .top_pallete_inner .inner{
-	width: inherit;
+	width: calc(100% + 60px);
+	position: absolute;
+	left: -30px;
 	height: 100%;
 	background-image: url('/images/material_bg.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	filter: blur(1px);
+	-webkit-filter: blur(1px);
 }
 
 .menu_button{
@@ -1192,10 +1200,11 @@ span.title_rightoptionicon:hover{
 	z-index: 1;
 	right: 16px;
 	top: 16px;
+	background-size: 24px;
 }
 
 .pd_lr8 .listitem_righticon{
-	right: 22px; 
+	right: 24px; 
 }
 
 .listitem_righticon:hover{
@@ -1858,6 +1867,7 @@ option{background-color: #fff;}
 	height: 48px;
 	display: inline-block;
 	cursor: pointer;
+	background-size: 24px;
 }
 
 .file_buttoncontainer .right_float{

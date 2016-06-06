@@ -92,7 +92,7 @@ jQuery(document).ready(function(){
         var characters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789¿¡';
 
         jQuery('#forumtopics_container .block_list').each(function(){
-            var circleLetter = jQuery(this).find('.forumtopic_title .ll_title').text();
+            var circleLetter = jQuery(this).find('.forumtopic_title .listitem_bottomdata').text();
             var firstChar = circleLetter.charAt(0).toUpperCase();
 
             for( var i = 0; i <= characters.length; i++ ){
