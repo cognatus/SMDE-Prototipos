@@ -136,7 +136,8 @@ block content
 					.block_container.bg_white
 						.colhh1.bg_lightgray.flat_shadow
 							.pd_18.ll_title Comentar
-						form#addNewForumComment.colhh1.flat_input(name='addNewForumComment' action="insertForumTopicComment" method="POST")
+						form#addNewForumComment.colhh1.flat_input.rel_pos(name='addNewForumComment' action="insertForumTopicComment" method="POST")
+							img.circle(src='profile_photos/#{datos[0].photoName}.png')
 							textarea(type='text' name='forumCommentText' placeholder='Escribe un Comentario')
 							input#forumTopicScope(type='hidden' name='forumTopicId' value='')
 							input.b_text.opacity_color.rippleria-dark(data-rippleria type='submit' name='forumCommentSubmit' value='PUBLICAR' disabled)

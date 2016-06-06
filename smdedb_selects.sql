@@ -247,6 +247,7 @@ SELECT idPublication, pubTitle, pubText, publicationAttachedNameFile,
     )
 GROUP BY idPublication;
 
+
 -- WEAS DEL FORO
 
 SELECT fc.idForumComment, fc.forumCommentText, 
@@ -269,9 +270,15 @@ SELECT fc.idForumComment, fc.forumCommentText,
 		COUNT(fcr.idForumCommentReply) 
 		FROM ForumCommentReply AS fcr
 			WHERE ForumComment_idForumComment = fc.idForumComment
-	) AS replies
+	) AS replies,
+	(SELECT
+		ulfc.likeStatus 
+		FROM User_like_ForumComment AS ulfc
+			WHERE ulfc.ForumComment_idForumComment = fc.idForumComment
+			AND ulfc.User_userEmail = "vato@vato.com"
+	) AS userLikeStatus
 FROM ForumComment AS fc 
 INNER JOIN User AS u 
 	ON u.userEmail = fc.User_userEmail 
-WHERE fc.ForumTopic_idForumTopic = "7cad191a-2a9c-11e6-99e7-008cfa4447a9" 
+WHERE fc.ForumTopic_idForumTopic = "1a46ceaa-2c14-11e6-9154-008cfa4447a9" 
 ORDER BY forumCommentDateTime DESC;

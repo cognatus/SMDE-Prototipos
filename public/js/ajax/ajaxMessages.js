@@ -52,7 +52,7 @@ function selectLobby(lobby){
                                         +       '</div>'
                                         +   '</div>'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="images/profilephoto.png" title="Yo" class="circle">'
+                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="Yo" class="circle">'
                                         +   '</div>'
                                         + '</div>');
                     }
@@ -74,7 +74,7 @@ function selectLobby(lobby){
                     else{
                         container.append('<div class="colhh1 margin_bot msm_block">'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="images/profilephoto.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
+                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
                                         +   '</div>'
                                         +   '<div class="msm_text">'
                                         +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
@@ -139,7 +139,7 @@ socket.on('mostrar', function(data){
     else{
         container.append('<div class="colhh1 margin_bot msm_block">'
                         +   '<div class="msm_img">'
-                        +       '<img src="images/profilephoto.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
+                        +       '<img src="profile_photos/' + data.userPhoto + '.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
                         +   '</div>'
                         +   '<div class="msm_text">'
                         +       '<div class="colhh1 autooverflow">'
@@ -266,6 +266,7 @@ function enviarMsg(){
             userEmail: sessionUser,
             userName: sessionUserName,
             userLastName: sessionUserLastName,
+            userPhoto: sessionUserPhoto,
             messageText: msmText,
             messageTime: currentTime   
 
@@ -321,7 +322,7 @@ function enviarMsg(){
                             +       '</div>'
                             +   '</div>'
                             +   '<div class="msm_img">'
-                            +       '<img src="images/profilephoto.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUserLastName + '" class="circle">'
+                            +       '<img src="profile_photos/' + sessionUserPhoto + '.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUser + '" class="circle">'
                             +   '</div>'
                             + '</div>');
         }

@@ -121,6 +121,126 @@ exports.insertForumTopicCommentReply = function(req, res){
 	});
 };
 
+//FUNCION PARA DAR LIKE A LOS COMENTARIOS
+exports.likeForumComment = function(req, res){
+	var database = new base();
+
+	var forumCommentId = req.body.forumCommentId;
+	var likeStatus = req.body.likeStatus;
+	var likeStatusValue;
+
+	if(likeStatus == 'like'){
+		likeStatusValue = 1;
+	}
+	else if(likeStatus == 'dislike'){
+		likeStatusValue = 0;
+	}
+	else if(likeStatus == 'quit-like'){
+		likeStatusValue = 2;
+	}
+	else if(likeStatus == 'quit-dislike'){
+		likeStatusValue = 3;
+	}
+
+	if(likeStatus != null){
+		if(likeStatusValue < 2){
+			stringQuery += 'BEGIN;'
+
+			stringQuery += 'DELETE FROM User_like_ForumComment '
+						+ ' WHERE ForumComment_idForumComment = "' + forumCommentId + '" '
+						+ ' AND User_userEmail = "' + req.session.datos[0].userEmail + '";';
+
+			stringQuery += 'INSERT INTO User_like_ForumComment (User_userEmail, ForumComment_idForumComment, likeStatus)'
+						+ ' VALUES '
+						+ ' ("' + req.session.datos[0].userEmail + '",'
+						+ ' "' + forumCommentId + '",'
+						+ ' "' + likeStatusValue + '");';
+
+			stringQuery += 'COMMIT;'
+
+		}else if(likeStatusValue > 1){
+			stringQuery += 'DELETE FROM User_like_ForumComment '
+						+ ' WHERE ForumComment_idForumComment = "' + forumCommentId + '" '
+						+ ' AND User_userEmail = "' + req.session.datos[0].userEmail + '";';
+		}	
+	}
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.redirect('/foro');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al dar Me gusta',
+					errorItem: ['-  Problemas con el servidor'],
+					backUrl: '/foro'
+				}
+			});
+		}
+	});
+};
+
+//FUNCION PARA DAR LIKE A LOS COMENTARIOS
+exports.likeForumCommentReply = function(req, res){
+	var database = new base();
+
+	var forumReplyId = req.body.forumReplyId;
+	var likeStatus = req.body.likeStatus;
+	var likeStatusValue;
+
+	if(likeStatus == 'like'){
+		likeStatusValue = 1;
+	}
+	else if(likeStatus == 'dislike'){
+		likeStatusValue = 0;
+	}
+	else if(likeStatus == 'quit-like'){
+		likeStatusValue = 2;
+	}
+	else if(likeStatus == 'quit-dislike'){
+		likeStatusValue = 3;
+	}
+
+	if(likeStatus != null){
+		if(likeStatusValue < 2){
+			stringQuery += 'BEGIN;'
+
+			stringQuery += 'DELETE FROM User_like_ForumCommentReply '
+						+ ' WHERE Reply_idForumCommentReply = "' + forumReplyId + '" '
+						+ ' AND User_userEmail = "' + req.session.datos[0].userEmail + '";';
+
+			stringQuery += 'INSERT INTO User_like_ForumCommentReply (User_userEmail, Reply_idForumCommentReply, likeStatus)'
+						+ ' VALUES '
+						+ ' ("' + req.session.datos[0].userEmail + '",'
+						+ ' "' + forumReplyId + '",'
+						+ ' "' + likeStatusValue + '");';
+
+			stringQuery += 'COMMIT;'
+
+		}else if(likeStatusValue > 1){
+			stringQuery += 'DELETE FROM User_like_ForumCommentReply '
+						+ ' WHERE Reply_idForumCommentReply = "' + forumReplyId + '" '
+						+ ' AND User_userEmail = "' + req.session.datos[0].userEmail + '";';
+		}	
+	}
+
+	database.query(stringQuery, function(error, result, row){
+		if(!error) {
+			res.redirect('/foro');
+		}else{
+			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
+			res.render('error' , {
+				errorData: {
+					errorTitle: 'Error al dar Me gusta',
+					errorItem: ['-  Problemas con el servidor'],
+					backUrl: '/foro'
+				}
+			});
+		}
+	});
+};
+
 //FUNCION PARA OBTENER TEMAS DEL FORO
 exports.getForumTopics = function(req, res){
 	var database = new base();
@@ -224,8 +344,14 @@ exports.getForumTopicCommentsCron = function(req, res){
 				+ ' (SELECT'
 					+ ' COUNT(fcr.idForumCommentReply) '
 					+ ' FROM ForumCommentReply AS fcr'
-						+ ' WHERE ForumComment_idForumComment = fc.idForumComment'
-				+ ' ) AS replies'
+						+ ' WHERE fcr.ForumComment_idForumComment = fc.idForumComment'
+				+ ' ) AS replies,'
+				+ ' (SELECT'
+					+ ' ulfc.likeStatus '
+					+ ' FROM User_like_ForumComment AS ulfc'
+						+ ' WHERE ulfc.ForumComment_idForumComment = fc.idForumComment'
+						+ ' AND ulfc.User_userEmail = "' + req.session.datos[0].userEmail + '"'
+				+ ' ) AS userLikeStatus'
 			+ ' FROM ForumComment AS fc '
 			+ ' INNER JOIN User AS u '
 				+ ' ON u.userEmail = fc.User_userEmail '
@@ -256,17 +382,35 @@ exports.getForumTopicCommentsCron = function(req, res){
       					+ '</div>'
     					+ '</div>'
     					+ '<div class="pd10_16 listitemactions autooverflow pd_top0">'
-	      					+ '<div class="autocol left_float mr_top4 b_text opacity_color">'
-	        					+ '<div class="autocol pd_8 underline pd_l0">' + item.likes + ' Me gusta</div>'
-	        					+ '<div class="autocol pd_8 underline">' + item.dislikes + ' No me gusta</div>'
-	        					+ '<div title="Mostrar respuestas" data-id="' + item.idForumComment + '" class="autocol pd_8 underline showhiddenreply">' + item.replies + ' Respuestas</div>'
-	      					+ '</div>'
+	      					+ '<div class="autocol left_float b_text opacity_color comment_info">'
+	      						if(item.likes > 0){
+	      							stringDataForumComment += '<div class="autocol underline">' + item.likes + ' Me gusta</div>'	
+	      						}
+	      						if(item.dislikes > 0){
+	      							stringDataForumComment += '<div class="autocol underline">' + item.dislikes + ' No me gusta</div>'	
+	      						}
+	        					if(item.replies > 0){
+	      							stringDataForumComment += '<div title="Mostrar respuestas" class="autocol underline showhiddenreply">' + item.replies + ' Respuestas</div>'	
+	      						}
+	      					stringDataForumComment += '</div>'
 	      					+ '<div class="autocol comment_action right_float">'
-	      						+ '<span data-action="like" title="Me gusta este comentario" class="circle bg_like hover"></span>'
-	      						+ '<span data-action="dislike" title="No me gusta este comentario" class="circle bg_dislike hover"></span>'
+	      						if(item.userLikeStatus != null){
+	      							if(item.userLikeStatus == 1){
+	      								stringDataForumComment += '<span data-action="quit-like" title="Me gusta este comentario" class="circle bg_likeactive hover"></span>'
+	      								+ '<span data-action="dislike" title="No me gusta este comentario" class="circle bg_dislike hover"></span>'	
+	      							}
+	      							else if(item.userLikeStatus == 0){
+	      								stringDataForumComment += '<span data-action="like" title="Me gusta este comentario" class="circle bg_like hover"></span>'
+	      								+ '<span data-action="quit-dislike" title="No me gusta este comentario" class="circle bg_dislikeactive hover"></span>'	
+	      							}
+	      						}
+	      						else{
+	      							stringDataForumComment += '<span data-action="like" title="Me gusta este comentario" class="circle bg_like hover"></span>'
+	      							+ '<span data-action="dislike" title="No me gusta este comentario" class="circle bg_dislike hover"></span>'	
+	      						}
 	      						if(item.userEmail == req.session.datos[0].userEmail){
-	      							stringDataForumComment += '<span title="Editar" onclick="editForumComment(&quot;'+ item.idForumComment+ '&quot;)" class="circle bg_editgray hover"></span>'
-	      							+ '<span title="Eliminar" onclick="deleteForumComment(&quot;' + item.idForumComment + '&quot;)" class="circle bg_delete hover"></span>'
+	      							stringDataForumComment += '<span title="Editar" data-action="edit" class="circle bg_editgray hover"></span>'
+	      							+ '<span title="Eliminar" data-action="delete" class="circle bg_delete hover"></span>'
 	      						}
 	     					stringDataForumComment += '<span title="Responder" class="circle bg_reply hover showhiddenreply focusinput"></span>'
 	      					+ '</div>'
@@ -278,7 +422,8 @@ exports.getForumTopicCommentsCron = function(req, res){
       					+ '<div class="forum_repliescontainer border_bottom bg_lightgray">'
       					+	'<div class="forum_repliescontainerinner"></div>'
       					+ '</div>'
-      					+ '<form class="colhh1 flat_input reply_form">'
+      					+ '<form class="colhh1 flat_input reply_form rel_pos">'
+      						+ '<img class="circle" src="profile_photos/' + req.session.datos[0].photoName + '.png"></img>'
         					+ '<textarea name="forumReplyText" type="text" placeholder="Escribe una Respuesta"></textarea>'
         					+ '<input type="hidden" name="forumCommentId" value="' + item.idForumComment + '">'
         					+ '<input type="submit" value="PUBLICAR" disabled="disabled" class="b_text opacity_color rippleria-dark"/>'
@@ -317,7 +462,13 @@ exports.getForumTopicCommentReplies = function(req, res){
 					+ ' FROM User_like_ForumCommentReply AS ulcr'
 						+ ' WHERE ulcr.Reply_idForumCommentReply = fcr.idForumCommentReply'
 						+ ' AND ulcr.likeStatus = 0'
-				+ ' ) AS dislikes'
+				+ ' ) AS dislikes,'
+				+ ' (SELECT'
+					+ ' ulfcr.likeStatus '
+					+ ' FROM User_like_ForumCommentReply AS ulfcr'
+						+ ' WHERE ulfcr.Reply_idForumCommentReply = fcr.idForumCommentReply'
+						+ ' AND ulfcr.User_userEmail = "' + req.session.datos[0].userEmail + '"'
+				+ ' ) AS userLikeStatus'
 			+ ' FROM ForumCommentReply AS fcr '
 			+ ' INNER JOIN User AS u '
 				+ ' ON u.userEmail = fcr.User_userEmail '
@@ -330,9 +481,9 @@ exports.getForumTopicCommentReplies = function(req, res){
 			for(var i in result){
                 var item = result[i];
                 stringDataForumReply += ''
-                + '<div class="colhh1 forum_reply border_bottom rel_pos">'
+                + '<div class="colhh1 forum_reply border_bottom rel_pos" data-id="' + item.idForumCommentReply + '">'
     				+ '<div class="pd_18">'
-      					+ '<div title="Publicado el ' + item.forumCommentReplyDate + ' a las ' + item.forumReplyCommentTime +'" class="listitem_rightinfo">'
+      					+ '<div title="Publicado el ' + item.forumCommentReplyDate + ' a las ' + item.forumCommentReplyTime +'" class="listitem_rightinfo">'
         					+ '<label class="item_date">' + item.forumCommentReplyDate + '</label>'
         					+ '<label class="item_time"> ' + item.forumCommentReplyTime + '</label>'
       					+ '</div>'
@@ -347,16 +498,32 @@ exports.getForumTopicCommentReplies = function(req, res){
       					+ '</div>'
     				+ '</div>'
     				+ '<div class="pd10_16 listitemactions autooverflow pd_top0">'
-	      				+ '<div class="autocol left_float mr_top4 b_text opacity_color">'
-	        				+ '<div class="autocol pd_8 underline pd_l0">' + item.likes + ' Me gusta</div>'
-	        				+ '<div class="autocol pd_8 underline">' + item.dislikes + ' No me gusta</div>'
-	      				+ '</div>'
-	      				+ '<div class="autocol comment_action right_float">'
-	      					+ '<span data-action="like" title="Me gusta esta respuesta" class="circle bg_like hover"></span>'
-	      					+ '<span data-action="dislike" title="No me gusta este respuesta" class="circle bg_dislike hover"></span>'
+	      				+ '<div class="autocol left_float b_text comment_info opacity_color">'
+	        				if(item.likes > 0){
+	      						stringDataForumReply += '<div class="autocol underline">' + item.likes + ' Me gusta</div>'	
+	      					}
+	      					if(item.dislikes > 0){
+	      						stringDataForumReply += '<div class="autocol underline">' + item.dislikes + ' No me gusta</div>'	
+	      					}
+	      				stringDataForumReply += '</div>'
+	      				+ '<div class="autocol reply_action right_float">'
+	      					if(item.userLikeStatus != null){
+	      						if(item.userLikeStatus == 1){
+	      							stringDataForumReply += '<span data-action="quit-like" title="Me gusta esta respuesta" class="circle bg_likeactive hover"></span>'
+	      							+ '<span data-action="dislike" title="No me gusta esta respuesta" class="circle bg_dislike hover"></span>'	
+	      						}
+	      						else if(item.userLikeStatus == 0){
+	      							stringDataForumReply += '<span data-action="like" title="Me gusta esta respuesta" class="circle bg_like hover"></span>'
+	      							+ '<span data-action="quit-dislike" title="No me gusta esta respuesta" class="circle bg_dislikeactive hover"></span>'	
+	      						}
+	      					}
+	      					else{
+	      						stringDataForumReply += '<span data-action="like" title="Me gusta esta respuesta" class="circle bg_like hover"></span>'
+	      						+ '<span data-action="dislike" title="No me gusta esta respuesta" class="circle bg_dislike hover"></span>'	
+	      					}
 	      					if(item.userEmail == req.session.datos[0].userEmail){
-	      						stringDataForumReply += '<span title="Editar" onclick="editForumCommentReply(&quot;'+ item.idForumComment+ '&quot;)" class="circle bg_editgray hover"></span>'
-	      						+ '<span title="Eliminar" onclick="deleteForumCommentReply(&quot;' + item.idForumComment + '&quot;)" class="circle bg_delete hover"></span>'
+	      						stringDataForumReply += '<span title="Editar" data-action="edit" class="circle bg_editgray hover"></span>'
+	      						+ '<span title="Eliminar" data-action="delete" class="circle bg_delete hover"></span>'
 	      					}
 	     		stringDataForumReply += '</div>'
 					+ '</div>'

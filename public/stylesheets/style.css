@@ -335,7 +335,7 @@ footer span.small_icon{
 
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
-.bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike, .bg_arrowdrop{
+.bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike, .bg_likeactive, .bg_dislikeactive, .bg_arrowdrop{
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -345,8 +345,10 @@ footer span.small_icon{
 .bg_arrowdrop{background-image: url('/images/arrow-down-drop-circle.png');}
 
 .bg_like{background-image: url('/images/thumb-up.png');}
+.bg_likeactive{background-image: url('/images/thumb-up_active.png');}
 
 .bg_dislike{background-image: url('/images/thumb-down.png');}
+.bg_dislikeactive{background-image: url('/images/thumb-down_active.png');}
 
 .bg_camera{background-image: url('/images/camera.png');}
 
@@ -1375,6 +1377,10 @@ span.title_rightoptionicon:hover{
 	z-index: 2;
 }
 
+.msm_sendtocontact .bg_cross{
+	background-size: 22px;
+}
+
 .msm_sendtocontact .name{
 	display: inline;
 	position: relative;
@@ -1480,11 +1486,20 @@ span.title_rightoptionicon:hover{
 	padding-bottom: 18px;
 }
 
+.flat_input img{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
 .flat_input textarea{
-	width: calc(100% - 118px);
+	width: calc(100% - 168px);
 	height: 17px;
 	max-height: 200px;
-	padding-left: 18px;
+	padding: 0;
+	margin-left: 68px;
 	border: none;outline: none;
 	background-color: transparent;
 	resize: none;
@@ -1628,6 +1643,10 @@ span.title_rightoptionicon:hover{
 	padding-right: 0;
 }
 
+.forum_comment .comment_info .autocol{
+	margin-top: 13px;
+	margin-right: 16px;
+}
 
 .rank span{
 	width: 10px;
@@ -2170,7 +2189,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 	width: inherit;
 	height: inherit;
 	cursor: pointer;
-	background-size: 22px;
+	background-size: 24px;
 }
 
 /*---------------------------------------------------------------------------------------

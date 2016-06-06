@@ -83,6 +83,7 @@ global.__base = __dirname;
 				userEmail: data.userEmail,
 				userName: data.userName,
 				userLastName: data.userLastName,
+				userPhoto: data.userPhoto,
                 messageText: data.messageText,
                 messageTime: data.messageTime
 		});
@@ -248,6 +249,8 @@ app.get('/getProfileContactsTeachersMsm', messagesPost.getProfileContactsTeacher
 app.post('/insertForumTopic', forumPost.insertForumTopic);
 app.post('/insertForumTopicComment', forumPost.insertForumTopicComment);
 app.post('/insertForumTopicCommentReply', forumPost.insertForumTopicCommentReply);
+app.post('/likeForumComment', forumPost.likeForumComment);
+app.post('/likeForumCommentReply', forumPost.likeForumCommentReply);
 app.get('/getForumTopics', forumPost.getForumTopics);
 app.get('/getForumTopicCommentsCron', forumPost.getForumTopicCommentsCron);
 app.get('/getForumTopicCommentReplies', forumPost.getForumTopicCommentReplies);
