@@ -248,7 +248,12 @@ exports.getForumTopics = function(req, res){
 	stringQuery = 'SELECT idForumTopic, DATE_FORMAT(topicDateTime, "%d/%m/%Y") AS forumTopicDate,'
 				+ ' DATE_FORMAT(topicDateTime, "%H:%i") AS forumTopicTime, photoName,'
 				+ ' CONCAT(userName, " ", userLastName, " ", userSecondLastName) AS userFullName,'
-				+ ' topicTitle, topicSubject, topicDescription, userEmail'
+				+ ' topicTitle, topicSubject, topicDescription, userEmail,'
+				+ ' (SELECT'
+					+ ' COUNT(fc.idForumComment) '
+					+ ' FROM ForumComment AS fc'
+						+ ' WHERE fc.ForumTopic_idForumTopic = ft.idForumTopic'
+				+ ' ) AS comments'
 				+ ' FROM ForumTopic AS ft '
 				+ ' INNER JOIN User AS u '
 				+ ' 	ON u.userEmail = ft.User_userEmail'
@@ -304,7 +309,10 @@ exports.getForumTopics = function(req, res){
 				          + '<div class="colhh1 ll_title opacity_color">Descripción:</div>'
 				          + '<div class="pd_4"></div>'
 				          + '<div class="colhh1">' + item.topicDescription + '</div>'
-				        + '</div>'
+				        + '</div>'  
+				      + '</div>'
+				      + '<div class="colhh1 bg_lightgray b_text opacity_color">'
+				        + '<div class="pd_18">' + item.comments + ' Comentarios</div>'
 				      + '</div>'
 				    + '</div>'
 				  + '</div>'
@@ -381,41 +389,43 @@ exports.getForumTopicCommentsCron = function(req, res){
         						+ '</div>'
       					+ '</div>'
     					+ '</div>'
-    					+ '<div class="pd10_16 listitemactions autooverflow pd_top0">'
+    					+ '<div class="pd10_16 listitemactions autooverflow pd_top0 border_bottom">'
 	      					+ '<div class="autocol left_float b_text opacity_color comment_info">'
 	      						if(item.likes > 0){
-	      							stringDataForumComment += '<div class="autocol underline">' + item.likes + ' Me gusta</div>'	
+	      							stringDataForumComment += '<div class="autocol underline">' + item.likes + ' <span class="circle bg_blue bg_likewhite"></span></div>'	
 	      						}
 	      						if(item.dislikes > 0){
-	      							stringDataForumComment += '<div class="autocol underline">' + item.dislikes + ' No me gusta</div>'	
+	      							stringDataForumComment += '<div class="autocol underline">' + item.dislikes + ' <span class="circle bg_red bg_dislikewhite"></span></div>'	
 	      						}
 	        					if(item.replies > 0){
 	      							stringDataForumComment += '<div title="Mostrar respuestas" class="autocol underline showhiddenreply">' + item.replies + ' Respuestas</div>'	
 	      						}
 	      					stringDataForumComment += '</div>'
-	      					+ '<div class="autocol comment_action right_float">'
-	      						if(item.userLikeStatus != null){
-	      							if(item.userLikeStatus == 1){
-	      								stringDataForumComment += '<span data-action="quit-like" title="Me gusta este comentario" class="circle bg_likeactive hover"></span>'
-	      								+ '<span data-action="dislike" title="No me gusta este comentario" class="circle bg_dislike hover"></span>'	
-	      							}
-	      							else if(item.userLikeStatus == 0){
-	      								stringDataForumComment += '<span data-action="like" title="Me gusta este comentario" class="circle bg_like hover"></span>'
-	      								+ '<span data-action="quit-dislike" title="No me gusta este comentario" class="circle bg_dislikeactive hover"></span>'	
-	      							}
-	      						}
-	      						else{
-	      							stringDataForumComment += '<span data-action="like" title="Me gusta este comentario" class="circle bg_like hover"></span>'
-	      							+ '<span data-action="dislike" title="No me gusta este comentario" class="circle bg_dislike hover"></span>'	
-	      						}
+	      					+ '<div class="autocol right_float">'
 	      						if(item.userEmail == req.session.datos[0].userEmail){
 	      							stringDataForumComment += '<span title="Editar" data-action="edit" class="circle bg_editgray hover"></span>'
 	      							+ '<span title="Eliminar" data-action="delete" class="circle bg_delete hover"></span>'
 	      						}
-	     					stringDataForumComment += '<span title="Responder" class="circle bg_reply hover showhiddenreply focusinput"></span>'
-	      					+ '</div>'
-    					+ '</div>'
-    					+ '<div class="pd_18 txtprimary_color ll_title pd_top0 hiddenreplyblock">Respuestas</div>'
+	     					stringDataForumComment += '</div>'
+	      				  + '</div>'
+	      				  + '<div class="colhh1 comment_action center_text">'
+	      					if(item.userLikeStatus != null){
+	      						if(item.userLikeStatus == 1){
+	      							stringDataForumComment += '<div class="colhh3 hover put_status b_text txtprimary_color" data-action="quit-like"><span class="v_middle bg_likeactive"></span><div class="autocol v_middle">Me gusta</div></div>'
+	      							+ '<div class="colhh3 hover put_status b_text opacity_color" data-action="dislike"><span class="v_middle bg_dislike"></span><div class="autocol v_middle">No me gusta</div></div>'	
+	      						}
+	      						else if(item.userLikeStatus == 0){
+	      							stringDataForumComment += '<div class="colhh3 hover put_status b_text opacity_color" data-action="like"><span class="v_middle bg_like"></span><div class="autocol v_middle">Me gusta</div></div>'
+	      							+ '<div class="colhh3 hover put_status b_text txt_red" data-action="quit-dislike"><span class="v_middle bg_dislikeactive"></span><div class="autocol v_middle">No me gusta</div></div>'	
+	      						}
+	      					}
+	      					else{
+	      						stringDataForumComment += '<div class="colhh3 hover put_status b_text opacity_color" data-action="like"><span class="v_middle bg_like"></span><div class="autocol v_middle">Me gusta</div></div>'
+	      						+ '<div class="colhh3 hover put_status b_text opacity_color" data-action="dislike"><span class="v_middle bg_dislike"></span><div class="autocol v_middle">No me gusta</div></div>'	
+	      					}
+	      					stringDataForumComment += '<div class="colhh3 hover b_text opacity_color showhiddenreply focusinput"><span class="v_middle bg_reply"></span><div class="autocol v_middle">Responder</div></div>'
+	      				  + '</div>'
+    					+ '<div class="pd_18 txtprimary_color ll_title hiddenreplyblock">Respuestas</div>'
   					+ '</div>'
   					+ '<div class="colhh1 fshow_relpy">'
     					+ '<div class="colhh1 hiddenreplyblock">'

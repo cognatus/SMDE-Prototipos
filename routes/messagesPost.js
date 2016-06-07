@@ -8,6 +8,7 @@ exports.constructor = function (basee) {
 }
 
 exports.insertLobby = function(req, res){
+	var database = new base();
 
 	var now = new Date();
 	var dd = now.getDate();
@@ -19,7 +20,6 @@ exports.insertLobby = function(req, res){
 	var milsec = now.getMilliseconds();
 	var time = dd + '' + mm + '' + yyyy + '' + hh + '' + min + '' + sec + '' + milsec;
 
-	var database = new base();
 	var stringQuery2 = '';
 	//OBTIENE LA CADENA DE TEXTO DE LOS USUARIOS PARA LA LOBBY
 	var lobbyUsers = req.body.insetUsersLobby;
@@ -31,7 +31,7 @@ exports.insertLobby = function(req, res){
 	usersArray.pop();
 	usersArray.push(owner);
 
-	var uniqueId = 'l0b8Y' + Math.floor((Math.random() * 596501699) + 16985689) + '' + time;
+	var uniqueId = 'l0b8Y' + Math.floor( (Math.random() * 596501699) + 16985689 ) + '' + time;
 
 	if( lobbyUsers != null || lobbyUsers.trim() != '' ){
 		if( message != null || message.trim() != '' ){
@@ -67,8 +67,6 @@ exports.insertLobby = function(req, res){
 
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
-			/*console.log('Nueva sala creada correctamente con ' + usersArray.length + ' Usuarios');
-			console.log(stringQuery);*/
 			res.redirect('/messages');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
@@ -117,9 +115,9 @@ exports.getLobbiesDatabase = function(req, res){
 
 	stringQuery = 'SELECT idLobby, DATE_FORMAT(m.messageDateTime, "%d/%m/%Y") AS lobbyDate,'
 				+ ' DATE_FORMAT(m.messageDateTime, "%H:%i") AS lobbyHour, m.messageText AS lastMsm, u2.userEmail AS lastSenderEmail, u2.userName AS lastSenderName,'
-				+ ' GROUP_CONCAT(uhl.User_userEmail separator ", ") AS participantsEmails,'
-				+ ' GROUP_CONCAT(u.userName, " ", u.userLastName separator ", ") AS participantsNames, '
-				+ ' GROUP_CONCAT(u.photoName separator ", ") AS participantsPhotos'
+				+ ' GROUP_CONCAT(uhl.User_userEmail SEPARATOR ", ") AS participantsEmails,'
+				+ ' GROUP_CONCAT(u.userName, " ", u.userLastName SEPARATOR ", ") AS participantsNames, '
+				+ ' GROUP_CONCAT(u.photoName SEPARATOR ",") AS participantsPhotos'
 				+ ' FROM user_has_lobby AS uhl '
 				+ ' INNER JOIN User AS u '
 				+ ' 	ON u.userEmail = uhl.User_userEmail '
@@ -147,13 +145,29 @@ exports.getLobbiesDatabase = function(req, res){
 	database.query(stringQuery, function(error, result, row){
 		if(!error) {
 			stringDataLobby = '';
+
 			for(var i in result){
                 var item = result[i];
+                var arrayParticipantsPhotos = item.participantsPhotos.split(',');
+                var arrayParticipantsName = item.participantsNames.split(', ');
+
                 stringDataLobby += ''
                 + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '\n' + item.participantsNames + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
                 +    '<div class="listitem_img">'
-                +        '<img src="profile_photos/' + item.participantsPhotos + '.png">'
-                +    '</div>'
+                if(arrayParticipantsPhotos.length > 1){
+                	for(var j = 0; j < arrayParticipantsPhotos.length; j++){
+                		if(j > 3){
+                			break;
+                		}
+                		else{
+                			stringDataLobby += '<img class="img_mul circle" src="profile_photos/' + arrayParticipantsPhotos[j] + '.png" title="' + arrayParticipantsName[j] + '">'
+                		}
+                	}
+                }
+                else{
+                	stringDataLobby += '<img class="circle" src="profile_photos/' + item.participantsPhotos + '.png">'
+                }
+                stringDataLobby += '</div>'
                 +    '<div class="listitem_info border_bottom">'
                 +        '<div class="listitem_rightinfo" title="' + item.lobbyDate + ' a las ' + item.lobbyHour + '">'
                 +            '<label class="lobby_date">' + item.lobbyDate + '</label>'

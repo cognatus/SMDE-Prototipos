@@ -336,7 +336,7 @@ footer span.small_icon{
 .bg_edit, .bg_editgray, .bg_send, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
 .bg_chatwhite, .bg_attachment, .bg_attachment_white, .bg_file, .bg_download, .bg_delete, .bg_pencilbox, .bg_archive,
 .bg_reply, .bg_cross, .bg_magnify, .bg_camera, .bg_like, .bg_dislike, .bg_likeactive, .bg_dislikeactive, .bg_arrowdrop,
-.bg_bookplus{
+.bg_bookplus, .bg_likewhite, .bg_dislikewhite{
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -346,9 +346,11 @@ footer span.small_icon{
 .bg_arrowdrop{background-image: url('/images/arrow-down-drop-circle.png');}
 
 .bg_like{background-image: url('/images/thumb-up.png');}
+.bg_likewhite{background-image: url('/images/thumb-up_white.png');}
 .bg_likeactive{background-image: url('/images/thumb-up_active.png');}
 
 .bg_dislike{background-image: url('/images/thumb-down.png');}
+.bg_dislikewhite{background-image: url('/images/thumb-down_white.png');}
 .bg_dislikeactive{background-image: url('/images/thumb-down_active.png');}
 
 .bg_camera{background-image: url('/images/camera.png');}
@@ -1157,12 +1159,20 @@ span.title_rightoptionicon:hover{
 	padding: 11px 15px 12px 13px;
 	vertical-align: middle;
 	text-align: center;
+	position: relative;
 }
 
 .listitem_img img{
-	width: 100%;
-	height: 100%;
+	width: inherit;
+	height: inherit;
 	border-radius: 60px;-webkit-border-radius: 60px;-moz-border-radius: 60px;-o-border-radius: 60px;
+}
+
+.listitem_img img.img_mul{
+	display: inline-block;
+	width: calc(50% + 6px);height: calc(50% + 6px);
+	margin: -3px;
+	margin-bottom: -6px;
 }
 
 .listitem_img span{
@@ -1306,6 +1316,11 @@ span.title_rightoptionicon:hover{
 	background-color: #f2f2f2;
 }
 
+.msmtopname .img_container{
+	width: 40px;
+	height: 40px;
+}
+
 .msmtopname .inner{
 	display: inline-block;
 	overflow: hidden;
@@ -1318,7 +1333,7 @@ span.title_rightoptionicon:hover{
 	padding-bottom: 25px;
 }
 
-.msmtopname img, .msmtopname .letter{
+.msmtopname .letter{
 	float: left;
 	width: 40px;
 	height: 40px;
@@ -1327,6 +1342,26 @@ span.title_rightoptionicon:hover{
 	margin: 0;
 	margin-right: 16px; 
 	cursor: pointer;
+}
+
+.msmtopname .img_container{
+	float: left;
+	text-align: center;
+	width: 40px;height: 40px;
+	position: relative;
+	top: -9.5px;
+	margin-right: 16px;
+}
+
+.msmtopname .img_container img{
+	width: inherit;height: inherit;
+}
+
+.msmtopname .img_container .img_mul{
+	width: calc(50% + 3px);
+	height: calc(50% + 3px);
+	margin: -1.5px;
+	margin-bottom: -6px;
 }
 
 .msmtopname .letter{
@@ -1632,6 +1667,33 @@ span.title_rightoptionicon:hover{
 	border: none;
 }
 
+.forum_comment .comment_info span{
+	display: inline-block;
+	vertical-align: middle;
+	width: 18px;height: 18px;
+	background-size: 10px;
+	margin-left: 4px;
+}
+
+.forum_comment .comment_action .colhh3{
+	width: 33.3333333%;
+	display: inline-block;
+}
+
+.forum_comment .comment_action .colhh3 span{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background-size: 18px;
+	position: relative;
+	left: -18px;
+}
+
+.forum_comment .comment_action .colhh3 .autocol{
+	position: relative;
+	left: -12px;
+}
+
 #forumtopics_container .block_container{
 	cursor: pointer;
 }
@@ -1653,8 +1715,8 @@ span.title_rightoptionicon:hover{
 }
 
 .forum_comment .comment_info .autocol{
-	margin-top: 13px;
-	margin-right: 16px;
+	padding: 13px 20px 13px 0;
+	height: 18px;
 }
 
 .rank span{
@@ -2057,9 +2119,7 @@ input:checked + .switch:active::before {
 	margin-left: 18px;	margin-right: 0;
 
 }
-
 .listitemactions{
-	min-height: 43px;
 	padding-bottom: 6px;
 }
 .listitemactions .mr_top4{
@@ -2070,8 +2130,8 @@ input:checked + .switch:active::before {
 	width: 40px;
 	height: 40px;
 	display: inline-block;
-	margin-left: 6px;
 	background-size: 16px;
+	margin-left: 6px;
 }
 
 /*---------------------------------------------------------------------------------------

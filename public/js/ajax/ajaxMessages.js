@@ -455,6 +455,19 @@ jQuery(document).ready(function(){
             }
         });
 
+        jQuery('.block_containermsm .listitem').on('click', function(){
+            var title = jQuery(this).attr('data-name');
+            var title2 = jQuery(this).attr('data-title');
+            var cloneImg = jQuery(this).find('.listitem_img').html();
+            if( jQuery(window).width() < 1120 ){
+                jQuery('.block_containermsm').animate({ scrollLeft: jQuery('.halfgrid').width() });
+                jQuery('#new_item').hide();
+            }
+            jQuery('.msmtopname label').text(title);
+            jQuery('.msmtopname label').attr('title', title2);
+            jQuery('#msm_userimg').html(cloneImg);
+        });
+
         addUsersToLobby();
 
     });

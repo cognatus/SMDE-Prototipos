@@ -151,34 +151,48 @@ function hideElements(){
         jQuery(this).parents('.flat_input').removeClass('border_t border_primarycolor');
     });
 
-    jQuery('.forum_comment .comment_action span').click(function(){
+    jQuery('.forum_comment .comment_action .put_status').click(function(){
         var likeStatus = jQuery(this).attr('data-action');
         var commentId = jQuery(this).parents('.forum_comment').attr('data-id');
         if(likeStatus == 'like'){
             jQuery(this)
                 .attr('data-action', 'quit-like')
+                .removeClass('opacity_color')
+                .addClass('txtprimary_color');
+            jQuery(this).find('span.v_middle')
                 .removeClass('bg_like')
                 .addClass('bg_likeactive');
-            jQuery(this).siblings('span[data-action="quit-dislike"]')
+            jQuery(this).siblings('.put_status[data-action="quit-dislike"]')
                 .attr('data-action', 'dislike')
+                .removeClass('txt_red')
+                .addClass('opacity_color');
+            jQuery(this).siblings('.put_status[data-action="quit-dislike"]').find('span.v_middle')
                 .removeClass('bg_dislikeactive')
                 .addClass('bg_dislike');
         }
         else if(likeStatus == 'dislike'){
-            jQuery(this)
+             jQuery(this)
                 .attr('data-action', 'quit-dislike')
+                .removeClass('opacity_color')
+                .addClass('txt_red');
+            jQuery(this).find('span.v_middle')
                 .removeClass('bg_dislike')
                 .addClass('bg_dislikeactive');
-            jQuery(this).siblings('span[data-action="quit-like"]')
-                .attr('data-action' , 'like')
+            jQuery(this).siblings('.put_status[data-action="quit-like"]')
+                .attr('data-action', 'like')
+                .removeClass('txtprimary_color')
+                .addClass('opacity_color');
+            jQuery(this).siblings('.put_status[data-action="quit-like"]').find('span.v_middle')
                 .removeClass('bg_likeactive')
                 .addClass('bg_like');
         }
         else if(likeStatus == 'quit-like'){
-            jQuery(this).attr('data-action', 'like').removeClass('bg_likeactive').addClass('bg_like');
+            jQuery(this).attr('data-action', 'like').removeClass('txtprimary_color').addClass('opacity_color');
+            jQuery(this).find('span.v_middle').removeClass('bg_likeactive').addClass('bg_like');
         }
         else if(likeStatus == 'quit-dislike'){
-            jQuery(this).attr('data-action', 'dislike').removeClass('bg_dislikeactive').addClass('bg_dislike');
+            jQuery(this).attr('data-action', 'dislike').removeClass('txt_red').addClass('opacity_color');
+            jQuery(this).find('span.v_middle').removeClass('bg_dislikeactive').addClass('bg_dislike');
         }
         if(likeStatus != null){
             likeForumComment(likeStatus, commentId);
