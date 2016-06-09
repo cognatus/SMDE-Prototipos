@@ -848,7 +848,7 @@ footer span.small_icon{
 	OTHER
 -----------------------------------------------------------------------------------------*/
 
-.page_container{width: 100%;}
+.page_container, .pagecontainer_right{width: 100%;}
 
 .topspace{
 	height: 64px;
@@ -1285,7 +1285,7 @@ span.title_rightoptionicon:hover{
 	font-size: 12px;
 }
 
-.block_list .b_img{
+.block_list .b_img, .left_fixedcontainer .b_img{
 	width: auto;
 	height: 240px;
 	position: relative;
@@ -1294,11 +1294,11 @@ span.title_rightoptionicon:hover{
 	background-position: center;
 }
 
-.block_list .b_img .minimenu span{
+.block_list .b_img .minimenu span, .left_fixedcontainer .b_img .minimenu span{
 	background-color: #fff;
 }
 
-.block_list .b_img .listitem{
+.block_list .b_img .listitem, .left_fixedcontainer .b_img .listitem{
 	position: absolute;
 	bottom: 0;
 }
@@ -1717,6 +1717,10 @@ span.title_rightoptionicon:hover{
 .forum_comment .comment_info .autocol{
 	padding: 13px 20px 13px 0;
 	height: 18px;
+}
+
+.left_fixedcontainer{
+	width: 100%;
 }
 
 .rank span{

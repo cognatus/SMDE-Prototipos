@@ -149,7 +149,7 @@ exports.getLobbiesDatabase = function(req, res){
 			for(var i in result){
                 var item = result[i];
                 var arrayParticipantsPhotos = item.participantsPhotos.split(',');
-                var arrayParticipantsName = item.participantsNames.split(', ');
+                var arrayParticipantsNames = item.participantsNames.split(', ');
 
                 stringDataLobby += ''
                 + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '\n' + item.participantsNames + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'

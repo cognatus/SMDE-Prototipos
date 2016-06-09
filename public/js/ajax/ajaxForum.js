@@ -10,13 +10,6 @@ jQuery(document).ready(function(){
         jQuery(this).siblings('input[type="submit"]').show();
     });
 
-    /*jQuery('form#addNewForumComment').submit(function(event){
-        event.preventDefault();
-        var forumTopicId = jQuery(this).find('input[type="hidden"]').val();
-        selectForumTopic(forumTopicId);
-    });*/
-
-    /*jQuery('.hiddenreplyblock').hide();*/
     jQuery('.flat_input textarea').keyup(function(){
         var txt = jQuery(this).val();
         var sibl = jQuery(this).siblings('input[type="submit"]');
@@ -105,21 +98,37 @@ jQuery(document).ready(function(){
         });
 
         jQuery('#forumtopics_container .block_list .block_container').click(function(){
-            var cloned = jQuery(this).clone();
+            var container = jQuery(this).html();
             var forumTopicId = jQuery(this).parents('.block_list').attr('data-id');
-            jQuery('#selectedForumTopic').html(cloned);
+            var url = jQuery(this).parents('.block_list').attr('data-link');
+            /*jQuery('#selectedForumTopic').html(cloned);
             jQuery('#forumtopics_container').hide();
             jQuery('#forumtopic_display').show();
-            jQuery('#forumTopicScope').val(forumTopicId);
+            jQuery('#forumTopicScope').val(forumTopicId);*/
 
-            jQuery('#forum_commentscontainer .load_container').show();
-            setTimeout(selectForumTopic(forumTopicId), 1000);
+            selectForumTopic(forumTopicId, container);
 
         });
 
         jQuery('#forumtopic_display #back_forum').click(function(){
             jQuery('#forumtopic_display').hide();
             jQuery('#forumtopics_container').show();
+        });
+
+        jQuery('.forum_comment .showhiddenreply').one('click' , function(){
+            var container = jQuery(this).parents('.forum_comment').find('.forum_repliescontainerinner');
+            var commentId = jQuery(this).parents('.forum_comment').attr('data-id');
+            showCommentReplies(container, commentId);
+        });
+
+        hideElements();
+
+        jQuery('.forum_comment form.reply_form').submit(function(event){
+            event.preventDefault();
+            var container = jQuery(this).parents('.forum_comment').find('.forum_repliescontainerinner');
+            var commentId = jQuery(this).find('input[type="hidden"]').val();
+            var replyData = jQuery(this).serialize();
+            insertCommentReply(replyData, container, commentId);
         });
 
     });
@@ -228,33 +237,18 @@ function showForumTopics(){
     });
 }
 
-function selectForumTopic(forumTopicId){
+/*function selectForumTopic(forumTopicId, container){
     jQuery.ajax({
         method: 'GET',
         url: 'getForumTopicCommentsCron',
         cache: true,
         data: {
-            forumTopicSelectedId: forumTopicId
+            forumTopicSelectedId: forumTopicId,
+            containerHtmlData: container
         },
         success: function(data) {
             if(data.length > 0){
                 jQuery('#forum_commentscontainer').html(data);
-
-                jQuery('.forum_comment .showhiddenreply').one('click' , function(){
-                    var container = jQuery(this).parents('.forum_comment').find('.forum_repliescontainerinner');
-                    var commentId = jQuery(this).parents('.forum_comment').attr('data-id');
-                    showCommentReplies(container, commentId);
-                });
-
-                hideElements();
-
-                jQuery('.forum_comment form.reply_form').submit(function(event){
-                    event.preventDefault();
-                    var container = jQuery(this).parents('.forum_comment').find('.forum_repliescontainerinner');
-                    var commentId = jQuery(this).find('input[type="hidden"]').val();
-                    var replyData = jQuery(this).serialize();
-                    insertCommentReply(replyData, container, commentId);
-                });
 
             }
             else{
@@ -273,6 +267,16 @@ function selectForumTopic(forumTopicId){
         }
         
     });
+}*/
+
+function selectForumTopic(forumTopicId){
+    
+    var urlLoad = forumTopicId;
+
+    if (urlLoad != undefined && urlLoad != null) {
+        window.location.href = '/forumtopic/' + forumTopicId;
+    }
+
 }
 
 function showCommentReplies(container, commentId){

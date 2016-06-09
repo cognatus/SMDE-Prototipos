@@ -252,7 +252,7 @@ exports.getPublicationsDatabase = function(req, res){
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
-		stringQuery = 'SELECT idPublication, pubTitle, pubText,'
+		stringQuery = 'SELECT idPublication, pubTitle, pubText, photoName,'
 					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
 					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y") AS pubLimDate, DATE_FORMAT(publicationLimitDate, "%H:%i") AS pubLimTime,'
 					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
@@ -278,7 +278,7 @@ exports.getPublicationsDatabase = function(req, res){
 	}
 	//SI EL USUARIO ES TIPO PROFESOR
 	else if(req.session.privilegio == 2){
-		stringQuery = 'SELECT idPublication, pubTitle, pubText,'
+		stringQuery = 'SELECT idPublication, pubTitle, pubText, photoName'
 					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
 					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y") AS pubLimDate, DATE_FORMAT(publicationLimitDate, "%H:%i") AS pubLimTime,'
 					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
@@ -312,7 +312,7 @@ exports.getPublicationsDatabase = function(req, res){
 
                 publicationsData += '<div data-name="' + item.pubTitle + '" data-date="' + item.pubLimDate + '" data-datepost="' + item.pubDate + '" class="colhh1 block_container bg_white cal_post">'
                                  +     '<div style="padding-top: 2px;margin-bottom: 16px;" class="colhh1 list_leftitem">'
-                                 +       '<div class="listitem_img"><img src="images/profilephoto.png" title="' + item.userEmail + '"/></div>'
+                                 +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" title="' + item.userEmail + '"/></div>'
                                  +       '<div class="listitem_info">'
                                  +         '<div title=" Publicado el ' + item.pubDate + ' a las ' + item.pubTime + '" class="listitem_rightinfo">'
                                  +           '<label class="item_date">' + item.pubDate + '</label>'
@@ -336,14 +336,14 @@ exports.getPublicationsDatabase = function(req, res){
                                  +       '<div class="pd_llist">'
                                  +         '<div class="pd_4"></div>'
                                  +         '<div class="sl_title">Comentarios</div>'
-                                if(item.pubText != null || item.pubText.trim() != ''){
+                                if(item.pubText != null && item.pubText.trim() != ''){
                                 	publicationsData += '<div class="pd_16 justify_text breakword border_bottom">' + item.pubText
                                  					 +		'<div class="pd_4"></div>'
                                  					 +	'</div>'
                                 }
                                 else{
-                                	publicationsData += '<div class="pd_16 opacity_color b_text border_bottom">Sin Comentarios'
-                                					 +	'<div class="pd_4"></div>'
+                                	publicationsData += '<div class="pd_16 opacity_color b_text border_bottom">'
+                                					 +		'Sin Comentarios<div class="pd_4"></div>'
                                 					 + 	'</div>'
                                 }
                 publicationsData +=       '</div>'
