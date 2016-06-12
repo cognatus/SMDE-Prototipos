@@ -4,7 +4,6 @@
 
 	.index_container .colhh3{width: 50%;display: inline-block;}
 
-
 	.colhh3{width: 50%;display: inline-block;}
 
 	.colhh4{width: 50%;display: inline-block;}
@@ -16,7 +15,7 @@
 	}
 
 	.top_pallete_inner{
-	 	height: 50%;
+	 	height: 200px;
 	}
 
 	.page_container, .pagecontainer_right{
@@ -44,9 +43,8 @@
 		border-radius: 1px;
 	}
 
-	.block_containermsm, .block_containersettings{
+	.block_containersettings{
 		position: relative;
-		z-index: 49;
 		margin: 16px auto;
 		border-radius: 1px;
 		margin-bottom: 24px;
@@ -168,6 +166,7 @@
 		padding: 8px 0 8px 0;
 		font-size: 15px;
 		min-width: 170px;
+		font-weight: normal;
 	}
 
 	.minimenu_hidden .pd_16.hover{padding: 11px 32px 11px 21px;}
@@ -199,8 +198,8 @@
 		width: 100%;
 	}
 
-	.halfgrid{width: 400px;}
-	.secondgrid{width: calc(100% - 400px);}
+	.halfgrid{width: 420px;}
+	.secondgrid{width: calc(100% - 420px);}
 
 	.block_containermsm, .block_containersettings{overflow: initial;}
 	.block_containersettings .halfgrid{width: 430px;overflow: initial;}
@@ -247,16 +246,17 @@
 		display: none;
 	}
 
+	.msmtopname .img_container{
+		width: 40px;
+	}
+
 	.top_hlist{margin-bottom: -4px;background-color: transparent;}
 
 	.top_hlist .h_listtopcontainer, .subl_top .opacity_color{color: #fff;}
 
-	.top_hlist .h_listitem{text-shadow: 0px 1px 1px #000;}
-
 	.float_buttoncontainer.leftlist_floatbutton{
 		top: auto;
-		left: 358px;
-		bottom: 48px;
+		left: 339px;
 	}
 
 	.mr_8{margin-right: 8px;}

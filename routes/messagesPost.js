@@ -160,7 +160,7 @@ exports.getLobbiesDatabase = function(req, res){
                 			break;
                 		}
                 		else{
-                			stringDataLobby += '<img class="img_mul circle" src="profile_photos/' + arrayParticipantsPhotos[j] + '.png" title="' + arrayParticipantsName[j] + '">'
+                			stringDataLobby += '<img class="img_mul circle" src="profile_photos/' + arrayParticipantsPhotos[j] + '.png" title="' + arrayParticipantsNames[j] + '">'
                 		}
                 	}
                 }
@@ -171,7 +171,7 @@ exports.getLobbiesDatabase = function(req, res){
                 +    '<div class="listitem_info border_bottom">'
                 +        '<div class="listitem_rightinfo" title="' + item.lobbyDate + ' a las ' + item.lobbyHour + '">'
                 +            '<label class="lobby_date">' + item.lobbyDate + '</label>'
-                +            '&nbsp;<label class="lobby_time">' + item.lobbyHour + '</label>'
+                +            '<label class="lobby_time">&nbsp;' + item.lobbyHour + '</label>'
                 +        '</div>'
                 +        '<div class="listitem_title">'
                 +            '<b title="' + item.participantsEmails + '\n' + item.participantsNames + '">' + item.participantsNames + '</b>'

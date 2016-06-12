@@ -347,9 +347,45 @@ jQuery(document).ready(function(){
         showContactsTeachersMsm();
     });
 
+    jQuery('#newmsm').keyup(function(){
+        if(jQuery(this).val() != null && jQuery(this).val().trim() != ''){
+            jQuery('.msminput input[type="submit"]')
+                .removeClass('bg_send')
+                .addClass('bg_sendwhite flat_shadow')
+                .removeAttr('disabled');
+        }
+        else{
+            jQuery('.msminput input[type="submit"]')
+                .removeClass('bg_sendwhite flat_shadow')
+                .addClass('bg_send bg_lightblue')
+                .attr('disabled', 'disabled');
+        }
+    });
+
+    jQuery('#msm_textarea').keyup(function(){
+        if(jQuery(this).val() != null && jQuery(this).val().trim() != ''){
+            jQuery('#hidmsm_img')
+                .removeClass('bg_send')
+                .addClass('bg_sendactive');
+            jQuery('#sendInputMsm').removeAttr('disabled');
+        }
+        else{
+            jQuery('#hidmsm_img')
+                .removeClass('bg_sendactive')
+                .addClass('bg_send');
+            jQuery('#sendInputMsm').attr('disabled', 'disabled');
+        }
+    });
+
     jQuery('form#addNewMsm').submit(function(event){
         event.preventDefault();
-        enviarMsg();
+
+        if(jQuery(this).find('input#lobbyScope').val() != null && jQuery(this).find('input#lobbyScope').val().trim() != ''){
+            enviarMsg();
+        }
+        else{
+            alert('Seleccione una conversación')
+        }
     });
 
     jQuery('#newmsm').click(function(){
@@ -417,6 +453,13 @@ jQuery(document).ready(function(){
         }
     });
 
+    jQuery('form#newMsmForm').submit(function(event){
+        if(jQuery('.msm_sendtocontainer .msm_sendtocontact').length < 1){
+            alert('Debe agregar a algun usuario para enviar el mensaje');
+            return false;
+        }
+    });
+
     jQuery(document).ajaxComplete(function(){
            //OBTENER EL DIA ACTUAL PARA CAMBIAR LOS TEXTOS EN lA PARTE DERECHA DE LOS MENSAJES
         var today = new Date();
@@ -472,6 +515,10 @@ jQuery(document).ready(function(){
 
     });
 
+    setTimeout(function(){
+        jQuery('.listitem').first().trigger('click');
+    }, 1300);
+
 });
 
 function addUsersToLobby(){
@@ -482,7 +529,6 @@ function addUsersToLobby(){
         var name = jQuery(this).attr('data-name');
         var email = jQuery(this).attr('data-email');
         var imgsrc = jQuery(this).find('.listitem_img img').attr('src');
-
 
         //AGREGA UN NUEVO USUARIO PARA EL LOBBY
         var html = '<div data-email="' + email + '" class="msm_sendtocontact rel_pos" title="Quitar">'

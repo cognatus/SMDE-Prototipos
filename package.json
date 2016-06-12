@@ -6,15 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "4.*",
-    "serve-favicon": "*",
-    "method-override": "*",
-    "errorhandler": "*",
-    "body-parser": "*",
-    "morgan": "*",
-    "cookie-parser": "*",
-    "express-session": "*",
-    "serve-static": "*",
+    "express": "3.4.4",
     "mime": "*",
     "jade": "*",
     "socket.io": "*",

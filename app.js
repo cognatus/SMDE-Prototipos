@@ -4,7 +4,8 @@
  */
 
 var express = require('express');
-var favicon = require('serve-favicon');
+//EXPRESS 4
+/*var favicon = require('serve-favicon');
 var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
 var bodyParser = require('body-parser');
@@ -12,7 +13,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var json = bodyParser.json();
-var static = require('serve-static');
+var static = require('serve-static');*/
 
 var app = express();
 var http = require('http').createServer(app);
@@ -26,21 +27,20 @@ var profilePost = require('./routes/profilePost');
 var subjectsPost = require('./routes/subjectsPost');
 var messagesPost = require('./routes/messagesPost');
 var forumPost = require('./routes/forumPost');
-
 var io = require('socket.io')(http);
-
 /*var session = require('client-sessions');*/
 var mysql = require('mysql');
 var htmlspecialchars = require('htmlspecialchars');
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+//EXPRESS 4
+/*app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(favicon(__dirname + '/public/images/smdelogo.png'));
 app.use(methodOverride());
 app.use(logger('dev'));
-/*app.use(cookieParser('Sabemos todo sobre ti'));*/
+app.use(cookieParser('Sabemos todo sobre ti'));
 app.use(session({ 
 	secret: 'keyboard cat', 
 	cookie: { maxAge: 60000 }, 
@@ -48,7 +48,20 @@ app.use(session({
 	saveUninitialized: true }));
 app.use(bodyParser.json);
 app.use(bodyParser.urlencoded);
-app.use(static(path.join(__dirname, 'public')));
+app.use(static(path.join(__dirname, 'public')));*/
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use(express.favicon());
+app.use(express.methodOverride());
+app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + '/public/publications' }));
+app.use(express.logger('dev'));
+app.use(express.cookieParser('sabemos todo sobre ti'));
+app.use(express.session());
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
 //variable global para jalar directorios
 global.__base = __dirname;
@@ -109,7 +122,7 @@ global.__base = __dirname;
 
 // development only
 if ('development' == app.get('env')) {
-	app.use(errorHandler);
+	app.use(express.errorHandler());
 }
 
 //conecta a la DB MySQL
@@ -268,7 +281,7 @@ app.post('/insertForumTopicCommentReply', forumPost.insertForumTopicCommentReply
 app.post('/likeForumComment', forumPost.likeForumComment);
 app.post('/likeForumCommentReply', forumPost.likeForumCommentReply);
 app.get('/getForumTopics', forumPost.getForumTopics);
-router.get('/forumtopic/:topic', forumPost.getForumTopicCommentsCron);
+app.get('/forumtopic/:topic', forumPost.getForumTopicCommentsCron);
 app.get('/getForumTopicCommentReplies', forumPost.getForumTopicCommentReplies);
 
 
@@ -289,3 +302,14 @@ http.listen(app.get('port'), function(){
 	forumPost.constructor(databaseInstance);
 	console.log('SMDE server listening on port ' + app.get('port'));
 });
+
+/* package.json EXPRESS 4
+	"serve-favicon": "*",
+    "method-override": "*",
+    "errorhandler": "*",
+    "body-parser": "*",
+    "morgan": "*",
+    "cookie-parser": "*",
+    "express-session": "*",
+    "serve-static": "*",
+*/
