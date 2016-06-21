@@ -130,10 +130,10 @@ function databaseInstance(){
 	var connection = mysql.createConnection({
 		multipleStatements: true,
 		host: 'localhost',
-		password: 'n0m3l0s3',
+		password: 'n0m3l0',
 		user: 'root',
 		database: 'smdedbv1',
-		port: 8080
+		port: 3306
 	});
 	return connection;
 };
