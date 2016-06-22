@@ -59,14 +59,6 @@ exports.foro = function(req, res){
     privilegio:  req.session.privilegio });
 };
 
-exports.forumtopic = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('forumtopic', { 
-    title: 'SMDE - Foro',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
-
 exports.settings = function(req, res){
   /*console.log(req.session.datos);*/
   res.render('settings', { 

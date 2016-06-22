@@ -46,10 +46,10 @@ block content
 				.block_container.bg_white
 					.colhh1.bg_lightgray.flat_shadow
 						.pd_18.ll_title Comentar
-					form#addNewForumComment.colhh1.flat_input.rel_pos(name='addNewForumComment' action="insertForumTopicComment" method="POST")
-						img.circle(src='profile_photos/#{datos[0].photoName}.png')
+					form#addNewForumComment.colhh1.flat_input.rel_pos(name='addNewForumComment' action="../insertForumTopicComment" method="POST")
+						img.circle(src='../profile_photos/#{datos[0].photoName}.png')
 						textarea(type='text' name='forumCommentText' placeholder='Escribe un Comentario')
-						input#forumTopicScope(type='hidden' name='forumTopicId' value='')
+						input#forumTopicScope(type='hidden' name='forumTopicId' value='#{idForo}')
 						input.b_text.opacity_color.rippleria-dark(data-rippleria type='submit' name='forumCommentSubmit' value='PUBLICAR' disabled)
 
 				.colhh1
@@ -63,8 +63,8 @@ block content
 							.pd_16.hover.rippleria-dark(data-rippleria) Mas Respuestas
 									
 				#forum_commentscontainer.colhh1
-					- if(comments != undefined)
-						| #{comments}
+					- if(comments != undefined && comments != '')
+						#{comments}
 						//- .block_container.bg_white.forum_comment.rel_pos
 						//- 	.colhh1.flat_shadow.fc_zindex
 						//- 		.pd_18
@@ -122,11 +122,7 @@ block content
 						//- 			form.colhh1.flat_input
 						//- 				textarea(type='text' placeholder='Escribe una Respuesta')
 						//- 				input.b_text.opacity_color.rippleria-dark( data-rippleria type='submit' value='PUBLICAR' disabled)
-					.colhh1.center_text
-						.load_container
-							.load
-								.flat_shadow.borad.autocol.pd_32.bg_white
-									.spinner
+					
 
 			.colhh1(style='height: 128px;')
 			footer.colhh1.bg_white.flat_shadow

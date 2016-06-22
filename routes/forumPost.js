@@ -333,7 +333,7 @@ exports.getForumTopics = function(req, res){
 exports.getForumTopicCommentsCron = function(req, res){
 	var database = new base();
 
-	var forumTopicSelectedId = req.params.forumTopicSelectedId;
+	var forumTopicSelectedId = req.params.topicId;
 
 	stringQuery = 'SELECT fc.idForumComment, fc.forumCommentText,'
 				+ ' CONCAT(userName, " ", userLastName, " ", userSecondLastName) AS userFullName,'
@@ -372,6 +372,7 @@ exports.getForumTopicCommentsCron = function(req, res){
 		if(!error) {
 			stringDataForumComment = '';
 			for(var i in result){
+				console.log(i)
                 var item = result[i];
                 stringDataForumComment += ''
                 + '<div class="block_container bg_white forum_comment rel_pos" data-id="' + item.idForumComment + '">'
@@ -445,7 +446,17 @@ exports.getForumTopicCommentsCron = function(req, res){
 				+ '</div>';
             }
 
-			res.send({
+            if(stringDataForumComment == ''){
+            	stringDataForumComment = 'Elefante';
+            }
+
+            console.log(stringDataForumComment)
+
+			res.render('forumtopic', {
+				idForo: forumTopicSelectedId,
+				title: 'SMDE - Foro',
+				datos:  req.session.datos,
+    			privilegio:  req.session.privilegio, 
 				comments: stringDataForumComment
 			});
 

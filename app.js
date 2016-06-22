@@ -214,7 +214,6 @@ app.get('/messages', login, routes.messages);
 app.get('/contents', loginS, routes.contents);
 app.get('/subjects', loginS, routes.subjects);
 app.get('/foro', loginS, routes.foro);
-app.get('/forumtopic', loginS, routes.forumtopic);
 app.get('/settings', login, routes.settings);
 app.get('/calendar', login, routes.calendar);
 app.get('/management', loginA, routes.management);
@@ -281,7 +280,7 @@ app.post('/insertForumTopicCommentReply', forumPost.insertForumTopicCommentReply
 app.post('/likeForumComment', forumPost.likeForumComment);
 app.post('/likeForumCommentReply', forumPost.likeForumCommentReply);
 app.get('/getForumTopics', forumPost.getForumTopics);
-app.get('/forumtopic/:topic', forumPost.getForumTopicCommentsCron);
+app.get('/forumtopic/:topicId', forumPost.getForumTopicCommentsCron);
 app.get('/getForumTopicCommentReplies', forumPost.getForumTopicCommentReplies);
 
 
