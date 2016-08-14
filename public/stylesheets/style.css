@@ -117,6 +117,10 @@ footer span.small_icon{
 
 .index_container .colhh3{width: 100%;}
 
+#login_indexbutton{
+	background-size: 36px;
+}
+
 .colhh4{width: 100%;}
 
 .autocol{

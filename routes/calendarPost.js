@@ -278,7 +278,7 @@ exports.getPublicationsDatabase = function(req, res){
 	}
 	//SI EL USUARIO ES TIPO PROFESOR
 	else if(req.session.privilegio == 2){
-		stringQuery = 'SELECT idPublication, pubTitle, pubText, photoName'
+		stringQuery = 'SELECT idPublication, pubTitle, pubText, photoName,'
 					+ '	DATE_FORMAT(pubDateTime, "%d/%m/%Y") AS pubDate, DATE_FORMAT(pubDateTime, "%H:%i") AS pubTime,'
 					+ '	DATE_FORMAT(publicationLimitDate, "%d/%m/%Y") AS pubLimDate, DATE_FORMAT(publicationLimitDate, "%H:%i") AS pubLimTime,'
 					+ '	userName, userLastName, userSecondLastName, userEmail, subjectName, courseName'
