@@ -3,6 +3,11 @@ var app = express();
 var router = express.Router();
 
 var post = require('../app_api/api/post');
+var agenda = require('../app_api/api/agenda');
+var asignaturas = require('../app_api/api/asignaturas');
+var foro = require('../app_api/api/foro');
+var mensajes = require('../app_api/api/mensajes');
+var perfil = require('../app_api/api/perfil');
 
 /* GET home page. */
 

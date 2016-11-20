@@ -13,6 +13,7 @@ var cors = require('cors');
 
 app.use(cors());
 
+var vistas = require('./routes/views');
 var api = require('./routes/index');
 var users = require('./routes/users');
 
@@ -24,7 +25,8 @@ var mensajes = require('./app_api/api/mensajes');
 var foro = require('./app_api/api/foro');
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -32,11 +34,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'angular')));
 app.use(favicon(__dirname + '/icon.png'));
 
+app.use(vistas);
 app.use('/api', api);
-app.use('/users', users);
+
+//variable global para jalar directorios
+global.__base = __dirname;
 
 // Conecta a la DB MySQL
-//de ahora en adelante para todo jalas la variable connection
 var connection = mysql.createConnection({
   multipleStatements: true,
   host: 'localhost',
@@ -45,7 +49,8 @@ var connection = mysql.createConnection({
   database: 'smdedbv1',
   port: 3306
 });
-//con esto conectas y lo ahce de manera asincrona
+
+//con esto conectas y lo hace de manera asincrona
 connection.connect(function(error){
   if(error){
     throw error;
@@ -54,7 +59,6 @@ connection.connect(function(error){
   }
 });
 
-//por el momento dejalo así, sin embargo se va a remover ya que no es buena practica
 post.constructor(connection);
 perfil.constructor(connection);
 agenda.constructor(connection);
@@ -62,16 +66,44 @@ asignaturas.constructor(connection);
 mensajes.constructor(connection);
 foro.constructor(connection);
 
-/*
-  Esta wea es para poder auntentificar con Angular 2
-*/
-// Authentication middleware provided by express-jwt.
-// This middleware will check incoming requests for a valid
-// JWT on any routes that it is applied to.
-var authCheck = jwt({
-  secret: new Buffer('YOUR_AUTH0_SECRET', 'base64'),
-  audience: 'YOUR_AUTH0_CLIENT_ID'
+/* Chat */
+var chatsini = io.of('/chatsini').on('connection', function (socket){
+
+  /*socket.on('join', function(data){
+    socket.room = data.id;
+    socket.join(data.id);
+    console.log('YAY!!! si conecto :D')
+  })*/
+
+  //el id que le pasas se lo mandas desde el front, puede ser cualquier cosa
+  socket.on('cambiarsala', function(data){
+    socket.leave(socket.room);//deja la sala actual
+    socket.room = data;//especificas la sala
+    socket.join(data);//te unes a la sala
+  })
+
+  //Paso 2.
+  socket.on('mensaje', function(data){//recibe lo que quieras
+
+    //esta linea dice que va a emitir un evento mostrar en la sala especifica
+    socket.to(socket.room).emit('mostrar', {
+    //socket.emit('mostrar', {
+        //le envias lo que tu quieras
+        //Recibes las variables desde el front
+        userEmail: data.userEmail,
+        userName: data.userName,
+        userLastName: data.userLastName,
+        userPhoto: data.userPhoto,
+        messageText: data.messageText,
+        messageTime: data.messageTime
+    });
+
+  });
+
 });
+
+
+
 
 
 // Detectar error 404 (Esto se hace directamente con Angular 2)

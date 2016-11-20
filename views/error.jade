@@ -16,17 +16,29 @@ html
 					.pd_32
 						.error_title
 							span.v_middle(style='background-image: url("images/alert-circle.png")')
-							.autocol.bm_title.pd_12.v_middle #{errorData.errorTitle}!
+							.autocol.bm_title.pd_12.v_middle 
+								if (errorData != undefined)
+									| #{errorData.errorTitle}!
+								else
+									| Error
 						.pd_8
 						.pd_8.ml_title.normal_txt Se presento un error por lo siguiente:
 						.pd_16.normal_txt
-							-for(var i = 0; i <= errorData.errorItem.length; i++ )
-								.pd_4
-									| #{errorData.errorItem[i]}
+							if (errorData != undefined)
+								-for(var i = 0; i <= errorData.errorItem.length; i++ )
+									.pd_4
+										| #{errorData.errorItem[i]}
+							else
+								| Se ha presentado un error
 						.pd_8
 						.colhh1(style='height: 52px;')
-							a(href='#{errorData.backUrl}')
-								span.bgaccent_color2.float_button.right_float.flat_shadow.borad.rippleria-dark(data-rippleria)
-									.white_text.pd_16.uppercase.b_text Regresar
+							if (errorData != undefined)
+								a(href='#{errorData.backUrl}')
+									span.bgaccent_color2.float_button.right_float.flat_shadow.borad.rippleria-dark(data-rippleria)
+										.white_text.pd_16.uppercase.b_text Regresar
+							else
+								a(href='/home')
+									span.bgaccent_color2.float_button.right_float.flat_shadow.borad.rippleria-dark(data-rippleria)
+										.white_text.pd_16.uppercase.b_text Regresar
 
 		

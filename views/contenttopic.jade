@@ -1,0 +1,131 @@
+extends layout
+
+block content
+		script( type='text/javascript' src='/js/ajax/ajaxForum.js' )
+
+		#selectedForumTopic.left_fixedcontainer.bg_white
+			- if(topicInfo != undefined)
+				| #{topicInfo}
+			//- .b_img.bg_teal.flat_shadow
+			//- 	.pd_16(style='padding-right: 13px;')
+			//- 		.minimenu_container
+			//- 			.minimenu
+			//- 				span
+			//- 				span
+			//- 				span
+			//- 			.minimenu_hidden
+			//- 				.pd_16.hover Editar
+			//- 				.pd_16.hover Seguir
+			//- 				.pd_16.hover Reportar Abuso
+			//- 	.colhh1.listitem.bg_opc.white_text
+			//- 		.pd_16.forumtopic_title
+			//- 			.colhh1.ll_title(title="Algo") Tema
+			//- 			.listitem_bottomdata Asignatura
+
+			//- .bottom_info
+			//- 	.pd_18
+			//- 		.colhh1
+			//- 			.colhh1.ll_title.opacity_color Creado Por:
+			//- 			.colhh1.listitem
+			//- 				.listitem_info
+			//- 					.listitem_title 
+			//- 						b Vato Vato Vato
+			//- 					.listitem_bottomdata vato@vato.com
+			//- 				.listitem_img
+			//- 					img(src='images/profilephoto.png')
+			//- 		.pd_4
+			//- 		.colhh1
+			//- 			.colhh1.ll_title.opacity_color Descripción:
+			//- 			.pd_4
+			//- 			.colhh1
+			//- 				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu.
+
+		.topspace
+		.pagecontainer_right
+			.page_container
+				.block_container.bg_white
+					.colhh1.bg_lightgray.flat_shadow
+						.pd_18.ll_title Comentar
+					form#addNewForumComment.colhh1.flat_input.rel_pos(name='addNewForumComment' action="../insertForumTopicComment" method="POST")
+						img.circle(src='../profile_photos/#{datos[0].photoName}.png')
+						textarea(type='text' name='forumCommentText' placeholder='Escribe un Comentario')
+						input#forumTopicScope(type='hidden' name='forumTopicId' value='#{idForo}')
+						input.b_text.opacity_color.rippleria-dark(data-rippleria type='submit' name='forumCommentSubmit' value='PUBLICAR' disabled)
+
+				.colhh1
+					.autocol.bg_lightgray.right_float.rel_pos(style="padding: 0px;")
+						.minimenu.hover.pd_8
+							.autocol.txtprimary_color.pd_4.v_middle.ll_title(style="margin-left: 4px;") Ordenar por
+							.small_icon.bg_arrowdrop.v_middle
+						.minimenu_hidden.left_text(style="top: 12px;right: 12px;")
+							.pd_16.hover.rippleria-dark(data-rippleria) Cronológico
+							.pd_16.hover.rippleria-dark(data-rippleria) Mas Me gusta
+							.pd_16.hover.rippleria-dark(data-rippleria) Mas Respuestas
+									
+				#forum_commentscontainer.colhh1
+					- if(comments != undefined && comments != '')
+						#{comments}
+						//- .block_container.bg_white.forum_comment.rel_pos
+						//- 	.colhh1.flat_shadow.fc_zindex
+						//- 		.pd_18
+						//- 			.listitem_rightinfo
+						//- 				label.item_date item.forumCommentDate
+						//- 				label.item_time  item.forumCommentTime
+						//- 			.colhh1.forum_commentimg.v_top
+						//- 				img.circle(src='images/profilephoto.png')
+						//- 			.colhh1.forum_alldata.v_top
+						//- 				.pd_l18
+						//- 					.listitem_title 
+						//- 						b Nombre Completo
+						//- 					.colhh1.opacity_color correo@email.com
+						//- 					.pd_4
+						//- 					.colhh1
+						//- 						| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu. Sed luctus ex suscipit, ornare tortor ac, feugiat libero. Sed ornare, felis interdum ullamcorper aliquet, neque felis cursus purus, in ultrices purus arcu ac nunc. Nulla accumsan neque a quam ullamcorper consectetur. Ut venenatis ligula in ligula vulputate, eu dignissim nisl mattis. Fusce ut bibendum metus, ut convallis eros. Sed sit amet dignissim neque, ut laoreet ipsum. Quisque vel orci consequat, porttitor lectus ut, sollicitudin justo.
+						//- 		.pd10_16.listitemactions.pd_top0.autooverflow
+						//- 			.autocol.left_float.mr_top4.b_text.opacity_color
+						//- 				.autocol.pd_8.underline.pd_l0 10 Me gusta
+						//- 				.autocol.pd_8.underline 4 No me gusta
+						//- 				.autocol.pd_8.underline(title='Mostrar respuestas' data-id="item.idForumComment") 3 Respuestas
+						//- 			.autocol.right_float
+						//- 				span.circle.bg_like.hover(title='Me gusta este comentario' style='background-image: url("images/thumb-up_active.png")')
+						//- 				span.circle.bg_dislike.hover(title='No me gusta este comentario')
+						//- 				span.circle.bg_editgray.hover(title='Editar')
+						//- 				span.circle.bg_delete.hover(title='Eliminar')
+						//- 				span.circle.bg_reply.hover(title="Responder")
+						//- 		.pd_18.txtprimary_color.ll_title.pd_top0 Respuestas
+						//- 	.colhh1.fshow_relpy
+						//- 		.colhh1.hiddenreplyblock
+						//- 			.forum_repliescontainer.border_bottom.bg_lightgray
+						//- 				-for(var i = 0; i <= 3; i++)
+						//- 					.forum_reply.border_bottom.rel_pos
+						//- 						.pd_18
+						//- 							.listitem_rightinfo Fecha
+						//- 							.colhh1.forum_commentimg.v_top
+						//- 								img.circle(src='images/profilephoto.png')
+						//- 							.colhh1.forum_alldata.v_top
+						//- 								.pd_l16
+						//- 									.listitem_title
+						//- 										b Nombre Completo
+						//- 									.colhh1.opacity_color correo@email.com
+						//- 									.pd_4
+						//- 									.colhh1
+						//- 										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna
+						//- 						.pd10_16.listitemactions.pd_top0.autooverflow
+						//- 							.autocol.left_float.mr_top4.b_text.opacity_color
+						//- 								.autocol.pd_8.underline.pd_l0 10 Me gusta
+						//- 								.autocol.pd_8.underline 4 No me gusta
+						//- 							.autocol.right_float
+						//- 								span.circle.bg_like.hover(title='Me gusta esta respuesta')
+						//- 								span.circle.bg_dislike.hover(title='No me gusta esta respuesta')
+						//- 								span.circle.bg_editgray.hover(title='Editar')
+						//- 								span.circle.bg_delete.hover(title='Eliminar')
+						//- 			form.colhh1.flat_input
+						//- 				textarea(type='text' placeholder='Escribe una Respuesta')
+						//- 				input.b_text.opacity_color.rippleria-dark( data-rippleria type='submit' value='PUBLICAR' disabled)
+					
+
+			.colhh1(style='height: 128px;')
+			footer.colhh1.bg_white.flat_shadow
+				.pd_18.ll_title.opacity_color.b_text
+					span.small_icon.bg_logo.v_middle
+					.autocol.v_middle SMDE - 2016
