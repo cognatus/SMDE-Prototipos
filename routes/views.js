@@ -14,8 +14,8 @@ router.use(function(req, res, next) {
 		errorData: {
 			errorTitle: 'No se encontro la url especificada',
 			errorItem: [
-				'La ruta que coloco en el navegador no existe',
-				'Verifique la direccion'
+				'-  La ruta que coloco en el navegador no existe',
+				'-  Verifique la direccion'
 			],
 			backUrl: '/home'
 		} 
@@ -36,6 +36,7 @@ router.route('/login')
 	.get(users.loginN,
   		res.render('login', { title: 'SMDE - Iniciar Sesión' });
 	);
+	.post(post.login);
 
 router.route('/home')
 	.get(users.login,

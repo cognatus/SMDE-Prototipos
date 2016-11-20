@@ -17,12 +17,12 @@ var vistas = require('./routes/views');
 var api = require('./routes/index');
 var users = require('./routes/users');
 
-var post = require('./app_api/api/post');
-var agenda = require('./app_api/api/agenda');
-var perfil = require('./app_api/api/perfil');
-var asignaturas = require('./app_api/api/asignaturas');
-var mensajes = require('./app_api/api/mensajes');
-var foro = require('./app_api/api/foro');
+var post = require('./api/post');
+var agenda = require('./api/agenda');
+var perfil = require('./api/perfil');
+var asignaturas = require('./api/asignaturas');
+var mensajes = require('./api/mensajes');
+var foro = require('./api/foro');
 
 app.use(logger('dev'));
 app.use(bodyParser());
