@@ -1,89 +1,31 @@
+var express = require('express');
+var app = express();
+var router = express.Router();
 
-/*
- * GET home page.
- */
+var post = require('../app_api/api/post');
 
-exports.index = function(req, res){
-  res.render('index', { title: 'SMDE' });
-};
+/* GET home page. */
 
-exports.login = function(req, res){
-  res.render('login', { title: 'SMDE - Iniciar Sesión' });
-};
+// Middleware para usar en todas las peticiones
+router.use(function(req, res, next) {
+	console.log('Peticion a api');
+	next();
+});
 
-exports.main = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('main', { 
-    title: 'SMDE - Inicio',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.get('/', function(req, res) {
+    res.json({ message: 'Bienvenido a SMDE prro' });   
+});
 
-exports.profile = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('profile', { 
-    title: 'SMDE - Perfil',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/users')
+	.get(post.getUsers);
 
-exports.subjects = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('subjects', { 
-    title: 'SMDE - Asignaturas',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/users/:user_id')
+	.get(post.getUserById);
 
-exports.contents = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('contents', { 
-    title: 'SMDE - Contenidos',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/institute/:institute_id/subjects')
+	.get(post.getSubjects);
 
-exports.messages = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('messages', { 
-    title: 'SMDE - Mensajes',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/institute/:institute_id/admins')
+	.get(post.getAdministrators);
 
-exports.foro = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('foro', { 
-    title: 'SMDE - Foro',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
-
-exports.settings = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('settings', { 
-    title: 'SMDE - Ajustes',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
-
-exports.calendar = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('calendar', { 
-    title: 'SMDE - Agenda',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
-
-exports.management = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('management', { 
-    title: 'SMDE - Gestion',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
-
-exports.error = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('error', { title: 'SMDE' });
-};
+module.exports = router;
