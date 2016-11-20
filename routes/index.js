@@ -46,11 +46,13 @@ router.route('/groups')
 	.post(admin.insertCourse);
 
 router.route('/courses')
-	.get(admin.getSubjectCourseDatabase);
-	.post(admin.insertSubjectCourse);	
+	.get(admin.getSubjectsCoursesDatabase);
+	.post(admin.insertSubjectCourse);
 
-app.admin('/insertSubjectCourse', admin.insertSubjectCourse);
-app.get('/getStudentsSubjectsDatabase', admin.getStudentsSubjectsDatabase);
-app.get('/getTeachersSubjectsDatabase', admin.getTeachersSubjectsDatabase);
+router.route('users/students/:id_student/subjects')
+	.get(admin.getStudentsSubjectsDatabase);
+
+router.route('users/teachers/:id_teacher/subjects')
+	.get(admin.getTeachersSubjectsDatabase);
 
 module.exports = router;

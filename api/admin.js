@@ -20,17 +20,10 @@ exports.login = function(req, res){
 				res.redirect('/main');
 				req.session.datos = result;
 			}else if(i === 3){
-				console.log('ni pedo dude');
-				res.render('error' , {
-					errorData: {
-						errorTitle: 'Error al iniciar sesión',
-						errorItem: ['-  Usuario o contraseña incorrecta',
-						'-  El usuario no existe dentro del sistema'],
-						backUrl: '/login'
-					}
+				res.render('login', {
+					errorMessage: 'Usuario o contraseña incorrecta.'
 				});
 			}else{
-				console.log('nope');
 				which_vato(i++);
 				consulta();
 			}
@@ -477,7 +470,7 @@ exports.getStudentsDatabase = function(req, res){
 
 // FUNCION PARA MOSTRAR MATERIAS DE ALUMNOS DE LA BASE DE DATOS
 exports.getStudentsSubjectsDatabase = function(req, res){
-	var studentEmail = req.query.studentEmail;
+	var studentEmail = req.params.id_student;
 
 	stringQuery = 'SELECT idCourse, idSubject, subjectName, courseName'
 				+ ' FROM User AS u'
@@ -584,7 +577,7 @@ exports.getTeachersDatabase = function(req, res){
 
 // FUNCION PARA MOSTRAR MATERIAS DE PROFESOR DE LA BASE DE DATOS
 exports.getTeachersSubjectsDatabase = function(req, res){
-	var teacherEmail = req.query.teacherEmail;
+	var teacherEmail = req.params.id_teacher;
 
 	stringQuery = 'SELECT idTeacher, idSubject, subjectName, courseName'
 					+ ' FROM User as u'
@@ -722,7 +715,7 @@ exports.getSubjectsDatabase = function(req, res){
 	});
 };
 
-// FUNCION PARA MOSTRAR DATOS DE CURSOS DE LA BASE DE DATOS
+// FUNCION PARA MOSTRAR DATOS DE GRUPOS DE LA BASE DE DATOS
 exports.getCoursesDatabase = function(req, res){
 	stringQuery = 'SELECT * FROM Course'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
@@ -772,15 +765,21 @@ exports.getCoursesDatabase = function(req, res){
 };
 
 // FUNCION PARA MOSTRAR DATOS DE CURSOS DE LA BASE DE DATOS
-exports.getCoursesDatabase = function(req, res){
-	stringQuery = 'SELECT * FROM Subject_has_Course INNER JOIN'
+exports.getSubjectsCoursesDatabase = function(req, res){
+	stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName' 
+				+ ' FROM Subject_has_Course AS shc'
+				+ ' INNER JOIN Subject AS s'
+				+ ' ON s.idSubject = shc.Subject_idSubject'
+				+ ' INNER JOIN Course AS c'
+				+ ' ON c.idCourse = shc.Course_idCourse'
 				+ ' WHERE Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '";' ;
+
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
 			for(var i in result){
                 var item = result[i];
-                stringData += '<div class="colhh1 block_container bg_white" data-name="' +item.courseName + '">' 
+                stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.subjectName + '">' 
                             +   '<div class="colhh1 listitem rel_pos">'
                             +       '<div class="listitem_img"><span></span></div>'
                             +       '<div class="listitem_info">'
@@ -791,8 +790,8 @@ exports.getCoursesDatabase = function(req, res){
 							+					'<div class="pd_16 hover" onclick="deleteItem(&quot;' + item.idCourse + '&quot;)">Eliminar</div>'
 							+				'</div>'
 							+			'</div>'
-                            +           '<div class="listitem_title"><b>' + item.courseName + '</b></div>'
-                            +           '<div class="listitem_bottomdata">Grupo'
+                            +           '<div class="listitem_title"><b>' + item.subjectName + ' / ' + item.courseName + '</b></div>'
+                            +           '<div class="listitem_bottomdata">Curso'
                             +           '</div>'
                             +       '</div>'
                             +   '</div>'

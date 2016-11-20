@@ -3,7 +3,7 @@ var app = express();
 var router = express.Router();
 
 var users = require('./users');
-var post = require('../app_api/api/post');
+var post = require('../api/post');
 
 /* GET views. */
 
