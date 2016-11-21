@@ -17,8 +17,8 @@ exports.login = function(req, res){
 	var consulta = function(){
 		base.query(stringQuery, function(error, result, row){
 			if(!error && result.length > 0) {
-				res.redirect('/main');
 				req.session.datos = result;
+				res.redirect('/home');
 			}else if(i === 3){
 				res.render('login', {
 					errorMessage: 'Usuario o contraseña incorrecta.'
@@ -66,7 +66,7 @@ exports.login = function(req, res){
 
 exports.logout = function(req,res){
 	req.session.destroy();
-	res.redirect('/login');
+	res.redirect('/home');
 }
 
 //AGREGAR UN NUEVO ALUMNO
@@ -365,7 +365,7 @@ exports.getAdministratorsDatabase = function(req, res){
                 var item = result[i];
                 stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -419,7 +419,7 @@ exports.getStudentsDatabase = function(req, res){
                 var item = result[i];
                 stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -526,7 +526,7 @@ exports.getTeachersDatabase = function(req, res){
                 var item = result[i];
                 stringData += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -787,7 +787,7 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
 							+				'<div class="minimenu_hidden">'
 							+					'<div class="pd_16 hover">Editar</div>'
-							+					'<div class="pd_16 hover" onclick="deleteItem(&quot;' + item.idCourse + '&quot;)">Eliminar</div>'
+							+					'<div class="pd_16 hover" onclick="deleteItem(&quot;' + item.idSubject + '/' + item.idCourse + '&quot;)">Eliminar</div>'
 							+				'</div>'
 							+			'</div>'
                             +           '<div class="listitem_title"><b>' + item.subjectName + ' / ' + item.courseName + '</b></div>'
@@ -801,9 +801,7 @@ exports.getSubjectsCoursesDatabase = function(req, res){
                             +               '<div class="sl_title">Información</div>'
                             +           '</div>'
                             +           '<div class="pd_llist">'
-                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idCourse + '</span></div>'
-                            +				'<div class="pd_4"></div>'
-                            +               '<div class="colhh1 pd_l12 sl_title">Nivel: <span class="margin_l normal_txt">' + item.courseLevel + '</span></div>'
+                            +               '<div class="colhh1 pd_l12 sl_title">Id: <span class="margin_l normal_txt">' + item.idSubject + '/' + item.idCourse + '</span></div>'
                             +           '</div>'
                             +       '</div>'
                             +   '</div>'

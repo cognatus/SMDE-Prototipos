@@ -309,7 +309,7 @@ block content
 												input.white_text.b_text(type='submit' value='Guardar Cambios')
 							.colhh1.settings_inneritem
 
-								form(name='formDesignTheme' id='formDesignTheme' method='post' action='setProfileTheme')
+								form(name='formDesignTheme' id='formDesignTheme' method='post' action='api/profile/setProfileTheme')
 									.pd_32
 										.colhh1.ll_title.opacity_color ¿Tema oscuro o claro?
 										.pd_12
@@ -329,7 +329,7 @@ block content
 									script.
 										var colorMsm = '#{datos[0].msmColor}';
 									//- script colors 
-								form(name='settingsform_updateMsmColor' action='setProfileMsmColor' method='post')
+								form(name='settingsform_updateMsmColor' action='api/profile/setProfileMsmColor' method='post')
 									.pd_24
 										.form_input(style='height: 52px;')
 											input(type='hidden' name='msmValueColor' value='' id='msmValueColor')

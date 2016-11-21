@@ -13,6 +13,7 @@ function displayData(){
     showSubjects();
     showDepartments();
     showCourses();
+    showSubjectsCourses();
     jQuery('.mgm_listcontainer .load_container').hide();
 }
 

@@ -26,33 +26,68 @@ router.route('/users/admins')
 	.get(admin.getAdministratorsDatabase);
 
 router.route('/users/students')
-	.get(admin.getStudentsDatabase);
+	.get(admin.getStudentsDatabase)
 	.post(admin.insertStudent);
 
 router.route('/users/teachers')
-	.get(admin.getTeachersDatabase);
+	.get(admin.getTeachersDatabase)
 	.post(admin.insertTeacher);
 
 router.route('/subjects')
-	.get(admin.getSubjectsDatabase);
+	.get(admin.getSubjectsDatabase)
 	.post(admin.insertSubject);
 
 router.route('/depts')
-	.get(admin.getDepartmentsDatabase);
+	.get(admin.getDepartmentsDatabase)
 	.post(admin.insertDept);
 
 router.route('/groups')
-	.get(admin.getCoursesDatabase);
+	.get(admin.getCoursesDatabase)
 	.post(admin.insertCourse);
 
 router.route('/courses')
-	.get(admin.getSubjectsCoursesDatabase);
+	.get(admin.getSubjectsCoursesDatabase)
 	.post(admin.insertSubjectCourse);
 
-router.route('users/students/:id_student/subjects')
+router.route('/users/students/:id_student/subjects')
 	.get(admin.getStudentsSubjectsDatabase);
 
-router.route('users/teachers/:id_teacher/subjects')
+router.route('/users/teachers/:id_teacher/subjects')
 	.get(admin.getTeachersSubjectsDatabase);
+
+
+//Todo referente al perfil
+router.route('/profile/setProfileTheme')
+	.post(perfil.setProfileTheme);
+
+router.route('/profile/setProfileMsmColor')
+	.post(perfil.setProfileMsmColor);
+
+router.route('/profile/subjects')
+	.get(perfil.getProfileSubjectsDatabase);
+
+router.route('/profile/admins')
+	.get(perfil.getProfileContactsAdministrators);
+
+router.route('/profile/students')
+	.get(perfil.getProfileContactsStudents);
+
+router.route('/profile/teachers')
+	.get(perfil.getProfileContactsTeachers);
+
+router.route('/profile/students/:id_student/subjects')
+	.get(perfil.getStudentCoincidences);
+
+router.route('/profile/teachers/:id_teacher/subjects')
+	.get(perfil.getTeacherCoincidences);
+
+router.route('/profile/updatephotos')
+	.post(perfil.updateProfilePhotos);
+
+//Todo referente a la vista de Asignaturas
+router.route('/profile/availablecourses')
+	.get(asignaturas.getSubjectsCoursesDatabase)
+	.post(asignaturas.insertSubjectsCoursesSelfUser);
+
 
 module.exports = router;

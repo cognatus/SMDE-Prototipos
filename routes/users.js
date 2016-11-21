@@ -5,13 +5,7 @@
 		if( req.session.datos ){
 			next();
 		}else{
-			res.render('error' , {
-				errorData: {
-					errorTitle: 'Inicia Sesión',
-					errorItem: ['-  No has iniciado sesión'],
-					backUrl: '/login'
-				}
-			});
+			res.redirect('/login');
 		}
 	};
 
@@ -28,7 +22,7 @@
 	exports.loginS = function(req, res, next){
 		var aux = req.session.datos;
 		if( !aux ){
-			res.redirect('error');
+			res.redirect('/login');
 		}else if( req.session.privilegio == 1 || req.session.privilegio == 2 ){
 			next();
 		}else{
@@ -47,7 +41,7 @@
 	exports.loginA = function(req, res, next){
 		var aux = req.session.datos;
 		if( !aux ){
-			res.redirect('error');
+			res.redirect('/login');
 		}else if( req.session.privilegio == 3 ){
 			next();
 		}else{
@@ -61,5 +55,3 @@
 			});
 		}
 	};
-
-module.exports = router;

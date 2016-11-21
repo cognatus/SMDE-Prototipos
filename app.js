@@ -1,23 +1,23 @@
 var express = require('express');
+var http = require('http').createServer(app);
 var path = require('path');
 var mysql = require('mysql');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var favicon = require('serve-favicon')
-
+var session = require('express-session');
+var favicon = require('serve-favicon');
+var io = require('socket.io')(http);
 var app = express();
 
-var jwt = require('express-jwt');
 var cors = require('cors');
-
 app.use(cors());
 
 var vistas = require('./routes/views');
 var api = require('./routes/index');
 var users = require('./routes/users');
 
-var post = require('./api/post');
+var admin = require('./api/admin');
 var agenda = require('./api/agenda');
 var perfil = require('./api/perfil');
 var asignaturas = require('./api/asignaturas');
@@ -25,13 +25,29 @@ var mensajes = require('./api/mensajes');
 var foro = require('./api/foro');
 
 app.use(logger('dev'));
-app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-//this is like the public stuff, all about views
-app.use(express.static(path.join(__dirname, 'angular')));
+var sess = {
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {}
+}
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
+
+app.use(session(sess));
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+//this is like the public stuff
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(__dirname + '/icon.png'));
 
 app.use(vistas);
@@ -59,7 +75,7 @@ connection.connect(function(error){
   }
 });
 
-post.constructor(connection);
+admin.constructor(connection);
 perfil.constructor(connection);
 agenda.constructor(connection);
 asignaturas.constructor(connection);
@@ -101,17 +117,6 @@ var chatsini = io.of('/chatsini').on('connection', function (socket){
   });
 
 });
-
-
-
-
-
-// Detectar error 404 (Esto se hace directamente con Angular 2)
-/*app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});*/
 
 // error handlers
 
