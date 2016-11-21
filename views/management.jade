@@ -25,7 +25,7 @@ block content
 									option(value='Subject') Asignatura
 									option(value='Course') Grupo
 									option(value='SubjectCourse') Curso
-						form#show_studentinsert.hidden_form( name='insert_new', action='api/users/students', method='post' )
+						form#show_studentinsert.hidden_form( name='insert_new', action='/api/users/students', method='post' )
 							.pd_24
 								.form_input
 									.b_text.left_title Nombre(s)
@@ -59,7 +59,7 @@ block content
 												input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 											span.raised_button.right_float.rippleria-dark(data-rippleria)
 												input.txtaccent_color2.b_text(type='submit' value='Aceptar')
-						form#show_teacherinsert.hidden_form( name='insert_new', action='api/users/teachers', method='post' )
+						form#show_teacherinsert.hidden_form( name='insert_new', action='/api/users/teachers', method='post' )
 							.pd_24
 								.form_input
 									.b_text.left_title Nombre(s)
@@ -93,7 +93,7 @@ block content
 												input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 											span.raised_button.right_float.rippleria-dark(data-rippleria)
 												input.txtaccent_color2.b_text(type='submit' value='Aceptar')
-						form#show_deptinsert.hidden_form( name='insert_new', action='api/depts', method='post' )
+						form#show_deptinsert.hidden_form( name='insert_new', action='/api/depts', method='post' )
 							.pd_24
 								.form_input
 									.b_text.left_title Nombre
@@ -111,7 +111,7 @@ block content
 												input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 											span.raised_button.right_float.rippleria-dark(data-rippleria)
 												input.txtaccent_color2.b_text(type='submit' value='Aceptar')
-						form#show_subjectinsert.hidden_form( name='insert_new', action='api/subjects', method='post' )
+						form#show_subjectinsert.hidden_form( name='insert_new', action='/api/subjects', method='post' )
 							.pd_24
 								.form_input
 									.b_text.left_title Nombre
@@ -138,7 +138,7 @@ block content
 												input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 											span.raised_button.right_float.rippleria-dark(data-rippleria)
 												input.txtaccent_color2.b_text(type='submit' value='Aceptar')
-						form#show_courseinsert.hidden_form( name='insert_new', action='api/groups', method='post' )
+						form#show_courseinsert.hidden_form( name='insert_new', action='/api/groups', method='post' )
 							.pd_24
 								.form_input
 									.b_text.left_title Nombre
@@ -159,7 +159,7 @@ block content
 												input.txtaccent_color.b_text.hide_comfirm(type='button' value='Cancelar')
 											span.raised_button.right_float.rippleria-dark(data-rippleria)
 												input.txtaccent_color2.b_text(type='submit' value='Aceptar')
-						form#show_subjectcourseinsert.hidden_form( name='insert_new', action='api/courses', method='post' )
+						form#show_subjectcourseinsert.hidden_form( name='insert_new', action='/api/courses', method='post' )
 							.pd_24
 								.form_input
 									.b_text.left_title Asignatura
@@ -192,7 +192,7 @@ block content
 				.colhh1.profile_img
 					.photo
 						a(href='/profile')
-							img.circle.flat_shadow(src='profile_photos/'+ datos[0].photoName +'.png' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilephoto.png"')
+							img.circle.flat_shadow(src='profile_photos/'+ datos[0].photoName +'.png' onerror='this.onerror=null;this.src="/images/profilephoto.png"')
 				.pd_24
 					.colhh1
 						.name
@@ -250,7 +250,3 @@ block content
 									.spinner
 										
 			.colhh1(style='height: 128px;')
-			footer.colhh1.bg_white.flat_shadow
-				.pd_18.ll_title.opacity_color.b_text
-					span.small_icon.bg_logo.v_middle
-					.autocol.v_middle SMDE - 2016

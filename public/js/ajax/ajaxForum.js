@@ -1,6 +1,6 @@
 jQuery(document).ready(function(){
 
-    console.log(window.location.href.split('/'));
+    //console.log(window.location.href.split('/'));
 
     if(window.location.href.split('/').pop() == 'forum'){
         jQuery('#forumtopics_container .load_container').show();
@@ -218,7 +218,7 @@ function hideElements(){
 function showForumTopics(){
     jQuery.ajax({
         method: 'GET',
-        url: 'api/forum',
+        url: '/api/forum',
         cache: true,
         success: function(data) {
             if(data.length > 0){
@@ -228,7 +228,7 @@ function showForumTopics(){
                 jQuery('#forumtopics_container')
                     .html('<div class="block_container bg_white colhh1 empty_blocktext center_text">'
                         +  '<div class="pd_64">'
-                        +    '<span style="background-image: url(&quot;images/close-box.png&quot;)" class="v_middle"></span>'
+                        +    '<span style="background-image: url(&quot;/images/close-box.png&quot;)" class="v_middle"></span>'
                         +    '<div class="autocol mm_title pd_12">Aun no hay temas de conversación.</div>'
                         +    '<div class="ll_title normal_txt">Presiona &nbsp; + &nbsp; para crear un nuevo tema de conversación.</div>'
                         +  '</div>'
@@ -255,7 +255,7 @@ function selectForumTopic(forumTopicId){
 function showComments(){
     jQuery.ajax({
         method: 'GET',
-        url: 'api/forum/' + window.location.href.split('/').pop(),
+        url: '/api/forum/' + window.location.href.split('/').pop(),
         cache: true,
         success: function(data) {
             if(data.length > 0){
@@ -265,7 +265,7 @@ function showComments(){
                 jQuery('#forum_commentscontainer')
                     .html('<div class="block_container bg_white colhh1 empty_blocktext center_text">'
                         +  '<div class="pd_64">'
-                        +    '<span style="background-image: url(&quot;images/close-box.png&quot;)" class="v_middle"></span>'
+                        +    '<span style="background-image: url(&quot;/images/close-box.png&quot;)" class="v_middle"></span>'
                         +    '<div class="autocol mm_title pd_12">Aun no hay comentarios en este Tema.</div>'
                         +    '<div class="ll_title normal_txt">Añade un comentario</div>'
                         +  '</div>'
@@ -286,7 +286,7 @@ function showCommentReplies(container, commentId){
         .addClass('opacity_color').removeClass('txtprimary_color');
     jQuery.ajax({
         method: 'GET',
-        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + commentId ,
+        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + commentId ,
         cache: true,
         success: function(data) {
             if(data.length > 0){
@@ -344,7 +344,7 @@ function showCommentReplies(container, commentId){
 function insertCommentReply(replyData, container, commentId){
     jQuery.ajax({
         method: 'POST',
-        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + commentId,
+        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + commentId,
         cache: true,
         data: replyData,
         success: function(data) {
@@ -360,7 +360,7 @@ function insertCommentReply(replyData, container, commentId){
 function likeForumComment(likeStatus, forumCommentId){
     jQuery.ajax({
         method: 'POST',
-        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/like',
+        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/like',
         cache: true,
         data: {
             likeStatus: likeStatus
@@ -377,7 +377,7 @@ function likeForumComment(likeStatus, forumCommentId){
 function likeForumCommentReply(likeStatus, forumCommentId, forumReplyId){
     jQuery.ajax({
         method: 'POST',
-        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/' + forumReplyId + '/like',
+        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/' + forumReplyId + '/like',
         cache: true,
         data: {
             likeStatus: likeStatus

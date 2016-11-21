@@ -11,7 +11,7 @@ function selectLobby(lobby){
     container.empty();
     jQuery.ajax({
         method: 'GET',
-        url: 'api/messages/' + lobby,
+        url: '/api/messages/' + lobby,
         cache: false,
         success: function(data) {
             for(var i in data){
@@ -172,7 +172,7 @@ socket.on('mostrar', function(data){
 function showLobbies(){
     jQuery.ajax({
         method: 'GET',
-        url: 'api/messages',
+        url: '/api/messages',
         cache: true,
         success: function(data) {
             if(data.length > 0){
@@ -201,7 +201,7 @@ function showLobbies(){
 function showContactsAdministratorsMsm(){
     jQuery.ajax({
         method: 'GET',
-        url: 'api/contacts/admins',
+        url: '/api/contacts/admins',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .admins').html(data);
@@ -216,7 +216,7 @@ function showContactsAdministratorsMsm(){
 function showContactsStudentsMsm(){
     jQuery.ajax({
         type: 'GET',
-        url: 'api/contacts/students',
+        url: '/api/contacts/students',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .students').html(data);
@@ -232,7 +232,7 @@ function showContactsTeachersMsm(){
     stringDataTeachers = '';
     jQuery.ajax({
         method: 'GET',
-        url: 'api/contacts/teachers',
+        url: '/api/contacts/teachers',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .teachers').html(data);
@@ -270,7 +270,7 @@ function enviarMsg(lobby){
 
         jQuery.ajax({ 
             type: 'post',
-            url: 'api/mensajes/' + lobby,
+            url: '/api/mensajes/' + lobby,
             data: {
                 messageBody : jQuery('#newmsm').val(),
             },

@@ -36,7 +36,7 @@ exports.insertForumTopic = function(req, res){
 
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.redirect('/foro');
+			res.redirect('/forum');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
@@ -69,7 +69,7 @@ exports.insertForumTopicComment = function(req, res){
 
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.redirect('/foro');
+			res.redirect('/forum');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
@@ -101,7 +101,7 @@ exports.insertForumTopicCommentReply = function(req, res){
 
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.redirect('/foro');
+			res.redirect('/forum');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
@@ -159,7 +159,7 @@ exports.likeForumComment = function(req, res){
 
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.redirect('/foro');
+			res.redirect('/forum');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
@@ -217,7 +217,7 @@ exports.likeForumCommentReply = function(req, res){
 
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.redirect('/foro');
+			res.redirect('/forum');
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {

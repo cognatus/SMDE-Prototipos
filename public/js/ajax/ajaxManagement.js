@@ -20,7 +20,7 @@ function displayData(){
 function showAdmins(){
 	jQuery.ajax({
         type: 'GET',
-        url: 'api/users/admins',
+        url: '/api/users/admins',
         cache: false,
         success: function(data) {
             jQuery('#managementData .admins').html(data);
@@ -35,7 +35,7 @@ function showAdmins(){
 function showStudents(){
     jQuery.ajax({
         type: 'GET',
-        url: 'api/users/students',
+        url: '/api/users/students',
         cache: false,
         success: function(data) {
             jQuery('#managementData .students').html(data);
@@ -47,7 +47,7 @@ function showStudents(){
                 var stuId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'api/users/students/' + stuId + '/subjects',
+                    url: '/api/users/students/' + stuId + '/subjects',
                     cache: true,
                     success: function(data2) {
                         button.hide();
@@ -76,7 +76,7 @@ function showStudents(){
 function showTeachers(){
     jQuery.ajax({
         type: 'GET',
-        url: 'api/users/teachers',
+        url: '/api/users/teachers',
         cache: false,
         success: function(data) {
             jQuery('#managementData .teachers').html(data);
@@ -88,7 +88,7 @@ function showTeachers(){
                 var teaId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'api/users/teachers/' + teaId + '/subjects',
+                    url: '/api/users/teachers/' + teaId + '/subjects',
                     cache: true,
                     success: function(data2) {
                         button.hide();
@@ -117,7 +117,7 @@ function showTeachers(){
 function showDepartments(){
     jQuery.ajax({
         type: 'GET',
-        url: 'api/depts',
+        url: '/api/depts',
         cache: false,
         success: function(data) {
             jQuery('#managementData .departments').html(data);
@@ -132,7 +132,7 @@ function showDepartments(){
 function showSubjects(){
     jQuery.ajax({
         type: 'GET',
-        url: 'api/subjects',
+        url: '/api/subjects',
         cache: false,
         success: function(data) {
             jQuery('#managementData .subjects').html(data);
@@ -147,7 +147,7 @@ function showSubjects(){
 function showCourses(){
     jQuery.ajax({
         type: 'GET',
-        url: 'api/groups',
+        url: '/api/groups',
         cache: false,
         success: function(data) {
             jQuery('#managementData .groups').html(data);
@@ -162,7 +162,7 @@ function showCourses(){
 function showSubjectsCourses(){
     jQuery.ajax({
         type: 'GET',
-        url: 'api/courses',
+        url: '/api/courses',
         cache: false,
         success: function(data) {
             jQuery('#managementData .courses').html(data);

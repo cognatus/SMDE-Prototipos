@@ -46,21 +46,20 @@ block content
 				.block_container.bg_white
 					.colhh1.bg_lightgray.flat_shadow
 						.pd_18.ll_title Comentar
-					form#addNewForumComment.colhh1.flat_input.rel_pos(name='addNewForumComment' action="../insertForumTopicComment" method="POST")
+					form#addNewForumComment.colhh1.flat_input.rel_pos(name='addNewForumComment' action='/api/forum/#{topic}'  method="POST")
 						img.circle(src='/profile_photos/#{datos[0].photoName}.png' onerror="this.onerror=null;this.src='/images/profilephoto.png'")
 						textarea(type='text' name='forumCommentText' placeholder='Escribe un Comentario')
-						input#forumTopicScope(type='hidden' name='forumTopicId' value='#{idForo}')
 						input.b_text.opacity_color.rippleria-dark(data-rippleria type='submit' name='forumCommentSubmit' value='PUBLICAR' disabled)
 
-				.colhh1
-					.autocol.bg_lightgray.right_float.rel_pos(style="padding: 0px;")
-						.minimenu.hover.pd_8
-							.autocol.txtprimary_color.pd_4.v_middle.ll_title(style="margin-left: 4px;") Ordenar por
-							.small_icon.bg_arrowdrop.v_middle
-						.minimenu_hidden.left_text(style="top: 12px;right: 12px;")
-							.pd_16.hover.rippleria-dark(data-rippleria) Cronológico
-							.pd_16.hover.rippleria-dark(data-rippleria) Mas Me gusta
-							.pd_16.hover.rippleria-dark(data-rippleria) Mas Respuestas
+				//- .colhh1
+				//- 	.autocol.bg_lightgray.right_float.rel_pos(style="padding: 0px;")
+				//- 		.minimenu.hover.pd_8
+				//- 			.autocol.txtprimary_color.pd_4.v_middle.ll_title(style="margin-left: 4px;") Ordenar por
+				//- 			.small_icon.bg_arrowdrop.v_middle
+				//- 		.minimenu_hidden.left_text(style="top: 12px;right: 12px;")
+				//- 			.pd_16.hover.rippleria-dark(data-rippleria) Cronológico
+				//- 			.pd_16.hover.rippleria-dark(data-rippleria) Mas Me gusta
+				//- 			.pd_16.hover.rippleria-dark(data-rippleria) Mas Respuestas
 									
 				#forum_commentscontainer.colhh1
 					.colhh1.empty_blocktext.center_text
@@ -70,7 +69,3 @@ block content
 					
 
 			.colhh1(style='height: 128px;')
-			footer.colhh1.bg_white.flat_shadow
-				.pd_18.ll_title.opacity_color.b_text
-					span.small_icon.bg_logo.v_middle
-					.autocol.v_middle SMDE - 2016

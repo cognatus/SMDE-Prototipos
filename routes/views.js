@@ -43,7 +43,8 @@ router.route('/home')
 		res.render('main', { 
 			title: 'SMDE - Inicio',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/profile')
@@ -51,7 +52,8 @@ router.route('/profile')
 		res.render('profile', { 
 			title: 'SMDE - Perfil',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/subjects')
@@ -59,7 +61,8 @@ router.route('/subjects')
 		res.render('subjects', { 
 			title: 'SMDE - Asignaturas',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/contents')
@@ -67,7 +70,8 @@ router.route('/contents')
 		res.render('contents', { 
 			title: 'SMDE - Contenidos',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/contents/:id_content')
@@ -75,7 +79,9 @@ router.route('/contents/:id_content')
 		res.render('contenttopic', { 
 			title: 'SMDE - Contenidos',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio,
+			content: req.params.id_content
+		});
 	});
 
 router.route('/messages')
@@ -83,7 +89,8 @@ router.route('/messages')
 		res.render('messages', { 
 			title: 'SMDE - Mensajes',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/messages/:id_conversation')
@@ -91,7 +98,9 @@ router.route('/messages/:id_conversation')
 		res.render('messages', { 
 			title: 'SMDE - Mensajes',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio,
+			conversation: req.params.id_conversation
+		});
 	});
 
 router.route('/forum')
@@ -99,7 +108,8 @@ router.route('/forum')
 		res.render('foro', { 
 			title: 'SMDE - Foro',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/forum/:id_topic')
@@ -107,7 +117,9 @@ router.route('/forum/:id_topic')
 		res.render('forumtopic', { 
 			title: 'SMDE - Foro',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio,
+			topic: req.params.id_topic
+		});
 	});
 
 router.route('/settings')
@@ -115,7 +127,8 @@ router.route('/settings')
 		res.render('settings', { 
 			title: 'SMDE - Ajustes',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/calendar')
@@ -123,7 +136,8 @@ router.route('/calendar')
 		res.render('calendar', { 
 			title: 'SMDE - Agenda',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 router.route('/management')
@@ -131,7 +145,8 @@ router.route('/management')
 		res.render('management', { 
 			title: 'SMDE - Gestion',
 			datos:  req.session.datos,
-			privilegio:  req.session.privilegio })
+			privilegio:  req.session.privilegio 
+		});
 	});
 
 module.exports = router;		

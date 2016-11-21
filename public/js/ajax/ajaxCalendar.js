@@ -74,7 +74,7 @@ function showReminders(){
     stringDataReminders = '';
     jQuery.ajax({
         method: 'GET',
-        url: 'api/profile/reminders',
+        url: '/api/profile/reminders',
         cache: true,
         success: function(data) {
             jQuery('#remindlist_container').html(data);
@@ -88,7 +88,7 @@ function showReminders(){
 function showPublications(){
     jQuery.ajax({
         method: 'GET',
-        url: 'api/profile/publications',
+        url: '/api/profile/publications',
         cache: true,
         success: function(data) {
             jQuery('#publiclist_container').html(data);
@@ -101,7 +101,7 @@ function showPublications(){
                 var idPub = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'api/profile/publications/' + idPub,
+                    url: '/api/profile/publications/' + idPub,
                     cache: true,
                     success: function(data2) {
                         button.hide();
@@ -128,7 +128,7 @@ function showPublications(){
 function showSubjectsCourses(){
     jQuery.ajax({
         method: 'GET',
-        url: 'api/profile/calendar/subjects',
+        url: '/api/profile/calendar/subjects',
         cache: true,
         success: function(data) {
             jQuery('#showCoursesPost').html(data);
@@ -149,7 +149,7 @@ function downloadAttachment(file){
     /*alert('Archivo: ' + file);
     jQuery.ajax({
         method: 'GET',
-        url: 'api/downloadAttachment',
+        url: '/api/downloadAttachment',
         cache: false,
         data: {
             file: file
