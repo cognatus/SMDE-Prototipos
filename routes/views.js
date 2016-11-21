@@ -94,7 +94,7 @@ router.route('/messages/:id_conversation')
 			privilegio:  req.session.privilegio })
 	});
 
-router.route('/foro')
+router.route('/forum')
 	.get(users.loginS, function(req, res){
 		res.render('foro', { 
 			title: 'SMDE - Foro',
@@ -102,7 +102,7 @@ router.route('/foro')
 			privilegio:  req.session.privilegio })
 	});
 
-router.route('/foro/:id_topic')
+router.route('/forum/:id_topic')
 	.get(users.loginS, function(req, res){
 		res.render('forumtopic', { 
 			title: 'SMDE - Foro',

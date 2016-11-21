@@ -2,7 +2,7 @@ jQuery(document).ready(function(){
 
     console.log(window.location.href.split('/'));
 
-    if(window.location.href.split('/').pop() == 'foro'){
+    if(window.location.href.split('/').pop() == 'forum'){
         jQuery('#forumtopics_container .load_container').show();
         setTimeout(showForumTopics, 1000);
     }
@@ -247,7 +247,7 @@ function selectForumTopic(forumTopicId){
     var urlLoad = forumTopicId;
 
     if (urlLoad != undefined && urlLoad != null) {
-        window.location.href = '/foro/' + forumTopicId;
+        window.location.href = '/forum/' + forumTopicId;
     }
 
 }
