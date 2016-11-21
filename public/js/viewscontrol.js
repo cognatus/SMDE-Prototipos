@@ -116,9 +116,9 @@ jQuery(document).on('ready' ,function(){
 			height: widthsize,
 			width: widthsize,
 			borderTopLeftRadius: 200, 
-		    borderTopRightRadius: 200, 
-		    borderBottomLeftRadius: 200, 
-		    borderBottomRightRadius: 200
+			borderTopRightRadius: 200, 
+			borderBottomLeftRadius: 200, 
+			borderBottomRightRadius: 200
 		});
 		animate.show();
 		animate.animate({
@@ -137,9 +137,9 @@ jQuery(document).on('ready' ,function(){
 			left: 0,
 			top: 0,
 			borderTopLeftRadius: 0, 
-		    borderTopRightRadius: 0, 
-		    borderBottomLeftRadius: 0, 
-		    borderBottomRightRadius: 0
+			borderTopRightRadius: 0, 
+			borderBottomLeftRadius: 0, 
+			borderBottomRightRadius: 0
 		}, 140);
 
 		jQuery('body , html').css('overflow', 'hidden');
@@ -167,6 +167,19 @@ jQuery(document).on('ready' ,function(){
 		}
 		else if( $this.val() == 'Subject' ){
 			jQuery('#show_subjectinsert').show();
+			jQuery.ajax({
+				type: 'GET',
+				url: 'getSubjectsDatabase',
+				cache: false,
+				success: function(data) {
+					console.log(data)
+					//jQuery('#insertSubjectDept').append(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log('Error: ' + textStatus + " " + errorThrown);
+				}
+				
+			});
 		}
 		else if( $this.val() == 'Course' ){
 			jQuery('#show_courseinsert').show();
@@ -318,16 +331,16 @@ jQuery(document).on('ready' ,function(){
 	var count = 0;
 	function sortToggleClick(){
 		count++;
-	    var isEven = function(someNumber) {
-	        return (someNumber % 2 === 0) ? true : false;
-	    }
+		var isEven = function(someNumber) {
+			return (someNumber % 2 === 0) ? true : false;
+		}
 
-	    if (isEven(count) === false) {
-	        sortDescending();
-	    } else if (isEven(count) === true) {
-	       sortAscending();
-	    }
-	    listSortItemOrder.detach();
+		if (isEven(count) === false) {
+			sortDescending();
+		} else if (isEven(count) === true) {
+		   sortAscending();
+		}
+		listSortItemOrder.detach();
 		listSortOrder.prepend(listSortItemOrder);
 	}
 
@@ -391,7 +404,7 @@ jQuery(document).on('ready' ,function(){
 		var files = jQuery(this)[0].files;
 		for (var i = 0; i < files.length; i++){
 			if(i < files.length - 1){
-		    	fileValue += files[i].name + ', ';
+				fileValue += files[i].name + ', ';
 			}
 			else{
 				fileValue += files[i].name;
@@ -517,19 +530,19 @@ jQuery(document).on('ready' ,function(){
 
 	 jQuery('.innerlistitem').hide();
 
-        jQuery('.slide_list .listitem').on('click', function(){
+		jQuery('.slide_list .listitem').on('click', function(){
 
-            var slideD = jQuery(this).siblings('.innerlistitem');
+			var slideD = jQuery(this).siblings('.innerlistitem');
 
-            if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
-                jQuery(this).siblings('.innerlistitem').slideUp();
-            }
-            else{
-                jQuery('.innerlistitem').slideUp();
-                slideD.slideDown();
-            }
+			if(jQuery(this).siblings('.innerlistitem').css('display') == 'block'){
+				jQuery(this).siblings('.innerlistitem').slideUp();
+			}
+			else{
+				jQuery('.innerlistitem').slideUp();
+				slideD.slideDown();
+			}
 
-        });
+		});
 
 
 });
@@ -571,44 +584,44 @@ jQuery(document).ready(function(){
 	var firstBackground = jQuery('#p_back').css('background-image');
 
 	function previewProfilePhoto(input) {
-	    if (input.files.length > 0) {
-	        var reader = new FileReader();
+		if (input.files.length > 0) {
+			var reader = new FileReader();
 
-	        reader.onload = function (e) {
-	            jQuery('img#p_img').attr('src', e.target.result);
-	        }  
-	        reader.readAsDataURL(input.files[0]);
-	    }
+			reader.onload = function (e) {
+				jQuery('img#p_img').attr('src', e.target.result);
+			}  
+			reader.readAsDataURL(input.files[0]);
+		}
 	}
 
 	function previewProfileBack(input) {
-	    if (input.files.length > 0) {
-	        var reader = new FileReader();
+		if (input.files.length > 0) {
+			var reader = new FileReader();
 
-	        reader.onload = function (e) {
-	            jQuery('#p_back').css('background-image', 'url("' + e.target.result + '")');
-	        }
-	        reader.readAsDataURL(input.files[0]);
-	    }
+			reader.onload = function (e) {
+				jQuery('#p_back').css('background-image', 'url("' + e.target.result + '")');
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
 	}
 
 	jQuery('#input_pBack').change(function(){
-    	if (jQuery(this).val() != '' && jQuery(this).val() != null) {
-    		previewProfileBack(this);
-	    }
-	    else{
-	    	jQuery('#p_back').css('background-image', firstBackground);	
-    	}
-    });
+		if (jQuery(this).val() != '' && jQuery(this).val() != null) {
+			previewProfileBack(this);
+		}
+		else{
+			jQuery('#p_back').css('background-image', firstBackground);	
+		}
+	});
 
 	jQuery('#input_pPhoto').change(function(){
 		if (jQuery(this).val() != '' && jQuery(this).val() != null) {
-        	previewProfilePhoto(this);
+			previewProfilePhoto(this);
 		}
 		else{
-        	jQuery('img#p_img').attr('src', firstPhoto);
+			jQuery('img#p_img').attr('src', firstPhoto);
 		}
-    });
+	});
 
 	jQuery('.changep_input').change(function(){
 		var $this = jQuery(this);
@@ -630,7 +643,7 @@ jQuery(document).ready(function(){
 			}
 		});
 	});
-    
+	
 
 	jQuery('.spinner').spinner({
 		strokeWidth: 5,

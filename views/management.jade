@@ -121,10 +121,10 @@ block content
 									input(type='text', placeholder='Nivel' name='insertSubjectLevel')
 								.form_input
 									.b_text.left_title Academia
-									select.mgm_departmentslist(name='insertSubjectDept')
-										if departmentsData != undefined
-											each item in departmentsData
-												option(value='#{item.idDepartment}') #{item.departmentName}
+									select.mgm_departmentslist(name='insertSubjectDept', id='insertSubjectDept')
+										//- if departmentsData != undefined
+										//- 	each item in departmentsData
+										//- 		option(value='#{item.idDepartment}') #{item.departmentName}
 								.form_input(style='height: 52px;')
 									span.bgaccent_color.bg_check.submit.circle.rippleria-dark( data-rippleria )
 							.form_confirmblock
