@@ -83,7 +83,7 @@ exports.insertLobby = function(req, res){
 //FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
 exports.insertNewMessage = function(req, res){
 
-	var lobby = req.body.lobbyBody;
+	var lobby = req.params.id_lobby;
 	var msmText = req.body.messageBody;
 
 	if(msmText != null || msmText.trim() != ''){
@@ -149,7 +149,7 @@ exports.getLobbiesDatabase = function(req, res){
                 var arrayParticipantsNames = item.participantsNames.split(', ');
 
                 stringDataLobby += ''
-                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '\n' + item.participantsNames + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)">'
+                + '<div class="colhh1 hover listitem rippleria-dark" data-rippleria="" data-name="' + item.participantsNames + '" data-type="' + item.participantsEmails + '" data-title="' + item.participantsEmails + '\n' + item.participantsNames + '" onclick="selectLobby(&quot;' + item.idLobby + '&quot;)" Lobby="' + item.idLobby + '">'
                 +    '<div class="listitem_img">'
                 if(arrayParticipantsPhotos.length > 1){
                 	for(var j = 0; j < arrayParticipantsPhotos.length; j++){
@@ -162,7 +162,7 @@ exports.getLobbiesDatabase = function(req, res){
                 	}
                 }
                 else{
-                	stringDataLobby += '<img class="circle" src="/profile_photos/' + item.participantsPhotos + '.png">'
+                	stringDataLobby += '<img class="circle" src="/profile_photos/' + item.participantsPhotos + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                 }
                 stringDataLobby += '</div>'
                 +    '<div class="listitem_info border_bottom">'
@@ -191,7 +191,7 @@ exports.getLobbiesDatabase = function(req, res){
 	});
 };
 
-//FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
+//FUNCION PARA OBTENER LOS MENSAJES DE UNA LOBBY
 exports.getLobbyById = function(req, res){
 
 	var lobby = req.params.id_lobby;

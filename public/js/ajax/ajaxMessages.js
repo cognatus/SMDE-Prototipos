@@ -1,19 +1,22 @@
 var socket = io('http://192.168.1.67:3000/chatsini');
 
-function selectLobby(lobby){
-    //este metodo recibe el lobby  y conecta en server
-    socket.emit('cambiarsala', lobby);
-    jQuery('#lobbyScope').val(lobby);
+function showMessages(){
     //Contenedor de los mensajes
     var container = jQuery('#msm_list');
-    //weaas de que aparezcan los mensajes del weon con quien habla
-    //de default la primera vez que se cargue la pagina mostrara al primer weon
-    container.empty();
+    var lobby = '';
+    if(window.location.href.split('/').pop() != 'messages'){
+        lobby = window.location.href.split('/').pop();
+    }
+    else{
+        lobby = jQuery('.listitem').first().attr('lobby');   
+    }
+
     jQuery.ajax({
         method: 'GET',
         url: '/api/messages/' + lobby,
         cache: false,
         success: function(data) {
+            jQuery('#msm_loader').hide();
             for(var i in data){
                 var msm = data[i];
                 var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm[data-user="' + msm.userEmail + '"]').length;
@@ -105,9 +108,16 @@ function selectLobby(lobby){
     });
 }
 
+function selectLobby(lobby){
+    //este metodo recibe el lobby  y conecta en server
+    socket.emit('cambiarsala', lobby);
+    window.location.href = '/messages/' + lobby;
+    
+}
+
 
 //Paso 3.
-socket.on('mostrar', fu/nction(data){
+socket.on('mostrar', function(data){
 
     var container = jQuery('#msm_list');
     //Son las burbujas del chat que aparecen del lado izquierdo
@@ -183,6 +193,7 @@ function showLobbies(){
                         +  '</div>'
                         +'</div>');
             }
+            showMessages();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert(textStatus + ' ' + errorThrown);
@@ -263,7 +274,7 @@ function enviarMsg(){
 
         jQuery.ajax({ 
             type: 'post',
-            url: '/api/mensajes/' + window.location.href.split('/').pop(),
+            url: '/api/messages/' + window.location.href.split('/').pop(),
             data: {
                 messageBody : jQuery('#newmsm').val(),
             },
@@ -327,7 +338,7 @@ function enviarMsg(){
 
 jQuery(document).ready(function(){
     
-    setTimeout(showLobbies, 1000);
+    showLobbies();
 
     jQuery('#new_item').click(function(){
         showContactsAdministratorsMsm();
@@ -367,13 +378,7 @@ jQuery(document).ready(function(){
 
     jQuery('form#addNewMsm').submit(function(event){
         event.preventDefault();
-
-        if(jQuery(this).find('input#lobbyScope').val() != null && jQuery(this).find('input#lobbyScope').val().trim() != ''){
-            enviarMsg();
-        }
-        else{
-            alert('Seleccione una conversación')
-        }
+        enviarMsg();
     });
 
     jQuery('#newmsm').click(function(){
@@ -502,10 +507,6 @@ jQuery(document).ready(function(){
         addUsersToLobby();
 
     });
-
-    setTimeout(function(){
-        jQuery('.listitem').first().trigger('click');
-    }, 1300);
 
 });
 
