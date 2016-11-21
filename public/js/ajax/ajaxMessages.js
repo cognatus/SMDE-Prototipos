@@ -49,7 +49,7 @@ function selectLobby(lobby){
                                         +       '</div>'
                                         +   '</div>'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="Yo" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
+                                        +       '<img src="/profile_photos/' + msm.photoName + '.png" title="Yo" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                                         +   '</div>'
                                         + '</div>');
                     }
@@ -71,7 +71,7 @@ function selectLobby(lobby){
                     else{
                         container.append('<div class="colhh1 margin_bot msm_block">'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
+                                        +       '<img src="/profile_photos/' + msm.photoName + '.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                                         +   '</div>'
                                         +   '<div class="msm_text">'
                                         +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
@@ -107,14 +107,7 @@ function selectLobby(lobby){
 
 
 //Paso 3.
-socket.on('mostrar', function(data){
-
-    //este es el importante
-    //lo que enviaste del back en socket.in(socket.room).emit('mostrar', {
-    //lo vas a estar reccibiendo en este metodo
-    //aqui es donde haras que se haga en tiempo real
-    //solo es cosa que le pongas las cosas de etiquetas y así para que se muestr
-    //pueste que basicamente ya todo se hace en tiempo real
+socket.on('mostrar', fu/nction(data){
 
     var container = jQuery('#msm_list');
     //Son las burbujas del chat que aparecen del lado izquierdo
@@ -136,7 +129,7 @@ socket.on('mostrar', function(data){
     else{
         container.append('<div class="colhh1 margin_bot msm_block">'
                         +   '<div class="msm_img">'
-                        +       '<img src="profile_photos/' + data.userPhoto + '.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
+                        +       '<img src="/profile_photos/' + data.userPhoto + '.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                         +   '</div>'
                         +   '<div class="msm_text">'
                         +       '<div class="colhh1 autooverflow">'
@@ -244,7 +237,7 @@ function showContactsTeachersMsm(){
     });
 }
 
-function enviarMsg(lobby){
+function enviarMsg(){
 
     var date = new Date();
     var hh = date.getHours();
@@ -270,7 +263,7 @@ function enviarMsg(lobby){
 
         jQuery.ajax({ 
             type: 'post',
-            url: '/api/mensajes/' + lobby,
+            url: '/api/mensajes/' + window.location.href.split('/').pop(),
             data: {
                 messageBody : jQuery('#newmsm').val(),
             },
@@ -317,7 +310,7 @@ function enviarMsg(lobby){
                             +       '</div>'
                             +   '</div>'
                             +   '<div class="msm_img">'
-                            +       '<img src="profile_photos/' + sessionUserPhoto + '.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUser + '" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
+                            +       '<img src="/profile_photos/' + sessionUserPhoto + '.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUser + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                             +   '</div>'
                             + '</div>');
         }
@@ -376,7 +369,7 @@ jQuery(document).ready(function(){
         event.preventDefault();
 
         if(jQuery(this).find('input#lobbyScope').val() != null && jQuery(this).find('input#lobbyScope').val().trim() != ''){
-            enviarMsg(jQuery(this).find('input#lobbyScope').val());
+            enviarMsg();
         }
         else{
             alert('Seleccione una conversación')
@@ -529,7 +522,7 @@ function addUsersToLobby(){
         var html = '<div data-email="' + email + '" class="msm_sendtocontact rel_pos" title="Quitar">'
                     + '<div class="msm_sendtoremove">'
                     + '<div class="bg_opacity bg_cross circle"></div>'
-                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle"/ onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
+                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                     + '<div class="name bgprimary_colorDarker white_text v_middle">' + name + '</div>'
                     + '</div>';
 

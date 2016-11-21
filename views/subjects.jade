@@ -19,7 +19,7 @@ block content
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text.flat_shadow Inscribir Cursos
 				.colhh1.hb_formcontainer
-					form#add_subjectsform.hb_resgrid.rel_pos(name='subjects_add' action='insertSubjectsCoursesSelfUser' method='POST')
+					form#add_subjectsform.hb_resgrid.rel_pos(name='subjects_add' action='/api/profile/availablecourses' method='POST')
 						.form_input2.border_bottom
 							input#coursesAddInput(type='hidden' name='insertCoursesField')
 						.colhh1.form_innercontainer.border_bottom

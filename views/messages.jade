@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-		script( type='text/javascript' src='/node_modules/socket.io/socket.io.js' )
+		script( type='text/javascript' src='/socket.io/socket.io.js' )
 		script( type='text/javascript' src='/js/ajax/ajaxMessages.js' )
 
 		if datos[0].msmColor != undefined
@@ -20,7 +20,7 @@ block content
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
-					form#newMsmForm(name='new_messageform' action='insertLobby' method='POST')
+					form#newMsmForm(name='new_messageform' action='/api/messages' method='POST')
 						#newmsm_form.form_innercontainer
 							.colhh1
 								.form_input2

@@ -157,7 +157,7 @@ exports.getLobbiesDatabase = function(req, res){
                 			break;
                 		}
                 		else{
-                			stringDataLobby += '<img class="img_mul circle" src="/profile_photos/' + arrayParticipantsPhotos[j] + '.png" title="' + arrayParticipantsNames[j] + '">'
+                			stringDataLobby += '<img class="img_mul circle" src="/profile_photos/' + arrayParticipantsPhotos[j] + '.png" title="' + arrayParticipantsNames[j] + '" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                 		}
                 	}
                 }
@@ -233,7 +233,7 @@ exports.getProfileContactsAdministratorsMsm = function(req, res){
 			for(var i in result){
                 var item = result[i];
                 stringData += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
-                                +       '<div class="listitem_img"><img src="/profile_photos/' + item.photoName + '.png"></img></div>'
+                                +       '<div class="listitem_img"><img src="/profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></div>'
                                 +       '<div class="listitem_info">'
                                 +           '<div class="listitem_rightinfo">Admin</div>'
                                 +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
@@ -311,7 +311,7 @@ exports.getProfileContactsStudentsMsm = function(req, res){
 			for(var i in result){
                 var item = result[i];
                 stringData += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
-                                +       '<div class="listitem_img"><img src="/profile_photos/' + item.photoName + '.png"></img></div>'
+                                +       '<div class="listitem_img"><img src="/profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></div>'
                                 +       '<div class="listitem_info">'
                                 +           '<div class="listitem_rightinfo">Alumno</div>'
                                 +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
@@ -390,7 +390,7 @@ exports.getProfileContactsTeachersMsm = function(req, res){
 			for(var i in result){
                 var item = result[i];
                 stringData += '<div class="colhh1 pd_lr8 listitem hover" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-email="' + item.userEmail + '">' 
-                                +       '<div class="listitem_img"><img src="/profile_photos/' + item.photoName + '.png"></img></div>'
+                                +       '<div class="listitem_img"><img src="/profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></div>'
                                 +       '<div class="listitem_info">'
                                 +           '<div class="listitem_rightinfo">Profe</div>'
                                 +           '<div class="listitem_title"><b>' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '</b></div>'
