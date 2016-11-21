@@ -9,8 +9,6 @@ exports.constructor = function (basee) {
 
 //FUNCION PARA CREAR UN NUEVO TEMA EN EL FORO
 exports.insertForumTopic = function(req, res){
-	var database = new base();
-	
 	var topicTitle = req.body.insertForumTopicTitle;
 	var topicDescription = req.body.insertForumTopicDescription;
 	var topicSubject = req.body.insertForumTopicSubject
@@ -36,7 +34,7 @@ exports.insertForumTopic = function(req, res){
 		});
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.redirect('/foro');
 		}else{
@@ -55,9 +53,7 @@ exports.insertForumTopic = function(req, res){
 
 //FUNCION PARA INSERTAR COMENTARIOS
 exports.insertForumTopicComment = function(req, res){
-	var database = new base();
-
-	var forumTopic = req.body.forumTopicId;
+	var forumTopic = req.params.id_topic;
 	var commentText = req.body.forumCommentText;
 
 	if(commentText != null || commentText.trim() != ''){
@@ -71,7 +67,7 @@ exports.insertForumTopicComment = function(req, res){
 					+ ' "' + forumTopic + '");';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.redirect('/foro');
 		}else{
@@ -89,9 +85,7 @@ exports.insertForumTopicComment = function(req, res){
 
 //FUNCION PARA INSERTAR RESPUESTAS A COMENTARIOS
 exports.insertForumTopicCommentReply = function(req, res){
-	var database = new base();
-
-	var forumCommentId = req.body.forumCommentId;
+	var forumCommentId = req.params.id_comment;
 	var replyText = req.body.forumReplyText;
 
 	if(replyText != null || replyText.trim() != ''){
@@ -105,7 +99,7 @@ exports.insertForumTopicCommentReply = function(req, res){
 					+ ' "' + forumCommentId + '");';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.redirect('/foro');
 		}else{
@@ -123,9 +117,7 @@ exports.insertForumTopicCommentReply = function(req, res){
 
 //FUNCION PARA DAR LIKE A LOS COMENTARIOS
 exports.likeForumComment = function(req, res){
-	var database = new base();
-
-	var forumCommentId = req.body.forumCommentId;
+	var forumCommentId = req.params.id_comment;
 	var likeStatus = req.body.likeStatus;
 	var likeStatusValue;
 
@@ -165,7 +157,7 @@ exports.likeForumComment = function(req, res){
 		}	
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.redirect('/foro');
 		}else{
@@ -183,9 +175,7 @@ exports.likeForumComment = function(req, res){
 
 //FUNCION PARA DAR LIKE A LOS COMENTARIOS
 exports.likeForumCommentReply = function(req, res){
-	var database = new base();
-
-	var forumReplyId = req.body.forumReplyId;
+	var forumReplyId = req.params.id_reply;
 	var likeStatus = req.body.likeStatus;
 	var likeStatusValue;
 
@@ -225,7 +215,7 @@ exports.likeForumCommentReply = function(req, res){
 		}	
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.redirect('/foro');
 		}else{
@@ -243,8 +233,6 @@ exports.likeForumCommentReply = function(req, res){
 
 //FUNCION PARA OBTENER TEMAS DEL FORO
 exports.getForumTopics = function(req, res){
-	var database = new base();
-
 	stringQuery = 'SELECT idForumTopic, DATE_FORMAT(topicDateTime, "%d/%m/%Y") AS forumTopicDate,'
 				+ ' DATE_FORMAT(topicDateTime, "%H:%i") AS forumTopicTime, photoName,'
 				+ ' CONCAT(userName, " ", userLastName, " ", userSecondLastName) AS userFullName,'
@@ -259,7 +247,7 @@ exports.getForumTopics = function(req, res){
 				+ ' 	ON u.userEmail = ft.User_userEmail'
 				+ ' ORDER BY topicTitle ASC;';
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			stringDataForumTopic = '';
 			for(var i in result){
@@ -302,7 +290,7 @@ exports.getForumTopics = function(req, res){
 				                + '<div class="listitem_title"><b>' + item.userFullName + '</b></div>'
 				                + '<div class="listitem_bottomdata">' + item.userEmail + '</div>'
 				              + '</div>'
-				              + '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
+				              + '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></img></div>'
 				      	    + '</div>'
 				      	  + '</div>'
 				          + '<div class="pd_4"></div>'
@@ -331,9 +319,7 @@ exports.getForumTopics = function(req, res){
 
 //FUNCION PARA OBTENER LOS COMENTARIOS DE UN TEMA DEL FORO (CRONOLOGICAMENTE)
 exports.getForumTopicCommentsCron = function(req, res){
-	var database = new base();
-
-	var forumTopicSelectedId = req.params.topicId;
+	var forumTopicSelectedId = req.params.id_topic;
 
 	stringQuery = 'SELECT fc.idForumComment, fc.forumCommentText,'
 				+ ' CONCAT(userName, " ", userLastName, " ", userSecondLastName) AS userFullName,'
@@ -368,7 +354,7 @@ exports.getForumTopicCommentsCron = function(req, res){
 			+ ' WHERE fc.ForumTopic_idForumTopic = "' + forumTopicSelectedId + '" '
 			+ ' ORDER BY forumCommentDateTime DESC;';
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			stringDataForumComment = '';
 			for(var i in result){
@@ -382,7 +368,7 @@ exports.getForumTopicCommentsCron = function(req, res){
 	        					+ '<label class="item_date">' + item.forumCommentDate + '</label>'
 	        					+ '<label class="item_time"> ' + item.forumCommentTime + '</label>'
 	      					+ '</div>'
-	      					+ '<div class="colhh1 forum_commentimg v_top"><img src="profile_photos/' + item.photoName + '.png" class="circle"/></div>'
+	      					+ '<div class="colhh1 forum_commentimg v_top"><img src="profile_photos/' + item.photoName + '.png" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"/></div>'
 		      				+ '<div class="colhh1 forum_alldata v_top">'
 		        				+ '<div class="pd_l18">'
 		          					+ '<div class="listitem_title"><b>' + item.userFullName + '</b></div>'
@@ -469,9 +455,7 @@ exports.getForumTopicCommentsCron = function(req, res){
 
 //FUNCION PARA OBTENER LAS RESPUESTAS DE UN COMENTARIO DEL FORO
 exports.getForumTopicCommentReplies = function(req, res){
-	var database = new base();
-
-	var forumCommentId = req.query.forumCommentId;
+	var forumCommentId = req.params.id_comment;
 
 	stringQuery = 'SELECT fcr.idForumCommentReply, fcr.forumCommentReplyText,' 
 				+ ' CONCAT(userName, " ", userLastName, " ", userSecondLastName) AS userFullName,'
@@ -501,7 +485,7 @@ exports.getForumTopicCommentReplies = function(req, res){
 			+ ' WHERE fcr.ForumComment_idForumComment = "' + forumCommentId + '" '
 			+ ' ORDER BY forumCommentReplyDateTime ASC;';
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			stringDataForumReply = '';
 			for(var i in result){
@@ -513,7 +497,7 @@ exports.getForumTopicCommentReplies = function(req, res){
         					+ '<label class="item_date">' + item.forumCommentReplyDate + '</label>'
         					+ '<label class="item_time"> ' + item.forumCommentReplyTime + '</label>'
       					+ '</div>'
-      					+ '<div class="colhh1 forum_commentimg v_top"><img src="profile_photos/' + item.photoName + '.png" class="circle"/></div>'
+      					+ '<div class="colhh1 forum_commentimg v_top"><img src="profile_photos/' + item.photoName + '.png" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"/></div>'
       					+ '<div class="colhh1 forum_alldata v_top">'
         					+ '<div class="pd_l18">'
           						+ '<div class="listitem_title"><b>' + item.userFullName + '</b></div>'

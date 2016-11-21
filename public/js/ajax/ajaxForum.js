@@ -1,10 +1,15 @@
 jQuery(document).ready(function(){
 
-    jQuery('#forumtopic_display').hide();
+    console.log(window.location.href.split('/'));
 
-    jQuery('#forumtopics_container .load_container').show();
-
-    setTimeout(showForumTopics, 1000);
+    if(window.location.href.split('/').pop() == 'foro'){
+        jQuery('#forumtopics_container .load_container').show();
+        setTimeout(showForumTopics, 1000);
+    }
+    else{
+        jQuery('#forumcomments_container .load_container').show();
+        setTimeout(showComments, 1000);
+    }
 
     jQuery('form#addNewForumComment textarea').focus(function(){
         jQuery(this).siblings('input[type="submit"]').show();
@@ -213,7 +218,7 @@ function hideElements(){
 function showForumTopics(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getForumTopics',
+        url: 'api/forum',
         cache: true,
         success: function(data) {
             if(data.length > 0){
@@ -231,25 +236,30 @@ function showForumTopics(){
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });
 }
 
-/*function selectForumTopic(forumTopicId, container){
+function selectForumTopic(forumTopicId){
+    
+    var urlLoad = forumTopicId;
+
+    if (urlLoad != undefined && urlLoad != null) {
+        window.location.href = '/foro/' + forumTopicId;
+    }
+
+}
+
+function showComments(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getForumTopicCommentsCron',
+        url: 'api/forum/' + window.location.href.split('/').pop(),
         cache: true,
-        data: {
-            forumTopicSelectedId: forumTopicId,
-            containerHtmlData: container
-        },
         success: function(data) {
             if(data.length > 0){
                 jQuery('#forum_commentscontainer').html(data);
-
             }
             else{
                 jQuery('#forum_commentscontainer')
@@ -263,20 +273,10 @@ function showForumTopics(){
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });
-}*/
-
-function selectForumTopic(forumTopicId){
-    
-    var urlLoad = forumTopicId;
-
-    if (urlLoad != undefined && urlLoad != null) {
-        window.location.href = '/forumtopic/' + forumTopicId;
-    }
-
 }
 
 function showCommentReplies(container, commentId){
@@ -286,17 +286,15 @@ function showCommentReplies(container, commentId){
         .addClass('opacity_color').removeClass('txtprimary_color');
     jQuery.ajax({
         method: 'GET',
-        url: 'getForumTopicCommentReplies',
+        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + commentId ,
         cache: true,
-        data: {
-            forumCommentId: commentId
-        },
         success: function(data) {
             if(data.length > 0){
                 container.html(data);
                 container.parents('.forum_repliescontainer').scrollTop(container.outerHeight());
                 jQuery('.forum_reply .reply_action span').click(function(){
                     var likeStatus = jQuery(this).attr('data-action');
+                    var commentId = jQuery(this).parents('.forum_comment').attr('data-id');
                     var replyId = jQuery(this).parents('.forum_reply').attr('data-id');
                     if(likeStatus == 'like'){
                         jQuery(this)
@@ -325,7 +323,7 @@ function showCommentReplies(container, commentId){
                         jQuery(this).attr('data-action', 'dislike').removeClass('bg_dislikeactive').addClass('bg_dislike');
                     }
                     if(likeStatus != null){
-                        likeForumCommentReply(likeStatus, replyId);
+                        likeForumCommentReply(likeStatus, commentId, replyId);
                     }
                 });
             }
@@ -338,7 +336,7 @@ function showCommentReplies(container, commentId){
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
     });
 }
@@ -346,7 +344,7 @@ function showCommentReplies(container, commentId){
 function insertCommentReply(replyData, container, commentId){
     jQuery.ajax({
         method: 'POST',
-        url: 'insertForumTopicCommentReply',
+        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + commentId,
         cache: true,
         data: replyData,
         success: function(data) {
@@ -362,10 +360,9 @@ function insertCommentReply(replyData, container, commentId){
 function likeForumComment(likeStatus, forumCommentId){
     jQuery.ajax({
         method: 'POST',
-        url: 'likeForumComment',
+        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/like',
         cache: true,
         data: {
-            forumCommentId: forumCommentId,
             likeStatus: likeStatus
         },
         success: function(data) {
@@ -377,13 +374,12 @@ function likeForumComment(likeStatus, forumCommentId){
     });
 }
 
-function likeForumCommentReply(likeStatus, forumReplyId){
+function likeForumCommentReply(likeStatus, forumCommentId, forumReplyId){
     jQuery.ajax({
         method: 'POST',
-        url: 'likeForumCommentReply',
+        url: 'api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/' + forumReplyId + '/like',
         cache: true,
         data: {
-            forumReplyId: forumReplyId,
             likeStatus: likeStatus
         },
         success: function(data) {

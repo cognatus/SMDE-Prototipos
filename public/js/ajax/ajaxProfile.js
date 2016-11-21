@@ -20,7 +20,7 @@ function showContactsAdministrators(){
             jQuery('#profilecontacts_list .admins').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -92,7 +92,7 @@ function showContactsTeachers(){
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -114,7 +114,7 @@ function showProfileSubjects(){
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -130,7 +130,7 @@ function showCoursesToAdd(){
             addCoursesControl();
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });

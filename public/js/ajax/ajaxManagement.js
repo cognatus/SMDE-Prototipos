@@ -26,7 +26,7 @@ function showAdmins(){
             jQuery('#managementData .admins').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
+            console.log(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -67,7 +67,7 @@ function showStudents(){
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
+            console.log(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -108,7 +108,7 @@ function showTeachers(){
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
+            console.log(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -123,7 +123,7 @@ function showDepartments(){
             jQuery('#managementData .departments').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
+            console.log(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -138,7 +138,7 @@ function showSubjects(){
             jQuery('#managementData .subjects').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
+            console.log(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -153,7 +153,7 @@ function showCourses(){
             jQuery('#managementData .groups').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
+            console.log(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -168,7 +168,7 @@ function showSubjectsCourses(){
             jQuery('#managementData .courses').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + " " + errorThrown);
+            console.log(textStatus + ' ' + errorThrown);
         }
         
     });

@@ -67,64 +67,25 @@ block content
 
 		.topspace
 		.page_container
-			.grid_profilebackgroundcontainer
-				.block_container.bg_white.profile_bgcont
-					.colhh1.profile_img
-						.photo
-							a(href='/profile')
-								img.circle.flat_shadow(src='profile_photos/'+ datos[0].photoName +'.png')
-					.pd_24
-						.colhh1
-							.name
-								div #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
-								span #{datos[0].userEmail}
-					.pd_lr24
-						.border_bottom
+			.block_container.bg_white.progress_profile
+				.pd_18.ll_title.bg_lightgray
+					| Rendimiento
+				.pd_18
+					.progress_emoticon.center_text
+						#indicator.circle.bg_indigo
+						span( style='background-image: url("/images/emoticon-sad.png")' )
+						span( style='background-image: url("/images/emoticon-neutral.png")' )
+						span( style='background-image: url("/images/emoticon-happy.png")' )
+						span
+				.pd_18
+					.ll_title Promedio General
+						span#signaturegralprom.right_float.ll_title 8.21
+					.colhh1.bg_lightgray.inbox_shadow.borad
+						#signatureprogress.progress_bar.bgaccent_color2.borad.flat_shadow
 
-					.pd_16.center_text
-						.rel_pos
-							if privilegio == 1
-								.colhh2
-									.pd_4.sl_title
-										| Profesores
-									.pd_4.lighttext#countContacts(style='font-size: 21px;')
-								.divider
-								.colhh2
-									.pd_4.sl_title
-										| Cursos
-									.pd_4.lighttext#countCourses(style='font-size: 21px;')
-							if privilegio == 2
-								.colhh2
-									.pd_4.sl_title
-										| Alumnos
-									.pd_4.lighttext#countContacts(style='font-size: 21px;')
-								.divider
-								.colhh2
-									.pd_4.sl_title
-										| Cursos
-									.pd_4.lighttext#countCourses(style='font-size: 21px;')
-				
-				.block_container.bg_white.progress_profile
-					.pd_18.ll_title.bg_lightgray
-						| Rendimiento
-					.pd_18
-						.progress_emoticon.center_text
-							#indicator.circle.bg_indigo
-							span( style='background-image: url("/images/emoticon-sad.png")' )
-							span( style='background-image: url("/images/emoticon-neutral.png")' )
-							span( style='background-image: url("/images/emoticon-happy.png")' )
-							span
-					.pd_18
-						.ll_title Promedio General
-							span#signaturegralprom.right_float.ll_title 8.21
-						.colhh1.bg_lightgray.inbox_shadow.borad
-							#signatureprogress.progress_bar.bgaccent_color2.borad.flat_shadow
-
-			.grid_rightcontainer
-				- if ( privilegio == 1 )
+			.colhh1
+				if ( privilegio == 1 )
 					.colhh1
-						.colhh1.block_container.bg_lightgray
-							.pd_18.ll_title Mis asignaturas
 						.colhh1
 							.listcontainer.courses_cl
 								.colhh1.flat_shadow.bg_white.empty_blocktext.center_text
@@ -132,12 +93,12 @@ block content
 										span.v_middle(style= 'background-image: url("images/close-box.png")')
 										.autocol.pd_12.mm_title Sin cursos.
 										.ll_title.normal_txt Presiona &nbsp; + &nbsp; para inscribir cursos
-								#profilecourses_list
+								#profilecourses_list.responsive
 									//- Aqui se agrega la lista de asignaturas
 
 				- else if ( privilegio == 2 )
 					.h_listcontainer
-						.block_container.rel_pos.top_hlist.bg_lightgray(style='box-shadow: none;')
+						.block_container.rel_pos.top_hlist(style='box-shadow: none;')
 							.colhh1.rel_pos
 								.h_listline.bgaccent_color
 								.h_listtopcontainer
@@ -153,7 +114,7 @@ block content
 											span.v_middle(style= 'background-image: url("images/close-box.png")')
 											.autocol.mm_title.pd_12 No tienes ninguna asignatura.
 											.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar asignaturas.
-									#profilecourses_list
+									#profilecourses_list.responsive
 										//- Aqui se agrega la lista de asignaturas
 									
 							.colhh1.h_listindex.contacts_cl

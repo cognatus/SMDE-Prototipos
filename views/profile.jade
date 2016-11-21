@@ -13,7 +13,7 @@ block content
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Editar Perfil
-				form.colhh1.hb_formcontainer(action='api/profile/updatephotos', method='POST', , enctype="multipart/form-data")
+				form.colhh1.hb_formcontainer(action='api/profile/updatephotos' method='post' enctype="multipart/form-data")
 					#new_profileback.colhh1.profile_bgcont
 						#p_back.colhh1.profile_img.inbox_shadow
 							.f_select.pd_18.autooverflow
@@ -28,7 +28,7 @@ block content
 								.input_filecontainer
 									input#input_pPhoto.changep_input(type='file' name='updateProfilePhoto' accept='image/*')
 								#selectPhoto.photo.rel_pos
-									img#p_img.circle.flat_shadow(src='profile_photos/' + datos[0].photoName + '.png')
+									img#p_img.circle.flat_shadow(src='profile_photos/' + datos[0].photoName + '.png' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilephoto.png"')
 									.photo_hiddenbutton.trigger.circle.bg_camera(title='Seleccionar imagen')
 						.pd_24
 							.colhh1
@@ -94,7 +94,7 @@ block content
 
 			.grid_rightcontainer
 				.colhh1.h_listcontainer
-					.rel_pos.block_container.top_hlist.bg_lightgray(style='box-shadow: none;')
+					.rel_pos.block_container.top_hlist(style='box-shadow: none;')
 						.h_listline.bgaccent_color
 						.h_listtopcontainer
 							.autocol.h_listitem.first
@@ -121,8 +121,15 @@ block content
 									.pd_l8.sl_title Apellido Materno: 
 										span.margin_l.normal_txt #{datos[0].userSecondLastName}
 									.pd_8
+									.pd_l8.sl_title Correo Electrónico: 
+										span.margin_l.normal_txt #{datos[0].userEmail}
+									.pd_8
 									.pd_l8.sl_title Sexo: 
-										span.margin_l.normal_txt #{datos[0].userSex}
+										span.margin_l.normal_txt 
+											if (datos[0].userSex == 'H')
+												| Hombre
+											if (datos[0].userSex == 'M')
+												| Mujer
 								.pd_4
 						.block_container.bg_white
 							.colhh1.bg_lightgray

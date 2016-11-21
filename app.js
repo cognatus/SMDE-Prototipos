@@ -10,9 +10,6 @@ var favicon = require('serve-favicon');
 var io = require('socket.io')(http);
 var app = express();
 
-var cors = require('cors');
-app.use(cors());
-
 var vistas = require('./routes/views');
 var api = require('./routes/index');
 var users = require('./routes/users');
@@ -25,9 +22,6 @@ var mensajes = require('./api/mensajes');
 var foro = require('./api/foro');
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 
 var sess = {
   secret: 'keyboard cat',
@@ -42,6 +36,10 @@ if (app.get('env') === 'production') {
 }
 
 app.use(session(sess));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

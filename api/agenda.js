@@ -13,10 +13,9 @@ exports.constructor = function (basee) {
 
 //FUNCION PARA INSERTAR UN NUEVO RECORDATORIO
 exports.insertReminder = function(req, res){
-	var database = new base();
 
-	var reminderTitle = req.body.formCalendarTitle ;
-	var reminderText  = req.body.formCalendarComment ;
+	var reminderTitle = req.body.formCalendarTitle;
+	var reminderText  = req.body.formCalendarComment;
 	var day = req.body.formCalendarDay;
 	var month = req.body.formCalendarMonth;
 	var year = req.body.formCalendarYear;
@@ -37,7 +36,7 @@ exports.insertReminder = function(req, res){
 					+ ' "' + reminderOwner + '");';
 	stringQuery += 'COMMIT;'
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log('Nuevo recordatorio insertado correctamente');
 			res.redirect('/calendar');
@@ -57,7 +56,6 @@ exports.insertReminder = function(req, res){
 
 //FUNCION PARA INSERTAR UNA NUEVA PUBLICACIÓN
 exports.insertPublication = function(req, res){
-	var database = new base();
 
 	var now = new Date();
 	var dd = now.getDate();
@@ -131,7 +129,7 @@ exports.insertPublication = function(req, res){
 
 	stringQuery += 'COMMIT;'
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log('Nueva Publicación insertada correctamente');
 			res.redirect('/calendar');
@@ -151,7 +149,6 @@ exports.insertPublication = function(req, res){
 
 // FUNCION PARA MOSTRAR MATERIAS DE PERFIL DE LA BASE DE DATOS
 exports.getProfileSubjectsDatabaseCalendar = function(req, res){
-	var database = new base();
 
 	//SI EL USUARIO ES TIPO PROFESOR
 	if(req.session.privilegio == 2){
@@ -174,7 +171,7 @@ exports.getProfileSubjectsDatabaseCalendar = function(req, res){
 					+ ' ORDER BY su.subjectName ASC;'
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringDataProfileCoursesCalendar = '';
 			for(var i in result){
@@ -193,7 +190,6 @@ exports.getProfileSubjectsDatabaseCalendar = function(req, res){
 
 // FUNCION PARA MOSTRAR RECORDATORIOS DEL USUARIO
 exports.getRemindersDatabase = function(req, res){
-	var database = new base();
 
 	stringQuery = 'SELECT idReminder, reminderTitle, reminderText,'
 				+ '	DATE_FORMAT(reminderDateTime, "%d/%m/%Y") AS reminderDate, DATE_FORMAT(reminderDateTime, "%H:%i") AS reminderTime,'
@@ -202,7 +198,7 @@ exports.getRemindersDatabase = function(req, res){
 				+ ' WHERE User_userEmail="' + req.session.datos[0].userEmail + '" '
 				+ ' ORDER BY reminderDateTime DESC; ';
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringDataReminders = '';
 			for(var i in result){
@@ -248,7 +244,6 @@ exports.getRemindersDatabase = function(req, res){
 
 // FUNCION PARA MOSTRAR PUBLICACIONES QUE HACE EL PROFESOR
 exports.getPublicationsDatabase = function(req, res){
-	var database = new base();
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
@@ -303,7 +298,7 @@ exports.getPublicationsDatabase = function(req, res){
 					+ ' GROUP BY idPublication ORDER BY pubDateTime DESC; ';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var publicationsData = '';
 
@@ -387,9 +382,8 @@ exports.getPublicationsDatabase = function(req, res){
 
 // FUNCION PARA MOSTRAR PUBLICACIONES QUE HACE EL PROFESOR
 exports.getPublicationAttachedFiles = function(req, res){
-	var database = new base();
 
-	var idPublication = req.query.idPublication;
+	var idPublication = req.params.id_publication;
 
 	stringQuery = 'SELECT pa.*, t.idTeacher '
 				+ '	FROM publicationAttachedFile AS pa '
@@ -399,7 +393,7 @@ exports.getPublicationAttachedFiles = function(req, res){
 				+ ' 	ON t.User_userEmail = p.Teacher_User_userEmail '
 				+ '	WHERE idPublication = "' + idPublication + '";';
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
                  
@@ -431,7 +425,7 @@ exports.getPublicationAttachedFiles = function(req, res){
 // FUNCION PARA DESCARGAR ARCHIVOS
 exports.downloadAttachment = function(req, res){
 
-	var directory = req.query.file;
+	var directory = req.params.id_file;
 	console.log(directory);
 
 	var file = 'C:/Users/Alex/Desktop/SMDE-Prototipos/public/publications/' + directory;

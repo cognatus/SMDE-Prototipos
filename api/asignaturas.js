@@ -5,14 +5,10 @@ exports.constructor = function (basee) {
 	base = basee;
 }
 
-/*
- * POST Methods.
- */
+/* POST Methods. */
 
 // FUNCION PARA MOSTRAR ASIGNATURAS/GRUPOS DEL USUARIO
 exports.getSubjectsCoursesDatabase = function(req, res){
-	var database = new base();
-
 	// SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
 		stringQuery = 'SELECT idSubject, idCourse, subjectName, courseName, departmentName, subjectLevel '
@@ -51,7 +47,7 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 					+ ' ORDER BY courseName ASC, subjectName ASC; ';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringDataCourses = '';
 			for(var i in result){
@@ -98,8 +94,6 @@ exports.getSubjectsCoursesDatabase = function(req, res){
 
 // FUNCION PARA INSERTAR ASIGNATURAS/GRUPOS
 exports.insertSubjectsCoursesSelfUser = function(req, res){
-	var database = new base();
-
 	var coursesInput = req.body.insertCoursesField;
 
 	//PRIMERO SEPARAMOS LOS CURSOS A INSCRIBIR
@@ -141,7 +135,7 @@ exports.insertSubjectsCoursesSelfUser = function(req, res){
 	}
 	stringQuery += 'COMMIT;'
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log(stringQuery);
 			res.redirect('/subjects');
