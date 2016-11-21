@@ -1,52 +1,62 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "socket.io@*",
-        "scope": null,
-        "escapedName": "socket.io",
-        "name": "socket.io",
-        "rawSpec": "*",
-        "spec": "*",
-        "type": "range"
-      },
-      "C:\\Users\\Alex\\Documents\\GitHub\\SMDE"
-    ]
+  "name": "socket.io-client",
+  "version": "1.5.0",
+  "keywords": [
+    "realtime",
+    "framework",
+    "websocket",
+    "tcp",
+    "events",
+    "client"
   ],
-  "_from": "socket.io@*",
-  "_id": "socket.io@1.6.0",
-  "_inCache": true,
-  "_location": "/socket.io",
-  "_nodeVersion": "4.4.7",
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/socket.io-1.6.0.tgz_1479612469487_0.3990815947763622"
-  },
-  "_npmUser": {
-    "name": "darrachequesne",
-    "email": "damien.arrachequesne@gmail.com"
-  },
-  "_npmVersion": "2.15.8",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "socket.io@*",
-    "scope": null,
-    "escapedName": "socket.io",
-    "name": "socket.io",
-    "rawSpec": "*",
-    "spec": "*",
-    "type": "range"
-  },
-  "_requiredBy": [
-    "/"
+  "main": "./lib/index",
+  "files": [
+    "lib/",
+    "socket.io.js"
   ],
-  "_resolved": "https://registry.npmjs.org/socket.io/-/socket.io-1.6.0.tgz",
-  "_shasum": "3e40d932637e6bd923981b25caf7c53e83b6e2e1",
-  "_shrinkwrap": null,
-  "_spec": "socket.io@*",
-  "_where": "C:\\Users\\Alex\\Documents\\GitHub\\SMDE",
-  "bugs": {
-    "url": "https://github.com/socketio/socket.io/issues"
+  "dependencies": {
+    "debug": "2.2.0",
+    "engine.io-client": "1.7.0",
+    "component-bind": "1.0.0",
+    "component-emitter": "1.2.0",
+    "object-component": "0.0.3",
+    "socket.io-parser": "2.2.6",
+    "has-binary": "0.1.7",
+    "indexof": "0.0.1",
+    "parseuri": "0.0.4",
+    "to-array": "0.1.4",
+    "backo2": "1.0.2"
+  },
+  "devDependencies": {
+    "babel-core": "6.4.5",
+    "babel-eslint": "4.1.7",
+    "babel-loader": "6.2.1",
+    "babel-preset-es2015": "6.3.13",
+    "base64-arraybuffer": "0.1.5",
+    "concat-stream": "1.5.1",
+    "derequire": "2.0.3",
+    "eslint-config-standard": "4.4.0",
+    "eslint-plugin-standard": "1.3.1",
+    "expect.js": "0.3.1",
+    "gulp": "3.9.0",
+    "gulp-eslint": "1.1.1",
+    "gulp-file": "0.2.0",
+    "gulp-istanbul": "0.10.3",
+    "gulp-mocha": "2.2.0",
+    "gulp-task-listing": "1.0.1",
+    "has-cors": "1.1.0",
+    "istanbul": "0.4.2",
+    "mocha": "2.3.4",
+    "socket.io": "1.5.0",
+    "text-blob-builder": "0.0.1",
+    "uglify-js": "2.6.1",
+    "webpack-stream": "3.1.0",
+    "zuul": "3.11.0",
+    "zuul-builder-webpack": "1.1.0",
+    "zuul-ngrok": "4.0.0"
+  },
+  "scripts": {
+    "test": "gulp test"
   },
   "contributors": [
     {
@@ -66,51 +76,30 @@
       "email": "einaros@gmail.com"
     }
   ],
-  "dependencies": {
-    "debug": "2.3.3",
-    "engine.io": "1.8.0",
-    "has-binary": "0.1.7",
-    "object-assign": "4.1.0",
-    "socket.io-adapter": "0.5.0",
-    "socket.io-client": "1.6.0",
-    "socket.io-parser": "2.3.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Automattic/socket.io-client.git"
   },
-  "description": "node.js realtime framework server",
-  "devDependencies": {
-    "babel-preset-es2015": "6.3.13",
-    "del": "2.2.0",
-    "expect.js": "0.3.1",
-    "gulp": "3.9.0",
-    "gulp-babel": "6.1.1",
-    "gulp-istanbul": "0.10.3",
-    "gulp-mocha": "2.2.0",
-    "gulp-task-listing": "1.0.1",
-    "istanbul": "0.4.1",
-    "mocha": "2.3.4",
-    "superagent": "1.6.1",
-    "supertest": "1.1.0"
-  },
-  "directories": {},
-  "dist": {
-    "shasum": "3e40d932637e6bd923981b25caf7c53e83b6e2e1",
-    "tarball": "https://registry.npmjs.org/socket.io/-/socket.io-1.6.0.tgz"
-  },
-  "files": [
-    "lib/"
-  ],
-  "gitHead": "57b386385e356e7a4607637e004ec8b4d960bca6",
-  "homepage": "https://github.com/socketio/socket.io#readme",
-  "keywords": [
-    "realtime",
-    "framework",
-    "websocket",
-    "tcp",
-    "events",
-    "socket",
-    "io"
-  ],
   "license": "MIT",
-  "main": "./lib/index",
+  "gitHead": "1738fcde4fd40f86cc91d4fb283abd03e6559c5d",
+  "description": "[![Build Status](https://secure.travis-ci.org/socketio/socket.io-client.svg?branch=master)](http://travis-ci.org/socketio/socket.io-client) [![Dependency Status](https://david-dm.org/socketio/socket.io-client.svg)](https://david-dm.org/socketio/socket.io-",
+  "bugs": {
+    "url": "https://github.com/Automattic/socket.io-client/issues"
+  },
+  "homepage": "https://github.com/Automattic/socket.io-client#readme",
+  "_id": "socket.io-client@1.5.0",
+  "_shasum": "08232d0adb5a665a7c24bd9796557a33f58f38ae",
+  "_from": "socket.io-client@1.5.0",
+  "_npmVersion": "2.15.8",
+  "_nodeVersion": "4.4.7",
+  "_npmUser": {
+    "name": "darrachequesne",
+    "email": "damien.arrachequesne@gmail.com"
+  },
+  "dist": {
+    "shasum": "08232d0adb5a665a7c24bd9796557a33f58f38ae",
+    "tarball": "https://registry.npmjs.org/socket.io-client/-/socket.io-client-1.5.0.tgz"
+  },
   "maintainers": [
     {
       "name": "darrachequesne",
@@ -121,15 +110,10 @@
       "email": "rauchg@gmail.com"
     }
   ],
-  "name": "socket.io",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/socketio/socket.io.git"
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/socket.io-client-1.5.0.tgz_1475792164753_0.8263115896843374"
   },
-  "scripts": {
-    "test": "gulp test"
-  },
-  "version": "1.6.0"
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/socket.io-client/-/socket.io-client-1.5.0.tgz"
 }
