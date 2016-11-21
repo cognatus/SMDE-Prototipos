@@ -107,5 +107,41 @@ router.route('/profile/publications/:id_publication')
 router.route('/download/:id_file')
 	.get(agenda.downloadAttachment);
 
+//Todo lo referente a la mensajeria
+router.route('/messages')
+	.get(mensajes.getLobbiesDatabase)
+	.post(mensajes.insertLobby);
+
+router.route('/messages/:id_lobby')
+	.get(mensajes.getLobbyById)
+	.post(mensajes.insertNewMessage);
+
+router.route('/contacts/admins')
+	.get(mensajes.getProfileContactsAdministratorsMsm);
+
+router.route('/contacts/students')
+	.get(mensajes.getProfileContactsStudentsMsm);
+
+router.route('/contacts/teachers')
+	.get(mensajes.getProfileContactsTeachersMsm);
+
+//Todo lo referente al foro
+router.route('/forum')
+	.get(foro.getForumTopics)
+	.post(foro.insertForumTopic);
+
+router.route('/forum/:id_topic')
+	.get(foro.getForumTopicCommentsCron)
+	.post(foro.insertForumTopicComment);
+
+router.route('/forum/:id_topic/:id_comment')
+	.get(foro.getForumTopicCommentReplies)
+	.post(foro.insertForumTopicCommentReply);
+
+router.route('/forum/:id_topic/:id_comment/like')
+	.post(foro.likeForumComment);
+
+router.route('/forum/:id_topic/:id_comment/:id_reply/like')
+	.post(foro.likeForumCommentReply);
 
 module.exports = router;

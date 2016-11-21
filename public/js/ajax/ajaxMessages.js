@@ -11,11 +11,8 @@ function selectLobby(lobby){
     container.empty();
     jQuery.ajax({
         method: 'GET',
-        url: 'getSelectedLobbyMessages',
+        url: 'api/messages/' + lobby,
         cache: false,
-        data: {
-            lobby: lobby
-        },
         success: function(data) {
             for(var i in data){
                 var msm = data[i];
@@ -52,7 +49,7 @@ function selectLobby(lobby){
                                         +       '</div>'
                                         +   '</div>'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="Yo" class="circle">'
+                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="Yo" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
                                         +   '</div>'
                                         + '</div>');
                     }
@@ -74,7 +71,7 @@ function selectLobby(lobby){
                     else{
                         container.append('<div class="colhh1 margin_bot msm_block">'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle">'
+                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
                                         +   '</div>'
                                         +   '<div class="msm_text">'
                                         +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
@@ -103,7 +100,7 @@ function selectLobby(lobby){
             /*alert('Altura: ' + jQuery('.msmscrollflag').height());*/
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
     });
 }
@@ -139,7 +136,7 @@ socket.on('mostrar', function(data){
     else{
         container.append('<div class="colhh1 margin_bot msm_block">'
                         +   '<div class="msm_img">'
-                        +       '<img src="profile_photos/' + data.userPhoto + '.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle">'
+                        +       '<img src="profile_photos/' + data.userPhoto + '.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
                         +   '</div>'
                         +   '<div class="msm_text">'
                         +       '<div class="colhh1 autooverflow">'
@@ -175,7 +172,7 @@ socket.on('mostrar', function(data){
 function showLobbies(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getLobbiesDatabase',
+        url: 'api/messages',
         cache: true,
         success: function(data) {
             if(data.length > 0){
@@ -195,7 +192,7 @@ function showLobbies(){
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -204,13 +201,13 @@ function showLobbies(){
 function showContactsAdministratorsMsm(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileContactsAdministratorsMsm',
+        url: 'api/contacts/admins',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .admins').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
         
     });
@@ -219,7 +216,7 @@ function showContactsAdministratorsMsm(){
 function showContactsStudentsMsm(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getProfileContactsStudentsMsm',
+        url: 'api/contacts/students',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .students').html(data);
@@ -235,19 +232,19 @@ function showContactsTeachersMsm(){
     stringDataTeachers = '';
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileContactsTeachersMsm',
+        url: 'api/contacts/teachers',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .teachers').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
            
     });
 }
 
-function enviarMsg(){
+function enviarMsg(lobby){
 
     var date = new Date();
     var hh = date.getHours();
@@ -256,7 +253,6 @@ function enviarMsg(){
     if( mm < 10 ){ mm = '0' + mm; }
     var currentTime = hh + ':' + mm;
 
-    var lobbyScope = jQuery('#lobbyScope').val();
     var msmText = jQuery('#newmsm').val();
 
     if(msmText != null && msmText.trim() != ''){
@@ -274,10 +270,9 @@ function enviarMsg(){
 
         jQuery.ajax({ 
             type: 'post',
-            url: '/insertNewMessage',
+            url: 'api/mensajes/' + lobby,
             data: {
                 messageBody : jQuery('#newmsm').val(),
-                lobbyBody : jQuery('#lobbyScope').val()
             },
             success: function(data) {
                 jQuery('#newmsm').focus().val('');
@@ -322,7 +317,7 @@ function enviarMsg(){
                             +       '</div>'
                             +   '</div>'
                             +   '<div class="msm_img">'
-                            +       '<img src="profile_photos/' + sessionUserPhoto + '.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUser + '" class="circle">'
+                            +       '<img src="profile_photos/' + sessionUserPhoto + '.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUser + '" class="circle" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
                             +   '</div>'
                             + '</div>');
         }
@@ -381,7 +376,7 @@ jQuery(document).ready(function(){
         event.preventDefault();
 
         if(jQuery(this).find('input#lobbyScope').val() != null && jQuery(this).find('input#lobbyScope').val().trim() != ''){
-            enviarMsg();
+            enviarMsg(jQuery(this).find('input#lobbyScope').val());
         }
         else{
             alert('Seleccione una conversación')
@@ -534,7 +529,7 @@ function addUsersToLobby(){
         var html = '<div data-email="' + email + '" class="msm_sendtocontact rel_pos" title="Quitar">'
                     + '<div class="msm_sendtoremove">'
                     + '<div class="bg_opacity bg_cross circle"></div>'
-                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle"/>'
+                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle"/ onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;">'
                     + '<div class="name bgprimary_colorDarker white_text v_middle">' + name + '</div>'
                     + '</div>';
 

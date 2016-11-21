@@ -37,6 +37,10 @@ if (app.get('env') === 'production') {
 
 app.use(session(sess));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -46,10 +50,6 @@ app.use(favicon(__dirname + '/icon.png'));
 
 app.use(vistas);
 app.use('/api', api);
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 
 //variable global para jalar directorios
 global.__base = __dirname;

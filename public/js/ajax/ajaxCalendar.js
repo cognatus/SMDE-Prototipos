@@ -80,7 +80,7 @@ function showReminders(){
             jQuery('#remindlist_container').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
     });
 }
@@ -120,7 +120,7 @@ function showPublications(){
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
     });
 }
@@ -134,7 +134,7 @@ function showSubjectsCourses(){
             jQuery('#showCoursesPost').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
     });
 }
@@ -158,7 +158,7 @@ function downloadAttachment(file){
             console.log('Success');
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            alert('error ' + textStatus + " " + errorThrown);
+            alert(textStatus + ' ' + errorThrown);
         }
     });*/
 }

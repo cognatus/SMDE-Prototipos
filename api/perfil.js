@@ -169,7 +169,7 @@ exports.getProfileContactsAdministrators = function(req, res){
                 var item = result[i];
                 stringDataAdmins += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Administrador">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -266,7 +266,7 @@ exports.getProfileContactsStudents = function(req, res){
                 var item = result[i];
          stringDataStudents += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Alumno">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -381,7 +381,7 @@ exports.getProfileContactsTeachers = function(req, res){
                 var item = result[i];
                 stringDataTeachers += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Profesor">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'

@@ -192,9 +192,9 @@ exports.getLobbiesDatabase = function(req, res){
 };
 
 //FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
-exports.getSelectedLobbyMessages = function(req, res){
+exports.getLobbyById = function(req, res){
 
-	var lobby = req.query.lobby;
+	var lobby = req.params.id_lobby;
 
 	stringQuery = 'SELECT idMessage, messageText,'
 				+ ' 	DATE_FORMAT(messageDateTime, "%d/%m/%Y") AS messageDate,'

@@ -32,18 +32,18 @@ html
 		- var background = datos[0].photoName 
 		style.
 			.profile_img{
-				background-image: url('profile_backgrounds/#{background}.png'), url('http://localhost:3000/images/profilebackground.jpg');
+				background-image: url('profile_backgrounds/#{background}.png'), url('/images/profilebackground.jpg');
 			}
 
 	body(class=bodyClass)
 
 		#menu.menu_grid.bg_white
 			.colhh1.menu_userbg.center_text
-				img.background(src='http://localhost:3000/profile_backgrounds/'+ datos[0].photoName +'.png' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilebackground.jpg"')
+				img.background(src='/profile_backgrounds/'+ datos[0].photoName +'.png' onerror='this.onerror=null;this.src="/images/profilebackground.jpg"')
 				.bg_opacity
 					.menu_userimg
 						a( href='/profile' )
-							img.circle.flat_shadow(src='http://localhost:3000/profile_photos/'+ datos[0].photoName +'.png' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilephoto.png"')
+							img.circle.flat_shadow(src='/profile_photos/'+ datos[0].photoName +'.png' onerror='this.onerror=null;this.src="/images/profilephoto.png"')
 					.colhh1.menu_username
 						a( href='/profile' )
 							.pd_16 #{datos[0].userName} #{datos[0].userLastName} #{datos[0].userSecondLastName}
@@ -52,47 +52,47 @@ html
 				.pd_tb_10.border_bottom
 					a( href='/home' )
 						.opc.hover
-							span( style='background-image: url("http://localhost:3000/images/home.png")' )
+							span( style='background-image: url("/images/home.png")' )
 							label Inicio
 					if (privilegio == 1 || privilegio == 2)
 						a( href='/subjects' )
 							.opc.hover
-								span( style='background-image: url("http://localhost:3000/images/book-multiple.png")' )
+								span( style='background-image: url("/images/book-multiple.png")' )
 								label Asignaturas
 					a( href='/calendar' )
 						.opc.hover
-							span( style='background-image: url("http://localhost:3000/images/calendar.png")' )
+							span( style='background-image: url("/images/calendar.png")' )
 							label Agenda
 					a( href='/messages' )
 						.opc.hover
-							span( style='background-image: url("http://localhost:3000/images/email.png")' )
+							span( style='background-image: url("/images/email.png")' )
 							label Mensajes
 					if (privilegio == 1 || privilegio == 2)
 						a( href='/contents' )
 							.opc.hover
-								span( style='background-image: url("http://localhost:3000/images/book-open.png")' )
+								span( style='background-image: url("/images/book-open.png")' )
 								label Contenidos
 						a( href='/foro' )
 							.opc.hover
-								span( style='background-image: url("http://localhost:3000/images/forum.png")' )
+								span( style='background-image: url("/images/forum.png")' )
 								label Foro
 					if (privilegio == 3)
 						a( href='/management' )
 							.opc.hover
-								span( style='background-image: url("http://localhost:3000/images/laptop.png")' )
+								span( style='background-image: url("/images/laptop.png")' )
 								label Gestión
 					a( href='/profile' )
 						.opc.hover
-							span( style='background-image: url("http://localhost:3000/images/account-circle.png")' )
+							span( style='background-image: url("/images/account-circle.png")' )
 							label Perfil
 				.pd_tb_10
 					a( href='/settings' )
 						.opc.hover
-							span( style='background-image: url("http://localhost:3000/images/settings.png")' )
+							span( style='background-image: url("/images/settings.png")' )
 							label Ajustes
 					a( href='/logout' )
 						.opc.hover
-							span( style='background-image: url("http://localhost:3000/images/logout.png")' )
+							span( style='background-image: url("/images/logout.png")' )
 							label Cerrar sesión		
 		.back_menu
 		.body_container
@@ -112,12 +112,12 @@ html
 						.bg_lightgray
 							.pd_12.ll_title.notif_title Notificaciones
 								a(href='/settings')
-									span#notif_settings_icon.title_rightoptionicon.circle(style='background-image: url("http://localhost:3000/images/settings.png")' title='Configuración')
+									span#notif_settings_icon.title_rightoptionicon.circle(style='background-image: url("/images/settings.png")' title='Configuración')
 					.colhh1.notifscroll.listcontainer
 						.colhh1.empty_blocktext.center_text
 							.centerempty
 								.pd_64
-									span.v_middle(style= 'background-image: url("http://localhost:3000/images/bell-off.png")')
+									span.v_middle(style= 'background-image: url("/images/bell-off.png")')
 									.autocol.mm_title.pd_12 No tienes notificaciones.
 									.ll_title.normal_txt Tus notificaciones apareceran aqui.
 						//- .colhh1.notif_listcontainer

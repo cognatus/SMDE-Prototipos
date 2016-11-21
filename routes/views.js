@@ -36,7 +36,7 @@ router.route('/login')
 	.post(admin.login);
 
 router.route('/logout')
-	.post(admin.logout);
+	.get(admin.logout);
 
 router.route('/home')
 	.get(users.login, function(req, res){
