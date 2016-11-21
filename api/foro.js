@@ -432,19 +432,7 @@ exports.getForumTopicCommentsCron = function(req, res){
 				+ '</div>';
             }
 
-            if(stringDataForumComment == ''){
-            	stringDataForumComment = 'Elefante';
-            }
-
-            console.log(stringDataForumComment)
-
-			res.render('forumtopic', {
-				idForo: forumTopicSelectedId,
-				title: 'SMDE - Foro',
-				datos:  req.session.datos,
-    			privilegio:  req.session.privilegio, 
-				comments: stringDataForumComment
-			});
+            res.send(stringDataForumComment);
 
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )

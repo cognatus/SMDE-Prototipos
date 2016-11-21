@@ -57,10 +57,10 @@ router.route('/users/teachers/:id_teacher/subjects')
 
 
 //Todo referente al perfil
-router.route('/profile/setProfileTheme')
+router.route('/profile/theme')
 	.post(perfil.setProfileTheme);
 
-router.route('/profile/setProfileMsmColor')
+router.route('/profile/msmcolor')
 	.post(perfil.setProfileMsmColor);
 
 router.route('/profile/subjects')
