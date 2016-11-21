@@ -29,7 +29,7 @@ exports.insertForumTopic = function(req, res){
 				errorTitle: 'Error al crear Tema en el Foro',
 				errorItem: ['-  El tema no puede estar en blanco',
 				'-  La descripción no puede estar en blanco'],
-				backUrl: '/foro'
+				backUrl: '/forum'
 			}
 		});
 	}
@@ -44,7 +44,7 @@ exports.insertForumTopic = function(req, res){
 					errorTitle: 'Error al crear Tema en el Foro',
 					errorItem: ['-  Problemas con el servidor',
 					'-  Intentelo de nuevo mas tarde'],
-					backUrl: '/foro'
+					backUrl: '/forum'
 				}
 			});
 		}
@@ -69,14 +69,14 @@ exports.insertForumTopicComment = function(req, res){
 
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.redirect('/forum');
+			res.redirect('/forum/' + req.params.id_topic);
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
 					errorTitle: 'Error al insertar Commentario',
 					errorItem: ['-  El comentario no puede estar en blanco'],
-					backUrl: '/foro'
+					backUrl: '/forum/' + req.params.id_topic
 				}
 			});
 		}
@@ -101,14 +101,14 @@ exports.insertForumTopicCommentReply = function(req, res){
 
 	base.query(stringQuery, function(error, result, row){
 		if(!error) {
-			res.redirect('/forum');
+			res.redirect('/forum/' + req.params.id_topic);
 		}else{
 			console.log('Error aqui: ' + stringQuery + ' Error: ' + error )
 			res.render('error' , {
 				errorData: {
 					errorTitle: 'Error al insertar Commentario',
 					errorItem: ['-  El comentario no puede estar en blanco'],
-					backUrl: '/foro'
+					backUrl: '/forum'
 				}
 			});
 		}
@@ -166,7 +166,7 @@ exports.likeForumComment = function(req, res){
 				errorData: {
 					errorTitle: 'Error al dar Me gusta',
 					errorItem: ['-  Problemas con el servidor'],
-					backUrl: '/foro'
+					backUrl: '/forum'
 				}
 			});
 		}
@@ -224,7 +224,7 @@ exports.likeForumCommentReply = function(req, res){
 				errorData: {
 					errorTitle: 'Error al dar Me gusta',
 					errorItem: ['-  Problemas con el servidor'],
-					backUrl: '/foro'
+					backUrl: '/forum'
 				}
 			});
 		}
@@ -422,7 +422,7 @@ exports.getForumTopicCommentsCron = function(req, res){
 	      					+	'<div class="forum_repliescontainerinner"></div>'
 	      					+ '</div>'
 	      					+ '<form class="colhh1 flat_input reply_form rel_pos">'
-	      						+ '<img class="circle" src="profile_photos/' + req.session.datos[0].photoName + '.png"></img>'
+	      						+ '<img class="circle" src="profile_photos/' + req.session.datos[0].photoName + '.png" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;"></img>'
 	        					+ '<textarea name="forumReplyText" type="text" placeholder="Escribe una Respuesta"></textarea>'
 	        					+ '<input type="hidden" name="forumCommentId" value="' + item.idForumComment + '">'
 	        					+ '<input type="submit" value="PUBLICAR" disabled="disabled" class="b_text opacity_color rippleria-dark"/>'
