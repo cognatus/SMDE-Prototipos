@@ -13,13 +13,14 @@ function displayData(){
     showSubjects();
     showDepartments();
     showCourses();
+    showSubjectsCourses();
     jQuery('.mgm_listcontainer .load_container').hide();
 }
 
 function showAdmins(){
 	jQuery.ajax({
         type: 'GET',
-        url: 'getAdministratorsDatabase',
+        url: 'api/users/admins',
         cache: false,
         success: function(data) {
             jQuery('#managementData .admins').html(data);
@@ -34,7 +35,7 @@ function showAdmins(){
 function showStudents(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getStudentsDatabase',
+        url: 'api/users/students',
         cache: false,
         success: function(data) {
             jQuery('#managementData .students').html(data);
@@ -46,11 +47,8 @@ function showStudents(){
                 var stuId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'getStudentsSubjectsDatabase',
+                    url: 'api/users/students/' + stuId + '/subjects',
                     cache: true,
-                    data: {
-                        studentEmail: stuId
-                    },
                     success: function(data2) {
                         button.hide();
                         if(data2.length > 0){
@@ -78,7 +76,7 @@ function showStudents(){
 function showTeachers(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getTeachersDatabase',
+        url: 'api/users/teachers',
         cache: false,
         success: function(data) {
             jQuery('#managementData .teachers').html(data);
@@ -90,11 +88,8 @@ function showTeachers(){
                 var teaId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'getTeachersSubjectsDatabase',
+                    url: 'api/users/teachers/' + teaId + '/subjects',
                     cache: true,
-                    data: {
-                        teacherEmail: teaId
-                    },
                     success: function(data2) {
                         button.hide();
                         if(data2.length > 0){
@@ -122,7 +117,7 @@ function showTeachers(){
 function showDepartments(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getDepartmentsDatabase',
+        url: 'api/depts',
         cache: false,
         success: function(data) {
             jQuery('#managementData .departments').html(data);
@@ -137,7 +132,7 @@ function showDepartments(){
 function showSubjects(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getSubjectsDatabase',
+        url: 'api/subjects',
         cache: false,
         success: function(data) {
             jQuery('#managementData .subjects').html(data);
@@ -152,10 +147,25 @@ function showSubjects(){
 function showCourses(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getCoursesDatabase',
+        url: 'api/groups',
         cache: false,
         success: function(data) {
             jQuery('#managementData .groups').html(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log('Error: ' + textStatus + " " + errorThrown);
+        }
+        
+    });
+}
+
+function showSubjectsCourses(){
+    jQuery.ajax({
+        type: 'GET',
+        url: 'api/courses',
+        cache: false,
+        success: function(data) {
+            jQuery('#managementData .courses').html(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('Error: ' + textStatus + " " + errorThrown);

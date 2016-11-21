@@ -14,7 +14,7 @@ jQuery(document).on('ready', function(){
 function showContactsAdministrators(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileContactsAdministrators',
+        url: 'api/profile/admins',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .admins').html(data);
@@ -29,7 +29,7 @@ function showContactsAdministrators(){
 function showContactsStudents(){
     jQuery.ajax({
         type: 'GET',
-        url: 'getProfileContactsStudents',
+        url: 'api/profile/students',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .students').html(data);
@@ -41,11 +41,8 @@ function showContactsStudents(){
                 var stuId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'getStudentCoincidences',
+                    url: 'api/profile/students/' + stuId + '/subjects' ,
                     cache: true,
-                    data: {
-                        studentEmail: stuId
-                    },
                     success: function(data2) {
                         button.hide();
                         container.append(data2);
@@ -68,7 +65,7 @@ function showContactsStudents(){
 function showContactsTeachers(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileContactsTeachers',
+        url: 'api/profile/teachers',
         cache: true,
         success: function(data) {
             jQuery('#profilecontacts_list .teachers').html(data);
@@ -80,11 +77,8 @@ function showContactsTeachers(){
                 var teaId = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'getTeacherCoincidences',
+                    url: 'api/profile/teachers/' + teaId +  '/subjects',
                     cache: true,
-                    data: {
-                        teacherEmail: teaId
-                    },
                     success: function(data2) {
                         button.hide();
                         container.append(data2);
@@ -107,7 +101,7 @@ function showContactsTeachers(){
 function showProfileSubjects(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileSubjectsDatabase',
+        url: 'api/profile/subjects',
         cache: true,
         success: function(data) {
             jQuery('#profilecourses_list').html(data);
@@ -129,7 +123,7 @@ function showProfileSubjects(){
 function showCoursesToAdd(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getSubjectsCoursesDatabase',
+        url: 'api/profile/availablecourses',
         cache: true,
         success: function(data) {
             jQuery('#new_subjects #coursesToAdd').html(data);

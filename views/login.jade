@@ -26,7 +26,9 @@ html
 						.ml_title.normal_txt Inicia Sesión
 					.colhh1.center_text.loginimg
 						img.circle(src='images/accountlogin.png')
-					form.colhh1(action='login', method='post')
+					if (errorMessage != undefined)
+						.pd_16.txt_red #{errorMessage}
+					form.colhh1(action='login', method='POST')
 						.sign_field.pd_tb_10.rel_pos
 							img( src='images/account.png' )
 							input.textfield.txtprimary_color.borad( type='email' , name='sign_user' , placeholder='Usuario' , required autocomplete='off')

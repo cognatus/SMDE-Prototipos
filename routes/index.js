@@ -1,89 +1,93 @@
+var express = require('express');
+var app = express();
+var router = express.Router();
 
-/*
- * GET home page.
- */
+var admin = require('../api/admin');
+var agenda = require('../api/agenda');
+var asignaturas = require('../api/asignaturas');
+var foro = require('../api/foro');
+var mensajes = require('../api/mensajes');
+var perfil = require('../api/perfil');
 
-exports.index = function(req, res){
-  res.render('index', { title: 'SMDE' });
-};
+/* GET home page. */
 
-exports.login = function(req, res){
-  res.render('login', { title: 'SMDE - Iniciar Sesión' });
-};
+// Middleware para usar en todas las peticiones
+router.use(function(req, res, next) {
+	console.log('----------- Peticion a api ------------');
+	next();
+});
 
-exports.main = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('main', { 
-    title: 'SMDE - Inicio',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.get('/', function(req, res) {
+    res.json({ message: 'Bienvenido a SMDE prro' });   
+});
 
-exports.profile = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('profile', { 
-    title: 'SMDE - Perfil',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+// Todo lo referente a la gestion
+router.route('/users/admins')
+	.get(admin.getAdministratorsDatabase);
 
-exports.subjects = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('subjects', { 
-    title: 'SMDE - Asignaturas',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/users/students')
+	.get(admin.getStudentsDatabase)
+	.post(admin.insertStudent);
 
-exports.contents = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('contents', { 
-    title: 'SMDE - Contenidos',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/users/teachers')
+	.get(admin.getTeachersDatabase)
+	.post(admin.insertTeacher);
 
-exports.messages = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('messages', { 
-    title: 'SMDE - Mensajes',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/subjects')
+	.get(admin.getSubjectsDatabase)
+	.post(admin.insertSubject);
 
-exports.foro = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('foro', { 
-    title: 'SMDE - Foro',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/depts')
+	.get(admin.getDepartmentsDatabase)
+	.post(admin.insertDept);
 
-exports.settings = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('settings', { 
-    title: 'SMDE - Ajustes',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/groups')
+	.get(admin.getCoursesDatabase)
+	.post(admin.insertCourse);
 
-exports.calendar = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('calendar', { 
-    title: 'SMDE - Agenda',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/courses')
+	.get(admin.getSubjectsCoursesDatabase)
+	.post(admin.insertSubjectCourse);
 
-exports.management = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('management', { 
-    title: 'SMDE - Gestion',
-    datos:  req.session.datos,
-    privilegio:  req.session.privilegio });
-};
+router.route('/users/students/:id_student/subjects')
+	.get(admin.getStudentsSubjectsDatabase);
 
-exports.error = function(req, res){
-  /*console.log(req.session.datos);*/
-  res.render('error', { title: 'SMDE' });
-};
+router.route('/users/teachers/:id_teacher/subjects')
+	.get(admin.getTeachersSubjectsDatabase);
+
+
+//Todo referente al perfil
+router.route('/profile/setProfileTheme')
+	.post(perfil.setProfileTheme);
+
+router.route('/profile/setProfileMsmColor')
+	.post(perfil.setProfileMsmColor);
+
+router.route('/profile/subjects')
+	.get(perfil.getProfileSubjectsDatabase);
+
+router.route('/profile/admins')
+	.get(perfil.getProfileContactsAdministrators);
+
+router.route('/profile/students')
+	.get(perfil.getProfileContactsStudents);
+
+router.route('/profile/teachers')
+	.get(perfil.getProfileContactsTeachers);
+
+router.route('/profile/students/:id_student/subjects')
+	.get(perfil.getStudentCoincidences);
+
+router.route('/profile/teachers/:id_teacher/subjects')
+	.get(perfil.getTeacherCoincidences);
+
+router.route('/profile/updatephotos')
+	.post(perfil.updateProfilePhotos);
+
+//Todo referente a la vista de Asignaturas
+router.route('/profile/availablecourses')
+	.get(asignaturas.getSubjectsCoursesDatabase)
+	.post(asignaturas.insertSubjectsCoursesSelfUser);
+
+
+module.exports = router;

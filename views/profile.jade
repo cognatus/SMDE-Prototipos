@@ -13,7 +13,7 @@ block content
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Editar Perfil
-				form.colhh1.hb_formcontainer(action='updateProfilePhotos', method='POST', , enctype="multipart/form-data")
+				form.colhh1.hb_formcontainer(action='api/profile/updatephotos', method='POST', , enctype="multipart/form-data")
 					#new_profileback.colhh1.profile_bgcont
 						#p_back.colhh1.profile_img.inbox_shadow
 							.f_select.pd_18.autooverflow
@@ -48,7 +48,7 @@ block content
 				.block_container.bg_white.profile_bgcont.rel_pos
 					.colhh1.profile_img
 						.photo
-							img.circle.flat_shadow(src='profile_photos/'+ datos[0].photoName +'.png')
+							img.circle.flat_shadow(src='http://localhost:3000/profile_photos/'+ datos[0].photoName +'.png' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilephoto.png"')
 					.pd_24
 						.colhh1
 							.name
