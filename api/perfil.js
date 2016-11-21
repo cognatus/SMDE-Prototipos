@@ -8,7 +8,6 @@ exports.constructor = function (basee) {
 }
 
 exports.setProfileTheme = function(req, res){
-	var database = new base();
 	var theme = req.session.datos[0].darkTheme;
 
 	if(theme == 0){
@@ -22,7 +21,7 @@ exports.setProfileTheme = function(req, res){
 		req.session.datos[0].darkTheme = 0;
 	}
 	
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log('Cambio de tema correctamente');
 			res.redirect('/settings');
@@ -34,14 +33,13 @@ exports.setProfileTheme = function(req, res){
 };
 
 exports.setProfileMsmColor = function(req, res){
-	var database = new base();
 	var msmColor = req.body.msmValueColor;
 
 	stringQuery = 'UPDATE User SET msmColor="' + msmColor + '"'
 	+ ' WHERE userEmail="' + req.session.datos[0].userEmail + '";';
 	req.session.datos[0].msmColor = msmColor;
 	
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			console.log('Cambio de color correcto');
 			res.redirect('/settings');
@@ -54,7 +52,6 @@ exports.setProfileMsmColor = function(req, res){
 
 // FUNCION PARA MOSTRAR MATERIAS DE PERFIL DE LA BASE DE DATOS
 exports.getProfileSubjectsDatabase = function(req, res){
-	var database = new base();
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
@@ -97,7 +94,7 @@ exports.getProfileSubjectsDatabase = function(req, res){
 					+ ' ORDER BY su.subjectName ASC;'
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringDataProfileCourses = '';
 			for(var i in result){
@@ -157,7 +154,6 @@ exports.getProfileSubjectsDatabase = function(req, res){
 
 // FUNCION PARA MOSTRAR CONTACTOS (ADMINITRADORES)
 exports.getProfileContactsAdministrators = function(req, res){
-	var database = new base();
 
 	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, photoName '
 				+ ' FROM User AS u'
@@ -166,14 +162,14 @@ exports.getProfileContactsAdministrators = function(req, res){
 				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '" '
 				+ ' AND u.userEmail != "' + req.session.datos[0].userEmail + '";' ;
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringDataAdmins = '';
 			for(var i in result){
                 var item = result[i];
                 stringDataAdmins += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Administrador">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -210,7 +206,6 @@ exports.getProfileContactsAdministrators = function(req, res){
 
 // FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)
 exports.getProfileContactsStudents = function(req, res){
-	var database = new base();
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(	req.session.privilegio == 1	){
@@ -264,14 +259,14 @@ exports.getProfileContactsStudents = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringDataStudents = '';
 			for(var i in result){
                 var item = result[i];
          stringDataStudents += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Alumno">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -326,7 +321,6 @@ exports.getProfileContactsStudents = function(req, res){
 
 // FUNCION PARA MOSTRAR CONTACTOS (PROFESORES)
 exports.getProfileContactsTeachers = function(req, res){
-	var database = new base();
 
 	//SI EL USUARIO ES TIPO AlUMNO
 	if(req.session.privilegio == 1){
@@ -380,14 +374,14 @@ exports.getProfileContactsTeachers = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	}
 	
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringDataTeachers = '';
 			for(var i in result){
                 var item = result[i];
                 stringDataTeachers += '<div class="colhh1 block_container bg_white" data-name="' + item.userName + ' ' + item.userLastName + ' ' + item.userSecondLastName + '" data-type="Profesor">' 
                             +   '<div class="colhh1 listitem rel_pos">'
-                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png"></img></div>'
+                            +       '<div class="listitem_img"><img src="profile_photos/' + item.photoName + '.png" onerror="this.onerror=null;this.src=&quot;http://localhost:3000/images/profilephoto.png&quot;"></img></div>'
                             +       '<div class="listitem_info">'
                             +			'<div title="Opciones" class="minimenu_container">'
 							+				'<div class="minimenu"><span></span><span></span><span></span></div>'
@@ -440,8 +434,7 @@ exports.getProfileContactsTeachers = function(req, res){
 
 // FUNCION PARA MOSTRAR COINCIDENCIAS (ESTUDIANTES)
 exports.getStudentCoincidences = function(req, res){
-	var database = new base();
-	var studentEmail = req.query.studentEmail;
+	var studentEmail = req.params.id_student;
 	
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
@@ -485,7 +478,7 @@ exports.getStudentCoincidences = function(req, res){
 					+ '	AND s.User_userEmail = "' + studentEmail + '"; ';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var	stringDataCoincidences = '';
 			for(var i in result){
@@ -509,8 +502,7 @@ exports.getStudentCoincidences = function(req, res){
 
 // FUNCION PARA MOSTRAR COINCIDENCIAS (PROFESORES)
 exports.getTeacherCoincidences = function(req, res){
-	var database = new base();
-	var teacherEmail = req.query.teacherEmail;
+	var teacherEmail = req.params.id_teacher;
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(req.session.privilegio == 1){
@@ -554,7 +546,7 @@ exports.getTeacherCoincidences = function(req, res){
 					+ '	AND t.User_userEmail = "' + teacherEmail + '"; ';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var	stringDataCoincidences = '';
 			for(var i in result){
@@ -583,22 +575,17 @@ exports.updateProfilePhotos = function(req, res){
 
 	console.log(__base + "/public/profile_back/" + nameImage + ".jpg");	
 	if( backImage.originalFilename != '' ){
-
 		var readableStream = fs.createReadStream(backImage.path);
 		var writableStream = fs.createWriteStream(__base + "/public/profile_backgrounds/" + nameImage + ".png");
 
 		readableStream.pipe(writableStream, {end: false});
-
-		res.redirect('/profile');
 	}
 
 	if( profileImage.originalFilename != '' ){
-
 		var readableStream = fs.createReadStream(profileImage.path);
 		var writableStream = fs.createWriteStream(__base + "/public/profile_photos/" + nameImage + ".png");
 
 		readableStream.pipe(writableStream, {end: false});
-
-		res.redirect('/profile');
 	}
+	res.redirect('/profile');
  };

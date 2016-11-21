@@ -89,5 +89,23 @@ router.route('/profile/availablecourses')
 	.get(asignaturas.getSubjectsCoursesDatabase)
 	.post(asignaturas.insertSubjectsCoursesSelfUser);
 
+// Todo referente a la agenda
+router.route('/profile/calendar/subjects')
+	.get(agenda.getProfileSubjectsDatabaseCalendar);
+
+router.route('/profile/reminders')
+	.get(agenda.getRemindersDatabase)
+	.post(agenda.insertReminder);
+
+router.route('/profile/publications')
+	.get(agenda.getPublicationsDatabase)
+	.post(agenda.insertPublication);
+
+router.route('/profile/publications/:id_publication')
+	.get(agenda.getPublicationAttachedFiles);
+
+router.route('/download/:id_file')
+	.get(agenda.downloadAttachment);
+
 
 module.exports = router;

@@ -48,11 +48,11 @@ jQuery(document).ready(function(){
     jQuery('#selectCalendarPostType').on('change', function(){
         var thisVal = jQuery(this).val();
         if (thisVal == 'reminder'){
-            jQuery('form#calendarAddNew').attr('action', 'insertReminder');
+            jQuery('form#calendarAddNew').attr('action', 'api/profile/reminders');
             jQuery('#showCourseToPost, #showAttFiles').hide();
         }
         if (thisVal == 'publication'){
-            jQuery('form#calendarAddNew').attr('action', 'insertPublication');
+            jQuery('form#calendarAddNew').attr('action', 'api/profile/publications');
             jQuery('#showCourseToPost, #showAttFiles').fadeIn();
         }
     });
@@ -74,7 +74,7 @@ function showReminders(){
     stringDataReminders = '';
     jQuery.ajax({
         method: 'GET',
-        url: 'getRemindersDatabase',
+        url: 'api/profile/reminders',
         cache: true,
         success: function(data) {
             jQuery('#remindlist_container').html(data);
@@ -88,7 +88,7 @@ function showReminders(){
 function showPublications(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getPublicationsDatabase',
+        url: 'api/profile/publications',
         cache: true,
         success: function(data) {
             jQuery('#publiclist_container').html(data);
@@ -101,11 +101,8 @@ function showPublications(){
                 var idPub = button.attr('data-id');
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'getPublicationAttachedFiles',
+                    url: 'api/profile/publications/' + idPub,
                     cache: true,
-                    data: {
-                        idPublication: idPub
-                    },
                     success: function(data2) {
                         button.hide();
                         if(data2.length > 0){
@@ -131,7 +128,7 @@ function showPublications(){
 function showSubjectsCourses(){
     jQuery.ajax({
         method: 'GET',
-        url: 'getProfileSubjectsDatabaseCalendar',
+        url: 'api/profile/calendar/subjects',
         cache: true,
         success: function(data) {
             jQuery('#showCoursesPost').html(data);
@@ -152,7 +149,7 @@ function downloadAttachment(file){
     /*alert('Archivo: ' + file);
     jQuery.ajax({
         method: 'GET',
-        url: 'downloadAttachment',
+        url: 'api/downloadAttachment',
         cache: false,
         data: {
             file: file

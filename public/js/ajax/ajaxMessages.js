@@ -502,7 +502,7 @@ jQuery(document).ready(function(){
             var title = jQuery(this).attr('data-name');
             var title2 = jQuery(this).attr('data-title');
             var cloneImg = jQuery(this).find('.listitem_img').html();
-            if( jQuery(window).width() < 1120 ){
+            if( jQuery(window).width() < 1024 ){
                 jQuery('.block_containermsm').animate({ scrollLeft: jQuery('.halfgrid').width() });
                 jQuery('#new_item').hide();
             }

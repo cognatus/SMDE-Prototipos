@@ -8,7 +8,6 @@ exports.constructor = function (basee) {
 }
 
 exports.insertLobby = function(req, res){
-	var database = new base();
 
 	var now = new Date();
 	var dd = now.getDate();
@@ -65,7 +64,7 @@ exports.insertLobby = function(req, res){
 		});
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.redirect('/messages');
 		}else{
@@ -83,7 +82,6 @@ exports.insertLobby = function(req, res){
 
 //FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
 exports.insertNewMessage = function(req, res){
-	var database = new base();
 
 	var lobby = req.body.lobbyBody;
 	var msmText = req.body.messageBody;
@@ -99,7 +97,7 @@ exports.insertNewMessage = function(req, res){
 					+ ' "' + req.session.datos[0].userEmail + '");';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			res.redirect('/messages');
 		}else{
@@ -111,7 +109,6 @@ exports.insertNewMessage = function(req, res){
 
 //FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
 exports.getLobbiesDatabase = function(req, res){
-	var database = new base();
 
 	stringQuery = 'SELECT idLobby, DATE_FORMAT(m.messageDateTime, "%d/%m/%Y") AS lobbyDate,'
 				+ ' DATE_FORMAT(m.messageDateTime, "%H:%i") AS lobbyHour, m.messageText AS lastMsm, u2.userEmail AS lastSenderEmail, u2.userName AS lastSenderName,'
@@ -142,7 +139,7 @@ exports.getLobbiesDatabase = function(req, res){
 				+ ' GROUP BY uhl.Lobby_idLobby '
 				+ ' ORDER BY m.messageDateTime DESC; '
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			stringDataLobby = '';
 
@@ -196,7 +193,6 @@ exports.getLobbiesDatabase = function(req, res){
 
 //FUNCION PARA OBTENER LAS LOBBIES DEL USUARIO
 exports.getSelectedLobbyMessages = function(req, res){
-	var database = new base();
 
 	var lobby = req.query.lobby;
 
@@ -210,7 +206,7 @@ exports.getSelectedLobbyMessages = function(req, res){
 				+ ' WHERE Lobby_idLobby = "' + lobby + '" '
 				+ ' ORDER BY messageDateTime ASC;';
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			selectedLobbyData = result;
 			res.send(selectedLobbyData);
@@ -223,7 +219,6 @@ exports.getSelectedLobbyMessages = function(req, res){
 
 // FUNCION PARA MOSTRAR CONTACTOS (ADMINITRADORES)
 exports.getProfileContactsAdministratorsMsm = function(req, res){
-	var database = new base();
 
 	stringQuery = 'SELECT userName, userLastName, userSecondLastName, userEmail, photoName '
 				+ ' FROM User AS u'
@@ -232,7 +227,7 @@ exports.getProfileContactsAdministratorsMsm = function(req, res){
 				+ ' WHERE u.Institute_idInstitute="' + req.session.datos[0].Institute_idInstitute + '" '
 				+ ' AND u.userEmail != "' + req.session.datos[0].userEmail + '";' ;
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
 			for(var i in result){
@@ -257,7 +252,6 @@ exports.getProfileContactsAdministratorsMsm = function(req, res){
 
 // FUNCION PARA MOSTRAR CONTACTOS (ESTUDIANTES)
 exports.getProfileContactsStudentsMsm = function(req, res){
-	var database = new base();
 
 	//SI EL USUARIO ES TIPO ALUMNO
 	if(	req.session.privilegio == 1	){
@@ -311,7 +305,7 @@ exports.getProfileContactsStudentsMsm = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	}
 
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
 			for(var i in result){
@@ -337,7 +331,6 @@ exports.getProfileContactsStudentsMsm = function(req, res){
 
 // FUNCION PARA MOSTRAR CONTACTOS (PROFESORES)
 exports.getProfileContactsTeachersMsm = function(req, res){
-	var database = new base();
 
 	//SI EL USUARIO ES TIPO AlUMNO
 	if(req.session.privilegio == 1){
@@ -391,7 +384,7 @@ exports.getProfileContactsTeachersMsm = function(req, res){
 				+ ' ORDER BY userName ASC;';
 	}
 	
-	database.query(stringQuery, function(error, result, row){
+	base.query(stringQuery, function(error, result, row){
 		if(!error) {
 			var stringData = '';
 			for(var i in result){

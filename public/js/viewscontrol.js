@@ -185,7 +185,7 @@ jQuery(document).on('ready' ,function(){
 
 	jQuery('.h_listline').css('width' , jQuery('.h_listitem.first').width());
 
-	if(jQuery(window).width() >= 1120){
+	if(jQuery(window).width() >= 1024){
 		jQuery('.mgmlisthor .h_listline').css('height' , jQuery('.mgmlisthor .h_listitem.first').outerHeight() );
 		jQuery('.mgmlisthor .h_listline').css('width' , '3px');
 	}
@@ -201,7 +201,7 @@ jQuery(document).on('ready' ,function(){
 		var offset = jQuery(this).position();
 		var oftop = jQuery(this).outerHeight() + offset.top - jQuery('.h_listline').height();
 
-		if (elem.parents('.mgmlisthor').length > 0 && jQuery(window).width() >= 1120) {
+		if (elem.parents('.mgmlisthor').length > 0 && jQuery(window).width() >= 1024) {
 			jQuery('.h_listitem').removeClass('vlist_bg b_text');
 			elem.addClass('vlist_bg b_text');
 			jQuery('.h_listline').animate({
@@ -292,7 +292,7 @@ jQuery(document).on('ready' ,function(){
 		var title = jQuery(this).attr('data-name');
 		var title2 = jQuery(this).attr('data-title');
 		var img = jQuery(this).find('img').attr('src');
-		if( jQuery(window).width() < 1120 ){
+		if( jQuery(window).width() < 1024 ){
 			jQuery('.block_containermsm, .block_containersettings').animate({ scrollLeft: jQuery('.halfgrid').width() });
 			jQuery('#new_item').hide();
 		}
@@ -302,7 +302,7 @@ jQuery(document).on('ready' ,function(){
 		changeLetterColor();
 	});
 
-	if( jQuery(window).width() >= 1120 ){
+	if( jQuery(window).width() >= 1024 ){
 		jQuery('.block_containersettings .listitem').first().trigger('click');
 	}
 
@@ -663,7 +663,7 @@ jQuery(document).ready(function(){
 		jQuery('#countContacts').text( jQuery('.contacts_cl .listitem').length );
 		jQuery('#countCourses').text( jQuery('.courses_cl .listitem').length );
 
-		/*if( jQuery(window).width() >= 1120 ){
+		/*if( jQuery(window).width() >= 1024 ){
 			jQuery('#listcontainer.left_listcontainer .listitem').first().trigger('click');
 		}*/
 

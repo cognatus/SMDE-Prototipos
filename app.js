@@ -10,9 +10,6 @@ var favicon = require('serve-favicon');
 var io = require('socket.io')(http);
 var app = express();
 
-var cors = require('cors');
-app.use(cors());
-
 var vistas = require('./routes/views');
 var api = require('./routes/index');
 var users = require('./routes/users');
@@ -25,9 +22,6 @@ var mensajes = require('./api/mensajes');
 var foro = require('./api/foro');
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 
 var sess = {
   secret: 'keyboard cat',
@@ -52,6 +46,10 @@ app.use(favicon(__dirname + '/icon.png'));
 
 app.use(vistas);
 app.use('/api', api);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 //variable global para jalar directorios
 global.__base = __dirname;
