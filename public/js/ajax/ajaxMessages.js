@@ -1,22 +1,19 @@
 var socket = io('http://192.168.1.67:3000/chatsini');
 
-function showMessages(){
+function selectLobby(lobby){
+    //Este metodo recibe el lobby  y conecta en server
+    socket.emit('cambiarsala', lobby);
+    jQuery('#lobbyScope').val(lobby);
     //Contenedor de los mensajes
     var container = jQuery('#msm_list');
-    var lobby = '';
-    if(window.location.href.split('/').pop() != 'messages'){
-        lobby = window.location.href.split('/').pop();
-    }
-    else{
-        lobby = jQuery('.listitem').first().attr('lobby');   
-    }
-
+    //weaas de que aparezcan los mensajes del weon con quien habla
+    //de default la primera vez que se cargue la pagina mostrara al primer weon
+    container.empty();
     jQuery.ajax({
         method: 'GET',
         url: '/api/messages/' + lobby,
         cache: false,
         success: function(data) {
-            jQuery('#msm_loader').hide();
             for(var i in data){
                 var msm = data[i];
                 var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm[data-user="' + msm.userEmail + '"]').length;
@@ -52,7 +49,7 @@ function showMessages(){
                                         +       '</div>'
                                         +   '</div>'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="/profile_photos/' + msm.photoName + '.png" title="Yo" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
+                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="Yo" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                                         +   '</div>'
                                         + '</div>');
                     }
@@ -74,7 +71,7 @@ function showMessages(){
                     else{
                         container.append('<div class="colhh1 margin_bot msm_block">'
                                         +   '<div class="msm_img">'
-                                        +       '<img src="/profile_photos/' + msm.photoName + '.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
+                                        +       '<img src="profile_photos/' + msm.photoName + '.png" title="' + msm.userName + ' ' + msm.userLastName + '\n' + msm.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                                         +   '</div>'
                                         +   '<div class="msm_text">'
                                         +       '<div class="colhh1 autooverflow" data-msm="' + msm.idMessage + '">'
@@ -108,17 +105,9 @@ function showMessages(){
     });
 }
 
-function selectLobby(lobby){
-    //este metodo recibe el lobby  y conecta en server
-    socket.emit('cambiarsala', lobby);
-    window.location.href = '/messages/' + lobby;
-    
-}
-
 
 //Paso 3.
 socket.on('mostrar', function(data){
-
     var container = jQuery('#msm_list');
     //Son las burbujas del chat que aparecen del lado izquierdo
     var lastLeftMsm = jQuery('#msm_list .msm_block:last-child').find('.leftmsm[data-user="' + data.userEmail + '"]').length;
@@ -139,7 +128,7 @@ socket.on('mostrar', function(data){
     else{
         container.append('<div class="colhh1 margin_bot msm_block">'
                         +   '<div class="msm_img">'
-                        +       '<img src="/profile_photos/' + data.userPhoto + '.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
+                        +       '<img src="profile_photos/' + data.userPhoto + '.png" title="' + data.userName + ' ' + data.userLastName + '\n' + data.userEmail + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                         +   '</div>'
                         +   '<div class="msm_text">'
                         +       '<div class="colhh1 autooverflow">'
@@ -193,7 +182,6 @@ function showLobbies(){
                         +  '</div>'
                         +'</div>');
             }
-            showMessages();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert(textStatus + ' ' + errorThrown);
@@ -248,7 +236,7 @@ function showContactsTeachersMsm(){
     });
 }
 
-function enviarMsg(){
+function enviarMsg(lobby){
 
     var date = new Date();
     var hh = date.getHours();
@@ -274,7 +262,7 @@ function enviarMsg(){
 
         jQuery.ajax({ 
             type: 'post',
-            url: '/api/messages/' + window.location.href.split('/').pop(),
+            url: '/api/messages/' + lobby,
             data: {
                 messageBody : jQuery('#newmsm').val(),
             },
@@ -321,7 +309,7 @@ function enviarMsg(){
                             +       '</div>'
                             +   '</div>'
                             +   '<div class="msm_img">'
-                            +       '<img src="/profile_photos/' + sessionUserPhoto + '.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUser + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
+                            +       '<img src="profile_photos/' + sessionUserPhoto + '.png" title="' + sessionUserName + ' ' + sessionUserLastName + '\n' + sessionUser + '" class="circle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                             +   '</div>'
                             + '</div>');
         }
@@ -338,7 +326,7 @@ function enviarMsg(){
 
 jQuery(document).ready(function(){
     
-    showLobbies();
+    setTimeout(showLobbies, 1000);
 
     jQuery('#new_item').click(function(){
         showContactsAdministratorsMsm();
@@ -378,7 +366,13 @@ jQuery(document).ready(function(){
 
     jQuery('form#addNewMsm').submit(function(event){
         event.preventDefault();
-        enviarMsg();
+
+        if(jQuery(this).find('input#lobbyScope').val() != null && jQuery(this).find('input#lobbyScope').val().trim() != ''){
+            enviarMsg(jQuery(this).find('input#lobbyScope').val());
+        }
+        else{
+            alert('Seleccione una conversación')
+        }
     });
 
     jQuery('#newmsm').click(function(){
@@ -508,6 +502,10 @@ jQuery(document).ready(function(){
 
     });
 
+    setTimeout(function(){
+        jQuery('.listitem').first().trigger('click');
+    }, 1300);
+
 });
 
 function addUsersToLobby(){
@@ -523,7 +521,7 @@ function addUsersToLobby(){
         var html = '<div data-email="' + email + '" class="msm_sendtocontact rel_pos" title="Quitar">'
                     + '<div class="msm_sendtoremove">'
                     + '<div class="bg_opacity bg_cross circle"></div>'
-                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle" onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
+                    + '</div><img src="' + imgsrc + '" class="sendtoimg circle v_middle"/ onerror="this.onerror=null;this.src=&quot;/images/profilephoto.png&quot;">'
                     + '<div class="name bgprimary_colorDarker white_text v_middle">' + name + '</div>'
                     + '</div>';
 
