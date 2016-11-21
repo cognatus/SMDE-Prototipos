@@ -255,7 +255,7 @@ function selectForumTopic(forumTopicId){
 function showComments(){
     jQuery.ajax({
         method: 'GET',
-        url: 'api/forum/' + window.location.href.split('/').pop(),
+        url: '/api/forum/' + window.location.href.split('/').pop(),
         cache: true,
         success: function(data) {
             if(data.length > 0){
