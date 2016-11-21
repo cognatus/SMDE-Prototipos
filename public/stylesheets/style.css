@@ -309,20 +309,20 @@ footer span.small_icon{
 .bg_logo{
 	background-image: url('/images/smdelogo.png');
 	background-size: 100%;background-repeat: no-repeat;
-	background-position: center;	
+	background-position: center;
 }
 
 .bg_img{
 	background-image: url('/images/desktop.jpg');
 	background-size: cover;background-repeat: no-repeat;
-	background-position: center;	
+	background-position: center;
 }
 
 .bg_img2{
 	background-image: url('/images/profilebackground.jpg');
 	background-size: cover;background-repeat: no-repeat;
 	background-position: center;
-	background-attachment: fixed;	
+	background-attachment: fixed;
 }
 
 .bg_calendar{
@@ -334,7 +334,7 @@ footer span.small_icon{
 .bg_alert{
 	width: 32px;height: 32px;
 	background: url('/images/alert-circle.png') no-repeat center;
-	background-size: 100%; 
+	background-size: 100%;
 }
 
 .bg_edit, .bg_editgray, .bg_send, .bg_sendwhite, .bg_sendactive, .bg_plus, .bg_plusgray, .bg_close, .bg_closegray, .bg_check, .bg_login, .bg_chat,
@@ -754,7 +754,7 @@ footer span.small_icon{
 	margin-right: 32px;
 	float: left;
 	position: relative;
-	top: -3px; 
+	top: -3px;
 }
 
 .menu_opccontainer .opc label{
@@ -1036,7 +1036,7 @@ footer span.small_icon{
 .profile_hideitem .small_icon{
 	position: absolute;
 	background-image: url('/images/close_gray.png');
-	top: 7px;right: 8px; 
+	top: 7px;right: 8px;
 }
 
 .top_hlist{margin-bottom: -8px;}
@@ -1064,7 +1064,7 @@ footer span.small_icon{
 	height: 4px;
 	margin: 2px;
 	border-radius: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;
-	background-color: rgb(150,150,150); 
+	background-color: rgb(150,150,150);
 }
 
 .minimenu_hidden{
@@ -1215,7 +1215,7 @@ span.title_rightoptionicon:hover{
 }
 
 .pd_lr8 .listitem_righticon{
-	right: 24px; 
+	right: 24px;
 }
 
 .listitem_righticon:hover{
@@ -1358,7 +1358,7 @@ span.title_rightoptionicon:hover{
 	position: relative;
 	top: -9.5px;
 	margin: 0;
-	margin-right: 16px; 
+	margin-right: 16px;
 	cursor: pointer;
 }
 
@@ -1368,7 +1368,7 @@ span.title_rightoptionicon:hover{
 	height: 28px;
 	padding: 6px;
 	text-align: center;
-	vertical-align: middle; 
+	vertical-align: middle;
 }
 
 .msm_sendtocontainer{
@@ -1614,7 +1614,7 @@ span.title_rightoptionicon:hover{
 }
 
 .leftmsm div, .rightmsm div{
-	font-size: 13px;	
+	font-size: 13px;
 	position: relative;
 	z-index: 4;
 }
@@ -1622,7 +1622,7 @@ span.title_rightoptionicon:hover{
 .leftmsm i, .rightmsm i{
 	display: block;
 	position: absolute;
-	background-color: inherit; 
+	background-color: inherit;
 	width: 15px;
 	height: 15px;
 	top: 0;
@@ -1641,10 +1641,10 @@ span.title_rightoptionicon:hover{
 }
 
 .msm_date{
-	display: block; 
+	display: block;
 	font-size: 11px;
 	color: rgba(255,255,255,0.6);
-	padding-top: 8px; 
+	padding-top: 8px;
 }
 
 .rightmsm .msm_date{
@@ -1859,19 +1859,19 @@ span.title_rightoptionicon:hover{
 }
 
 .form_input{
-	margin-bottom: 24px; 
+	margin-bottom: 24px;
 }
 
 .form_input .left_title{
-	display: block; 
+	display: block;
 }
 
 .form_input2{
-	margin-bottom: 0px; 
+	margin-bottom: 0px;
 }
 
 .form_input:last-child{
-	margin-bottom: 0; 
+	margin-bottom: 0;
 }
 
 .form_input input[type='file']{
@@ -1951,8 +1951,8 @@ option{background-color: #fff;}
 
 .file_buttoncontainer .right_float{
 	width: calc(100% - 72px);
-} 
-	
+}
+
 .f_value{
 	width: auto;
 	overflow: hidden;
@@ -2380,7 +2380,7 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .dark_theme .hover:hover{background-color: rgba(255,255,255,0.035);}
 
 .dark_theme .form_input input[type='text'], .dark_theme .form_input input[type='email'],
-.dark_theme .form_input input[type='password'], .dark_theme .form_input input[type='text'], 
+.dark_theme .form_input input[type='password'], .dark_theme .form_input input[type='text'],
 .dark_theme .form_input select, .dark_theme .form_input textarea, .dark_theme .flat_input textarea{
 	color: #e0e0e0;
 	border-color: rgba(255,255,255,0.1);
@@ -2455,15 +2455,15 @@ input[type='submit'], input[type='button']{cursor: pointer;}
 .form_input2 input.white_text:-ms-input-placeholder{color: rgba(255,255,255,0.3);}
 
 .form_input .activeline ~ label{
-	color: rgba(255,255,255,0.4); 
+	color: rgba(255,255,255,0.4);
  	font-size: 22px;
  	font-weight: normal;
  	position: absolute;
 	pointer-events: none;
 	left: 0px;
 	top: 9px;
-	transition: 0.2s ease all; 
-	-moz-transition: 0.2s ease all; 
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
 	-webkit-transition: 0.2s ease all;
 }
 
