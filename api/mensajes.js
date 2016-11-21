@@ -30,7 +30,7 @@ exports.insertLobby = function(req, res){
 	usersArray.pop();
 	usersArray.push(owner);
 
-	var uniqueId = 'l0b8Y' + Math.floor( (Math.random() * 596501699) + 16985689 ) + '' + time;
+	var uniqueId = Math.floor( (Math.random() * 596501699) + 16985689 ) + '' + time;
 
 	if( lobbyUsers != null || lobbyUsers.trim() != '' ){
 		if( message != null || message.trim() != '' ){
