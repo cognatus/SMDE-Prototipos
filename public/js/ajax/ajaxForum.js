@@ -78,6 +78,7 @@ jQuery(document).ready(function(){
                 sibl.attr('disabled','disabled');
             }
         });
+
         var colorsArray = ['bg_teal','bg_red','bg_lightblue','bg_orange','bg_lightgreen','bg_purple',
             'bg_green','bg_lightpink','bg_amber','bg_brown','bg_indigo','bg_darkgray','bg_red','bg_darkorange',
             'bg_teal','bg_darkpurple','bg_cyan','bg_blue','bg_indigo','bg_red','bg_orange','bg_darkblue',
@@ -102,118 +103,10 @@ jQuery(document).ready(function(){
 
         });
 
-        jQuery('#forumtopics_container .block_list .block_container').click(function(){
-            var container = jQuery(this).html();
-            var forumTopicId = jQuery(this).parents('.block_list').attr('data-id');
-            var url = jQuery(this).parents('.block_list').attr('data-link');
-            /*jQuery('#selectedForumTopic').html(cloned);
-            jQuery('#forumtopics_container').hide();
-            jQuery('#forumtopic_display').show();
-            jQuery('#forumTopicScope').val(forumTopicId);*/
-
-            selectForumTopic(forumTopicId, container);
-
-        });
-
-        jQuery('#forumtopic_display #back_forum').click(function(){
-            jQuery('#forumtopic_display').hide();
-            jQuery('#forumtopics_container').show();
-        });
-
-        jQuery('.forum_comment .showhiddenreply').one('click' , function(){
-            var container = jQuery(this).parents('.forum_comment').find('.forum_repliescontainerinner');
-            var commentId = jQuery(this).parents('.forum_comment').attr('data-id');
-            showCommentReplies(container, commentId);
-        });
-
-        hideElements();
-
-        jQuery('.forum_comment form.reply_form').submit(function(event){
-            event.preventDefault();
-            var container = jQuery(this).parents('.forum_comment').find('.forum_repliescontainerinner');
-            var commentId = jQuery(this).find('input[type="hidden"]').val();
-            var replyData = jQuery(this).serialize();
-            insertCommentReply(replyData, container, commentId);
-        });
-
     });
 
 });
 
-function hideElements(){
-    jQuery('#forum_commentscontainer .hiddenreplyblock').hide();
-     jQuery('#forum_commentscontainer .forum_comment input[type="submit"]').hide();
-
-    jQuery('#forum_commentscontainer .showhiddenreply').click(function(){
-        jQuery(this).parents('.block_container.forum_comment').find('.hiddenreplyblock').slideDown();
-    });
-
-    jQuery('.forum_comment .showhiddenreply').click(function(){
-        jQuery('.forum_comment .hiddenreplyblock').hide();
-        jQuery(this).parents('.forum_comment').find('.hiddenreplyblock').show();
-    });
-
-    jQuery('.forum_comment .showhiddenreply.focusinput').click(function(){
-        jQuery(this).parents('.forum_comment').find('textarea').focus();
-    });
-
-    jQuery('.forum_comment .reply_form textarea').focus(function(){
-        jQuery(this).siblings('input[type="submit"]').show();
-    });
-
-    jQuery('.forum_comment .reply_form textarea').blur(function(){
-        jQuery(this).parents('.flat_input').removeClass('border_t border_primarycolor');
-    });
-
-    jQuery('.forum_comment .comment_action .put_status').click(function(){
-        var likeStatus = jQuery(this).attr('data-action');
-        var commentId = jQuery(this).parents('.forum_comment').attr('data-id');
-        if(likeStatus == 'like'){
-            jQuery(this)
-                .attr('data-action', 'quit-like')
-                .removeClass('opacity_color')
-                .addClass('txtprimary_color');
-            jQuery(this).find('span.v_middle')
-                .removeClass('bg_like')
-                .addClass('bg_likeactive');
-            jQuery(this).siblings('.put_status[data-action="quit-dislike"]')
-                .attr('data-action', 'dislike')
-                .removeClass('txt_red')
-                .addClass('opacity_color');
-            jQuery(this).siblings('.put_status[data-action="quit-dislike"]').find('span.v_middle')
-                .removeClass('bg_dislikeactive')
-                .addClass('bg_dislike');
-        }
-        else if(likeStatus == 'dislike'){
-             jQuery(this)
-                .attr('data-action', 'quit-dislike')
-                .removeClass('opacity_color')
-                .addClass('txt_red');
-            jQuery(this).find('span.v_middle')
-                .removeClass('bg_dislike')
-                .addClass('bg_dislikeactive');
-            jQuery(this).siblings('.put_status[data-action="quit-like"]')
-                .attr('data-action', 'like')
-                .removeClass('txtprimary_color')
-                .addClass('opacity_color');
-            jQuery(this).siblings('.put_status[data-action="quit-like"]').find('span.v_middle')
-                .removeClass('bg_likeactive')
-                .addClass('bg_like');
-        }
-        else if(likeStatus == 'quit-like'){
-            jQuery(this).attr('data-action', 'like').removeClass('txtprimary_color').addClass('opacity_color');
-            jQuery(this).find('span.v_middle').removeClass('bg_likeactive').addClass('bg_like');
-        }
-        else if(likeStatus == 'quit-dislike'){
-            jQuery(this).attr('data-action', 'dislike').removeClass('txt_red').addClass('opacity_color');
-            jQuery(this).find('span.v_middle').removeClass('bg_dislikeactive').addClass('bg_dislike');
-        }
-        if(likeStatus != null){
-            likeForumComment(likeStatus, commentId);
-        }
-    });
-
-}
 
 function showForumTopics(){
     jQuery.ajax({
@@ -242,16 +135,6 @@ function showForumTopics(){
     });
 }
 
-function selectForumTopic(forumTopicId){
-    
-    var urlLoad = forumTopicId;
-
-    if (urlLoad != undefined && urlLoad != null) {
-        window.location.href = '/forum/' + forumTopicId;
-    }
-
-}
-
 function showComments(){
     jQuery.ajax({
         method: 'GET',
@@ -260,6 +143,8 @@ function showComments(){
         success: function(data) {
             if(data.length > 0){
                 jQuery('#forum_commentscontainer').html(data);
+                replies();
+                likeForumComment();
             }
             else{
                 jQuery('#forum_commentscontainer')
@@ -279,114 +164,142 @@ function showComments(){
     });
 }
 
-function showCommentReplies(container, commentId){
-    container.parents('.forum_comment').find('form.reply_form textarea').val('');
-    container.parents('.forum_comment').find('form.reply_form input[type="submit"]')
-        .attr('disabled', 'disabled')
-        .addClass('opacity_color').removeClass('txtprimary_color');
+function showReplies(container, id_comment){
     jQuery.ajax({
         method: 'GET',
-        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + commentId ,
+        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + id_comment,
         cache: true,
         success: function(data) {
             if(data.length > 0){
                 container.html(data);
-                container.parents('.forum_repliescontainer').scrollTop(container.outerHeight());
-                jQuery('.forum_reply .reply_action span').click(function(){
-                    var likeStatus = jQuery(this).attr('data-action');
-                    var commentId = jQuery(this).parents('.forum_comment').attr('data-id');
-                    var replyId = jQuery(this).parents('.forum_reply').attr('data-id');
-                    if(likeStatus == 'like'){
-                        jQuery(this)
-                            .attr('data-action', 'quit-like')
-                            .removeClass('bg_like')
-                            .addClass('bg_likeactive');
-                        jQuery(this).siblings('span[data-action="quit-dislike"]')
-                            .attr('data-action', 'dislike')
-                            .removeClass('bg_dislikeactive')
-                            .addClass('bg_dislike');
-                    }
-                    else if(likeStatus == 'dislike'){
-                        jQuery(this)
-                            .attr('data-action', 'quit-dislike')
-                            .removeClass('bg_dislike')
-                            .addClass('bg_dislikeactive');
-                        jQuery(this).siblings('span[data-action="quit-like"]')
-                            .attr('data-action' , 'like')
-                            .removeClass('bg_likeactive')
-                            .addClass('bg_like');
-                    }
-                    else if(likeStatus == 'quit-like'){
-                        jQuery(this).attr('data-action', 'like').removeClass('bg_likeactive').addClass('bg_like');
-                    }
-                    else if(likeStatus == 'quit-dislike'){
-                        jQuery(this).attr('data-action', 'dislike').removeClass('bg_dislikeactive').addClass('bg_dislike');
-                    }
-                    if(likeStatus != null){
-                        likeForumCommentReply(likeStatus, commentId, replyId);
-                    }
-                });
+                likeForumCommentReply();
             }
             else{
                 container
-                    .html('<div class="pd_18 ll_title opacity_color">'
-                            + 'Aun no hay respuestas para este comentario.'
-                            + '<br /><br />Añade una respuesta aqui abajo.'
-                        +'</div>');
+                    .html('<div class="pd_24 center_text">'
+                        +    '<div class="ll_title opacity_color">Aun no hay respuestas</div>'
+                        +  '</div>');
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert(textStatus + ' ' + errorThrown);
         }
-    });
-}
-
-function insertCommentReply(replyData, container, commentId){
-    jQuery.ajax({
-        method: 'POST',
-        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + commentId,
-        cache: true,
-        data: replyData,
-        success: function(data) {
-            showCommentReplies(container, commentId);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Error en Cliente ' + textStatus + " " + errorThrown);
-        }
         
     });
 }
 
-function likeForumComment(likeStatus, forumCommentId){
-    jQuery.ajax({
-        method: 'POST',
-        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/like',
-        cache: true,
-        data: {
-            likeStatus: likeStatus
-        },
-        success: function(data) {
+function replies(){
+    jQuery('.hiddenreplyblock').hide();
 
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Error en Cliente ' + textStatus + " " + errorThrown);
-        }
+    jQuery('.showhiddenreply').one('click', function(){
+        var container = jQuery(this).parents('.block_container.forum_comment').find('.hiddenreplyblock').find('.forum_repliescontainerinner');
+        var id_comment = jQuery(this).parents('.block_container.forum_comment').find('.hiddenreplyblock').find('input[type="hidden"]').val();
+        jQuery(this).parents('.block_container.forum_comment').find('.hiddenreplyblock').slideDown();
+        showReplies(container, id_comment);
+    });
+
+    jQuery('form.reply_form').submit(function(event){
+        event.preventDefault();
+        var data = jQuery(this).serialize();
+        //insertReply(data);
     });
 }
 
-function likeForumCommentReply(likeStatus, forumCommentId, forumReplyId){
-    jQuery.ajax({
-        method: 'POST',
-        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + forumCommentId + '/' + forumReplyId + '/like',
-        cache: true,
-        data: {
-            likeStatus: likeStatus
-        },
-        success: function(data) {
-            
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Error en Cliente ' + textStatus + " " + errorThrown);
+// Funcion para dar like o dislike a un comentario o quitarlos
+function likeForumComment(){
+    //Esta funcion hace que cambie el color al dar like o dislike
+    jQuery('.comment_action [put-status]').click(function(){
+        var id = jQuery(this).parents('.forum_comment').attr('data-id');
+        var status = jQuery(this).attr('put-status');
+        var lastClass = jQuery(this).attr('class').split(' ')[2];
+
+        // lastClass me dice que accion voy a realizar y se cambia el put-status 
+        // para mandar un valor diferente al proximo click
+        if(lastClass == 'like'){
+            jQuery(this).removeClass('like').addClass('like_active').attr('put-status', '2');
+            jQuery(this).siblings('.dislike_active')
+                .removeClass('dislike_active').addClass('dislike').attr('put-status', '0');
         }
+        if(lastClass == 'like_active'){
+            jQuery(this).removeClass('like_active').addClass('like').attr('put-status', '1');
+            jQuery(this).siblings('.dislike_active')
+                .removeClass('dislike_active').addClass('dislike').attr('put-status', '0');
+        }
+        if(lastClass == 'dislike'){
+            jQuery(this).removeClass('dislike').addClass('dislike_active').attr('put-status', '2');
+            jQuery(this).siblings('.like_active')
+                .removeClass('like_active').addClass('like').attr('put-status', '1');
+        }
+        if(lastClass == 'dislike_active'){
+            jQuery(this).removeClass('dislike_active').addClass('dislike').attr('put-status', '0');
+            jQuery(this).siblings('.like_active')
+                .removeClass('like_active').addClass('like').attr('put-status', '1');
+        }
+
+        jQuery.ajax({
+            method: 'POST',
+            url: '/api/forum/' + window.location.href.split('/')[4] + '/' + id + '/like',
+            cache: true,
+            data: {
+                likeStatus: status
+            },
+            success: function(data) {
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error en Cliente ' + textStatus + " " + errorThrown);
+            }
+        });
+
+    });
+}
+
+// Funcion para dar like o dislike a una respuesta o quitarlo
+function likeForumCommentReply(){
+
+    jQuery('.reply_action [put-status]').click(function(){
+        var id = jQuery(this).parents('.forum_reply').attr('data-id');
+        var id_comment = jQuery(this).parents('.forum_comment').attr('data-id');
+        var status = jQuery(this).attr('put-status');
+        var lastClass = jQuery(this).attr('class').split(' ')[1];
+
+        // lastClass me dice que accion voy a realizar y se cambia el put-status 
+        // para mandar un valor diferente al proximo click
+        if(lastClass == 'bg_like'){
+            jQuery(this).removeClass('bg_like').addClass('bg_likeactive').attr('put-status', '2');
+            jQuery(this).siblings('.bg_dislikeactive')
+                .removeClass('bg_dislikeactive').addClass('bg_dislike').attr('put-status', '0');
+        }
+        if(lastClass == 'bg_likeactive'){
+            jQuery(this).removeClass('bg_likeactive').addClass('bg_like').attr('put-status', '1');
+            jQuery(this).siblings('.bg_dislikeactive')
+                .removeClass('bg_dislikeactive').addClass('bg_dislike').attr('put-status', '0');
+        }
+        if(lastClass == 'bg_dislike'){
+            jQuery(this).removeClass('bg_dislike').addClass('bg_dislikeactive').attr('put-status', '2');
+            jQuery(this).siblings('.bg_likeactive')
+                .removeClass('bg_likeactive').addClass('bg_like').attr('put-status', '1');
+        }
+        if(lastClass == 'bg_dislikeactive'){
+            jQuery(this).removeClass('bg_dislikeactive').addClass('bg_dislike').attr('put-status', '0');
+            jQuery(this).siblings('.bg_likeactive')
+                .removeClass('bg_likeactive').addClass('bg_like').attr('put-status', '1');
+        }
+
+        /*jQuery.ajax({
+            method: 'POST',
+            url: '/api/forum/' + window.location.href.split('/')[4] + '/' + id_comment + '/' + id + '/like',
+            cache: true,
+            data: {
+                likeStatus: status
+            },
+            success: function(data) {
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error en Cliente ' + textStatus + " " + errorThrown);
+            }
+        });*/
+
     });
 }

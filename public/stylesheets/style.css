@@ -348,11 +348,6 @@ footer span.small_icon{
 .bg_dots{background-image: url('/images/dots-vertical.png');}
 .bg_dotswhite{background-image: url('/images/dots-vertical_white.png');}
 
-.bg_magnify{background-image: url('/images/magnify.png');}
-.bg_magnifywhite{background-image: url('/images/magnify_white.png');}
-
-.bg_arrowdrop{background-image: url('/images/arrow-down-drop-circle.png');}
-
 .bg_like{background-image: url('/images/thumb-up.png');}
 .bg_likewhite{background-image: url('/images/thumb-up_white.png');}
 .bg_likeactive{background-image: url('/images/thumb-up_active.png');}
@@ -360,6 +355,11 @@ footer span.small_icon{
 .bg_dislike{background-image: url('/images/thumb-down.png');}
 .bg_dislikewhite{background-image: url('/images/thumb-down_white.png');}
 .bg_dislikeactive{background-image: url('/images/thumb-down_active.png');}
+
+.bg_magnify{background-image: url('/images/magnify.png');}
+.bg_magnifywhite{background-image: url('/images/magnify_white.png');}
+
+.bg_arrowdrop{background-image: url('/images/arrow-down-drop-circle.png');}
 
 .bg_camera{background-image: url('/images/camera.png');}
 
@@ -1701,6 +1701,11 @@ span.title_rightoptionicon:hover{
 	margin-left: 4px;
 }
 
+.forum_comment .comment_action{
+	position: relative;
+	z-index: 3;
+}
+
 .forum_comment .comment_action .colhh3{
 	width: 33.3333333%;
 	display: inline-block;
@@ -1745,8 +1750,49 @@ span.title_rightoptionicon:hover{
 	height: 18px;
 }
 
+.forum_reply .reply_info .autocol{
+	padding: 13px 16px 13px 0;
+	height: 18px;
+}
+
+.hiddenreplyblock .flat_shadow{
+	position: relative;
+	z-index: 1;
+}
+
+.like span{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('/images/thumb-up.png') !important;
+}
+.dislike span{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('/images/thumb-down.png');
+}
+
+.like_active span{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('/images/thumb-up_active.png') !important;
+}
+.dislike_active span{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('/images/thumb-down_active.png') !important;
+}
+
+.like_active .autocol{
+	color: #2196F3 !important;
+}
+.dislike_active .autocol{
+	color: #F44336 !important;
+}
+
 .left_fixedcontainer{
 	width: 100%;
+	position: relative;
+	top: 63px;
 }
 
 .rank span{

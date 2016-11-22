@@ -4,9 +4,7 @@ block content
 		script( type='text/javascript' src='/js/ajax/ajaxForum.js' )
 
 		#selectedForumTopic.left_fixedcontainer.bg_white
-			- if(topicInfo != undefined)
-				| #{topicInfo}
-			.b_img.bg_teal.flat_shadow
+			.b_img.bgprimary_colorDarker.flat_shadow
 				.pd_16(style='padding-right: 13px;')
 					.minimenu_container
 						.minimenu
@@ -19,26 +17,28 @@ block content
 							.pd_16.hover Reportar Abuso
 				.colhh1.listitem.bg_opc.white_text
 					.pd_16.forumtopic_title
-						.colhh1.ll_title(title="Algo") Tema
-						.listitem_bottomdata #{forum_info.asignatura}
+						.colhh1.ll_title(title="Algo") #{forum_info[0].topicTitle}
+						.listitem_bottomdata #{forum_info[0].topicSubject}
 
 			.bottom_info
 				.pd_18
+					.colhh1.right_text.mr_bot4.opacity_color.sl_title
+						| #{forum_info[0].forumTopicDate} a las #{forum_info[0].forumTopicTime}
 					.colhh1
 						.colhh1.ll_title.opacity_color Creado Por:
-						.colhh1.listitem
+						.colhh1.listitem.f_li
 							.listitem_info
 								.listitem_title 
-									b Vato Vato Vato
-								.listitem_bottomdata vato@vato.com
+									b #{forum_info[0].userFullName}
+								.listitem_bottomdata #{forum_info[0].userEmail}
 							.listitem_img
-								img(src='/images/profilephoto.png')
+								img(src='/images/#{forum_info[0].photoName}.png' onerror='this.src="/images/profilephoto.png"')
 					.pd_4
 					.colhh1
 						.colhh1.ll_title.opacity_color Descripción:
 						.pd_4
 						.colhh1
-							| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sagittis ex. Mauris a purus aliquet arcu viverra auctor. Suspendisse hendrerit ultricies dui ut fringilla. Vestibulum fermentum, ex eget elementum iaculis, arcu purus eleifend urna, et rutrum tortor massa nec arcu.
+							| #{forum_info[0].topicDescription}
 
 		.topspace
 		.pagecontainer_right

@@ -4,6 +4,7 @@ var router = express.Router();
 
 var users = require('./users');
 var admin = require('../api/admin');
+var foro = require('../api/foro');
 
 /* GET views. */
 
@@ -113,13 +114,13 @@ router.route('/forum')
 	});
 
 router.route('/forum/:id_topic')
-	.get(users.loginS, function(req, res){
-		res.render('forumtopic', { 
+	.get(users.loginS, foro.getForumTopicInfo, function(req, res){
+		res.render('forumtopic', {
 			title: 'SMDE - Foro',
 			datos:  req.session.datos,
 			privilegio:  req.session.privilegio,
 			topic: req.params.id_topic,
-			forum_info: req.session.foroEspecificoDataInEnglish[req.params.id_topic]
+			forum_info: req.session.foruminfo
 		});
 	});
 
