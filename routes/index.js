@@ -18,7 +18,7 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-    res.json({ message: 'Bienvenido a SMDE prro' });   
+    res.json({ message: 'Bienvenido a SMDE prro' });
 });
 
 // Todo lo referente a la gestion

@@ -251,8 +251,16 @@ exports.getForumTopics = function(req, res){
 		if(!error) {
 			stringDataForumTopic = '';
 			for(var i in result){
-                var item = result[i];
-                stringDataForumTopic += ''
+				var item = result[i];
+				req.session.foroEspecificoDataInEnglish[item.idForumTopic] = {	fecha: 'Publicado el ' + item.forumTopicDate + ' a las ' + item.forumTopicTime,
+																				photo: item.photoName,
+																				nombre: item.userFullName,
+																				mail: item.userEmail,
+																				descrip: item.topicDescription,
+																				tema: item.topicTitle,
+																				asignatura: item.topicSubject
+																			}
+				stringDataForumTopic += ''
                 + '<div data-id="' + item.idForumTopic + '" data-name="' + item.topicTitle + '" data-type="' + item.topicSubject + '" class="colhh3 block_list left_text">'
 				  + '<div class="pd_lr8">'
 				    + '<div class="block_container bg_white">'
