@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var multer = require('multer');
 var favicon = require('serve-favicon');
 var io = require('socket.io')(http);
 var app = express();
@@ -40,6 +41,7 @@ app.use(session(sess));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+//app.use(multer({dest:'./public/uploads'}));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

@@ -1,4 +1,20 @@
+@media screen and (max-width: 375px){
+	.forum_comment .comment_action .colhh3 span{
+		margin: 0;
+	}
+	.forum_comment .comment_action .colhh3 .autocol{
+		display: none;
+	}
+}
 @media screen and (min-width: 640px){
+
+	.main_bg .title .super{
+		font-size: 46px;
+		margin-bottom: 12px;
+	}
+	.main_bg .title .sub{
+		font-size: 32px;
+	}
 
 	footer{position: absolute;bottom: 0;margin: 0;}
 
@@ -17,9 +33,15 @@
 	.top_pallete_inner{
 	 	height: 200px;
 	}
+	.page_container{
+		width: calc(100% - 170px);
+		margin: 0 auto;
+		position: relative;
+		z-index: 9;
+	}
 
-	.page_container, .pagecontainer_right{
-		width: calc(100% - 180px);
+	.pagecontainer_right{
+		width: calc(100% - 24px);
 		margin: 0 auto;
 		position: relative;
 		z-index: 9;
@@ -143,7 +165,7 @@
 	}
 
 	.pagecontainer_right .page_container{
-		width: calc(100% - 48px);
+		width: calc(100% - 32px);
 		position: relative;
 	}
 
@@ -247,13 +269,7 @@
 		display: none;
 	}
 
-	.msmtopname .img_container{
-		width: 40px;
-	}
-
 	.top_hlist{margin-bottom: -4px;background-color: transparent;}
-
-	
 
 	.float_buttoncontainer.leftlist_floatbutton{
 		top: auto;

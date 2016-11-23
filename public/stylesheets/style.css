@@ -319,6 +319,37 @@ footer span.small_icon{
 	background-position: center;
 }
 
+.main_bg{
+	width: 100%;
+	margin-bottom: -96px;
+	background-image: url('/images/profilebackground.jpg');
+	background-size: cover;background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	height: 400px;
+}
+
+.main_bg .bg_opacity{
+	position: relative;
+}
+.main_bg .title{
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	width: 80%;
+	top: 42%;
+	transform: translateY(-50%);
+}
+.main_bg .title .super{
+	font-weight: normal;
+	font-size: 40px;
+	margin-bottom: 16px;
+}
+.main_bg .title .sub{
+	font-size: 28px;
+	font-weight: lighter;
+}
+
 .bg_img2{
 	background-image: url('/images/profilebackground.jpg');
 	background-size: cover;background-repeat: no-repeat;
@@ -1237,10 +1268,9 @@ span.title_rightoptionicon:hover{
 
 .listitem_title{
 	overflow: hidden;
-	width: calc(100% - 30px);
+	width: calc(100% - 45px);
 	height: 18px;
 	font-size: 15px;
-	white-space: nowrap;
 }
 
 .listitem_title b{
@@ -1338,7 +1368,7 @@ span.title_rightoptionicon:hover{
 	width: auto;
 	max-width: calc(100% - 168px);
 	vertical-align: top;
-	margin-left: 16px;
+	margin-left: 12px;
 	white-space: nowrap;
 }
 
@@ -1348,11 +1378,13 @@ span.title_rightoptionicon:hover{
 	position: relative;
 	top: -9.5px;
 	z-index: 49;
+	margin-left: 20px;
 	display: inline-block;
 }
 
 .msmtopname .img_container img{
 	width: 40px;height: 40px;
+	margin-left: -20px;
 }
 
 .msmtopname .img_container img.img_mul{
@@ -1488,7 +1520,7 @@ span.title_rightoptionicon:hover{
 
 .msm_innercontent{
 	width: 100%;
-	height: calc(100% - 68px);
+	height: calc(100% - 56px);
 	overflow: auto;
 	position: relative;
 	left: 0;
@@ -1500,14 +1532,14 @@ span.title_rightoptionicon:hover{
 	left: 0;
 	z-index: 99;
 	display: block;
-	height: 68px;
+	height: 56px;
 	vertical-align: middle;
 }
 
 .msminput .msminput_in{
-	height: 52px;
-	padding: 8px 0 8px 12px;
-	width: calc(100% - 84px);
+	height: inherit;
+	padding: 0;
+	width: calc(100% - 56px);
 	display: inline-block;
 }
 
@@ -1521,7 +1553,7 @@ span.title_rightoptionicon:hover{
 
 .msminput .msminput_in .msm_textfield input[type='text']{
 	border: none;outline: none;
-	width: calc(100% - 78px);margin-top: 17px;
+	width: calc(100% - 74px);margin-top: 19px;
 	height: 18px;margin-left: 18px;
 	background: transparent;
 }
@@ -1529,26 +1561,27 @@ span.title_rightoptionicon:hover{
 .msminput .msminput_in .msm_textfield span{
 	position: absolute;
 	display: block;
-	width: 52px;
-	height: 52px;
+	width: 56px;
+	height: 56px;
 	background-size: 28px;
 	cursor: pointer;
-	right: 4px;
+	right: 0;
 	top: 0;
 }
 
 .msminput input[type='submit']{
-	width: 44px;height: 44px;
-	float: right;margin: 12px;
-	margin-right: 14px;
+	width: 56px;height: 56px;
+	float: right;
 	display: inline-block;
 	border: none;outline: none;
-	background-color: #03A9F4;
+	background-color: #FF5252;
 	background-size: 21px;
 }
 .msminput input[type='submit']:disabled{
 	cursor: default;
-	background-color: rgba(127,127,127,0.1);
+	background-image: url('/images/sendgray.png');
+	box-shadow: none;
+	background-color: transparent;
 }
 
 .flat_input{
@@ -1713,16 +1746,17 @@ span.title_rightoptionicon:hover{
 
 .forum_comment .comment_action .colhh3 span{
 	display: inline-block;
-	width: 40px;
+	width: 18px;
 	height: 40px;
 	background-size: 18px;
-	position: relative;
-	left: -18px;
+	vertical-align: top;
+	margin-right: 8px;
 }
 
 .forum_comment .comment_action .colhh3 .autocol{
-	position: relative;
-	left: -12px;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: top;
 }
 
 #forumtopics_container .block_container{

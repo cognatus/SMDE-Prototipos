@@ -13,7 +13,7 @@ block content
 				.colhh1.bgprimary_color
 					.colhh1.pd_8.bgprimary_colorDarker
 					.pd_18.form_title.white_text Editar Perfil
-				form.colhh1.hb_formcontainer(action='/api/profile/updatephotos' method='post' enctype="multipart/form-data")
+				form.colhh1.hb_formcontainer(action='/api/profile/updatephotos', enctype="multipart/form-data", method='post')
 					#new_profileback.colhh1.profile_bgcont
 						#p_back.colhh1.profile_img.inbox_shadow
 							.f_select.pd_18.autooverflow
@@ -28,7 +28,7 @@ block content
 								.input_filecontainer
 									input#input_pPhoto.changep_input(type='file' name='updateProfilePhoto' accept='image/*')
 								#selectPhoto.photo.rel_pos
-									img#p_img.circle.flat_shadow(src='profile_photos/' + datos[0].photoName + '.png' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilephoto.png"')
+									img#p_img.circle.flat_shadow(src='/profile_photos/' + datos[0].photoName + '' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilephoto.png"')
 									.photo_hiddenbutton.trigger.circle.bg_camera(title='Seleccionar imagen')
 						.pd_24
 							.colhh1
@@ -101,7 +101,7 @@ block content
 								.pd_16.rippleria-dark( data-rippleria ) Información
 							.autocol.h_listitem
 								.pd_16.rippleria-dark( data-rippleria ) Contactos
-							- if(privilegio == 1 || privilegio== 2)
+							if (privilegio == 1 || privilegio== 2)
 								.autocol.h_listitem
 									.pd_16.rippleria-dark( data-rippleria ) Cursos
 

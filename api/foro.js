@@ -383,19 +383,19 @@ exports.getForumTopicCommentsCron = function(req, res){
 	      				  + '<div class="colhh1 comment_action center_text bg_white b_text opacity_color">'
 	      					if(item.userLikeStatus != null){
 	      						if(item.userLikeStatus == 1){
-	      							stringDataForumComment += '<div class="colhh3 hover like_active" put-status="2"><span class="v_middle"></span><div class="autocol v_middle">Me gusta</div></div>'
-	      							+ '<div class="colhh3 hover dislike" put-status="0"><span class="v_middle"></span><div class="autocol v_middle">No me gusta</div></div>'	
+	      							stringDataForumComment += '<div class="colhh3 hover like_active" put-status="2"><span></span><div class="autocol">Me gusta</div></div>'
+	      							+ '<div class="colhh3 hover dislike" put-status="0"><span></span><div class="autocol">No me gusta</div></div>'	
 	      						}
 	      						else if(item.userLikeStatus == 0){
-	      							stringDataForumComment += '<div class="colhh3 hover like" put-status="1"><span class="v_middle"></span><div class="autocol v_middle">Me gusta</div></div>'
-	      							+ '<div class="colhh3 hover dislike_active" put-status="2"><span class="v_middle"></span><div class="autocol v_middle">No me gusta</div></div>'	
+	      							stringDataForumComment += '<div class="colhh3 hover like" put-status="1"><span></span><div class="autocol">Me gusta</div></div>'
+	      							+ '<div class="colhh3 hover dislike_active" put-status="2"><span class="v_middle"></span><div class="autocol">No me gusta</div></div>'	
 	      						}
 	      					}
 	      					else{
-	      						stringDataForumComment += '<div class="colhh3 hover like" put-status="1"><span class="v_middle"></span><div class="autocol v_middle">Me gusta</div></div>'
-	      						+ '<div class="colhh3 hover dislike" put-status="0"><span class="v_middle"></span><div class="autocol v_middle">No me gusta</div></div>'	
+	      						stringDataForumComment += '<div class="colhh3 hover like" put-status="1"><span></span><div class="autocol">Me gusta</div></div>'
+	      						+ '<div class="colhh3 hover dislike" put-status="0"><span></span><div class="autocol">No me gusta</div></div>'	
 	      					}
-	      					stringDataForumComment += '<div class="colhh3 hover showhiddenreply focusinput"><span class="v_middle bg_reply"></span><div class="autocol v_middle">Responder</div></div>'
+	      					stringDataForumComment += '<div class="colhh3 hover showhiddenreply focusinput"><span class="bg_reply"></span><div class="autocol">Responder</div></div>'
 	      				+ '</div>'
 	      				+ '<div class="colhh1 hiddenreplyblock">'
     						+ '<div class="pd_18 txtprimary_color ll_title flat_shadow">Respuestas</div>'
@@ -491,21 +491,21 @@ exports.getForumTopicCommentReplies = function(req, res){
 	      				+ '<div class="autocol reply_action right_float">'
 	      					if(item.userLikeStatus != null){
 	      						if(item.userLikeStatus == 1){
-	      							stringDataForumReply += '<span title="Me gusta esta respuesta" class="circle bg_likeactive hover" put-status="2"></span>'
-	      							+ '<span title="No me gusta esta respuesta" class="circle bg_dislike hover" put-status="0"></span>'	
+	      							stringDataForumReply += '<span title="Me gusta esta respuesta" class="circle hover bg_likeactive" put-status="2"></span>'
+	      							+ '<span title="No me gusta esta respuesta" class="circle hover bg_dislike" put-status="0"></span>'	
 	      						}
 	      						else if(item.userLikeStatus == 0){
-	      							stringDataForumReply += '<span title="Me gusta esta respuesta" class="circle bg_like hover" put-status="1"></span>'
-	      							+ '<span title="No me gusta esta respuesta" class="circle bg_dislikeactive hover" put-status="2"></span>'	
+	      							stringDataForumReply += '<span title="Me gusta esta respuesta" class="circle hover bg_like" put-status="1"></span>'
+	      							+ '<span title="No me gusta esta respuesta" class="circle hover bg_dislikeactive" put-status="2"></span>'	
 	      						}
 	      					}
 	      					else{
-	      						stringDataForumReply += '<span title="Me gusta esta respuesta" class="circle bg_like hover" put-status="1"></span>'
-	      						+ '<span title="No me gusta esta respuesta" class="circle bg_dislike hover" put-status="0"></span>'	
+	      						stringDataForumReply += '<span title="Me gusta esta respuesta" class="circle hover bg_like" put-status="1"></span>'
+	      						+ '<span title="No me gusta esta respuesta" class="circle hover bg_dislike" put-status="0"></span>'	
 	      					}
 	      					if(item.userEmail == req.session.datos[0].userEmail){
-	      						stringDataForumReply += '<span title="Editar" class="circle bg_editgray hover"></span>'
-	      						+ '<span title="Eliminar" class="circle bg_delete hover"></span>'
+	      						stringDataForumReply += '<span title="Editar" class="circle hover bg_editgray"></span>'
+	      						+ '<span title="Eliminar" class="circle hover bg_delete"></span>'
 	      					}
 	     		stringDataForumReply += '</div>'
 					+ '</div>'

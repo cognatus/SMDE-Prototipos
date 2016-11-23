@@ -2,6 +2,7 @@ var base;
 var stringQuery = '';
 
 var fs = require('fs');
+var multer = require('multer');
 
 exports.constructor = function (basee) {
 	base = basee;
@@ -568,24 +569,34 @@ exports.getTeacherCoincidences = function(req, res){
 };
 
 exports.updateProfilePhotos = function(req, res){
+	console.log(req.files);	
 
 	var backImage = req.files.updateProfileBack;
 	var profileImage = req.files.updateProfilePhoto;
 	var nameImage = req.session.datos[0].photoName;
 
-	console.log(__base + "/public/profile_back/" + nameImage + ".jpg");	
-	if( backImage.originalFilename != '' ){
-		var readableStream = fs.createReadStream(backImage.path);
-		var writableStream = fs.createWriteStream(__base + "/public/profile_backgrounds/" + nameImage + ".png");
-
-		readableStream.pipe(writableStream, {end: false});
+	if( backImage.originalname != '' ){
+		var storage = multer.diskStorage({
+			destination: function (req, file, cb) {
+				cb(null, __base + '/profile_photos/');
+			},
+			filename: function (req, file, cb) {
+				cb(null, nameImage);
+			}
+		});
+		multer({ storage: storage });
 	}
 
-	if( profileImage.originalFilename != '' ){
-		var readableStream = fs.createReadStream(profileImage.path);
-		var writableStream = fs.createWriteStream(__base + "/public/profile_photos/" + nameImage + ".png");
-
-		readableStream.pipe(writableStream, {end: false});
+	if( profileImage.originalname != '' ){
+		var storage = multer.diskStorage({
+			destination: function (req, file, cb) {
+				cb(null, __base + '/profile_backgrounds/');
+			},
+			filename: function (req, file, cb) {
+				cb(null, nameImage);
+			}
+		});
+		multer({ storage: storage });
 	}
 	res.redirect('/profile');
  };

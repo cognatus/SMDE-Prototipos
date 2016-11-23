@@ -18,7 +18,7 @@ block content
 					else
 						.pd_18.form_title.white_text Nuevo
 				.colhh1.hb_formcontainer
-					form#calendarAddNew(name='calendarNewEvent' action='/api/profile/reminders' method='post' enctype='multipart/form-data')
+					form#calendarAddNew(name='calendarNewEvent' action='/api/profile/reminders' method='post')
 						.form_innercontainer
 							.form_titlepad.bgprimary_color.flat_shadow
 								.form_input.white_text.rel_pos
@@ -139,14 +139,15 @@ block content
 
 				.calendar_allr.v_top
 					.colhh1.h_listcontainer
-						- if ( privilegio == 1 || privilegio == 2)
-							.block_container.subl_top.center_text.uppercase(style="box-shadow: none;")
-								.colhh1.b_text.bg_opcdarker.flat_shadow.white_text
+						if ( privilegio == 1 || privilegio == 2)
+							.block_container(style="box-shadow: none;")
+								.h_listline.bgaccent_color
+								.colhh1.h_listtopcontainer
 									.colhh2.hover.h_listitem.cal_showtype.first
-										.pd16_24.bgaccent_color
+										.pd16_24.center_text
 											| Publicaciones
 									.colhh2.hover.h_listitem.cal_showtype
-										.pd16_24
+										.pd16_24.center_text
 											| Recordatorios
 						#block_selectedDate.v_top.bg_white.block_container
 							.colhh1
@@ -161,9 +162,7 @@ block content
 											.pd_64
 												span.v_middle(style= 'background-image: url("images/calendar-remove.png")')
 												.autocol.mm_title.pd_12.dayempty No hay publicaciones
-												- if (privilegio == 1 || privilegio == 3) 
-													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio.
-												- if (privilegio == 2)
+												if (privilegio == 2)
 													.ll_title.normal_txt Presiona &nbsp; + &nbsp; para agregar un nuevo recordatorio o hacer una nueva publicacion.
 										#publiclist_container.colhh1
 											//- Aqui se añaden las publicaciones

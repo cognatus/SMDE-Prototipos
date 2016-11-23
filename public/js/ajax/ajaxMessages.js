@@ -268,6 +268,7 @@ function enviarMsg(lobby){
             },
             success: function(data) {
                 jQuery('#newmsm').focus().val('');
+                jQuery('#msm_send').attr('disabled', 'disabled');
                 showLobbies();
             },
             error: function(request, status, error){
@@ -343,8 +344,6 @@ jQuery(document).ready(function(){
         }
         else{
             jQuery('.msminput input[type="submit"]')
-                .removeClass('bg_sendwhite flat_shadow')
-                .addClass('bg_send bg_lightblue')
                 .attr('disabled', 'disabled');
         }
     });
@@ -502,9 +501,11 @@ jQuery(document).ready(function(){
 
     });
 
-    setTimeout(function(){
-        jQuery('.listitem').first().trigger('click');
-    }, 1300);
+    if (jQuery(window).width() >= 1024) {
+        setTimeout(function(){
+            jQuery('.listitem').first().trigger('click');
+        }, 1300);
+    }
 
 });
 

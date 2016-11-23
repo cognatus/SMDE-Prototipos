@@ -1,15 +1,14 @@
 var base;
 var stringQuery = '';
 
-var htmlspecialchars = require('htmlspecialchars');
 var fs = require('fs');
 var path = require('path');
-var mime = require('mime');
+var multer = require('multer');
+var htmlspecialchars = require('htmlspecialchars');
 
 exports.constructor = function (basee) {
 	base = basee;
 }
-
 
 //FUNCION PARA INSERTAR UN NUEVO RECORDATORIO
 exports.insertReminder = function(req, res){
@@ -425,18 +424,5 @@ exports.getPublicationAttachedFiles = function(req, res){
 // FUNCION PARA DESCARGAR ARCHIVOS
 exports.downloadAttachment = function(req, res){
 
-	var directory = req.params.id_file;
-	console.log(directory);
-
-	var file = 'C:/Users/Alex/Desktop/SMDE-Prototipos/public/publications/' + directory;
-
-	var filename = path.basename(file);
-	var mimetype = mime.lookup(file);
-
-	res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-	res.setHeader('Content-type', mimetype);
-
-	var filestream = fs.createReadStream(file);
-	filestream.pipe(res);
 
 };

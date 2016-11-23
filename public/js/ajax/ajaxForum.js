@@ -201,7 +201,13 @@ function replies(){
     jQuery('form.reply_form').submit(function(event){
         event.preventDefault();
         var data = jQuery(this).serialize();
-        //insertReply(data);
+        var id = jQuery(this).find('input[name="forumCommentId"]').val();
+        var input = jQuery(this).find('textarea[name="forumReplyText"]').val();
+        var container = jQuery(this).siblings('.forum_repliescontainer').find('.forum_repliescontainerinner');
+        if(input != null || input.trim() != ''){
+            insertReply(data, id, container);
+            jQuery(this).find('textarea[name="forumReplyText"]').val('');
+        }
     });
 }
 
@@ -254,14 +260,29 @@ function likeForumComment(){
     });
 }
 
+function insertReply(data_s, id, container){
+    jQuery.ajax({
+        method: 'POST',
+        url: '/api/forum/' + window.location.href.split('/')[4] + '/' + id,
+        cache: true,
+        data: data_s,
+        success: function(data) {
+            showReplies(container, id);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('Error en Cliente ' + textStatus + " " + errorThrown);
+        }
+    });
+}
+
 // Funcion para dar like o dislike a una respuesta o quitarlo
 function likeForumCommentReply(){
 
-    jQuery('.reply_action [put-status]').click(function(){
+    jQuery('.reply_action span[put-status]').click(function(){
         var id = jQuery(this).parents('.forum_reply').attr('data-id');
         var id_comment = jQuery(this).parents('.forum_comment').attr('data-id');
         var status = jQuery(this).attr('put-status');
-        var lastClass = jQuery(this).attr('class').split(' ')[1];
+        var lastClass = jQuery(this).attr('class').split(' ').pop();
 
         // lastClass me dice que accion voy a realizar y se cambia el put-status 
         // para mandar un valor diferente al proximo click
@@ -286,7 +307,7 @@ function likeForumCommentReply(){
                 .removeClass('bg_likeactive').addClass('bg_like').attr('put-status', '1');
         }
 
-        /*jQuery.ajax({
+        jQuery.ajax({
             method: 'POST',
             url: '/api/forum/' + window.location.href.split('/')[4] + '/' + id_comment + '/' + id + '/like',
             cache: true,
@@ -299,7 +320,7 @@ function likeForumCommentReply(){
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Error en Cliente ' + textStatus + " " + errorThrown);
             }
-        });*/
+        });
 
     });
 }
