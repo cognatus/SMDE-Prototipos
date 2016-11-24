@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
+var multer = require('multer');
+var upload = multer({dest: '../public/uploads'});
 
 var admin = require('../api/admin');
 var agenda = require('../api/agenda');
@@ -82,7 +84,8 @@ router.route('/profile/teachers/:id_teacher/subjects')
 	.get(perfil.getTeacherCoincidences);
 
 router.route('/profile/updatephotos')
-	.post(perfil.updateProfilePhotos);
+	.post(upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'background', maxCount: 8 }]),
+		perfil.updateProfilePhotos);
 
 //Todo referente a la vista de Asignaturas
 router.route('/profile/availablecourses')

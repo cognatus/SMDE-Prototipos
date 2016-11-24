@@ -18,7 +18,7 @@ block content
 						#p_back.colhh1.profile_img.inbox_shadow
 							.f_select.pd_18.autooverflow
 								.input_filecontainer
-									input#input_pBack.changep_input(type='file' name='updateProfileBack' accept='image/*')
+									input#input_pBack.changep_input(type='file' name='background' accept='image/*')
 								#selectBack.autocol.hover.trigger.borad.white_text
 									span.small_icon.bg_camera.v_middle
 									.autocol.v_middle.b_text(style='margin-left: -5px;')
@@ -26,7 +26,7 @@ block content
 											span.pd_4
 							.f_select
 								.input_filecontainer
-									input#input_pPhoto.changep_input(type='file' name='updateProfilePhoto' accept='image/*')
+									input#input_pPhoto.changep_input(type='file' name='avatar' accept='image/*')
 								#selectPhoto.photo.rel_pos
 									img#p_img.circle.flat_shadow(src='/profile_photos/' + datos[0].photoName + '' onerror='this.onerror=null;this.src="http://localhost:3000/images/profilephoto.png"')
 									.photo_hiddenbutton.trigger.circle.bg_camera(title='Seleccionar imagen')

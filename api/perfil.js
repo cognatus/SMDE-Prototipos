@@ -569,34 +569,35 @@ exports.getTeacherCoincidences = function(req, res){
 };
 
 exports.updateProfilePhotos = function(req, res){
-	console.log(req.files);	
-
-	var backImage = req.files.updateProfileBack;
-	var profileImage = req.files.updateProfilePhoto;
 	var nameImage = req.session.datos[0].photoName;
+	var storageAvatar = multer.diskStorage({
+		destination: function (req, file, cb) {
+			cb(null, '/public/profile_photos')
+		},
+		filename: function (req, file, cb) {
+			cb(null, nameImage)
+		}
+	});
 
-	if( backImage.originalname != '' ){
-		var storage = multer.diskStorage({
-			destination: function (req, file, cb) {
-				cb(null, __base + '/profile_photos/');
-			},
-			filename: function (req, file, cb) {
-				cb(null, nameImage);
-			}
-		});
-		multer({ storage: storage });
-	}
+	var storageBackground = multer.diskStorage({
+		destination: function (req, file, cb) {
+			cb(null, '/public/profile_backgrounds')
+		},
+		filename: function (req, file, cb) {
+			cb(null, nameImage)
+		}
+	});
 
-	if( profileImage.originalname != '' ){
-		var storage = multer.diskStorage({
-			destination: function (req, file, cb) {
-				cb(null, __base + '/profile_backgrounds/');
-			},
-			filename: function (req, file, cb) {
-				cb(null, nameImage);
-			}
-		});
-		multer({ storage: storage });
+	console.log(req.files);
+	if(	req.files.avatar ){
+		console.log('Guardar en avatar');
+		multer({ storage: storageAvatar });
 	}
+		
+	if( req.files.background ){
+		console.log('Guardar en background');
+		multer({ storage: storageBackground });
+	}
+	
 	res.redirect('/profile');
  };

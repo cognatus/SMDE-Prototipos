@@ -3,7 +3,9 @@ jQuery(document).on('ready', function(){
         
     if(sessionUserType != 3){
         showProfileSubjects();
-        showCoursesToAdd();
+        if (window.location.href.split('/').pop() == 'subjects') {
+            showCoursesToAdd();
+        }
     }
     showContactsAdministrators();
     showContactsStudents();
